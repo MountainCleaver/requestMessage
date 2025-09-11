@@ -1,0 +1,280 @@
+[gd_scene load_steps=19 format=3 uid="uid://kvi1gwn1mkx2"]
+
+[ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="1_6sufa"]
+[ext_resource type="Script" uid="uid://ddc3dvxy5cq0o" path="res://scenes/menu/bday_and_gender.gd" id="1_aj270"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_03f48"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_aj270"]
+[ext_resource type="Texture2D" uid="uid://03chnjfghkoo" path="res://assets/main menu/icons/gender-male.svg" id="5_sbdg1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sbdg1"]
+font = ExtResource("2_03f48")
+font_size = 40
+font_color = Color(0.329412, 0.329412, 0.329412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ri523"]
+font = ExtResource("3_aj270")
+font_size = 24
+font_color = Color(1, 0.192157, 0.192157, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_03f48"]
+font = ExtResource("3_aj270")
+font_size = 24
+font_color = Color(0.329412, 0.329412, 0.329412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owdxj"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fix5w"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.760591, 0.764619, 0.796131, 1)
+corner_radius_top_left = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqt58"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.00820203, 0.00820202, 0.00820202, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7sn6"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twshb"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.760591, 0.764619, 0.796131, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbdg1"]
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogk07"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.760591, 0.764619, 0.796131, 1)
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4e0t"]
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 15
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri523"]
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjrkx"]
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+expand_margin_left = 30.0
+expand_margin_top = 10.0
+expand_margin_right = 30.0
+expand_margin_bottom = 10.0
+
+[node name="bday_and_gender" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -903.0
+offset_bottom = -448.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aj270")
+
+[node name="Panel" parent="." instance=ExtResource("1_6sufa")]
+layout_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_right = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="vbox_all" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+text = "CREATE AN ACCOUNT
+"
+label_settings = SubResource("LabelSettings_sbdg1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="subtitle" type="Label" parent="Panel/MarginContainer/vbox_all/title"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.5
+offset_top = -36.0
+offset_right = 105.5
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "For players 18+ only"
+label_settings = SubResource("LabelSettings_ri523")
+
+[node name="vbox_date" type="VBoxContainer" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/vbox_all/vbox_date"]
+layout_mode = 2
+text = "Birthday"
+label_settings = SubResource("LabelSettings_03f48")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/vbox_all/vbox_date"]
+layout_mode = 2
+alignment = 1
+
+[node name="month" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxFlat_owdxj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fix5w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mqt58")
+theme_override_styles/normal = SubResource("StyleBoxFlat_t7sn6")
+alignment = 1
+
+[node name="day" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxFlat_owdxj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_twshb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sbdg1")
+alignment = 1
+
+[node name="year" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxFlat_owdxj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ogk07")
+theme_override_styles/normal = SubResource("StyleBoxFlat_x4e0t")
+alignment = 1
+
+[node name="line_break" type="Label" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+
+[node name="vbox_gender" type="VBoxContainer" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/vbox_all/vbox_gender"]
+layout_mode = 2
+text = "Gender"
+label_settings = SubResource("LabelSettings_03f48")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/vbox_all/vbox_gender"]
+layout_mode = 2
+alignment = 1
+
+[node name="male" type="Button" parent="Panel/MarginContainer/vbox_all/vbox_gender/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ri523")
+icon = ExtResource("5_sbdg1")
+
+[node name="female" type="Button" parent="Panel/MarginContainer/vbox_all/vbox_gender/HBoxContainer"]
+layout_mode = 2
+
+[node name="metal" type="Button" parent="Panel/MarginContainer/vbox_all/vbox_gender/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+
+[node name="line_break2" type="Label" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+
+[node name="vbox_enter" type="VBoxContainer" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/vbox_all/vbox_enter"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_03f48")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/vbox_all/vbox_enter"]
+layout_mode = 2
+alignment = 1
+
+[node name="btn_accept" type="Button" parent="Panel/MarginContainer/vbox_all/vbox_enter/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_jjrkx")
+text = "Enter"
+
+[connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/month" to="." method="_on_month_item_selected"]
+[connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/day" to="." method="_on_day_item_selected"]
+[connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/year" to="." method="_on_year_item_selected"]
+[connection signal="pressed" from="Panel/MarginContainer/vbox_all/vbox_enter/HBoxContainer/btn_accept" to="." method="_on_btn_accept_pressed"]

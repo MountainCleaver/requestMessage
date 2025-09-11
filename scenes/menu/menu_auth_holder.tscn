@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi2pe6xi1mv47"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfg4i"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="holder" type="Panel"]
+offset_right = 528.0
+offset_bottom = 569.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pfg4i")

@@ -1,0 +1,141 @@
+[gd_scene load_steps=8 format=3 uid="uid://kvi1gwn1mkx2"]
+
+[ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="1_6sufa"]
+[ext_resource type="Script" uid="uid://ddc3dvxy5cq0o" path="res://scenes/menu/bday_and_gender.gd" id="1_aj270"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_03f48"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_aj270"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sbdg1"]
+font = ExtResource("2_03f48")
+font_size = 40
+font_color = Color(0.329412, 0.329412, 0.329412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ri523"]
+font = ExtResource("3_aj270")
+font_size = 24
+font_color = Color(1, 0.192157, 0.192157, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_03f48"]
+font = ExtResource("3_aj270")
+font_size = 24
+font_color = Color(0.329412, 0.329412, 0.329412, 1)
+
+[node name="bday_and_gender" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -903.0
+offset_bottom = -448.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aj270")
+
+[node name="Panel" parent="." instance=ExtResource("1_6sufa")]
+layout_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_right = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="vbox_all" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+text = "CREATE AN ACCOUNT
+"
+label_settings = SubResource("LabelSettings_sbdg1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="subtitle" type="Label" parent="Panel/MarginContainer/vbox_all/title"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.5
+offset_top = -36.0
+offset_right = 105.5
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "For players 18+ only"
+label_settings = SubResource("LabelSettings_ri523")
+
+[node name="vbox_date" type="VBoxContainer" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/vbox_all/vbox_date"]
+layout_mode = 2
+text = "Birthday"
+label_settings = SubResource("LabelSettings_03f48")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/vbox_all/vbox_date"]
+layout_mode = 2
+alignment = 1
+
+[node name="month" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
+selected = 0
+
+[node name="day" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
+item_count = 1
+popup/item_0/id = 0
+
+[node name="year" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
+item_count = 2
+popup/item_0/id = 0
+popup/item_1/id = 1
+
+[node name="vbox_gender" type="VBoxContainer" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/vbox_all/vbox_gender"]
+layout_mode = 2
+text = "Gender"
+label_settings = SubResource("LabelSettings_03f48")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/vbox_all/vbox_gender"]
+layout_mode = 2
+alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_gender/HBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton2" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_gender/HBoxContainer"]
+layout_mode = 2
+
+[node name="vbox_enter" type="VBoxContainer" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/vbox_all/vbox_enter"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_03f48")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/vbox_all/vbox_enter"]
+layout_mode = 2
+alignment = 1
+
+[node name="OptionButton" type="Button" parent="Panel/MarginContainer/vbox_all/vbox_enter/HBoxContainer"]
+layout_mode = 2
