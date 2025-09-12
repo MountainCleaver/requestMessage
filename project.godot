@@ -28,6 +28,8 @@ TransitionFade="*res://helpers/transition_fade.tscn"
 
 window/size/viewport_width=1440
 window/size/viewport_height=1024
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 window/main_scene="uid://bro8lnbrtlvoc"
 window/minimum_display_time=8000
 window/image="uid://h36f1ipl8glj"
