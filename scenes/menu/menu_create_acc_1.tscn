@@ -43,7 +43,7 @@ stretch_mode = 4
 
 [node name="bday_and_gender" parent="." instance=ExtResource("4_23pff")]
 layout_mode = 1
-offset_left = 737.0
-offset_top = 259.0
-offset_right = -166.0
-offset_bottom = -189.0
+offset_left = 720.0
+offset_top = 256.0
+offset_right = 191.52
+offset_bottom = -192.0

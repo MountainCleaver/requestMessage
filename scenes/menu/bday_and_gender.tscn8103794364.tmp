@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://kvi1gwn1mkx2"]
+[gd_scene load_steps=33 format=3 uid="uid://kvi1gwn1mkx2"]
 
 [ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="1_6sufa"]
 [ext_resource type="Script" uid="uid://ddc3dvxy5cq0o" path="res://scenes/menu/bday_and_gender.gd" id="1_aj270"]
@@ -269,7 +269,6 @@ expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8kfaq"]
-bg_color = Color(0.937255, 0.937255, 0.937255, 1)
 expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
@@ -281,26 +280,6 @@ content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
 bg_color = Color(0.760784, 0.764706, 0.796078, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.533333, 0.54902, 0.572549, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74a5o"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.597898, 0.591822, 0.589213, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -335,17 +314,13 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_t7sn6"]
-font = ExtResource("3_aj270")
-font_size = 24
-font_color = Color(0.862745, 0.207843, 0.270588, 0.596078)
-
 [node name="bday_and_gender" type="Control"]
 layout_mode = 3
-anchor_right = 0.367
-anchor_bottom = 0.527
-offset_right = -0.480042
-offset_bottom = 0.35199
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -903.0
+offset_bottom = -448.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aj270")
@@ -410,7 +385,6 @@ alignment = 1
 [node name="month" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 0
 theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_aj270")
@@ -424,7 +398,6 @@ alignment = 1
 [node name="day" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 0
 theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_aj270")
@@ -437,7 +410,6 @@ alignment = 1
 [node name="year" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 0
 theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_aj270")
@@ -519,30 +491,15 @@ alignment = 1
 
 [node name="btn_accept" type="Button" parent="Panel/MarginContainer/vbox_all/vbox_enter/HBoxContainer"]
 layout_mode = 2
-focus_mode = 0
 theme_override_colors/font_hover_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 theme_override_colors/font_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 theme_override_colors/font_focus_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 theme_override_colors/font_pressed_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
-theme_override_fonts/font = ExtResource("3_aj270")
-theme_override_font_sizes/font_size = 35
 theme_override_styles/focus = SubResource("StyleBoxFlat_e21up")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_8kfaq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3u6i2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_74a5o")
 theme_override_styles/normal = SubResource("StyleBoxFlat_jjrkx")
 text = "Enter"
-
-[node name="line_break3" type="Label" parent="Panel/MarginContainer/vbox_all"]
-layout_mode = 2
-label_settings = SubResource("LabelSettings_t7sn6")
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="Panel/MarginContainer/vbox_all"]
-layout_mode = 2
-text = "Innocence won't survive"
-label_settings = SubResource("LabelSettings_t7sn6")
-horizontal_alignment = 1
 
 [connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/month" to="." method="_on_month_item_selected"]
 [connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/day" to="." method="_on_day_item_selected"]

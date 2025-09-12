@@ -4,6 +4,10 @@ extends Control
 @onready var day: OptionButton = $Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/day
 @onready var year: OptionButton = $Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/year
 
+@onready var male: Button = $Panel/MarginContainer/vbox_all/vbox_gender/genders_container/male
+@onready var female: Button = $Panel/MarginContainer/vbox_all/vbox_gender/genders_container/female
+@onready var metal: Button = $Panel/MarginContainer/vbox_all/vbox_gender/genders_container/metal
+
 @onready var btn_accept: Button = $Panel/MarginContainer/vbox_all/vbox_enter/HBoxContainer/btn_accept
 
 @onready var month_popup: PopupMenu = month.get_popup();
@@ -11,6 +15,10 @@ extends Control
 @onready var year_popup: PopupMenu = year.get_popup();
 
 const BASIS_33 = preload("res://assets/fonts/basis33.ttf");
+
+var year_range = range(2025, 1949, -1);
+var genders = ["male", "female", "ambigious"];
+var selected_gender : String = "";
 
 var month_days := {
 	"JAN": 31,
@@ -27,7 +35,8 @@ var month_days := {
 	"DEC": 31
 }
 
-var year_range = range(2025, 1949, -1) 
+@onready var genders_container: HBoxContainer = $Panel/MarginContainer/vbox_all/vbox_gender/genders_container
+
 
 
 func _ready() -> void:
@@ -41,7 +50,15 @@ func _ready() -> void:
 	_style_option_button(month);
 	_style_option_button(year);
 	_style_option_button(day);
+	
 
+func _process(delta: float) -> void:
+	#print("Accept disabled:", btn_accept.disabled)
+	if selected_gender == "":
+		btn_accept.disabled = true;
+	else:
+		btn_accept.disabled = false;
+		
 
 func _assign_months() -> void:
 	for m in month_days.keys():
@@ -165,4 +182,17 @@ func _style_option_button(option_btn: OptionButton) -> void:
 
 
 func _on_btn_accept_pressed() -> void:
+	
 	print("BirthDate: " + str(month_days.keys()[month.selected]) + " " + str(day.selected + 1) + " " + str(year_range[year.selected]) );
+	print("Gender: " + selected_gender);
+	print("pressed");
+
+
+func _on_male_pressed() -> void:
+	selected_gender = genders[0]
+
+func _on_female_pressed() -> void:
+	selected_gender = genders[1]
+
+func _on_metal_pressed() -> void:
+	selected_gender = genders[2]
