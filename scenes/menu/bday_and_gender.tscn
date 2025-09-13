@@ -1,7 +1,7 @@
 [gd_scene load_steps=35 format=3 uid="uid://kvi1gwn1mkx2"]
 
 [ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="1_6sufa"]
-[ext_resource type="Script" uid="uid://ddc3dvxy5cq0o" path="res://scenes/menu/bday_and_gender.gd" id="1_aj270"]
+[ext_resource type="Script" uid="uid://ddc3dvxy5cq0o" path="res://scenes/menu/scripts/bday_and_gender.gd" id="1_aj270"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_03f48"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_aj270"]
 [ext_resource type="Texture2D" uid="uid://03chnjfghkoo" path="res://assets/main menu/icons/gender-male.svg" id="5_sbdg1"]
