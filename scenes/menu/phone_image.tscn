@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxre3k2yvyx2c"]
+
+[ext_resource type="Texture2D" uid="uid://d37rg5an1q1b2" path="res://assets/main menu/menu_phone.png" id="1_6pi3y"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_left = 288.0
+offset_top = 248.0
+offset_right = 614.0
+offset_bottom = 858.0
+texture = ExtResource("1_6pi3y")
+expand_mode = 1
+stretch_mode = 4

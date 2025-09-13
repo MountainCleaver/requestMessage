@@ -90,7 +90,7 @@ func _is_leap_year(year:int) -> bool:
 
 func _on_month_item_selected(index: int) -> void:
 	var selected_month = month_days.keys()[index];
-	print("month :" + selected_month);
+	#print("month :" + selected_month);
 	
 	if selected_month == "FEB" and _is_leap_year(year_range[year.selected]):
 		_assign_days(29);
@@ -183,9 +183,35 @@ func _style_option_button(option_btn: OptionButton) -> void:
 
 func _on_btn_accept_pressed() -> void:
 	
-	print("BirthDate: " + str(month_days.keys()[month.selected]) + " " + str(day.selected + 1) + " " + str(year_range[year.selected]) );
+	var now = Time.get_datetime_dict_from_system()
+	
+	var current_month = now.month
+	var current_day = now.day
+	var current_year = now.year
+	
+	print("Current month: " + str(current_month))
+	print("Selected month: " + str(month.selected + 1))
+	
+	var month = month.selected + 1
+	var day = day.selected + 1
+	var year = year_range[year.selected]
+	
+	var age = current_year - year;
+	
+	if current_month < month or (current_day < day and current_month == month):
+		age -= 1;
+	
+	if age < 18:
+		print("is minor");
+		SignalBus.next_scene.emit("res://testtt.tscn");
+	elif age >= 18:
+		print("is adult");
+		SignalBus.next_scene.emit("res://scenes/menu/menu_create_acc_creds.tscn");
+	
+	print("Final age: " + str(age));
+	
+	print("BirthDate: " + str(month) + " " + str(day) + " " + str(year) );
 	print("Gender: " + selected_gender);
-	print("pressed");
 
 
 func _on_male_pressed() -> void:
