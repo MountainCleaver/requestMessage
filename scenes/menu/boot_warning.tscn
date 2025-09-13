@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://h36f1ipl8glj"]
 
-[ext_resource type="Script" uid="uid://bjgba84tfg2i" path="res://scenes/menu/boot_warning.gd" id="1_lmbvh"]
-[ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/menu_background.tscn" id="2_bfe6o"]
+[ext_resource type="Script" uid="uid://bjgba84tfg2i" path="res://scenes/menu/scripts/boot_warning.gd" id="1_lmbvh"]
+[ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_bfe6o"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_lmbvh"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_bfe6o"]
 
