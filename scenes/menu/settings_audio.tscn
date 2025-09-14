@@ -1,0 +1,139 @@
+[gd_scene load_steps=15 format=3 uid="uid://1gfgjwlhjokl"]
+
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_mxcjd"]
+[ext_resource type="Texture2D" uid="uid://bvu6cd50qiv13" path="res://assets/main menu/icons/Sprite-0001-Sheet.png" id="2_1d5sh"]
+[ext_resource type="Texture2D" uid="uid://upkrugknwx7v" path="res://assets/main menu/icons/check_uncheck.png" id="3_mf2dd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mxcjd"]
+font = ExtResource("1_mxcjd")
+font_size = 36
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1d5sh"]
+atlas = ExtResource("2_1d5sh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf2dd"]
+atlas = ExtResource("2_1d5sh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw32y"]
+atlas = ExtResource("2_1d5sh")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_378pt"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+texture = SubResource("AtlasTexture_tw32y")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
+axis_stretch_vertical = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwp3w"]
+atlas = ExtResource("2_1d5sh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_44ghw"]
+texture = SubResource("AtlasTexture_uwp3w")
+
+[sub_resource type="LabelSettings" id="LabelSettings_1d5sh"]
+font = ExtResource("1_mxcjd")
+font_size = 36
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mf2dd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djnjm"]
+atlas = ExtResource("3_mf2dd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44ghw"]
+atlas = ExtResource("3_mf2dd")
+region = Rect2(0, 0, 32, 32)
+
+[node name="settings_audio" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="MUSIC" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MUSIC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "MUSIC VOLUME"
+label_settings = SubResource("LabelSettings_mxcjd")
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/MUSIC"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+theme_override_icons/grabber = SubResource("AtlasTexture_1d5sh")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_mf2dd")
+theme_override_styles/slider = SubResource("StyleBoxTexture_378pt")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_44ghw")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_44ghw")
+step = 10.0
+value = 80.0
+rounded = true
+
+[node name="SFX" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "SFX VOLUME"
+label_settings = SubResource("LabelSettings_1d5sh")
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/SFX"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+theme_override_icons/grabber = SubResource("AtlasTexture_1d5sh")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_mf2dd")
+theme_override_styles/slider = SubResource("StyleBoxTexture_378pt")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_44ghw")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_44ghw")
+step = 10.0
+value = 80.0
+rounded = true
+
+[node name="MUTE" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MUTE"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "MUTE ALL SOUNDS"
+label_settings = SubResource("LabelSettings_1d5sh")
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/MUTE"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 5
+theme_override_constants/outline_size = 1
+theme_override_styles/focus = SubResource("StyleBoxFlat_mf2dd")
+theme_override_icons/checked = SubResource("AtlasTexture_djnjm")
+theme_override_icons/unchecked = SubResource("AtlasTexture_44ghw")

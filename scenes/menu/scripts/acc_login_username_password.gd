@@ -1,6 +1,8 @@
 extends Control
 
-@onready var signup_link: Button = $holder/signup_link
+@onready var signup_link: Button = $holder/login_link
+
+var api : String = "http://192.168.100.57/chat-app/apis/auth/login.php"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://cykh0p8r2kduc"]
+
+[ext_resource type="Script" uid="uid://ucehjejjclhf" path="res://scenes/menu/menu_main.gd" id="1_blywf"]
+[ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_wyeju"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="3_blywf"]
+[ext_resource type="Texture2D" uid="uid://d37rg5an1q1b2" path="res://assets/main menu/menu_phone.png" id="4_blywf"]
+[ext_resource type="PackedScene" uid="uid://c7yw1h7fpco1e" path="res://scenes/menu/option_main_menu.tscn" id="4_d2s0i"]
+
+[node name="menu_main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_blywf")
+
+[node name="menu_background" parent="." instance=ExtResource("1_wyeju")]
+layout_mode = 1
+
+[node name="title_game" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 680.0
+offset_top = 309.0
+offset_right = -152.0
+offset_bottom = 435.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 0.192157, 0.192157, 1)
+theme_override_fonts/normal_font = ExtResource("3_blywf")
+theme_override_font_sizes/normal_font_size = 72
+text = "REQUEST MESSAGE"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="options_holder" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -664.0
+offset_top = -56.0
+offset_right = -256.0
+offset_bottom = 248.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 9
+alignment = 1
+
+[node name="new_game" parent="options_holder" instance=ExtResource("4_d2s0i")]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+text = "NEW GAME"
+
+[node name="load_game" parent="options_holder" instance=ExtResource("4_d2s0i")]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+text = "LOAD GAME"
+
+[node name="report_bug" parent="options_holder" instance=ExtResource("4_d2s0i")]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+text = "REPORT A BUG"
+
+[node name="credits" parent="options_holder" instance=ExtResource("4_d2s0i")]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+text = "CREDITS"
+
+[node name="options" parent="options_holder" instance=ExtResource("4_d2s0i")]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+text = "OPTIONS"
+
+[node name="exit" parent="options_holder" instance=ExtResource("4_d2s0i")]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+text = "EXIT"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 248.0
+offset_right = 614.0
+offset_bottom = 858.0
+texture = ExtResource("4_blywf")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="overlayer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="options_holder/new_game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="options_holder/load_game" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="options_holder/report_bug" to="." method="_on_report_bug_pressed"]
+[connection signal="pressed" from="options_holder/credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="options_holder/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="options_holder/exit" to="." method="_on_exit_pressed"]
