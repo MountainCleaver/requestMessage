@@ -14,4 +14,4 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	SignalBus.next_scene.emit("res://scenes/menu/menu_create_acc_bday_gender.tscn")
+	SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
