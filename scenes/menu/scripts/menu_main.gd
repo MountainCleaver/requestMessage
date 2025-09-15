@@ -39,7 +39,8 @@ func _on_load_game_pressed() -> void:
 
 
 func _on_report_bug_pressed() -> void:
-	print("report bug");
+	_option_overlayer("res://scenes/menu/menu_report_a_bug.tscn");
+	current_choice = options.get_children().find(report_bug);
 
 
 func _on_credits_pressed() -> void:
