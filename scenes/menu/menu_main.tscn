@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cykh0p8r2kduc"]
 
-[ext_resource type="Script" uid="uid://ucehjejjclhf" path="res://scenes/menu/menu_main.gd" id="1_blywf"]
+[ext_resource type="Script" uid="uid://ucehjejjclhf" path="res://scenes/menu/scripts/menu_main.gd" id="1_blywf"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_wyeju"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="3_blywf"]
 [ext_resource type="Texture2D" uid="uid://d37rg5an1q1b2" path="res://assets/main menu/menu_phone.png" id="4_blywf"]
