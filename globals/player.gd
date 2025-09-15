@@ -1,5 +1,6 @@
 extends Node
 
+#for ingame progress/local saves/anything related to player in game
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
