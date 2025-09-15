@@ -30,7 +30,7 @@ func _on_option_display_pressed() -> void:
 	_setting_switcher("res://scenes/menu/settings_display.tscn");
 
 func _on_option_controls_pressed() -> void:
-	_setting_switcher("res://testtt.tscn")
+	_setting_switcher("res://scenes/menu/settings_controls.tscn")
 
 
 func _setting_switcher(path: String):
