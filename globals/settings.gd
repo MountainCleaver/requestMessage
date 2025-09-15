@@ -1,11 +1,12 @@
 extends Node
 
+#audio
+var music_volume : float = 80.0;
+var sfx_volume : float = 80.0;
+var mute_all_sounds : bool = true;
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+#display
+var window_mode : String = "windowed";
+var brightness : float = 90.0;
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+#controls
