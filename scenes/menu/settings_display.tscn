@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cg24bagrgn8w5"]
+[gd_scene load_steps=20 format=3 uid="uid://cg24bagrgn8w5"]
 
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_65wt5"]
+[ext_resource type="Script" uid="uid://dv5lh0ou423ae" path="res://scenes/menu/scripts/settings_display.gd" id="1_pe472"]
 [ext_resource type="Texture2D" uid="uid://c0rv7wh6es8um" path="res://assets/main menu/icons/radio.png" id="2_mbspy"]
+[ext_resource type="Texture2D" uid="uid://bvu6cd50qiv13" path="res://assets/main menu/icons/Sprite-0001-Sheet.png" id="4_kav76"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mbspy"]
 font = ExtResource("1_65wt5")
@@ -23,6 +25,50 @@ region = Rect2(32, 0, 32, 32)
 [sub_resource type="LabelSettings" id="LabelSettings_pe472"]
 font_color = Color(1, 1, 1, 0)
 
+[sub_resource type="LabelSettings" id="LabelSettings_kav76"]
+font = ExtResource("1_65wt5")
+font_size = 36
+font_color = Color(1, 1, 1, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6ned"]
+atlas = ExtResource("4_kav76")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scydi"]
+atlas = ExtResource("4_kav76")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw32y"]
+atlas = ExtResource("4_kav76")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r2h1n"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+texture = SubResource("AtlasTexture_tw32y")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
+axis_stretch_vertical = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwp3w"]
+atlas = ExtResource("4_kav76")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yt1n7"]
+texture = SubResource("AtlasTexture_uwp3w")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r1kqc"]
+texture = SubResource("AtlasTexture_uwp3w")
+
+[sub_resource type="LabelSettings" id="LabelSettings_l6ned"]
+font = ExtResource("1_65wt5")
+font_size = 36
+font_color = Color(1, 1, 1, 0)
+
 [node name="settings_display" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -30,6 +76,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_pe472")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -88,3 +135,33 @@ theme_override_icons/radio_checked = SubResource("AtlasTexture_mbspy")
 theme_override_icons/radio_unchecked = SubResource("AtlasTexture_65wt5")
 button_group = SubResource("ButtonGroup_65wt5")
 text = " Windowed"
+
+[node name="BRIGHTNESS" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/BRIGHTNESS"]
+layout_mode = 2
+text = "BRIGHTNESS"
+label_settings = SubResource("LabelSettings_mbspy")
+
+[node name="SLIDER" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="john_cena" type="Label" parent="VBoxContainer/SLIDER"]
+layout_mode = 2
+text = "cena"
+label_settings = SubResource("LabelSettings_kav76")
+
+[node name="brightness_slider" type="HSlider" parent="VBoxContainer/SLIDER"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_icons/grabber = SubResource("AtlasTexture_l6ned")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_scydi")
+theme_override_styles/slider = SubResource("StyleBoxTexture_r2h1n")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_yt1n7")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_r1kqc")
+
+[node name="john_cena2" type="Label" parent="VBoxContainer/SLIDER"]
+layout_mode = 2
+text = "john cena bin chiling"
+label_settings = SubResource("LabelSettings_l6ned")
