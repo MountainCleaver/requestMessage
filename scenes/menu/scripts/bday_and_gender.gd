@@ -40,6 +40,7 @@ var month_days := {
 
 
 func _ready() -> void:
+	
 	_assign_months();
 	_assign_years();
 	
