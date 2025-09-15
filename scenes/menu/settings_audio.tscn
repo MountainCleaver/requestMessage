@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://1gfgjwlhjokl"]
+[gd_scene load_steps=16 format=3 uid="uid://1gfgjwlhjokl"]
 
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_mxcjd"]
+[ext_resource type="Script" uid="uid://be6wnnqrj4y7j" path="res://scenes/menu/scripts/settings_audio.gd" id="1_uwp3w"]
 [ext_resource type="Texture2D" uid="uid://bvu6cd50qiv13" path="res://assets/main menu/icons/Sprite-0001-Sheet.png" id="2_1d5sh"]
 [ext_resource type="Texture2D" uid="uid://upkrugknwx7v" path="res://assets/main menu/icons/check_uncheck.png" id="3_mf2dd"]
 
@@ -61,6 +62,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_uwp3w")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -81,7 +83,7 @@ size_flags_vertical = 5
 text = "MUSIC VOLUME"
 label_settings = SubResource("LabelSettings_mxcjd")
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/MUSIC"]
+[node name="music_slider" type="HSlider" parent="VBoxContainer/MUSIC"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -105,7 +107,7 @@ size_flags_vertical = 5
 text = "SFX VOLUME"
 label_settings = SubResource("LabelSettings_1d5sh")
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/SFX"]
+[node name="sfx_slider" type="HSlider" parent="VBoxContainer/SFX"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -129,7 +131,7 @@ size_flags_vertical = 5
 text = "MUTE ALL SOUNDS"
 label_settings = SubResource("LabelSettings_1d5sh")
 
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer/MUTE"]
+[node name="mute_check" type="CheckBox" parent="VBoxContainer/MUTE"]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 5
