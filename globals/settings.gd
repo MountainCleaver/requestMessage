@@ -1,12 +1,31 @@
 extends Node
 
-#audio
-var music_volume : float = 80.0;
-var sfx_volume : float = 80.0;
-var mute_all_sounds : bool = true;
+const SAVE_PATH := "user://settings.res"
 
-#display
-var window_mode : String = "windowed";
-var brightness : float = 90.0;
+var settings: SettingsResource;
 
-#controls
+func _ready() -> void:
+	load_settings();
+	apply_display_settings();
+	
+
+func load_settings() -> void:
+	
+	if FileAccess.file_exists(SAVE_PATH):
+		settings = load(SAVE_PATH) as SettingsResource;
+	else:
+		settings = SettingsResource.new();
+		save_settings();
+
+func save_settings() -> void:
+	var error := ResourceSaver.save(settings, SAVE_PATH);
+	if error != OK:
+		push_error("Failed to save settings: %s" % error);
+
+
+func apply_display_settings() -> void:
+	match settings.window_mode:
+		"fullscreen":
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		"windowed":
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
