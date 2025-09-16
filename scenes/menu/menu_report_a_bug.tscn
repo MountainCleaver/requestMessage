@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://dkukr0i8tbvid"]
 
-[ext_resource type="Script" uid="uid://bmttfvo0b2va1" path="res://scenes/menu/menu_report_a_bug.gd" id="1_b0lpy"]
+[ext_resource type="Script" uid="uid://bmttfvo0b2va1" path="res://scenes/menu/scripts/menu_report_a_bug.gd" id="1_b0lpy"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_t4nnm"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_1bxss"]
 [ext_resource type="Texture2D" uid="uid://bbkdr0csbjf5r" path="res://assets/main menu/image.png" id="2_rtw4r"]
@@ -304,7 +304,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 100
 
-[node name="CANCEL" type="Button" parent="Panel/BUTTONS"]
+[node name="CLEAR" type="Button" parent="Panel/BUTTONS"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -317,7 +317,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/hover = SubResource("StyleBoxFlat_kthqb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ey87t")
 theme_override_styles/normal = SubResource("StyleBoxFlat_u6n7d")
-text = "CANCEL"
+text = "CLEAR"
 
 [node name="SUBMIT" type="Button" parent="Panel/BUTTONS"]
 layout_mode = 2
@@ -351,5 +351,14 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_rhmlq")
 text = "  EXIT"
 alignment = 0
 
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+title = "Report Status"
+size = Vector2i(200, 100)
+
 [connection signal="pressed" from="Panel/HBoxContainer/SCREENSHOT/UPLOADER" to="." method="_on_uploader_pressed"]
+[connection signal="pressed" from="Panel/BUTTONS/CLEAR" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="Panel/BUTTONS/SUBMIT" to="." method="_on_submit_pressed"]
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
