@@ -37,7 +37,7 @@ var month_days := {
 
 @onready var genders_container: HBoxContainer = $Panel/MarginContainer/vbox_all/vbox_gender/genders_container
 
-
+@onready var confirmation_dialog: ConfirmationDialog = $"../ConfirmationDialog"
 
 func _ready() -> void:
 	
@@ -204,7 +204,7 @@ func _on_btn_accept_pressed() -> void:
 	
 	if age < 18:
 		print("is minor");
-		SignalBus.next_scene.emit("res://testtt.tscn");
+		_confirm_dialog();
 	elif age >= 18:
 		print("is adult");
 		SignalBus.next_scene.emit("res://scenes/menu/menu_create_acc_creds.tscn");
@@ -213,6 +213,11 @@ func _on_btn_accept_pressed() -> void:
 	
 	print("BirthDate: " + str(month) + " " + str(day) + " " + str(year) );
 	print("Gender: " + selected_gender);
+
+func _confirm_dialog():
+	confirmation_dialog.dialog_text = "This game is restricted to players 18 years or older. If you are under 18, you must exit the game.";
+	confirmation_dialog.popup_centered();
+
 
 
 func _on_male_pressed() -> void:
@@ -223,3 +228,11 @@ func _on_female_pressed() -> void:
 
 func _on_metal_pressed() -> void:
 	selected_gender = genders[2]
+
+
+func _on_confirmation_dialog_confirmed() -> void:
+	confirmation_dialog.visible = false;
+
+
+func _on_confirmation_dialog_canceled() -> void:
+	get_tree().quit();
