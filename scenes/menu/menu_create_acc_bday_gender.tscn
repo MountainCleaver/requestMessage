@@ -47,3 +47,11 @@ offset_bottom = 858.0
 texture = ExtResource("4_s3vkt")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+size = Vector2i(201, 100)
+ok_button_text = "Enter age"
+cancel_button_text = "Exit Game"
+
+[connection signal="canceled" from="ConfirmationDialog" to="bday_and_gender" method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="ConfirmationDialog" to="bday_and_gender" method="_on_confirmation_dialog_confirmed"]
