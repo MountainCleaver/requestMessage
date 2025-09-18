@@ -7,4 +7,4 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("accept") or button.button_pressed:
-		SignalBus.next_scene.emit("res://scenes/menu/menu_create_acc_bday_gender.tscn");
+		SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn");
