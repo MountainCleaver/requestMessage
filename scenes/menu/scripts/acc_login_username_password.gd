@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 
 
 func _on_signup_link_pressed() -> void:
-	SignalBus.next_scene.emit("res://scenes/menu/menu_create_acc_creds.tscn");
+	SignalBus.next_scene.emit("res://scenes/menu/menu_create_acc_bday_gender.tscn");
 
 func _goto_main_menu(): #temporary fn
 	SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
