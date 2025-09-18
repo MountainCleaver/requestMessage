@@ -1,0 +1,148 @@
+[gd_scene load_steps=12 format=3 uid="uid://dt3yd4s5nakyt"]
+
+[ext_resource type="Script" uid="uid://b7hmkmiq81axl" path="res://scenes/game/act_1/scene_1/act_1_scene_1.gd" id="1_1hull"]
+[ext_resource type="PackedScene" uid="uid://d3u5m1cllxkbu" path="res://scenes/game/act_1/scene_1/danilo_room.tscn" id="2_wxgv6"]
+[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="3_v7vjx"]
+
+[sub_resource type="Gradient" id="Gradient_1hull"]
+interpolation_mode = 2
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1hull"]
+gradient = SubResource("Gradient_1hull")
+fill_from = Vector2(0.444444, 1)
+fill_to = Vector2(0.401709, 0)
+
+[sub_resource type="Animation" id="Animation_gveex"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17, 17)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -43)]
+}
+
+[sub_resource type="Animation" id="Animation_yg72h"]
+resource_name = "intro_pan"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(17, 17), Vector2(17, 17), Vector2(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.01, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -43), Vector2(0, -43), Vector2(0, -2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gveex"]
+_data = {
+&"RESET": SubResource("Animation_gveex"),
+&"intro_pan": SubResource("Animation_yg72h")
+}
+
+[sub_resource type="Animation" id="Animation_wxgv6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("storm_light:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4]
+}
+
+[sub_resource type="Animation" id="Animation_1hull"]
+resource_name = "storm"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("storm_light:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.896609, 0.9018, 1.36667, 1.46667, 2.28735, 2.3064, 2.49798, 2.51426, 2.62926, 2.65204, 2.81479, 2.86667, 3.9, 4.03333, 4.43333, 4.58119),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.4, 0.4, 16.0, 15.0022, 0.4, 0.4, 14.0, 13.0327, 0.8, 0.8, 12.0, 11.196, 0.4, 0.4, 3.71929, 3.71929, 0.4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wxgv6"]
+_data = {
+&"RESET": SubResource("Animation_wxgv6"),
+&"storm": SubResource("Animation_1hull")
+}
+
+[node name="act_scene_1" type="Node2D"]
+script = ExtResource("1_1hull")
+
+[node name="storm_light" type="PointLight2D" parent="."]
+position = Vector2(0, -58)
+scale = Vector2(2.65625, 1.81129)
+color = Color(0.189179, 0.185894, 0.409768, 1)
+energy = 0.4
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_1hull")
+offset = Vector2(0, 32.02)
+
+[node name="danilo_room" parent="." instance=ExtResource("2_wxgv6")]
+
+[node name="player_danilo" parent="." instance=ExtResource("3_v7vjx")]
+position = Vector2(-46, -7)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -43)
+zoom = Vector2(17, 17)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-26, 3)
+
+[node name="camera_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gveex")
+}
+
+[node name="storm_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wxgv6")
+}
+autoplay = "storm"
