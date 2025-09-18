@@ -31,7 +31,7 @@ func _option_hover (option: Button) :
 
 
 func _on_new_game_pressed() -> void:
-	print("new game");
+	SignalBus.next_scene.emit("res://scenes/game/act_1/scene_1/act_1_scene_1.tscn");
 
 
 func _on_load_game_pressed() -> void:
