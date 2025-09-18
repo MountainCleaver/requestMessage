@@ -4,14 +4,14 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var player_danilo: CharacterBody2D = $"."
 @onready var marker_2d: Marker2D = $"../Marker2D"
-@onready var camera_animation: AnimationPlayer = $"../camera_animation"
+
 
 @export var SPEED : float = 150.0
 var last_direction : Vector2 = Vector2.DOWN;
 var is_sleeping : bool = true;
 
 func _ready() -> void:
-	camera_animation.play("intro_pan");
+
 	_play_sleep();
 
 func _physics_process(delta: float) -> void:
@@ -70,7 +70,7 @@ func _play_sleep():
 	collision_shape_2d.disabled = true;
 	animated_sprite_2d.play("sleep");
 	
-	var timer = get_tree().create_timer(15);
+	var timer = get_tree().create_timer(5);
 	await timer.timeout;
 	
 	animated_sprite_2d.play("idle_down");

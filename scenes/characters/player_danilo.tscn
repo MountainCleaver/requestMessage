@@ -308,7 +308,7 @@ animations = [{
 size = Vector2(14, 7)
 
 [node name="player_danilo" type="CharacterBody2D"]
-collision_mask = 16
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_upm5t")
 
