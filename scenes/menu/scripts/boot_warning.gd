@@ -8,3 +8,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("accept") or button.button_pressed:
 		SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn");
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
