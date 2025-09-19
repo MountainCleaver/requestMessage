@@ -17,7 +17,7 @@ extends Control
 const BASIS_33 = preload("res://assets/fonts/basis33.ttf");
 
 var year_range = range(2025, 1949, -1);
-var genders = ["male", "female", "ambigious"];
+var genders = ["Male", "Female", "Ambigious"];
 var selected_gender : String = "";
 
 var month_days := {
@@ -183,36 +183,39 @@ func _style_option_button(option_btn: OptionButton) -> void:
 
 
 func _on_btn_accept_pressed() -> void:
-	
 	var now = Time.get_datetime_dict_from_system()
-	
 	var current_month = now.month
 	var current_day = now.day
 	var current_year = now.year
-	
-	print("Current month: " + str(current_month))
-	print("Selected month: " + str(month.selected + 1))
-	
-	var month = month.selected + 1
-	var day = day.selected + 1
-	var year = year_range[year.selected]
-	
-	var age = current_year - year;
-	
-	if current_month < month or (current_day < day and current_month == month):
-		age -= 1;
-	
+
+	var month_val = month.selected + 1
+	var day_val = day.selected + 1
+	var year_val = year_range[year.selected]
+
+	var age = current_year - year_val
+	if current_month < month_val or (current_day < day_val and current_month == month_val):
+		age -= 1
+
 	if age < 18:
-		print("is minor");
-		_confirm_dialog();
+		print("is minor")
+		_confirm_dialog()
 	elif age >= 18:
-		print("is adult");
-		SignalBus.next_scene.emit("res://scenes/menu/menu_create_acc_creds.tscn");
-	
-	print("Final age: " + str(age));
-	
-	print("BirthDate: " + str(month) + " " + str(day) + " " + str(year) );
-	print("Gender: " + selected_gender);
+		print("is adult")
+
+		# ✅ Save to SceneTree metadata (global storage)
+		var birthday = str(year_val) + "-" + str(month_val).pad_zeros(2) + "-" + str(day_val).pad_zeros(2)
+		var gender = selected_gender
+
+		get_tree().set_meta("birthday", birthday)
+		get_tree().set_meta("gender", gender)
+
+		# Move to username/password scene
+		SignalBus.next_scene.emit("res://scenes/menu/menu_create_acc_creds.tscn")
+
+	print("Final age: " + str(age))
+	print("BirthDate: " + str(month_val) + " " + str(day_val) + " " + str(year_val))
+	print("Gender: " + selected_gender)
+
 
 func _confirm_dialog():
 	confirmation_dialog.dialog_text = "This game is restricted to players 18 years or older. If you are under 18, you must exit the game.";
