@@ -799,7 +799,7 @@ texture = ExtResource("2_ilr38")
 15:22/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_wmg51"]
-physics_layer_0/collision_layer = 16
+physics_layer_0/collision_layer = 4
 sources/0 = SubResource("TileSetAtlasSource_ilr38")
 sources/1 = SubResource("TileSetAtlasSource_wmg51")
 
@@ -1037,7 +1037,7 @@ margins = Vector2i(0, 1)
 
 [sub_resource type="TileSet" id="TileSet_vpyaf"]
 occlusion_layer_0/light_mask = 3
-physics_layer_0/collision_layer = 16
+physics_layer_0/collision_layer = 4
 sources/0 = SubResource("TileSetAtlasSource_8q15q")
 
 [sub_resource type="Gradient" id="Gradient_ilr38"]
