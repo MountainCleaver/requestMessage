@@ -14,6 +14,8 @@ extends Control
 @onready var day_popup: PopupMenu = day.get_popup();
 @onready var year_popup: PopupMenu = year.get_popup();
 
+@onready var button: Button = $Button
+
 const BASIS_33 = preload("res://assets/fonts/basis33.ttf");
 
 var year_range = range(2025, 1949, -1);
@@ -239,3 +241,7 @@ func _on_confirmation_dialog_confirmed() -> void:
 
 func _on_confirmation_dialog_canceled() -> void:
 	get_tree().quit();
+
+
+func _on_button_pressed() -> void:
+	SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn");

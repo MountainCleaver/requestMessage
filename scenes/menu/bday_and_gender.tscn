@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://kvi1gwn1mkx2"]
+[gd_scene load_steps=37 format=3 uid="uid://kvi1gwn1mkx2"]
 
 [ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="1_6sufa"]
 [ext_resource type="Script" uid="uid://ddc3dvxy5cq0o" path="res://scenes/menu/scripts/bday_and_gender.gd" id="1_aj270"]
@@ -340,6 +340,16 @@ font = ExtResource("3_aj270")
 font_size = 24
 font_color = Color(0.862745, 0.207843, 0.270588, 0.596078)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aeego"]
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 2
+border_color = Color(0.162066, 0.162066, 0.162065, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkjcq"]
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 2
+border_color = Color(0.162066, 0.162066, 0.162065, 1)
+
 [node name="bday_and_gender" type="Control"]
 layout_mode = 3
 anchor_right = 0.367
@@ -544,6 +554,27 @@ text = "Innocence won't survive"
 label_settings = SubResource("LabelSettings_t7sn6")
 horizontal_alignment = 1
 
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.5
+offset_top = -55.0
+offset_right = 30.5
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxFlat_aeego")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nkjcq")
+text = "Login"
+
 [connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/month" to="." method="_on_month_item_selected"]
 [connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/day" to="." method="_on_day_item_selected"]
 [connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/year" to="." method="_on_year_item_selected"]
@@ -551,3 +582,4 @@ horizontal_alignment = 1
 [connection signal="pressed" from="Panel/MarginContainer/vbox_all/vbox_gender/genders_container/female" to="." method="_on_female_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/vbox_all/vbox_gender/genders_container/metal" to="." method="_on_metal_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/vbox_all/vbox_enter/HBoxContainer/btn_accept" to="." method="_on_btn_accept_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
