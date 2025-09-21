@@ -1,8 +1,59 @@
-[gd_scene load_steps=42 format=3 uid="uid://dblxd5gduaar6"]
+[gd_scene load_steps=61 format=3 uid="uid://dblxd5gduaar6"]
 
 [ext_resource type="Texture2D" uid="uid://bf73p6f1cex2c" path="res://assets/character_sprites/DANILO.png" id="1_31iy4"]
 [ext_resource type="Script" uid="uid://5x72ywgk1iqf" path="res://scenes/characters/player_danilo.gd" id="1_upm5t"]
 [ext_resource type="Texture2D" uid="uid://c6ob3wk4ijuk5" path="res://assets/character_sprites/DANILO_SLEEPING.png" id="2_0n403"]
+[ext_resource type="Texture2D" uid="uid://l300ai0sm410" path="res://assets/character_sprites/DANILO_DRINKINGpng.png" id="2_k222o"]
+[ext_resource type="Texture2D" uid="uid://be6h5vldaqlfi" path="res://assets/character_sprites/tip_interact.png" id="4_o0d8a"]
+[ext_resource type="Texture2D" uid="uid://b5ugk3js76r2d" path="res://assets/character_sprites/DANILO_WOKEN.png" id="4_ygycp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbajt"]
+atlas = ExtResource("2_k222o")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_feno4"]
+atlas = ExtResource("2_k222o")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kllre"]
+atlas = ExtResource("2_k222o")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlra3"]
+atlas = ExtResource("2_k222o")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qbw4"]
+atlas = ExtResource("2_k222o")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g8ri"]
+atlas = ExtResource("2_k222o")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yr80"]
+atlas = ExtResource("2_k222o")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttyxa"]
+atlas = ExtResource("2_k222o")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5qfa"]
+atlas = ExtResource("2_k222o")
+region = Rect2(192, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mytd"]
+atlas = ExtResource("2_k222o")
+region = Rect2(216, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lgpp"]
+atlas = ExtResource("2_k222o")
+region = Rect2(240, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ommk"]
+atlas = ExtResource("2_k222o")
+region = Rect2(264, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_upm5t"]
 atlas = ExtResource("1_31iy4")
@@ -148,8 +199,65 @@ region = Rect2(32, 168, 16, 24)
 atlas = ExtResource("1_31iy4")
 region = Rect2(48, 168, 16, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_krebh"]
+atlas = ExtResource("4_ygycp")
+region = Rect2(0, 0, 26, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rf3sq"]
+atlas = ExtResource("4_ygycp")
+region = Rect2(26, 0, 26, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7t3r"]
+atlas = ExtResource("4_ygycp")
+region = Rect2(52, 0, 26, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqkpw"]
+atlas = ExtResource("4_ygycp")
+region = Rect2(78, 0, 26, 41)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_krebh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbajt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_feno4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kllre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlra3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qbw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2g8ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yr80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttyxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5qfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mytd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lgpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ommk")
+}],
+"loop": false,
+"name": &"drinking_water",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_upm5t")
@@ -302,6 +410,23 @@ animations = [{
 "loop": true,
 "name": &"walk_up",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krebh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rf3sq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7t3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqkpw")
+}],
+"loop": true,
+"name": &"woken",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31iy4"]
@@ -314,8 +439,17 @@ script = ExtResource("1_upm5t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_krebh")
-animation = &"sleep"
+animation = &"drinking_water"
+autoplay = "sleep"
+frame = 11
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_31iy4")
+
+[node name="tip_interact" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.807843)
+position = Vector2(0, -21)
+texture = ExtResource("4_o0d8a")
