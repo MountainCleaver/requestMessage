@@ -5,17 +5,16 @@ extends CharacterBody2D
 @onready var player_danilo: CharacterBody2D = $"."
 @onready var marker_2d: Marker2D = $"../Marker2D"
 
-
-@export var SPEED : float = 150.0
-var last_direction : Vector2 = Vector2.DOWN;
+@export var SPEED : float = 80.0
+var last_direction : Vector2 = Vector2.DOWN; #to play idle animation
 var is_sleeping : bool = true;
-
-func _ready() -> void:
-
-	_play_sleep();
+var can_move : bool = true; # toggle at start and end of dialogue
 
 func _physics_process(delta: float) -> void:
-	
+	if not can_move:  # prevent movement during dialogue
+		velocity = Vector2.ZERO;
+		move_and_slide();
+		return;
 	
 	if not is_sleeping:
 		var direction = _get_direction();
@@ -26,7 +25,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide();
 
 
-func _get_direction ()-> Vector2:
+func _get_direction ()-> Vector2: # get direction from inputs
 	var direction : Vector2 = Vector2.ZERO;
 	
 	if Input.is_action_pressed("arrow_left"):
@@ -43,7 +42,7 @@ func _get_direction ()-> Vector2:
 		
 	return direction;
 
-func _play_animation(direction: Vector2) -> void:
+func _play_animation(direction: Vector2) -> void: # play animations based on directions walk/idle
 	
 	if direction == Vector2.ZERO:
 		match last_direction:
@@ -65,16 +64,3 @@ func _play_animation(direction: Vector2) -> void:
 				animated_sprite_2d.play("walk_down");
 			Vector2.UP:
 				animated_sprite_2d.play("walk_up");
-
-func _play_sleep():
-	collision_shape_2d.disabled = true;
-	animated_sprite_2d.play("sleep");
-	
-	var timer = get_tree().create_timer(5);
-	await timer.timeout;
-	
-	animated_sprite_2d.play("idle_down");
-	collision_shape_2d.disabled = false;
-	is_sleeping = false;
-	
-	player_danilo.position = marker_2d.position;

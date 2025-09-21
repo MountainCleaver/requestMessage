@@ -1,0 +1,23 @@
+~ start
+Danilo: Ang lakas ng ulan...
+Danilo: ...
+do  Hud.show_objectives()
+=> END
+
+~ phone_time
+Danilog: Hmmm... ang aga pa pala
+=> END
+
+~ reminder
+Danilo: Ngayon pala yung araw na yun?
+Danilo : Anniversary na naman ng [wave]pagkawala[/wave] ni Mateo
+=> END
+
+~ go_bed
+Danilo: Matutulog nalang uli ako.
+Danilo: May lakad pa mamaya.
+=> END!
+
+~ water_test
+Danilo: Hmmmmm waterrrrr
+=> END
