@@ -817,7 +817,6 @@ polygon = PackedVector2Array(8, -8, 2.9923, -8, 2.9923, 8, 8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8q15q"]
 texture = ExtResource("2_ilr38")
-margins = Vector2i(0, 1)
 1:2/0 = 0
 2:2/0 = 0
 4:2/0 = 0
@@ -851,6 +850,7 @@ margins = Vector2i(0, 1)
 4:4/0 = 0
 5:4/0 = 0
 6:4/0 = 0
+6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(6.99679, -0.980923, 8, -0.994642, 8, 8, 7.01051, 8)
 7:4/0 = 0
 7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:4/0 = 0
@@ -872,9 +872,8 @@ margins = Vector2i(0, 1)
 4:5/0 = 0
 4:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.92273, -8, -8, -8, -8, 6.99164, -3.03735, 7.04895)
 5:5/0 = 0
-5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(6.88024, -8, 8, -8, 8, 8, 8, 8)
 6:5/0 = 0
-6:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.01006, 8, 8, 8, 8, -8, 7.00699, -8)
 7:5/0 = 0
 7:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:5/0 = 0
@@ -892,11 +891,11 @@ margins = Vector2i(0, 1)
 2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(5.9886, -8, 5.96187, 0.962454, 3.02104, 4.97268, -8, 4.94595, -8, -8)
 3:6/0 = 0
 6:6/0 = 0
-6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -3.18841, -8, -3.1045)
+6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.01006, 8, 8, 8, 8, -8, 7.00699, -8)
 7:6/0 = 0
-7:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 4.95042, -8, 5.03432)
+7:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 3.98483, 3.97012, 3.98483, 3.99953, 8, 8, 8, 8, -8, -8, -8)
 8:6/0 = 0
-8:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 4.95042, -8, 5.03432)
+8:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 11:6/0 = 0
 15:6/0 = 0
 16:6/0 = 0
@@ -906,6 +905,7 @@ margins = Vector2i(0, 1)
 2:7/0 = 0
 3:7/0 = 0
 7:7/0 = 0
+7:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(4.02581, -8, 4.02581, -4.90201, 4.96818, 1.01528, 8, 1.01528, 8, -8)
 11:7/0 = 0
 12:7/0 = 0
 13:7/0 = 0
@@ -1034,6 +1034,9 @@ margins = Vector2i(0, 1)
 6:1/0 = 0
 7:1/0 = 0
 8:1/0 = 0
+5:6/0 = 0
+8:7/0 = 0
+8:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 1.00863, 1.04509, 1.00863, 2.29234, -8, -8, -8)
 
 [sub_resource type="TileSet" id="TileSet_vpyaf"]
 occlusion_layer_0/light_mask = 3
@@ -1778,7 +1781,7 @@ tile_map_data = PackedByteArray("AAD7//v/AAAAAAMAAAD7//z/AAAAAAMAAAD7//3/AAAAAAM
 tile_set = SubResource("TileSet_wmg51")
 
 [node name="furniture" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD8//7/AAABAAQAAAD8////AAABAAUAAAD8/wAAAAABAAYAAAD9//7/AAACAAQAAAD9////AAACAAUAAAD9/wAAAAACAAYAAAD8//3/AAABAAMAAAD9//3/AAACAAMAAAD8//z/AAABAAIAAAD9//z/AAACAAIAAAD+//3/AAADAAMAAAD+//7/AAADAAQAAAD+////AAADAAUAAAD///z/AAAEAAIAAAD///3/AAAEAAMAAAD///7/AAAEAAQAAAD/////AAAEAAUAAAAAAPz/AAAFAAIAAAAAAP3/AAAFAAMAAAAAAP7/AAAFAAQAAAAAAP//AAAFAAUAAAABAP3/AAAGAAMAAAABAP7/AAAGAAQAAAABAP//AAAGAAUAAAABAAAAAAAGAAYAAAACAP3/AAAHAAMAAAACAP7/AAAHAAQAAAACAP//AAAHAAUAAAACAAAAAAAHAAYAAAADAP3/AAAIAAMAAAADAP7/AAAIAAQAAAADAP//AAAIAAUAAAADAAAAAAAIAAYAAAD8/wEAAAABAAcAAAD9/wEAAAACAAcAAAD+/wAAAAADAAYAAAD+/wEAAAADAAcAAAACAAEAAAAHAAcAAAD8/wMAAAABAAkAAAD9/wMAAAACAAkAAAD+/wMAAAADAAkAAAABAPz/AAAGAAIAAAACAPz/AAAHAAIAAAADAPz/AAAIAAIAAAABAPv/AAAGAAEAAAACAPv/AAAHAAEAAAADAPv/AAAIAAEAAAA=")
+tile_map_data = PackedByteArray("AAD8//7/AAABAAQAAAD8////AAABAAUAAAD8/wAAAAABAAYAAAD9//7/AAACAAQAAAD9////AAACAAUAAAD9/wAAAAACAAYAAAD8//3/AAABAAMAAAD9//3/AAACAAMAAAD8//z/AAABAAIAAAD9//z/AAACAAIAAAD+//3/AAADAAMAAAD+//7/AAADAAQAAAD+////AAADAAUAAAD///z/AAAEAAIAAAD///3/AAAEAAMAAAD///7/AAAEAAQAAAD/////AAAEAAUAAAAAAPz/AAAFAAIAAAAAAP3/AAAFAAMAAAAAAP7/AAAFAAQAAAABAP3/AAAGAAMAAAABAP7/AAAGAAQAAAABAP//AAAGAAUAAAABAAAAAAAGAAYAAAACAP3/AAAHAAMAAAACAP7/AAAHAAQAAAACAP//AAAHAAUAAAACAAAAAAAHAAYAAAADAP3/AAAIAAMAAAADAP7/AAAIAAQAAAADAP//AAAIAAUAAAADAAAAAAAIAAYAAAD8/wEAAAABAAcAAAD9/wEAAAACAAcAAAD+/wAAAAADAAYAAAD+/wEAAAADAAcAAAACAAEAAAAHAAcAAAD8/wMAAAABAAkAAAD9/wMAAAACAAkAAAD+/wMAAAADAAkAAAABAPz/AAAGAAIAAAACAPz/AAAHAAIAAAADAPz/AAAIAAIAAAABAPv/AAAGAAEAAAACAPv/AAAHAAEAAAADAPv/AAAIAAEAAAADAAEAAAAIAAcAAAA=")
 tile_set = SubResource("TileSet_vpyaf")
 
 [node name="PointLight2D" type="PointLight2D" parent="furniture"]
@@ -1806,4 +1809,4 @@ tile_map_data = PackedByteArray("AAD7/wQAAAALAA8AAAD8/wQAAAALAA8AAAD9/wQAAAALAA8
 tile_set = SubResource("TileSet_8ox2j")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.159728, 0.18862, 0.266237, 1)
+color = Color(0.282673, 0.326139, 0.442365, 1)
