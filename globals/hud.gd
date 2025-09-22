@@ -3,7 +3,12 @@ extends CanvasLayer
 @onready var v_box_container: VBoxContainer = $Control/objectives/MarginContainer/VBoxContainer
 @onready var objectives_panel: Panel = $Control/objectives;
 const BASIS_33 = preload("res://assets/fonts/basis33.ttf");
-@onready var objective_animation: AnimationPlayer = $objective_animation
+@onready var hud_animations: AnimationPlayer = $hud_animations
+
+
+@onready var lock_screen: Control = $Control/phone/MarginContainer/lock_screen
+
+var phone_showing = false;
 
 func new_objective(obj_ID: int, new_objective: String) -> void:
 	_create_objective_node(obj_ID, new_objective);
@@ -41,4 +46,23 @@ func hide_objectives() -> void:
 	objectives_panel.visible = false;
 
 func objective_intro_anim() -> void:
-	objective_animation.play("slide_in");
+	hud_animations.play("objective_in");
+
+func objective_outro_anim()-> void:
+	hud_animations.play("objective_out");
+	SignalBus.phone_out.emit();
+
+func phone_intro() -> void:
+	hud_animations.play("phone_in");
+	SignalBus.phone_in.emit();
+func phone_outro() -> void:
+	hud_animations.play("phone_out");
+	SignalBus.phone_out.emit();
+
+func toggle_phone() -> void:
+	if phone_showing:
+		phone_outro()
+		phone_showing = false
+	else:
+		phone_intro()
+		phone_showing = true
