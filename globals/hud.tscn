@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnxh1dj8mix3m"]
+[gd_scene load_steps=13 format=3 uid="uid://bnxh1dj8mix3m"]
 
 [ext_resource type="Script" uid="uid://bmro6rutbtbxd" path="res://globals/hud.gd" id="1_77e6q"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_v5pfq"]
+[ext_resource type="PackedScene" uid="uid://bqagsj7ps731j" path="res://scenes/game/lock_screen.tscn" id="3_esk0b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5lr3"]
 bg_color = Color(1, 1, 1, 1)
@@ -14,7 +14,16 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_esk0b"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vm2el"]
+bg_color = Color(0.184314, 0.196078, 0.254902, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [sub_resource type="Animation" id="Animation_v5pfq"]
 length = 0.001
@@ -30,9 +39,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1468.15, 89)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/phone:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-333, 89)]
+}
 
 [sub_resource type="Animation" id="Animation_n5lr3"]
-resource_name = "slide_in"
+resource_name = "objective_in"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,10 +67,58 @@ tracks/0/keys = {
 "values": [Vector2(1468.15, 89), Vector2(1111, 89)]
 }
 
+[sub_resource type="Animation" id="Animation_esk0b"]
+resource_name = "objective_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/objectives:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(10.9283, 10.9283),
+"update": 0,
+"values": [Vector2(1111, 89), Vector2(1479, 89)]
+}
+
+[sub_resource type="Animation" id="Animation_vm2el"]
+resource_name = "phone_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/phone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.196146, 0.196146),
+"update": 0,
+"values": [Vector2(-333, 89), Vector2(43, 89)]
+}
+
+[sub_resource type="Animation" id="Animation_d7y7k"]
+resource_name = "phone_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/phone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 1),
+"transitions": PackedFloat32Array(1, 0.176777, 0.176777),
+"update": 0,
+"values": [Vector2(43, 89), Vector2(50, 89), Vector2(-337, 89)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_esk0b"]
 _data = {
 &"RESET": SubResource("Animation_v5pfq"),
-&"slide_in": SubResource("Animation_n5lr3")
+&"objective_in": SubResource("Animation_n5lr3"),
+&"objective_out": SubResource("Animation_esk0b"),
+&"phone_in": SubResource("Animation_vm2el"),
+&"phone_out": SubResource("Animation_d7y7k")
 }
 
 [node name="HUD" type="CanvasLayer"]
@@ -88,20 +157,11 @@ theme_override_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/objectives/MarginContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/objectives/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("2_v5pfq")
-theme_override_font_sizes/normal_font_size = 24
-text = "[ ] sample"
-fit_content = true
-
 [node name="phone" type="Panel" parent="Control"]
 layout_mode = 0
-offset_left = -360.21
+offset_left = -333.0
 offset_top = 89.0
-offset_right = -45.21
+offset_right = -18.0
 offset_bottom = 649.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_v5pfq")
 
@@ -117,11 +177,38 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 25
 
-[node name="phone_screen" type="Panel" parent="Control/phone/MarginContainer"]
+[node name="lock_screen" parent="Control/phone/MarginContainer" instance=ExtResource("3_esk0b")]
 layout_mode = 2
+lock_visible = true
+
+[node name="Panel" type="Panel" parent="Control/phone"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 60.0
+offset_top = 17.0
+offset_right = -60.0
+offset_bottom = 43.0
+grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_esk0b")
 
-[node name="objective_animation" type="AnimationPlayer" parent="."]
+[node name="Panel" type="Panel" parent="Control/phone/Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 12.0
+offset_right = 145.0
+offset_bottom = 18.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vm2el")
+
+[node name="Panel2" type="Panel" parent="Control/phone/Panel"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 12.0
+offset_right = 168.0
+offset_bottom = 18.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vm2el")
+
+[node name="hud_animations" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_esk0b")
 }
