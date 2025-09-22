@@ -1,0 +1,101 @@
+[gd_scene load_steps=11 format=3 uid="uid://do6sxrdcxx5b7"]
+
+[ext_resource type="Script" uid="uid://1lva4xyl8sng" path="res://scenes/game/app_chat.gd" id="1_2b05g"]
+[ext_resource type="Texture2D" uid="uid://bql6ppjas3q14" path="res://assets/character_sprites/portrait_danilo.png" id="2_2b05g"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_xvdbo"]
+[ext_resource type="Texture2D" uid="uid://csdswcrvdmlo6" path="res://assets/HUD/EXIT_ICON.png" id="3_xvdbo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2b05g"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4alw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_67qqk"]
+font = ExtResource("2_xvdbo")
+font_size = 40
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvdbo"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t17l3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67qqk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="app_chat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1145.0
+offset_bottom = -514.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2b05g")
+
+[node name="screen" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2b05g")
+
+[node name="MarginContainer" type="MarginContainer" parent="screen"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 75.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="screen/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="screen/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("2_2b05g")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="screen/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4alw")
+text = "Chat"
+label_settings = SubResource("LabelSettings_67qqk")
+
+[node name="EXIT" type="Button" parent="screen/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_xvdbo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t17l3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_67qqk")
+icon = ExtResource("3_xvdbo")
+icon_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="screen/MarginContainer2"]
+layout_mode = 2
+
+[connection signal="pressed" from="screen/MarginContainer/HBoxContainer/EXIT" to="." method="_on_exit_pressed"]
