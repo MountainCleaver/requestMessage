@@ -7,22 +7,23 @@ extends CharacterBody2D
 
 @export var SPEED : float = 80.0
 var last_direction : Vector2 = Vector2.DOWN; #to play idle animation
-var is_sleeping : bool = true;
 var can_move : bool = true; # toggle at start and end of dialogue
 
 func _physics_process(delta: float) -> void:
+	var direction = _get_direction();
+	
 	if not can_move:  # prevent movement during dialogue
 		velocity = Vector2.ZERO;
 		move_and_slide();
 		return;
 	
-	if not is_sleeping:
-		var direction = _get_direction();
-		_play_animation(direction);
-		
-		velocity = direction.normalized() * SPEED;
-		
-		move_and_slide();
+
+	
+	_play_animation(direction);
+	
+	velocity = direction.normalized() * SPEED;
+	
+	move_and_slide();
 
 
 func _get_direction ()-> Vector2: # get direction from inputs
@@ -44,7 +45,7 @@ func _get_direction ()-> Vector2: # get direction from inputs
 
 func _play_animation(direction: Vector2) -> void: # play animations based on directions walk/idle
 	
-	if direction == Vector2.ZERO:
+	if direction == Vector2.ZERO or not can_move:
 		match last_direction:
 			Vector2.RIGHT:
 				animated_sprite_2d.play("idle_right");
