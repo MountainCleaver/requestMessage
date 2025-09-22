@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://bqagsj7ps731j"]
+
+[ext_resource type="Script" uid="uid://danm7o662nkg3" path="res://scenes/game/lock_screen.gd" id="1_hukn4"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_ph3dx"]
+[ext_resource type="Texture2D" uid="uid://cwgna8jrsskbc" path="res://assets/HUD/LOCK_ICON.png" id="2_hukn4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn1hs"]
+bg_color = Color(0, 0.137255, 0.215686, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ebc0p"]
+font = ExtResource("1_ph3dx")
+font_size = 96
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebc0p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ph3dx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hukn4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="lock_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1145.0
+offset_bottom = -514.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hukn4")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fn1hs")
+
+[node name="time" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 112.0
+offset_bottom = 208.0
+grow_horizontal = 2
+text = "00:00"
+label_settings = SubResource("LabelSettings_ebc0p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 213.0
+offset_right = -31.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ebc0p")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="notifications_container" type="VBoxContainer" parent="Panel/Panel/ScrollContainer"]
+layout_mode = 2
+
+[node name="lock" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -14.5
+offset_top = -71.0
+offset_right = 15.5
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_ph3dx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hukn4")
+icon = ExtResource("2_hukn4")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="Panel/lock" to="." method="_on_lock_pressed"]
