@@ -1,97 +1,54 @@
 extends Node2D
 
-@onready var storm_animation: AnimationPlayer = $storm_animation
-@onready var camera_animation: AnimationPlayer = $camera_animation
+# PRELOADS
+const A_1S_1 = preload("res://dialogues/act_1/scene_1/a1s1.dialogue");
 
+# NODES
+@onready var storm_animation: AnimationPlayer = $storm_animation;
+@onready var camera_animation: AnimationPlayer = $camera_animation;
 @onready var player_danilo: CharacterBody2D = $player_danilo;
 @onready var tip_interact: Sprite2D = $player_danilo/tip_interact;
-@onready var animated_sprite_2d: AnimatedSprite2D = $player_danilo/AnimatedSprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $player_danilo/AnimatedSprite2D;
+@onready var marker_2d: Marker2D = $Marker2D;
+@onready var water_glass: Sprite2D = $water_glass;
+@onready var water_area: Area2D = $water_glass/water_area;
+@onready var tension_animation: AnimationPlayer = $tension_animation
+@onready var bed_area: Area2D = $bed_area
+@onready var sleep_marker: Marker2D = $sleep_marker
 
-@onready var marker_2d: Marker2D = $Marker2D
 
-@onready var water_glass: Sprite2D = $water_glass
-@onready var water_area: Area2D = $water_glass/water_area
-
-
-#flags
-var drink_water_after_dialogue: bool = false;
-
-const A_1S_1 = preload("res://dialogues/act_1/scene_1/a1s1.dialogue");
-var can_interact: bool = true;
-var inside_water : bool = false;
-var sscene_objectives = [
-	"Drink water",
-	"Check Phone Time"
-];
-
+# OBJECTIVES
 var scene_objectives = [
-	{"id": 1, "text": "Drink water"},
-	{"id": 2, "text": "Check Phone Time"}
+	{"ID": 1, "text": "Drink Water"},
+	{"ID": 2, "text": "Check Phone Time"},
+	{"ID" : 3, "text" : "Go Back to Bed"}
 ]
 
-
-var current_objective : int = 0;
+# STATES
+var inside_water : bool = false;
+var inside_bed : bool = false;
+var can_interact : bool = false;
 
 func _ready() -> void:
-	SignalBus.looked_window.connect(_dialog_player);
-	SignalBus.looked_window.connect(_obj_get_water);
-	
-	SignalBus.drank_water.connect(_done_obj_get_water);
 	
 	DialogueManager.dialogue_started.connect(_on_dialogue_start);
 	DialogueManager.dialogue_ended.connect(_on_dialogue_finish);
 	
-	camera_animation.play("intro_pan")
-	storm_animation.play("storm")
-
+	camera_animation.play("intro_pan");
 	_intro_anim();
 
-func _process(delta: float) -> void:
-	print(current_objective);
 
 func _on_dialogue_start(_resource):
-	var playerNode = get_node("player_danilo");
-	playerNode.can_move = false;
+	print("dialogue start")
+	player_danilo.can_move = false;
 	can_interact = false;
 
 func _on_dialogue_finish(_resource):
-	var playerNode = get_node("player_danilo");
-	playerNode.can_move = true;
+	print("dialogue finish")
+	player_danilo.can_move = true;
 	can_interact = true;
-	
-	if drink_water_after_dialogue:
-		drink_water_anim();
-		drink_water_after_dialogue = false;
 
-func _dialog_player():
-	match current_objective:
-		0:
-			_dialog_play(A_1S_1, "start");
-			current_objective += 1;
-		1: 
-			_dialog_play(A_1S_1, "phone_time");
-			current_objective += 1;
-
-func _dialog_play(resource: DialogueResource, part: String)->void:
-	DialogueManager.show_dialogue_balloon(resource, part);
-
-
-#interactions
-func _input(event: InputEvent) -> void:
-	if event.is_action("interact") and can_interact and inside_water:
-		_dialog_play(A_1S_1, "water_test");
-		drink_water_after_dialogue = true;
-
-func _on_water_area_body_entered(body: Node2D) -> void:
-	tip_interact.visible = true;
-	inside_water = true;
-
-func _on_water_area_body_exited(body: Node2D) -> void:
-	tip_interact.visible = false;
-	inside_water = false;
-
-
-#story animations:
+# scene animations
 func _intro_anim() -> void:
 	var playerNode = get_node("player_danilo");
 	playerNode.last_direction = Vector2.RIGHT;
@@ -100,7 +57,7 @@ func _intro_anim() -> void:
 	playerNode.can_move = false;
 	
 	animated_sprite_2d.play("sleep"); # amimir muna sa danilo nang 15 seconds
-	await get_tree().create_timer(2).timeout;
+	await get_tree().create_timer(10).timeout;
 	
 	animated_sprite_2d.play("woken");# tas magigising sya dito, maganda kung may sfx nang thunder
 	await get_tree().create_timer(2).timeout;
@@ -114,14 +71,14 @@ func _intro_anim() -> void:
 	animated_sprite_2d.play("idle_up");
 	$player_danilo/CollisionShape2D.disabled = false; # on na collision since nasa safe space na sya
 	
-	playerNode.is_sleeping = false; 
 	playerNode.can_move = true;
-	SignalBus.looked_window.emit(); # since naka tingin na sya sa bintana, signal na to para iplay pinaka unang dialogue lines tas add ng unang objective sa objective panel
+	
+	DialogueManager.show_dialogue_balloon(A_1S_1, "start");
+	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"]);
 
 func drink_water_anim() -> void:
 	
-	var playerNode = get_node("player_danilo");
-	playerNode.can_move = false;
+	player_danilo.can_move = false;
 	water_glass.visible = false;
 	
 	animated_sprite_2d.play("drinking_water");
@@ -130,15 +87,62 @@ func drink_water_anim() -> void:
 	var glass_region := water_glass.texture as AtlasTexture;
 	glass_region.region.position = Vector2(16, 0)
 	water_area.monitoring = false;
-	# water_glass.this sprite uses an atlas that contains 2 images of flasses, one empty and full. I want to replace it with empty glass after drink animation
+	
 	water_glass.visible = true;
-	playerNode.can_move = true;
+	player_danilo.can_move = true;
 	
 	SignalBus.drank_water.emit();
+	ObjectiveManager.complete_objective(1);
+
+func tension_in_anim() -> void:
+	tension_animation.play("tension_in");
+
+func tension_anim() -> void:
+	tension_animation.play("tension");
+	
+func tension_out_anim() -> void:
+	tension_animation.play("tension_out");
+
+func _go_to_sleep() -> void: 
+	$player_danilo/CollisionShape2D.disabled = true;
+	player_danilo.position  = sleep_marker.position; 
+	animated_sprite_2d.play("sleep"); 
+	player_danilo.can_move = false;
+	ObjectiveManager.complete_objective(3)
+
+# interactions
+func _on_water_area_body_entered(body: Node2D) -> void:
+	if body.name == "player_danilo":
+		tip_interact.visible = true;
+		inside_water = true;
+
+func _on_water_area_body_exited(body: Node2D) -> void:
+	if body.name == "player_danilo":
+		tip_interact.visible = false;
+		inside_water = false;
 
 
-# objecticves
-func _obj_get_water():
-	Hud.new_objective(scene_objectives[0]["id"], scene_objectives[0]["text"]);
-func _done_obj_get_water():
-	Hud.done_objective(scene_objectives[0]["id"], scene_objectives[0]["text"]);
+func _on_bed_area_body_entered(body: Node2D) -> void:
+	if body.name == "player_danilo":
+		tip_interact.visible = true;
+		inside_bed = true;
+	
+func _on_bed_area_body_exited(body: Node2D) -> void:
+	if body.name == "player_danilo":
+		tip_interact.visible = false;
+		inside_bed = false;
+
+func activate_bed() -> void:
+	bed_area.monitoring = true;
+# input
+func _input(event: InputEvent) -> void:
+	if event.is_action("interact") and can_interact and inside_water:
+		DialogueManager.show_dialogue_balloon(A_1S_1, "water");
+		return;
+	
+	if event.is_action("interact") and can_interact and inside_bed:
+		_go_to_sleep();
+		bed_area.monitoring = false;
+func add_notification() -> void:
+	const SCHED_ICON = preload("res://assets/HUD/sched_icon.png")
+	Hud.get_node("Control/phone/MarginContainer/lock_screen").add_notification(SCHED_ICON, "Reminders", "Day of Mateo's disapearnce");
