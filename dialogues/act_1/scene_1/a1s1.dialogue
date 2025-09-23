@@ -22,7 +22,6 @@ do player_danilo.can_move = false
 [wait = 1.0]
 Danilo: Ngayon pala yung araw na yun?
 do tension_in_anim()
-do tension_anim()
 Danilo : Anniversary na naman ng [wave]pagkawala[/wave] ni Mateo
 Danilo: ... [wait = 0.5] ... [wait = 0.5] ... 
 do tension_out_anim()
@@ -40,10 +39,14 @@ do activate_bed()
 
 ~ water
 Danilo: Isang basong tubig.
-do drink_water_anim()
 do ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
 do Player.drank_water = true
+do drink_water_anim()
 do get_tree().create_timer(2).timeout
 do Hud.phone_intro()
 => phone_time
+=> END
+
+~ test
+Danilo: haha
 => END
