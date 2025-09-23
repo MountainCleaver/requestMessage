@@ -37,20 +37,16 @@ func _ready() -> void:
 	camera_animation.play("intro_pan");
 	_intro_anim();
 
-
 func _on_dialogue_start(_resource):
-	print("dialogue start")
-	player_danilo.can_move = false;
 	can_interact = false;
 
 func _on_dialogue_finish(_resource):
-	print("dialogue finish")
-	player_danilo.can_move = true;
 	can_interact = true;
 
 # scene animations
 func _intro_anim() -> void:
 	var playerNode = get_node("player_danilo");
+	player_danilo.animation_locked = true;
 	playerNode.last_direction = Vector2.RIGHT;
 	
 	$player_danilo/CollisionShape2D.disabled = true; # turn off muna para hindi manginig si danilo habang natutulog
@@ -70,14 +66,14 @@ func _intro_anim() -> void:
 	playerNode.last_direction = Vector2.UP; # tingin sya sa bintana
 	animated_sprite_2d.play("idle_up");
 	$player_danilo/CollisionShape2D.disabled = false; # on na collision since nasa safe space na sya
-	
+	player_danilo.animation_locked = false  # give control back to player script
 	playerNode.can_move = true;
 	
 	DialogueManager.show_dialogue_balloon(A_1S_1, "start");
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"]);
 
 func drink_water_anim() -> void:
-	
+	player_danilo.animation_locked = true;
 	player_danilo.can_move = false;
 	water_glass.visible = false;
 	
@@ -90,12 +86,14 @@ func drink_water_anim() -> void:
 	
 	water_glass.visible = true;
 	player_danilo.can_move = true;
-	
+	player_danilo.animation_locked = false;
 	SignalBus.drank_water.emit();
 	ObjectiveManager.complete_objective(1);
 
 func tension_in_anim() -> void:
 	tension_animation.play("tension_in");
+	await tension_animation.animation_finished;
+	tension_anim();
 
 func tension_anim() -> void:
 	tension_animation.play("tension");
@@ -104,6 +102,7 @@ func tension_out_anim() -> void:
 	tension_animation.play("tension_out");
 
 func _go_to_sleep() -> void: 
+	player_danilo.animation_locked = true;
 	$player_danilo/CollisionShape2D.disabled = true;
 	player_danilo.position  = sleep_marker.position; 
 	animated_sprite_2d.play("sleep"); 
