@@ -29,6 +29,7 @@ offset_bottom = -514.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hukn4")
+time_value = "12:00"
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

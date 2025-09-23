@@ -3,6 +3,8 @@ extends Control
 @onready var time: Label = $Panel/time
 @onready var lock: Button = $Panel/lock
 
+@export var time_value : String;
+
 @onready var notifications_container: VBoxContainer = $Panel/Panel/ScrollContainer/notifications_container
 
 const NOTIFICATION = preload("res://scenes/game/notification.tscn")
@@ -11,6 +13,7 @@ const NOTIFICATION = preload("res://scenes/game/notification.tscn")
 func _ready() -> void:
 	lock.visible = lock_visible;
 	print(notifications_container)
+	time.text = time_value;
 	
 
 func _on_lock_pressed() -> void:
