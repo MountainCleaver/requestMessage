@@ -51,7 +51,8 @@ var mutation_cooldown: Timer = Timer.new()
 ## The menu of responses
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
 
-@onready var portrait: TextureRect = $Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/portrait
+@onready var portrait: TextureRect = $Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/portrait
+#@onready var main_animation: AnimationPlayer = $main_animation
 
 func _ready() -> void:
 	balloon.hide()
@@ -82,6 +83,7 @@ func _notification(what: int) -> void:
 
 ## Start some dialogue
 func start(dialogue_resource: DialogueResource, title: String, extra_game_states: Array = []) -> void:
+	#main_animation.play("dialogue_in")
 	temporary_game_states = [self] + extra_game_states
 	is_waiting_for_input = false
 	resource = dialogue_resource
