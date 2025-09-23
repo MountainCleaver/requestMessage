@@ -1,0 +1,205 @@
+[gd_scene load_steps=14 format=3 uid="uid://dg0oqq148wh62"]
+
+[ext_resource type="Texture2D" uid="uid://pkan4cmofqkg" path="res://assets/HUD/APP_ICONS.png" id="1_gakt2"]
+[ext_resource type="Script" uid="uid://bpuk0qmuhh5na" path="res://scenes/game/phone_main.gd" id="1_wkl3j"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_tmcis"]
+[ext_resource type="Texture2D" uid="uid://cwgna8jrsskbc" path="res://assets/HUD/LOCK_ICON.png" id="3_tmcis"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8rha"]
+bg_color = Color(0, 0.137328, 0.217636, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxsbj"]
+bg_color = Color(0.952941, 0.952941, 0.952941, 0.388235)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glggg"]
+atlas = ExtResource("1_gakt2")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tk37l"]
+font = ExtResource("2_tmcis")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxsbj"]
+atlas = ExtResource("1_gakt2")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tk37l"]
+atlas = ExtResource("1_gakt2")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0i4l"]
+atlas = ExtResource("1_gakt2")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkl3j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvkgu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="phone" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1145.0
+offset_bottom = -514.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wkl3j")
+
+[node name="screen" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a8rha")
+
+[node name="MarginContainer" type="MarginContainer" parent="screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = 68.0
+offset_right = -26.0
+offset_bottom = -186.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="GridContainer" type="GridContainer" parent="screen/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 24
+columns = 3
+
+[node name="CHAT" type="Button" parent="screen/MarginContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_jxsbj")
+icon = SubResource("AtlasTexture_glggg")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="screen/MarginContainer/GridContainer/CHAT"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 2.0
+offset_right = 20.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Chat"
+label_settings = SubResource("LabelSettings_tk37l")
+horizontal_alignment = 1
+
+[node name="FLASHLIGHT" type="Button" parent="screen/MarginContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_jxsbj")
+icon = SubResource("AtlasTexture_jxsbj")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="screen/MarginContainer/GridContainer/FLASHLIGHT"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = 1.66666
+offset_right = 35.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Flashlight"
+label_settings = SubResource("LabelSettings_tk37l")
+horizontal_alignment = 1
+
+[node name="SCHED" type="Button" parent="screen/MarginContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_jxsbj")
+icon = SubResource("AtlasTexture_tk37l")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="screen/MarginContainer/GridContainer/SCHED"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = 1.66666
+offset_right = 28.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Schedule"
+label_settings = SubResource("LabelSettings_tk37l")
+horizontal_alignment = 1
+
+[node name="GALLERY" type="Button" parent="screen/MarginContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_jxsbj")
+icon = SubResource("AtlasTexture_o0i4l")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="screen/MarginContainer/GridContainer/GALLERY"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.5
+offset_top = 2.66666
+offset_right = 24.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Gallery"
+label_settings = SubResource("LabelSettings_tk37l")
+horizontal_alignment = 1
+
+[node name="lock" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.5
+offset_top = -83.0
+offset_right = 17.5
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_wkl3j")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kvkgu")
+icon = ExtResource("3_tmcis")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="screen/MarginContainer/GridContainer/CHAT" to="." method="_on_chat_pressed"]
+[connection signal="pressed" from="screen/MarginContainer/GridContainer/FLASHLIGHT" to="." method="_on_flashlight_pressed"]
+[connection signal="pressed" from="screen/MarginContainer/GridContainer/SCHED" to="." method="_on_sched_pressed"]
+[connection signal="pressed" from="screen/MarginContainer/GridContainer/GALLERY" to="." method="_on_gallery_pressed"]
+[connection signal="pressed" from="lock" to="." method="_on_lock_pressed"]
