@@ -60,3 +60,11 @@ func mark_scene_finished(act: String, scene: String) -> void: # update values in
 
 func is_scene_finished(act: String, scene: String) -> bool:
 	return scene in game_save.finished_scenes.get(act, [])
+
+func has_save() -> bool:
+	if FileAccess.file_exists(SAVE_PATH):
+		return true
+	elif FileAccess.file_exists(BACKUP_PATH):
+		return true
+	else:
+		return false
