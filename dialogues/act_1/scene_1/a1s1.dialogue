@@ -2,7 +2,6 @@
 Danilo: Ang lakas ng ulan...
 Danilo: ...
 do Hud.show_objectives()
-do Player.looked_window = true
 => END
 
 ~ phone_time
@@ -39,9 +38,8 @@ do activate_bed()
 
 ~ water
 Danilo: Isang basong tubig.
-do ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
-do Player.drank_water = true
 do drink_water_anim()
+do ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
 do get_tree().create_timer(2).timeout
 do Hud.phone_intro()
 => phone_time
