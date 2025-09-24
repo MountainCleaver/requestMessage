@@ -51,6 +51,11 @@ grow_vertical = 2
 theme_override_constants/separation = 9
 alignment = 1
 
+[node name="continue" parent="options_holder" instance=ExtResource("4_d2s0i")]
+visible = false
+layout_mode = 2
+text = "CONTINUE"
+
 [node name="new_game" parent="options_holder" instance=ExtResource("4_d2s0i")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)

@@ -15,6 +15,9 @@ var current_choice = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(SaveManager.game_save.finished_scenes)
+	print("Act to continue: " + str(SaveManager.game_save.current_act))
+	print("Scene to continue: " + str(SaveManager.game_save.current_scene))
 	var options_menu = options.get_children();
 	options_menu[current_choice].grab_focus();
 	
