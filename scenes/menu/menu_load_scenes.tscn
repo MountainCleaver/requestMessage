@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3fo53ca0h8g4"]
+[gd_scene load_steps=5 format=3 uid="uid://d3fo53ca0h8g4"]
 
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_gqusm"]
+[ext_resource type="Script" uid="uid://d1b1vdrp5txq7" path="res://scenes/menu/scripts/menu_load_scenes.gd" id="1_p41mx"]
+[ext_resource type="Texture2D" uid="uid://ceuemy1j0ahy" path="res://assets/scenes_thumbnails/act_1_scene_1.png" id="3_ye6df"]
+[ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="4_j4fd8"]
 
 [node name="finished_scenes" type="Control"]
 layout_mode = 3
@@ -9,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_p41mx")
 
 [node name="menu_background" parent="." instance=ExtResource("1_gqusm")]
 layout_mode = 1
@@ -24,11 +28,49 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0924945, 0.0775084, 0.185383, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 120
+
+[node name="gridcontainer" type="GridContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 4
+
+[node name="Button" type="Button" parent="ScrollContainer/MarginContainer/gridcontainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "aa asfsadf"
+icon = ExtResource("3_ye6df")
+vertical_icon_alignment = 0
+
+[node name="back_tips" parent="." instance=ExtResource("4_j4fd8")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -343.0
+offset_top = -107.0
+offset_right = -343.0
+offset_bottom = -107.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[connection signal="pressed" from="back_tips/Panel/Button" to="." method="_on_exit_pressed"]
+
+[editable path="back_tips"]
