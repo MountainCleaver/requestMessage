@@ -1,0 +1,130 @@
+[gd_scene load_steps=14 format=3 uid="uid://dq6x2137kyage"]
+
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_lsdam"]
+[ext_resource type="Script" uid="uid://1v2kkcfnoo3l" path="res://scenes/game/saving_screen.gd" id="1_rg0q3"]
+[ext_resource type="Texture2D" uid="uid://bf73p6f1cex2c" path="res://assets/character_sprites/DANILO.png" id="2_rg0q3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjbns"]
+bg_color = Color(0.0509804, 0.0509804, 0.0823529, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r1rvk"]
+font = ExtResource("1_lsdam")
+font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpd5l"]
+atlas = ExtResource("2_rg0q3")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_287r4"]
+atlas = ExtResource("2_rg0q3")
+region = Rect2(0, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ej6po"]
+atlas = ExtResource("2_rg0q3")
+region = Rect2(0, 72, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7qgd"]
+atlas = ExtResource("2_rg0q3")
+region = Rect2(0, 48, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d18io"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpd5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_287r4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ej6po")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7qgd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="Animation" id="Animation_lsdam"]
+resource_name = "saving"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3333, 0.6667, 0.67, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Saving", "Saving.", "Saving..", "Saving..", "Saving..."]
+}
+
+[sub_resource type="Animation" id="Animation_rg0q3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Saving..."]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r1rvk"]
+_data = {
+&"RESET": SubResource("Animation_rg0q3"),
+&"saving": SubResource("Animation_lsdam")
+}
+
+[node name="saving_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rg0q3")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cjbns")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 173.0
+offset_top = -124.0
+offset_right = 299.0
+offset_bottom = -92.0
+grow_vertical = 0
+text = "Saving..."
+label_settings = SubResource("LabelSettings_r1rvk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel"]
+position = Vector2(116, 908)
+scale = Vector2(3.625, 3.625)
+sprite_frames = SubResource("SpriteFrames_d18io")
+autoplay = "default"
+frame_progress = 0.249043
+
+[node name="label_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_r1rvk")
+}
+autoplay = "saving"
