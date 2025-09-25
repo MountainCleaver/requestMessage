@@ -28,6 +28,8 @@ func _create_button (act: String, scene: String) -> void:
 	gridcontainer.add_child(button);
 
 func _on_scene_button_pressed(act: String, scene: String) -> void:
+	if BgmManager:
+		BgmManager.stop_music()
 	var path : String = "res://scenes/game/%s/%s/%s_%s.tscn" % [act, scene, act, scene]
 	SignalBus.next_scene.emit(path)
 
