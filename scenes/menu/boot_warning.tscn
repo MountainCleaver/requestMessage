@@ -184,3 +184,5 @@ theme_override_font_sizes/font_size = 28
 text = "Enter"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="bgm_player" type="AudioStreamPlayer2D" parent="."]

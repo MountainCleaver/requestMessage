@@ -13,5 +13,5 @@ func _change_scene(to: String):
 
 func _deferred_change_scene(to:String):
 	TransitionFade.transition();
-	await SignalBus.on_transition_finished; # go to next scene after transition
+	await SignalBus.on_transition_finished;
 	get_tree().change_scene_to_file(to)

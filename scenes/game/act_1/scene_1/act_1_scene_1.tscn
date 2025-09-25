@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://dt3yd4s5nakyt"]
+[gd_scene load_steps=23 format=3 uid="uid://dt3yd4s5nakyt"]
 
 [ext_resource type="Script" uid="uid://b7hmkmiq81axl" path="res://scenes/game/act_1/scene_1/act_1_scene_1.gd" id="1_1hull"]
 [ext_resource type="PackedScene" uid="uid://d3u5m1cllxkbu" path="res://scenes/game/act_1/scene_1/danilo_room.tscn" id="2_wxgv6"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="3_v7vjx"]
 [ext_resource type="Texture2D" uid="uid://tufc0rj0skyh" path="res://assets/tilesets/glass_ov_woa.png" id="5_wxgv6"]
+[ext_resource type="AudioStream" uid="uid://bsgfri08xm6nr" path="res://sound/bbc_weather--r_07027053.mp3" id="6_sag8k"]
 [ext_resource type="Script" uid="uid://bcgenq0ipmuwq" path="res://scenes/game/act_1/scene_1/sprite_2d.gd" id="6_v7vjx"]
 
 [sub_resource type="Gradient" id="Gradient_1hull"]
@@ -282,6 +283,11 @@ debug_color = Color(0.956643, 5.77569e-07, 0.536835, 0.42)
 
 [node name="sleep_marker" type="Marker2D" parent="."]
 position = Vector2(-46, -7)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_sag8k")
+volume_db = -8.238
+autoplay = true
 
 [connection signal="body_entered" from="water_glass/water_area" to="." method="_on_water_area_body_entered"]
 [connection signal="body_exited" from="water_glass/water_area" to="." method="_on_water_area_body_exited"]
