@@ -51,11 +51,6 @@ grow_vertical = 2
 theme_override_constants/separation = 9
 alignment = 1
 
-[node name="continue_game" parent="options_holder" instance=ExtResource("4_d2s0i")]
-visible = false
-layout_mode = 2
-text = "CONTINUE"
-
 [node name="new_game" parent="options_holder" instance=ExtResource("4_d2s0i")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
@@ -105,7 +100,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="pressed" from="options_holder/continue_game" to="." method="_on_continue_game_pressed"]
 [connection signal="pressed" from="options_holder/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="options_holder/load_game" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="options_holder/report_bug" to="." method="_on_report_bug_pressed"]

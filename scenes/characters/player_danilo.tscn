@@ -440,7 +440,8 @@ RUNNING_SPEED = 160.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_krebh")
-animation = &"sleep"
+animation = &"walk_up"
+autoplay = "sleep"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7.5)

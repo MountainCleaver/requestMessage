@@ -10,8 +10,8 @@ const BASIS_33 = preload("res://assets/fonts/basis33.ttf");
 
 var phone_showing = false;
 
-func new_objective(obj_ID: int, new_objective_text: String) -> void:
-	_create_objective_node(obj_ID, new_objective_text);
+func new_objective(obj_ID: int, new_objective: String) -> void:
+	_create_objective_node(obj_ID, new_objective);
 
 func done_objective(obj_ID: int, objective: String) -> void: # objective = current objective, done_objective = same but with strikthough
 	

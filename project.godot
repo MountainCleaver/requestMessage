@@ -21,12 +21,13 @@ GameSceneManager="*res://helpers/game_scene_manager.gd"
 Settings="*res://globals/settings.gd"
 SignalBus="*res://globals/signal_bus.gd"
 Profile="*res://globals/profile.gd"
-SaveManager="*res://globals/save_manager.gd"
+Player="*res://globals/player.gd"
 TransitionFade="*res://helpers/transition_fade.tscn"
 Hud="*res://globals/hud.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 ObjectiveManager="*res://globals/objective_manager.gd"
 AnimationManager="*res://globals/animation_manager.gd"
+BgmManager="*res://globals/bgm_manager.gd"
 
 [dialogue_manager]
 

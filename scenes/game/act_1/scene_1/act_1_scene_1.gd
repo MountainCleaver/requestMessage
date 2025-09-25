@@ -16,17 +16,13 @@ const A_1S_1 = preload("res://dialogues/act_1/scene_1/a1s1.dialogue");
 @onready var bed_area: Area2D = $bed_area
 @onready var sleep_marker: Marker2D = $sleep_marker
 
+
 # OBJECTIVES
 var scene_objectives = [
 	{"ID": 1, "text": "Drink Water"},
 	{"ID": 2, "text": "Check Phone Time"},
 	{"ID" : 3, "text" : "Go Back to Bed"}
 ]
-
-# OBJECTIVES PROGRESS
-var drank_water : bool = false;
-var checked_phone_time : bool = false;
-var got_back_to_bed : bool = false;
 
 # STATES
 var inside_water : bool = false;
@@ -91,6 +87,7 @@ func drink_water_anim() -> void:
 	water_glass.visible = true;
 	player_danilo.can_move = true;
 	player_danilo.animation_locked = false;
+	SignalBus.drank_water.emit();
 	ObjectiveManager.complete_objective(1);
 
 func tension_in_anim() -> void:
@@ -110,15 +107,8 @@ func _go_to_sleep() -> void:
 	player_danilo.position  = sleep_marker.position; 
 	animated_sprite_2d.play("sleep"); 
 	player_danilo.can_move = false;
-	ObjectiveManager.complete_objective(3);
-	await get_tree().create_timer(5).timeout;
-	
-	SaveManager.game_save.current_act = "act_1"
-	SaveManager.game_save.current_scene = "scene_2" # badly named I admit. this is for the 'continue' part in main menu
-	SignalBus.act_num_scene_num_done.emit("act_1", "scene_1", "res://scenes/game/act_1/scene_2/act_1_scene_2.tscn") # caught in save manager
+	ObjectiveManager.complete_objective(3)
 
-	print("act 1 scene 1 is done")
-	
 # interactions
 func _on_water_area_body_entered(body: Node2D) -> void:
 	if body.name == "player_danilo":
@@ -129,6 +119,7 @@ func _on_water_area_body_exited(body: Node2D) -> void:
 	if body.name == "player_danilo":
 		tip_interact.visible = false;
 		inside_water = false;
+
 
 func _on_bed_area_body_entered(body: Node2D) -> void:
 	if body.name == "player_danilo":
