@@ -6,7 +6,7 @@ extends CanvasLayer
 
 func _ready() -> void:
 	color_rect.visible = false;
-	animation_player.animation_finished.connect(_on_animation_finished);
+	animation_player.animation_finished.connect(_on_animation_finished); # fade animation
 
 
 func transition():

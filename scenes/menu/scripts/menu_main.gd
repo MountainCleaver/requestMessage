@@ -1,5 +1,6 @@
 extends Control
 
+@onready var continue_game: Button = $options_holder/continue_game
 @onready var new_game: Button = $options_holder/new_game
 @onready var load_game: Button = $options_holder/load_game
 @onready var report_bug: Button = $options_holder/report_bug
@@ -15,6 +16,9 @@ var current_choice = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(SaveManager.game_save.finished_scenes)
+	print("Act to continue: " + str(SaveManager.game_save.current_act))
+	print("Scene to continue: " + str(SaveManager.game_save.current_scene))
 	var options_menu = options.get_children();
 	options_menu[current_choice].grab_focus();
 	
@@ -23,19 +27,29 @@ func _ready() -> void:
 	for option in options_menu:
 		option.mouse_entered.connect(_option_hover.bind(option));
 	
+	if SaveManager.has_save():
+		continue_game.visible = true;
+		continue_game.disabled = false;
+	else:
+		continue_game.visible = false;
+		continue_game.disabled = true;
 
 func _option_hover (option: Button) :
 	current_choice = options.get_children().find(option);
 	option.grab_focus();
 
-
+func _on_continue_game_pressed() -> void:
+	SaveManager.load_game();
+	var act : String = SaveManager.game_save.current_act;
+	var scene : String = SaveManager.game_save.current_scene;
+	SignalBus.next_scene.emit("res://scenes/game/"+act+"/"+scene+"/"+act+"_"+scene+".tscn")
 
 func _on_new_game_pressed() -> void:
-	SignalBus.next_scene.emit("res://scenes/game/act_1/scene_1/act_1_scene_1.tscn");
+	SignalBus.next_scene.emit("res://scenes/game/act_1_title_scene.tscn"); 
 
 
 func _on_load_game_pressed() -> void:
-	print("load game");
+	_option_overlayer("res://scenes/menu/menu_load_scenes.tscn");
 
 
 func _on_report_bug_pressed() -> void:

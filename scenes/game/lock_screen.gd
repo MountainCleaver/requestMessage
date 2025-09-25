@@ -12,7 +12,6 @@ const NOTIFICATION = preload("res://scenes/game/notification.tscn")
 
 func _ready() -> void:
 	lock.visible = lock_visible;
-	print(notifications_container)
 	time.text = time_value;
 	
 
