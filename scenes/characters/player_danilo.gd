@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var tip_interact: Sprite2D = $tip_interact
 
 @export var SPEED: float = 80.0;
 @export var RUNNING_SPEED : float = 200.0;
@@ -10,11 +11,15 @@ var can_move: bool = true # toggle at start and end of dialogue
 var animation_locked: bool = false
 
 var is_running : bool = false;
+var can_interact : bool = false;
 
 
 func _ready() -> void:
 	DialogueManager.dialogue_started.connect(_on_dialogue_start)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_finish)
+	
+	SignalBus.in_npc.connect(show_tip)
+	SignalBus.out_npc.connect(hide_tip)
 
 func _physics_process(delta: float) -> void:
 	if not can_move:
@@ -93,3 +98,11 @@ func _on_dialogue_start(_resource):
 
 func _on_dialogue_finish(_resource):
 	can_move = true
+
+func show_tip() -> void:
+	tip_interact.visible = true;
+	can_interact = true;
+
+func hide_tip() -> void:
+	tip_interact.visible = false;
+	can_interact = false;
