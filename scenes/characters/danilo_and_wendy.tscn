@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckhbcah8lhb3q"]
+
+[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="1_ge5pb"]
+[ext_resource type="Script" uid="uid://dntetsmyje86x" path="res://scenes/characters/danilo_and_wendy.gd" id="1_vxru7"]
+[ext_resource type="PackedScene" uid="uid://d1vnt1mlybwuq" path="res://scenes/characters/npc_wendy.tscn" id="2_vxru7"]
+
+[node name="danilo_and_wendy" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_vxru7")
+
+[node name="player_danilo" parent="." instance=ExtResource("1_ge5pb")]
+position = Vector2(-20, 0)
+
+[node name="wendy" parent="." instance=ExtResource("2_vxru7")]
+position = Vector2(1, 0)
+
+[editable path="wendy"]
