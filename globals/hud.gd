@@ -10,6 +10,10 @@ const BASIS_33 = preload("res://assets/fonts/basis33.ttf");
 
 var phone_showing = false;
 
+func clear_objectives() -> void:
+	for obj in v_box_container.get_children():
+		obj.queue_free();
+
 func new_objective(obj_ID: int, new_objective_text: String) -> void:
 	_create_objective_node(obj_ID, new_objective_text);
 
