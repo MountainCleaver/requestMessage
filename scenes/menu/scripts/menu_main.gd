@@ -18,6 +18,8 @@ func _ready() -> void:
 	print("Act to continue: " + str(SaveManager.game_save.current_act))
 	print("Scene to continue: " + str(SaveManager.game_save.current_scene))
 	
+	print(SaveManager.game_save.finished_scenes);
+	
 	var options_menu = options.get_children();
 	options_menu[current_choice].grab_focus();
 	
