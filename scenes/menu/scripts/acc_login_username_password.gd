@@ -20,7 +20,7 @@ func _on_btn_login_pressed() -> void:
 		login_error.text = "Fields cannot be empty."
 		return
 
-	var url = "http://localhost/RequestMessage_Admin/api/login.php"
+	var url = "https://requestmessage-admin.onrender.com/api/login.php"
 	var body = {"username": username, "password": password}
 	var headers = ["Content-Type: application/json"]
 
