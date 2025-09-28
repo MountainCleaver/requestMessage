@@ -434,16 +434,16 @@ size = Vector2(14, 7)
 
 [node name="player_danilo" type="CharacterBody2D"]
 y_sort_enabled = true
-collision_mask = 6
+collision_mask = 30
 motion_mode = 1
 script = ExtResource("1_upm5t")
-RUNNING_SPEED = 160.0
+RUNNING_SPEED = 120.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_krebh")
 animation = &"idle_down"
-autoplay = "sleep"
+autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -452,5 +452,6 @@ shape = SubResource("RectangleShape2D_31iy4")
 [node name="tip_interact" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.807843)
+z_index = 999
 position = Vector2(0, -31)
 texture = ExtResource("4_o0d8a")
