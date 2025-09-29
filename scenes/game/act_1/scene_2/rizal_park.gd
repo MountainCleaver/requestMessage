@@ -172,14 +172,13 @@ func interact_npc(npc_name: String) -> void:
 		can_talk_to_wendy = !can_talk_to_wendy
 
 func npc_face_player(npc: CharacterBody2D, player_position: Vector2) -> void:
-	if npc.global_position.x > player_position.x:
-		npc.direction = Vector2.LEFT
-	elif npc.global_position.x < player_position.x:
-		npc.direction = Vector2.RIGHT
-	elif npc.global_position.y > player_position.y:
-		npc.direction = Vector2.UP
-	elif npc.global_position.y < player_position.y:
-		npc.direction = Vector2.DOWN
+	var direction_to_player = player_position - npc.global_position
+	
+	# Use the axis with the larger absolute difference
+	if abs(direction_to_player.x) > abs(direction_to_player.y):
+		npc.direction = Vector2.RIGHT if direction_to_player.x > 0 else Vector2.LEFT
+	else:
+		npc.direction = Vector2.DOWN if direction_to_player.y > 0 else Vector2.UP
 	
 	await get_tree().process_frame
 	npc.direction = Vector2.ZERO
