@@ -40,8 +40,10 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 		return
 
 	if json.get("status") == "success":
-		# Optional: store user_id or other info for later
-		get_tree().set_meta("user_id", json.get("user_id"))
+		# Save the username globally
+		Global.username = line_edit_username.text
+
+		print("Logged in as: ", Global.username)
 		SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
 	else:
 		login_error.text = str(json.get("message", "Unknown error"))

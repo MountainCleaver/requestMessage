@@ -5,7 +5,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var data = SaveManager.game_save.finished_scenes;
+	var data = SaveManager.game_save.finished_scenes
 	print(data)
 	
 	for act in data.keys():
@@ -17,24 +17,31 @@ func _ready() -> void:
 			_create_button(act, scene)
 
 
-func _create_button (act: String, scene: String) -> void:
-	var button = Button.new();
-	var texture = load("res://assets/scenes_thumbnails/%s_%s.png" % [act, scene]);
+func _create_button(act: String, scene: String) -> void:
+	var button = Button.new()
+	var texture = load("res://assets/scenes_thumbnails/%s_%s.png" % [act, scene])
 	if texture:
 		button.icon = texture
 	button.text = "%s %s" % [act, scene]
 	button.connect("pressed", Callable(self, "_on_scene_button_pressed").bind(act, scene))
 	
-	gridcontainer.add_child(button);
+	gridcontainer.add_child(button)
+
 
 func _on_scene_button_pressed(act: String, scene: String) -> void:
 	var path : String = "res://scenes/game/%s/%s/%s_%s.tscn" % [act, scene, act, scene]
+
+	# Track save using SaveManager (total saves only)
+	SaveManager.track_save()
+
 	SignalBus.next_scene.emit(path)
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
 		_on_exit_pressed()
 
+
 func _on_exit_pressed() -> void:
-	SignalBus.exit_overlay.emit();
-	queue_free();
+	SignalBus.exit_overlay.emit()
+	queue_free()
