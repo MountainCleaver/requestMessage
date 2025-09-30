@@ -11,6 +11,8 @@ class_name SaveGameResource
 	"act_5": [],
 	"act_6": []
 }
-@export var restless : int = 0
 @export var relief : int = 0
+@export var restless : int = 0
 @export var given_lola_ising_flashlight : bool = false
+
+@export var scene_3_choice : String = "";

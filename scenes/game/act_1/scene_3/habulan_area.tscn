@@ -1,11 +1,11 @@
 [gd_scene load_steps=21 format=4 uid="uid://fio0hd37qbwx"]
 
 [ext_resource type="Script" uid="uid://dsl0up017yphl" path="res://scenes/game/act_1/scene_3/habulan_area.gd" id="1_f4ltx"]
-[ext_resource type="PackedScene" uid="uid://c3glrajf2ba8i" path="res://habulan_ground.tscn" id="1_hox4p"]
+[ext_resource type="PackedScene" uid="uid://c3glrajf2ba8i" path="res://scenes/game/act_1/scene_3/habulan_ground.tscn" id="1_hox4p"]
 [ext_resource type="Texture2D" uid="uid://dp4lljuakpb1d" path="res://assets/tilesets/habulan_area_entry_to_dark_forest_playground_assets.png" id="2_8ycym"]
 [ext_resource type="PackedScene" uid="uid://c2hj7wn1ubi2y" path="res://scenes/characters/npc_mateo.tscn" id="3_8ycym"]
 [ext_resource type="PackedScene" uid="uid://bh2ul0v87mq8h" path="res://scenes/characters/npc_shadowy_chaser.tscn" id="4_6bpfp"]
-[ext_resource type="PackedScene" uid="uid://c0g2xq8wwpajd" path="res://habulan_trees.tscn" id="4_nibkr"]
+[ext_resource type="PackedScene" uid="uid://c0g2xq8wwpajd" path="res://scenes/game/act_1/scene_3/habulan_trees.tscn" id="4_nibkr"]
 [ext_resource type="PackedScene" uid="uid://d1vnt1mlybwuq" path="res://scenes/characters/npc_wendy.tscn" id="5_ca20d"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="6_f4ltx"]
 [ext_resource type="Texture2D" uid="uid://dy8w1ggvx51vf" path="res://assets/character_sprites/MATEO_BOTHERED.png" id="6_ni4dc"]
@@ -4668,6 +4668,33 @@ texture = ExtResource("2_8ycym")
 [sub_resource type="TileSet" id="TileSet_ni4dc"]
 sources/0 = SubResource("TileSetAtlasSource_nibkr")
 
+[sub_resource type="Animation" id="Animation_lhtha"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.46, 0.46)]
+}
+
 [sub_resource type="Animation" id="Animation_cn6d4"]
 resource_name = "bothered_in"
 length = 0.2
@@ -4694,33 +4721,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0.46, 0.46), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_lhtha"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -8)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.46, 0.46)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ohm3q"]
@@ -4780,7 +4780,6 @@ texture = ExtResource("6_ni4dc")
 [node name="npc_mateo" parent="y-sorted-areas" instance=ExtResource("3_8ycym")]
 position = Vector2(-222, -72)
 rotation = -0.0396338
-scale = Vector2(1, 1)
 speed = 90.0
 
 [node name="Sprite2D" parent="y-sorted-areas/npc_mateo" index="2"]
@@ -4795,6 +4794,7 @@ position = Vector2(-19, -7)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-121, -13)
+zoom = Vector2(3, 3)
 
 [node name="area" type="Node2D" parent="."]
 

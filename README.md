@@ -5,13 +5,13 @@
 ### Account Flow
 - **Content Warning** – Done  
 - **Birthday and Gender** – Done  
-- **Create Account** – 50% (ready for HTTP requests, needs API)  
-- **Login Account** – 50% (ready for HTTP requests, needs API)  
+- **Create Account** – Done
+- **Login Account** – Done
 
 ### Main Menu
-- **New Game** – Not implemented yet  
-- **Load Game** – Not implemented yet  
-- **Report a Bug** – 50% (ready for HTTP requests, needs API)  
+- **New Game** – 90% - delete all save if this is chosen
+- **Load Game** – 99% - delete all data past the player choice
+- **Report a Bug** – Done
 - **Credits** – Done  
 
 ### Options
