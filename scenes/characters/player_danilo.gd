@@ -14,32 +14,35 @@ var is_running: bool = false
 var can_interact: bool = false
 
 var real_velocity: Vector2 = Vector2.ZERO
-var current_npc: String = "";
+var current_npc: String = ""
+
+var force_cannot_move: bool = false
 
 
 func _ready() -> void:
 	DialogueManager.dialogue_started.connect(_on_dialogue_start)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_finish)
-	
+
 	SignalBus.in_npc.connect(show_tip)
 	SignalBus.out_npc.connect(hide_tip)
 
 
 func _physics_process(delta: float) -> void:
-	if not can_move:
+	print("can move: " + str(can_move))
+	if not can_player_move():
 		velocity = Vector2.ZERO
 		move_and_slide()
 		if not animation_locked:
 			_play_animation(Vector2.ZERO)
 		return
-	
+
 	var direction = _get_direction()
-	
+
 	if is_running:
 		velocity = direction.normalized() * RUNNING_SPEED
 	else:
 		velocity = direction.normalized() * SPEED
-	
+
 	move_and_slide()
 
 	if animation_locked:
@@ -56,7 +59,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-
 	if event.is_action_pressed("run"):
 		is_running = true
 	elif event.is_action_released("run"):
@@ -64,7 +66,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _get_direction() -> Vector2:
-
 	var direction: Vector2 = Vector2.ZERO
 
 	if Input.is_action_pressed("arrow_left"):
@@ -80,7 +81,7 @@ func _get_direction() -> Vector2:
 
 
 func _play_animation(direction: Vector2) -> void:
-	if direction == Vector2.ZERO or not can_move:
+	if direction == Vector2.ZERO or not can_player_move():
 		match last_direction:
 			Vector2.RIGHT:
 				animated_sprite_2d.play("idle_right")
@@ -106,16 +107,23 @@ func _on_dialogue_start(_resource):
 	can_move = false
 	can_interact = false
 
+
 func _on_dialogue_finish(_resource):
 	can_move = true
 	can_interact = true
 
-func show_tip(npc_name : String) -> void:
+
+func show_tip(npc_name: String) -> void:
 	tip_interact.visible = true
 	can_interact = true
-	current_npc = npc_name;
+	current_npc = npc_name
+
 
 func hide_tip(npc_name: String) -> void:
 	tip_interact.visible = false
 	can_interact = false
-	current_npc = "";
+	current_npc = ""
+
+
+func can_player_move() -> bool:
+	return can_move and not force_cannot_move
