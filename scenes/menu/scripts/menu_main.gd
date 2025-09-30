@@ -13,9 +13,18 @@ extends Control
 var current_choice = 0
 
 func _ready() -> void:
-	print(SaveManager.game_save.finished_scenes)
+	print("finished scenes: " + str(SaveManager.game_save.finished_scenes))
+	print("scene choices: " + str(SaveManager.game_save.choices))
+	print("Current Karma: " + str(SaveManager.game_save.karma))
 	print("Act to continue: " + str(SaveManager.game_save.current_act))
 	print("Scene to continue: " + str(SaveManager.game_save.current_scene))
+	
+	if SaveManager.has_save():
+		continue_game.visible = true
+		current_choice = 0
+	else:
+		current_choice = 1
+		continue_game.visible = false
 
 	var options_menu = options.get_children()
 	options_menu[current_choice].grab_focus()
@@ -24,13 +33,6 @@ func _ready() -> void:
 
 	for option in options_menu:
 		option.mouse_entered.connect(_option_hover.bind(option))
-
-	if SaveManager.has_save():
-		continue_game.visible = true
-		continue_game.disabled = false
-	else:
-		continue_game.visible = false
-		continue_game.disabled = true
 
 func _option_hover(option: Button) -> void:
 
@@ -46,9 +48,9 @@ func _on_continue_game_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/game/" + act + "/" + scene + "/" + act + "_" + scene + ".tscn")
 
 func _on_new_game_pressed() -> void:
-  if BgmManager:
-    BgmManager.stop_music()
-   SignalBus.next_scene.emit("res://scenes/game/act_1_title_scene.tscn")
+	if BgmManager:
+		BgmManager.stop_music()
+	SignalBus.next_scene.emit("res://scenes/game/act_1_title_scene.tscn")
 
 func _on_load_game_pressed() -> void:
 	_option_overlayer("res://scenes/menu/menu_load_scenes.tscn")

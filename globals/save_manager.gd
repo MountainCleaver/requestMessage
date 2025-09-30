@@ -57,7 +57,46 @@ func is_scene_finished(act: String, scene: String) -> bool:
 	return scene in game_save.finished_scenes.get(act, [])
 
 func has_save() -> bool:
-	return FileAccess.file_exists(SAVE_PATH) or FileAccess.file_exists(BACKUP_PATH)
+	if game_save:
+		return _save_has_finished_scenes(game_save);
+	
+	var path : String = ""
+	
+	if FileAccess.file_exists(SAVE_PATH):
+		path = SAVE_PATH
+	elif FileAccess.file_exists(BACKUP_PATH):
+		path = BACKUP_PATH
+	else:
+		return false
+	
+	var save_data = load(path) as SaveGameResource
+	
+	if not save_data:
+		return false;
+	
+	return _save_has_finished_scenes(save_data)
+
+func _save_has_finished_scenes(save_data: SaveGameResource) -> bool :
+	if not save_data:
+		return false;
+		
+	if save_data.current_scene != "" or save_data.current_act != "":
+		return true;
+		
+	for act in save_data.finished_scenes:
+		var scene_array : Array = save_data.finished_scenes[act]
+		
+		if scene_array.size() > 0:
+			return true;
+			
+	if save_data.choices and save_data.choices.size() > 0:
+		return true;
+		
+	if save_data.karma != 0:
+		return true;
+	
+	return false;
+	
 
 func track_save() -> void:
 	var url = "http://localhost/RequestMessage_Admin/api/track_save.php"
@@ -71,3 +110,13 @@ func track_save() -> void:
 		HTTPClient.METHOD_POST,
 		json
 	)
+	
+func save_moral_choice(act_scene: String, choice: String)-> void:
+	game_save.choices[act_scene] = choice
+	match choice:
+		"restless":
+			game_save.karma -= 1
+		"relief":
+			game_save.karma += 1
+	save_game()
+	

@@ -10,6 +10,7 @@ do leave_the_park()
 => END
 
 ~ tell
+do SaveManager.save_moral_choice("act_1_scene_3", "relief")
 Danilo: Ah… may naalala lang ako...
 Danilo: habang naglalaro tayo noon...
 Danilo: may nakita akong...
@@ -26,10 +27,10 @@ Danilo: Pero… paano kung ako yung may kasalanan?
 Danilo: Paano kung ako yung dahilan bakit siya nawala?
 Wendy: Hindi mo kasalanan.
 Wendy: Pero kung gusto natin ng kapayapaan... kailangan nating harapin ang totoo.
-# TODO -> save in karma system
 => END
 
 ~ keep
+do SaveManager.save_moral_choice("act_1_scene_3", "restless")
 Wendy: Ayos ka lang?
 Wendy: Napansin ko, tulala ka.
 Danilo: Ah… naalala ko lang si Mateo ulit.
@@ -40,7 +41,6 @@ Danilo: Oo, salamat...
 Danilo: *buntong hininga...
 Danilo: [center]Alam ko... dapat kong sabihin.[/center]
 Danilo: [center]Pero... hindi ko pa maintindihan.[/center]
-# TODO -> save in karma system
 => END
 
 ~ pauwi

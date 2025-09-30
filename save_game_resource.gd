@@ -11,8 +11,13 @@ class_name SaveGameResource
 	"act_5": [],
 	"act_6": []
 }
-@export var relief : int = 0
-@export var restless : int = 0
+# karma, if negative -> restless |||| if positve -> relief ||| pag zero? tanungin ko si lord. sana odd yung choices
+@export var karma : int = 0
 @export var given_lola_ising_flashlight : bool = false
 
-@export var scene_3_choice : String = "";
+# act and scene : choice 
+# "act_1_scene_3" : "restless"/"relief"
+# auto decrement/increment sa karma based sa choice
+@export var choices : Dictionary = {
+	
+}

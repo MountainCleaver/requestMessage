@@ -31,7 +31,6 @@ AnimationManager="*res://globals/animation_manager.gd"
 BgmManager="*res://globals/bgm_manager.gd"
 Global="*res://globals/Global.gd"
 
-
 [dialogue_manager]
 
 runtime/balloon_path="res://dialogues/balloon.tscn"
