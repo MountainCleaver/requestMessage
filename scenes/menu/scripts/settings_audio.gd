@@ -45,7 +45,7 @@ func _apply_music_volume(value: float) -> void:
 func _apply_sfx_volume(value: float) -> void:
 	var bus_idx = AudioServer.get_bus_index("SFX")
 	var normalized = value / 100.0  # convert 0–100 → 0.0–1.0
-	AudioServer.set_bus_volume_db(bus_idx, linear_to_db(normalized))
+	#AudioServer.set_bus_volume_db(bus_idx, linear_to_db(normalized))
 
 func _apply_mute(state: bool) -> void:
 	var bus_idx = AudioServer.get_bus_index("Master")
