@@ -3,8 +3,10 @@ Wendy: Huy...
 Wendy: Okay ka lang?
 Danilo: [center]Sasabihin ko ba kay Wendy... yung naalala ko?[/center]
 Wendy: Huy, Dan?
-- Tell her about the figure in the memory => tell
-- Keep it to yourself => keep
+- Tell her about the figure in the memory =>< tell
+- Keep it to yourself =>< keep
+- asdfsa
+do leave_the_park()
 => END
 
 ~ tell
@@ -13,9 +15,9 @@ Danilo: habang naglalaro tayo noon...
 Danilo: may nakita akong...
 Danilo: [wave]parang anino.[/wave]
 Danilo: Sinundan siya.
-Wendy: (worried) Anino?
+Wendy: Anino?
 Wendy: Dan... bakit ngayon mo lang sinabi?
-Danilo: (hesitant) Hindi ko rin alam... Ngayon lang ulit bumalik.
+Danilo: Hindi ko rin alam... Ngayon lang ulit bumalik.
 Danilo: Malabo pa rin… pero sigurado akong may sumusunod sa kanya.
 Wendy: Dan... this could be important.
 Wendy: Kahit piraso lang, sabihin mo agad.
@@ -24,6 +26,7 @@ Danilo: Pero… paano kung ako yung may kasalanan?
 Danilo: Paano kung ako yung dahilan bakit siya nawala?
 Wendy: Hindi mo kasalanan.
 Wendy: Pero kung gusto natin ng kapayapaan... kailangan nating harapin ang totoo.
+# TODO -> save in karma system
 => END
 
 ~ keep
@@ -34,7 +37,24 @@ Wendy: Hays... kung nasaan man siya... sana masaya siya.
 Wendy: Pero Danilo... kung may gusto kang sabihin... [fade]I’m here.[/fade]
 Wendy: Hindi mo kailangang buhatin mag-isa.
 Danilo: Oo, salamat...
-Danilo: (sighs, looks down) ...
-Danilo: (to himself) Alam ko... dapat kong sabihin.
-Danilo: Pero... [glitch]hindi ko pa maintindihan.[/glitch]
+Danilo: *buntong hininga...
+Danilo: [center]Alam ko... dapat kong sabihin.[/center]
+Danilo: [center]Pero... hindi ko pa maintindihan.[/center]
+# TODO -> save in karma system
+=> END
+
+~ pauwi
+Wendy: Ingat ka pauwi, Danilo
+Danilo: Ikaw din Wen, salamat.
+do re_enable_collisions()
+do wendy_walk_away()
+do Hud.show_objectives()
+do ObjectiveManager.add_objective(1, "Get home")
+=> END
+
+~ jeep
+Danilo: Pasakay po manong.
+- Home
+	do scene_3_done()
+- Cancel
 => END
