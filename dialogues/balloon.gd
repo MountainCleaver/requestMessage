@@ -54,6 +54,8 @@ var mutation_cooldown: Timer = Timer.new()
 @onready var portrait: TextureRect = $Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/portrait
 #@onready var main_animation: AnimationPlayer = $main_animation
 
+@onready var talk_sound: AudioStreamPlayer = $TalkSound
+
 func _ready() -> void:
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
@@ -184,3 +186,8 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 
 
 #endregion
+
+
+
+func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float) -> void:
+	talk_sound.play()

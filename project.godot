@@ -27,7 +27,9 @@ Hud="*res://globals/hud.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 ObjectiveManager="*res://globals/objective_manager.gd"
 AnimationManager="*res://globals/animation_manager.gd"
+BgmManager="*res://globals/bgm_manager.gd"
 Global="*res://globals/Global.gd"
+
 
 [dialogue_manager]
 
@@ -106,7 +108,7 @@ phone={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/act_1/scene_1/a1s1.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/act_1/scene_1/a1s1.dialogue", "res://dialogues/act_1/scene_2/a1s2.dialogue", "res://dialogues/act_1/scene_2/test.dialogue", "res://dialogues/act_1/scene_3/a1s3.dialogue")
 
 [layer_names]
 

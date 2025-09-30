@@ -12,7 +12,6 @@ extends Control
 
 var current_choice = 0
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print(SaveManager.game_save.finished_scenes)
 	print("Act to continue: " + str(SaveManager.game_save.current_act))
@@ -34,17 +33,22 @@ func _ready() -> void:
 		continue_game.disabled = true
 
 func _option_hover(option: Button) -> void:
+
 	current_choice = options.get_children().find(option)
 	option.grab_focus()
 
 func _on_continue_game_pressed() -> void:
+	if BgmManager:
+		BgmManager.stop_music()
 	SaveManager.load_game()
 	var act: String = SaveManager.game_save.current_act
 	var scene: String = SaveManager.game_save.current_scene
 	SignalBus.next_scene.emit("res://scenes/game/" + act + "/" + scene + "/" + act + "_" + scene + ".tscn")
 
 func _on_new_game_pressed() -> void:
-	SignalBus.next_scene.emit("res://scenes/game/act_1_title_scene.tscn")
+  if BgmManager:
+    BgmManager.stop_music()
+   SignalBus.next_scene.emit("res://scenes/game/act_1_title_scene.tscn")
 
 func _on_load_game_pressed() -> void:
 	_option_overlayer("res://scenes/menu/menu_load_scenes.tscn")
@@ -53,10 +57,13 @@ func _on_report_bug_pressed() -> void:
 	_option_overlayer("res://scenes/menu/menu_report_a_bug.tscn")
 	current_choice = options.get_children().find(report_bug)
 
+
 func _on_credits_pressed() -> void:
 	print("credits")
 	_option_overlayer("res://scenes/menu/menu_credits.tscn")
+
 	current_choice = options.get_children().find(credits)
+
 
 func _on_options_pressed() -> void:
 	print("options")

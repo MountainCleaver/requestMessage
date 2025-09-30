@@ -27,7 +27,7 @@ func _on_btn_create_pressed() -> void:
 	elif password_confirm != password:
 		err_password.text = "Passwords do not match!"
 	else:
-		var url = "http://localhost/RequestMessage_Admin/api/register.php"
+		var url = "https://requestmessage-admin.onrender.com/api/register.php"
 
 		# Retrieve metadata set from previous scene
 		var birthday = get_tree().get_meta("birthday")

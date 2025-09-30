@@ -16,3 +16,11 @@ signal phone_out
 
 #act
 signal act_num_scene_num_done(act: String, scene: String, nextScenePath: String)
+
+#jeepney
+signal in_jeep_area
+signal out_jeep_area
+
+#npc
+signal in_npc(npc_name: String)
+signal out_npc(npc_name: String)
