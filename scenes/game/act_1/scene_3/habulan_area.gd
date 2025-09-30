@@ -27,8 +27,6 @@ func play_flashback() -> void:
 	_shadow_run_down();
 	_danilo_worried()
 	
-	
-	
 
 func _danilo_cant_move() -> void:
 	player_danilo.last_direction = Vector2.UP;
@@ -74,3 +72,4 @@ func _on_shadow_turn_body_entered(body: Node2D) -> void:
 func _on_shadow_stop_body_entered(body: Node2D) -> void:
 	if body.name == "npc_shadowy_chaser":
 		npc_shadowy_chaser.direction = Vector2.ZERO
+		SignalBus.habulan_done.emit();

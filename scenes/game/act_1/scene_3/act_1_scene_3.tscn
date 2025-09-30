@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://ch2q4kgjyiyak"]
+[gd_scene load_steps=2 format=3 uid="uid://ch2q4kgjyiyak"]
+
+[ext_resource type="Script" uid="uid://dqrms3jev00qg" path="res://scenes/game/act_1/scene_3/act_1_scene_3.gd" id="1_ivp0e"]
 
 [node name="act_1_scene_3" type="Node2D"]
+script = ExtResource("1_ivp0e")
+
+[node name="locations" type="Node2D" parent="."]
