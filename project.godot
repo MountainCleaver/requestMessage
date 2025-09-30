@@ -28,6 +28,8 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 ObjectiveManager="*res://globals/objective_manager.gd"
 AnimationManager="*res://globals/animation_manager.gd"
 BgmManager="*res://globals/bgm_manager.gd"
+Global="*res://globals/Global.gd"
+
 
 [dialogue_manager]
 
