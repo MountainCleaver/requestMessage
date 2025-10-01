@@ -28,7 +28,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print("can move: " + str(can_move))
+
 	if not can_player_move():
 		velocity = Vector2.ZERO
 		move_and_slide()

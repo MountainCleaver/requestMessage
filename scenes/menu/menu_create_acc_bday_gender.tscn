@@ -53,5 +53,13 @@ size = Vector2i(201, 100)
 ok_button_text = "Enter age"
 cancel_button_text = "Exit Game"
 
+[node name="exitConfirmDialog" type="ConfirmationDialog" parent="."]
+title = "Confirm Exit"
+initial_position = 2
+ok_button_text = "Yes"
+dialog_text = "Do you want to exit the game?"
+
 [connection signal="canceled" from="ConfirmationDialog" to="bday_and_gender" method="_on_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="ConfirmationDialog" to="bday_and_gender" method="_on_confirmation_dialog_confirmed"]
+[connection signal="canceled" from="exitConfirmDialog" to="bday_and_gender" method="_on_exit_confirm_dialog_canceled"]
+[connection signal="confirmed" from="exitConfirmDialog" to="bday_and_gender" method="_on_exit_confirm_dialog_confirmed"]

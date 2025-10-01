@@ -10,6 +10,8 @@ extends Control
 @onready var overlayer: Control = $overlayer
 @onready var options: VBoxContainer = $options_holder
 
+@onready var exit_confirmation_dialog: ConfirmationDialog = $exitConfirmationDialog
+
 var current_choice = 0
 
 func _ready() -> void:
@@ -74,7 +76,7 @@ func _on_options_pressed() -> void:
 
 func _on_exit_pressed() -> void:
 	print("exit")
-	get_tree().quit()
+	exit_confirmation_dialog.show();
 
 func _option_overlayer(path: String) -> void:
 	for child in overlayer.get_children():
@@ -87,3 +89,13 @@ func _option_overlayer(path: String) -> void:
 func _exit_overlay() -> void:
 	overlayer.visible = false
 	options.get_children()[current_choice].grab_focus()
+
+
+
+func _on_exit_confirmation_dialog_confirmed() -> void:
+	get_tree().quit()
+
+
+func _on_exit_confirmation_dialog_canceled() -> void:
+	# do nothing
+	pass # Replace with function body.

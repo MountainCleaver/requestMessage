@@ -118,5 +118,3 @@ func save_moral_choice(act_scene: String, choice: String)-> void:
 			game_save.karma -= 1
 		"relief":
 			game_save.karma += 1
-	save_game()
-	
