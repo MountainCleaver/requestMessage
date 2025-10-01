@@ -9,11 +9,18 @@ extends Control
 @onready var http: HTTPRequest = find_child("HTTP_request")
 @onready var login_link: Button = $holder/login_link
 
+@onready var toggle_visibility: TextureButton = $holder/line_edit_password/toggle_visibility
+@onready var toggle_visibility_confirm: TextureButton = $holder/line_edit_password_confirm/toggle_visibility_confirm
+
 func _ready() -> void:
 	line_edit_password.secret = true
 	line_edit_password_confirm.secret = true
 
 	http.request_completed.connect(_on_HTTP_request_request_completed)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action("escape"):
+		SignalBus.next_scene.emit("res://scenes/menu/menu_create_acc_bday_gender.tscn")
 
 func _on_btn_create_pressed() -> void:
 	var username = line_edit_username.text
@@ -72,3 +79,10 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 
 func _on_login_link_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn")
+
+
+func _on_toggle_visibility_toggled(toggled_on: bool) -> void:
+	line_edit_password.secret = not toggled_on
+
+func _on_toggle_visibility_confirm_toggled(toggled_on: bool) -> void:
+	line_edit_password_confirm.secret = not toggled_on
