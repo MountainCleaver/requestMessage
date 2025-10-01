@@ -132,7 +132,7 @@ func _submit_bug_report():
 	var body = _create_multipart_form(form, screenshot_path, boundary)
 	var headers = ["Content-Type: multipart/form-data; boundary=" + boundary]
 
-	http.request_raw("http://localhost/RequestMessage_Admin/api/submit_bug.php", headers, HTTPClient.METHOD_POST, body)
+	http.request_raw("https://requestmessage-admin.onrender.com/api/submit_bug.php", headers, HTTPClient.METHOD_POST, body)
 
 
 func _create_multipart_form(fields: Dictionary, file_path: String, boundary: String) -> PackedByteArray:
