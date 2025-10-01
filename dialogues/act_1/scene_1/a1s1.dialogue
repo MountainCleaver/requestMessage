@@ -7,7 +7,6 @@ do Hud.show_objectives()
 
 ~ phone_time
 do player_danilo.can_move = false
-[wait = 1.0]
 Danilo: Hmmm... ang aga pa pala
 Danilo: ...
 do player_danilo.can_move = true
@@ -19,7 +18,6 @@ do add_notification()
 
 ~ reminder
 do player_danilo.can_move = false
-[wait = 1.0]
 Danilo: Ngayon pala yung araw na yun?
 do tension_in_anim()
 Danilo : Anniversary na naman ng [wave]pagkawala[/wave] ni Mateo
