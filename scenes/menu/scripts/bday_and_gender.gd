@@ -14,6 +14,9 @@ extends Control
 @onready var day_popup: PopupMenu = day.get_popup();
 @onready var year_popup: PopupMenu = year.get_popup();
 
+@onready var exit_confirm_dialog: ConfirmationDialog = $"../exitConfirmDialog"
+var exit_confirm_showing : bool = false;
+
 @onready var button: Button = $Button
 
 const BASIS_33 = preload("res://assets/fonts/basis33.ttf");
@@ -223,8 +226,6 @@ func _confirm_dialog():
 	confirmation_dialog.dialog_text = "This game is restricted to players 18 years or older. If you are under 18, you must exit the game.";
 	confirmation_dialog.popup_centered();
 
-
-
 func _on_male_pressed() -> void:
 	selected_gender = genders[0]
 
@@ -245,3 +246,20 @@ func _on_confirmation_dialog_canceled() -> void:
 
 func _on_button_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn");
+
+func _input(event: InputEvent) -> void:
+	if event.is_action("escape"):
+		if not exit_confirm_showing:
+			exit_confirm_dialog.show();
+			exit_confirm_showing = true;
+		else:
+			exit_confirm_dialog.hide()
+			exit_confirm_showing = false;
+
+
+func _on_exit_confirm_dialog_confirmed() -> void:
+	get_tree().quit()
+
+
+func _on_exit_confirm_dialog_canceled() -> void:
+	pass # Replace with function body.
