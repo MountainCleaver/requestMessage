@@ -155,3 +155,6 @@ func _input(event: InputEvent) -> void:
 func add_notification() -> void:
 	const SCHED_ICON = preload("res://assets/HUD/sched_icon.png")
 	Hud.get_node("Control/phone/MarginContainer/lock_screen").add_notification(SCHED_ICON, "Reminders", "Day of Mateo's disapearnce");
+
+func get_scene_type() -> String:
+	return "game"

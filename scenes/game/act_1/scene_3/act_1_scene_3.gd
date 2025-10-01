@@ -37,3 +37,6 @@ func wendy_walk_away() -> void :
 
 func scene_3_done() -> void:
 	current_location.scene_3_done();
+
+func get_scene_type() -> String:
+	return "game"

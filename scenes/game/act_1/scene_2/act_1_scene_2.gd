@@ -46,3 +46,6 @@ func scene_2_done() -> void:
 	SignalBus.act_num_scene_num_done.emit("act_1", "scene_2", "res://scenes/game/act_1/scene_3/act_1_scene_3.tscn") # caught in save manager
 	Hud.clear_objectives();
 	print("act 1 scene 1 is done")
+
+func get_scene_type() -> String:
+	return "game"
