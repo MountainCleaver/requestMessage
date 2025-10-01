@@ -18,9 +18,9 @@ func _ready() -> void:
 	var audio_settings_instance = audio_settings.instantiate();
 	setting_container.add_child(audio_settings_instance);
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("escape"):
-		_on_exit_pressed();
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("escape"):
+		#_on_exit_pressed();
 
 
 func _on_option_audio_pressed() -> void:
@@ -44,5 +44,5 @@ func _setting_switcher(path: String):
 		
 
 func _on_exit_pressed() -> void:
-	SignalBus.exit_overlay.emit();
 	queue_free();
+	SignalBus.exit_overlay.emit();
