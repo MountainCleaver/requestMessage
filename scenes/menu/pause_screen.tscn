@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://cs1jpw8ukb17c"]
+
+[ext_resource type="Texture2D" uid="uid://du0i3pkn1es8y" path="res://assets/main menu/Pause.png" id="1_04k7x"]
+[ext_resource type="Script" uid="uid://bx0k65orw5hkk" path="res://scenes/menu/scripts/pause_screen.gd" id="1_x8jkt"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_wx27k"]
+[ext_resource type="PackedScene" uid="uid://c7yw1h7fpco1e" path="res://scenes/menu/option_main_menu.tscn" id="3_wx27k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ruv5c"]
+font = ExtResource("2_wx27k")
+font_size = 72
+
+[node name="pause_screen" type="Control"]
+process_mode = 3
+top_level = true
+z_index = 999
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x8jkt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_04k7x")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.256
+anchor_right = 1.0
+anchor_bottom = 0.309
+offset_top = -18.644
+offset_bottom = 0.0839844
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME PAUSED"
+label_settings = SubResource("LabelSettings_ruv5c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -201.0
+offset_top = 450.0
+offset_right = 201.0
+offset_bottom = -305.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="continue" parent="VBoxContainer" instance=ExtResource("3_wx27k")]
+layout_mode = 2
+text = "CONTINUE"
+
+[node name="settings" parent="VBoxContainer" instance=ExtResource("3_wx27k")]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="exit_to_main_menu" parent="VBoxContainer" instance=ExtResource("3_wx27k")]
+layout_mode = 2
+text = "EXIT TO MAIN MENU"
+
+[node name="exit_main_menu_dialog" type="ConfirmationDialog" parent="."]
+title = "Confirm Exit"
+initial_position = 2
+ok_button_text = "Yes"
+dialog_text = "Exit to main menu?"
+
+[node name="overlayer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="VBoxContainer/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit_to_main_menu" to="." method="_on_exit_to_main_menu_pressed"]
+[connection signal="canceled" from="exit_main_menu_dialog" to="." method="_on_exit_main_menu_dialog_canceled"]
+[connection signal="confirmed" from="exit_main_menu_dialog" to="." method="_on_exit_main_menu_dialog_confirmed"]
