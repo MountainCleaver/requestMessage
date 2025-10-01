@@ -105,6 +105,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="exitConfirmationDialog" type="ConfirmationDialog" parent="."]
+title = "Confirm Exit"
+initial_position = 2
+size = Vector2i(251, 100)
+ok_button_text = "Yes"
+dialog_text = "Do you want to exit the game?"
+
 [connection signal="pressed" from="options_holder/continue_game" to="." method="_on_continue_game_pressed"]
 [connection signal="pressed" from="options_holder/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="options_holder/load_game" to="." method="_on_load_game_pressed"]
@@ -112,3 +119,5 @@ grow_vertical = 2
 [connection signal="pressed" from="options_holder/credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="options_holder/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="options_holder/exit" to="." method="_on_exit_pressed"]
+[connection signal="canceled" from="exitConfirmationDialog" to="." method="_on_exit_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="exitConfirmationDialog" to="." method="_on_exit_confirmation_dialog_confirmed"]
