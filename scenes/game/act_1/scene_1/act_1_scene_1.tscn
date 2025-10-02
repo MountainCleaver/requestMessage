@@ -294,6 +294,7 @@ autoplay = true
 layer = 101
 
 [node name="pause_screen" parent="pause_overlay" instance=ExtResource("7_sag8k")]
+visible = false
 
 [connection signal="body_entered" from="water_glass/water_area" to="." method="_on_water_area_body_entered"]
 [connection signal="body_exited" from="water_glass/water_area" to="." method="_on_water_area_body_exited"]
