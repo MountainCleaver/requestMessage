@@ -14,10 +14,10 @@ font_size = 96
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebc0p"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ph3dx"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hukn4"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ph3dx"]
 
 [node name="lock_screen" type="Control"]
 layout_mode = 3
@@ -90,8 +90,8 @@ offset_bottom = -41.0
 grow_horizontal = 2
 grow_vertical = 0
 focus_mode = 0
-theme_override_styles/hover = SubResource("StyleBoxFlat_ph3dx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hukn4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ph3dx")
 icon = ExtResource("2_hukn4")
 icon_alignment = 1
 expand_icon = true
