@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://chc4pcwey76qp"]
+[gd_scene load_steps=23 format=4 uid="uid://chc4pcwey76qp"]
 
 [ext_resource type="Texture2D" uid="uid://c2u7xoa3m61f6" path="res://assets/tilesets/rizal_tile.png" id="1_8l3sx"]
 [ext_resource type="Script" uid="uid://cqxw4getwelv6" path="res://scenes/game/act_1/scene_2/rizal_park.gd" id="1_ejkqa"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://deuj2e83rx0ba" path="res://scenes/game/act_1/rizal_decorations_foreground.tscn" id="6_6b607"]
 [ext_resource type="PackedScene" uid="uid://d1vnt1mlybwuq" path="res://scenes/characters/npc_wendy.tscn" id="6_sqb6b"]
 [ext_resource type="Texture2D" uid="uid://ft8njc17bcan" path="res://assets/character_sprites/STUDENTS.png" id="9_36hqa"]
+[ext_resource type="AudioStream" uid="uid://64q5ndfqndki" path="res://sound/ForestWalk-320bit(chosic.com).mp3" id="10_cnwla"]
+[ext_resource type="AudioStream" uid="uid://b7mn2ecowjo1q" path="res://sound/park-6026.mp3" id="11_6b607"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nt4t3"]
 texture = ExtResource("1_8l3sx")
@@ -3161,6 +3163,16 @@ collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_mlavg")
+
+[node name="BGMPark" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_cnwla")
+volume_db = -22.009
+autoplay = true
+
+[node name="SFXPark" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_6b607")
+volume_db = -1.908
+autoplay = true
 
 [connection signal="body_entered" from="wendy_pan_area" to="." method="_on_area_2d_body_entered"]
 

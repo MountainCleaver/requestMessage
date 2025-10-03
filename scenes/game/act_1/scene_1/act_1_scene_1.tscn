@@ -285,7 +285,7 @@ debug_color = Color(0.956643, 5.77569e-07, 0.536835, 0.42)
 [node name="sleep_marker" type="Marker2D" parent="."]
 position = Vector2(-46, 0)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="SFXThunder" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_sag8k")
 volume_db = -8.238
 autoplay = true

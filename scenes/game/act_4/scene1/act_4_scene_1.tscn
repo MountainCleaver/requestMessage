@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnx4268ndqwko"]
+
+[ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_4/scene1/danilo_hometown.tscn" id="1_0vr5f"]
+[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_8d7hr"]
+[ext_resource type="PackedScene" uid="uid://j6gfyiki6msu" path="res://scenes/characters/npc_lola_ising.tscn" id="3_lvbum"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="4_5xy1t"]
+
+[node name="act_4_scene_1" type="Node2D"]
+
+[node name="locations" type="Node2D" parent="."]
+
+[node name="danilo_hometown2" parent="locations" instance=ExtResource("1_0vr5f")]
+
+[node name="player_danilo" parent="locations/danilo_hometown2/y-sorted-objects" index="2" instance=ExtResource("2_8d7hr")]
+visible = false
+position = Vector2(72, -78)
+RUNNING_SPEED = 500.0
+
+[node name="Camera2D" type="Camera2D" parent="locations/danilo_hometown2/y-sorted-objects/player_danilo"]
+position = Vector2(-1, -6)
+zoom = Vector2(4, 4)
+limit_left = -726
+limit_top = -690
+limit_right = 731
+limit_bottom = 630
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="npc_lola_ising" parent="locations/danilo_hometown2/y-sorted-objects" index="3" instance=ExtResource("3_lvbum")]
+visible = false
+position = Vector2(73, -57)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="locations"]
+color = Color(0.8980392, 0.91764706, 0.75686276, 1)
+energy = 0.3
+
+[node name="pause_overlay" type="CanvasLayer" parent="."]
+
+[node name="pause_screen" parent="pause_overlay" instance=ExtResource("4_5xy1t")]
+visible = false
+
+[editable path="locations/danilo_hometown2"]
