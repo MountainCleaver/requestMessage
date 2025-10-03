@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://hlrmhd2q52no"]
+[gd_scene load_steps=19 format=4 uid="uid://hlrmhd2q52no"]
 
 [ext_resource type="Script" uid="uid://dmap15whcwu84" path="res://scenes/game/act_1/scene_3/rizal_park_after_habulan.gd" id="1_ufr88"]
 [ext_resource type="PackedScene" uid="uid://cdatfkhvxugbj" path="res://scenes/game/act_1/riza_ground.tscn" id="1_un8gu"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="6_3u5rs"]
 [ext_resource type="PackedScene" uid="uid://d1vnt1mlybwuq" path="res://scenes/characters/npc_wendy.tscn" id="7_ufr88"]
 [ext_resource type="Texture2D" uid="uid://ft8njc17bcan" path="res://assets/character_sprites/STUDENTS.png" id="8_rny5l"]
+[ext_resource type="AudioStream" uid="uid://bt88btfo82wjt" path="res://sound/Come-Play-with-Me(chosic.com).mp3" id="10_c048n"]
+[ext_resource type="AudioStream" uid="uid://b7mn2ecowjo1q" path="res://sound/park-6026.mp3" id="11_tk8ek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ajdgl"]
 size = Vector2(49.3333, 36.6667)
@@ -208,6 +210,16 @@ collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_3rcpu")
+
+[node name="BGMPark2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_c048n")
+volume_db = -12.404
+autoplay = true
+
+[node name="SFXPark2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_tk8ek")
+volume_db = -13.358
+autoplay = true
 
 [connection signal="body_entered" from="AnimatedSprite2D/jeep_area" to="." method="_on_jeep_area_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/jeep_area" to="." method="_on_jeep_area_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://fio0hd37qbwx"]
+[gd_scene load_steps=23 format=4 uid="uid://fio0hd37qbwx"]
 
 [ext_resource type="Script" uid="uid://dsl0up017yphl" path="res://scenes/game/act_1/scene_3/habulan_area.gd" id="1_f4ltx"]
 [ext_resource type="PackedScene" uid="uid://c3glrajf2ba8i" path="res://scenes/game/act_1/scene_3/habulan_ground.tscn" id="1_hox4p"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://d1vnt1mlybwuq" path="res://scenes/characters/npc_wendy.tscn" id="5_ca20d"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="6_f4ltx"]
 [ext_resource type="Texture2D" uid="uid://dy8w1ggvx51vf" path="res://assets/character_sprites/MATEO_BOTHERED.png" id="6_ni4dc"]
+[ext_resource type="AudioStream" uid="uid://bark61xgh126b" path="res://sound/Come-Out-And-Play-Remixed-Royalty-Free(chosic.com).mp3" id="10_lhtha"]
+[ext_resource type="AudioStream" uid="uid://cgl77xcrs43cw" path="res://sound/children-giggling-kids-laughing-hd-378111.mp3" id="11_lhtha"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ni4dc"]
 texture = ExtResource("2_8ycym")
@@ -4838,6 +4840,16 @@ shape = SubResource("RectangleShape2D_lhtha")
 color = Color(0.678595, 0.588714, 0.052448, 1)
 energy = 0.4
 blend_mode = 2
+
+[node name="BGMHide-and-seek" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_lhtha")
+volume_db = -13.608
+autoplay = true
+
+[node name="SFXHide-and-seek" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_lhtha")
+volume_db = -15.266
+autoplay = true
 
 [connection signal="body_entered" from="area/mateo_turn" to="." method="_on_mateo_turn_body_entered"]
 [connection signal="body_entered" from="area/mate_stop" to="." method="_on_mate_stop_body_entered"]

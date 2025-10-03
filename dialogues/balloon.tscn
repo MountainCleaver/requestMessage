@@ -245,6 +245,7 @@ libraries = {
 
 [node name="TalkSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_7c2jb")
+autoplay = true
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="spoke" from="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_spoke"]
