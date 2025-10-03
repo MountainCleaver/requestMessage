@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cggyomffr2fim"
-path="res://.godot/imported/portrait_lola_ising.png-3c952240041bddd28a52022659749026.ctex"
+uid="uid://d2x6cehe7r8e6"
+path="res://.godot/imported/wind.png-791583383dc7dd8b437e46200b8f72ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character_sprites/portrait_lola_ising.png"
-dest_files=["res://.godot/imported/portrait_lola_ising.png-3c952240041bddd28a52022659749026.ctex"]
+source_file="res://assets/character_sprites/wind.png"
+dest_files=["res://.godot/imported/wind.png-791583383dc7dd8b437e46200b8f72ea.ctex"]
 
 [params]
 
