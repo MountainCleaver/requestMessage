@@ -1,6 +1,5 @@
-[gd_scene load_steps=21 format=4 uid="uid://dphe7c6imiltt"]
+[gd_scene load_steps=20 format=4 uid="uid://dphe7c6imiltt"]
 
-[ext_resource type="Script" uid="uid://bhleish4j44ry" path="res://hometown_town_center.gd" id="1_0dbr4"]
 [ext_resource type="Texture2D" uid="uid://dpxclb43v72sn" path="res://assets/tilesets/act3_s3_BAYAN_HOUSES.png" id="2_brh3w"]
 [ext_resource type="Texture2D" uid="uid://blbdba3e835cg" path="res://assets/tilesets/act3_s3_BAYAN_GROUONSD.png" id="3_ospwe"]
 [ext_resource type="Texture2D" uid="uid://comvep84kpksf" path="res://assets/tilesets/bayan_houses.png" id="4_0qce3"]
@@ -17566,7 +17565,6 @@ sources/4 = SubResource("TileSetAtlasSource_ospwe")
 sources/6 = SubResource("TileSetAtlasSource_0qce3")
 
 [node name="hometown_town_center" type="Node2D"]
-script = ExtResource("1_0dbr4")
 
 [node name="map" type="Node2D" parent="."]
 
