@@ -173,6 +173,7 @@ layout_mode = 2
 [node name="portrait" type="TextureRect" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("2_ooonl")
+stretch_mode = 4
 
 [node name="Panel" type="Panel" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/portrait"]
 layout_mode = 0
