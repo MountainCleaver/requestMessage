@@ -20,33 +20,53 @@ func _ready() -> void:
 	sfx_slider.value_changed.connect(_on_sfx_slider_value_changed)
 	mute_check.toggled.connect(_mute_toggled)
 
+
 # === SIGNAL HANDLERS ===
 func _on_music_slider_value_changed(value: float) -> void:
 	Settings.settings.music_volume = value  # store as 0–100
 	_apply_music_volume(value)
 	Settings.save_settings()
 
+
 func _on_sfx_slider_value_changed(value: float) -> void:
 	Settings.settings.sfx_volume = value  # store as 0–100
 	_apply_sfx_volume(value)
 	Settings.save_settings()
+
 
 func _mute_toggled(toggled: bool) -> void:
 	Settings.settings.mute_all_sounds = toggled
 	_apply_mute(toggled)
 	Settings.save_settings()
 
+
 # === HELPERS ===
 func _apply_music_volume(value: float) -> void:
-	var bus_idx = AudioServer.get_bus_index("Master") # Music = Master
-	var normalized = value / 100.0  # convert 0–100 → 0.0–1.0
+	var bus_idx: int = AudioServer.get_bus_index("music") 
+	if bus_idx == -1:
+		push_warning("Music bus not found!")
+		return
+
+	var normalized: float = clamp(value / 100.0, 0.0, 1.0)
 	AudioServer.set_bus_volume_db(bus_idx, linear_to_db(normalized))
 
+
 func _apply_sfx_volume(value: float) -> void:
-	var bus_idx = AudioServer.get_bus_index("SFX")
-	var normalized = value / 100.0  # convert 0–100 → 0.0–1.0
-	#AudioServer.set_bus_volume_db(bus_idx, linear_to_db(normalized))
+	var bus_idx: int = AudioServer.get_bus_index("sfx") 
+	if bus_idx == -1:
+		push_warning("SFX bus not found!")
+		return
+
+	var normalized: float = clamp(value / 100.0, 0.0, 1.0)
+	AudioServer.set_bus_volume_db(bus_idx, linear_to_db(normalized))
+
 
 func _apply_mute(state: bool) -> void:
-	var bus_idx = AudioServer.get_bus_index("Master")
-	AudioServer.set_bus_mute(bus_idx, state)
+	# ✅ Mute both buses properly
+	var master_idx: int = AudioServer.get_bus_index("Master")
+	var music_idx: int = AudioServer.get_bus_index("music")
+	var sfx_idx: int = AudioServer.get_bus_index("sfx")
+
+	AudioServer.set_bus_mute(master_idx, state)
+	AudioServer.set_bus_mute(music_idx, state)
+	AudioServer.set_bus_mute(sfx_idx, state)
