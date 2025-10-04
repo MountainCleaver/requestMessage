@@ -1,0 +1,114 @@
+~ start
+Danilo: ... [wait = 0.5]
+Danilo: [center]Dala lang siguro ng pagod kaya naalala ko yung mga yun.[/center]
+=> END
+
+~ option_relief
+Danilo: [center]Maganda rin siguro na nasabi ko rin kay Wendy yung mga naalala ko...[/center]
+Danilo: [center]Kahit papaano gumaan pakiramdam ko.[/center]
+=> choices
+
+~ option_restless
+Danilo: [center]Alam kong dapat ko na itong sabihin sa kanya...[/center]
+Danilo: [center]...pero paano ‘pag hindi niya ako pinaniwalaan... [wait=0.5]paano kung magalit siya sakin... [wait=0.5]paano kung...[/center]
+=> choices
+
+~ choices
+do start_buzz()
+Danilo: ... [wait = 0.5]
+- Open the phone. => open_phone
+- Ignore the phone. => ignore_phone
+=> END
+
+~ open_phone
+do stop_buzz()
+do Hud.phone_intro()
+=> after_open_phone
+
+~ ignore_phone
+Danilo: Ang ingay ng phone... => choices
+=> END
+
+~ after_open_phone
+Danilo: Bat kaya andaming notifs...?
+do Hud.show_objectives()
+=> END
+
+~ checked_schedule
+Danilo: May appointment pala ako bukas.
+=> END
+
+~ reply_wendy
+do ChatManager.send_chat("wendy", "Wendy", "Chat me pag nakauwi ka na.")
+Wendy: Chat me pag nakauwi ka na.
+=> END
+
+~ reply 
+- Nasa tapat pa lang ako ng bahay. => reply_answer1
+- Kakababa ko pa lang ng jeep.    => reply_answer2
+
+~ reply_answer1
+do ChatManager.send_chat("wendy", "Player", "Nasa tapat pa lang ako ng bahay.")
+Danilo: Nasa tapat pa lang ako ng bahay.
+
+do ChatManager.send_chat("wendy", "Wendy", "Bilis mo namang nakauwi.")
+Wendy: [wait=1.5]Bilis mo namang nakauwi.
+=> END
+
+~ reply_answer2
+do ChatManager.send_chat("wendy", "Player", "Kakababa ko pa lang ng jeep.")
+Danilo: Kakababa ko pa lang ng jeep.
+
+do ChatManager.send_chat("wendy", "Wendy", "Okay, ingat ka on your way home.")
+Wendy: [wait=1.5]Okay, ingat ka on your way home.
+=> END
+
+~ reply_mira
+do ChatManager.send_chat("mira", "Mira", "Nak, wag mo kalimutan mga gamot mo ah... tsaka yung appointment bukas.")
+Mira: Nak, wag mo kalimutan mga gamot mo ah... tsaka yung appointment bukas.
+=> END
+
+~ reply_mira_answer
+- Opo Ma, pauwi pa lang ako. => reply_mira_answer1
+
+~ reply_mira_answer1
+do ChatManager.send_chat("mira", "Player", "Opo Ma, pauwi pa lang ako.")
+Danilo: Opo Ma, pauwi pa lang ako. => reply_mira_answer2
+=> END
+
+~ reply_mira_answer2
+do ChatManager.send_chat("mira", "Player", "Paubos na stock ko dito baka bukas na po ako bumili.")
+Danilo: Paubos na stock ko dito baka bukas na po ako bumili.
+=> END
+
+~ reply_gc
+do ChatManager.send_chat("group_chat", "1", "Guys, deadline na ng report bukas ha. Paki-finalize na.")
+do ChatManager.send_chat("group_chat", "2", "Opo boss, inaayos na po.")
+do ChatManager.send_chat("group_chat", "3", "Same for me, malapit ko na matapos.")
+do ChatManager.send_chat("group_chat", "4", "Good. Update niyo ko bago 8PM.")
+do ChatManager.send_chat("group_chat", "2", "Copy, noted!")
+do ChatManager.send_chat("group_chat", "3", "Ako na bahala sa formatting.")
+do ChatManager.send_chat("group_chat", "1", "Okay, salamat. Wag kalimutan yung appendix ha.")
+do ChatManager.send_chat("group_chat", "4", "Sige, ako na magche-check mamaya.")
+Danilo: Dami nilang chats.
+=> END
+
+~ after_home
+do start_buzz()
+Danilo: May notification na naman? [wait=0.5] 
+- Open the phone. => open_phone_again
+=> END
+
+~ open_phone_again
+do stop_buzz()
+do Hud.phone_intro()
+do ObjectiveManager.complete_objective(7)
+=> END
+
+~ after_open_phone_2
+Danilo: Huh… Sino ‘to? [wait=1.5] 
+=> END
+
+~ chat_unknown_sender
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Hello, Danilo.")
+=> END
