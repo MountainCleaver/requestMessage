@@ -5,6 +5,10 @@ extends CanvasLayer
 const BASIS_33 = preload("res://assets/fonts/basis33.ttf");
 @onready var hud_animations: AnimationPlayer = $hud_animations
 
+@onready var photo_popup_holder: Panel = $Control/photo_popup_holder
+@onready var texture_rect: TextureRect = $Control/photo_popup_holder/MarginContainer/TextureRect
+
+var popup_showing = false;
 
 @onready var lock_screen: Control = $Control/phone/MarginContainer/lock_screen
 
@@ -72,3 +76,18 @@ func toggle_phone() -> void:
 	else:
 		phone_intro()
 		phone_showing = true
+
+func _toggle_popup() -> void:
+	if popup_showing:
+		hud_animations.play("popup_out");
+		popup_showing = false;
+	else:
+		hud_animations.play("popup_in");
+		popup_showing = true;
+
+func add_popup_image(image_path: String) -> void:
+	var image = load(image_path) as Texture2D
+	texture_rect.texture = image
+
+func clear_popup_image() -> void:
+	texture_rect.texture = null;
