@@ -118,3 +118,8 @@ func save_moral_choice(act_scene: String, choice: String)-> void:
 			game_save.karma -= 1
 		"relief":
 			game_save.karma += 1
+	
+func get_moral_choice(act_scene: String) -> String:
+	if act_scene in game_save.choices:
+		return game_save.choices[act_scene]
+	return ""
