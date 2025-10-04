@@ -19,3 +19,7 @@ func get_history(chat_name: String) -> Array:
 	if not history.has(chat_name):
 		return []
 	return history[chat_name]
+
+
+func send_chat(chat_name: String, sender: String, text: String) -> void:
+	SignalBus.chat_message_received.emit(chat_name, sender, text)
