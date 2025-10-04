@@ -215,11 +215,13 @@ shape = SubResource("RectangleShape2D_3rcpu")
 stream = ExtResource("10_c048n")
 volume_db = -12.404
 autoplay = true
+bus = &"music"
 
 [node name="SFXPark2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_tk8ek")
 volume_db = -13.358
 autoplay = true
+bus = &"sfx"
 
 [connection signal="body_entered" from="AnimatedSprite2D/jeep_area" to="." method="_on_jeep_area_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/jeep_area" to="." method="_on_jeep_area_body_exited"]

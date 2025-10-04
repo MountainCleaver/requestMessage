@@ -285,16 +285,17 @@ debug_color = Color(0.956643, 5.77569e-07, 0.536835, 0.42)
 [node name="sleep_marker" type="Marker2D" parent="."]
 position = Vector2(-46, 0)
 
-[node name="SFXThunder" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_sag8k")
-volume_db = -8.238
-autoplay = true
-
 [node name="pause_overlay" type="CanvasLayer" parent="."]
 layer = 101
 
 [node name="pause_screen" parent="pause_overlay" instance=ExtResource("7_sag8k")]
 visible = false
+
+[node name="SFXThunder" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_sag8k")
+volume_db = -18.128
+autoplay = true
+bus = &"sfx"
 
 [connection signal="body_entered" from="water_glass/water_area" to="." method="_on_water_area_body_entered"]
 [connection signal="body_exited" from="water_glass/water_area" to="." method="_on_water_area_body_exited"]

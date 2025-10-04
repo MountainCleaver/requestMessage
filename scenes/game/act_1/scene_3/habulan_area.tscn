@@ -4845,11 +4845,13 @@ blend_mode = 2
 stream = ExtResource("10_lhtha")
 volume_db = -13.608
 autoplay = true
+bus = &"music"
 
 [node name="SFXHide-and-seek" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_lhtha")
 volume_db = -15.266
 autoplay = true
+bus = &"sfx"
 
 [connection signal="body_entered" from="area/mateo_turn" to="." method="_on_mateo_turn_body_entered"]
 [connection signal="body_entered" from="area/mate_stop" to="." method="_on_mate_stop_body_entered"]
