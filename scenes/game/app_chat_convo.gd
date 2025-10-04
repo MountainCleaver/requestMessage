@@ -48,7 +48,7 @@ func _on_chat_message_received(chat_name: String, sender: String, text: String) 
 		first_message_shown[chat_name] = false
 
 	add_message_to_chat(sender, text)
-	ChatHistory.add_message(chat_name, sender, text)
+	ChatManager.add_message(chat_name, sender, text)
 
 
 
@@ -182,7 +182,7 @@ func load_chat_history(chat_name: String) -> void:
 	for child in chat_container.get_children():
 		child.queue_free()
 	
-	var saved = ChatHistory.get_history(chat_name)
+	var saved = ChatManager.get_history(chat_name)
 	for msg in saved:
 		add_message_to_chat(msg["sender"], msg["text"])
 
