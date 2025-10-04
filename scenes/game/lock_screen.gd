@@ -17,9 +17,12 @@ func _ready() -> void:
 	
 
 func _on_lock_pressed() -> void:
-	var parent = get_parent();
-	var phone_menu = preload("res://scenes/game/phone_main.tscn").instantiate();
+	var parent = get_parent()
+	var phone_menu = preload("res://scenes/game/phone_main.tscn").instantiate()
 	parent.add_child(phone_menu)
+
+	if "all_chats_checked" in get_tree().current_scene:
+		phone_menu.connect("lock_pressed_for_last_objective", Callable(get_tree().current_scene, "_on_last_objective_lock_pressed"))
 
 
 func add_notification(texture: Texture, app_name: String, content: String ) -> void :
