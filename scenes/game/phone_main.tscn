@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dg0oqq148wh62"]
+[gd_scene load_steps=15 format=3 uid="uid://dg0oqq148wh62"]
 
 [ext_resource type="Texture2D" uid="uid://pkan4cmofqkg" path="res://assets/HUD/APP_ICONS.png" id="1_gakt2"]
 [ext_resource type="Script" uid="uid://bpuk0qmuhh5na" path="res://scenes/game/phone_main.gd" id="1_wkl3j"]
+[ext_resource type="Texture2D" uid="uid://ddwv10ugwcxw6" path="res://assets/HUD/PHONE_WALLPAPER.png" id="2_kvkgu"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_tmcis"]
 [ext_resource type="Texture2D" uid="uid://cwgna8jrsskbc" path="res://assets/HUD/LOCK_ICON.png" id="3_tmcis"]
 
@@ -34,10 +35,10 @@ region = Rect2(0, 64, 64, 64)
 atlas = ExtResource("1_gakt2")
 region = Rect2(64, 64, 64, 64)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkl3j"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvkgu"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkl3j"]
 
 [node name="phone" type="Control"]
 layout_mode = 3
@@ -58,6 +59,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a8rha")
+
+[node name="TextureRect" type="TextureRect" parent="screen"]
+modulate = Color(0.4045111, 0.40451115, 0.4045111, 1)
+layout_mode = 0
+offset_right = 294.0
+offset_bottom = 510.0
+texture = ExtResource("2_kvkgu")
 
 [node name="MarginContainer" type="MarginContainer" parent="screen"]
 layout_mode = 1
@@ -192,8 +200,8 @@ offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 0
 focus_mode = 0
-theme_override_styles/hover = SubResource("StyleBoxFlat_wkl3j")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kvkgu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wkl3j")
 icon = ExtResource("3_tmcis")
 icon_alignment = 1
 expand_icon = true

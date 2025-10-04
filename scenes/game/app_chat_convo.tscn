@@ -1,0 +1,150 @@
+[gd_scene load_steps=11 format=3 uid="uid://c65d7kqx32uma"]
+
+[ext_resource type="Script" uid="uid://cunanad5w6bgt" path="res://scenes/game/app_chat_convo.gd" id="1_hspbe"]
+[ext_resource type="Texture2D" uid="uid://b8xfs62jmrihe" path="res://assets/HUD/EXIT_ICON_2.png" id="2_hspbe"]
+[ext_resource type="Texture2D" uid="uid://csdswcrvdmlo6" path="res://assets/HUD/EXIT_ICON.png" id="2_m6o7m"]
+[ext_resource type="Texture2D" uid="uid://cv3xcgs6tbd0b" path="res://assets/character_sprites/portrait_wendy.png" id="3_gwu5h"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_y0ifq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ct0er"]
+bg_color = Color(0.6981428, 0.90020514, 0.99670774, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67qqk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t17l3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvdbo"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hyfr"]
+bg_color = Color(0.89059025, 0.89059, 0.8905901, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="app_chat_convo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1145.0
+offset_bottom = -514.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hspbe")
+
+[node name="screen" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 296.0
+offset_bottom = 511.0
+color = Color(0.46343255, 0.80392736, 0.73441213, 1)
+
+[node name="Panel" type="Panel" parent="screen"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 32.0
+offset_right = 55.0
+offset_bottom = 72.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ct0er")
+
+[node name="EXIT" type="Button" parent="screen/Panel"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = -3.0
+offset_right = 264.0
+offset_bottom = 29.0
+size_flags_horizontal = 10
+size_flags_vertical = 0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_67qqk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t17l3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xvdbo")
+icon = ExtResource("2_m6o7m")
+icon_alignment = 1
+
+[node name="EXIT_2" type="Button" parent="screen/Panel"]
+visible = false
+layout_mode = 0
+offset_left = 232.0
+offset_top = -3.0
+offset_right = 264.0
+offset_bottom = 29.0
+size_flags_horizontal = 10
+size_flags_vertical = 0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_67qqk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t17l3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xvdbo")
+icon = ExtResource("2_hspbe")
+icon_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="screen/Panel"]
+custom_minimum_size = Vector2(30, 50)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 45.0
+offset_bottom = 52.0
+scale = Vector2(0.75771284, 0.5982933)
+texture = ExtResource("3_gwu5h")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="screen/Panel"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 5.0
+offset_right = 191.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_y0ifq")
+theme_override_font_sizes/font_size = 27
+text = "Wendy"
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="screen"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 84.0
+offset_right = 293.0
+offset_bottom = 456.0
+
+[node name="type_message" type="Button" parent="screen"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 460.0
+offset_right = 288.0
+offset_bottom = 493.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_1hyfr")
+
+[node name="Label" type="Label" parent="screen/type_message"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 7.0
+offset_right = 211.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.63375676, 0.6337568, 0.63375676, 1)
+theme_override_fonts/font = ExtResource("4_y0ifq")
+theme_override_font_sizes/font_size = 20
+text = "Type a message..."
+
+[node name="ScrollContainer" type="ScrollContainer" parent="screen"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 82.0
+offset_right = 286.0
+offset_bottom = 453.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="screen/ScrollContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="screen/Panel/EXIT" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="screen/Panel/EXIT_2" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="screen/type_message" to="." method="_on_type_message_pressed"]

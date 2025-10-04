@@ -2,8 +2,8 @@ extends Node
 
 var objectives: Dictionary = {}
 
-func add_objective(id: int, text: String) -> void:
-	Hud.new_objective(id, text)
+func add_objective(id: int, text: String, color: Color = Color.BLACK) -> void:
+	Hud.new_objective(id, text, color)
 	objectives[id] = text
 
 func complete_objective(id: int) -> void:
