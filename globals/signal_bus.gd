@@ -14,6 +14,14 @@ signal exit_overlay
 #phone
 signal phone_in
 signal phone_out
+signal sched_opened
+signal app_chat_opened
+signal chat_opened(chat_name: String)
+signal chat_message_sent(chat_name: String)
+signal chat_message_received(chat_name: String, sender: String, text: String)
+signal chat_closed(chat_name)
+var unknown_sender_unlocked: bool = false
+
 
 #act
 signal act_num_scene_num_done(act: String, scene: String, nextScenePath: String)
