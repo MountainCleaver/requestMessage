@@ -70,7 +70,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		if player_danilo.current_npc == "karatula":
 			player_danilo.last_direction = Vector2.UP;
-			Hud.add_popup_image("res://assets/HUD/karatula.png");
+			Hud.add_popup_image("res://assets/HUD/map.png");
 			Hud._toggle_popup()
 			player_danilo.force_cannot_move = Hud.popup_showing;
 			print("interact");

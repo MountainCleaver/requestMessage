@@ -300,9 +300,7 @@ anchor_bottom = 12.400001
 offset_left = -187.48004
 offset_top = -206.00003
 offset_right = 187.51996
-offset_bottom = 200.00082
-grow_horizontal = 2
-grow_vertical = 2
+offset_bottom = 200.00058
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/photo_popup_holder"]
 layout_mode = 1

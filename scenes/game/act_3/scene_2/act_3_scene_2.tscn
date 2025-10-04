@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://tnda2d107s7p"]
+
+[ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="1_5u0wn"]
+[ext_resource type="Script" uid="uid://ctc7chiqllyi" path="res://scenes/game/act_3/scene_2/act_3_scene_2.gd" id="1_f0so1"]
+[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_d57gj"]
+[ext_resource type="PackedScene" uid="uid://bh2ul0v87mq8h" path="res://scenes/characters/npc_shadowy_chaser.tscn" id="3_duco3"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="3_f0so1"]
+
+[node name="act_3_scene_2" type="Node2D"]
+script = ExtResource("1_f0so1")
+
+[node name="danilo_hometown_house" parent="." instance=ExtResource("1_5u0wn")]
+
+[node name="npc_shadowy_chaser" parent="danilo_hometown_house/map" index="1" instance=ExtResource("3_duco3")]
+position = Vector2(44, -36)
+
+[node name="CollisionShape2D" parent="danilo_hometown_house/map/npc_shadowy_chaser" index="1"]
+disabled = true
+
+[node name="player_danilo" parent="danilo_hometown_house/y-sorted" index="1" instance=ExtResource("2_d57gj")]
+position = Vector2(83, 23)
+
+[node name="AnimatedSprite2D" parent="danilo_hometown_house/y-sorted/player_danilo" index="0"]
+frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="danilo_hometown_house/y-sorted/player_danilo" index="1"]
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("3_f0so1")]
+visible = false
+
+[editable path="danilo_hometown_house"]
+[editable path="danilo_hometown_house/map/npc_shadowy_chaser"]
+[editable path="danilo_hometown_house/y-sorted/player_danilo"]
