@@ -50,12 +50,14 @@ func _physics_process(delta: float) -> void:
 
 	real_velocity = get_real_velocity()
 
-	if real_velocity.length() > 0.1:
-		if direction != Vector2.ZERO:
-			last_direction = direction
+	if real_velocity.length() > 1: # true movement
+		# update last direction ONLY when actually moving
+		last_direction = direction
 		_play_animation(direction)
 	else:
+		# pressing but blocked OR no input
 		_play_animation(Vector2.ZERO)
+
 
 
 func _unhandled_input(event: InputEvent) -> void:
