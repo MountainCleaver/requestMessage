@@ -53,7 +53,7 @@ do send_chat("wendy", "Player", "Nasa tapat pa lang ako ng bahay.")
 Danilo: Nasa tapat pa lang ako ng bahay.
 
 do send_chat("wendy", "Wendy", "Bilis mo namang nakauwi.")
-Wendy: Bilis mo namang nakauwi.
+Wendy: [wait=1.5]Bilis mo namang nakauwi.
 => END
 
 ~ reply_answer2
