@@ -408,6 +408,7 @@ tile_map_data = PackedByteArray("AADk//r/AAAEAAsAAADk//f/AAAEAAsAAADk//T/AAAEAAs
 tile_set = SubResource("TileSet_uwcgc")
 
 [node name="player_danilo" parent="y-sorted" instance=ExtResource("6_dreoj")]
+position = Vector2(-32, -72)
 RUNNING_SPEED = 400.0
 
 [node name="Camera2D" type="Camera2D" parent="y-sorted/player_danilo"]
