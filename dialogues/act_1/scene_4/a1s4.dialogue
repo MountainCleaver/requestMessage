@@ -112,6 +112,4 @@ Danilo: Huh… Sino ‘to? [wait=1.5]
 
 ~ chat_unknown_sender
 do send_chat("unknown_sender", "Unknown Number", "Hello, Danilo.")
-Unknown_sender: [wait=2.0]Hello, Danilo.
-do Hud.phone_outro()
 => END
