@@ -21,6 +21,7 @@ signal chat_message_sent(chat_name: String)
 signal chat_message_received(chat_name: String, sender: String, text: String)
 signal chat_closed(chat_name)
 var unknown_sender_unlocked: bool = false
+var optional_chats_locked: bool = false
 
 
 #act
