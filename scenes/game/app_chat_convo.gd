@@ -131,10 +131,11 @@ func show_typing_indicator(sender: String) -> void:
 	await get_tree().process_frame
 	scroll.scroll_vertical = scroll.get_v_scroll_bar().max_value
 
-
-
 # CHAT CONTROL
 func _on_type_message_pressed() -> void:
+	if SignalBus.optional_chats_locked:
+		print("Type message is disabled for optional chats.")
+		return
 	SignalBus.chat_message_sent.emit(current_chat)
 
 func set_current_chat(chat_name: String) -> void:
