@@ -75,12 +75,6 @@ func switch_location(scene: PackedScene) -> void:
 	player_danilo = current_location.get_node("player_danilo")
 
 # ===================
-# SEND CHAT
-# ===================
-func send_chat(chat_name: String, sender: String, text: String) -> void:
-	SignalBus.chat_message_received.emit(chat_name, sender, text)
-
-# ===================
 # BUZZ AUDIO
 # ===================
 func start_buzz() -> void:
