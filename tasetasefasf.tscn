@@ -2640,3 +2640,7 @@ tile_map_data = PackedByteArray("AADP//P/AAALAAUAAADP//T/AAALAAYAAADP//X/AAALAAc
 tile_set = SubResource("TileSet_6ley6")
 
 [node name="danilo_and_wendy" parent="." instance=ExtResource("2_080cf")]
+position = Vector2(-251, -41)
+
+[node name="Camera2D" type="Camera2D" parent="danilo_and_wendy"]
+zoom = Vector2(3, 3)
