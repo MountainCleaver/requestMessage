@@ -1,7 +1,6 @@
 ~ start
 Danilo: ... [wait = 0.5]
 Danilo: [center]Dala lang siguro ng pagod kaya naalala ko yung mga yun.[/center]
-
 => END
 
 ~ option_relief
@@ -40,7 +39,7 @@ Danilo: May appointment pala ako bukas.
 => END
 
 ~ reply_wendy
-do send_chat("wendy", "Wendy", "Chat me pag nakauwi ka na.")
+do ChatManager.send_chat("wendy", "Wendy", "Chat me pag nakauwi ka na.")
 Wendy: Chat me pag nakauwi ka na.
 => END
 
@@ -49,23 +48,23 @@ Wendy: Chat me pag nakauwi ka na.
 - Kakababa ko pa lang ng jeep.    => reply_answer2
 
 ~ reply_answer1
-do send_chat("wendy", "Player", "Nasa tapat pa lang ako ng bahay.")
+do ChatManager.send_chat("wendy", "Player", "Nasa tapat pa lang ako ng bahay.")
 Danilo: Nasa tapat pa lang ako ng bahay.
 
-do send_chat("wendy", "Wendy", "Bilis mo namang nakauwi.")
+do ChatManager.send_chat("wendy", "Wendy", "Bilis mo namang nakauwi.")
 Wendy: [wait=1.5]Bilis mo namang nakauwi.
 => END
 
 ~ reply_answer2
-do send_chat("wendy", "Player", "Kakababa ko pa lang ng jeep.")
+do ChatManager.send_chat("wendy", "Player", "Kakababa ko pa lang ng jeep.")
 Danilo: Kakababa ko pa lang ng jeep.
 
-do send_chat("wendy", "Wendy", "Okay, ingat ka on your way home.")
+do ChatManager.send_chat("wendy", "Wendy", "Okay, ingat ka on your way home.")
 Wendy: [wait=1.5]Okay, ingat ka on your way home.
 => END
 
 ~ reply_mira
-do send_chat("mira", "Mira", "Nak, wag mo kalimutan mga gamot mo ah... tsaka yung appointment bukas.")
+do ChatManager.send_chat("mira", "Mira", "Nak, wag mo kalimutan mga gamot mo ah... tsaka yung appointment bukas.")
 Mira: Nak, wag mo kalimutan mga gamot mo ah... tsaka yung appointment bukas.
 => END
 
@@ -73,24 +72,24 @@ Mira: Nak, wag mo kalimutan mga gamot mo ah... tsaka yung appointment bukas.
 - Opo Ma, pauwi pa lang ako. => reply_mira_answer1
 
 ~ reply_mira_answer1
-do send_chat("mira", "Player", "Opo Ma, pauwi pa lang ako.")
+do ChatManager.send_chat("mira", "Player", "Opo Ma, pauwi pa lang ako.")
 Danilo: Opo Ma, pauwi pa lang ako. => reply_mira_answer2
 => END
 
 ~ reply_mira_answer2
-do send_chat("mira", "Player", "Paubos na stock ko dito baka bukas na po ako bumili.")
+do ChatManager.send_chat("mira", "Player", "Paubos na stock ko dito baka bukas na po ako bumili.")
 Danilo: Paubos na stock ko dito baka bukas na po ako bumili.
 => END
 
 ~ reply_gc
-do send_chat("group_chat", "1", "Guys, deadline na ng report bukas ha. Paki-finalize na.")
-do send_chat("group_chat", "2", "Opo boss, inaayos na po.")
-do send_chat("group_chat", "3", "Same for me, malapit ko na matapos.")
-do send_chat("group_chat", "4", "Good. Update niyo ko bago 8PM.")
-do send_chat("group_chat", "2", "Copy, noted!")
-do send_chat("group_chat", "3", "Ako na bahala sa formatting.")
-do send_chat("group_chat", "1", "Okay, salamat. Wag kalimutan yung appendix ha.")
-do send_chat("group_chat", "4", "Sige, ako na magche-check mamaya.")
+do ChatManager.send_chat("group_chat", "1", "Guys, deadline na ng report bukas ha. Paki-finalize na.")
+do ChatManager.send_chat("group_chat", "2", "Opo boss, inaayos na po.")
+do ChatManager.send_chat("group_chat", "3", "Same for me, malapit ko na matapos.")
+do ChatManager.send_chat("group_chat", "4", "Good. Update niyo ko bago 8PM.")
+do ChatManager.send_chat("group_chat", "2", "Copy, noted!")
+do ChatManager.send_chat("group_chat", "3", "Ako na bahala sa formatting.")
+do ChatManager.send_chat("group_chat", "1", "Okay, salamat. Wag kalimutan yung appendix ha.")
+do ChatManager.send_chat("group_chat", "4", "Sige, ako na magche-check mamaya.")
 Danilo: Dami nilang chats.
 => END
 
@@ -111,5 +110,5 @@ Danilo: Huh… Sino ‘to? [wait=1.5]
 => END
 
 ~ chat_unknown_sender
-do send_chat("unknown_sender", "Unknown Number", "Hello, Danilo.")
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Hello, Danilo.")
 => END
