@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxwpskwndcpfy"]
+[gd_scene load_steps=9 format=3 uid="uid://dn45xyaoydr2b"]
 
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_4jwoa"]
-[ext_resource type="Script" uid="uid://bkdkmsi5c6nm5" path="res://scenes/game/act_2_title_scene.gd" id="2_g1yyg"]
+[ext_resource type="Script" uid="uid://bc0epalu2u7f3" path="res://scenes/game/act_2_title_scene.gd" id="2_g1yyg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ku4u"]
 bg_color = Color(0.0509804, 0.0509804, 0.0823529, 1)
