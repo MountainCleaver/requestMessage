@@ -11,6 +11,8 @@ extends Control
 @export var notif_value : String
 @export var notif_audio: AudioStream 
 
+@onready var button: Button = $Button
+
 func _ready() -> void:
 	icon.texture = icon_value
 	app_name.text = app_name_value
@@ -23,3 +25,6 @@ func _ready() -> void:
 	
 	# play the animation
 	animation_player.play("notif_in")
+
+func _on_button_pressed() -> void:
+	print("notif pressed")
