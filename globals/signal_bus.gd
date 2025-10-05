@@ -23,6 +23,9 @@ signal chat_closed(chat_name)
 var unknown_sender_unlocked: bool = false
 var optional_chats_locked: bool = false
 
+# game state
+signal save_game_state
+signal load_game_state
 
 #act
 signal act_num_scene_num_done(act: String, scene: String, nextScenePath: String)
