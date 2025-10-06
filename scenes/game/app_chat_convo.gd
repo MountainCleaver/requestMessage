@@ -21,9 +21,22 @@ var first_message_shown := {
 	"unknown_sender": true
 }
 
+var chat_loaded := {
+	"wendy": false,
+	"mira": false,
+	"group_chat": false,
+	"unknown_sender": false
+}
+
 func _ready():
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	SignalBus.chat_message_received.connect(_on_chat_message_received)
+
+	# Restore previous behavior for unknown sender auto-open
+	if GameState.unknown_sender_opened and current_chat == "unknown_sender":
+		visible = true
+		load_chat_history("unknown_sender")
+	
 
 # MESSAGE HANDLING
 func _on_chat_message_received(chat_name: String, sender: String, text: String) -> void:
@@ -139,6 +152,9 @@ func _on_type_message_pressed() -> void:
 	SignalBus.chat_message_sent.emit(current_chat)
 
 func set_current_chat(chat_name: String) -> void:
+	if chat_name != current_chat:
+		chat_loaded[current_chat] = false
+
 	current_chat = chat_name
 	panel_name.text = chat_name.capitalize()
 
@@ -162,6 +178,9 @@ func set_current_chat(chat_name: String) -> void:
 			exit_btn_2.visible = true
 
 		start_flicker()
+		load_chat_history(chat_name)
+		
+		GameState.unknown_sender_opened = true
 	else:
 		background_chat.color = Color(1,1,1,1)
 		panel_name.add_theme_color_override("font_color", Color(0,0,0,1))
@@ -176,15 +195,21 @@ func set_current_chat(chat_name: String) -> void:
 
 		load_chat_history(chat_name)
 
-
 func load_chat_history(chat_name: String) -> void:
+	# Avoid reloading if already loaded
+	if chat_loaded.get(chat_name, false):
+		return
+	
 	# Clear UI
 	for child in chat_container.get_children():
 		child.queue_free()
-	
+
 	var saved = ChatManager.get_history(chat_name)
 	for msg in saved:
 		add_message_to_chat(msg["sender"], msg["text"])
+	
+	chat_loaded[chat_name] = true
+
 
 func _on_exit_pressed() -> void:
 	if previous_scene:
