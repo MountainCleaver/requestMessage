@@ -122,13 +122,18 @@ func _on_chat_opened(chat_name: String) -> void:
 			open_chat_generic("group_chat", "reply_gc", scene_objectives[3]["ID"])
 		"unknown_sender":
 			open_chat_generic("unknown_sender", "chat_unknown_sender")
+
+			unknown_sender_opened = true
+			GameState.unknown_sender_opened = true
+			GameState.save_game()
 			
 			if has_gone_home:
 				ObjectiveManager.complete_objective(scene_objectives[7]["ID"])
 				await get_tree().create_timer(5).timeout
-				Hud.hide_objectives();
+				Hud.hide_objectives()
 				Hud.phone_outro()
 				scene_4_done()
+
 
 func _on_chat_closed(chat_name: String) -> void:
 	print("%s chat closed" % chat_name)
@@ -239,8 +244,9 @@ func _input(event: InputEvent) -> void:
 # ===================
 func scene_4_done() -> void:
 	Hud.hide_objectives()
+	Hud.clear_objectives()
 	SaveManager.game_save.current_act = "act_1"
 	SaveManager.game_save.current_scene = "scene_4"
+	GameState.save_game()
 	SignalBus.next_scene.emit("res://scenes/game/act_2_title_scene.tscn")
-	Hud.clear_objectives()
 	print("act 1 scene 4 is done. ACT 1 DONE !!!!!!!!!!!!!!!!!!")
