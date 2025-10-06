@@ -1,0 +1,44 @@
+~ start
+do Hud.show_objectives()
+Danilo: ... [wait = 0.5]
+- check the phone. => open_phone
+=> END
+
+~ open_phone
+do Hud.phone_intro()
+=> END
+
+# CONNECTED TO SA FUNC _ON_CHAT_OPENED
+~ first_chat_ni_wendy
+do ChatManager.send_chat("wendy", "Wendy", "HOY DANILO.")
+Wendy: HOY DANILO.
+=> END
+
+# ETO YUNG IREREPLY NIYA NA CONNECTED SA FUNC ON_CHAT_MESSAGE_SENT
+~ choice_ni_danilo
+- si wendy ka ba => reply_ni_danilo_1
+- or ako si wendy => reply_ni_danilo_2
+=> END
+
+
+~ reply_ni_danilo_1
+do ChatManager.send_chat("wendy", "Player", "si wendy ka ba")
+Danilo: si wendy ka ba => reply_ni_wendy_1
+=> END
+
+
+~ reply_ni_danilo_2
+do ChatManager.send_chat("wendy", "Player", "or ako si wendy")
+Danilo: or ako si wendy => reply_ni_wendy_2
+=> END
+
+
+~ reply_ni_wendy_1
+do ChatManager.send_chat("wendy", "Wendy", "?????? malamang")
+Wendy: [wait=1.5]?????? malamang
+=> END
+
+~ reply_ni_wendy_2
+do ChatManager.send_chat("wendy", "Wendy", "tf u sayin bruh")
+Wendy: [wait=1.5]tf u sayin bruh
+=> END
