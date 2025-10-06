@@ -1,0 +1,299 @@
+[gd_scene load_steps=25 format=3 uid="uid://dgo4bkp1blof5"]
+
+[ext_resource type="Script" uid="uid://dejcha5x6qme4" path="res://scenes/game/app_call_wendy.gd" id="1_mpp87"]
+[ext_resource type="Texture2D" uid="uid://csdswcrvdmlo6" path="res://assets/HUD/EXIT_ICON.png" id="2_jcsfs"]
+[ext_resource type="Texture2D" uid="uid://cv3xcgs6tbd0b" path="res://assets/character_sprites/portrait_wendy.png" id="3_pmrob"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_j7fro"]
+[ext_resource type="Texture2D" uid="uid://bql6ppjas3q14" path="res://assets/character_sprites/portrait_danilo.png" id="5_pcauq"]
+[ext_resource type="Texture2D" uid="uid://cs2jk06qpuysw" path="res://assets/character_sprites/portrait_mira.png" id="6_xvwjm"]
+[ext_resource type="Texture2D" uid="uid://cqkxhnbqfjy6j" path="res://assets/character_sprites/portrait_group_chat.png" id="7_4r2mm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kccha"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itjde"]
+bg_color = Color(0.69803923, 0.9019608, 0.99607843, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8dfk"]
+bg_color = Color(0.6, 0.6, 0.6, 0.011764706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y44bt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hyfr"]
+bg_color = Color(0.6, 0.6, 0.6, 0.03137255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w27yu"]
+bg_color = Color(0.6, 0.6, 0.6, 0.023529412)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ie5kj"]
+bg_color = Color(0.9647059, 0.9647059, 0.9647059, 0)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_w27yu"]
+color = Color(0.83889705, 0.83889705, 0.838897, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yembt"]
+bg_color = Color(0.6981428, 0.90020514, 0.99670774, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ie5kj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hels"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1mvcw"]
+bg_color = Color(0.6981428, 0.90020514, 0.99670774, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5p48c"]
+color = Color(0.83889705, 0.83889705, 0.838897, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yembt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5p48c"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_68iqi"]
+bg_color = Color(0.6981428, 0.90020514, 0.99670774, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_rn4ak"]
+color = Color(0.83889705, 0.83889705, 0.838897, 1)
+
+[node name="app_call_wendy" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mpp87")
+
+[node name="screen" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 295.0
+offset_bottom = 510.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kccha")
+
+[node name="Panel" type="Panel" parent="screen"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 32.0
+offset_right = 55.0
+offset_bottom = 72.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_itjde")
+
+[node name="EXIT" type="Button" parent="screen/Panel"]
+layout_mode = 0
+offset_left = 221.0
+offset_top = -1.0
+offset_right = 261.0
+offset_bottom = 39.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_y8dfk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y44bt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1hyfr")
+icon = ExtResource("2_jcsfs")
+
+[node name="TextureRect2" type="TextureRect" parent="screen/Panel"]
+custom_minimum_size = Vector2(30, 50)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 44.0
+offset_bottom = 55.0
+scale = Vector2(0.75771284, 0.5982933)
+texture = ExtResource("3_pmrob")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="screen/Panel"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 5.0
+offset_right = 191.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_j7fro")
+theme_override_font_sizes/font_size = 27
+text = "Call"
+vertical_alignment = 1
+
+[node name="MarginContainer5" type="MarginContainer" parent="screen/Panel"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 111.0
+offset_right = 269.0
+offset_bottom = 155.0
+
+[node name="Panel" type="Panel" parent="screen/Panel/MarginContainer5"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w27yu")
+
+[node name="DANILO" type="Button" parent="screen/Panel/MarginContainer5/Panel"]
+layout_mode = 0
+offset_right = 268.0
+offset_bottom = 36.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ie5kj")
+
+[node name="DANILO" type="Label" parent="screen/Panel/MarginContainer5/Panel/DANILO"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 8.0
+offset_right = 263.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_j7fro")
+theme_override_font_sizes/font_size = 27
+text = "Danilo"
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="screen/Panel/MarginContainer5/Panel/DANILO"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 33.0
+offset_right = 265.0
+offset_bottom = 77.0
+theme_override_styles/separator = SubResource("StyleBoxLine_w27yu")
+
+[node name="CircleIcon2" type="Panel" parent="screen/Panel/MarginContainer5/Panel/DANILO"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 44.0
+offset_bottom = 41.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yembt")
+
+[node name="TextureRect2" type="TextureRect" parent="screen/Panel/MarginContainer5/Panel/DANILO"]
+custom_minimum_size = Vector2(30, 50)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 48.0
+offset_bottom = 54.0
+scale = Vector2(0.75771284, 0.5982933)
+texture = ExtResource("5_pcauq")
+expand_mode = 1
+
+[node name="MarginContainer6" type="MarginContainer" parent="screen"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 206.0
+offset_right = 280.0
+offset_bottom = 251.0
+
+[node name="Panel2" type="Panel" parent="screen/MarginContainer6"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ie5kj")
+
+[node name="MIRA" type="Button" parent="screen/MarginContainer6/Panel2"]
+layout_mode = 0
+offset_left = -9.0
+offset_right = 260.0
+offset_bottom = 45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_1hels")
+
+[node name="CircleIcon" type="Panel" parent="screen/MarginContainer6/Panel2/MIRA"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 50.0
+offset_bottom = 42.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1mvcw")
+
+[node name="TextureRect" type="TextureRect" parent="screen/MarginContainer6/Panel2/MIRA"]
+custom_minimum_size = Vector2(30, 50)
+layout_mode = 0
+offset_left = 14.0
+offset_top = 5.0
+offset_right = 54.0
+offset_bottom = 55.0
+scale = Vector2(0.75771284, 0.5982933)
+texture = ExtResource("6_xvwjm")
+expand_mode = 1
+
+[node name="MIRA" type="Label" parent="screen/MarginContainer6/Panel2/MIRA"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 9.0
+offset_right = 269.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_j7fro")
+theme_override_font_sizes/font_size = 27
+text = "Tita Mira"
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="screen/MarginContainer6/Panel2/MIRA"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 35.0
+offset_right = 271.0
+offset_bottom = 79.0
+theme_override_styles/separator = SubResource("StyleBoxLine_5p48c")
+
+[node name="MarginContainer7" type="MarginContainer" parent="screen"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 271.0
+offset_right = 283.0
+offset_bottom = 311.0
+
+[node name="Panel3" type="Panel" parent="screen/MarginContainer7"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yembt")
+
+[node name="GROUP_CALL" type="Button" parent="screen/MarginContainer7/Panel3"]
+layout_mode = 0
+offset_right = 273.0
+offset_bottom = 45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_5p48c")
+
+[node name="GROUP_CALL" type="Label" parent="screen/MarginContainer7/Panel3/GROUP_CALL"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 9.0
+offset_right = 269.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_j7fro")
+theme_override_font_sizes/font_size = 27
+text = "Group Call"
+vertical_alignment = 1
+
+[node name="CircleIcon" type="Panel" parent="screen/MarginContainer7/Panel3/GROUP_CALL"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 50.0
+offset_bottom = 42.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_68iqi")
+
+[node name="TextureRect" type="TextureRect" parent="screen/MarginContainer7/Panel3/GROUP_CALL"]
+custom_minimum_size = Vector2(30, 50)
+layout_mode = 0
+offset_left = 14.0
+offset_top = 5.0
+offset_right = 54.0
+offset_bottom = 55.0
+scale = Vector2(0.75771284, 0.5982933)
+texture = ExtResource("7_4r2mm")
+expand_mode = 1
+
+[node name="HSeparator" type="HSeparator" parent="screen/MarginContainer7/Panel3/GROUP_CALL"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 34.0
+offset_right = 271.0
+offset_bottom = 78.0
+theme_override_styles/separator = SubResource("StyleBoxLine_rn4ak")

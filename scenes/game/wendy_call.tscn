@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=3 uid="uid://vsph433f76fa"]
+
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_45mfy"]
+[ext_resource type="Script" uid="uid://bs2b5cv1y3rij" path="res://scenes/game/wendy_call.gd" id="1_gkywr"]
+[ext_resource type="Texture2D" uid="uid://bql6ppjas3q14" path="res://assets/character_sprites/portrait_danilo.png" id="2_ldnpn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xsro"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldnpn"]
+bg_color = Color(0.77254903, 0.22745098, 0.2509804, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkywr"]
+bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+corner_detail = 20
+
+[node name="wendy_call" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gkywr")
+
+[node name="call_screen" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 295.0
+offset_bottom = 510.0
+color = Color(0.16924527, 0.1692453, 0.16924527, 1)
+
+[node name="Panel2" type="Panel" parent="call_screen"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 45.0
+offset_right = 273.0
+offset_bottom = 457.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xsro")
+
+[node name="danilo" type="Label" parent="call_screen/Panel2"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 97.0
+offset_right = 170.0
+offset_bottom = 133.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_45mfy")
+theme_override_font_sizes/font_size = 27
+text = "Danilo"
+vertical_alignment = 1
+
+[node name="status" type="Label" parent="call_screen/Panel2"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 161.0
+offset_right = 242.0
+offset_bottom = 189.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_45mfy")
+theme_override_font_sizes/font_size = 27
+text = "Cannot be reached.."
+vertical_alignment = 1
+
+[node name="ENDCALL" type="Button" parent="call_screen/Panel2"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 355.0
+offset_right = 182.0
+offset_bottom = 388.0
+theme_override_fonts/font = ExtResource("1_45mfy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ldnpn")
+text = "End call"
+
+[node name="LOGOPANEL" type="Panel" parent="call_screen/Panel2"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 13.0
+offset_right = 155.0
+offset_bottom = 83.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gkywr")
+
+[node name="Icon2" type="TextureRect" parent="call_screen/Panel2"]
+custom_minimum_size = Vector2(30, 50)
+layout_mode = 0
+offset_left = 95.0
+offset_top = 24.0
+offset_right = 162.30782
+offset_bottom = 104.22821
+scale = Vector2(0.75771284, 0.5982933)
+texture = ExtResource("2_ldnpn")
+expand_mode = 1
