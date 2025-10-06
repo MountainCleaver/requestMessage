@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://do6sxrdcxx5b7"]
+[gd_scene load_steps=19 format=3 uid="uid://do6sxrdcxx5b7"]
 
-[ext_resource type="Script" uid="uid://dwrlo56j427nd" path="res://scenes/game/app_chat.gd" id="1_2b05g"]
+[ext_resource type="Script" uid="uid://1lva4xyl8sng" path="res://scenes/game/app_chat.gd" id="1_2b05g"]
 [ext_resource type="Texture2D" uid="uid://bql6ppjas3q14" path="res://assets/character_sprites/portrait_danilo.png" id="2_2b05g"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_xvdbo"]
 [ext_resource type="Texture2D" uid="uid://csdswcrvdmlo6" path="res://assets/HUD/EXIT_ICON.png" id="3_xvdbo"]
@@ -23,13 +23,15 @@ corner_detail = 20
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67qqk"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t17l3"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ang1x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvdbo"]
 bg_color = Color(0, 0, 0, 0)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_apest"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t17l3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_6ddj4"]
 color = Color(0.83889705, 0.83889705, 0.838897, 1)
@@ -78,7 +80,7 @@ size_flags_horizontal = 10
 size_flags_vertical = 0
 focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_67qqk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_t17l3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ang1x")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xvdbo")
 icon = ExtResource("3_xvdbo")
 icon_alignment = 1

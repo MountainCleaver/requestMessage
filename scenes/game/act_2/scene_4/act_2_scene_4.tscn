@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdc53kwxax3q4"]
+
+[ext_resource type="Script" uid="uid://ds66vuhsq75x6" path="res://scenes/game/act_2/scene_4/act_2_scene_4.gd" id="1_bbo7x"]
+[ext_resource type="PackedScene" uid="uid://5vqiljcaj1yn" path="res://scenes/game/act_2/scene_4/wendy_house.tscn" id="2_l4163"]
+
+[node name="act_2_scene_4" type="Node2D"]
+script = ExtResource("1_bbo7x")
+
+[node name="location" type="Node2D" parent="."]
+
+[node name="wendy_house" parent="location" instance=ExtResource("2_l4163")]

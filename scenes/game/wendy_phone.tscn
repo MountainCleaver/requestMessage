@@ -1,0 +1,169 @@
+[gd_scene load_steps=12 format=3 uid="uid://cy0y0g83u3mfm"]
+
+[ext_resource type="Script" uid="uid://coax5haeqfdbl" path="res://scenes/game/wendy_phone.gd" id="1_gs7x5"]
+[ext_resource type="Texture2D" uid="uid://bl3vntxg4dg4i" path="res://assets/HUD/wendywallpaper.png" id="1_vcahv"]
+[ext_resource type="Texture2D" uid="uid://pkan4cmofqkg" path="res://assets/HUD/APP_ICONS.png" id="2_00cnu"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_0f56h"]
+[ext_resource type="Texture2D" uid="uid://v1gub4ywfpm6" path="res://assets/HUD/call.png" id="4_0f56h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmvcn"]
+bg_color = Color(0.7514713, 0.5458843, 0.6766657, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gs7x5"]
+bg_color = Color(0.952941, 0.952941, 0.952941, 0.388235)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbhol"]
+atlas = ExtResource("2_00cnu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kkslt"]
+font = ExtResource("3_0f56h")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_malco"]
+atlas = ExtResource("2_00cnu")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogi0n"]
+atlas = ExtResource("2_00cnu")
+region = Rect2(64, 64, 64, 64)
+
+[node name="wendy_phone" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gs7x5")
+
+[node name="screen" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 295.0
+offset_bottom = 510.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jmvcn")
+
+[node name="TextureRect" type="TextureRect" parent="screen"]
+layout_mode = 0
+offset_right = 295.0
+offset_bottom = 510.0
+texture = ExtResource("1_vcahv")
+expand_mode = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="screen/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = 68.0
+offset_right = -26.0
+offset_bottom = -186.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="GridContainer" type="GridContainer" parent="screen/TextureRect/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 24
+columns = 3
+
+[node name="CHAT" type="Button" parent="screen/TextureRect/MarginContainer2/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_gs7x5")
+icon = SubResource("AtlasTexture_cbhol")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="screen/TextureRect/MarginContainer2/GridContainer/CHAT"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 2.0
+offset_right = 20.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Chat"
+label_settings = SubResource("LabelSettings_kkslt")
+horizontal_alignment = 1
+
+[node name="CALL" type="Button" parent="screen/TextureRect/MarginContainer2/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_gs7x5")
+icon = ExtResource("4_0f56h")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="screen/TextureRect/MarginContainer2/GridContainer/CALL"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = 1.66666
+offset_right = 35.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Call"
+label_settings = SubResource("LabelSettings_kkslt")
+horizontal_alignment = 1
+
+[node name="SCHED" type="Button" parent="screen/TextureRect/MarginContainer2/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_gs7x5")
+icon = SubResource("AtlasTexture_malco")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="screen/TextureRect/MarginContainer2/GridContainer/SCHED"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = 1.66666
+offset_right = 28.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Schedule"
+label_settings = SubResource("LabelSettings_kkslt")
+horizontal_alignment = 1
+
+[node name="GALLERY" type="Button" parent="screen/TextureRect/MarginContainer2/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_gs7x5")
+icon = SubResource("AtlasTexture_ogi0n")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="screen/TextureRect/MarginContainer2/GridContainer/GALLERY"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.5
+offset_top = 2.66666
+offset_right = 24.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Gallery"
+label_settings = SubResource("LabelSettings_kkslt")
+horizontal_alignment = 1

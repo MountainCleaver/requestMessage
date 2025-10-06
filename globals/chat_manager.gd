@@ -6,6 +6,7 @@ var history := {
 	"mira": [],
 	"group_chat": [],
 	"unknown_sender": []
+	
 }
 
 # Save message to history
