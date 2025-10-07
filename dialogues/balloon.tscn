@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bql6ppjas3q14" path="res://assets/character_sprites/portrait_danilo.png" id="2_ooonl"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_pa16h"]
-[ext_resource type="AudioStream" uid="uid://cvoo78287cm4b" path="res://sound/medium-text-blip-14855.wav" id="6_7c2jb"]
+[ext_resource type="AudioStream" uid="uid://cnnn0p3nx3e5t" path="res://sound/blip.wav" id="6_7c2jb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 bg_color = Color(0, 0, 0, 1)
@@ -81,6 +81,9 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7c2jb"]
+bg_color = Color(1, 1, 1, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m00rr"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 5
@@ -88,9 +91,6 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7c2jb"]
-bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Animation" id="Animation_7c2jb"]
 length = 0.001
@@ -150,8 +150,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -247.0
-offset_bottom = -7.0
+offset_top = 35.0
+offset_bottom = 888.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -175,7 +175,7 @@ layout_mode = 2
 texture = ExtResource("2_ooonl")
 
 [node name="Panel" type="Panel" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/portrait"]
-layout_mode = 2
+layout_mode = 0
 offset_right = 150.0
 offset_bottom = 150.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_rvrp7")
@@ -233,14 +233,15 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_pa16h")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxFlat_m00rr")
 theme_override_styles/normal = SubResource("StyleBoxFlat_7c2jb")
+theme_override_styles/focus = SubResource("StyleBoxFlat_m00rr")
 text = "Response example"
 
 [node name="main_animation" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_7c2jb")
 }
+autoplay = "RESET"
 
 [node name="TalkSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_7c2jb")
