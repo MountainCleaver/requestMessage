@@ -31,4 +31,5 @@ func add_notification(texture: Texture, app_name: String, content: String ) -> v
 	notif_instance.app_name_value = app_name;
 	notif_instance.notif_value = content;
 	
-	$Panel/Panel/ScrollContainer/notifications_container.add_child(notif_instance);
+	notifications_container.add_child(notif_instance);
+	notifications_container.move_child(notif_instance, 0);
