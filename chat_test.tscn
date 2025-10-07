@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://djxsyik7vhvch"]
+[gd_scene load_steps=2 format=3 uid="uid://b6wrx5qngv2a1"]
 
-[ext_resource type="Script" uid="uid://p3k2mec0tv8i" path="res://chat_test.gd" id="1_425hj"]
+[ext_resource type="Script" path="res://chat_test.gd" id="1_425hj"]
 
 [node name="test" type="Label"]
 anchors_preset = 15
