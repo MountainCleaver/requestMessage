@@ -73,6 +73,16 @@ func _ready() -> void:
 	npc_area.body_exited.connect(func(body): _on_npc_body_exited(body, "ticket_npc"))
 	bus.visible = false
 	
+	# PHONE STARTS HIDDEN AND INACTIVE
+	phone_trigger.visible = false
+	phone_trigger.monitoring = false
+	phone_trigger.set_deferred("monitorable", false)
+	
+	bus_interact.body_entered.connect(func(body): _on_bus_interact_body_entered(body, "bus_interact"))
+	bus_interact.body_exited.connect(func(body): _on_bus_interact_body_exited(body, "bus_interact"))
+	bus_interact.monitoring = false
+	bus_interact.set_deferred("monitorable", false)
+	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	player_danilo.force_cannot_move = false;
 	intro_anim_done  = true;
@@ -87,32 +97,32 @@ func _on_entrance_body_entered(body: Node2D) -> void:
 	ObjectiveManager.complete_objective(1)
 	ObjectiveManager.add_objective(2, "Find bus to Santa Claridad.")
 	entrance.body_entered.disconnect(_on_entrance_body_entered)
-	
 	bus_trigger.monitoring = false
 	bus_trigger.set_deferred("monitorable", false)
+	
 
 func _input(event: InputEvent) -> void:
 	if not (event.is_action_pressed("interact") and player_danilo.can_interact):
 		return
-	
-	# === BUS INTERACTIONS ===
-	var bus_name = player_danilo.current_npc
-	if bus_name in bus_dialogues:
-		if not bus_name or looked_bus.get(bus_name, false):
+
+	var target = player_danilo.current_npc
+
+	# === 1️⃣ BUS INTERACTION ===
+	if target in bus_dialogues:
+		if not target or looked_bus.get(target, false):
 			return
 
 		player_danilo.force_cannot_move = true
-		Hud.add_popup_image(bus_hud_images[bus_name])
+		Hud.add_popup_image(bus_hud_images[target])
 		Hud._toggle_popup()
-		print("Interacted with ", bus_name, " bus")
+		print("Interacted with ", target, " bus")
 		await wait_for_hud_closed()
 
-		DialogueManager.show_dialogue_balloon(A_2S_3, bus_dialogues[bus_name])
-		set_bus_used(bus_name)
+		DialogueManager.show_dialogue_balloon(A_2S_3, bus_dialogues[target])
+		set_bus_used(target)
 
-		if bus_name == "santa_claridad":
+		if target == "santa_claridad":
 			santa_claridad_found = true
-			
 			for key in bus_areas.keys():
 				if bus_areas[key]:
 					bus_areas[key].monitoring = false
@@ -120,32 +130,51 @@ func _input(event: InputEvent) -> void:
 			print("All bus interactions disabled after Santa Claridad.")
 
 		player_danilo.force_cannot_move = false
-		return  
 
-	# === NPC INTERACTION ===
-	var npc = player_danilo.current_npc
-	if npc == "":
-		return
+	# === 2️⃣ NPC INTERACTION ===
+	elif target == "ticket_npc":
+		if looked_bus["santa_claridad"] == false:
+			DialogueManager.show_dialogue_balloon(A_2S_3, "Npc")
+			return
 
-	if looked_bus["santa_claridad"] == false:
-		DialogueManager.show_dialogue_balloon(A_2S_3, "Npc")
-		return
+		if npc_talked:
+			player_danilo.can_interact = false
+			return
 
-	if npc_talked:
+		print("Interacting with NPC")
+		player_danilo.force_cannot_move = true
+		DialogueManager.show_dialogue_balloon(A_2S_3, "Buy_ticket")
+		npc_talked = true
+		enable_bus_trigger()
+		enable_phone_trigger()
+		player_danilo.force_cannot_move = false
 		player_danilo.can_interact = false
-		return
 
-	print("Interacting with ", npc)
-	player_danilo.force_cannot_move = true
+	# === 3️⃣ END SCENE (bus_interact) ===
+	elif target == "bus_interact":
+		print("ACT 2 SCENE 3 DONE")
+		player_danilo.force_cannot_move = true
+		player_danilo.can_move = false
+		player_danilo.can_interact = false
 
-	DialogueManager.show_dialogue_balloon(A_2S_3, "Buy_ticket")
-	npc_talked = true
-	enable_bus_trigger()
-	enable_phone_trigger()
+		SaveManager.game_save.current_act = "act_2"
+		SaveManager.game_save.current_scene = "scene_3"
+
+		SignalBus.act_num_scene_num_done.emit(
+			"act_2",
+			"scene_3",
+			"res://scenes/game/act_2/scene_3/act_2_scene_3.tscn"
+		)
+
+		ObjectiveManager.complete_objective(4)
+		await get_tree().process_frame
+		Hud.hide_objectives()
+		Hud.clear_objectives()
+
+	else:
+		# No valid interaction target
+		return 
 	
-	player_danilo.force_cannot_move = false
-	player_danilo.can_interact = false
-
 
 func setup_bus_connections() -> void:
 	for bus_name in bus_areas.keys():
@@ -246,6 +275,21 @@ func _on_phone_trigger_body_entered(body: Node2D) -> void:
 		player_danilo.force_cannot_move = true;
 		_on_chat_opened("unknown_sender")
 	
+	if body.name != "player_danilo":
+		return
+
+	print("Phone triggered by player — showing outro.")
+	phone_trigger.monitoring = false
+	phone_trigger.visible = false
+
+	# Once outro is done, allow movement and bus interaction again
+	player_danilo.force_cannot_move = false
+	player_danilo.can_move = true
+	player_danilo.can_interact = true
+
+	enable_bus_interact()
+	print("Phone outro done — player can move and interact with bus_interact.")
+	
 func _on_chat_opened(chat_name: String) -> void:
 	if chat_name == "unknown_sender" and not unknown_sender_opened:
 		unknown_sender_opened = true
@@ -257,7 +301,6 @@ func enable_phone_trigger():
 	phone_trigger.monitoring = true
 	phone_trigger.set_deferred("monitorable", true)
 	print("See phone.")
-
 
 func _on_bus_interact_body_entered(body: Node2D, bus_interact: String) -> void:
 	if body.name != "player_danilo":
