@@ -4,6 +4,7 @@ extends Node2D
 const A_1S_4 = preload("res://dialogues/act_1/scene_4/a1s4.dialogue")
 const DANILO_NEIGHBORHOOD = preload("res://scenes/game/act_1/scene_4/danilo_neighborhood.tscn")
 const DANILO_ROOM = preload("res://scenes/game/act_1/scene_4/danilo_room.tscn")
+const DANILO_LOCK = preload("res://scenes/game/lock_screen.tscn")  # ADD THIS
 
 # NODES
 @onready var locations: Node2D = $locations
@@ -33,10 +34,12 @@ var unknown_sender_opened: bool = false
 var set1_objective_done: bool = false
 var objective8_added: bool = false
 var has_gone_home: bool = false
+var final_objectives_done: bool = false  # ADD THIS FLAG
 
 # STATES
 var current_location: Node = null
 var buzz_timer: Timer
+var lock_screen_instance: Control = null  # ADD THIS TO TRACK LOCK SCREEN
 
 func _ready() -> void:
 	switch_location(DANILO_NEIGHBORHOOD)
@@ -111,6 +114,7 @@ func _on_app_chat_opened() -> void:
 		ObjectiveManager.add_objective(scene_objectives[7]["ID"], scene_objectives[7]["text"], Color.RED)
 		objective8_added = true
 		DialogueManager.show_dialogue_balloon(A_1S_4, "after_open_phone_2")
+		_show_lock_screen()  # ADD LOCK SCREEN WHEN PHONE IS OPENED AGAIN
 
 func _on_chat_opened(chat_name: String) -> void:
 	match chat_name:
@@ -129,6 +133,12 @@ func _on_chat_opened(chat_name: String) -> void:
 			
 			if has_gone_home:
 				ObjectiveManager.complete_objective(scene_objectives[7]["ID"])
+				final_objectives_done = true  # MARK FINAL OBJECTIVES AS DONE
+				
+				# UPDATE LOCK SCREEN FLAG IF IT EXISTS
+				if lock_screen_instance:
+					lock_screen_instance.objectives_done = true
+				
 				await get_tree().create_timer(5).timeout
 				Hud.hide_objectives()
 				Hud.phone_outro()
@@ -217,6 +227,32 @@ func _on_last_objective_lock_pressed() -> void:
 		Hud.phone_outro()
 		Hud.clear_objectives()
 		ObjectiveManager.add_objective(scene_objectives[5]["ID"], scene_objectives[5]["text"])
+
+# ===================
+# LOCK SCREEN MANAGEMENT - NEW SECTION
+# ===================
+func _show_lock_screen() -> void:
+	if lock_screen_instance:
+		return  # Don't create duplicate lock screens
+	
+	lock_screen_instance = DANILO_LOCK.instantiate()
+	lock_screen_instance.objectives_done = final_objectives_done
+	
+	# Connect the lock pressed signal if the lock screen has it
+	if lock_screen_instance.has_signal("lock_pressed"):
+		lock_screen_instance.lock_pressed.connect(_on_danilo_lock_pressed)
+	
+	add_child(lock_screen_instance)
+	print("Danilo lock screen shown")
+
+func _on_danilo_lock_pressed() -> void:
+	print("Danilo lock pressed, objectives_done:", final_objectives_done)
+	if final_objectives_done:
+		# Remove lock screen when clicked after objectives are done
+		if lock_screen_instance:
+			lock_screen_instance.queue_free()
+			lock_screen_instance = null
+			print("Lock screen removed")
 
 # ===================
 # ROOM SWITCH

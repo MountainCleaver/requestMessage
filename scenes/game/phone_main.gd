@@ -11,20 +11,18 @@ func _on_lock_pressed() -> void:
 	var current_scene = get_tree().current_scene
 
 	if current_scene:
-		# Check if pangalawang open at hindi pa nag-reply
+		# Optionally lock optional chats
 		if "optional_chats_locked" in SignalBus:
 			SignalBus.optional_chats_locked = true
 			print("Optional chats locked for this scene.")
 
-		if "all_chats_checked" in current_scene:
-			if current_scene.all_chats_checked() and not current_scene.set1_objective_done:
-				emit_signal("lock_pressed_for_last_objective")
-				queue_free()
-				return
+		# Check for chat completion and objective status
+		if "all_chats_checked" in current_scene and current_scene.all_chats_checked() and not current_scene.set1_objective_done:
+			emit_signal("lock_pressed_for_last_objective")
+			return
 
+	# Default lock behavior: just close phone
 	queue_free()
-
-
 
 func _on_chat_pressed() -> void:
 	var parent = get_parent()

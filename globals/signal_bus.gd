@@ -38,3 +38,6 @@ signal out_jeep_area
 #npc
 signal in_npc(npc_name: String)
 signal out_npc(npc_name: String)
+
+signal call_opened(call_name: String)
+signal call_completed(call_name: String)
