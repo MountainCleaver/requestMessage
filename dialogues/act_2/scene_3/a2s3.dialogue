@@ -55,13 +55,13 @@ Unknown_sender: [wait=1.5] So, nagdecide ka pa lang bumalik?
 - Ignore => Ignore
 => END
 
-~ Answer
+~ Ignore
 do SaveManager.save_moral_choice("act_2_scene_3", "relief")
 do ChatManager.send_chat("unknown_sender", "Player", "Tumigil ka na!")
 Danilo: Tumigil ka na!
 => END
 
-~ Ignore
+~ Answer
 do SaveManager.save_moral_choice("act_2_scene_3", "restless")
 do ChatManager.send_chat("unknown_sender", "Player", "Oo. I need answers.")
 Danilo: Oo. I need answers.
