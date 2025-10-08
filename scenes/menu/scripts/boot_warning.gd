@@ -1,14 +1,24 @@
 extends Control
+
 @onready var button: Button = $proceed/Button
 
-func _ready() -> void:
-	#TODO -> CHECK IF PLAYER LOGGED IN OR NOT. IF YES, THEN THE FUNCTION B ELOW SHOULD TAKE PLAYER TO MAIN MENU AND NOT TO LOGIN/SIGNUP PAGE
-	pass;
+var logged_in: bool = false
 
-func _process(delta: float) -> void:
-	if Input.is_action_pressed("accept") or button.button_pressed:
-		SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn");
+func _ready() -> void:
+
+	var user_data: Dictionary = Session.get_user_info()
+	logged_in = not user_data.is_empty()
+	button.pressed.connect(_on_proceed_pressed)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("accept"):
+		_go_next_scene()
+
+func _on_proceed_pressed() -> void:
+	_go_next_scene()
+
+func _go_next_scene() -> void:
+	if not logged_in:
+		SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn")
+	else:
 		SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
