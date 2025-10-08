@@ -1,0 +1,52 @@
+~ start
+Danilo: [center]Saan kaya dito ang sasakyan ko[/center]
+Danilo: [center]Kailangan kong hanapin ang bus pa Santa Claridad[/center]
+=> END
+
+~ Bus_1
+Danilo: [center]Montelargo... Hindi ito ang bus na sasakyan ko[/center]
+do set_bus_used("bus_1")
+=> END
+
+~ Bus_2
+Danilo: [center]Nueva Esperanza... Hindi ito ang bus na sasakyan ko[/center]
+do set_bus_used("bus_2")
+=> END
+
+~ Bus_3
+Danilo: [center]San Martino... Hindi ito ang bus na sasakyan ko[/center]
+do set_bus_used("bus_3")
+=> END
+
+~ Bus_4
+Danilo: [center]Santa Claridad... Nahanap ko rin[/center]
+Danilo: [center]Ngayon kailangan ko na lang bumili ng ticket[/center]
+do set_bus_used("bus_4")
+do ObjectiveManager.complete_objective(2)
+do ObjectiveManager.add_objective(3, "Buy a ticket.")
+=> END
+
+~ Bus_5
+Danilo: [center]Balete Viejo... Hindi ito ang bus na sasakyan ko[/center]
+do set_bus_used("bus_5")
+=> END
+
+~ Bus_6
+Danilo: [center]Granada Del Sur... Hindi ito ang bus na sasakyan ko[/center]
+do set_bus_used("bus_6")
+=> END
+
+~ Buy_ticket
+Danilo: Manong Pabili po ng ticket pa Santa Claridad
+NPC: Ito Iho
+Danilo: Salamat po manong
+do ObjectiveManager.complete_objective(3)
+do ObjectiveManager.add_objective(4, "Board the bus to Santa Claridad.")
+=> END
+
+~ Npc
+Danilo: [center]Kailagan ko munang hanapin yung bus pa Santa Claridad bago ako bumili ng ticket.[/center]
+=> END
+
+
+=> END

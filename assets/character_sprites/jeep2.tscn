@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqo3oq6dh2qgd"]
+
+[ext_resource type="Texture2D" uid="uid://dbrsiich4o3bd" path="res://assets/character_sprites/jeep2-Sheet.png" id="1_qniim"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qniim"]
+atlas = ExtResource("1_qniim")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dylg"]
+atlas = ExtResource("1_qniim")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81l2n"]
+atlas = ExtResource("1_qniim")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2tat"]
+atlas = ExtResource("1_qniim")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oq7i2"]
+atlas = ExtResource("1_qniim")
+region = Rect2(256, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eqyo3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qniim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dylg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81l2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2tat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oq7i2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_qniim")
+hframes = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eqyo3")

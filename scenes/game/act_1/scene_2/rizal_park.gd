@@ -18,7 +18,6 @@ const PLAYER_DANILO_ALONE = preload("res://scenes/characters/player_danilo.tscn"
 var camera_panned_to_wendy: bool = false
 var can_talk_to_wendy: bool = false
 
-# Track which tables have been looked at
 var looked_tables = {
 	"table_1": false,
 	"table_2": false,
@@ -212,7 +211,7 @@ func wendy_unfollow() -> void:
 	player_danilo.can_move = false
 	player_danilo.animated_sprite_2d.play("idle_right")
 	
-	player_danilo.get_child(1).disabled = true; #this is collission child of player danilo node, disable d2 para hindi manginig yung sprite
+	player_danilo.get_child(1).disabled = true;
 	wendy.get_child(1).disabled = true;
 	
 	player_danilo.position = $danilo_table_spawn.global_position
