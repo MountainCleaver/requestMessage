@@ -76,9 +76,11 @@ func objective_outro_anim()-> void:
 
 func phone_intro() -> void:
 	hud_animations.play("phone_in");
+	GameState.phone_showing = true
 	SignalBus.phone_in.emit();
 func phone_outro() -> void:
 	hud_animations.play("phone_out");
+	GameState.phone_showing = false
 	SignalBus.phone_out.emit();
 
 func toggle_phone() -> void:
@@ -96,6 +98,16 @@ func _toggle_popup() -> void:
 	else:
 		hud_animations.play("popup_in");
 		popup_showing = true;
+
+func show_popup() -> void:
+	if not popup_showing:
+		hud_animations.play("popup_in")
+		popup_showing = true
+
+func hide_popup() -> void:
+	if popup_showing:
+		hud_animations.play("popup_out")
+		popup_showing = false;
 
 func add_popup_image(image_path: String) -> void:
 	var image = load(image_path) as Texture2D

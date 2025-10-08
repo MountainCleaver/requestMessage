@@ -69,6 +69,18 @@ func _on_exit_to_main_menu_pressed() -> void:
 
 
 func _on_exit_main_menu_dialog_confirmed() -> void:
+	
+	if GameState.phone_showing:
+		Hud.phone_outro()
+		await get_tree().create_timer(1.0).timeout
+	
+	if Hud.objectives_panel.visible and ObjectiveManager.objectives:
+		Hud.hide_objectives()
+		Hud.clear_objectives()
+	
+	if Hud.popup_showing:
+		Hud.hide_popup()
+	
 	hide_pause_screen()
 	SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
 
