@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dkukr0i8tbvid"]
+[gd_scene load_steps=21 format=3 uid="uid://dkukr0i8tbvid"]
 
 [ext_resource type="Script" uid="uid://bmttfvo0b2va1" path="res://scenes/menu/scripts/menu_report_a_bug.gd" id="1_b0lpy"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_t4nnm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bbkdr0csbjf5r" path="res://assets/main menu/image.png" id="2_rtw4r"]
 [ext_resource type="PackedScene" uid="uid://c7yw1h7fpco1e" path="res://scenes/menu/option_main_menu.tscn" id="3_ocrco"]
 [ext_resource type="Texture2D" uid="uid://7ywtrbri2gl1" path="res://assets/main menu/icons/upload_icon.png" id="4_rhmlq"]
+[ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="7_5ab1i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ocrco"]
 font = ExtResource("2_1bxss")
@@ -23,14 +24,14 @@ font = ExtResource("2_1bxss")
 font_size = 32
 font_color = Color(0.0412611, 0.0405907, 0.389427, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ykur"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7g51"]
 content_margin_left = 15.0
 content_margin_top = 5.0
 content_margin_right = 15.0
 content_margin_bottom = 5.0
 bg_color = Color(0.85098, 0.85098, 0.85098, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7g51"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ykur"]
 content_margin_left = 15.0
 content_margin_top = 5.0
 content_margin_right = 15.0
@@ -68,8 +69,8 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kthqb"]
-bg_color = Color(0.688745, 0.641459, 0.547132, 0.321569)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6n7d"]
+bg_color = Color(0, 0, 0, 0)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -92,8 +93,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6n7d"]
-bg_color = Color(0, 0, 0, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kthqb"]
+bg_color = Color(0.688745, 0.641459, 0.547132, 0.321569)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -111,13 +112,13 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0lpy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhmlq"]
 bg_color = Color(1, 1, 1, 0.52549)
 border_width_right = 80
 border_color = Color(0.8, 0.8, 0.8, 0)
 border_blend = true
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhmlq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0lpy"]
 bg_color = Color(1, 1, 1, 0.52549)
 border_width_right = 80
 border_color = Color(0.8, 0.8, 0.8, 0)
@@ -220,12 +221,12 @@ label_settings = SubResource("LabelSettings_rtw4r")
 [node name="BUG_TYPE" type="OptionButton" parent="Panel/HBoxContainer/BUG_TYPE"]
 layout_mode = 2
 focus_mode = 0
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0.129412, 0.152941, 0.239216, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_1bxss")
 theme_override_font_sizes/font_size = 24
-theme_override_styles/hover = SubResource("StyleBoxFlat_4ykur")
 theme_override_styles/normal = SubResource("StyleBoxFlat_l7g51")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4ykur")
 selected = 0
 item_count = 5
 popup/item_0/text = "Visual Bug"
@@ -279,9 +280,9 @@ offset_bottom = 213.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
-theme_override_colors/font_placeholder_color = Color(0.60933, 0.60933, 0.60933, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.60933, 0.60933, 0.60933, 1)
 theme_override_fonts/font = ExtResource("2_1bxss")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_5ab1i")
@@ -309,14 +310,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 focus_mode = 0
-theme_override_colors/font_hover_color = Color(0.2, 0.2, 0.2, 1)
 theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0.2, 0.2, 0.2, 1)
 theme_override_fonts/font = ExtResource("2_1bxss")
 theme_override_font_sizes/font_size = 24
-theme_override_styles/hover = SubResource("StyleBoxFlat_kthqb")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ey87t")
 theme_override_styles/normal = SubResource("StyleBoxFlat_u6n7d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ey87t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kthqb")
 text = "CLEAR"
 
 [node name="SUBMIT" type="Button" parent="Panel/BUTTONS"]
@@ -346,8 +347,8 @@ offset_top = 408.0
 offset_right = -1056.0
 offset_bottom = 440.0
 theme_override_colors/font_pressed_color = Color(100, 100, 0, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_b0lpy")
 theme_override_styles/hover = SubResource("StyleBoxFlat_rhmlq")
+theme_override_styles/focus = SubResource("StyleBoxFlat_b0lpy")
 text = "  EXIT"
 alignment = 0
 
@@ -356,6 +357,8 @@ alignment = 0
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
 title = "Report Status"
 size = Vector2i(200, 100)
+
+[node name="menu_loading_screen" parent="." instance=ExtResource("7_5ab1i")]
 
 [connection signal="pressed" from="Panel/HBoxContainer/SCREENSHOT/UPLOADER" to="." method="_on_uploader_pressed"]
 [connection signal="pressed" from="Panel/BUTTONS/CLEAR" to="." method="_on_clear_pressed"]
