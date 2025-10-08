@@ -72,7 +72,7 @@ func _on_exit_main_menu_dialog_confirmed() -> void:
 	
 	if GameState.phone_showing:
 		Hud.phone_outro()
-		await get_tree().create_timer(1.0).timeout
+		#await get_tree().create_timer(1.0).timeout
 	
 	if Hud.objectives_panel.visible and ObjectiveManager.objectives:
 		Hud.hide_objectives()
