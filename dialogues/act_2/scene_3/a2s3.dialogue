@@ -38,7 +38,7 @@ do set_bus_used("bus_6")
 
 ~ Buy_ticket
 Danilo: Manong Pabili po ng ticket pa Santa Claridad
-NPC: Ito Iho
+Conductor: Ito Iho
 Danilo: Salamat po manong
 do ObjectiveManager.complete_objective(3)
 do ObjectiveManager.add_objective(4, "Board the bus to Santa Claridad.")

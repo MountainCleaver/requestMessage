@@ -560,7 +560,7 @@ debug_color = Color(0.6133335, 0.44245046, 0.79771394, 0.41960785)
 position = Vector2(429.00003, 38)
 scale = Vector2(1.4999996, 1.5312499)
 sprite_frames = SubResource("SpriteFrames_qniim")
-frame_progress = 0.45367363
+frame_progress = 0.52957726
 
 [node name="entrance" type="Area2D" parent="bus_terminal"]
 collision_layer = 16

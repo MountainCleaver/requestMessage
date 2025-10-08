@@ -66,7 +66,6 @@ func _ready() -> void:
 
 	mutation_cooldown.timeout.connect(_on_mutation_cooldown_timeout)
 	add_child(mutation_cooldown)
-	
 
 
 func _unhandled_input(_event: InputEvent) -> void:
