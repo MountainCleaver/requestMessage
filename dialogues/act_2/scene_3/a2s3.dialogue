@@ -48,5 +48,21 @@ do ObjectiveManager.add_objective(4, "Board the bus to Santa Claridad.")
 Danilo: [center]Kailagan ko munang hanapin yung bus pa Santa Claridad bago ako bumili ng ticket.[/center]
 => END
 
+~ unknown_message
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "So, nagdecide ka pa lang bumalik?")
+Unknown_sender: [wait=1.5] So, nagdecide ka pa lang bumalik?
+- Answer => Answer
+- Ignore => Ignore
+=> END
 
+~ Answer
+do SaveManager.save_moral_choice("act_2_scene_3", "relief")
+do ChatManager.send_chat("unknown_sender", "Player", "Tumigil ka na!")
+Danilo: Tumigil ka na!
+=> END
+
+~ Ignore
+do SaveManager.save_moral_choice("act_2_scene_3", "restless")
+do ChatManager.send_chat("unknown_sender", "Player", "Oo. I need answers.")
+Danilo: Oo. I need answers.
 => END

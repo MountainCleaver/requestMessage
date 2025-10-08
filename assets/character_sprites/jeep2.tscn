@@ -22,7 +22,7 @@ region = Rect2(192, 0, 64, 32)
 atlas = ExtResource("1_qniim")
 region = Rect2(256, 0, 64, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_eqyo3"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qniim"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -45,9 +45,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Sprite2D" type="Sprite2D"]
-texture = ExtResource("1_qniim")
-hframes = 5
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_eqyo3")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_qniim")
+autoplay = "default"
+frame_progress = 0.7708299

@@ -9,8 +9,8 @@ const A_2S_3 = preload("res://dialogues/act_2/scene_3/a2s3.dialogue")
 @onready var entrance: Area2D = $bus_terminal/entrance
 @onready var npc_area: Area2D = $"bus_terminal/y-sorted2/npcs_collidable/StaticBody2D/npc"
 @onready var bus: Sprite2D = $"bus_terminal/y-sorted2/bus"
-@onready var jeep: Sprite2D = $"bus_terminal/y-sorted2/jeep"
-@onready var jeep_animation_player: AnimationPlayer = $"bus_terminal/jeep/AnimationPlayer"
+@onready var bus_interact: Area2D = $"bus_terminal/y-sorted2/bus/bus_interact"
+@onready var jeep: AnimatedSprite2D = $"bus_terminal/y-sorted2/jeep"
 @onready var camera_2d: Camera2D = $"bus_terminal/y-sorted2/player_danilo/Camera2D"
 
 @onready var bus_areas = {
@@ -58,13 +58,11 @@ var dialogue_to_bus = {
 	"bus_6": "granada_del_sur" 
 }
 
-
 var intro_anim_done : bool = false;
 var npc_talked: bool = false 
 var santa_claridad_found := false
 var camera_panned_to_bus: bool = false
 var unknown_sender_opened: bool = false
-
 
 func _ready() -> void:
 	GameState.load_game()
@@ -74,7 +72,6 @@ func _ready() -> void:
 	npc_area.body_entered.connect(func(body): _on_npc_body_entered(body, "ticket_npc"))
 	npc_area.body_exited.connect(func(body): _on_npc_body_exited(body, "ticket_npc"))
 	bus.visible = false
-	
 	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	player_danilo.force_cannot_move = false;
@@ -252,21 +249,27 @@ func _on_phone_trigger_body_entered(body: Node2D) -> void:
 func _on_chat_opened(chat_name: String) -> void:
 	if chat_name == "unknown_sender" and not unknown_sender_opened:
 		unknown_sender_opened = true
-		# Show dialogue for the unknown sender
-		await DialogueManager.show_dialogue_balloon(A_2S_3, "unknown_message")
-
-		# Simulate the phone outro (Hud hides the phone)
-		await Hud.phone_outro()
-
-		# When the phone outro ends, re-enable movement and bus interaction
-		player_danilo.force_cannot_move = false
-		player_danilo.can_move = true
-		player_danilo.can_interact = true
-
-		enable_bus_interact()
-		print("Phone sequence complete — player can now move and interact with the bus.")
-
+		# KAPAG PINAKITA WENDY CHAT MAGCHECHECK NA RIN OBJECTIVE NA NAOPEN NA
+		DialogueManager.show_dialogue_balloon(A_2S_3, "unknown_message")
+		await get_tree().create_timer(1).timeout
+		
 func enable_phone_trigger():
 	phone_trigger.monitoring = true
 	phone_trigger.set_deferred("monitorable", true)
 	print("See phone.")
+
+
+func _on_bus_interact_body_entered(body: Node2D, bus_interact: String) -> void:
+	if body.name != "player_danilo":
+		return
+	SignalBus.in_npc.emit(bus_interact)
+
+func _on_bus_interact_body_exited(body: Node2D, bus_interact: String) -> void:
+	if body.name != "player_danilo":
+		return
+	SignalBus.out_npc.emit(bus_interact)
+	
+func enable_bus_interact() -> void:
+	bus_interact.monitoring = true
+	bus_interact.set_deferred("monitorable", true)
+	print("Bus interact is now active — player can board the bus.")
