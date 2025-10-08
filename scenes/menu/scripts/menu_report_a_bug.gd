@@ -9,6 +9,7 @@ extends Control
 @onready var submit: Button = $Panel/BUTTONS/SUBMIT
 @onready var clear: Button = $Panel/BUTTONS/CLEAR
 @onready var confirmation_dialog: ConfirmationDialog = $ConfirmationDialog
+@onready var menu_loading_screen: CanvasLayer = $menu_loading_screen
 
 const BASIS_33 = preload("res://assets/fonts/basis33.ttf")
 @onready var bug_type_popup = bug_type.get_popup()
@@ -16,6 +17,7 @@ var pending_action: String = ""
 
 
 func _ready() -> void:
+	menu_loading_screen.hide()
 	file_dialog.filters = ["*.png ; PNG Images", "*.jpg ; JPEG Images"]
 	file_dialog.file_selected.connect(Callable(self, "_on_file_selected"))
 	_style_popup(bug_type_popup)
@@ -90,6 +92,7 @@ func _on_confirmation_dialog_confirmed() -> void:
 
 func _confirm_action() -> void:
 	if pending_action == "submit":
+		menu_loading_screen.show()
 		_submit_bug_report()
 	elif pending_action == "clear":
 		_clear_report_fields()
@@ -182,3 +185,6 @@ func _on_request_completed(result: int, response_code: int, headers: Array, body
 		_clear_report_fields()
 	else:
 		print("Error submitting bug report: ", parse_result.get("message", "Unknown error"))
+		
+	
+	menu_loading_screen.hide()

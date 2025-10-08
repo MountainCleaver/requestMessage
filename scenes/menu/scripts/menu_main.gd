@@ -9,8 +9,10 @@ extends Control
 @onready var exit: Button = $options_holder/exit
 @onready var overlayer: Control = $overlayer
 @onready var options: VBoxContainer = $options_holder
+@onready var logout_button: Button = $logoutButton
 
 @onready var exit_confirmation_dialog: ConfirmationDialog = $exitConfirmationDialog
+@onready var logout_confirmation_dialog: ConfirmationDialog = $logoutConfirmationDialog
 
 var current_choice = 0
 
@@ -97,5 +99,19 @@ func _on_exit_confirmation_dialog_confirmed() -> void:
 
 
 func _on_exit_confirmation_dialog_canceled() -> void:
+	# do nothing
+	pass # Replace with function body.
+
+func _on_logout_button_pressed() -> void:
+	logout_confirmation_dialog.show()
+
+
+func _on_logout_confirmation_dialog_confirmed() -> void:
+	queue_free()
+	SignalBus.next_scene.emit("res://scenes/menu/boot_warning.tscn")
+	Session.logout_session()
+
+
+func _on_logout_confirmation_dialog_canceled() -> void:
 	# do nothing
 	pass # Replace with function body.
