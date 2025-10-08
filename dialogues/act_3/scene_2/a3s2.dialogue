@@ -1,4 +1,5 @@
 ~ reply_wendy
+Danilo: ...
 - Sorry Wen... => reply_wendy_1
 => END
 
@@ -30,13 +31,12 @@ Wendy: [wait=1.5]Okay. But next time, please inform me.
 do ChatManager.send_chat("wendy", "Wendy", "I’ll call you.")
 Wendy: [wait=1.5]I'll call you.
 Wendy: ... ... ...
-do replied_to_wendy = true
-do reply_finish.emit()
 do wendy_calling.emit()
 => END
 
 
 ~ reply_mira
+Danilo: ...
 - Andito na 'ko ma => reply_mira_1
 => END
 
@@ -90,6 +90,8 @@ Wendy: Good, kailan ka babalik?
 Danilo: 2 weeks ang leave ko pero baka bumalik ako earlier.
 Wendy: You deserve the break. [wave]Call me if you need anything, okay?[/wave]
 Danilo: Will do. Salamat.
-do SignalBus.call_done.emit()
+do replied_to_wendy = true
 do call_with_wendy_done = true
+do SignalBus.call_done.emit()
+do reply_finish.emit()
 => END
