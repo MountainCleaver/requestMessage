@@ -52,11 +52,12 @@ var mutation_cooldown: Timer = Timer.new()
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
 
 @onready var portrait: TextureRect = $Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/portrait
-#@onready var main_animation: AnimationPlayer = $main_animation
+@onready var main_animation: AnimationPlayer = $main_animation
 
 @onready var talk_sound: AudioStreamPlayer = $TalkSound
 
 func _ready() -> void:
+	balloon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
@@ -85,7 +86,7 @@ func _notification(what: int) -> void:
 
 ## Start some dialogue
 func start(dialogue_resource: DialogueResource, title: String, extra_game_states: Array = []) -> void:
-	#main_animation.play("dialogue_in")
+	main_animation.play("dialogue_in")
 	temporary_game_states = [self] + extra_game_states
 	is_waiting_for_input = false
 	resource = dialogue_resource
@@ -190,4 +191,6 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 
 
 func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float) -> void:
-	talk_sound.play()
+	if not letter in ["."," "]:
+		talk_sound.pitch_scale = randf_range(0.9, 1.1)
+		talk_sound.play()

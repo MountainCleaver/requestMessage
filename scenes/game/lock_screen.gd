@@ -52,9 +52,12 @@ func _on_lock_pressed() -> void:
 	else:
 		push_error("❌ No valid phone scene found for POV index " + str(pov))
 
-func add_notification(texture: Texture, app_name: String, content: String) -> void:
-	var notif_instance = NOTIFICATION.instantiate()
-	notif_instance.icon_value = texture
-	notif_instance.app_name_value = app_name
-	notif_instance.notif_value = content
-	notifications_container.add_child(notif_instance)
+func add_notification(texture: Texture, app_name: String, content: String ) -> void :
+	var notif_instance = NOTIFICATION.instantiate();
+	notif_instance.icon_value = texture;
+	notif_instance.app_name_value = app_name;
+	notif_instance.notif_value = content;
+	
+	notifications_container.add_child(notif_instance);
+	notifications_container.move_child(notif_instance, 0);
+

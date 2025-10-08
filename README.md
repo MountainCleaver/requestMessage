@@ -24,3 +24,10 @@
 
 ### Exit
 - Done
+
+## Lacking Functionality
+1. Saving of progress and game settings **per user**  
+2. Fetching of game progress and game settings **per user**  
+3. Synchronization between **local data** and **server-side data** when logged in  
+4. <kbd>New Game</kbd> – If there are saved scenes/game, **warn user** that it will **delete their existing saves**  
+5. <kbd>Load Game</kbd> – **Warn user** that it will **delete their saved games past that loaded game**

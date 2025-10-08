@@ -37,6 +37,7 @@ Global="*res://globals/Global.gd"
 ChatManager="*res://globals/chat_manager.gd"
 NarrationPanel="*res://helpers/narration_panel.gd"
 GameState="*res://globals/game_state.gd"
+Session="*res://globals/session_manager.gd"
 
 [dialogue_manager]
 

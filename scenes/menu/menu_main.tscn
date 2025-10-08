@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cykh0p8r2kduc"]
+[gd_scene load_steps=8 format=3 uid="uid://cykh0p8r2kduc"]
 
 [ext_resource type="Script" uid="uid://ucehjejjclhf" path="res://scenes/menu/scripts/menu_main.gd" id="1_blywf"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_wyeju"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="3_blywf"]
 [ext_resource type="Texture2D" uid="uid://d37rg5an1q1b2" path="res://assets/main menu/menu_phone.png" id="4_blywf"]
 [ext_resource type="PackedScene" uid="uid://c7yw1h7fpco1e" path="res://scenes/menu/option_main_menu.tscn" id="4_d2s0i"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="6_wgaug"]
+[ext_resource type="Texture2D" uid="uid://b8xfs62jmrihe" path="res://assets/HUD/EXIT_ICON_2.png" id="7_o44s4"]
 
 [node name="menu_main" type="Control"]
 layout_mode = 3
@@ -112,6 +114,32 @@ size = Vector2i(251, 100)
 ok_button_text = "Yes"
 dialog_text = "Do you want to exit the game?"
 
+[node name="logoutButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -131.0
+offset_top = -86.0
+offset_right = -56.0
+offset_bottom = -55.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("6_wgaug")
+theme_override_font_sizes/font_size = 32
+text = "LOGOUT"
+icon = ExtResource("7_o44s4")
+flat = true
+
+[node name="logoutConfirmationDialog" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
+title = "Logging out"
+initial_position = 2
+size = Vector2i(271, 100)
+dialog_text = "Are you sure you want to logout?"
+
 [connection signal="pressed" from="options_holder/continue_game" to="." method="_on_continue_game_pressed"]
 [connection signal="pressed" from="options_holder/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="options_holder/load_game" to="." method="_on_load_game_pressed"]
@@ -121,3 +149,6 @@ dialog_text = "Do you want to exit the game?"
 [connection signal="pressed" from="options_holder/exit" to="." method="_on_exit_pressed"]
 [connection signal="canceled" from="exitConfirmationDialog" to="." method="_on_exit_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="exitConfirmationDialog" to="." method="_on_exit_confirmation_dialog_confirmed"]
+[connection signal="pressed" from="logoutButton" to="." method="_on_logout_button_pressed"]
+[connection signal="canceled" from="logoutConfirmationDialog" to="." method="_on_logout_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="logoutConfirmationDialog" to="." method="_on_logout_confirmation_dialog_confirmed"]

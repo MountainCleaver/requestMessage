@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://khwdatbhelgd"]
+[gd_scene load_steps=6 format=3 uid="uid://khwdatbhelgd"]
 
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_nx25a"]
 [ext_resource type="Texture2D" uid="uid://d37rg5an1q1b2" path="res://assets/main menu/menu_phone.png" id="2_ulwyg"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="3_ulwyg"]
 [ext_resource type="PackedScene" uid="uid://cth2r78w0vqn3" path="res://scenes/menu/acc_login_username_password.tscn" id="4_4f6le"]
+[ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="5_iatr4"]
 
 [node name="menu_login_acc" type="Control"]
 layout_mode = 3
@@ -54,6 +55,9 @@ initial_position = 2
 size = Vector2i(251, 100)
 ok_button_text = "Yes"
 dialog_text = "Do you want to exit the game?"
+
+[node name="menu_loading_screen" parent="." instance=ExtResource("5_iatr4")]
+visible = false
 
 [connection signal="canceled" from="ConfirmationDialog" to="acc_login_username_password" method="_on_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="ConfirmationDialog" to="acc_login_username_password" method="_on_confirmation_dialog_confirmed"]
