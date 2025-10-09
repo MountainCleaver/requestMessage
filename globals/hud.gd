@@ -11,6 +11,7 @@ const BASIS_33 = preload("res://assets/fonts/basis33.ttf");
 
 const PHONE_MAIN = preload("res://scenes/game/phone_main.tscn")
 const APP_CHAT = preload("res://scenes/game/app_chat.tscn")
+const PHONE_WENDY = preload("res://scenes/game/act_2/scene_4/wendy_house.tscn")
 
 var popup_showing = false;
 
