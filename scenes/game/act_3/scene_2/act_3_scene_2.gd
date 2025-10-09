@@ -21,7 +21,7 @@ extends Node2D
 const A_3S_2 = preload("uid://vpb3fshkkblr")
 const CHAT_ICON = preload("uid://vdiek8gwmqdx")
 const BALLOON = preload("uid://2i4i7d4jd8qg")
-const PHONE_INCOMING_CALL = preload("uid://dbieb0wga74q7")
+const PHONE_INCOMING_CALL = preload("res://scenes/game/phone_incoming_call.tscn")
 
 var wendy_open: bool = false
 var mira_open: bool = false
