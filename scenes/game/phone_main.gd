@@ -25,6 +25,11 @@ func _on_lock_pressed() -> void:
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+	# EMIT THE PHONE_LOCKED SIGNAL BEFORE CLOSING
+	phone_locked.emit()
+>>>>>>> Stashed changes
 =======
 	# EMIT THE PHONE_LOCKED SIGNAL BEFORE CLOSING
 	phone_locked.emit()

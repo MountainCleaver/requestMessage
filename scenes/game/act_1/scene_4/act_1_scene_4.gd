@@ -6,6 +6,10 @@ const DANILO_NEIGHBORHOOD = preload("res://scenes/game/act_1/scene_4/danilo_neig
 const DANILO_ROOM = preload("res://scenes/game/act_1/scene_4/danilo_room.tscn")
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+const DANILO_LOCK = preload("res://scenes/game/lock_screen.tscn")
+>>>>>>> Stashed changes
 =======
 const DANILO_LOCK = preload("res://scenes/game/lock_screen.tscn")
 >>>>>>> Stashed changes
@@ -43,6 +47,10 @@ var objective8_added: bool = false
 var has_gone_home: bool = false
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+var final_objectives_done: bool = false
+>>>>>>> Stashed changes
 =======
 var final_objectives_done: bool = false
 >>>>>>> Stashed changes
@@ -55,6 +63,10 @@ var current_location: Node = null
 var buzz_timer: Timer
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+var lock_screen_instance: Control = null
+>>>>>>> Stashed changes
 =======
 var lock_screen_instance: Control = null
 >>>>>>> Stashed changes
@@ -158,7 +170,10 @@ func _on_chat_opened(chat_name: String) -> void:
 				ObjectiveManager.complete_objective(scene_objectives[7]["ID"])
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 				final_objectives_done = true
@@ -258,7 +273,10 @@ func _on_last_objective_lock_pressed() -> void:
 # ===================
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 # LOCK SCREEN MANAGEMENT
