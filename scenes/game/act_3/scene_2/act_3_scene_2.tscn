@@ -211,6 +211,9 @@ size = Vector2(19, 36)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_460kb"]
 size = Vector2(20, 39)
 
+[sub_resource type="Animation" id="Animation_oe54g"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_460kb"]
 resource_name = "tension"
 tracks/0/type = "value"
@@ -225,9 +228,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0.5157757, 0.20500007, 0.28912005, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_oe54g"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3daj4"]
 _data = {
