@@ -6,6 +6,7 @@ extends Control
 @onready var gallery: Button = $screen/MarginContainer/GridContainer/GALLERY
 
 signal lock_pressed_for_last_objective
+signal phone_locked  # ADD THIS SIGNAL
 
 func _on_lock_pressed() -> void:
 	var current_scene = get_tree().current_scene
@@ -22,6 +23,11 @@ func _on_lock_pressed() -> void:
 				queue_free()
 				return
 
+<<<<<<< Updated upstream
+=======
+	# EMIT THE PHONE_LOCKED SIGNAL BEFORE CLOSING
+	phone_locked.emit()
+>>>>>>> Stashed changes
 	queue_free()
 
 
