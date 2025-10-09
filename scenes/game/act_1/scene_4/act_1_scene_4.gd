@@ -5,6 +5,10 @@ const A_1S_4 = preload("res://dialogues/act_1/scene_4/a1s4.dialogue")
 const DANILO_NEIGHBORHOOD = preload("res://scenes/game/act_1/scene_4/danilo_neighborhood.tscn")
 const DANILO_ROOM = preload("res://scenes/game/act_1/scene_4/danilo_room.tscn")
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+const DANILO_LOCK = preload("res://scenes/game/lock_screen.tscn")
+>>>>>>> Stashed changes
 =======
 const DANILO_LOCK = preload("res://scenes/game/lock_screen.tscn")
 >>>>>>> Stashed changes
@@ -38,6 +42,10 @@ var set1_objective_done: bool = false
 var objective8_added: bool = false
 var has_gone_home: bool = false
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+var final_objectives_done: bool = false
+>>>>>>> Stashed changes
 =======
 var final_objectives_done: bool = false
 >>>>>>> Stashed changes
@@ -46,6 +54,10 @@ var final_objectives_done: bool = false
 var current_location: Node = null
 var buzz_timer: Timer
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+var lock_screen_instance: Control = null
+>>>>>>> Stashed changes
 =======
 var lock_screen_instance: Control = null
 >>>>>>> Stashed changes
@@ -145,7 +157,10 @@ func _on_chat_opened(chat_name: String) -> void:
 			if has_gone_home:
 				ObjectiveManager.complete_objective(scene_objectives[7]["ID"])
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 				final_objectives_done = true
 				
 				# UPDATE LOCK SCREEN FLAG IF IT EXISTS
@@ -242,7 +257,10 @@ func _on_last_objective_lock_pressed() -> void:
 
 # ===================
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 # LOCK SCREEN MANAGEMENT
 # ===================
 func _show_lock_screen() -> void:

@@ -23,6 +23,9 @@ func _ready() -> void:
 	
 	# Connect the lock button signal
 	lock.pressed.connect(_on_lock_pressed)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 func _on_lock_pressed() -> void:
@@ -34,6 +37,7 @@ func _on_lock_pressed() -> void:
 		phone_menu.connect("lock_pressed_for_last_objective", Callable(get_tree().current_scene, "_on_last_objective_lock_pressed"))
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 func add_notification(texture: Texture, app_name: String, content: String ) -> void :
 	var notif_instance = NOTIFICATION.instantiate();
@@ -44,6 +48,8 @@ func add_notification(texture: Texture, app_name: String, content: String ) -> v
 	notifications_container.add_child(notif_instance);
 	notifications_container.move_child(notif_instance, 0);
 =======
+=======
+>>>>>>> Stashed changes
 	if current_scene_name == "act_2_scene_4":
 		pov = 1
 
