@@ -4,18 +4,7 @@ extends Node2D
 const A_1S_4 = preload("res://dialogues/act_1/scene_4/a1s4.dialogue")
 const DANILO_NEIGHBORHOOD = preload("res://scenes/game/act_1/scene_4/danilo_neighborhood.tscn")
 const DANILO_ROOM = preload("res://scenes/game/act_1/scene_4/danilo_room.tscn")
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
 const DANILO_LOCK = preload("res://scenes/game/lock_screen.tscn")
->>>>>>> Stashed changes
-=======
-const DANILO_LOCK = preload("res://scenes/game/lock_screen.tscn")
->>>>>>> Stashed changes
-=======
-const DANILO_LOCK = preload("res://scenes/game/lock_screen.tscn")
->>>>>>> Stashed changes
 
 # NODES
 @onready var locations: Node2D = $locations
@@ -45,34 +34,14 @@ var unknown_sender_opened: bool = false
 var set1_objective_done: bool = false
 var objective8_added: bool = false
 var has_gone_home: bool = false
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
+
 var final_objectives_done: bool = false
->>>>>>> Stashed changes
-=======
-var final_objectives_done: bool = false
->>>>>>> Stashed changes
-=======
-var final_objectives_done: bool = false
->>>>>>> Stashed changes
 
 # STATES
 var current_location: Node = null
 var buzz_timer: Timer
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
+
 var lock_screen_instance: Control = null
->>>>>>> Stashed changes
-=======
-var lock_screen_instance: Control = null
->>>>>>> Stashed changes
-=======
-var lock_screen_instance: Control = null
->>>>>>> Stashed changes
 
 func _ready() -> void:
 	switch_location(DANILO_NEIGHBORHOOD)
@@ -150,6 +119,7 @@ func _on_app_chat_opened() -> void:
 		ObjectiveManager.add_objective(scene_objectives[7]["ID"], scene_objectives[7]["text"], Color.RED)
 		objective8_added = true
 		DialogueManager.show_dialogue_balloon(A_1S_4, "after_open_phone_2")
+		# Don't show lock screen here - let the phone system handle it
 
 func _on_chat_opened(chat_name: String) -> void:
 	match chat_name:
@@ -168,21 +138,13 @@ func _on_chat_opened(chat_name: String) -> void:
 			
 			if has_gone_home:
 				ObjectiveManager.complete_objective(scene_objectives[7]["ID"])
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 				final_objectives_done = true
 				
 				# UPDATE LOCK SCREEN FLAG IF IT EXISTS
 				if lock_screen_instance:
 					lock_screen_instance.objectives_done = true
 				
->>>>>>> Stashed changes
 				await get_tree().create_timer(5).timeout
 				Hud.hide_objectives()
 				Hud.phone_outro()
@@ -271,14 +233,7 @@ func _on_last_objective_lock_pressed() -> void:
 		ObjectiveManager.add_objective(scene_objectives[5]["ID"], scene_objectives[5]["text"])
 
 # ===================
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+# LOCK SCREEN MANAGEMENT (SIMPLIFIED)
 # LOCK SCREEN MANAGEMENT
 # ===================
 func _show_lock_screen() -> void:
@@ -290,18 +245,22 @@ func _show_lock_screen() -> void:
 
 func _on_lock_screen_pressed() -> void:
 	print("Lock screen button pressed")
+
+	# Hide the lock screen instead of destroying it
+
 	lock_screen_instance.visible = false
 
 func _on_phone_locked() -> void:
 	print("PHONE_LOCKED SIGNAL RECEIVED - Showing lock screen again")
 
+	# Just show the existing lock screen
 	_show_lock_screen()
-
+  
+  
 func show_initial_lock_screen() -> void:
 	_show_lock_screen()
 
 # ===================
->>>>>>> Stashed changes
 # ROOM SWITCH
 # ===================
 func _switch_to_danilo_room() -> void:
