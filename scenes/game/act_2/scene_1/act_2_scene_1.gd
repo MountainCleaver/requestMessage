@@ -79,16 +79,10 @@ func _ready() -> void:
 # START SCENE
 # ===================
 func _start_scene() -> void:
-	GameState.lock_screen_active = false
-	GameState.chat_open = false
-	SignalBus.optional_chats_locked = false
-
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 
-	if GameState.unknown_sender_opened:
-		Hud.show_phone_with_unknown_sender()
-		await get_tree().create_timer(1).timeout
-		DialogueManager.show_dialogue_balloon(A_2S_1, "start")
+	await get_tree().create_timer(1).timeout
+	DialogueManager.show_dialogue_balloon(A_2S_1, "start")
 
 	# Hide interact tip and disable bed until active
 	if tip_interact:

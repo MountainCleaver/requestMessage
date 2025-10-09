@@ -1,5 +1,5 @@
 ~ start
-do Hud.phone_intro()
+do Hud.show_phone_with_unknown_sender()
 do ChatManager.send_chat("unknown_sender", "Player", "Hah, sino ka? Bakit alam mo pangalan ko?")
 Danilo: Hah, sino ka? Bakit alam mo pangalan ko?  => reply_danilo_1
 => END
