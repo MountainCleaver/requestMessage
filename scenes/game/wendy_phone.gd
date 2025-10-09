@@ -7,6 +7,7 @@ extends Control
 
 signal lock_pressed_for_last_objective
 
+<<<<<<< Updated upstream
 func _on_lock_pressed() -> void:
 	var current_scene = get_tree().current_scene
 
@@ -46,3 +47,11 @@ func _on_sched_pressed() -> void:
 
 func _on_gallery_pressed() -> void:
 	pass
+=======
+func _on_call_pressed() -> void:
+	print("Opening Wendy’s Call App...")
+	var call_app = preload("res://scenes/game/app_call_wendy.tscn").instantiate()
+	get_parent().add_child(call_app)
+	call_app.previous_scene = self 
+	self.visible = false
+>>>>>>> Stashed changes
