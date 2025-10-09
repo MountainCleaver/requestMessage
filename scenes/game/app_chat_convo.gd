@@ -31,6 +31,8 @@ var chat_loaded := {
 func _ready():
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	SignalBus.chat_message_received.connect(_on_chat_message_received)
+	SignalBus.type_message_clicked.connect(_on_type_message_clicked)
+	SignalBus.connect("show_locked_label", Callable(self, "show_reply_locked_label"))
 
 	# Restore previous behavior for unknown sender auto-open
 	if GameState.unknown_sender_opened and current_chat == "unknown_sender":
@@ -149,7 +151,13 @@ func _on_type_message_pressed() -> void:
 	if SignalBus.optional_chats_locked:
 		print("Type message is disabled for optional chats.")
 		return
+		
 	SignalBus.chat_message_sent.emit(current_chat)
+	# ✅ Only emit type message clicked
+
+func _on_type_message_clicked(chat_name: String) -> void:
+	SignalBus.type_message_clicked.emit(current_chat)
+
 
 func set_current_chat(chat_name: String) -> void:
 	if chat_name != current_chat:
@@ -209,6 +217,23 @@ func load_chat_history(chat_name: String) -> void:
 		add_message_to_chat(msg["sender"], msg["text"])
 	
 	chat_loaded[chat_name] = true
+
+func show_reply_locked_label() -> void:
+	var chat_font = FontFile.new()
+	chat_font.font_data = load("res://assets/fonts/basis33.ttf")
+	
+	var locked_label = Label.new()
+	locked_label.text = "You can't reply to this conversation."
+	locked_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5, 1))
+	locked_label.add_theme_font_override("font", chat_font)
+	locked_label.add_theme_font_size_override("font_size", 25)
+	locked_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	locked_label.custom_minimum_size = Vector2(200, 0)
+
+	chat_container.add_child(locked_label)
+
+	await get_tree().process_frame
+	scroll.scroll_vertical = scroll.get_v_scroll_bar().max_value
 
 
 func _on_exit_pressed() -> void:
