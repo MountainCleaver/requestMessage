@@ -1,4 +1,5 @@
 ~ reply_wendy
+do _prevent_chat_exit_while_dialoging()
 Danilo: ...
 - Sorry Wen... => reply_wendy_1
 => END
@@ -36,6 +37,7 @@ do wendy_calling.emit()
 
 
 ~ reply_mira
+do _prevent_chat_exit_while_dialoging()
 Danilo: ...
 - Andito na 'ko ma => reply_mira_1
 => END
@@ -69,29 +71,51 @@ do ChatManager.send_chat("mira", "Mira", "Oo nak, nag aalala kasi siya dahil hin
 Mira: [wait=1.5]Oo nak, nag aalala kasi siya dahil hindi ka raw sumasagot sa messages at tawag niya.
 do replied_to_mira = true
 do reply_finish.emit()
+do _prevent_chat_exit_while_dialoging()
 => END
 
 ~ call_with_wendy
 Danilo: Hello Wen, kumusta?
-Wendy: [wave]Ito nag aalala sayo.[/wave]
-Wendy: Sigurado ka bang re-sched yung appointment mo ngayon?
-Danilo: Oo, sorry napauwi ako bigla
-Wendy: Alam ko, tumawag ako kay Tita Mira since 'di ka nagrereply.
-Wendy: Buti nalang sinabi niya sakin.
-Wendy: Ikaw, kumusta?
-Danilo: Kani-kanina lang ako dumating.
-Danilo: Nakita ko pa si Lola Ising.
-Danilo: Nag-aabang parin siya ng pasalubong sayo.
-Wendy: Haynako, si Lola talaga. Lagi akong pinapauwi. May sinabi ba siya?
-Danilo: Sinabihan niya 'kong iwasan ang gubat.... [shake]Dahil kay Mateo.[/shake]
-Wendy: Take your meds ha, sabi ni tita paubos na raw yung sayo.
-Danilo: Pupunta nga ako sa bayan bukas para bumili.
-Wendy: Good, kailan ka babalik?
-Danilo: 2 weeks ang leave ko pero baka bumalik ako earlier.
-Wendy: You deserve the break. [wave]Call me if you need anything, okay?[/wave]
+#Wendy: [wave]Ito nag aalala sayo.[/wave]
+#Wendy: Sigurado ka bang re-sched yung appointment mo ngayon?
+#Danilo: Oo, sorry napauwi ako bigla
+#Wendy: Alam ko, tumawag ako kay Tita Mira since 'di ka nagrereply.
+#Wendy: Buti nalang sinabi niya sakin.
+#Wendy: Ikaw, kumusta?
+#Danilo: Kani-kanina lang ako dumating.
+#Danilo: Nakita ko pa si Lola Ising.
+#Danilo: Nag-aabang parin siya ng pasalubong sayo.
+#Wendy: Haynako, si Lola talaga. Lagi akong pinapauwi. May sinabi ba siya?
+#Danilo: Sinabihan niya 'kong iwasan ang gubat.... [shake]Dahil kay Mateo.[/shake]
+#Wendy: Take your meds ha, sabi ni tita paubos na raw yung sayo.
+#Danilo: Pupunta nga ako sa bayan bukas para bumili.
+#Wendy: Good, kailan ka babalik?
+#Danilo: 2 weeks ang leave ko pero baka bumalik ako earlier.
+#Wendy: You deserve the break. [wave]Call me if you need anything, okay?[/wave]
 Danilo: Will do. Salamat.
 do replied_to_wendy = true
 do call_with_wendy_done = true
 do SignalBus.call_done.emit()
 do reply_finish.emit()
+do _prevent_chat_exit_while_dialoging()
+=> END
+
+~ unknown
+do _prevent_chat_exit_while_dialoging()
+do Hud.show_phone_with_unknown_sender()
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "res://assets/character_sprites/Danilo_image_from_unknon_sender.png")
+do _play_tension_anim()
+Danilo: [wait=1.5]!!!
+do _prevent_chat_exit_while_dialoging()
+do Hud.phone_outro()
+=> check_photo_question
+=> END
+
+~ check_photo_question
+Danilo: [shake rate=100.0 level=10]?????????????????????????????[/shake]
+- Check the Photo Again
+	do SaveManager.save_moral_choice("act_3_scene_2", "restless")
+- Ignore it
+	do SaveManager.save_moral_choice("act_3_scene_2", "relief")
+do _act_3_scene_2_done()
 => END

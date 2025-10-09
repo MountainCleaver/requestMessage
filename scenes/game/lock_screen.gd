@@ -51,11 +51,7 @@ func add_notification(texture: Texture, app_name: String, content: String ) -> v
 	
 	notifications_container.add_child(notif_instance);
 	notifications_container.move_child(notif_instance, 0);
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 	if current_scene_name == "act_2_scene_4":
 		pov = 1
 
@@ -93,4 +89,10 @@ func add_notification(texture: Texture, app_name: String, content: String) -> vo
 	notif_instance.app_name_value = app_name
 	notif_instance.notif_value = content
 	notifications_container.add_child(notif_instance)
->>>>>>> Stashed changes
+	notifications_container.move_child(notif_instance, 0)
+
+
+func clear_notifications() -> void:
+	for notif in notifications_container.get_children():
+		notif.queue_free()
+	await get_tree().process_frame
