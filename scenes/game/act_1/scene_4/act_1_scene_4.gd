@@ -34,11 +34,13 @@ var unknown_sender_opened: bool = false
 var set1_objective_done: bool = false
 var objective8_added: bool = false
 var has_gone_home: bool = false
+
 var final_objectives_done: bool = false
 
 # STATES
 var current_location: Node = null
 var buzz_timer: Timer
+
 var lock_screen_instance: Control = null
 
 func _ready() -> void:
@@ -136,6 +138,7 @@ func _on_chat_opened(chat_name: String) -> void:
 			
 			if has_gone_home:
 				ObjectiveManager.complete_objective(scene_objectives[7]["ID"])
+
 				final_objectives_done = true
 				
 				# UPDATE LOCK SCREEN FLAG IF IT EXISTS
@@ -231,6 +234,7 @@ func _on_last_objective_lock_pressed() -> void:
 
 # ===================
 # LOCK SCREEN MANAGEMENT (SIMPLIFIED)
+# LOCK SCREEN MANAGEMENT
 # ===================
 func _show_lock_screen() -> void:
 	if lock_screen_instance and is_instance_valid(lock_screen_instance):
@@ -241,14 +245,18 @@ func _show_lock_screen() -> void:
 
 func _on_lock_screen_pressed() -> void:
 	print("Lock screen button pressed")
+
 	# Hide the lock screen instead of destroying it
+
 	lock_screen_instance.visible = false
 
 func _on_phone_locked() -> void:
 	print("PHONE_LOCKED SIGNAL RECEIVED - Showing lock screen again")
+
 	# Just show the existing lock screen
 	_show_lock_screen()
-
+  
+  
 func show_initial_lock_screen() -> void:
 	_show_lock_screen()
 

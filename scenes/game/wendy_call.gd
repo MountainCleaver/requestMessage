@@ -1,9 +1,13 @@
 extends Control
 
 @onready var end_btn: Button = $call_screen/Panel2/ENDCALL
+
 @onready var status_label: Label = $call_screen/Panel2/status
 @onready var name_label: Label = $call_screen/Panel2/danilo
 @onready var icon: TextureRect = $call_screen/Panel2/Icon2  # Add this line
+
+@onready var panel_logo: Panel = $call_screen/Panel2/LOGOPANEL
+@onready var panel_icon: TextureRect = $call_screen/Panel2/Icon2
 
 var call_target: String = ""
 var previous_scene: Control = null

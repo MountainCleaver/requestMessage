@@ -1,4 +1,5 @@
 extends CanvasLayer
+signal phone_outro_finished
 
 @onready var v_box_container: VBoxContainer = $Control/objectives/MarginContainer/VBoxContainer
 @onready var objectives_panel: Panel = $Control/objectives;

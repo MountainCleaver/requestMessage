@@ -6,6 +6,7 @@ extends Control
 @onready var gallery: Button = $screen/MarginContainer/GridContainer/GALLERY
 
 signal lock_pressed_for_last_objective
+signal phone_locked  # ADD THIS SIGNAL
 
 func _on_lock_pressed() -> void:
 	var current_scene = get_tree().current_scene
@@ -21,7 +22,12 @@ func _on_lock_pressed() -> void:
 			emit_signal("lock_pressed_for_last_objective")
 			return
 
+
 	# Default lock behavior: just close phone
+	# EMIT THE PHONE_LOCKED SIGNAL BEFORE CLOSING
+	phone_locked.emit()
+
+
 	queue_free()
 
 func _on_chat_pressed() -> void:
