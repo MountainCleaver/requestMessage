@@ -6,3 +6,5 @@
 script = ExtResource("1_a1dml")
 
 [node name="locations" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
