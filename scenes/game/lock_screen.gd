@@ -57,7 +57,6 @@ func _on_lock_pressed() -> void:
 
 	visible = true
 
-
 func add_notification(texture: Texture, app_name: String, content: String) -> void:
 	var notif_instance = NOTIFICATION.instantiate()
 	notif_instance.icon_value = texture
@@ -65,7 +64,6 @@ func add_notification(texture: Texture, app_name: String, content: String) -> vo
 	notif_instance.notif_value = content
 	notifications_container.add_child(notif_instance)
 	notifications_container.move_child(notif_instance, 0)
-
 
 func clear_notifications() -> void:
 	for notif in notifications_container.get_children():
