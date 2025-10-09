@@ -248,5 +248,5 @@ func scene_4_done() -> void:
 	SaveManager.game_save.current_act = "act_1"
 	SaveManager.game_save.current_scene = "scene_4"
 	GameState.save_game()
-	SignalBus.next_scene.emit("res://scenes/game/act_2_title_scene.tscn")
+	SignalBus.act_num_scene_num_done.emit("act_1", "scene_4", "res://scenes/game/act_2_title_scene.tscn") # caught in save manager
 	print("act 1 scene 4 is done. ACT 1 DONE !!!!!!!!!!!!!!!!!!")
