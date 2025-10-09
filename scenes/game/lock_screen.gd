@@ -26,15 +26,20 @@ func _on_lock_pressed() -> void:
 	var current_scene_name = get_tree().current_scene.name.to_lower()
 	var pov = 0
 
-	# Detect ONLY Act 2 Scene 4 (Wendy’s POV) HAAAAAA
 	if current_scene_name == "act_2_scene_4":
 		pov = 1
 
 	print("Scene:", current_scene_name, "→ POV index:", pov)
 
 	if pov >= 0 and pov < phone_scenes.size() and phone_scenes[pov]:
-		var phone_menu := phone_scenes[pov].instantiate()
+		var phone_menu = phone_scenes[pov].instantiate()
 		get_parent().add_child(phone_menu)
+
+		if current_scene_name == "act_1_scene_4" and phone_menu.has_signal("phone_locked"):
+			phone_menu.phone_locked.connect(
+				Callable(get_tree().current_scene, "_on_phone_locked")
+			)
+			print("Connected phone_locked signal for Danilo's phone")
 
 		if pov == 1:
 			print("Opened phone for: Wendy")
@@ -47,8 +52,7 @@ func _on_lock_pressed() -> void:
 				"lock_pressed_for_last_objective",
 				Callable(get_tree().current_scene, "_on_last_objective_lock_pressed")
 			)
-
-		queue_free()
+		visible = true
 	else:
 		push_error("❌ No valid phone scene found for POV index " + str(pov))
 
@@ -60,4 +64,3 @@ func add_notification(texture: Texture, app_name: String, content: String ) -> v
 	
 	notifications_container.add_child(notif_instance);
 	notifications_container.move_child(notif_instance, 0);
-
