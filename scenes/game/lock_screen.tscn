@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqagsj7ps731j"]
+[gd_scene load_steps=11 format=3 uid="uid://bqagsj7ps731j"]
 
 [ext_resource type="Script" uid="uid://danm7o662nkg3" path="res://scenes/game/lock_screen.gd" id="1_hukn4"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_ph3dx"]
+[ext_resource type="PackedScene" uid="uid://dg0oqq148wh62" path="res://scenes/game/phone_main.tscn" id="2_epe7q"]
 [ext_resource type="Texture2D" uid="uid://cwgna8jrsskbc" path="res://assets/HUD/LOCK_ICON.png" id="2_hukn4"]
+[ext_resource type="PackedScene" uid="uid://cy0y0g83u3mfm" path="res://scenes/game/wendy_phone.tscn" id="3_uxtme"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn1hs"]
 bg_color = Color(0, 0.137255, 0.215686, 1)
@@ -30,17 +32,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hukn4")
 time_value = "12:00"
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 lock_visible = true
 phone_scenes = Array[PackedScene]([ExtResource("2_epe7q"), ExtResource("3_uxtme")])
->>>>>>> Stashed changes
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
