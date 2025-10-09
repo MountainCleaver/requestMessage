@@ -55,11 +55,14 @@ func save_game():
 
 	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
 	if file:
-		file.store_string(JSON.stringify(data))
+		var json := JSON.new()  # create JSON instance
+		var pretty_text := json.stringify(data, "\t")
+		file.store_string(pretty_text)
 		file.close()
 		print("Game saved successfully!")
 	else:
 		print("Failed to save game!")
+
 
 # ===============================
 # LOAD GAME
