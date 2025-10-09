@@ -70,17 +70,17 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		if player_danilo.current_npc == "karatula":
 			player_danilo.last_direction = Vector2.UP;
-			Hud.add_popup_image("res://assets/HUD/map.png");
+			Hud.add_popup_image("res://assets/HUD/signage_laruan.png");
 			Hud._toggle_popup()
 			player_danilo.force_cannot_move = Hud.popup_showing;
 			print("interact");
 		elif  player_danilo.current_npc == "bahay":
-			print("ACT 3 SCENE 1 DONE");
-			SaveManager.game_save.current_act = "act_3"
+			print("ACT 2 SCENE 3 DONE");
+			SaveManager.game_save.current_act = "act_2"
 			SaveManager.game_save.current_scene = "scene_3" # badly named I admit. this is for the 'continue' part in main menu
-			SignalBus.act_num_scene_num_done.emit("act_3", "scene_1", "res://scenes/game/act_1/scene_2/act_1_scene_2.tscn") # caught in save manager
+			SignalBus.act_num_scene_num_done.emit("act_2", "scene_3", "res://scenes/game/act_2/scene_3/act_2_scene_3.tscn") # caught in save manager
 			ObjectiveManager.complete_objective(1);
-			await get_tree().process_frame
+			await get_tree().process_frame 
 			Hud.hide_objectives();
 			Hud.clear_objectives();
 

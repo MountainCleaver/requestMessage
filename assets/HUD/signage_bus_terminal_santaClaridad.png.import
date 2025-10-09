@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bomesxx5thlmp"
-path="res://.godot/imported/map.png-1dd33f20375702000dd8b699e7d48dbd.ctex"
+uid="uid://baonyqtcld7l3"
+path="res://.godot/imported/signage_bus_terminal_santaClaridad.png-f28d8c06f45f7b3dc83e74c4fe6a5c59.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/HUD/map.png"
-dest_files=["res://.godot/imported/map.png-1dd33f20375702000dd8b699e7d48dbd.ctex"]
+source_file="res://assets/HUD/signage_bus_terminal_santaClaridad.png"
+dest_files=["res://.godot/imported/signage_bus_terminal_santaClaridad.png-f28d8c06f45f7b3dc83e74c4fe6a5c59.ctex"]
 
 [params]
 

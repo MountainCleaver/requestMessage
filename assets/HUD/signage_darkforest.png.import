@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bomesxx5thlmp"
-path="res://.godot/imported/map.png-1dd33f20375702000dd8b699e7d48dbd.ctex"
+uid="uid://tq3q0hu0bmwx"
+path="res://.godot/imported/signage_darkforest.png-c78fad7618da46e1fa814f8d50542b73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/HUD/map.png"
-dest_files=["res://.godot/imported/map.png-1dd33f20375702000dd8b699e7d48dbd.ctex"]
+source_file="res://assets/HUD/signage_darkforest.png"
+dest_files=["res://.godot/imported/signage_darkforest.png-c78fad7618da46e1fa814f8d50542b73.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bomesxx5thlmp"
-path="res://.godot/imported/map.png-1dd33f20375702000dd8b699e7d48dbd.ctex"
+uid="uid://dn5hqdoug08ar"
+path="res://.godot/imported/signage_bus_terminal_montelargo.png-cc62098696c0306f868948c411c68c7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/HUD/map.png"
-dest_files=["res://.godot/imported/map.png-1dd33f20375702000dd8b699e7d48dbd.ctex"]
+source_file="res://assets/HUD/signage_bus_terminal_montelargo.png"
+dest_files=["res://.godot/imported/signage_bus_terminal_montelargo.png-cc62098696c0306f868948c411c68c7f.ctex"]
 
 [params]
 

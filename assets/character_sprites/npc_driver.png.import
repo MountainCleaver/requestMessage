@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bomesxx5thlmp"
-path="res://.godot/imported/map.png-1dd33f20375702000dd8b699e7d48dbd.ctex"
+uid="uid://2okuadpudobt"
+path="res://.godot/imported/npc_driver.png-421d1085f3b54dedd9565fec34dc648e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/HUD/map.png"
-dest_files=["res://.godot/imported/map.png-1dd33f20375702000dd8b699e7d48dbd.ctex"]
+source_file="res://assets/character_sprites/npc_driver.png"
+dest_files=["res://.godot/imported/npc_driver.png-421d1085f3b54dedd9565fec34dc648e.ctex"]
 
 [params]
 
