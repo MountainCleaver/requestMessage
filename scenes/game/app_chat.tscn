@@ -353,6 +353,5 @@ text = "Message Request"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="screen/Panel/EXIT" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="screen/MarginContainer/Panel/WENDY" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="screen/MarginContainer/Panel/WENDY" to="." method="_on_wendy_pressed"]
 [connection signal="pressed" from="screen/MarginContainer2/Panel2/MIRA" to="." method="_on_mira_pressed"]

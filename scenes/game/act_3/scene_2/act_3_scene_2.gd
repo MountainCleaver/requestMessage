@@ -5,6 +5,7 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var danilo_collision_shape_2d: CollisionShape2D = $"danilo_hometown_house/y-sorted/player_danilo/CollisionShape2D"
+@onready var camera_2d: Camera2D = $Camera2D
 
 @onready var window_1: Sprite2D = $danilo_hometown_house/map/window_1
 @onready var window_2: Sprite2D = $danilo_hometown_house/map/window_2
@@ -17,6 +18,7 @@ extends Node2D
 @onready var shock_sprite: Sprite2D = $"danilo_hometown_house/y-sorted/player_danilo/shock_sprite"
 
 @onready var npc_shadowy_chaser: CharacterBody2D = $danilo_hometown_house/map/npc_shadowy_chaser
+@onready var tension_anim: AnimationPlayer = $tension_anim
 
 const A_3S_2 = preload("uid://vpb3fshkkblr")
 const CHAT_ICON = preload("uid://vdiek8gwmqdx")
@@ -25,9 +27,12 @@ const PHONE_INCOMING_CALL = preload("uid://dbieb0wga74q7")
 
 var wendy_open: bool = false
 var mira_open: bool = false
+var unknown_sender_open : bool = false
 var replied_to_wendy: bool = false
 var replied_to_mira: bool = false
 var call_with_wendy_done: bool = false
+
+var chat_exit_disabled : bool = false
 
 var window_1_closed : bool = false
 var window_2_closed : bool = false
@@ -45,15 +50,18 @@ var scene_objectives: Array[Dictionary] = [
 
 func _ready() -> void:
 	GameState.load_game()
-
+	
 	reply_finish.connect(_on_reply_finished)
 	wendy_calling.connect(_on_wendy_calling)
 	window_closed.connect(_on_window_closed)
 	SignalBus.chat_message_sent.connect(reply_to_chat)
 	SignalBus.player_answered_call.connect(_on_answered_call)
 	SignalBus.call_done.connect(_on_call_done)
-	# SignalBus.chat_opened.connect(_on_chat_opened)
-
+	SignalBus.app_chat_opened.connect(_on_app_chat_opened)
+	SignalBus.chat_opened.connect(_on_chat_opened)
+	
+	SignalBus.unknown_sender_unlocked = true
+	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = true
 	danilo_collision_shape_2d.disabled = true
 	player_danilo.animation_locked = true
 	player_danilo.force_cannot_move = true
@@ -68,6 +76,11 @@ func _ready() -> void:
 	Hud.clear_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	Hud.objective_intro_anim()
+	
+	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = false
+
+func _on_chat_opened(c: String) -> void:
+	print(c)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
@@ -105,11 +118,19 @@ func reply_to_chat(chat_name: String) -> void:
 			if not mira_open:
 				DialogueManager.show_dialogue_balloon(A_3S_2, "reply_" + chat_name)
 				mira_open = true
+		"unknown":
+			if not unknown_sender_open:
+				DialogueManager.show_dialogue_balloon(A_3S_2, "unknown")
+				unknown_sender_open = true
 
 
 func _on_reply_finished() -> void:
 	if replied_to_mira and replied_to_wendy:
+		camera_2d.zoom.x = 3.0
+		camera_2d.zoom.y = 3.0
 		ObjectiveManager.complete_objective(scene_objectives[0]["ID"])
+		Hud.phone_outro()
+		# also clear current children of the margin container
 		shadow_appear()
 
 func _on_wendy_calling() -> void:
@@ -127,7 +148,6 @@ func _on_call_done() -> void:
 	var lockscreen = Hud.get_node("Control/phone/MarginContainer")
 	for node in lockscreen.get_children():
 		node.visible = true
-
 
 func shadow_appear() -> void:
 	animation_player.play("shadow_show")
@@ -152,7 +172,6 @@ func _on_window_area_2_body_entered(body: Node2D) -> void:
 	if body.name == "player_danilo":
 		SignalBus.in_npc.emit("window_2")
 
-
 func _on_window_area_2_body_exited(body: Node2D) -> void:
 	if body.name == "player_danilo":
 		SignalBus.out_npc.emit("window_2")
@@ -170,8 +189,41 @@ func _on_window_closed () -> void:
 		ObjectiveManager.complete_objective(scene_objectives[1]["ID"])
 		shadow_figure_vanish()
 		shock_sprite.queue_free()
+		_remove_previous_chat_scene_for_unkown_sender()
+		DialogueManager.show_dialogue_balloon(A_3S_2, "unknown")
 
 func shadow_figure_vanish()->void:
 	await get_tree().create_timer(3.0).timeout
 	npc_shadowy_chaser.queue_free()
 	
+func _on_app_chat_opened () -> void:
+	Hud.get_node("Control/phone/MarginContainer/lock_screen").clear_notifications()
+
+func _prevent_chat_exit_while_dialoging () -> void:
+	if not chat_exit_disabled:
+		Hud.get_node("Control/phone/MarginContainer/app_chat_convo/screen/Panel/EXIT").disabled = true
+		chat_exit_disabled = true
+	else:
+		Hud.get_node("Control/phone/MarginContainer/app_chat_convo/screen/Panel/EXIT").disabled = false
+		chat_exit_disabled = false
+
+func _remove_previous_chat_scene_for_unkown_sender() -> void:
+	var app_chat = Hud.get_node("Control/phone/MarginContainer/app_chat")
+	var app_chat_convo = Hud.get_node("Control/phone/MarginContainer/app_chat_convo")
+	var phone_main = Hud.get_node("Control/phone/MarginContainer/phone")
+	
+	app_chat.queue_free()
+	app_chat_convo.queue_free()
+	phone_main.queue_free()
+
+func _play_tension_anim() -> void:
+	tension_anim.play("tension")
+
+func _act_3_scene_2_done() -> void:
+	print(SaveManager.get_moral_choice("act_3_scene_2"))
+	
+	SaveManager.game_save.current_act = "act_3"
+	SaveManager.game_save.current_scene = "scene_3" # badly named I admit. this is for the 'continue' part in main menu
+	SignalBus.act_num_scene_num_done.emit("act_3", "scene_2", "res://scenes/menu/menu_main.tscn") # caught in save manager
+	Hud.clear_objectives();
+	pass;

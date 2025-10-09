@@ -67,6 +67,11 @@ func add_notification(texture: Texture, app_name: String, content: String) -> vo
 	notifications_container.move_child(notif_instance, 0)
 
 
+func clear_notifications() -> void:
+	for notif in notifications_container.get_children():
+		notif.queue_free()
+	await get_tree().process_frame
+
 func _get_pov_index() -> int:
 	var current_scene_name = get_tree().current_scene.name.to_lower()
 	match current_scene_name:
