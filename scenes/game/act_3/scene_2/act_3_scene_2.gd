@@ -49,7 +49,7 @@ var scene_objectives: Array[Dictionary] = [
 ]
 
 func _ready() -> void:
-	GameState.load_game()
+	_game_state_flow()
 	
 	reply_finish.connect(_on_reply_finished)
 	wendy_calling.connect(_on_wendy_calling)
@@ -81,7 +81,15 @@ func _ready() -> void:
 
 func _on_chat_opened(c: String) -> void:
 	print(c)
-
+	
+func _game_state_flow() -> void:
+	# PUT THIS AT THE BEGINNING OF FUNC _READY
+	GameState.load_game()
+	GameState.current_act = "act_3"
+	GameState.current_scene = "scene_2"
+	GameState.overwrite_current_scene_keep_previous()
+	GameState.save_game()
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		match player_danilo.current_npc:
@@ -140,6 +148,8 @@ func _on_wendy_calling() -> void:
 
 	var phone_call_instance = PHONE_INCOMING_CALL.instantiate()
 	lockscreen.add_child(phone_call_instance)
+	
+	phone_call_instance.set_caller("Wendy")
 
 func _on_answered_call() -> void:
 	DialogueManager.show_dialogue_balloon(A_3S_2, "call_with_wendy")
