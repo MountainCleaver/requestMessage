@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ktir25grlcr7"
-path="res://.godot/imported/dirt_key.png-f89916853116860d075e2fb51bf1bb7f.ctex"
+uid="uid://c8x8l8ghvvkrv"
+path="res://.godot/imported/hut_deco_new.png-e8a784d94f9a508855565c3a69b12688.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/dirt_key.png"
-dest_files=["res://.godot/imported/dirt_key.png-f89916853116860d075e2fb51bf1bb7f.ctex"]
+source_file="res://assets/tilesets/hut_deco_new.png"
+dest_files=["res://.godot/imported/hut_deco_new.png-e8a784d94f9a508855565c3a69b12688.ctex"]
 
 [params]
 
