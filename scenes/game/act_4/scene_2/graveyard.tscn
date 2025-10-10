@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://b81pheiysdhv7"]
+[gd_scene load_steps=24 format=4 uid="uid://b81pheiysdhv7"]
 
 [ext_resource type="Texture2D" uid="uid://ktir25grlcr7" path="res://assets/tilesets/dirt_key.png" id="1_jigxe"]
 [ext_resource type="Texture2D" uid="uid://cvyn0215nw1hb" path="res://assets/tilesets/graveyard_floor.png" id="1_qq610"]
@@ -1086,6 +1086,42 @@ texture = ExtResource("2_tmcp5")
 physics_layer_0/collision_layer = 4
 sources/0 = SubResource("TileSetAtlasSource_rxxet")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjrew"]
+size = Vector2(29, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfopj"]
+size = Vector2(39, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avryt"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmiot"]
+size = Vector2(44, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwevg"]
+size = Vector2(41, 43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5qgj"]
+size = Vector2(43, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my1an"]
+size = Vector2(52, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yelt"]
+size = Vector2(48, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0k8q"]
+size = Vector2(49, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvkko"]
+size = Vector2(22, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6x08"]
+size = Vector2(31, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f35b7"]
+size = Vector2(28, 46)
+
 [node name="graveyard" type="Node2D"]
 
 [node name="map" type="Node2D" parent="."]
@@ -1108,7 +1144,7 @@ tile_map_data = PackedByteArray("AAAlAA0AAAATABcAAAD+//v/AAAUABwAAAAHAPv/AAAUABw
 tile_set = SubResource("TileSet_gsvtp")
 
 [node name="player_danilo" parent="y-sorted" instance=ExtResource("3_lngte")]
-position = Vector2(595, 8)
+position = Vector2(560, 7)
 
 [node name="Camera2D" type="Camera2D" parent="y-sorted/player_danilo"]
 position = Vector2(0, -6)
@@ -1127,11 +1163,24 @@ texture = ExtResource("1_jigxe")
 region_enabled = true
 region_rect = Rect2(0, 0, 16.405045, 16)
 
+[node name="key" type="Area2D" parent="dirt_and_key/key"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dirt_and_key/key/key"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_rjrew")
+debug_color = Color(0.3188065, 0.5232949, 0.9026183, 0.41960785)
+
 [node name="dirt_1" type="Sprite2D" parent="dirt_and_key"]
 position = Vector2(-32, -16)
 texture = ExtResource("4_jigxe")
 region_enabled = true
 region_rect = Rect2(0, 0, 46.648346, 32)
+
+[node name="d1" type="Area2D" parent="dirt_and_key/dirt_1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dirt_and_key/dirt_1/d1"]
+position = Vector2(1.5, 6)
+shape = SubResource("RectangleShape2D_pfopj")
 
 [node name="dirt_2" type="Sprite2D" parent="dirt_and_key"]
 position = Vector2(65, -80)
@@ -1139,11 +1188,23 @@ texture = ExtResource("4_jigxe")
 region_enabled = true
 region_rect = Rect2(0, 0, 50.296875, 32)
 
+[node name="d2" type="Area2D" parent="dirt_and_key/dirt_2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dirt_and_key/dirt_2/d2"]
+position = Vector2(-1, 7)
+shape = SubResource("RectangleShape2D_avryt")
+
 [node name="dirt_3" type="Sprite2D" parent="dirt_and_key"]
 position = Vector2(160, -81)
 texture = ExtResource("4_jigxe")
 region_enabled = true
 region_rect = Rect2(0, 0, 49.48609, 32)
+
+[node name="d3" type="Area2D" parent="dirt_and_key/dirt_3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dirt_and_key/dirt_3/d3"]
+position = Vector2(1, 8)
+shape = SubResource("RectangleShape2D_gmiot")
 
 [node name="dirt_4" type="Sprite2D" parent="dirt_and_key"]
 position = Vector2(209, -17)
@@ -1151,11 +1212,23 @@ texture = ExtResource("4_jigxe")
 region_enabled = true
 region_rect = Rect2(0, 0, 48.81044, 32)
 
+[node name="d4" type="Area2D" parent="dirt_and_key/dirt_4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dirt_and_key/dirt_4/d4"]
+position = Vector2(0.5, 5.5)
+shape = SubResource("RectangleShape2D_cwevg")
+
 [node name="dirt_5" type="Sprite2D" parent="dirt_and_key"]
 position = Vector2(209, 48)
 texture = ExtResource("4_jigxe")
 region_enabled = true
 region_rect = Rect2(0, 0, 50.02661, 32)
+
+[node name="d5" type="Area2D" parent="dirt_and_key/dirt_5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dirt_and_key/dirt_5/d5"]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_u5qgj")
 
 [node name="dirt_6" type="Sprite2D" parent="dirt_and_key"]
 position = Vector2(112, 47)
@@ -1163,14 +1236,55 @@ texture = ExtResource("4_jigxe")
 region_enabled = true
 region_rect = Rect2(0, 0, 48.67531, 32)
 
+[node name="d6" type="Area2D" parent="dirt_and_key/dirt_6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dirt_and_key/dirt_6/d6"]
+position = Vector2(1, 9)
+shape = SubResource("RectangleShape2D_my1an")
+
 [node name="dirt_7" type="Sprite2D" parent="dirt_and_key"]
 position = Vector2(64, -17)
 texture = ExtResource("4_jigxe")
 region_enabled = true
 region_rect = Rect2(0, 0, 47.45913, 32)
 
+[node name="d7" type="Area2D" parent="dirt_and_key/dirt_7"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dirt_and_key/dirt_7/d7"]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_7yelt")
+
 [node name="dirt_8" type="Sprite2D" parent="dirt_and_key"]
 position = Vector2(17, 48)
 texture = ExtResource("4_jigxe")
 region_enabled = true
 region_rect = Rect2(0, 0, 48.64631, 32)
+
+[node name="d8" type="Area2D" parent="dirt_and_key/dirt_8"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dirt_and_key/dirt_8/d8"]
+position = Vector2(0.5, 8.5)
+shape = SubResource("RectangleShape2D_s0k8q")
+
+[node name="Interactable" type="Node2D" parent="."]
+
+[node name="house_enter" type="Area2D" parent="Interactable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/house_enter"]
+position = Vector2(-245, -17.5)
+shape = SubResource("RectangleShape2D_nvkko")
+debug_color = Color(0.6242685, 0.5289223, 0.22159728, 0.41960785)
+
+[node name="grave_exit" type="Area2D" parent="Interactable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/grave_exit"]
+position = Vector2(591.5, -2)
+shape = SubResource("RectangleShape2D_j6x08")
+debug_color = Color(0.6356806, 0.40239242, 0.872195, 0.41960785)
+
+[node name="grave_entry" type="Area2D" parent="Interactable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/grave_entry"]
+position = Vector2(305, 6)
+shape = SubResource("RectangleShape2D_f35b7")
+debug_color = Color(0.75351673, 0.34807116, 0.75874317, 0.41960785)
