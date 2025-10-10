@@ -1,5 +1,5 @@
 ~ start
-do Hud.phone_intro()
+do Hud.show_phone_with_unknown_sender()
 do ChatManager.send_chat("unknown_sender", "Player", "Hah, sino ka? Bakit alam mo pangalan ko?")
 Danilo: Hah, sino ka? Bakit alam mo pangalan ko?  => reply_danilo_1
 => END
@@ -7,6 +7,7 @@ Danilo: Hah, sino ka? Bakit alam mo pangalan ko?  => reply_danilo_1
 ~ reply_danilo_1
 do ChatManager.send_chat("unknown_sender", "Player", "Prank ba to?")
 Danilo: Prank ba to?  => reply_unknown_1
+=> END
 
 ~ reply_unknown_1
 do ChatManager.send_chat("unknown_sender", "Unknown Number", "Nakalimutan mo na ako?")
@@ -19,6 +20,181 @@ Danilo: Sorry, di kita kilala. Saan mo ‘to nakuhang number ko?  => reply_unkno
 => END
 
 ~ reply_unknown_2
-do ChatManager.send_chat("unknown_sender", "Unknown Number", "Ako to Dan...")
-Unknown_sender: [wait=1.5]Ako to Dan...
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Dan...")
+Unknown_sender: [wait=1.5]Dan... => reply_danilo_3
+=> END
+
+~ reply_danilo_3
+do ChatManager.send_chat("unknown_sender", "Player", "???")
+Danilo: ???
+do Hud.phone_outro()
+=> END
+
+~ reply_danilo_4
+do ChatManager.send_chat("unknown_sender", "Player", "...MATEO??")
+do Hud.phone_intro()
+Danilo: [shake rate=20 level=10]...MATEO???[/shake]
+Danilo: Hindi ko alam... [wait=0.5]pero bakit yun agad pumasok sa isip ko?[wait=1]
+=> thoughts_danilo_1
+
+~ thoughts_danilo_1
+do SignalBus.emit_signal("show_locked_label")
+Danilo: ...[wait=1]
+Danilo: Bakit hindi ko na siya machat? [wait=0.5]Marami pa akong gustong itanong sa kanya.[wait=1]
+Danilo: Kung si Mateo nga yun? [wait=0.5]Hindi kaya’t buhay pa siya?[wait=1]
+Danilo: Pero... [wait=0.5]Bakit ngayon lang siya nagparamdam?[wait=1]
+Danilo: Ilang... [wait=0.5]Ilang taon na ang lumipas nang nawala siya...[wait=1]
+do Hud.show_objectives()
+=> END
+
+~ choices_danilo_1
+- Wen, ikaw ba yung nagchachat sakin? => reply_danilo_5
+- Wen, prinaprank mo ata ako ah! => reply_danilo_5
+=> END
+
+~ reply_danilo_5
+do ObjectiveManager.complete_objective(1)
+do ChatManager.send_chat("wendy", "Player", "Wen, ikaw ba yung nagchachat sakin?")
+Danilo: Wen, ikaw ba yung nagchachat sakin?
+
+do ChatManager.send_chat("wendy", "Player", "Prinaprank mo ata ako ah!")
+Danilo: Prinaprank mo ata ako ah!
+=> reply_wendy_1
+
+
+~ reply_wendy_1
+do ChatManager.send_chat("wendy", "Wendy", "Huh? What message? Wala akong chinat na kung sino recently?")
+Wendy: [wait=1.5]Huh? What message? Wala akong chinat na kung sino recently? => reply_wendy_2
+=> reply_wendy_2
+
+~ reply_wendy_2
+do ChatManager.send_chat("wendy", "Wendy", "Did something happen?")
+Wendy: [wait=1.5]Did something happen?  
+=> reply_danilo_6
+
+~ reply_danilo_6
+do ChatManager.send_chat("wendy", "Player", "May nag chat kasi sakin.")
+Danilo: May nag chat kasi sakin.
+
+do ChatManager.send_chat("wendy", "Player", "*sent an image*")
+
+do ChatManager.send_chat("wendy", "Player", "'Di ko alam pano niya nalaman number ko, nakakatakot kasi kilala niya ko?")
+Danilo: 'Di ko alam pano niya nalaman number ko, nakakatakot kasi kilala niya ko?
+=> reply_wendy_3
+
+~ reply_wendy_3
+do ChatManager.send_chat("wendy", "Wendy", "That’s weird, I don’t remember giving your number to anyone.")
+Wendy: [wait=1.5]That’s weird, I don’t remember giving your number to anyone.
+=> reply_wendy_4
+
+~ reply_wendy_4
+do ChatManager.send_chat("wendy", "Wendy", "Kaya pala akala mo prinaprank kita.")
+Wendy: [wait=1.5]Kaya pala akala mo prinaprank kita. 
+=> reply_danilo_7
+
+~ reply_danilo_7
+do ChatManager.send_chat("wendy", "Player", "Yung number? Nakikilala mo kung kanino yan?")
+Danilo: Yung number? Nakikilala mo kung kanino yan?
+=> reply_wendy_5
+
+~ reply_wendy_5
+do ChatManager.send_chat("wendy", "Wendy", "Hindi eh, baka alam ng iba nating kakilala?")
+Wendy: [wait=1.5]Hindi eh, baka alam ng iba nating kakilala?
+=> reply_wendy_6
+
+~ reply_wendy_6
+do ChatManager.send_chat("wendy", "Wendy", "Hey, if it's bothering you, wag mo na lang siguro i-entertain.")
+Wendy: [wait=1.5]Hey, if it's bothering you, wag mo na lang siguro i-entertain.
+=> reply_danilo_8
+
+~ reply_danilo_8
+do ChatManager.send_chat("wendy", "Player", "Sige, itulog ko na lang siguro to.")
+Danilo: Sige, itulog ko na lang siguro to.
+
+do Hud.phone_outro()
+do Hud.hide_objectives()
+do _after_phone_outro_narration()
+=> END
+
+~ thoughts_danilo_2
+Danilo: Kani-kanina lang may naalala ako sa park. 
+Danilo: Ngayon naman may number na ‘di ko alam kung kanino na nagtetext sa akin…
+Danilo: Parang may mali…
+do Hud.show_objectives()
+=> END
+
+~ choices_danilo_2
+do start_buzz()
+do Hud.hide_objectives()
+Danilo: Sino na naman uli 'to? [wait = 0.5]
+- Open the phone again. =>< open_phone
+=> END
+
+~ open_phone
+do stop_buzz()
+do Hud.show_phone_with_unknown_sender() 
+Danilo: Siya na naman?
+=> chat_unknown_sender
+
+~ chat_unknown_sender
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Danilo...")
+Unknown_sender: [wait=1.5]Danilo...
+=> reply_danilo_9
+
+~ reply_danilo_9
+do ChatManager.send_chat("unknown_sender", "Player", "Sino ka ba talaga?")
+Danilo: Sino ka ba talaga? 
+=> reply_unknown_3
+
+~ reply_unknown_3
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Andoon ka. Nakita mo lahat ang nangyari. Hindi mo lang matandaan.")
+Unknown_sender: [wait=1.5]Andoon ka. Nakita mo lahat ang nangyari. Hindi mo lang matandaan.
+=> reply_danilo_10
+
+~ reply_danilo_10
+- Kasalanan ko ba?
+- Ikaw ba talaga si Mateo?
+- O ginagawa mo lang ‘to para guluhin ako?
+=> reply_danilo_11
+
+~ reply_danilo_11
+do ChatManager.send_chat("unknown_sender", "Player", "Kasalanan ko ba? Ikaw ba talaga si Mateo? O ginagawa mo lang ‘to para guluhin ako?")
+Danilo: Kasalanan ko ba? Ikaw ba talaga si Mateo? O ginagawa mo lang ‘to para guluhin ako?
+=> choices_danilo_3
+
+~ choices_danilo_3
+do start_buzz()
+do unknown_sender_calling.emit()
+Danilo: ... [wait=0.5]
+=> END
+
+~ answer_call
+do SaveManager.save_moral_choice("act_2_scene_1", "restless")
+do stop_buzz()
+Unknown_sender: [shake rate=20 level=10].. -. .. .-- .- -. / -- --- / .- -.- ---[/shake]
+Danilo: S-sino ka ba talaga...?
+Unknown_sender: [shake rate=20 level=10].. -. .. .-- .- -. / -- --- / .- -.- ---[/shake]
+Danilo: Tigilan mo na ako!
+Unknown_sender: [shake rate=20 level=10].. -. .. .-- .- -. / -- --- / .- -.- ---[/shake]
+do unknown_sender_calling.emit()
+do call_with_unknown_sender_done = true
+do SignalBus.call_done.emit()
+=> last_restless_part
+
+
+~ reject_call
+do SaveManager.save_moral_choice("act_2_scene_1", "relief")
+do stop_buzz()
+Danilo: Hindi ko na kayang harapin ‘to ngayon…
+do unknown_sender_calling.emit()
+do call_with_unknown_sender_done = true
+do SignalBus.call_done.emit()
+=> last_relief_part
+
+~ last_relief_part
+do Hud.phone_outro()
+=> END
+
+~ last_restless_part
+do Hud.phone_outro()
 => END

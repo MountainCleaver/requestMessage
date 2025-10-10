@@ -2,8 +2,8 @@ extends CanvasLayer
 signal phone_outro_finished
 
 @onready var v_box_container: VBoxContainer = $Control/objectives/MarginContainer/VBoxContainer
-@onready var objectives_panel: Panel = $Control/objectives;
-const BASIS_33 = preload("res://assets/fonts/basis33.ttf");
+@onready var objectives_panel: Panel = $Control/objectives
+const BASIS_33 = preload("res://assets/fonts/basis33.ttf")
 @onready var hud_animations: AnimationPlayer = $hud_animations
 
 @onready var photo_popup_holder: Panel = $Control/photo_popup_holder
@@ -11,95 +11,96 @@ const BASIS_33 = preload("res://assets/fonts/basis33.ttf");
 
 const PHONE_MAIN = preload("res://scenes/game/phone_main.tscn")
 const APP_CHAT = preload("res://scenes/game/app_chat.tscn")
-const PHONE_WENDY = preload("res://scenes/game/act_2/scene_4/wendy_house.tscn")
-
-var popup_showing = false;
 
 @onready var lock_screen: Control = $Control/phone/MarginContainer/lock_screen
 @onready var phone_container: MarginContainer = $Control/phone/MarginContainer
 
-# FLAGS
+# === LOCAL FLAGS (no GameState) ===
 var phone_showing: bool = false
 var lock_screen_active: bool = true
 var phone_main_active: bool = false
 var chat_open: bool = false
+var popup_showing: bool = false
 
 func _ready() -> void:
-	# Restore phone state from GameState when HUD loads
 	_restore_phone_state()
-	
+
+
+# ==================================
+# === OBJECTIVES ===
+# ==================================
 func clear_objectives() -> void:
 	for obj in v_box_container.get_children():
-		obj.queue_free();
+		obj.queue_free()
 
 func new_objective(obj_ID: int, new_objective_text: String, color: Color = Color.BLACK) -> void:
 	_create_objective_node(obj_ID, new_objective_text, color)
 
-func done_objective(obj_ID: int, objective: String) -> void: # objective = current objective, done_objective = same but with strikthough
-	
-	var objectives_nodes = v_box_container.get_children() as Array[RichTextLabel];
+func done_objective(obj_ID: int, objective: String) -> void:
+	var objectives_nodes = v_box_container.get_children() as Array[RichTextLabel]
 	for obj in objectives_nodes:
 		if obj.get_meta("ID") == obj_ID:
-			obj.text = "[✔]" + objective;
+			obj.text = "[✔]" + objective
 
 func _create_objective_node(objective_ID: int, objective_string: String, color: Color = Color.BLACK) -> void:
 	var objective_node = RichTextLabel.new()
 	objective_node.bbcode_enabled = true
 	objective_node.fit_content = true
 	objective_node.autowrap_mode = TextServer.AUTOWRAP_WORD
-
 	objective_node.add_theme_font_override("normal_font", BASIS_33)
 	objective_node.add_theme_font_size_override("normal_font_size", 24)
-
-	# Set color based on what was passed (default black)
 	objective_node.add_theme_color_override("default_color", color)
 	objective_node.add_theme_color_override("font_strikethrough_color", Color.RED)
 	objective_node.add_theme_constant_override("font_strikethrough_width", 3)
-
 	objective_node.text = "[ ]" + str(objective_string)
 	objective_node.set_meta("ID", objective_ID)
-
 	v_box_container.add_child(objective_node)
 
-
 func show_objectives() -> void:
-	objectives_panel.visible = true;
-	objective_intro_anim();
+	objectives_panel.visible = true
+	objective_intro_anim()
 
 func hide_objectives() -> void:
-	objectives_panel.visible = false;
+	objectives_panel.visible = false
 
 func objective_intro_anim() -> void:
-	hud_animations.play("objective_in");
+	hud_animations.play("objective_in")
 
-func objective_outro_anim()-> void:
-	hud_animations.play("objective_out");
-	SignalBus.phone_out.emit();
+func objective_outro_anim() -> void:
+	hud_animations.play("objective_out")
+	SignalBus.phone_out.emit()
 
+
+# ==================================
+# === PHONE HANDLING (local only) ===
+# ==================================
 func phone_intro() -> void:
-	hud_animations.play("phone_in");
-	GameState.phone_showing = true
-	SignalBus.phone_in.emit();
+	hud_animations.play("phone_in")
+	phone_showing = true
+	SignalBus.phone_in.emit()
+
 func phone_outro() -> void:
-	hud_animations.play("phone_out");
-	GameState.phone_showing = false
-	SignalBus.phone_out.emit();
+	hud_animations.play("phone_out")
+	phone_showing = false
+	SignalBus.phone_out.emit()
 
 func toggle_phone() -> void:
 	if phone_showing:
 		phone_outro()
-		phone_showing = false
 	else:
 		phone_intro()
-		phone_showing = true
 
+
+# ==================================
+# === POPUP HANDLING ===
+# ==================================
 func _toggle_popup() -> void:
 	if popup_showing:
-		hud_animations.play("popup_out");
-		popup_showing = false;
+		hud_animations.play("popup_out")
+		popup_showing = false
 	else:
-		hud_animations.play("popup_in");
-		popup_showing = true;
+		hud_animations.play("popup_in")
+		popup_showing = true
 
 func show_popup() -> void:
 	if not popup_showing:
@@ -109,79 +110,86 @@ func show_popup() -> void:
 func hide_popup() -> void:
 	if popup_showing:
 		hud_animations.play("popup_out")
-		popup_showing = false;
+		popup_showing = false
 
 func add_popup_image(image_path: String) -> void:
 	var image = load(image_path) as Texture2D
 	texture_rect.texture = image
 
 func clear_popup_image() -> void:
-	texture_rect.texture = null;
+	texture_rect.texture = null
 
-# ==============================
-# SHOW PHONE WITH UNKNOWN SENDER
-# ==============================
+
+# ==================================
+# === SHOW PHONE W/ UNKNOWN SENDER ===
+# ==================================
 func show_phone_with_unknown_sender() -> void:
-	if not GameState.phone_showing:
+	# --- Show phone if hidden ---
+	if not phone_showing:
 		phone_intro()
-		GameState.phone_showing = true
+		phone_showing = true
 
+	# Wait for phone animation to finish (use timer or animation signal)
 	await get_tree().create_timer(0.8).timeout
 
-	# Hide lock screen if active
-	if GameState.lock_screen_active and phone_container.has_node("lock_screen"):
+	# --- Hide lock screen if active ---
+	if lock_screen_active and phone_container.has_node("lock_screen"):
 		phone_container.get_node("lock_screen").visible = false
-		GameState.lock_screen_active = false
+		lock_screen_active = false
 
-	# Show or reuse phone_main
-	var phone_main: Node = null
-	if not GameState.phone_main_active:
+	# --- Ensure phone_main exists ---
+	var phone_main: Node
+	if not phone_container.has_node("phone_main"):
 		phone_main = PHONE_MAIN.instantiate()
+		phone_main.name = "phone_main"
 		phone_container.add_child(phone_main)
-		GameState.phone_main_active = true
+		phone_main_active = true
 	else:
 		phone_main = phone_container.get_node("phone_main")
+		phone_main.visible = true  # just in case it was hidden
 
-	# Open chat app
-	if not GameState.chat_open:
-		var app_chat = APP_CHAT.instantiate()
+	# --- Ensure APP_CHAT exists ---
+	var app_chat: Node
+	if not phone_container.has_node("app_chat"):
+		app_chat = APP_CHAT.instantiate()
+		app_chat.name = "app_chat"
 		phone_container.add_child(app_chat)
-
-		# Set previous scene for exit/back logic
 		app_chat.previous_scene = phone_main
+		chat_open = true
+	else:
+		app_chat = phone_container.get_node("app_chat")
+		chat_open = true
 
-		# Hide phone_main
-		phone_main.visible = false
-		app_chat.visible = true
+	# --- Show APP_CHAT and hide phone_main ---
+	phone_main.visible = false
+	app_chat.visible = true
 
-		# Trigger chat logic
+	# --- Trigger unknown sender chat ---
+	if "unlock_unknown_sender" in app_chat:
 		app_chat.unlock_unknown_sender()
+	if "_on_unknown_sender_pressed" in app_chat:
 		app_chat._on_unknown_sender_pressed()
 
-		GameState.chat_open = true
 
 
-# ==============================
-# RESTORE PHONE STATE (for load)
-# ==============================
+# ==================================
+# === RESTORE PHONE STATE (local) ===
+# ==================================
 func _restore_phone_state() -> void:
-	if not GameState.phone_showing:
-		return  # phone is hidden at start
+	if not phone_showing:
+		return
 
-	# Show lock screen if active
-	if GameState.lock_screen_active:
+	if lock_screen_active:
 		if not phone_container.has_node("lock_screen"):
-			var lock_screen = preload("res://scenes/game/lock_screen.tscn").instantiate()
-			phone_container.add_child(lock_screen)
+			var lock_screen_scene = preload("res://scenes/game/lock_screen.tscn").instantiate()
+			phone_container.add_child(lock_screen_scene)
 
-	# Show phone_main if active
-	if GameState.phone_main_active:
+	if phone_main_active:
 		if not phone_container.has_node("phone_main"):
 			var phone_main = PHONE_MAIN.instantiate()
 			phone_container.add_child(phone_main)
 
-	# Show chat app if active
-	if GameState.chat_open:
+	if chat_open:
 		if not phone_container.has_node("app_chat"):
 			var app_chat = APP_CHAT.instantiate()
 			phone_container.add_child(app_chat)

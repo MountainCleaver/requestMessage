@@ -1,65 +1,58 @@
 extends Node
 
-const SAVE_FILE := "user://save_game.json"
+const SAVE_FILE := "user://save_chat_history.json"
 
-# === SCENE STATE FLAGS ===
+# === BASIC STATE ===
 var current_act: String = "act_1"
 var current_scene: String = "scene_4"
 
-# === CHAT FLAGS ===
-var checked_sched := false
-var chat_objectives_added := false
-var wendy_reply_shown := false
-var mira_reply_shown := false
-var wendy_opened := false
-var mira_opened := false
-var gc_opened := false
-var unknown_sender_opened := false
-var set1_objective_done := false
-var objective8_added := false
-var has_gone_home := false
+# ===============================
+# UTILITY: Get numeric scene index
+# ===============================
+func scene_index(scene_name: String) -> int:
+	var parts = scene_name.split("_")
+	if parts.size() < 2:
+		return 0
+	return int(parts[1])
 
-# === PHONE STATE FLAGS ===
-var phone_showing := false
-var lock_screen_active := true
-var phone_main_active := false
-var chat_open := false
+# ===============================
+# UTILITY: Add messages without duplicates
+# ===============================
+func add_messages_no_duplicates(target_history: Dictionary, source_history: Dictionary):
+	for chat_name in target_history.keys():
+		if source_history.has(chat_name):
+			for msg in source_history[chat_name]:
+				if msg not in target_history[chat_name]:
+					target_history[chat_name].append(msg)
 
 # ===============================
 # SAVE GAME
 # ===============================
 func save_game():
-	var data := {
-		"current_act": current_act,
-		"current_scene": current_scene,
-		"checked_sched": checked_sched,
-		"chat_objectives_added": chat_objectives_added,
-		"wendy_reply_shown": wendy_reply_shown,
-		"mira_reply_shown": mira_reply_shown,
-		"wendy_opened": wendy_opened,
-		"mira_opened": mira_opened,
-		"gc_opened": gc_opened,
-		"unknown_sender_opened": unknown_sender_opened,
-		"set1_objective_done": set1_objective_done,
-		"objective8_added": objective8_added,
-		"has_gone_home": has_gone_home,
-		
-		# === phone state flags ===
-		"phone_showing": phone_showing,
-		"lock_screen_active": lock_screen_active,
-		"phone_main_active": phone_main_active,
-		"chat_open": chat_open,
+	var data := {}
 	
+	if FileAccess.file_exists(SAVE_FILE):
+		var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
+		var existing = JSON.parse_string(file.get_as_text())
+		file.close()
+		if typeof(existing) == TYPE_DICTIONARY:
+			data = existing
+
+	if not data.has("acts"):
+		data["acts"] = {}
+	if not data["acts"].has(current_act):
+		data["acts"][current_act] = {}
+	
+	data["acts"][current_act][current_scene] = {
 		"chat_history": ChatManager.history.duplicate(true)
 	}
+	data["current_act"] = current_act
+	data["current_scene"] = current_scene
 
 	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
-	if file:
-		file.store_string(JSON.stringify(data))
-		file.close()
-		print("Game saved successfully!")
-	else:
-		print("Failed to save game!")
+	file.store_string(JSON.stringify(data, "\t"))
+	file.close()
+	print("Set to Act: %s, Scene: %s" % [current_act, current_scene])
 
 # ===============================
 # LOAD GAME
@@ -70,63 +63,135 @@ func load_game():
 		return
 
 	var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
-	if not file:
-		print("Failed to open save file!")
-		return
-
-	var file_text = file.get_as_text()
+	var data: Dictionary = JSON.parse_string(file.get_as_text())
 	file.close()
 
-	# Godot 4 JSON parsing
-	var data: Dictionary = JSON.parse_string(file_text)
-	if data == null:
+	if typeof(data) != TYPE_DICTIONARY:
 		print("Failed to parse save JSON!")
 		return
 
-	# Restore all flags
 	current_act = data.get("current_act", "act_1")
 	current_scene = data.get("current_scene", "scene_4")
-	checked_sched = data.get("checked_sched", false)
-	chat_objectives_added = data.get("chat_objectives_added", false)
-	wendy_reply_shown = data.get("wendy_reply_shown", false)
-	mira_reply_shown = data.get("mira_reply_shown", false)
-	wendy_opened = data.get("wendy_opened", false)
-	mira_opened = data.get("mira_opened", false)
-	gc_opened = data.get("gc_opened", false)
-	unknown_sender_opened = data.get("unknown_sender_opened", false)
-	set1_objective_done = data.get("set1_objective_done", false)
-	objective8_added = data.get("objective8_added", false)
-	has_gone_home = data.get("has_gone_home", false)
-	phone_showing = data.get("phone_showing", false)
-	lock_screen_active = data.get("lock_screen_active", true)
-	phone_main_active = data.get("phone_main_active", false)
-	chat_open = data.get("chat_open", false)
 
+	var combined_history := {
+		"wendy": [],
+		"mira": [],
+		"group_chat": [],
+		"unknown_sender": []
+	}
 
-	# Restore chat history
-	if data.has("chat_history"):
-		ChatManager.history = data["chat_history"].duplicate(true)
+	if data.has("acts"):
+		var acts_sorted = data["acts"].keys()
+		acts_sorted.sort()
 
-	print("Game loaded successfully! Current scene: %s" % current_scene)
+		for act_name in acts_sorted:
+			# Skip acts after current
+			if act_name > current_act:
+				continue
+			var act_data = data["acts"][act_name]
+			var scenes_sorted = act_data.keys()
+			scenes_sorted.sort_custom(func(a, b):
+				return scene_index(a) - scene_index(b)
+			)
 
+			for scene_name in scenes_sorted:
+				# Skip current/future scenes in current act
+				if act_name == current_act and scene_index(scene_name) >= scene_index(current_scene):
+					continue
+				var scene_data = act_data[scene_name]
+				if scene_data.has("chat_history"):
+					add_messages_no_duplicates(combined_history, scene_data["chat_history"])
+
+	# Ensure current scene exists
+	if not data["acts"][current_act].has(current_scene):
+		data["acts"][current_act][current_scene] = {
+			"chat_history": {
+				"wendy": [],
+				"mira": [],
+				"group_chat": [],
+				"unknown_sender": []
+			}
+		}
+
+	# Add current scene empty chats
+	add_messages_no_duplicates(combined_history, data["acts"][current_act][current_scene]["chat_history"])
+
+	ChatManager.history = combined_history.duplicate(true)
+	print("Previous scene chats merged, current scene reset.")
+	print("Current act: %s, scene: %s" % [current_act, current_scene])
+
+# ===============================
+# OVERWRITE CURRENT SCENE KEEP PREVIOUS
+# ===============================
+func overwrite_current_scene_keep_previous():
+	if not FileAccess.file_exists(SAVE_FILE):
+		return
+
+	var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
+	var data = JSON.parse_string(file.get_as_text())
+	file.close()
+
+	if typeof(data) != TYPE_DICTIONARY:
+		return
+
+	if not data.has("acts"):
+		data["acts"] = {}
+	if not data["acts"].has(current_act):
+		data["acts"][current_act] = {}
+
+	# Reset only current scene
+	data["acts"][current_act][current_scene] = {
+		"chat_history": {
+			"wendy": [],
+			"mira": [],
+			"group_chat": [],
+			"unknown_sender": []
+		}
+	}
+
+	# Write updated file
+	var file_w = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
+	file_w.store_string(JSON.stringify(data, "\t"))
+	file_w.close()
+
+	# Rebuild runtime ChatManager.history
+	var combined_history := {
+		"wendy": [],
+		"mira": [],
+		"group_chat": [],
+		"unknown_sender": []
+	}
+
+	var acts_sorted = data["acts"].keys()
+	acts_sorted.sort()
+
+	for act_name in acts_sorted:
+		if act_name > current_act:
+			continue
+		var act_data = data["acts"][act_name]
+		var scenes_sorted = act_data.keys()
+		scenes_sorted.sort_custom(func(a, b):
+			return scene_index(a) - scene_index(b)
+		)
+		for scene_name in scenes_sorted:
+			if act_name == current_act and scene_index(scene_name) >= scene_index(current_scene):
+				continue
+			var scene_data = act_data[scene_name]
+			if scene_data.has("chat_history"):
+				add_messages_no_duplicates(combined_history, scene_data["chat_history"])
+
+	# Add current scene empty chats
+	add_messages_no_duplicates(combined_history, data["acts"][current_act][current_scene]["chat_history"])
+
+	ChatManager.history = combined_history.duplicate(true)
+	print("Current scene overwritten, previous scenes loaded, future scenes excluded.")
 
 # =========================
-# QUICK RESET (Optional)
+# QUICK RESET
 # =========================
 func reset_game():
 	current_act = "act_1"
 	current_scene = "scene_4"
-	checked_sched = false
-	chat_objectives_added = false
-	wendy_reply_shown = false
-	mira_reply_shown = false
-	wendy_opened = false
-	mira_opened = false
-	gc_opened = false
-	unknown_sender_opened = false
-	set1_objective_done = false
-	objective8_added = false
-	has_gone_home = false
 	ChatManager.history = {
 		"wendy": [], 
 		"mira": [], 
