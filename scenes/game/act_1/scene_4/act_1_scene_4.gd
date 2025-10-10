@@ -8,6 +8,7 @@ const DANILO_LOCK = preload("res://scenes/game/lock_screen.tscn")
 
 # NODES
 @onready var locations: Node2D = $locations
+@onready var ChatHistory = get_node("/root/ChatHistory")
 var player_danilo: CharacterBody2D = null
 
 # OBJECTIVES
@@ -34,16 +35,16 @@ var unknown_sender_opened: bool = false
 var set1_objective_done: bool = false
 var objective8_added: bool = false
 var has_gone_home: bool = false
-
 var final_objectives_done: bool = false
 
 # STATES
 var current_location: Node = null
 var buzz_timer: Timer
-
 var lock_screen_instance: Control = null
 
 func _ready() -> void:
+	_game_state_flow()
+	
 	switch_location(DANILO_NEIGHBORHOOD)
 
 	# Buzz Timer setup
@@ -68,10 +69,16 @@ func _ready() -> void:
 func _start_scene() -> void:
 	DialogueManager.show_dialogue_balloon(A_1S_4, "start")
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
-	# Show initial lock screen after dialogue starts
 	await get_tree().create_timer(1.0).timeout
 	show_initial_lock_screen()
 
+func _game_state_flow() -> void:
+	# PUT THIS AT THE BEGINNING OF FUNC _READY
+	GameState.current_act = "act_1"
+	GameState.current_scene = "scene_4"
+	GameState.save_game()
+	GameState.overwrite_current_scene_keep_previous()
+	
 # ===================
 # LOCATION 
 # ===================
@@ -119,7 +126,6 @@ func _on_app_chat_opened() -> void:
 		ObjectiveManager.add_objective(scene_objectives[7]["ID"], scene_objectives[7]["text"], Color.RED)
 		objective8_added = true
 		DialogueManager.show_dialogue_balloon(A_1S_4, "after_open_phone_2")
-		# Don't show lock screen here - let the phone system handle it
 
 func _on_chat_opened(chat_name: String) -> void:
 	match chat_name:
@@ -133,15 +139,11 @@ func _on_chat_opened(chat_name: String) -> void:
 			open_chat_generic("unknown_sender", "chat_unknown_sender")
 
 			unknown_sender_opened = true
-			GameState.unknown_sender_opened = true
-			GameState.save_game()
 			
 			if has_gone_home:
 				ObjectiveManager.complete_objective(scene_objectives[7]["ID"])
-
 				final_objectives_done = true
-				
-				# UPDATE LOCK SCREEN FLAG IF IT EXISTS
+			
 				if lock_screen_instance:
 					lock_screen_instance.objectives_done = true
 				
@@ -165,31 +167,22 @@ func _on_chat_message_sent(chat_name: String) -> void:
 				DialogueManager.show_dialogue_balloon(A_1S_4, "reply_mira_answer")
 
 # ===================
-# CHAT HELPER FUNCTIONS
+# CHAT HELPERS
 # ===================
 func get_chat_flag(chat_name: String) -> bool:
 	match chat_name:
-		"wendy":
-			return wendy_opened
-		"mira":
-			return mira_opened
-		"group_chat":
-			return gc_opened
-		"unknown_sender":
-			return unknown_sender_opened
-		_:
-			return false
+		"wendy": return wendy_opened
+		"mira": return mira_opened
+		"group_chat": return gc_opened
+		"unknown_sender": return unknown_sender_opened
+		_: return false
 
 func set_chat_flag(chat_name: String, value: bool) -> void:
 	match chat_name:
-		"wendy":
-			wendy_opened = value
-		"mira":
-			mira_opened = value
-		"group_chat":
-			gc_opened = value
-		"unknown_sender":
-			unknown_sender_opened = value
+		"wendy": wendy_opened = value
+		"mira": mira_opened = value
+		"group_chat": gc_opened = value
+		"unknown_sender": unknown_sender_opened = value
 
 func open_chat_generic(chat_name: String, dialogue_key: String, objective_id: int = -1) -> void:
 	if not checked_sched:
@@ -233,30 +226,23 @@ func _on_last_objective_lock_pressed() -> void:
 		ObjectiveManager.add_objective(scene_objectives[5]["ID"], scene_objectives[5]["text"])
 
 # ===================
-# LOCK SCREEN MANAGEMENT (SIMPLIFIED)
-# LOCK SCREEN MANAGEMENT
+# LOCK SCREEN
 # ===================
 func _show_lock_screen() -> void:
 	if lock_screen_instance and is_instance_valid(lock_screen_instance):
 		lock_screen_instance.visible = true
 		return
-	
 	print("Danilo lock screen shown")
 
 func _on_lock_screen_pressed() -> void:
 	print("Lock screen button pressed")
-
-	# Hide the lock screen instead of destroying it
-
-	lock_screen_instance.visible = false
+	if lock_screen_instance:
+		lock_screen_instance.visible = false
 
 func _on_phone_locked() -> void:
 	print("PHONE_LOCKED SIGNAL RECEIVED - Showing lock screen again")
-
-	# Just show the existing lock screen
 	_show_lock_screen()
-  
-  
+
 func show_initial_lock_screen() -> void:
 	_show_lock_screen()
 
@@ -277,9 +263,8 @@ func _switch_to_danilo_room() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and player_danilo:
-		if player_danilo:
-			if player_danilo.get_parent().in_bahay_area:
-				_switch_to_danilo_room()
+		if player_danilo.get_parent().in_bahay_area:
+			_switch_to_danilo_room()
 
 # ===================
 # SCENE COMPLETE
@@ -287,8 +272,6 @@ func _input(event: InputEvent) -> void:
 func scene_4_done() -> void:
 	Hud.hide_objectives()
 	Hud.clear_objectives()
-	SaveManager.game_save.current_act = "act_1"
-	SaveManager.game_save.current_scene = "scene_4"
 	GameState.save_game()
 	SignalBus.next_scene.emit("res://scenes/game/act_2_title_scene.tscn")
 	print("act 1 scene 4 is done. ACT 1 DONE !!!!!!!!!!!!!!!!!!")
