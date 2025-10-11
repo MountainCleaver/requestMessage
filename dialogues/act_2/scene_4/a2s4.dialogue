@@ -13,7 +13,6 @@ do Hud.reset_phone_state()
 do ObjectiveManager.complete_objective(1)
 Wendy: His phone is turned off. The call goes straight to voicemail.
 Wendy: Try ko tawagan si Tita Mira.
-
 => END
 
 ~ call_mira_convo
