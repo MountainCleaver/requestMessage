@@ -5,7 +5,7 @@ do Hud.show_objectives()
 => END
 
 ~ open_phone
-do Hud.phone_intro()
+do Hud.reset_phone_state() 
 => END
 
 ~ call_voicemail
