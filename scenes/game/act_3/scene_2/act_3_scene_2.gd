@@ -23,7 +23,7 @@ extends Node2D
 const A_3S_2 = preload("uid://vpb3fshkkblr")
 const CHAT_ICON = preload("uid://vdiek8gwmqdx")
 const BALLOON = preload("uid://2i4i7d4jd8qg")
-const PHONE_INCOMING_CALL = preload("uid://dbieb0wga74q7")
+const PHONE_INCOMING_CALL = preload("res://scenes/game/phone_incoming_call.tscn")
 
 var wendy_open: bool = false
 var mira_open: bool = false
@@ -61,6 +61,7 @@ func _ready() -> void:
 	SignalBus.chat_opened.connect(_on_chat_opened)
 	
 	SignalBus.unknown_sender_unlocked = true
+	SignalBus.unknown_sender_label_visible = false
 	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = true
 	danilo_collision_shape_2d.disabled = true
 	player_danilo.animation_locked = true
