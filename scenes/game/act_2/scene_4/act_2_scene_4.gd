@@ -3,7 +3,7 @@ extends Node2D
 # === PRELOADS ===
 const A_2S_4 = preload("res://dialogues/act_2/scene_4/a2s4.dialogue")
 const LOCK_SCREEN = preload("res://scenes/game/lock_screen.tscn")
-const NARRATION_INTRO = preload("res://scenes/game/act_2/scene_4/narration_screen.tscn")
+const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
 
 # === STATE VARIABLES ===
 var wendy_opened := false
@@ -26,20 +26,39 @@ func _ready() -> void:
 	for objective in scene_objectives:
 		ObjectiveManager.add_objective(objective["ID"], objective["text"])
 
-	var narration = NARRATION_INTRO.instantiate()
-	add_child(narration)
-	narration.narration_finished.connect(_on_narration_finished)
+	# Start narration using narration panel (same as scene 2)
+	_start_intro_narration()
 
+	# Connect signals
 	if SignalBus.has_signal("call_completed"):
 		SignalBus.call_completed.connect(_on_call_completed)
 	else:
 		push_error("SignalBus missing 'call_completed' signal!")
+
+
+# === INTRO NARRATION ===
+func _start_intro_narration() -> void:
+	await get_tree().process_frame
+	var lines = [
+		"Back in Manila, Wendy scrolls through her messages.",
+		"Nothing from Danilo.",
+		"She checks the group chat.",
+		"Still quiet."
+	]
+	await NarrationPanel.show_narration_typewriter(lines, 0.05)
+	await NarrationPanel.hide_narration()
+	
+	TransitionFade.transition()
+	await SignalBus.on_transition_finished
+	_on_narration_finished()
+
 
 # === AFTER NARRATION FINISHES ===
 func _on_narration_finished() -> void:
 	print("Narration finished — starting dialogue.")
 	if not DialogueManager.show_dialogue_balloon(A_2S_4, "start"):
 		push_warning("Failed to start dialogue after narration.")
+
 
 # === OPEN PHONE ===
 func _open_wendy_phone() -> void:
@@ -52,13 +71,13 @@ func _open_wendy_phone() -> void:
 	add_child(lock_screen)
 	print("Wendy's lock screen loaded.")
 
+
 # === CALL COMPLETED HANDLER ===
 func _on_call_completed(call_target: String) -> void:
 	print("Call completed signal received for: ", call_target)
 	
 	match call_target:
 		"danilo":
-
 			ObjectiveManager.complete_objective(1)
 			print("Danilo call objective completed")
 			
@@ -66,39 +85,50 @@ func _on_call_completed(call_target: String) -> void:
 			ObjectiveManager.complete_objective(2)
 			print("Mira call objective completed")
 			
-			
-			
 			Hud.hide_objectives()
 			Hud.clear_objectives()
 			Hud.phone_outro()
 			
+			TransitionFade.transition()
+			await SignalBus.on_transition_finished
 			_start_outro_narration()
+
 
 # === OUTRO NARRATION ===
 func _start_outro_narration() -> void:
-	var outro_narration = NARRATION_INTRO.instantiate()  
-	var outro_text = """Phone in hand, Wendy understands the truth.
-[shake rate=10 level=15][color=#ff5555][i]Danilo isn't resting[/i][/color][/shake], 
-he's returning to face what he buried long ago.
-[tornado radius=3 freq=15][color=#ff5555][b]And she fears what he will discover.[/b][/color][/tornado]"""
-	
-	outro_narration.set_narration_text(outro_text, true) 
-	outro_narration.narration_finished.connect(_on_outro_narration_finished)
-	add_child(outro_narration)
+	await get_tree().process_frame
+	var lines = [
+		"Phone in hand, Wendy understands the truth.",
+		"[shake rate=10 level=15][color=#ff5555]Danilo isn't resting.[/color][/shake]", 
+		"He's returning to face what he buried long ago.",
+		"[tornado radius=3 freq=15][color=#ff5555]And she fears what he will discover.[/color][/tornado]"
+	]
+	await NarrationPanel.show_narration_typewriter(lines, 0.05)
+	await NarrationPanel.hide_narration()
+	_on_outro_narration_finished()
 
+
+# === OUTRO DONE ===
 func _on_outro_narration_finished() -> void:
-	
 	scene_4_done()
+
 
 # === SCENE COMPLETION FUNCTION ===
 func scene_4_done() -> void:
-	Hud.hide_objectives();
+	Hud.hide_objectives()
 	
 	SaveManager.game_save.current_act = "act_2"
-	SaveManager.game_save.current_scene = "scene_4" # badly named I admit. this is for the 'continue' part in main menu
-	SignalBus.act_num_scene_num_done.emit("act_2", "scene_4", "res://scenes/game/act_3/scene_1/act_3_scene_1.tscn") # caught in save manager
-	Hud.clear_objectives();
-	print("act 2 scene 4 is done")
+	SaveManager.game_save.current_scene = "scene_4"
+	
+	SignalBus.act_num_scene_num_done.emit(
+		"act_2",
+		"scene_4",
+		"res://scenes/game/act_3/scene_1/act_3_scene_1.tscn"
+	)
+	
+	Hud.clear_objectives()
+	print("Act 2 Scene 4 is done")
+
 
 # === CLEANUP ===
 func _exit_tree() -> void:
