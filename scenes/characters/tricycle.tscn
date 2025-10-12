@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://byxc4ejvsxd7k"]
+
+[ext_resource type="Texture2D" uid="uid://cg05gr02l63bf" path="res://assets/character_sprites/tricycle.png" id="1_v1ewy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3j21p"]
+atlas = ExtResource("1_v1ewy")
+region = Rect2(0, 0, 49, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlrhp"]
+atlas = ExtResource("1_v1ewy")
+region = Rect2(49, 0, 49, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xums"]
+atlas = ExtResource("1_v1ewy")
+region = Rect2(98, 0, 49, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wrpi"]
+atlas = ExtResource("1_v1ewy")
+region = Rect2(147, 0, 49, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4aov"]
+atlas = ExtResource("1_v1ewy")
+region = Rect2(196, 0, 49, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_siecj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3j21p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlrhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xums")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wrpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4aov")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}]
+
+[node name="tricycle" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_siecj")
+animation = &"moving"
