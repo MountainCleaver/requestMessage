@@ -18,7 +18,9 @@ func _ready() -> void:
 	text_label.text = ""
 	color_rect.visible = true
 	color_rect.modulate.a = 1.0
+
 	text_label.bbcode_enabled = true 
+
 	_type_text(narration_text)
 
 func set_narration_text(text: String, outro: bool = false) -> void:
@@ -28,8 +30,12 @@ func set_narration_text(text: String, outro: bool = false) -> void:
 func _type_text(text: String) -> void:
 	await get_tree().process_frame
 	
+
+	# Clear the text first
 	text_label.text = ""
 	
+	# We need to manually handle BBCode parsing during typing
+
 	var current_text := ""
 	var inside_tag := false
 	var current_tag := ""
@@ -54,9 +60,11 @@ func _type_text(text: String) -> void:
 			current_tag += char
 			continue
 		
+		# Regular character - add to display
 		current_text += char
 		text_label.text = current_text
 		
+		# Typing delay logic
 		var delay = typing_speed
 		if char in [".", "!", "?", "…"]:
 			delay = typing_speed * 8 

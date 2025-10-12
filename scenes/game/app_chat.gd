@@ -34,7 +34,6 @@ func unlock_unknown_sender():
 	if unknown_sender_container:
 		unknown_sender_container.visible = true
 
-
 func _on_wendy_pressed() -> void:
 	SignalBus.chat_opened.emit("wendy")
 	if wendy_scene == null:
@@ -79,3 +78,4 @@ func _on_exit_pressed() -> void:
 	if previous_scene:
 		previous_scene.visible = true
 	visible = false
+	queue_free()
