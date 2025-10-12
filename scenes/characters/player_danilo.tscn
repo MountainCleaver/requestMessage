@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://dblxd5gduaar6"]
+[gd_scene load_steps=94 format=3 uid="uid://dblxd5gduaar6"]
 
 [ext_resource type="Texture2D" uid="uid://bf73p6f1cex2c" path="res://assets/character_sprites/DANILO.png" id="1_31iy4"]
 [ext_resource type="Script" uid="uid://5x72ywgk1iqf" path="res://scenes/characters/player_danilo.gd" id="1_upm5t"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bgjwje76wgwuu" path="res://assets/character_sprites/DANILO_PUSHING_ROCK.png" id="4_njh5v"]
 [ext_resource type="Texture2D" uid="uid://be6h5vldaqlfi" path="res://assets/character_sprites/tip_interact.png" id="4_o0d8a"]
 [ext_resource type="Texture2D" uid="uid://b5ugk3js76r2d" path="res://assets/character_sprites/DANILO_WOKEN.png" id="4_ygycp"]
+[ext_resource type="Texture2D" uid="uid://bavf5qg7ni6xa" path="res://assets/character_sprites/DANILO_SQUARE_BREATHING_STANDING_AND_SITTING.png" id="7_v7fvk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nbajt"]
 atlas = ExtResource("2_k222o")
@@ -221,6 +222,42 @@ region = Rect2(52, 0, 26, 41)
 atlas = ExtResource("2_0n403")
 region = Rect2(78, 0, 26, 41)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf3ia"]
+atlas = ExtResource("7_v7fvk")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwjcs"]
+atlas = ExtResource("7_v7fvk")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xywq"]
+atlas = ExtResource("7_v7fvk")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqnq5"]
+atlas = ExtResource("7_v7fvk")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8rqn"]
+atlas = ExtResource("7_v7fvk")
+region = Rect2(96, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_noyov"]
+atlas = ExtResource("7_v7fvk")
+region = Rect2(120, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6luqh"]
+atlas = ExtResource("7_v7fvk")
+region = Rect2(144, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofav2"]
+atlas = ExtResource("7_v7fvk")
+region = Rect2(168, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdkom"]
+atlas = ExtResource("7_v7fvk")
+region = Rect2(192, 24, 24, 24)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_7rf3l"]
 atlas = ExtResource("1_31iy4")
 region = Rect2(16, 96, 16, 24)
@@ -357,7 +394,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ygycp")
 }],
-"loop": false,
+"loop": true,
 "name": &"idle_down",
 "speed": 6.0
 }, {
@@ -391,7 +428,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4xi8a")
 }],
-"loop": false,
+"loop": true,
 "name": &"idle_right",
 "speed": 6.0
 }, {
@@ -408,7 +445,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n4epw")
 }],
-"loop": false,
+"loop": true,
 "name": &"idle_up",
 "speed": 6.0
 }, {
@@ -509,6 +546,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_pf3ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwjcs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xywq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqnq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8rqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_noyov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6luqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofav2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdkom")
+}],
+"loop": true,
+"name": &"sq_sit_right",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7rf3l")
 }, {
 "duration": 1.0,
@@ -606,7 +675,7 @@ RUNNING_SPEED = 120.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_krebh")
-animation = &"sitting"
+animation = &"idle_up"
 autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
