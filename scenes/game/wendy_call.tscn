@@ -16,10 +16,10 @@ corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkywr"]
 bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
+corner_radius_top_left = 80
+corner_radius_top_right = 80
+corner_radius_bottom_right = 80
+corner_radius_bottom_left = 80
 corner_detail = 20
 
 [node name="wendy_call" type="Control"]
@@ -43,26 +43,28 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_4xsro")
 
 [node name="danilo" type="Label" parent="call_screen/Panel2"]
 layout_mode = 0
-offset_left = 85.0
-offset_top = 97.0
-offset_right = 170.0
-offset_bottom = 133.0
+offset_left = 80.0
+offset_top = 135.0
+offset_right = 165.0
+offset_bottom = 171.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_45mfy")
 theme_override_font_sizes/font_size = 27
 text = "Danilo"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="status" type="Label" parent="call_screen/Panel2"]
 layout_mode = 0
 offset_left = 18.0
-offset_top = 161.0
+offset_top = 194.0
 offset_right = 242.0
-offset_bottom = 189.0
+offset_bottom = 222.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_45mfy")
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/font_size = 22
 text = "Cannot be reached.."
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ENDCALL" type="Button" parent="call_screen/Panel2"]
@@ -76,20 +78,20 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ldnpn")
 text = "End call"
 
 [node name="LOGOPANEL" type="Panel" parent="call_screen/Panel2"]
-layout_mode = 0
-offset_left = 85.0
+layout_mode = 1
+offset_left = 72.0
 offset_top = 13.0
-offset_right = 155.0
-offset_bottom = 83.0
+offset_right = 172.0
+offset_bottom = 113.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_gkywr")
 
 [node name="Icon2" type="TextureRect" parent="call_screen/Panel2"]
 custom_minimum_size = Vector2(30, 50)
 layout_mode = 0
-offset_left = 95.0
-offset_top = 24.0
-offset_right = 162.30782
-offset_bottom = 104.22821
+offset_left = 87.99999
+offset_top = 32.0
+offset_right = 177.74374
+offset_bottom = 138.97098
 scale = Vector2(0.75771284, 0.5982933)
 texture = ExtResource("2_ldnpn")
 expand_mode = 1

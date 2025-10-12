@@ -110,5 +110,5 @@ Danilo: Huh… Sino ‘to? [wait=1.5]
 => END
 
 ~ chat_unknown_sender
-do ChatManager.send_chat("unknown_sender", "Unknown Number", "Hello, Danilo.")
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Hello, Danilo")
 => END

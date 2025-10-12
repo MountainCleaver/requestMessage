@@ -5,7 +5,9 @@ extends Control
 @onready var group_chat_btn: Button = $screen/MarginContainer3/Panel3/GROUP_CHAT
 @onready var unknown_sender_btn: Button = $screen/MarginContainer4/Panel4/UNKNOWN_SENDER
 @onready var unknown_sender_container: MarginContainer = $screen/MarginContainer4
+@onready var unknown_sender_label: Label = $screen/MarginContainer4/Panel4/UNKNOWN_SENDER/Label
 @onready var exit: Button = $screen/Panel/EXIT
+
 
 var previous_scene: Control = null
 
@@ -28,12 +30,12 @@ func _ready() -> void:
 		exit.pressed.connect(_on_exit_pressed)
 
 	unknown_sender_container.visible = SignalBus.unknown_sender_unlocked
+	unknown_sender_label.visible = SignalBus.unknown_sender_label_visible
 
 func unlock_unknown_sender():
 	SignalBus.unknown_sender_unlocked = true
 	if unknown_sender_container:
 		unknown_sender_container.visible = true
-
 
 func _on_wendy_pressed() -> void:
 	SignalBus.chat_opened.emit("wendy")
@@ -79,3 +81,4 @@ func _on_exit_pressed() -> void:
 	if previous_scene:
 		previous_scene.visible = true
 	visible = false
+	queue_free()
