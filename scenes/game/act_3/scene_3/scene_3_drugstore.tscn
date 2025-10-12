@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://7wtc2deofp0e"]
+
+[ext_resource type="PackedScene" uid="uid://br3x1sybvvdrp" path="res://drugstore.tscn" id="1_1gu5s"]
+
+[node name="scene_3_drugstore" type="Node2D"]
+
+[node name="drugstore" parent="." instance=ExtResource("1_1gu5s")]
+
+[node name="spawn_points" type="Node2D" parent="drugstore/y-sorted" index="1"]
+
+[node name="drugstore_door_point" type="Marker2D" parent="drugstore/y-sorted/spawn_points"]
+position = Vector2(80, 113)
+
+[editable path="drugstore"]

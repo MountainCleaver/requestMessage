@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://fgxe57bsbw2l"]
+
+[ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="1_85dup"]
+[ext_resource type="PackedScene" uid="uid://byxc4ejvsxd7k" path="res://scenes/characters/tricycle.tscn" id="2_6ha70"]
+
+[node name="scene_3_danilo_hometown" type="Node2D"]
+
+[node name="danilo_hometown" parent="." instance=ExtResource("1_85dup")]
+
+[node name="tricycle" parent="danilo_hometown/y-sorted-objects" index="2" instance=ExtResource("2_6ha70")]
+position = Vector2(146, -130)
+
+[node name="spawn_points" type="Node2D" parent="danilo_hometown/y-sorted-objects" index="3"]
+
+[node name="house_door_step_point" type="Marker2D" parent="danilo_hometown/y-sorted-objects/spawn_points"]
+position = Vector2(-87, 163)
+
+[editable path="danilo_hometown"]

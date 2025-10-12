@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqk500i2neu4t"]
+
+[ext_resource type="PackedScene" uid="uid://dphe7c6imiltt" path="res://scenes/game/act_3/scene_2/hometown_town_center.tscn" id="1_cob71"]
+
+[node name="scene_3_town_center" type="Node2D"]
+
+[node name="hometown_town_center" parent="." instance=ExtResource("1_cob71")]
+
+[node name="spawn_points" type="Node2D" parent="hometown_town_center/y-sorted" index="2"]
+
+[node name="drug_store_door_point" type="Marker2D" parent="hometown_town_center/y-sorted/spawn_points"]
+position = Vector2(665, 357)
+
+[editable path="hometown_town_center"]
