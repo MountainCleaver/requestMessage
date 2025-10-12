@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cdmfuadykwq1b" path="res://helpers/narration_panel.gd" id="1_gsucg"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_wickx"]
+[ext_resource type="AudioStream" uid="uid://cl8h4yngn3c0t" path="res://sound/keyboard-typing-one-short-1-2925901.wav" id="3_wickx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsucg"]
 bg_color = Color(0.0509804, 0.0509804, 0.0823529, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_wickx"]
-font_size = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ms4m"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -35,26 +33,29 @@ layout_mode = 0
 offset_right = 1440.0
 offset_bottom = 1024.0
 
-[node name="Label" type="Label" parent="Control/Panel/TextureRect"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/Panel/TextureRect"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.14600001
-anchor_top = 0.32700002
-anchor_right = 0.85400003
-anchor_bottom = 0.67300004
-offset_left = 0.25997925
-offset_top = -0.26470947
-offset_right = -0.26000977
-offset_bottom = 0.26464844
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -514.0
+offset_top = -210.5
+offset_right = 514.0
+offset_bottom = 210.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(509.5, 173.41669)
-theme_override_fonts/font = ExtResource("2_wickx")
-theme_override_font_sizes/font_size = 34
-label_settings = SubResource("LabelSettings_wickx")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_wickx")
+theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 28
+theme_override_font_sizes/bold_italics_font_size = 28
+theme_override_font_sizes/italics_font_size = 28
+theme_override_font_sizes/mono_font_size = 28
+bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
 
 [node name="Button" type="Button" parent="Control/Panel/TextureRect"]
 layout_mode = 1
@@ -75,3 +76,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_8ms4m")
 text = "Click to Continue"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="SFXTypewriter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wickx")
+volume_db = -13.358
+bus = &"sfx"
