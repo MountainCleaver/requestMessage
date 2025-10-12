@@ -123,7 +123,7 @@ func scene_4_done() -> void:
 	SignalBus.act_num_scene_num_done.emit(
 		"act_2",
 		"scene_4",
-		"res://scenes/game/act_3/scene_1/act_3_scene_1.tscn"
+		"res://scenes/game/act_3_title_scene.tscn"
 	)
 	
 	Hud.clear_objectives()
