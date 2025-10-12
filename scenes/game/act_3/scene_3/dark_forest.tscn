@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://ciwb07kh3ghdu"]
+[gd_scene load_steps=8 format=4 uid="uid://67pui0u6jj4s"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_xhb44"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_38ki2"]
