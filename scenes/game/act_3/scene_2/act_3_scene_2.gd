@@ -61,6 +61,7 @@ func _ready() -> void:
 	SignalBus.chat_opened.connect(_on_chat_opened)
 	
 	SignalBus.unknown_sender_unlocked = true
+	SignalBus.unknown_sender_label_visible = false
 	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = true
 	danilo_collision_shape_2d.disabled = true
 	player_danilo.animation_locked = true

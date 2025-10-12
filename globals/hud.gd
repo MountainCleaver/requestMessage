@@ -171,6 +171,28 @@ func show_phone_with_unknown_sender() -> void:
 		app_chat._on_unknown_sender_pressed()
 
 
+# ===========================
+# ===  RESET PHONE STATE  ===
+# ===========================
+
+func reset_phone_state() -> void:
+	for child in phone_container.get_children():
+		child.queue_free()
+
+	lock_screen_active = true
+	phone_main_active = false
+	chat_open = false
+	phone_showing = false
+
+	await get_tree().create_timer(0.8).timeout
+
+	var lock_screen_scene = preload("res://scenes/game/lock_screen.tscn").instantiate()
+	phone_container.add_child(lock_screen_scene)
+	lock_screen_scene.visible = true
+
+	# Bring phone back visible again with lock screen active
+	phone_intro()
+
 
 # ==================================
 # === RESTORE PHONE STATE (local) ===

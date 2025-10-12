@@ -78,7 +78,7 @@ func _input(event: InputEvent) -> void:
 			print("ACT 2 SCENE 3 DONE");
 			SaveManager.game_save.current_act = "act_2"
 			SaveManager.game_save.current_scene = "scene_3" # badly named I admit. this is for the 'continue' part in main menu
-			SignalBus.act_num_scene_num_done.emit("act_2", "scene_3", "res://scenes/game/act_2/scene_3/act_2_scene_3.tscn") # caught in save manager
+			SignalBus.act_num_scene_num_done.emit("act_2", "scene_3", "res://scenes/game/act_3/scene_2/act_3_scene_2.tscn") # caught in save manager
 			ObjectiveManager.complete_objective(1);
 			await get_tree().process_frame 
 			Hud.hide_objectives();

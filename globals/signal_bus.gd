@@ -22,11 +22,13 @@ signal chat_message_received(chat_name: String, sender: String, text: String)
 signal chat_closed(chat_name)
 signal show_locked_label() 
 signal type_message_clicked(chat_name)
-var unknown_sender_unlocked: bool = false
-var optional_chats_locked: bool = false
 signal call_done
 signal player_answered_call
 signal player_rejected_call  
+
+var unknown_sender_unlocked: bool = false
+var optional_chats_locked: bool = false
+var unknown_sender_label_visible: bool = false #yung may nakalagay na "message request" sa top niya
 
 # game state
 signal save_game_state
