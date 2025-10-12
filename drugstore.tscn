@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=4 uid="uid://br3x1sybvvdrp"]
+[gd_scene load_steps=8 format=4 uid="uid://br3x1sybvvdrp"]
 
 [ext_resource type="Texture2D" uid="uid://0hfxkfjawxl1" path="res://assets/tilesets/mercury.png" id="1_toc3x"]
-[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_5m5mt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xdlak"]
 texture = ExtResource("1_toc3x")
@@ -404,8 +403,6 @@ y_sort_enabled = true
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAEAP//AAACAA0AAAD7//7/AAAOAAwAAAD7/wEAAAAOAA8AAAD7/wQAAAAOABIAAAD///7/AAARAAwAAAD//wEAAAARAA8AAAD//wQAAAARABIAAAD5////AAAGAA4AAAD5/wEAAAAGABEAAAD5/wMAAAAIAA4AAAD5/wUAAAAIABEAAAAGAAIAAAAKABEAAAAGAAUAAAAKABEAAAA=")
 tile_set = SubResource("TileSet_odh1v")
-
-[node name="player_danilo" parent="y-sorted" instance=ExtResource("2_5m5mt")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
