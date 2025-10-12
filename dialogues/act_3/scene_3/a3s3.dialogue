@@ -1,0 +1,36 @@
+~ start_restless
+Danilo: [shake]????????????????[/shake]
+Danilo: Totoo ba yung nakita ko?
+do restless_diag_one_done.emit()
+=> END
+
+~ start_restless_2
+#do Hud.show_phone_with_unknown_sender()
+#do Hud.phone_intro()
+#do _prevent_chat_exit_while_dialoging()
+Danilo: . . .
+Danilo: [shake]Ano yun? [wait=1.0]Guni-guni ko lang?[/shake]
+#do _prevent_chat_exit_while_dialoging()
+#do _clean_phone()
+do Hud.phone_outro()
+do Hud.phone_outro()
+Danilo: Huff Huff
+do _remove_tension_effect()
+do intro_sequence_done.emit()
+=> buy_meds_restless
+=> END
+
+~ start_relief
+Danilo: ...
+Danilo: [wave]Kailangan kong kumalma.[/wave]
+do start_mini_game.emit()
+=> END
+
+~ buy_meds_restless
+Danilo: Kailangan ko nang bumili ng gamot.
+=> END
+
+~ buy_meds_relief
+Danilo: Okay
+Danilo: Bibili na'ko ng gamot.
+=> END
