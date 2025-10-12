@@ -1,6 +1,5 @@
-[gd_scene load_steps=39 format=4 uid="uid://dolep8ior0t11"]
+[gd_scene load_steps=38 format=4 uid="uid://dolep8ior0t11"]
 
-[ext_resource type="Script" uid="uid://deuxrwfjvu6uc" path="res://scenes/game/act_2/scene_2/act_2_scene_2.gd" id="1_j6sef"]
 [ext_resource type="Texture2D" uid="uid://bsi3qrmawmrso" path="res://assets/tilesets/act1_s2_tilemap.png" id="2_y5hqf"]
 [ext_resource type="Texture2D" uid="uid://c0gjjrngklxbo" path="res://assets/tilesets/buncha_trees.png" id="3_hjqqs"]
 [ext_resource type="Texture2D" uid="uid://qk4wxfvkg00v" path="res://assets/tilesets/rizal_asset.png" id="4_p4cow"]
@@ -9639,7 +9638,6 @@ animations = [{
 size = Vector2(42.666668, 26.6667)
 
 [node name="danilo_neighborhood" type="Node2D"]
-script = ExtResource("1_j6sef")
 
 [node name="road" type="TileMapLayer" parent="."]
 position = Vector2(0, 1)
