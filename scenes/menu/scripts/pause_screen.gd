@@ -70,7 +70,7 @@ func _on_exit_to_main_menu_pressed() -> void:
 
 func _on_exit_main_menu_dialog_confirmed() -> void:
 	
-	if Hud.phone_showing:
+	if Hud.phone_showing or GameState.phone_showing:
 		Hud.phone_outro()
 		#await get_tree().create_timer(1.0).timeout
 		#remove opened phone screens on exit to main menu
