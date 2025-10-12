@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://cp3m4jnsykrul"]
+
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="1_ihkkw"]
+[ext_resource type="Script" uid="uid://lshrbhcti1t4" path="res://scenes/game/act_3/scene_3/act_3_scene_3.gd" id="1_ngro6"]
+[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="3_78jjl"]
+
+[sub_resource type="Animation" id="Animation_78jjl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n7cky"]
+resource_name = "tension_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.3325014, 0.11729306, 0.17704082, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ngro6"]
+resource_name = "tensioning"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.33250138, 0.11729308, 0.17704079, 1), Color(0.5176471, 0.20392157, 0.2901961, 1), Color(0.33333334, 0.11764706, 0.1764706, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n7cky"]
+_data = {
+&"RESET": SubResource("Animation_78jjl"),
+&"tension_out": SubResource("Animation_n7cky"),
+&"tensioning": SubResource("Animation_ngro6")
+}
+
+[node name="act_3_scene_3" type="Node2D"]
+script = ExtResource("1_ngro6")
+
+[node name="locations" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("1_ihkkw")]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n7cky")
+}
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="player_danilo" parent="." instance=ExtResource("3_78jjl")]
+
+[node name="Camera2D" type="Camera2D" parent="player_danilo"]
+
+[editable path="player_danilo"]
