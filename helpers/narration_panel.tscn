@@ -1,41 +1,41 @@
-[gd_scene load_steps=6 format=3 uid="uid://c22u478jgpm6r"]
+[gd_scene load_steps=6 format=3 uid="uid://cj2tw0ajvpnq6"]
 
 [ext_resource type="Script" uid="uid://cdmfuadykwq1b" path="res://helpers/narration_panel.gd" id="1_gsucg"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_wickx"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ms4m"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsucg"]
 bg_color = Color(0.0509804, 0.0509804, 0.0823529, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_dqq2d"]
+[sub_resource type="LabelSettings" id="LabelSettings_wickx"]
 font_size = 25
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sr2f5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ms4m"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="narration_panel" type="Control"]
+[node name="NarrationPanel" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 1448.0
+offset_bottom = 1032.0
 script = ExtResource("1_gsucg")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8ms4m")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gsucg")
 
-[node name="TextureRect" type="TextureRect" parent="Panel"]
+[node name="TextureRect" type="TextureRect" parent="Control/Panel"]
 layout_mode = 0
 offset_right = 1440.0
 offset_bottom = 1024.0
 
-[node name="Label" type="Label" parent="Panel/TextureRect"]
+[node name="Label" type="Label" parent="Control/Panel/TextureRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -50,13 +50,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_wickx")
 theme_override_font_sizes/font_size = 34
-text = "Text"
-label_settings = SubResource("LabelSettings_dqq2d")
+label_settings = SubResource("LabelSettings_wickx")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Button" type="Button" parent="Panel/TextureRect"]
+[node name="Button" type="Button" parent="Control/Panel/TextureRect"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -71,7 +70,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_wickx")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_sr2f5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8ms4m")
 text = "Click to Continue"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

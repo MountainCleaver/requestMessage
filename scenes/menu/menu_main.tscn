@@ -98,6 +98,25 @@ texture = ExtResource("4_blywf")
 expand_mode = 1
 stretch_mode = 4
 
+[node name="logoutButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_top = -95.0
+offset_right = -56.0
+offset_bottom = -55.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("6_wgaug")
+theme_override_font_sizes/font_size = 32
+text = "LOGOUT"
+icon = ExtResource("7_o44s4")
+flat = true
+
 [node name="overlayer" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -114,25 +133,6 @@ size = Vector2i(251, 100)
 ok_button_text = "Yes"
 dialog_text = "Do you want to exit the game?"
 
-[node name="logoutButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -131.0
-offset_top = -86.0
-offset_right = -56.0
-offset_bottom = -55.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("6_wgaug")
-theme_override_font_sizes/font_size = 32
-text = "LOGOUT"
-icon = ExtResource("7_o44s4")
-flat = true
-
 [node name="logoutConfirmationDialog" type="ConfirmationDialog" parent="."]
 oversampling_override = 1.0
 title = "Logging out"
@@ -147,8 +147,8 @@ dialog_text = "Are you sure you want to logout?"
 [connection signal="pressed" from="options_holder/credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="options_holder/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="options_holder/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="logoutButton" to="." method="_on_logout_button_pressed"]
 [connection signal="canceled" from="exitConfirmationDialog" to="." method="_on_exit_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="exitConfirmationDialog" to="." method="_on_exit_confirmation_dialog_confirmed"]
-[connection signal="pressed" from="logoutButton" to="." method="_on_logout_button_pressed"]
 [connection signal="canceled" from="logoutConfirmationDialog" to="." method="_on_logout_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="logoutConfirmationDialog" to="." method="_on_logout_confirmation_dialog_confirmed"]

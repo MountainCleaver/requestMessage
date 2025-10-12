@@ -1,100 +1,107 @@
 extends Node2D
 
 # === PRELOADS ===
-const A_2S_4 = preload("res://dialogues/act_2/scene_4/a2s4.dialogue") # Dialogue file for this scene
-const WENDY_HOUSE = preload("res://scenes/game/act_2/scene_4/wendy_house.tscn")
+const A_2S_4 = preload("res://dialogues/act_2/scene_4/a2s4.dialogue")
+const LOCK_SCREEN = preload("res://scenes/game/lock_screen.tscn")
+const NARRATION_INTRO = preload("res://scenes/game/act_2/scene_4/narration_screen.tscn")
 
-# === NODES ===
-@onready var locations: Node2D = $location
-var wendy: Node2D = null
-
-# === OBJECTIVES ===
+# === STATE VARIABLES ===
+var wendy_opened := false
+var wendy_reply_shown := false
 var scene_objectives = [
-	{"ID": 1, "text": "Find a way to reach Danilo"},
+	{"ID": 1, "text": "Call Danilo"},
+	{"ID": 2, "text": "Call Mira"},
+	{"ID": 3, "text": "End the call"},
 ]
 
-# === STATE ===
-var current_location: Node = null
-var choice_made: String = ""
-
-
-# ===================
-# SCENE STARTUP
-# ===================
+# === READY FUNCTION ===
 func _ready() -> void:
-	GameState.load_game()
-	switch_location(WENDY_HOUSE)
-	_start_scene()
+	print("Act 2 Scene 4 initializing...")
 
+	# Load game state
+	if not GameState.load_game():
+		push_error("Failed to load game state!")
 
-func _start_scene() -> void:
-	# Wendy's initial thoughts (non-interactive)
-	DialogueManager.show_dialogue_balloon(A_2S_4, "wendy_intro")
+	# Add objectives
+	for objective in scene_objectives:
+		ObjectiveManager.add_objective(objective["ID"], objective["text"])
 
-	# After initial dialogue, show choice options
-	await get_tree().create_timer(3).timeout
-	_show_choices()
+	var narration = NARRATION_INTRO.instantiate()
+	add_child(narration)
+	narration.narration_finished.connect(_on_narration_finished)
 
+	if SignalBus.has_signal("call_completed"):
+		SignalBus.call_completed.connect(_on_call_completed)
+	else:
+		push_error("SignalBus missing 'call_completed' signal!")
 
-# ===================
-# CHOICE HANDLER
-# ===================
-func _show_choices() -> void:
-	# These choices can appear via a UI prompt or dialogue choice system
-	var choices = [
-		{"id": "chat_danilo", "text": "Chat Danilo"},
-		{"id": "chat_mira", "text": "Chat Mira"}
-	]
+# === AFTER NARRATION FINISHES ===
+func _on_narration_finished() -> void:
+	print("Narration finished — starting dialogue.")
+	if not DialogueManager.show_dialogue_balloon(A_2S_4, "start"):
+		push_warning("Failed to start dialogue after narration.")
 
-	ChoiceUI.show_choices(choices)
-	ChoiceUI.choice_selected.connect(_on_choice_selected)
+# === OPEN PHONE ===
+func _open_wendy_phone() -> void:
+	if not LOCK_SCREEN:
+		push_error("LOCK_SCREEN scene not found!")
+		return
 
+	var lock_screen = LOCK_SCREEN.instantiate()
+	lock_screen.pov_index = 1  # 0 = Danilo, 1 = Wendy
+	add_child(lock_screen)
+	print("Wendy's lock screen loaded.")
 
-func _on_choice_selected(choice_id: String) -> void:
-	choice_made = choice_id
-	match choice_id:
-		"chat_danilo":
-			_handle_chat_danilo()
-		"chat_mira":
-			_handle_chat_mira()
+# === CALL COMPLETED HANDLER ===
+func _on_call_completed(call_target: String) -> void:
+	print("Call completed signal received for: ", call_target)
+	
+	match call_target:
+		"danilo":
 
+			ObjectiveManager.complete_objective(1)
+			print("Danilo call objective completed")
+			
+		"mira":
+			ObjectiveManager.complete_objective(2)
+			print("Mira call objective completed")
+			
+			
+			
+			Hud.hide_objectives()
+			Hud.clear_objectives()
+			Hud.phone_outro()
+			
+			_start_outro_narration()
 
-# ===================
-# CHOICE OUTCOMES
-# ===================
-func _handle_chat_danilo() -> void:
-	# Scene when Wendy tries to chat Danilo, but only "sent" is shown
-	DialogueManager.show_dialogue_balloon(A_2S_4, "chat_danilo_sent")
-	await DialogueManager.dialogue_finished
-	_show_after_choice_summary()
+# === OUTRO NARRATION ===
+func _start_outro_narration() -> void:
+	var outro_narration = NARRATION_INTRO.instantiate()  
+	var outro_text = """Phone in hand, Wendy understands the truth.
+[shake rate=10 level=15][color=#ff5555][i]Danilo isn't resting[/i][/color][/shake], 
+he's returning to face what he buried long ago.
+[tornado radius=3 freq=15][color=#ff5555][b]And she fears what he will discover.[/b][/color][/tornado]"""
+	
+	outro_narration.set_narration_text(outro_text, true) 
+	outro_narration.narration_finished.connect(_on_outro_narration_finished)
+	add_child(outro_narration)
 
+func _on_outro_narration_finished() -> void:
+	
+	scene_4_done()
 
-func _handle_chat_mira() -> void:
-	# Wendy chats with Mira (Danilo’s mother)
-	DialogueManager.show_dialogue_balloon(A_2S_4, "chat_mira_start")
-	await DialogueManager.dialogue_finished
-	_show_after_choice_summary()
+# === SCENE COMPLETION FUNCTION ===
+func scene_4_done() -> void:
+	Hud.hide_objectives();
+	
+	SaveManager.game_save.current_act = "act_2"
+	SaveManager.game_save.current_scene = "scene_4" # badly named I admit. this is for the 'continue' part in main menu
+	SignalBus.act_num_scene_num_done.emit("act_2", "scene_4", "res://scenes/game/act_3/scene_1/act_3_scene_1.tscn") # caught in save manager
+	Hud.clear_objectives();
+	print("act 2 scene 4 is done")
 
-
-# ===================
-# AFTER CHOICE
-# ===================
-func _show_after_choice_summary() -> void:
-	# Optional summary or transition to next scene
-	GameState.update_objective_complete(1)
-	DialogueManager.show_dialogue_balloon(A_2S_4, "wendy_reflect")
-	# You can transition to next scene here
-	# SceneTransition.fade_to("res://scenes/game/act_2/scene_5/act_2_scene_5.tscn")
-
-
-# ===================
-# LOCATION HANDLER
-# ===================
-func switch_location(scene: PackedScene) -> void:
-	if current_location and current_location.is_inside_tree():
-		current_location.queue_free()
-
-	current_location = scene.instantiate()
-	locations.add_child(current_location)
-
-	wendy = current_location.get_node("wendy")
+# === CLEANUP ===
+func _exit_tree() -> void:
+	if SignalBus.has_signal("call_completed"):
+		if SignalBus.call_completed.is_connected(_on_call_completed):
+			SignalBus.call_completed.disconnect(_on_call_completed)

@@ -64,8 +64,15 @@ var santa_claridad_found := false
 var camera_panned_to_bus: bool = false
 var unknown_sender_opened: bool = false
 
+# Phone local flags
+var phone_showing: bool = false
+var lock_screen_active: bool = false
+var phone_main_active: bool = false
+var chat_open: bool = false
+
 func _ready() -> void:
-	GameState.load_game()
+	_game_state_flow()
+		
 	player_danilo.force_cannot_move = true;
 	entrance.body_entered.connect(_on_entrance_body_entered)
 	setup_bus_connections()
@@ -77,12 +84,21 @@ func _ready() -> void:
 	phone_trigger.visible = false
 	phone_trigger.monitoring = false
 	phone_trigger.set_deferred("monitorable", false)
+	phone_trigger.body_entered.connect(_on_phone_trigger_body_entered)
 	
 	bus_interact.body_entered.connect(func(body): _on_bus_interact_body_entered(body, "bus_interact"))
 	bus_interact.body_exited.connect(func(body): _on_bus_interact_body_exited(body, "bus_interact"))
 	bus_interact.monitoring = false
 	bus_interact.set_deferred("monitorable", false)
-	
+
+func _game_state_flow() -> void:
+	# PUT THIS AT THE BEGINNING OF FUNC _READY
+	GameState.load_game()
+	GameState.current_act = "act_2"
+	GameState.current_scene = "scene_3"
+	GameState.overwrite_current_scene_keep_previous()
+	GameState.save_game()
+
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	player_danilo.force_cannot_move = false;
 	intro_anim_done  = true;
@@ -159,11 +175,13 @@ func _input(event: InputEvent) -> void:
 
 		SaveManager.game_save.current_act = "act_2"
 		SaveManager.game_save.current_scene = "scene_3"
-
+		
+		GameState.save_game()
+		
 		SignalBus.act_num_scene_num_done.emit(
 			"act_2",
 			"scene_3",
-			"res://scenes/game/act_2/scene_3/act_2_scene_3.tscn"
+			"res://scenes/game/act_2/scene_4/act_2_scene_4.tscn"
 		)
 
 		ObjectiveManager.complete_objective(4)
@@ -263,32 +281,28 @@ func enable_bus_trigger():
 
 # Magvibrate yung phone then labas yung hud ng phone then chat ni unknown sender
 func _on_phone_trigger_body_entered(body: Node2D) -> void:
-	SignalBus.unknown_sender_unlocked = true
-	GameState.phone_showing = false
-	GameState.lock_screen_active = false
-	GameState.phone_main_active = false
-	GameState.chat_open = false
-	
-	if GameState.unknown_sender_opened:
-		Hud.show_phone_with_unknown_sender()
-		await get_tree().create_timer(1).timeout
-		player_danilo.force_cannot_move = true;
-		_on_chat_opened("unknown_sender")
-	
 	if body.name != "player_danilo":
 		return
 
-	print("Phone triggered by player — showing outro.")
+	SignalBus.unknown_sender_unlocked = true
+	phone_showing = false
+	lock_screen_active = false
+	phone_main_active = false
+	chat_open = false
+
+	if not unknown_sender_opened:
+		Hud.show_phone_with_unknown_sender()
+		await get_tree().create_timer(1).timeout
+		player_danilo.force_cannot_move = true
+		_on_chat_opened("unknown_sender")
+
 	phone_trigger.monitoring = false
 	phone_trigger.visible = false
 
-	# Once outro is done, allow movement and bus interaction again
 	player_danilo.force_cannot_move = false
 	player_danilo.can_move = true
 	player_danilo.can_interact = true
-
 	enable_bus_interact()
-	print("Phone outro done — player can move and interact with bus_interact.")
 	
 func _on_chat_opened(chat_name: String) -> void:
 	if chat_name == "unknown_sender" and not unknown_sender_opened:
@@ -298,6 +312,7 @@ func _on_chat_opened(chat_name: String) -> void:
 		await get_tree().create_timer(1).timeout
 		
 func enable_phone_trigger():
+	phone_trigger.visible = true
 	phone_trigger.monitoring = true
 	phone_trigger.set_deferred("monitorable", true)
 	print("See phone.")

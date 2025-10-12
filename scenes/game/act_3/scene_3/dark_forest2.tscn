@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://ciwb07kh3ghdu"]
+[gd_scene load_steps=8 format=4 uid="uid://35eo6tgpjnwn"]
 
-[ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_xhb44"]
-[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_38ki2"]
+[ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_3iiqj"]
+[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_uncpj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
-texture = ExtResource("1_xhb44")
+texture = ExtResource("1_3iiqj")
 0:0/size_in_atlas = Vector2i(3, 9)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(-16, 64)
@@ -17,7 +17,7 @@ texture = ExtResource("1_xhb44")
 sources/0 = SubResource("TileSetAtlasSource_c8tya")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_74ig7"]
-texture = ExtResource("1_xhb44")
+texture = ExtResource("1_3iiqj")
 0:0/size_in_atlas = Vector2i(3, 9)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(-16, 64)
@@ -61,7 +61,7 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_xhb44")
 debug_color = Color(0.8901961, 0.19607843, 0.6431373, 0.56078434)
 
-[node name="player_danilo" parent="y-sorted" instance=ExtResource("2_38ki2")]
+[node name="player_danilo" parent="y-sorted" instance=ExtResource("2_uncpj")]
 RUNNING_SPEED = 400.0
 
 [node name="Camera2D" type="Camera2D" parent="y-sorted/player_danilo"]
