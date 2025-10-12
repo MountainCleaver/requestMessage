@@ -1,11 +1,10 @@
-[gd_scene load_steps=20 format=4 uid="uid://dphe7c6imiltt"]
+[gd_scene load_steps=19 format=4 uid="uid://dphe7c6imiltt"]
 
 [ext_resource type="Texture2D" uid="uid://dpxclb43v72sn" path="res://assets/tilesets/act3_s3_BAYAN_HOUSES.png" id="2_brh3w"]
 [ext_resource type="Texture2D" uid="uid://blbdba3e835cg" path="res://assets/tilesets/act3_s3_BAYAN_GROUONSD.png" id="3_ospwe"]
 [ext_resource type="Texture2D" uid="uid://comvep84kpksf" path="res://assets/tilesets/bayan_houses.png" id="4_0qce3"]
 [ext_resource type="Texture2D" uid="uid://q2whql3ij4jj" path="res://assets/tilesets/act_1_s3.png" id="5_2auxa"]
 [ext_resource type="Texture2D" uid="uid://qk4wxfvkg00v" path="res://assets/tilesets/rizal_asset.png" id="6_brh3w"]
-[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="6_u6i3t"]
 [ext_resource type="Texture2D" uid="uid://c0quoo04df5ki" path="res://assets/tilesets/rec_terrain_atlas.png" id="7_ospwe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bxrlh"]
@@ -17591,12 +17590,6 @@ tile_map_data = PackedByteArray("AADV/wwAAQAGAAQAAADb/wwAAQAKAAMAAADp/wwAAQAPAAU
 tile_set = SubResource("TileSet_gyaw7")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="y-sorted"]
-
-[node name="player_danilo" parent="y-sorted" instance=ExtResource("6_u6i3t")]
-RUNNING_SPEED = 500.0
-
-[node name="Camera2D" type="Camera2D" parent="y-sorted/player_danilo"]
-zoom = Vector2(3, 3)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
