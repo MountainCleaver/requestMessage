@@ -68,7 +68,8 @@ func _ready() -> void:
 	player_danilo.force_cannot_move = true
 	animated_sprite_2d.play("sitting")
 
-	Hud.phone_intro()
+	Hud.reset_phone_state()
+	await get_tree().create_timer(1.0).timeout
 	add_notification(CHAT_ICON, "Chat", "2 missed calls from Mira")
 	await get_tree().create_timer(1.0).timeout
 	add_notification(CHAT_ICON, "Chat", "Wendy: Dan, you didn’t even inform me you were going home. We were worried, hindi ka sumasagot sa chats ko. Akala ko may nangyari na sayo")
