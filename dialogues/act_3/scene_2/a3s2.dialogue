@@ -75,6 +75,7 @@ do _prevent_chat_exit_while_dialoging()
 => END
 
 ~ call_with_wendy
+do _prevent_end_call_while_dialog_is_not_finished()
 Danilo: Hello Wen, kumusta?
 #Wendy: [wave]Ito nag aalala sayo.[/wave]
 #Wendy: Sigurado ka bang re-sched yung appointment mo ngayon?
@@ -97,6 +98,7 @@ do replied_to_wendy = true
 do call_with_wendy_done = true
 do SignalBus.call_done.emit()
 do reply_finish.emit()
+do _prevent_end_call_while_dialog_is_not_finished()
 do _prevent_chat_exit_while_dialoging()
 => END
 
