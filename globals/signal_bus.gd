@@ -46,3 +46,6 @@ signal out_npc(npc_name: String)
 
 signal call_opened(call_name: String)
 signal call_completed(call_name: String)
+
+#square breathing
+signal mini_game_done
