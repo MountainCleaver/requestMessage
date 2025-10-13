@@ -33,3 +33,13 @@ Danilo: Kailangan ko nang bumili ng gamot.
 Danilo: Okay
 Danilo: Bibili na'ko ng gamot.
 => END
+
+~ tricycle_start
+Danilo: Yow
+do can_interact = true
+=> END
+
+~ tricycle_start_bought
+Danilo: Di ko kailangan sumakay ngayon
+do can_interact = true
+=> END
