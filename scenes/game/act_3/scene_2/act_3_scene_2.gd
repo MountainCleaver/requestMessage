@@ -71,16 +71,9 @@ func _ready() -> void:
 	
 	Hud.get_node("Control/phone/MarginContainer/lock_screen").clear_notifications()
 
-<<<<<<< HEAD
-	Hud.phone_intro()
-	
 	Hud.reset_phone_state()
 	await get_tree().create_timer(1.0).timeout
-	
-=======
-	Hud.reset_phone_state()
-	await get_tree().create_timer(1.0).timeout
->>>>>>> 7fea9f7fe87c8350085eba11ec77e50c9245c0d0
+
 	add_notification(CHAT_ICON, "Chat", "2 missed calls from Mira")
 	await get_tree().create_timer(1.0).timeout
 	add_notification(CHAT_ICON, "Chat", "Wendy: Dan, you didn’t even inform me you were going home. We were worried, hindi ka sumasagot sa chats ko. Akala ko may nangyari na sayo")
