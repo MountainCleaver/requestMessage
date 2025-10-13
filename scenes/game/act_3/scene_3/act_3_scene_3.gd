@@ -20,14 +20,19 @@ signal restless_diag_one_done
 signal start_mini_game
 signal mini_game_done
 signal intro_sequence_done
+signal went_outside_find_tricycle
 
 var current_location: Node = null
 var mini_game : Node2D = null
 var player_instance: Node2D = null
 
+var bought_meds : bool = false
+
 var first_switch : bool = true
 
 var chat_exit_disabled : bool = false
+
+var can_interact : bool = true # for guarding against spamming "E" when an interaction triggers a dialog
 
 const A_3S_3 = preload("uid://befctg2rwc1x7")
 
@@ -46,7 +51,8 @@ var maps = {
 	"town_center" : {
 		"name" : "hometown_town_center",
 		"spawn_points" : {
-			"drug_store" : "drug_store_door_point"
+			"drug_store" : "drug_store_door_point",
+			"middle" : "town_center_middle"
 		},
 		"camera_limits" : {
 			"top": -460, 
@@ -78,14 +84,18 @@ var maps = {
 signal objective_one_done
 
 var done_objective_one : bool = false
+var done_objective_three: bool = false
 
 enum player_where {INSIDE, OUTSIDE}
 
 var scene_objectives : Array[Dictionary] = [
 	{"ID": 1, "text" : "Go outside"},
 	{"ID": 2, "text" : "[shake]Check the Photo Again[/shake]"},
-	{"ID": 3, "text" : "Find a Tricycle"},
+	{"ID": 3, "text" : "Ride a Tricycle to Bayan"},
 ]
+
+
+var moral_choice : String
 
 
 func _ready() -> void:
@@ -100,8 +110,9 @@ func _ready() -> void:
 	
 	objective_one_done.connect(_on_objective_one_done)
 	restless_diag_one_done.connect(_on_restless_diag_one_done)
+	went_outside_find_tricycle.connect(_on_went_outside_find_tricycle)
 	
-	var moral_choice = SaveManager.get_moral_choice("act_3_scene_2")
+	moral_choice = SaveManager.get_moral_choice("act_3_scene_2")
 	_intro_sequence(moral_choice)
 	
 	_put_tension_effect()
@@ -109,16 +120,48 @@ func _ready() -> void:
 	start_mini_game.connect(_start_mini_game)
 	intro_sequence_done.connect(_on_intro_sequence_done)
 
+
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and player_danilo.current_npc == "door":
-		_switch_location(
-			SCENE_3_DANILO_HOMETOWN,
-			maps["hometown"]["name"],
-			maps["hometown"]["spawn_points"]["house_door"]
-		)
-		if not done_objective_one:
-			done_objective_one = true
-			objective_one_done.emit()
+	if event.is_action_pressed("interact") and can_interact:
+		can_interact = false 
+
+		match player_danilo.current_npc:
+			"door_inside":
+				_switch_location(
+					SCENE_3_DANILO_HOMETOWN,
+					maps["hometown"]["name"],
+					maps["hometown"]["spawn_points"]["house_door"]
+				)
+				
+				if not done_objective_one:
+					done_objective_one = true
+					objective_one_done.emit()
+					
+				if not done_objective_three:
+					went_outside_find_tricycle.emit()
+				
+			
+				await SignalBus.on_transition_finished
+				can_interact = true 
+
+			"tricycle_hometown":
+				if not bought_meds:
+					DialogueManager.show_dialogue_balloon(A_3S_3, "tricycle_start")
+					_switch_location(
+						SCENE_3_TOWN_CENTER,
+						maps["town_center"]["name"],
+						maps["town_center"]["spawn_points"]["middle"]
+					)
+				else:
+					DialogueManager.show_dialogue_balloon(A_3S_3, "tricycle_start_bought")
+				await SignalBus.on_transition_finished
+				can_interact = true  
+
+			"karatula":
+				Hud.add_popup_image("res://assets/HUD/signage_laruan.png")
+				Hud._toggle_popup()
+				player_danilo.force_cannot_move = Hud.popup_showing
+
 
 func _game_state_flow() -> void:
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
@@ -255,41 +298,56 @@ func _on_mini_game_done()->void:
 
 func _on_intro_sequence_done() -> void:
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
-	Hud.show_objectives()
-	pass
+	if moral_choice == "relief":
+		Hud.show_objectives()
+	
 
 
 # CAMERA HELPERS ===========================================================================================================================
 func _set_camera(map_name: String) -> void:
-	match map_name:
-		maps.house.name:
-			# Detach the camera from player for fixed view
-			if camera_2d.get_parent() != self:
-				camera_2d.get_parent().remove_child(camera_2d)
-				add_child(camera_2d)
+	if map_name == maps["house"]["name"]:
+		# Detach the camera from player for fixed view
+		if camera_2d.get_parent() != self:
+			camera_2d.get_parent().remove_child(camera_2d)
+			add_child(camera_2d)
+		camera_2d.position = Vector2(0, 0)
+		camera_2d.zoom = Vector2(3.0, 3.0)
+		camera_2d.make_current()
 
-			# Center the camera on the scene
-			camera_2d.position = Vector2(0, 0)
-			camera_2d.zoom = Vector2(3.0, 3.0)
+	elif map_name == maps["hometown"]["name"]:
+		if camera_2d.get_parent() != player_danilo:
+			camera_2d.get_parent().remove_child(camera_2d)
+			player_danilo.add_child(camera_2d)
+			camera_2d.position = Vector2.ZERO
+		camera_2d.zoom = Vector2(3.0, 3.0)
 
-		maps.hometown.name:
-			# Reattach the camera to the player so it follows him
-			if camera_2d.get_parent() != player_danilo:
-				camera_2d.get_parent().remove_child(camera_2d)
-				player_danilo.add_child(camera_2d)
-				camera_2d.position = Vector2.ZERO  # Align center on player
+		var cam_limits = maps["hometown"].get("camera_limits", null)
+		if cam_limits:
+			_set_camera_limits(
+				cam_limits.top,
+				cam_limits.right,
+				cam_limits.bottom,
+				cam_limits.left
+			)
+			camera_2d.make_current()
 
-			# Restore zoom and limits for outdoor maps
-			camera_2d.zoom = Vector2(3.0, 3.0)
-			
-			var cam_limits = maps["hometown"].get("camera_limits", null)
-			if cam_limits:
-				_set_camera_limits(
-					cam_limits.top,
-					cam_limits.right,
-					cam_limits.bottom,
-					cam_limits.left
-				)
+	elif map_name == maps["town_center"]["name"]:
+		print("in town center")
+		if camera_2d.get_parent() != player_danilo:
+			camera_2d.get_parent().remove_child(camera_2d)
+			player_danilo.add_child(camera_2d)
+			camera_2d.position = Vector2.ZERO
+		camera_2d.zoom = Vector2(3.0, 3.0)
+
+		var cam_limits = maps["town_center"].get("camera_limits", null)
+		if cam_limits:
+			_set_camera_limits(
+				cam_limits.top,
+				cam_limits.right,
+				cam_limits.bottom,
+				cam_limits.left
+			)
+		camera_2d.make_current()
 
 
 func _set_camera_limits(top: int, right: int, bottom: int, left: int)->void:
@@ -303,6 +361,7 @@ func _tween_camera_to(pos: Vector2, zoom: float, duration: float = 1.0):
 	tween.tween_property(camera_2d, "position", pos, duration)
 	tween.tween_property(camera_2d, "zoom", Vector2(zoom, zoom), duration)
 
+
 func _on_objective_one_done()-> void:
 	ObjectiveManager.complete_objective(scene_objectives[0]["ID"])
 
@@ -311,6 +370,9 @@ func _on_chat_opened(chat_name: String) ->void:
 		ObjectiveManager.complete_objective(scene_objectives[1]["ID"])
 		DialogueManager.show_dialogue_balloon(A_3S_3, "start_restless_2")
 
-
 func _on_restless_diag_one_done () -> void:
 	Hud.reset_phone_state()
+
+
+func _on_went_outside_find_tricycle () -> void:
+	ObjectiveManager.add_objective(scene_objectives[2]["ID"], scene_objectives[2]["text"])
