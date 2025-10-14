@@ -53,3 +53,5 @@ signal call_completed(call_name: String)
 signal mini_game_done
 
 #gamot
+signal bought_meds_done
+var bought_meds : bool = false
