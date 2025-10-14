@@ -63,6 +63,14 @@ func show_objectives() -> void:
 func hide_objectives() -> void:
 	objectives_panel.visible = false
 
+func update_objective_text(obj_ID: int, new_text: String) -> void:
+	var objectives_nodes = v_box_container.get_children() as Array[RichTextLabel]
+	for obj in objectives_nodes:
+		if obj.get_meta("ID") == obj_ID:
+			obj.text = "[ ]" + new_text
+			return
+
+
 func objective_intro_anim() -> void:
 	hud_animations.play("objective_in")
 
@@ -183,8 +191,6 @@ func reset_phone_state() -> void:
 	phone_main_active = false
 	chat_open = false
 	phone_showing = false
-
-	await get_tree().create_timer(0.8).timeout
 
 	var lock_screen_scene = preload("res://scenes/game/lock_screen.tscn").instantiate()
 	phone_container.add_child(lock_screen_scene)
