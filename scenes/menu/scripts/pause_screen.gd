@@ -70,9 +70,6 @@ func _on_exit_to_main_menu_pressed() -> void:
 
 func _on_exit_main_menu_dialog_confirmed() -> void:
 	
-	if Hud.phone_showing:
-		Hud.phone_outro() # shit aint working, cant fix it :(
-		print("Remove phone: phone outro playing")
 	
 	# clean phone screens
 	if Hud.has_node("Control/phone/MarginContainer"):
@@ -80,8 +77,13 @@ func _on_exit_main_menu_dialog_confirmed() -> void:
 		for node in phone_margin_container.get_children():
 			if node.name != "lock_screen":
 				node.queue_free()
+
+	if Hud.phone_showing:
+		Hud.phone_outro() # shit aint working, cant fix it :(
+		print("Remove phone: phone outro playing")
 	
-	if Hud.objectives_panel.visible and ObjectiveManager.objectives:
+	if Hud.objectives_panel.visible or ObjectiveManager.objectives:
+		ObjectiveManager.empty_objectives()
 		Hud.hide_objectives()
 		Hud.clear_objectives()
 	
