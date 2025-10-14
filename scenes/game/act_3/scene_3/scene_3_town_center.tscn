@@ -14,10 +14,10 @@ script = ExtResource("1_0ocm7")
 [node name="spawn_points" type="Node2D" parent="hometown_town_center/y-sorted" index="2"]
 
 [node name="drug_store_door_point" type="Marker2D" parent="hometown_town_center/y-sorted/spawn_points"]
-position = Vector2(312, 213)
+position = Vector2(424, 213)
 
 [node name="town_center_middle" type="Marker2D" parent="hometown_town_center/y-sorted/spawn_points"]
-position = Vector2(44, 69)
+position = Vector2(-46, 48)
 
 [node name="tricycle" parent="hometown_town_center/y-sorted" index="3" instance=ExtResource("2_i3npu")]
 position = Vector2(-1, 67)
@@ -33,7 +33,7 @@ limit_bottom = -700
 [node name="areas" type="Node2D" parent="hometown_town_center/y-sorted" index="4"]
 
 [node name="drugstore_door" type="Area2D" parent="hometown_town_center/y-sorted/areas"]
-position = Vector2(312, 213)
+position = Vector2(424, 213)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hometown_town_center/y-sorted/areas/drugstore_door"]
@@ -44,6 +44,8 @@ debug_color = Color(0, 0.63105893, 0.46943766, 0.41960785)
 color = Color(1, 1, 0.8862745, 1)
 energy = 0.4
 
+[connection signal="body_entered" from="hometown_town_center/y-sorted/tricycle/tricycle_area" to="." method="_on_tricycle_area_body_entered"]
+[connection signal="body_exited" from="hometown_town_center/y-sorted/tricycle/tricycle_area" to="." method="_on_tricycle_area_body_exited"]
 [connection signal="body_entered" from="hometown_town_center/y-sorted/areas/drugstore_door" to="." method="_on_drugstore_door_body_entered"]
 [connection signal="body_exited" from="hometown_town_center/y-sorted/areas/drugstore_door" to="." method="_on_drugstore_door_body_exited"]
 
