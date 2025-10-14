@@ -101,15 +101,44 @@ func apply_dialogue_line() -> void:
 	balloon.focus_mode = Control.FOCUS_ALL
 	balloon.grab_focus()
 
-	character_label.visible = not dialogue_line.character.is_empty()
-	character_label.text = tr(dialogue_line.character, "dialogue")
-	
-	var portrait_path: String = "res://assets/character_sprites/portrait_%s.png" % dialogue_line.character
-	
-	if ResourceLoader.exists(portrait_path):
-		portrait.texture = load(portrait_path);
+	var raw_character_name = dialogue_line.character
+	var display_name = raw_character_name
+
+	# === AUTO FORMATTING ===
+	if raw_character_name.to_lower() == "unknown_sender":
+		display_name = "Unknown Sender"
+	elif raw_character_name.ends_with("_child"):
+		display_name = raw_character_name.replace("_child", "")
+		display_name = display_name.capitalize() + " (child)"
+	elif raw_character_name.ends_with("_ghost"):
+		display_name = raw_character_name.replace("_ghost", "")
+		display_name = display_name.capitalize() + " (ghost)"
+	elif "_" in raw_character_name:
+		# Handle any other underscores
+		var parts = raw_character_name.split("_")
+		display_name = ""
+		for part in parts:
+			display_name += part.capitalize() + " "
+		display_name = display_name.strip_edges()
+
+	character_label.visible = not raw_character_name.is_empty()
+	character_label.text = tr(display_name, "dialogue")
+
+	# === AUTO PORTRAIT HANDLER ===
+	var portrait_path: String = "res://assets/character_sprites/portrait_%s.png" % raw_character_name
+
+	if not ResourceLoader.exists(portrait_path):
+		# Try fallback removing underscores
+		var fallback_path = "res://assets/character_sprites/portrait_%s.png" % raw_character_name.replace("_", "")
+		if ResourceLoader.exists(fallback_path):
+			portrait_path = fallback_path
+		else:
+			portrait_path = ""
+
+	if portrait_path != "":
+		portrait.texture = load(portrait_path)
 	else:
-		portrait.texture = null;
+		portrait.texture = null
 
 	dialogue_label.hide()
 	dialogue_label.dialogue_line = dialogue_line
@@ -117,7 +146,6 @@ func apply_dialogue_line() -> void:
 	responses_menu.hide()
 	responses_menu.responses = dialogue_line.responses
 
-	# Show our balloon
 	balloon.show()
 	will_hide_balloon = false
 
@@ -126,7 +154,6 @@ func apply_dialogue_line() -> void:
 		dialogue_label.type_out()
 		await dialogue_label.finished_typing
 
-	# Wait for input
 	if dialogue_line.responses.size() > 0:
 		balloon.focus_mode = Control.FOCUS_NONE
 		responses_menu.show()
@@ -138,6 +165,7 @@ func apply_dialogue_line() -> void:
 		is_waiting_for_input = true
 		balloon.focus_mode = Control.FOCUS_ALL
 		balloon.grab_focus()
+
 
 
 ## Go to the next line
