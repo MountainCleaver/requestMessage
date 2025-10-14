@@ -51,3 +51,5 @@ signal call_completed(call_name: String)
 
 #square breathing
 signal mini_game_done
+
+#gamot
