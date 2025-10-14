@@ -67,9 +67,8 @@ shape = SubResource("RectangleShape2D_v1ewy")
 position = Vector2(0, -4)
 scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_0242k")
-animation = &"go"
-autoplay = "go"
-frame_progress = 0.47149593
+animation = &"idle"
+autoplay = "idle"
 
 [node name="tricycle_area" type="Area2D" parent="."]
 
