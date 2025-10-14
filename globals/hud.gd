@@ -76,13 +76,13 @@ func objective_outro_anim() -> void:
 # === PHONE HANDLING (local only) ===
 # ==================================
 func phone_intro() -> void:
-	hud_animations.play("phone_in")
 	phone_showing = true
+	hud_animations.play("phone_in")
 	SignalBus.phone_in.emit()
 
 func phone_outro() -> void:
-	hud_animations.play("phone_out")
 	phone_showing = false
+	hud_animations.play("phone_out")
 	SignalBus.phone_out.emit()
 
 func toggle_phone() -> void:
