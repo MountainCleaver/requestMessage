@@ -24,7 +24,6 @@ signal start_mini_game
 signal mini_game_done
 signal intro_sequence_done
 signal went_outside_find_tricycle
-signal bought_meds_done
 
 var current_location: Node = null
 var mini_game : Node2D = null
@@ -99,7 +98,8 @@ var scene_objectives : Array[Dictionary] = [
 	{"ID": 1, "text" : "Go outside"},
 	{"ID": 2, "text" : "[shake]Check the Photo Again[/shake]"},
 	{"ID": 3, "text" : "Ride a Tricycle to Bayan"},
-	{"ID": 4, "text": "Buy Medicine"}
+	{"ID": 4, "text": "Find a Drugstore"},
+	{"ID" : 5, "text" : "Go Back Home"},
 ]
 
 
@@ -119,7 +119,6 @@ func _ready() -> void:
 	objective_one_done.connect(_on_objective_one_done)
 	restless_diag_one_done.connect(_on_restless_diag_one_done)
 	went_outside_find_tricycle.connect(_on_went_outside_find_tricycle)
-	bought_meds_done.connect(_on_bought_meds_done)
 	
 	#DialogueManager.dialogue_started.connect(_on_dialogue_started)
 	#DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
@@ -132,9 +131,6 @@ func _ready() -> void:
 	start_mini_game.connect(_start_mini_game)
 	intro_sequence_done.connect(_on_intro_sequence_done)
 
-func _process(delta: float) -> void:
-	print(can_interact)
-
 func _input(event: InputEvent) -> void:
 	if not event.is_action_pressed("interact"):
 		return
@@ -145,19 +141,23 @@ func _input(event: InputEvent) -> void:
 
 	match player_danilo.current_npc:
 		"door_inside":
-			can_interact = false
-			_switch_location(
-				SCENE_3_DANILO_HOMETOWN,
-				maps["hometown"]["name"],
-				maps["hometown"]["spawn_points"]["house_door"]
-			)
+			if not bought_meds:
+				can_interact = false
+				_switch_location(
+					SCENE_3_DANILO_HOMETOWN,
+					maps["hometown"]["name"],
+					maps["hometown"]["spawn_points"]["house_door"]
+				)
 
-			if not done_objective_one:
-				done_objective_one = true
-				objective_one_done.emit()
+				if not done_objective_one:
+					done_objective_one = true
+					objective_one_done.emit()
 
-			if not done_objective_three:
-				went_outside_find_tricycle.emit()
+				if not done_objective_three:
+					went_outside_find_tricycle.emit()
+			else:
+				SignalBus.out_npc.emit("door_inside")
+				DialogueManager.show_dialogue_balloon(A_3S_3, "rushed_home")
 		"door_outside":
 			can_interact = false
 			if not bought_meds:
@@ -174,11 +174,11 @@ func _input(event: InputEvent) -> void:
 			if not bought_meds:
 				SignalBus.out_npc.emit("tricycle_hometown")
 				DialogueManager.show_dialogue_balloon(A_3S_3, "tricycle_start")
-				_switch_location(
-					SCENE_3_TOWN_CENTER,
-					maps["town_center"]["name"],
-					maps["town_center"]["spawn_points"]["middle"]
-				)
+				#_switch_location(
+					#SCENE_3_TOWN_CENTER,
+					#maps["town_center"]["name"],
+					#maps["town_center"]["spawn_points"]["middle"]
+				#)
 				ObjectiveManager.complete_objective(scene_objectives[2]["ID"])
 			else:
 				SignalBus.out_npc.emit("tricycle_hometown")
@@ -190,6 +190,7 @@ func _input(event: InputEvent) -> void:
 				SignalBus.out_npc.emit("tricycle_town_center")
 				DialogueManager.show_dialogue_balloon(A_3S_3, "not_yet_bought_meds")
 			else:
+				#ObjectiveManager.complete_objective(scene_objectives[4]["ID"])
 				_switch_location(
 					SCENE_3_DANILO_HOMETOWN,
 					maps["hometown"]["name"],
@@ -198,12 +199,15 @@ func _input(event: InputEvent) -> void:
 
 		"drugstore_door_outside":
 			can_interact = false
+			ObjectiveManager.complete_objective(scene_objectives[3]["ID"])
 			if not bought_meds:
 				_switch_location(
 					SCENE_3_DRUGSTORE,
 					maps["drugstore"]["name"],
 					maps["drugstore"]["spawn_points"]["door"]
 				)
+			else:
+				DialogueManager.show_dialogue_balloon(A_3S_3, "alreay_bought_meds")
 
 		"karatula":
 			Hud.add_popup_image("res://assets/HUD/signage_laruan.png")
@@ -222,13 +226,14 @@ func _input(event: InputEvent) -> void:
 					maps["town_center"]["spawn_points"]["drug_store"]
 				)
 				await SignalBus.on_transition_finished
+				ObjectiveManager.add_objective(scene_objectives[4]["ID"], scene_objectives[4]["text"])
 
 		"pharmacist":
 			can_interact = false
 			SignalBus.out_npc.emit("pharmacist")
 			if not bought_meds:
 				DialogueManager.show_dialogue_balloon(A_3S_3, "drugstore_clerk")
-				ObjectiveManager.complete_objective(scene_objectives[3]["ID"])
+				#ObjectiveManager.complete_objective(scene_objectives[3]["ID"])
 			else:
 				DialogueManager.show_dialogue_balloon(A_3S_3, "drugstore_clerk_bought")
 
@@ -443,17 +448,5 @@ func _on_chat_opened(chat_name: String) ->void:
 func _on_restless_diag_one_done () -> void:
 	Hud.reset_phone_state()
 
-
 func _on_went_outside_find_tricycle () -> void:
 	ObjectiveManager.add_objective(scene_objectives[2]["ID"], scene_objectives[2]["text"])
-
-func debounce_interaction() -> void:
-	if _debounce_timer and not _debounce_timer.is_stopped():
-		return  # still cooling down
-	can_interact = false
-	_debounce_timer = get_tree().create_timer(DEBOUNCE_DELAY)
-	await _debounce_timer.timeout
-	can_interact = true
-
-func _on_bought_meds_done()->void:
-	pass #for objective complete

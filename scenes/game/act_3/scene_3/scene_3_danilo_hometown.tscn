@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://fgxe57bsbw2l"]
+[gd_scene load_steps=14 format=4 uid="uid://fgxe57bsbw2l"]
 
 [ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="1_85dup"]
 [ext_resource type="Script" uid="uid://dtn2n5kxkaorp" path="res://scenes/game/act_3/scene_3/scene_3_danilo_hometown.gd" id="1_ixdqi"]
 [ext_resource type="Texture2D" uid="uid://bnwgscwxng3ne" path="res://assets/tilesets/Sprite-0005.png" id="2_5og0n"]
 [ext_resource type="PackedScene" uid="uid://byxc4ejvsxd7k" path="res://scenes/characters/tricycle.tscn" id="2_6ha70"]
+[ext_resource type="PackedScene" uid="uid://dw7yle2rdkcn2" path="res://scenes/characters/npc_jonathan.tscn" id="5_fs3wg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixdqi"]
 texture = ExtResource("2_5og0n")
@@ -17,6 +18,70 @@ size = Vector2(16, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fs3wg"]
 size = Vector2(14, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbfas"]
+size = Vector2(272.5, 56)
+
+[sub_resource type="Animation" id="Animation_fs3wg"]
+resource_name = "jonathan_pop_out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("y-sorted-objects/npc_jonathan:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("y-sorted-objects/npc_jonathan:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.30588236, 0.2, 0.28235295, 0), Color(0.30590665, 0.19863874, 0.28129345, 0.28235295)]
+}
+
+[sub_resource type="Animation" id="Animation_pbfas"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("y-sorted-objects/npc_jonathan:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("y-sorted-objects/npc_jonathan:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.30590665, 0.19863874, 0.28129345, 0.28235295)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lb2ga"]
+_data = {
+&"RESET": SubResource("Animation_pbfas"),
+&"jonathan_pop_out": SubResource("Animation_fs3wg")
+}
 
 [node name="scene_3_danilo_hometown" type="Node2D"]
 script = ExtResource("1_ixdqi")
@@ -58,6 +123,25 @@ position = Vector2(-88, 162)
 shape = SubResource("RectangleShape2D_fs3wg")
 debug_color = Color(0.575415, 0.40358803, 0, 0.41960785)
 
+[node name="jonathan_start_chase" type="Area2D" parent="danilo_hometown/y-sorted-objects/areas"]
+position = Vector2(63, -28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo_hometown/y-sorted-objects/areas/jonathan_start_chase"]
+position = Vector2(-42.75, 99)
+shape = SubResource("RectangleShape2D_pbfas")
+debug_color = Color(0, 0.62271327, 0.54649323, 0.41960785)
+
+[node name="npc_jonathan" parent="danilo_hometown/y-sorted-objects" index="5" instance=ExtResource("5_fs3wg")]
+visible = false
+modulate = Color(0.30590665, 0.19863874, 0.28129345, 0.28235295)
+position = Vector2(36, -58)
+motion_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="danilo_hometown"]
+libraries = {
+&"": SubResource("AnimationLibrary_lb2ga")
+}
+
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 color = Color(1, 1, 0.76862746, 1)
 energy = 0.4
@@ -68,6 +152,8 @@ energy = 0.4
 [connection signal="body_exited" from="danilo_hometown/y-sorted-objects/areas/karatula_area" to="." method="_on_karatula_area_body_exited"]
 [connection signal="body_entered" from="danilo_hometown/y-sorted-objects/areas/house_door_outside" to="." method="_on_house_door_outside_body_entered"]
 [connection signal="body_exited" from="danilo_hometown/y-sorted-objects/areas/house_door_outside" to="." method="_on_house_door_outside_body_exited"]
+[connection signal="body_entered" from="danilo_hometown/y-sorted-objects/areas/jonathan_start_chase" to="." method="_on_jonathan_start_chase_body_entered"]
+[connection signal="body_exited" from="danilo_hometown/y-sorted-objects/areas/jonathan_start_chase" to="." method="_on_jonathan_start_chase_body_exited"]
 
 [editable path="danilo_hometown"]
 [editable path="danilo_hometown/y-sorted-objects/tricycle"]

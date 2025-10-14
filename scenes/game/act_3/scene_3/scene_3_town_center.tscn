@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqk500i2neu4t"]
+[gd_scene load_steps=8 format=3 uid="uid://cqk500i2neu4t"]
 
 [ext_resource type="Script" uid="uid://cft2prq4niwpo" path="res://scenes/game/act_3/scene_3/scene_3_town_center.gd" id="1_0ocm7"]
 [ext_resource type="PackedScene" uid="uid://dphe7c6imiltt" path="res://scenes/game/act_3/scene_2/hometown_town_center.tscn" id="1_cob71"]
 [ext_resource type="PackedScene" uid="uid://byxc4ejvsxd7k" path="res://scenes/characters/tricycle.tscn" id="2_i3npu"]
+[ext_resource type="Texture2D" uid="uid://bnwgscwxng3ne" path="res://assets/tilesets/Sprite-0005.png" id="3_aarg7"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxqc0"]
+texture = ExtResource("3_aarg7")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0xbcf"]
+sources/0 = SubResource("TileSetAtlasSource_qxqc0")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ocm7"]
 
@@ -10,6 +18,11 @@
 script = ExtResource("1_0ocm7")
 
 [node name="hometown_town_center" parent="." instance=ExtResource("1_cob71")]
+
+[node name="guide" type="TileMapLayer" parent="hometown_town_center/map" index="4"]
+self_modulate = Color(1, 1, 1, 0.27058825)
+tile_map_data = PackedByteArray(0, 0, 7, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 96, 20, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 96)
+tile_set = SubResource("TileSet_0xbcf")
 
 [node name="spawn_points" type="Node2D" parent="hometown_town_center/y-sorted" index="2"]
 
