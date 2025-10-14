@@ -1,0 +1,228 @@
+[gd_scene load_steps=13 format=3 uid="uid://df1yiaipfjq1x"]
+
+[ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_8i4i3"]
+[ext_resource type="Script" uid="uid://ca4enqtk3obhk" path="res://scenes/menu/scripts/menu_credits.gd" id="1_db4c0"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_i52uf"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_db4c0"]
+[ext_resource type="Texture2D" uid="uid://bbkdr0csbjf5r" path="res://assets/main menu/image.png" id="3_xf4af"]
+[ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="6_em1wr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xf4af"]
+font = ExtResource("2_i52uf")
+font_size = 72
+font_color = Color(1, 0.192157, 0.192157, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_em1wr"]
+font = ExtResource("3_db4c0")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_a81g2"]
+font = ExtResource("3_db4c0")
+font_size = 32
+
+[sub_resource type="Animation" id="Animation_db4c0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(400, 1046)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_i52uf"]
+resource_name = "scrolling"
+length = 35.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(400, 1046), Vector2(400, -1146)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xf4af"]
+_data = {
+&"RESET": SubResource("Animation_db4c0"),
+&"scrolling": SubResource("Animation_i52uf")
+}
+
+[node name="menu_credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_db4c0")
+
+[node name="menu_background" parent="." instance=ExtResource("1_8i4i3")]
+layout_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.3)
+self_modulate = Color(1, 1, 1, 0.3)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_xf4af")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.152941, 0.239216, 0.439216)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 400.0
+offset_top = 1046.0
+offset_right = -400.0
+offset_bottom = 1171.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "REQUEST MESSAGE"
+label_settings = SubResource("LabelSettings_xf4af")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Developed by:
+BSIT 4H Group 6"
+label_settings = SubResource("LabelSettings_em1wr")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Directed & Designed by:
+(names)"
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Programmers:
+Julia Mae Buenafe
+Gerald Cancino
+Roselyn Claveria
+Joana Mae Emperoso
+Julius Romero"
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Art & Animation:
+(names)"
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Sound Design & Music:
+(names)"
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Writers
+(names)"
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label8" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Special Thanks:
+(names)"
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label9" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Made With:
+(names)"
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xf4af")
+}
+
+[node name="back_tips" parent="." instance=ExtResource("6_em1wr")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -401.0
+offset_top = -137.0
+offset_right = -401.0
+offset_bottom = -137.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.1667
+offset_bottom = 11.1667
+grow_horizontal = 2
+grow_vertical = 2
+text = "Thank you for playing!"
+label_settings = SubResource("LabelSettings_xf4af")
+horizontal_alignment = 1
+
+[editable path="back_tips"]

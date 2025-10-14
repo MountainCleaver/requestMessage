@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj5r1ksg1nwx5"]
+
+[ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="1_qn2kh"]
+[ext_resource type="PackedScene" uid="uid://cf3bq1evecyuo" path="res://scenes/characters/npc_mira.tscn" id="2_f14f4"]
+[ext_resource type="PackedScene" uid="uid://c5nx0yibgaq7f" path="res://scenes/characters/npc_danilo.tscn" id="3_pyt6u"]
+
+[node name="DaniloHometownHouse" type="Node2D"]
+
+[node name="danilo_hometown_house" parent="." instance=ExtResource("1_qn2kh")]
+
+[node name="npc_mira" parent="danilo_hometown_house" instance=ExtResource("2_f14f4")]
+position = Vector2(54, 30)
+
+[node name="danilo" parent="danilo_hometown_house" instance=ExtResource("3_pyt6u")]
+position = Vector2(92, 60)

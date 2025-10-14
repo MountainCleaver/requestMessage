@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://c22u478jgpm6r"]
+
+[ext_resource type="Script" uid="uid://cdmfuadykwq1b" path="res://helpers/narration_panel.gd" id="1_gsucg"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_wickx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ms4m"]
+bg_color = Color(0.0509804, 0.0509804, 0.0823529, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dqq2d"]
+font_size = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sr2f5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="narration_panel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gsucg")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ms4m")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_right = 1440.0
+offset_bottom = 1024.0
+
+[node name="Label" type="Label" parent="Panel/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -509.5
+offset_top = -177.41669
+offset_right = 509.5
+offset_bottom = 177.41669
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_wickx")
+theme_override_font_sizes/font_size = 34
+text = "Text"
+label_settings = SubResource("LabelSettings_dqq2d")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="Panel/TextureRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -246.75
+offset_top = -129.41675
+offset_right = 246.75
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_wickx")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_sr2f5")
+text = "Click to Continue"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

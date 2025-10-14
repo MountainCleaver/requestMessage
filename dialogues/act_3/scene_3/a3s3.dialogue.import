@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cm8qpg7ekjmc7"
+path="res://.godot/imported/a3s3.dialogue-c75c0e39d104acd5eb974f6f5c699a83.tres"
+
+[deps]
+
+source_file="res://dialogues/act_3/scene_3/a3s3.dialogue"
+dest_files=["res://.godot/imported/a3s3.dialogue-c75c0e39d104acd5eb974f6f5c699a83.tres"]
+
+[params]
+
+defaults=true

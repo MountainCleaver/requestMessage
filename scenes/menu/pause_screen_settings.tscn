@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://26dch1xdgyxi"]
+
+[ext_resource type="PackedScene" uid="uid://b0p05cxqxy31k" path="res://scenes/menu/menu_game_settings.tscn" id="1_lli6f"]
+[ext_resource type="Texture2D" uid="uid://du0i3pkn1es8y" path="res://assets/main menu/Pause.png" id="2_hd365"]
+
+[node name="pause_screen_settings" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options" parent="." instance=ExtResource("1_lli6f")]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 1
+
+[node name="TextureRect" parent="Options/menu_background" index="0"]
+texture = ExtResource("2_hd365")
+
+[editable path="Options"]
+[editable path="Options/menu_background"]

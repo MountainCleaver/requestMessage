@@ -1,0 +1,585 @@
+[gd_scene load_steps=37 format=3 uid="uid://kvi1gwn1mkx2"]
+
+[ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="1_6sufa"]
+[ext_resource type="Script" uid="uid://ddc3dvxy5cq0o" path="res://scenes/menu/scripts/bday_and_gender.gd" id="1_aj270"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_03f48"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_aj270"]
+[ext_resource type="Texture2D" uid="uid://03chnjfghkoo" path="res://assets/main menu/icons/gender-male.svg" id="5_sbdg1"]
+[ext_resource type="Texture2D" uid="uid://cdtdlv3v65020" path="res://assets/main menu/icons/gender-ambiguous.svg" id="6_ri523"]
+[ext_resource type="Texture2D" uid="uid://cgwb5nimqjfxg" path="res://assets/main menu/icons/gender-female.svg" id="6_t7sn6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sbdg1"]
+font = ExtResource("2_03f48")
+font_size = 40
+font_color = Color(0.329412, 0.329412, 0.329412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ri523"]
+font = ExtResource("3_aj270")
+font_size = 24
+font_color = Color(1, 0.192157, 0.192157, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_03f48"]
+font = ExtResource("3_aj270")
+font_size = 24
+font_color = Color(0.329412, 0.329412, 0.329412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owdxj"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fix5w"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.760591, 0.764619, 0.796131, 1)
+corner_radius_top_left = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqt58"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.00820203, 0.00820202, 0.00820202, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7sn6"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twshb"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.760591, 0.764619, 0.796131, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbdg1"]
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogk07"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.760591, 0.764619, 0.796131, 1)
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4e0t"]
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 15
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evfps"]
+bg_color = Color(0.413683, 0.549208, 0.790948, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.236512, 0.475898, 0.889928, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7kat"]
+bg_color = Color(0.749385, 0.81656, 0.942033, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqb73"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_t7sn6"]
+allow_unpress = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eud7q"]
+bg_color = Color(0.792657, 0.417269, 0.480016, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.782535, 0.288698, 0.496264, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgssv"]
+bg_color = Color(0.908793, 0.648456, 0.681708, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5gloy"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlt3j"]
+bg_color = Color(0.640479, 0.757863, 0.594973, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.484121, 0.601753, 0.437912, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qusxm"]
+bg_color = Color(0.799232, 0.881718, 0.770413, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.543271, 0.680225, 0.606855, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r20u6"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e21up"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8kfaq"]
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3u6i2"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.760784, 0.764706, 0.796078, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74a5o"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.597898, 0.591822, 0.589213, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjrkx"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_t7sn6"]
+font = ExtResource("3_aj270")
+font_size = 24
+font_color = Color(0.862745, 0.207843, 0.270588, 0.596078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aeego"]
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 2
+border_color = Color(0.162066, 0.162066, 0.162065, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkjcq"]
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 2
+border_color = Color(0.162066, 0.162066, 0.162065, 1)
+
+[node name="bday_and_gender" type="Control"]
+layout_mode = 3
+anchor_right = 0.367
+anchor_bottom = 0.527
+offset_right = -0.480042
+offset_bottom = 0.35199
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aj270")
+
+[node name="Panel" parent="." instance=ExtResource("1_6sufa")]
+layout_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_right = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="vbox_all" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+text = "CREATE AN ACCOUNT
+"
+label_settings = SubResource("LabelSettings_sbdg1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="subtitle" type="Label" parent="Panel/MarginContainer/vbox_all/title"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.5
+offset_top = -36.0
+offset_right = 105.5
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "For players 18+ only"
+label_settings = SubResource("LabelSettings_ri523")
+
+[node name="vbox_date" type="VBoxContainer" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/vbox_all/vbox_date"]
+layout_mode = 2
+text = "Birthday"
+label_settings = SubResource("LabelSettings_03f48")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/vbox_all/vbox_date"]
+layout_mode = 2
+alignment = 1
+
+[node name="month" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxFlat_owdxj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fix5w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mqt58")
+theme_override_styles/normal = SubResource("StyleBoxFlat_t7sn6")
+alignment = 1
+
+[node name="day" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxFlat_owdxj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_twshb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sbdg1")
+alignment = 1
+
+[node name="year" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxFlat_owdxj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ogk07")
+theme_override_styles/normal = SubResource("StyleBoxFlat_x4e0t")
+alignment = 1
+
+[node name="line_break" type="Label" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+
+[node name="vbox_gender" type="VBoxContainer" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/vbox_all/vbox_gender"]
+layout_mode = 2
+text = "Gender"
+label_settings = SubResource("LabelSettings_03f48")
+
+[node name="genders_container" type="HBoxContainer" parent="Panel/MarginContainer/vbox_all/vbox_gender"]
+layout_mode = 2
+alignment = 1
+
+[node name="male" type="Button" parent="Panel/MarginContainer/vbox_all/vbox_gender/genders_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_evfps")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l7kat")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_evfps")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nqb73")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_t7sn6")
+icon = ExtResource("5_sbdg1")
+icon_alignment = 1
+
+[node name="female" type="Button" parent="Panel/MarginContainer/vbox_all/vbox_gender/genders_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_eud7q")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sgssv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_eud7q")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5gloy")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_t7sn6")
+icon = ExtResource("6_t7sn6")
+icon_alignment = 1
+
+[node name="metal" type="Button" parent="Panel/MarginContainer/vbox_all/vbox_gender/genders_container"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_dlt3j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qusxm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dlt3j")
+theme_override_styles/normal = SubResource("StyleBoxFlat_r20u6")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_t7sn6")
+icon = ExtResource("6_ri523")
+icon_alignment = 1
+
+[node name="line_break2" type="Label" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+
+[node name="vbox_enter" type="VBoxContainer" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/vbox_all/vbox_enter"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_03f48")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/vbox_all/vbox_enter"]
+layout_mode = 2
+alignment = 1
+
+[node name="btn_accept" type="Button" parent="Panel/MarginContainer/vbox_all/vbox_enter/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+theme_override_colors/font_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+theme_override_colors/font_focus_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+theme_override_colors/font_pressed_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxFlat_e21up")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8kfaq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3u6i2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_74a5o")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jjrkx")
+text = "Enter"
+
+[node name="line_break3" type="Label" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_t7sn6")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+text = "Innocence won't survive"
+label_settings = SubResource("LabelSettings_t7sn6")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.5
+offset_top = -55.0
+offset_right = 30.5
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxFlat_aeego")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nkjcq")
+text = "Login"
+
+[connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/month" to="." method="_on_month_item_selected"]
+[connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/day" to="." method="_on_day_item_selected"]
+[connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/year" to="." method="_on_year_item_selected"]
+[connection signal="pressed" from="Panel/MarginContainer/vbox_all/vbox_gender/genders_container/male" to="." method="_on_male_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/vbox_all/vbox_gender/genders_container/female" to="." method="_on_female_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/vbox_all/vbox_gender/genders_container/metal" to="." method="_on_metal_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/vbox_all/vbox_enter/HBoxContainer/btn_accept" to="." method="_on_btn_accept_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

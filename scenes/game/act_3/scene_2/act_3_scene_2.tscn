@@ -1,0 +1,339 @@
+[gd_scene load_steps=16 format=3 uid="uid://tnda2d107s7p"]
+
+[ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="1_5u0wn"]
+[ext_resource type="Script" uid="uid://ctc7chiqllyi" path="res://scenes/game/act_3/scene_2/act_3_scene_2.gd" id="1_f0so1"]
+[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_d57gj"]
+[ext_resource type="PackedScene" uid="uid://bh2ul0v87mq8h" path="res://scenes/characters/npc_shadowy_chaser.tscn" id="3_duco3"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="3_f0so1"]
+[ext_resource type="Texture2D" uid="uid://b26tbvt5h4mc8" path="res://assets/character_sprites/MATEO__SHOCKED.png" id="5_rc8oa"]
+
+[sub_resource type="Animation" id="Animation_rc8oa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("danilo_hometown_house/map/npc_shadowy_chaser:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.85882354)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("danilo_hometown_house/map/npc_shadowy_chaser:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.07450981)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("danilo_hometown_house/map/npc_shadowy_chaser:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("danilo_hometown_house/y-sorted/player_danilo/shock_sprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -13)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("danilo_hometown_house/y-sorted/player_danilo/shock_sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("danilo_hometown_house/y-sorted/player_danilo/shock_sprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DirectionalLight2D:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_duco3"]
+resource_name = "shadow_show"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("danilo_hometown_house/map/npc_shadowy_chaser:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.20392157), Color(1, 1, 1, 0.5254902)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("danilo_hometown_house/map/npc_shadowy_chaser:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("danilo_hometown_house/map/npc_shadowy_chaser:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.7333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_close_windows_obj"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("danilo_hometown_house/y-sorted/player_danilo/shock_sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.0995278, 3.1995277, 3.2661943),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, -13), Vector2(-1, -29), Vector2(-1, -26)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("danilo_hometown_house/y-sorted/player_danilo/shock_sprite:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3.0328612, 3.232861),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.41, 0.41), Vector2(1.1, 1.1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("danilo_hometown_house/y-sorted/player_danilo/shock_sprite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DirectionalLight2D:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2.652905, 2.82406, 2.9716449, 2.9940586),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rc8oa"]
+_data = {
+&"RESET": SubResource("Animation_rc8oa"),
+&"shadow_show": SubResource("Animation_duco3")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_duco3"]
+size = Vector2(21, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rc8oa"]
+size = Vector2(19, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_460kb"]
+size = Vector2(20, 39)
+
+[sub_resource type="Animation" id="Animation_oe54g"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_460kb"]
+resource_name = "tension"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.5157757, 0.20500007, 0.28912005, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3daj4"]
+_data = {
+&"RESET": SubResource("Animation_oe54g"),
+&"tension": SubResource("Animation_460kb")
+}
+
+[node name="act_3_scene_2" type="Node2D"]
+script = ExtResource("1_f0so1")
+
+[node name="danilo_hometown_house" parent="." instance=ExtResource("1_5u0wn")]
+
+[node name="npc_shadowy_chaser" parent="danilo_hometown_house/map" index="1" instance=ExtResource("3_duco3")]
+visible = false
+modulate = Color(1, 1, 1, 0.85882354)
+self_modulate = Color(1, 1, 1, 0.07450981)
+position = Vector2(42, -37)
+
+[node name="CollisionShape2D" parent="danilo_hometown_house/map/npc_shadowy_chaser" index="1"]
+disabled = true
+
+[node name="window_1" parent="danilo_hometown_house/map" index="4"]
+position = Vector2(-35, -41)
+region_rect = Rect2(32, 0, 32, 34)
+
+[node name="window_2" parent="danilo_hometown_house/map" index="5"]
+position = Vector2(45, -41)
+region_rect = Rect2(32, 0, 32, 34)
+
+[node name="window_3" parent="danilo_hometown_house/map" index="6"]
+region_rect = Rect2(32, 0, 32, 34)
+
+[node name="player_danilo" parent="danilo_hometown_house/y-sorted" index="1" instance=ExtResource("2_d57gj")]
+position = Vector2(83, 23)
+
+[node name="shock_sprite" type="Sprite2D" parent="danilo_hometown_house/y-sorted/player_danilo"]
+visible = false
+z_index = 1
+position = Vector2(-1, -13)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("5_rc8oa")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.5, 3.5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("3_f0so1")]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rc8oa")
+}
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(56, 24)
+
+[node name="window_areas" type="Node2D" parent="."]
+
+[node name="window_area_1" type="Area2D" parent="window_areas"]
+position = Vector2(-40, -28)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="window_areas/window_area_1"]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_duco3")
+debug_color = Color(0.88538814, 0.26510268, 0.51683897, 0.41960785)
+
+[node name="window_area_2" type="Area2D" parent="window_areas"]
+position = Vector2(41, -21)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="window_areas/window_area_2"]
+position = Vector2(-0.5, 8)
+shape = SubResource("RectangleShape2D_rc8oa")
+debug_color = Color(0.8826868, 0.00033595265, 0.8170787, 0.41960785)
+
+[node name="window_area_3" type="Area2D" parent="window_areas"]
+position = Vector2(115, -25)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="window_areas/window_area_3"]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_460kb")
+debug_color = Color(0.92619187, 4.3413937e-05, 0.67529625, 0.41960785)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+energy = 2.0
+
+[node name="tension_anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3daj4")
+}
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[connection signal="body_entered" from="window_areas/window_area_1" to="." method="_on_window_area_1_body_entered"]
+[connection signal="body_exited" from="window_areas/window_area_1" to="." method="_on_window_area_1_body_exited"]
+[connection signal="body_entered" from="window_areas/window_area_2" to="." method="_on_window_area_2_body_entered"]
+[connection signal="body_exited" from="window_areas/window_area_2" to="." method="_on_window_area_2_body_exited"]
+[connection signal="body_entered" from="window_areas/window_area_3" to="." method="_on_window_area_3_body_entered"]
+[connection signal="body_exited" from="window_areas/window_area_3" to="." method="_on_window_area_3_body_exited"]
+
+[editable path="danilo_hometown_house"]
+[editable path="danilo_hometown_house/map/npc_shadowy_chaser"]
+[editable path="danilo_hometown_house/y-sorted/player_danilo"]

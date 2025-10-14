@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cpvqn34n077v5"
+path="res://.godot/imported/a2s4.dialogue-d3aedc762f6c727b3c4f19a6bbff5594.tres"
+
+[deps]
+
+source_file="res://dialogues/act_2/scene_4/a2s4.dialogue"
+dest_files=["res://.godot/imported/a2s4.dialogue-d3aedc762f6c727b3c4f19a6bbff5594.tres"]
+
+[params]
+
+defaults=true

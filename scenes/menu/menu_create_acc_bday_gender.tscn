@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://5ohqovupog1p"]
+
+[ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_xvp0h"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_kxpq5"]
+[ext_resource type="PackedScene" uid="uid://kvi1gwn1mkx2" path="res://scenes/menu/bday_and_gender.tscn" id="3_7vvl2"]
+[ext_resource type="Texture2D" uid="uid://d37rg5an1q1b2" path="res://assets/main menu/menu_phone.png" id="4_s3vkt"]
+
+[node name="menu_create_acc_1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="menu_background" parent="." instance=ExtResource("1_xvp0h")]
+layout_mode = 1
+
+[node name="title_game" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 101.0
+offset_bottom = 227.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 0.192157, 0.192157, 1)
+theme_override_fonts/normal_font = ExtResource("2_kxpq5")
+theme_override_font_sizes/normal_font_size = 72
+text = "REQUEST MESSAGE"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bday_and_gender" parent="." instance=ExtResource("3_7vvl2")]
+layout_mode = 1
+offset_left = 720.0
+offset_top = 250.0
+offset_right = 719.52
+offset_bottom = 250.352
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 248.0
+offset_right = 614.0
+offset_bottom = 858.0
+texture = ExtResource("4_s3vkt")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+size = Vector2i(201, 100)
+ok_button_text = "Enter age"
+cancel_button_text = "Exit Game"
+
+[node name="exitConfirmDialog" type="ConfirmationDialog" parent="."]
+title = "Confirm Exit"
+initial_position = 2
+ok_button_text = "Yes"
+dialog_text = "Do you want to exit the game?"
+
+[connection signal="canceled" from="ConfirmationDialog" to="bday_and_gender" method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="ConfirmationDialog" to="bday_and_gender" method="_on_confirmation_dialog_confirmed"]
+[connection signal="canceled" from="exitConfirmDialog" to="bday_and_gender" method="_on_exit_confirm_dialog_canceled"]
+[connection signal="confirmed" from="exitConfirmDialog" to="bday_and_gender" method="_on_exit_confirm_dialog_confirmed"]

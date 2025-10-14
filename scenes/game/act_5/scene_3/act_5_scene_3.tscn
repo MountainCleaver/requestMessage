@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://v5u0t8alofdh"]
+
+[ext_resource type="Script" uid="uid://chjndjreie40k" path="res://scenes/game/act_5/scene_3/act_5_scene_3.gd" id="1_dy020"]
+[ext_resource type="PackedScene" uid="uid://dh65vmgy2q105" path="res://scenes/game/act_5/scene_3/danilo_hometown.tscn" id="1_lk77i"]
+[ext_resource type="PackedScene" uid="uid://c1odb1v0s3jmg" path="res://scenes/characters/player_mateo.tscn" id="3_3w57v"]
+[ext_resource type="PackedScene" uid="uid://cf3bq1evecyuo" path="res://scenes/characters/npc_mira.tscn" id="3_lasbg"]
+[ext_resource type="PackedScene" uid="uid://c5nx0yibgaq7f" path="res://scenes/characters/npc_danilo.tscn" id="4_dy020"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="5_3w57v"]
+[ext_resource type="PackedScene" uid="uid://d1vnt1mlybwuq" path="res://scenes/characters/npc_wendy.tscn" id="6_3w57v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqbaw"]
+size = Vector2(13, 22)
+
+[node name="act_5_scene_3" type="Node2D"]
+script = ExtResource("1_dy020")
+
+[node name="danilo_hometown" parent="." instance=ExtResource("1_lk77i")]
+
+[node name="npc_mira" parent="danilo_hometown/y-sorted-objects" index="2" instance=ExtResource("3_lasbg")]
+visible = false
+
+[node name="npc_danilo" parent="danilo_hometown/y-sorted-objects" index="3" instance=ExtResource("4_dy020")]
+visible = false
+position = Vector2(-83, 141)
+
+[node name="door" type="Node2D" parent="danilo_hometown/y-sorted-objects" index="4"]
+light_mask = 4
+position = Vector2(1, 8)
+
+[node name="Area2D" type="Area2D" parent="danilo_hometown/y-sorted-objects/door"]
+position = Vector2(-88, 136)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo_hometown/y-sorted-objects/door/Area2D"]
+visibility_layer = 4
+position = Vector2(-0.5, 18)
+shape = SubResource("RectangleShape2D_pqbaw")
+
+[node name="player_mateo" parent="danilo_hometown/y-sorted-objects" index="5" instance=ExtResource("3_3w57v")]
+position = Vector2(169, 195)
+collision_layer = 1
+
+[node name="Camera2D2" type="Camera2D" parent="danilo_hometown/y-sorted-objects/player_mateo"]
+zoom = Vector2(3, 3)
+limit_left = -740
+limit_top = -695
+limit_right = 711
+limit_bottom = 600
+
+[node name="wendy" parent="danilo_hometown/y-sorted-objects" index="6" instance=ExtResource("6_3w57v")]
+visible = false
+position = Vector2(-327, 339)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("5_3w57v")]
+visible = false
+
+[connection signal="body_entered" from="danilo_hometown/y-sorted-objects/door/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="danilo_hometown/y-sorted-objects/door/Area2D" to="." method="_on_area_2d_body_exited"]
+
+[editable path="danilo_hometown"]
+[editable path="danilo_hometown/y-sorted-objects/player_mateo"]

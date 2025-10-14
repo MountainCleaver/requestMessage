@@ -1,0 +1,377 @@
+[gd_scene load_steps=37 format=4 uid="uid://dfwbp3b1101vg"]
+
+[ext_resource type="Script" uid="uid://dcpcot3w8tvuc" path="res://scenes/game/act_3/scene_1/act_3_scene_1.gd" id="1_pfe4b"]
+[ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="1_ruko3"]
+[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_2ovt3"]
+[ext_resource type="PackedScene" uid="uid://j6gfyiki6msu" path="res://scenes/characters/npc_lola_ising.tscn" id="3_m0kpt"]
+[ext_resource type="Texture2D" uid="uid://bnwgscwxng3ne" path="res://assets/tilesets/Sprite-0005.png" id="3_p5l8m"]
+[ext_resource type="PackedScene" uid="uid://byxfqdlohkx6p" path="res://scenes/characters/bus.tscn" id="4_3ix5m"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="4_m0kpt"]
+[ext_resource type="Texture2D" uid="uid://d2x6cehe7r8e6" path="res://assets/character_sprites/wind.png" id="7_uy24i"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p5l8m"]
+texture = ExtResource("3_p5l8m")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_sr371"]
+sources/0 = SubResource("TileSetAtlasSource_p5l8m")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5l8m"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(0, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vupt4"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(140, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr371"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(280, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oesbw"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(420, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xr38"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(560, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vydvl"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(700, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ed84k"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(840, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35ewn"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(980, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r5yf"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(1120, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_685ol"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(1260, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_du31d"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(1400, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8w8t"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(1540, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvq21"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(1680, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ismya"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(1820, 0, 140, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucgoq"]
+atlas = ExtResource("7_uy24i")
+region = Rect2(1960, 0, 140, 98)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_465wk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5l8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vupt4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr371")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oesbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xr38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vydvl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ed84k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35ewn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8r5yf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_685ol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_du31d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8w8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvq21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ismya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucgoq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Animation" id="Animation_uy24i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("locations/danilo_hometown/y-sorted-objects/bus:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(466, -532)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("locations/danilo_hometown/y-sorted-objects/player_danilo:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(456, -539)]
+}
+
+[sub_resource type="Animation" id="Animation_pfe4b"]
+resource_name = "camera_in"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("locations/danilo_hometown/y-sorted-objects/bus:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.6565185, 4.0333333, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(466, -532), Vector2(84, -534), Vector2(84, -534), Vector2(-388, -535)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("locations/danilo_hometown/y-sorted-objects/player_danilo:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.6585646, 3.1634989),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(456, -539), Vector2(56, -539), Vector2(58, -511)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5l8m"]
+_data = {
+&"RESET": SubResource("Animation_uy24i"),
+&"camera_in": SubResource("Animation_pfe4b")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uy24i"]
+size = Vector2(108, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5l8m"]
+size = Vector2(20, 102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vupt4"]
+size = Vector2(94, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sr371"]
+size = Vector2(110, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xr38"]
+size = Vector2(13, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vydvl"]
+size = Vector2(20, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ed84k"]
+size = Vector2(12, 10)
+
+[node name="act_3_scene_1" type="Node2D"]
+script = ExtResource("1_pfe4b")
+
+[node name="locations" type="Node2D" parent="."]
+
+[node name="danilo_hometown" parent="locations" instance=ExtResource("1_ruko3")]
+
+[node name="helper" type="TileMapLayer" parent="locations/danilo_hometown/map" index="4"]
+self_modulate = Color(1, 1, 1, 0.40392157)
+tile_map_data = PackedByteArray("AAABAAkAAAAAAAAAABABAAUAAAAAAAAAABABAPz/AAAAAAAAABABAPP/AAAAAAAAABABAOX/AAAAAAAAABABAOb/AAAAAAAAABABAA0AAAAAAAAAAHD6/w4AAAAAAAAAACABAOv/AAAAAAAAAAABAOn/AAAAAAAAABABAO//AAAAAAAAABAEAOj/AAAAAAAAAAAEAO//AAAAAAAAAAAEAPb/AAAAAAAAAAAEAAoAAAAAAAAAAAAEAA8AAAAAAAAAAFA=")
+tile_set = SubResource("TileSet_sr371")
+
+[node name="player_danilo" parent="locations/danilo_hometown/y-sorted-objects" index="2" instance=ExtResource("2_2ovt3")]
+position = Vector2(456, -539)
+RUNNING_SPEED = 400.0
+
+[node name="npc_lola_ising" parent="locations/danilo_hometown/y-sorted-objects" index="3" instance=ExtResource("3_m0kpt")]
+modulate = Color(0.3328807, 0.33288068, 0.33288068, 1)
+position = Vector2(112, -58)
+speed = 180.0
+
+[node name="bus" parent="locations/danilo_hometown/y-sorted-objects" index="4" instance=ExtResource("4_3ix5m")]
+position = Vector2(466, -532)
+scale = Vector2(1.2, 1.2)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="locations"]
+color = Color(0.8980392, 0.91764706, 0.75686276, 1)
+energy = 0.3
+
+[node name="pause_overlay" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="pause_overlay" instance=ExtResource("4_m0kpt")]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(62, -499)
+zoom = Vector2(2, 2)
+limit_left = -726
+limit_top = -690
+limit_right = 731
+limit_bottom = 630
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="wind" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.63529414)
+position = Vector2(61, -485)
+scale = Vector2(1.3, 1.4693878)
+sprite_frames = SubResource("SpriteFrames_465wk")
+frame = 14
+frame_progress = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p5l8m")
+}
+autoplay = "camera_in"
+
+[node name="ising_detectors" type="Node2D" parent="."]
+
+[node name="ising_detector" type="Area2D" parent="ising_detectors"]
+position = Vector2(65, 44)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ising_detectors/ising_detector"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_uy24i")
+
+[node name="ising_turn" type="Area2D" parent="ising_detectors"]
+position = Vector2(82, -53)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ising_detectors/ising_turn"]
+position = Vector2(-17, -26)
+shape = SubResource("RectangleShape2D_p5l8m")
+debug_color = Color(0.25490198, 0.52156866, 0.9490196, 1)
+
+[node name="ising_stop" type="Area2D" parent="ising_detectors"]
+position = Vector2(66, 11)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ising_detectors/ising_stop"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_vupt4")
+debug_color = Color(0.25490198, 0.52156866, 0.9490196, 1)
+
+[node name="ising_warning" type="Area2D" parent="ising_detectors"]
+position = Vector2(65, 63)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ising_detectors/ising_warning"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_sr371")
+
+[node name="interaction_areas" type="Node2D" parent="."]
+
+[node name="karatula_2" type="Area2D" parent="interaction_areas"]
+position = Vector2(-692, 220)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_areas/karatula_2"]
+position = Vector2(-3.5, -2)
+shape = SubResource("RectangleShape2D_3xr38")
+debug_color = Color(0.9399272, 1.2417734e-05, 0.61941135, 0.41960785)
+
+[node name="echoes" type="Area2D" parent="interaction_areas"]
+position = Vector2(-65, 217)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_areas/echoes"]
+position = Vector2(0, 12.5)
+shape = SubResource("RectangleShape2D_vydvl")
+
+[node name="bahay" type="Area2D" parent="interaction_areas"]
+position = Vector2(-108, 153)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_areas/bahay"]
+position = Vector2(20, 5)
+shape = SubResource("RectangleShape2D_ed84k")
+debug_color = Color(0.8599433, 0.27004254, 0.62508035, 0.41960785)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="ising_detectors/ising_detector" to="." method="_on_ising_detector_body_entered"]
+[connection signal="body_entered" from="ising_detectors/ising_turn" to="." method="_on_ising_turn_body_entered"]
+[connection signal="body_entered" from="ising_detectors/ising_stop" to="." method="_on_ising_stop_body_entered"]
+[connection signal="body_exited" from="ising_detectors/ising_stop" to="." method="_on_ising_stop_body_exited"]
+[connection signal="body_entered" from="ising_detectors/ising_warning" to="." method="_on_ising_warning_body_entered"]
+[connection signal="body_entered" from="interaction_areas/karatula_2" to="." method="_on_karatula_2_body_entered"]
+[connection signal="body_exited" from="interaction_areas/karatula_2" to="." method="_on_karatula_2_body_exited"]
+[connection signal="body_entered" from="interaction_areas/echoes" to="." method="_on_echoes_body_entered"]
+[connection signal="body_entered" from="interaction_areas/bahay" to="." method="_on_bahay_body_entered"]
+[connection signal="body_exited" from="interaction_areas/bahay" to="." method="_on_bahay_body_exited"]
+
+[editable path="locations/danilo_hometown"]
+[editable path="locations/danilo_hometown/y-sorted-objects/npc_lola_ising"]
+[editable path="locations/danilo_hometown/y-sorted-objects/bus"]

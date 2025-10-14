@@ -1,0 +1,29 @@
+~ start
+Danilo: Kailangan ko nang pumunta sa bayan. Wala na ‘kong gamot, baka sumama pa pakiramdam ko.
+Danilo: Buti nalang may maliit pang botika sa town center.
+Danilo: Sige, lalakad na lang ako papunta roon.
+=> town_arrival
+
+~ town_arrival
+Danilo: Ang tagal ko ring ‘di nakapunta rito. Parang ang daming nagbago.
+Danilo: Ayan, may medstore pa rin pala sa dulo.
+Danilo: Sana may stock pa ng gamot ko.
+=> drugstore_scene
+
+~ drugstore_scene
+Clerk: Magandang hapon po, anong hanap nila?
+Danilo: Ah, pabili po sana ng gamot ko. Yung usual kong reseta.
+Clerk: Sandali lang po ha, check ko kung may stock pa.
+Clerk: Pasensya na po, apat na piraso na lang po ang natira.
+Danilo: Wala na bang parating na stock?
+Clerk: Wala pa po, baka sa susunod na linggo pa dumating.
+Danilo: Sige na lang po, kukunin ko na rin ‘yan. Salamat.
+Danilo: Buti kahit papano may nakuha pa ‘ko. Uwi na lang muna siguro ako.
+=> return_home
+
+~ return_home
+Danilo: Ang lamig ng hangin… kailangan ko na lang siguro magpahinga.
+Danilo: Sana matapos na lahat ‘to.
+Danilo: Buti pinaalala ng phone ko… kailangan ko ‘to para makatulog.
+Danilo: Mateo… kung nasaan ka man… sana mapanatag ka na.
+=> END

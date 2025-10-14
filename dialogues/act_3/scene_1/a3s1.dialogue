@@ -1,0 +1,35 @@
+~ start
+Lola Ising: Ikaw ba 'yan, iho?
+Danilo: Ikaw po pala 'yan lola. Kinabahan po ako sa inyo.
+Lola Ising: Napauwi ka ata iho? Nasaan si Wendy?
+Lola Ising: [wave]Antagal ko nang ina-antay yung bata na 'yun na makauwi at dalhan ako ng pasalubong[/wave]
+Danilo: Nagkataon lang naman po na napauwi ako.
+Danilo: Hindi ko nasabihan si Wendy dahil hindi naman po 'to planado,
+Danilo: tsaka [wave]may gusto lang naman po akong ma-alala.[/wave]
+Lola Ising: Ah ganun ba iho?
+Lola Ising: Kamustahin mo nalang ako kay Wendy ha?
+Lola Ising: Miss na miss ko na kamo sya.
+Lola Ising: Oh siya, dito na ako at mahaba pa ang binyahe mo.
+Danilo: ...
+- Continue Walking
+- Give Lola Ising Some Cash =>< given_money
+=> END
+
+~ given_money
+do SaveManager.game_save.given_lola_ising_cash = true
+Lola Ising: Ay aba! hinding hindi ako tatangi sa grasya! Salamat iho.
+Danilo: Walang anuman ho, Lola Ising.
+=> END
+
+~ lola_warning
+Lola Ising: [wave]Mag-iingat ka nga pala sa gabi iho.[/wave]
+Lola Ising: Iwasan mo yang gubat hanga't maaari dahil masukal.
+Danilo: Salamat po sa paalala Lola, dito na po ako.
+=> END
+
+~ echoes
+Danilo: ... [shake]Wag pupunta sa kagubatan... [/shake]
+=> END
+
+~ home
+Danilo: Hom

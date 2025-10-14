@@ -1,0 +1,177 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6ufomjjkwkbw"]
+
+[ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="2_t4h72"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="3_pxq1l"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_7wfba"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t2p8q"]
+font = ExtResource("3_pxq1l")
+font_size = 40
+font_color = Color(0.329412, 0.329412, 0.329412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tas5x"]
+font = ExtResource("4_7wfba")
+font_size = 24
+font_color = Color(0.74558, 0.74558, 0.74558, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxglm"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrlwj"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.77084, 0.770839, 0.770839, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knne6"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.597898, 0.591822, 0.589213, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wabu4"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="acc_create_successfully" type="Control"]
+layout_mode = 3
+anchor_right = 0.367
+anchor_bottom = 0.527
+offset_right = -0.480042
+offset_bottom = 156.352
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="holder" parent="." instance=ExtResource("2_t4h72")]
+top_level = true
+layout_mode = 0
+offset_left = 471.0
+offset_top = 408.0
+offset_right = 962.0
+offset_bottom = 671.0
+
+[node name="title" type="Label" parent="holder"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.127
+anchor_right = 1.0
+anchor_bottom = 0.127
+offset_left = 80.0
+offset_top = 2.599
+offset_right = -80.0
+offset_bottom = 87.599
+grow_horizontal = 2
+grow_vertical = 2
+text = "SUCCESS!"
+label_settings = SubResource("LabelSettings_t2p8q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="subtitle" type="Label" parent="holder/title"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.5
+offset_top = -18.129
+offset_right = 105.5
+offset_bottom = 6.871
+grow_horizontal = 2
+grow_vertical = 0
+text = "Account created successfully!"
+label_settings = SubResource("LabelSettings_tas5x")
+
+[node name="btn_ok" type="Button" parent="holder"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = 29.5
+offset_right = -128.0
+offset_bottom = 75.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("4_7wfba")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxFlat_uxglm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vrlwj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_knne6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wabu4")
+text = "OK"
+
+[node name="holder2" parent="." instance=ExtResource("2_t4h72")]
+modulate = Color(0, 0, 0, 0.580392)
+layout_mode = 0
+offset_left = -387.0
+offset_top = -365.0
+offset_right = 1802.0
+offset_bottom = 1275.0
+
+[connection signal="pressed" from="holder/btn_ok" to="." method="_on_btn_create_pressed"]

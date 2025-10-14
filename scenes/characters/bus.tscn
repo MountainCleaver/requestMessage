@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://byxfqdlohkx6p"]
+
+[ext_resource type="Texture2D" uid="uid://dxxe7ghtnd7al" path="res://assets/character_sprites/BUSpng.png" id="1_vnae2"]
+
+[node name="bus" type="Sprite2D"]
+y_sort_enabled = true
+texture = ExtResource("1_vnae2")
+offset = Vector2(0, -16)
+hframes = 8

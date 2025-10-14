@@ -1,0 +1,188 @@
+[gd_scene load_steps=8 format=3 uid="uid://h36f1ipl8glj"]
+
+[ext_resource type="Script" uid="uid://bjgba84tfg2i" path="res://scenes/menu/scripts/boot_warning.gd" id="1_lmbvh"]
+[ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_bfe6o"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_lmbvh"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_bfe6o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmbvh"]
+bg_color = Color(0.294118, 0.309804, 0.380392, 0.541176)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kmcc"]
+bg_color = Color(0.14902, 0.156863, 0.184314, 0.396078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41tmx"]
+bg_color = Color(0.294, 0.31, 0.38, 0.442)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="boot_warning" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lmbvh")
+
+[node name="menu_background" parent="." instance=ExtResource("2_bfe6o")]
+layout_mode = 1
+
+[node name="title_game" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 101.0
+offset_bottom = 227.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 0.192157, 0.192157, 1)
+theme_override_fonts/normal_font = ExtResource("2_lmbvh")
+theme_override_font_sizes/normal_font_size = 72
+text = "REQUEST MESSAGE"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="warning_holder" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 66.0
+offset_top = -272.0
+offset_right = -66.0
+offset_bottom = 371.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lmbvh")
+
+[node name="MarginContainer" type="MarginContainer" parent="warning_holder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="warning_holder/MarginContainer"]
+layout_mode = 2
+
+[node name="warning_title" type="Label" parent="warning_holder/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.133333, 0, 1)
+theme_override_fonts/font = ExtResource("3_bfe6o")
+theme_override_font_sizes/font_size = 48
+text = "
+⚠CONTENT WARNING
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="content_1" type="Label" parent="warning_holder/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bfe6o")
+theme_override_font_sizes/font_size = 29
+text = "Request Message contains content that may be disturbing or emotionally triggering for 
+some players, including:"
+autowrap_mode = 2
+
+[node name="line_break_1" type="Label" parent="warning_holder/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bfe6o")
+theme_override_font_sizes/font_size = 29
+
+[node name="content_2" type="Label" parent="warning_holder/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bfe6o")
+theme_override_font_sizes/font_size = 29
+text = "- Psychological horror and eerie soundscapes
+- Themes of grief, trauma, regret, and unresolved emotional conflict
+- Mentions or representations of mental health struggles
+- Sudden visual or audio effects that may cause discomfort"
+autowrap_mode = 2
+
+[node name="line_break_2" type="Label" parent="warning_holder/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bfe6o")
+theme_override_font_sizes/font_size = 29
+
+[node name="content_3" type="Label" parent="warning_holder/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bfe6o")
+theme_override_font_sizes/font_size = 29
+text = "This game is intended for players aged 18 and above. Viewer/player discretion is strongly advised. If you are currently struggling with your mental health or find any part of the game emotionally overwhelming, we encourage you to pause and seek support. Your well-being matters more than finishing the game."
+autowrap_mode = 2
+
+[node name="proceed" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.872
+anchor_right = 1.0
+anchor_bottom = 0.944
+offset_left = -353.0
+offset_top = 0.0719604
+offset_right = -56.0
+offset_bottom = 0.343933
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1kmcc")
+
+[node name="Label" type="Label" parent="proceed"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 135.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_bfe6o")
+theme_override_font_sizes/font_size = 28
+text = "Proceed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="proceed"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -153.0
+offset_top = 13.0
+offset_right = -10.0
+offset_bottom = -13.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_41tmx")
+
+[node name="Label" type="Label" parent="proceed/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_bfe6o")
+theme_override_font_sizes/font_size = 28
+text = "Enter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bgm_player" type="AudioStreamPlayer2D" parent="."]

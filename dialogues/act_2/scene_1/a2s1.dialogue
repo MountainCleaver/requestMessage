@@ -1,0 +1,24 @@
+~ start
+do Hud.phone_intro()
+do ChatManager.send_chat("unknown_sender", "Player", "Hah, sino ka? Bakit alam mo pangalan ko?")
+Danilo: Hah, sino ka? Bakit alam mo pangalan ko?  => reply_danilo_1
+=> END
+
+~ reply_danilo_1
+do ChatManager.send_chat("unknown_sender", "Player", "Prank ba to?")
+Danilo: Prank ba to?  => reply_unknown_1
+
+~ reply_unknown_1
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Nakalimutan mo na ako?")
+Unknown_sender: [wait=1.5]Nakalimutan mo na ako? => reply_danilo_2
+=> END
+
+~ reply_danilo_2
+do ChatManager.send_chat("unknown_sender", "Player", "Sorry, di kita kilala. Saan mo ‘to nakuhang number ko?")
+Danilo: Sorry, di kita kilala. Saan mo ‘to nakuhang number ko?  => reply_unknown_2
+=> END
+
+~ reply_unknown_2
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Ako to Dan...")
+Unknown_sender: [wait=1.5]Ako to Dan...
+=> END
