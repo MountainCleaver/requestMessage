@@ -36,7 +36,11 @@ Danilo: Bibili na'ko ng gamot.
 => END
 
 ~ tricycle_start
-Danilo: Yow
+Danilo: ...
+- Go to Bayan 
+	do _switch_location(SCENE_3_TOWN_CENTER,maps["town_center"]["name"],maps["town_center"]["spawn_points"]["middle"])
+	do ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]["text"])
+do can_interact = true
 => END
 
 ~ tricycle_start_bought
@@ -59,8 +63,9 @@ Danilo: Sige, kunin ko na po lahat yan.
 Pharmacist: Ito po sir, salamat po.
 Danilo: Salamat po.
 do can_interact = true
-do bought_meds_done.emit()
 do bought_meds = true
+do SignalBus.bought_meds_done.emit()
+do SignalBus.bought_meds = true
 => END
 
 ~ drugstore_clerk_bought
@@ -75,5 +80,10 @@ do can_interact = true
 
 ~ alreay_bought_meds
 Danilo: Nakabili nako ng gamot.
+do can_interact = true
+=> END
+
+~ rushed_home
+Danilo: ...
 do can_interact = true
 => END
