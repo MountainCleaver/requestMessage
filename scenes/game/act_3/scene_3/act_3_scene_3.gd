@@ -16,15 +16,21 @@ const SQUARE_BREATHING_MINI_GAME = preload("uid://e4djirwvv7iy")
 @onready var danilo_collision_shape_2d: CollisionShape2D = $player_danilo/CollisionShape2D
 @onready var danilo_animated_sprite_2d: AnimatedSprite2D = $player_danilo/AnimatedSprite2D
 
+var _debounce_timer: SceneTreeTimer = null
+const DEBOUNCE_DELAY := 0.5 
+
 signal restless_diag_one_done
 signal start_mini_game
 signal mini_game_done
 signal intro_sequence_done
 signal went_outside_find_tricycle
+signal bought_meds_done
 
 var current_location: Node = null
 var mini_game : Node2D = null
 var player_instance: Node2D = null
+
+var in_dialogue : bool = false
 
 var bought_meds : bool = false
 
@@ -70,7 +76,8 @@ var maps = {
 	"hometown" : {
 		"name" : "danilo_hometown",
 		"spawn_points" : {
-			"house_door" : "house_door_step_point"
+			"house_door" : "house_door_step_point",
+			"tri_off" : "tricycle_off_point"
 		},
 		"camera_limits": {
 			"top": -700, 
@@ -92,6 +99,7 @@ var scene_objectives : Array[Dictionary] = [
 	{"ID": 1, "text" : "Go outside"},
 	{"ID": 2, "text" : "[shake]Check the Photo Again[/shake]"},
 	{"ID": 3, "text" : "Ride a Tricycle to Bayan"},
+	{"ID": 4, "text": "Buy Medicine"}
 ]
 
 
@@ -111,6 +119,10 @@ func _ready() -> void:
 	objective_one_done.connect(_on_objective_one_done)
 	restless_diag_one_done.connect(_on_restless_diag_one_done)
 	went_outside_find_tricycle.connect(_on_went_outside_find_tricycle)
+	bought_meds_done.connect(_on_bought_meds_done)
+	
+	#DialogueManager.dialogue_started.connect(_on_dialogue_started)
+	#DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	
 	moral_choice = SaveManager.get_moral_choice("act_3_scene_2")
 	_intro_sequence(moral_choice)
@@ -120,48 +132,105 @@ func _ready() -> void:
 	start_mini_game.connect(_start_mini_game)
 	intro_sequence_done.connect(_on_intro_sequence_done)
 
+func _process(delta: float) -> void:
+	print(can_interact)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and can_interact:
-		can_interact = false 
+	if not event.is_action_pressed("interact"):
+		return
+	if not can_interact:
+		return
+	
+	# lock right away
 
-		match player_danilo.current_npc:
-			"door_inside":
+	match player_danilo.current_npc:
+		"door_inside":
+			can_interact = false
+			_switch_location(
+				SCENE_3_DANILO_HOMETOWN,
+				maps["hometown"]["name"],
+				maps["hometown"]["spawn_points"]["house_door"]
+			)
+
+			if not done_objective_one:
+				done_objective_one = true
+				objective_one_done.emit()
+
+			if not done_objective_three:
+				went_outside_find_tricycle.emit()
+		"door_outside":
+			can_interact = false
+			if not bought_meds:
+				SignalBus.out_npc.emit("door_outside")
+				DialogueManager.show_dialogue_balloon(A_3S_3, "not_yet_bought_meds")
+			else:
+					_switch_location(
+						SCENE_3_DANILO_HOUSE,
+						maps["house"]["name"],
+						maps["house"]["spawn_points"]["door"]
+					)
+		"tricycle_hometown":
+			can_interact = false
+			if not bought_meds:
+				SignalBus.out_npc.emit("tricycle_hometown")
+				DialogueManager.show_dialogue_balloon(A_3S_3, "tricycle_start")
+				_switch_location(
+					SCENE_3_TOWN_CENTER,
+					maps["town_center"]["name"],
+					maps["town_center"]["spawn_points"]["middle"]
+				)
+				ObjectiveManager.complete_objective(scene_objectives[2]["ID"])
+			else:
+				SignalBus.out_npc.emit("tricycle_hometown")
+				DialogueManager.show_dialogue_balloon(A_3S_3, "tricycle_start_bought")
+				
+		"tricycle_town_center":
+			can_interact = false
+			if not bought_meds:
+				SignalBus.out_npc.emit("tricycle_town_center")
+				DialogueManager.show_dialogue_balloon(A_3S_3, "not_yet_bought_meds")
+			else:
 				_switch_location(
 					SCENE_3_DANILO_HOMETOWN,
 					maps["hometown"]["name"],
-					maps["hometown"]["spawn_points"]["house_door"]
+					maps["hometown"]["spawn_points"]["tri_off"]
 				)
-				
-				if not done_objective_one:
-					done_objective_one = true
-					objective_one_done.emit()
-					
-				if not done_objective_three:
-					went_outside_find_tricycle.emit()
-				
-			
+
+		"drugstore_door_outside":
+			can_interact = false
+			if not bought_meds:
+				_switch_location(
+					SCENE_3_DRUGSTORE,
+					maps["drugstore"]["name"],
+					maps["drugstore"]["spawn_points"]["door"]
+				)
+
+		"karatula":
+			Hud.add_popup_image("res://assets/HUD/signage_laruan.png")
+			Hud._toggle_popup()
+			player_danilo.force_cannot_move = Hud.popup_showing
+
+		"drugstore_door_inside":
+			can_interact = false
+			if not bought_meds:
+				SignalBus.out_npc.emit("drugstore_door_inside")
+				DialogueManager.show_dialogue_balloon(A_3S_3, "not_yet_bought_meds")
+			else:
+				_switch_location(
+					SCENE_3_TOWN_CENTER,
+					maps["town_center"]["name"],
+					maps["town_center"]["spawn_points"]["drug_store"]
+				)
 				await SignalBus.on_transition_finished
-				can_interact = true 
 
-			"tricycle_hometown":
-				if not bought_meds:
-					DialogueManager.show_dialogue_balloon(A_3S_3, "tricycle_start")
-					_switch_location(
-						SCENE_3_TOWN_CENTER,
-						maps["town_center"]["name"],
-						maps["town_center"]["spawn_points"]["middle"]
-					)
-				else:
-					DialogueManager.show_dialogue_balloon(A_3S_3, "tricycle_start_bought")
-				await SignalBus.on_transition_finished
-				can_interact = true  
-
-			"karatula":
-				Hud.add_popup_image("res://assets/HUD/signage_laruan.png")
-				Hud._toggle_popup()
-				player_danilo.force_cannot_move = Hud.popup_showing
-
+		"pharmacist":
+			can_interact = false
+			SignalBus.out_npc.emit("pharmacist")
+			if not bought_meds:
+				DialogueManager.show_dialogue_balloon(A_3S_3, "drugstore_clerk")
+				ObjectiveManager.complete_objective(scene_objectives[3]["ID"])
+			else:
+				DialogueManager.show_dialogue_balloon(A_3S_3, "drugstore_clerk_bought")
 
 func _game_state_flow() -> void:
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
@@ -215,6 +284,8 @@ func _switch_location(scene: PackedScene,map_name: String, spawn_point: String) 
 	player_danilo.global_position = spawn_location.global_position
 	_set_camera(map_name)
 	#print(spawn_location)
+	await get_tree().process_frame
+	can_interact = true
 
 func _intro_sequence (moral_choice: String) -> void:
 	match moral_choice:
@@ -237,6 +308,7 @@ func relief_choice_consequence()->void:
 	)
 
 func resltess_choice_consequence() -> void:
+	player_danilo.force_cannot_move = true
 	ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"], Color.RED)
 	Hud.show_objectives()
 	DialogueManager.show_dialogue_balloon(A_3S_3, "start_restless")
@@ -305,7 +377,7 @@ func _on_intro_sequence_done() -> void:
 
 # CAMERA HELPERS ===========================================================================================================================
 func _set_camera(map_name: String) -> void:
-	if map_name == maps["house"]["name"]:
+	if map_name == maps["house"]["name"] or map_name == maps["drugstore"]["name"]:
 		# Detach the camera from player for fixed view
 		if camera_2d.get_parent() != self:
 			camera_2d.get_parent().remove_child(camera_2d)
@@ -349,7 +421,6 @@ func _set_camera(map_name: String) -> void:
 			)
 		camera_2d.make_current()
 
-
 func _set_camera_limits(top: int, right: int, bottom: int, left: int)->void:
 	camera_2d.limit_top = top
 	camera_2d.limit_right = right
@@ -360,7 +431,6 @@ func _tween_camera_to(pos: Vector2, zoom: float, duration: float = 1.0):
 	var tween = create_tween()
 	tween.tween_property(camera_2d, "position", pos, duration)
 	tween.tween_property(camera_2d, "zoom", Vector2(zoom, zoom), duration)
-
 
 func _on_objective_one_done()-> void:
 	ObjectiveManager.complete_objective(scene_objectives[0]["ID"])
@@ -376,3 +446,14 @@ func _on_restless_diag_one_done () -> void:
 
 func _on_went_outside_find_tricycle () -> void:
 	ObjectiveManager.add_objective(scene_objectives[2]["ID"], scene_objectives[2]["text"])
+
+func debounce_interaction() -> void:
+	if _debounce_timer and not _debounce_timer.is_stopped():
+		return  # still cooling down
+	can_interact = false
+	_debounce_timer = get_tree().create_timer(DEBOUNCE_DELAY)
+	await _debounce_timer.timeout
+	can_interact = true
+
+func _on_bought_meds_done()->void:
+	pass #for objective complete
