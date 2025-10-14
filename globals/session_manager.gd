@@ -2,7 +2,7 @@ extends Node
 class_name SessionManager
 
 const SESSION_PATH: String = "user://session.cfg"
-const SECRET_KEY: String = "ToSaveFaceHowLowCanYouGoTalkALotOfGameAndYetYouDontKnowStaticOnTheWayMakeUsAllSayWoahThePeopleUpTopPushThePeopleDownLowGetDownAndObeyEveryWord" # Replace with something stronger for production
+const SECRET_KEY: String = "ToSaveFaceHowLowCanYouGoTalkALotOfGameAndYetYouDontKnowStaticOnTheWayMakeUsAllSayWoahThePeopleUpTopPushThePeopleDownLowGetDownAndObeyEveryWord"
 
 var username: String = ""
 var user_ID: int = 0
