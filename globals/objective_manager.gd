@@ -10,3 +10,7 @@ func complete_objective(id: int) -> void:
 	if id in objectives:
 		Hud.done_objective(id, objectives[id])
 		objectives.erase(id)
+
+func empty_objectives () -> void:
+	if objectives:
+		objectives.clear()
