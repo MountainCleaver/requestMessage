@@ -23,7 +23,7 @@ extends Node2D
 const A_3S_2 = preload("uid://vpb3fshkkblr")
 const CHAT_ICON = preload("uid://vdiek8gwmqdx")
 const BALLOON = preload("uid://2i4i7d4jd8qg")
-const PHONE_INCOMING_CALL = preload("uid://dnfxf0i1m8o7g")
+const PHONE_INCOMING_CALL = preload("res://scenes/game/phone_incoming_call.tscn")
 
 var wendy_open: bool = false
 var mira_open: bool = false
@@ -71,7 +71,8 @@ func _ready() -> void:
 	
 	Hud.get_node("Control/phone/MarginContainer/lock_screen").clear_notifications()
 
-	Hud.reset_phone_state()
+	Hud.reset_phone_dont_show()
+	Hud.phone_intro()
 	await get_tree().create_timer(1.0).timeout
 	
 	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = true
