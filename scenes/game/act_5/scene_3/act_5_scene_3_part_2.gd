@@ -22,7 +22,6 @@ func _on_wendy_body_entered(body: Node2D)->void:
 		_all_three_walking_together()
 
 func _all_three_walking_together()->void:
-	# I have a TransitionFade.transition(), await SignalBus.transition_finished() you can use
 	pass
 
 
