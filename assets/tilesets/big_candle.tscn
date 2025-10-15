@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://crrv2wig3v8ef"]
+
+[ext_resource type="Texture2D" uid="uid://q3cjeiubl6" path="res://assets/tilesets/big_candle.png" id="1_72fc4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72fc4"]
+size = Vector2(11, 7)
+
+[sub_resource type="Gradient" id="Gradient_gyc5g"]
+offsets = PackedFloat32Array(0.76666665, 0.82, 1)
+colors = PackedColorArray(1, 1, 1, 0.6901961, 0.9529412, 0.7176471, 0, 0.8666667, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gyc5g"]
+gradient = SubResource("Gradient_gyc5g")
+fill = 1
+fill_from = Vector2(0.5, 0.50934577)
+fill_to = Vector2(0.90654206, 0.7757009)
+
+[node name="big_candle" type="StaticBody2D"]
+
+[node name="candle" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("1_72fc4")
+region_enabled = true
+region_rect = Rect2(0, 0, 20.66732, 28.812954)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 5.5)
+shape = SubResource("RectangleShape2D_72fc4")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, -11)
+color = Color(0.8509804, 0.5372549, 0, 0.6666667)
+energy = 1.5
+texture = SubResource("GradientTexture2D_gyc5g")
+texture_scale = 1.7

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cxrmxca8cvnn"
+path="res://.godot/imported/a4s3.dialogue-bb51dceda72010472cc3c637e905a58b.tres"
+
+[deps]
+
+source_file="res://dialogues/act_4/a4s3.dialogue"
+dest_files=["res://.godot/imported/a4s3.dialogue-bb51dceda72010472cc3c637e905a58b.tres"]
+
+[params]
+
+defaults=true
