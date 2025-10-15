@@ -70,7 +70,6 @@ func _ready() -> void:
 	animated_sprite_2d.play("sitting")
 	
 	Hud.get_node("Control/phone/MarginContainer/lock_screen").clear_notifications()
-
 	Hud.reset_phone_state()
 	await get_tree().create_timer(1.0).timeout
 	

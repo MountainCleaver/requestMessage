@@ -200,9 +200,7 @@ func reset_phone_state() -> void:
 	phone_container.add_child(lock_screen_scene)
 	lock_screen_scene.visible = true
 
-	# Bring phone back visible again with lock screen active
 	phone_intro()
-
 
 # ==================================
 # === RESTORE PHONE STATE (local) ===

@@ -128,23 +128,18 @@ func _play_animation(direction: Vector2) -> void:
 	if direction == Vector2.ZERO or not can_player_move():
 		match last_direction:
 			Vector2.RIGHT:
-				animated_sprite_2d.play("flashlight_idle_right")
 				animated_sprite_2d.play("idle_right")
 			Vector2.LEFT:
-				animated_sprite_2d.play("flashlight_idle_left")
 				animated_sprite_2d.play("idle_left")
 			Vector2.DOWN:
-				animated_sprite_2d.play("flashlight_idle_front")
 				animated_sprite_2d.play("idle_front")
 			Vector2.UP:
 				animated_sprite_2d.play("idle_up")
 	else:
 		match direction:
 			Vector2.RIGHT:
-				animated_sprite_2d.play("flashlight_walk_right")
 				animated_sprite_2d.play("walk_right")
 			Vector2.LEFT:
-				animated_sprite_2d.play("flashlight_walk_left")
 				animated_sprite_2d.play("walk_left")
 			Vector2.DOWN:
 				animated_sprite_2d.play("walk_down")

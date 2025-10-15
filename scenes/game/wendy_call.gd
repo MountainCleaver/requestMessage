@@ -4,7 +4,6 @@ extends Control
 
 @onready var status_label: Label = $call_screen/Panel2/status
 @onready var name_label: Label = $call_screen/Panel2/danilo
-@onready var icon: TextureRect = $call_screen/Panel2/Icon2  # Add this line
 @onready var icon: TextureRect = $call_screen/Panel2/Icon2 
 
 @onready var panel_logo: Panel = $call_screen/Panel2/LOGOPANEL
@@ -40,7 +39,6 @@ func set_call_target(target: String) -> void:
 			name_label.text = target.capitalize()
 			status_label.text = "Calling..."
 			if icon:
-				icon.texture = preload("res://assets/character_sprites/portrait_danilo.png") 
 				icon.texture = preload("res://assets/character_sprites/portrait_mira.png") 
 
 	print("Calling " + target + "...")

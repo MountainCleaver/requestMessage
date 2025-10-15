@@ -1,4 +1,3 @@
-[gd_scene load_steps=38 format=4 uid="uid://jd2yum8hdwy4"]
 [gd_scene load_steps=40 format=4 uid="uid://jd2yum8hdwy4"]
 
 [ext_resource type="Script" uid="uid://bkbt254e1xe40" path="res://scenes/game/act_1/scene_4/danilo_neighborhood.gd" id="1_v3cio"]
