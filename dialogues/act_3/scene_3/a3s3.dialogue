@@ -87,3 +87,19 @@ do can_interact = true
 Danilo: ...
 do can_interact = true
 => END
+
+~ paranoia
+Danilo: [center]Bakit parang… may nakasunod? Huwag mo lang pansinin, Danilo. Bilisan mo na lang.[/center]
+- Walk Faster
+	do player_danilo.SPEED = 150
+	do player_danilo.RUNNING_SPEED = 200
+do can_interact = true
+=> END
+
+
+~ reminder
+Danilo: Buti pinaalala. Kailangan ko ‘to para makatulog.
+- Take medications and sleep
+	do play_taking_meds()
+do can_interact = true
+=> END
