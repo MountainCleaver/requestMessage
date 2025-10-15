@@ -1,0 +1,35 @@
+~ katok
+Mateo_Child: Nandyan ka ba Danilo ??
+do _to_danilo_house()
+do can_interact = true
+=> END
+
+~ inside_house
+Mateo_Child: Danilo!
+Danilo_child: ...
+Mateo_Child: Danilo?
+Danilo_child: ...
+Mateo_Child: Hoy Danilo!!
+do animated_sprite_2d.play("idle_down")
+Danilo_child: Hmm?
+Mateo_Child: Parang kilang pa ata sa tuloh ah?
+Mateo_Child: Tara laro tayo.
+Danilo_child: Sige, magpapaalam lang ako kay Mama.
+do can_interact = true
+do _paalam_kay_mama()
+=> END
+
+~ paalam
+Danilo_child: Ma, Maglalaro lang kami sa labas.
+Mira: Sinong kasama mo? Saan kayo banda maglalaro?
+Danilo_child: Kasama ko si Mateo at si Wendy, dun lang daw kami sa bukiran.
+Danilo_child: Alis na 'ko Ma, sinusundo na nila ako.
+Mira: Saglit lang, talaga 'tong batang 'to—
+do can_interact = true
+do lalabas_ng_bahay()
+=> END
+
+~ wendy
+Wendy_child: Ooooooooooy!
+Wendy_child: Wait lang!
+=> END

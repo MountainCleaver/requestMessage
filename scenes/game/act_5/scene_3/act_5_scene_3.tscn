@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://v5u0t8alofdh"]
+
+[ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="1_lk77i"]
+[ext_resource type="Script" uid="uid://bhx7kbvd1tjxf" path="res://scenes/game/act_5/scene_3/act_5_scene_3.gd" id="1_wucsd"]
+[ext_resource type="PackedScene" uid="uid://bslujs6mipwsy" path="res://scenes/characters/player_mateo.tscn" id="2_tcggk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wucsd"]
+size = Vector2(16, 10)
+
+[node name="act_5_scene_3" type="Node2D"]
+script = ExtResource("1_wucsd")
+
+[node name="danilo_hometown" parent="." instance=ExtResource("1_lk77i")]
+
+[node name="player_mateo" parent="danilo_hometown/y-sorted-objects" index="2" instance=ExtResource("2_tcggk")]
+position = Vector2(168, 196)
+RUNNING_SPEED = 120.0
+
+[node name="Camera2D" type="Camera2D" parent="danilo_hometown/y-sorted-objects/player_mateo"]
+zoom = Vector2(3, 3)
+limit_left = -720
+limit_top = -680
+limit_right = 700
+limit_bottom = 600
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-88, 152)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 4)
+shape = SubResource("RectangleShape2D_wucsd")
+
+[editable path="danilo_hometown"]
+[editable path="danilo_hometown/y-sorted-objects/player_mateo"]

@@ -71,10 +71,11 @@ func _ready() -> void:
 	
 	Hud.get_node("Control/phone/MarginContainer/lock_screen").clear_notifications()
 
-	Hud.reset_phone_state()
+	Hud.reset_phone_dont_show()
+	Hud.phone_intro()
 	await get_tree().create_timer(1.0).timeout
 	
-	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = true
+	#Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = true
 	
 	add_notification(CHAT_ICON, "Chat", "2 missed calls from Mira")
 	await get_tree().create_timer(1.0).timeout
