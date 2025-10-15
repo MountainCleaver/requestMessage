@@ -20,5 +20,4 @@ Danilo: Kailangan ko agad mahanap ang huling papel.
 
 ~ after_found_paper
 Danilo: Oras na para bumalik ng chapel.
-do Hud.hide_objectives()
 => END
