@@ -48,3 +48,12 @@ signal out_npc(npc_name: String)
 
 signal call_opened(call_name: String)
 signal call_completed(call_name: String)
+
+#square breathing
+signal mini_game_done
+
+#gamot
+signal bought_meds_done
+var bought_meds : bool = false
+signal area_one_entered
+signal sat_on_bed

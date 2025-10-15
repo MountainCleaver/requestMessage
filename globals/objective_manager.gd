@@ -31,6 +31,9 @@ func complete_objective(id: int) -> void:
 		Hud.done_objective(id, objectives[id]["text"])
 		objectives.erase(id)
 
+func empty_objectives () -> void:
+	if objectives:
+		objectives.clear()
 # -------------------------
 # New: reset progress back to 0 (keeps objective active)
 # -------------------------
