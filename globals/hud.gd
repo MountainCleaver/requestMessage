@@ -217,3 +217,23 @@ func _restore_phone_state() -> void:
 			var app_chat = APP_CHAT.instantiate()
 			phone_container.add_child(app_chat)
 			app_chat.visible = true
+
+
+
+
+
+
+func reset_phone_dont_show() -> void:
+	for child in phone_container.get_children():
+		child.queue_free()
+
+	lock_screen_active = true
+	phone_main_active = false
+	chat_open = false
+	phone_showing = false
+
+	await get_tree().create_timer(0.2).timeout
+
+	var lock_screen_scene = preload("res://scenes/game/lock_screen.tscn").instantiate()
+	phone_container.add_child(lock_screen_scene)
+	lock_screen_scene.visible = true
