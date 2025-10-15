@@ -3,7 +3,7 @@ extends Node2D
 # ===================
 # PRELOADS
 # ===================
-const A_4S_3 = preload("res://dialogues/act_4/a4s3.dialogue")
+const A_4S_3 = preload("res://dialogues/act_4/scene_3/a4s3.dialogue")
 const DARK_FOREST = preload("res://scenes/game/act_4/scene_3/dark_forest.tscn")
 const CHAPEL_EXTERIOR = preload("res://scenes/game/act_4/scene_3/chapel_exterior.tscn")
 const CHAPEL_INTERIOR = preload("res://scenes/game/act_4/scene_3/chapel_interior.tscn")
