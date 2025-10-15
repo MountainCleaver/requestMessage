@@ -24,7 +24,7 @@ func _on_bed_area_body_exited(body: Node2D) -> void:
 	if body.name == "player_danilo":
 		if SignalBus.bought_meds:
 			SignalBus.out_npc.emit("bed")
-			bed_area.queue_free()
 
 func _on_sat_on_bed()->void:
 	sprite_2d.visible = true
+	bed_area.queue_free()
