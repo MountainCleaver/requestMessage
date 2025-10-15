@@ -6,6 +6,7 @@ const SCENE_3_DRUGSTORE = preload("uid://7wtc2deofp0e")
 const SCENE_3_DANILO_HOMETOWN = preload("uid://fgxe57bsbw2l")
 
 const SQUARE_BREATHING_MINI_GAME = preload("uid://e4djirwvv7iy")
+const SCHED_ICON = preload("uid://d1ye4ylli8nca")
 
 @onready var player_danilo: CharacterBody2D = $player_danilo
 
@@ -15,6 +16,7 @@ const SQUARE_BREATHING_MINI_GAME = preload("uid://e4djirwvv7iy")
 
 @onready var danilo_collision_shape_2d: CollisionShape2D = $player_danilo/CollisionShape2D
 @onready var danilo_animated_sprite_2d: AnimatedSprite2D = $player_danilo/AnimatedSprite2D
+
 
 var _debounce_timer: SceneTreeTimer = null
 const DEBOUNCE_DELAY := 0.5 
@@ -29,6 +31,8 @@ var current_location: Node = null
 var mini_game : Node2D = null
 var player_instance: Node2D = null
 
+var first_mini_game : bool = true
+var second_mini_game : bool = false
 var in_dialogue : bool = false
 
 var bought_meds : bool = false
@@ -107,7 +111,7 @@ var moral_choice : String
 
 
 func _ready() -> void:
-
+	Hud.reset_phone_dont_show()
 	#camera_2d.position_smoothing_enabled = true
 	#camera_2d.position_smoothing_speed = 10.0
 	
@@ -115,6 +119,7 @@ func _ready() -> void:
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.mini_game_done.connect(_on_mini_game_done)
 	SignalBus.chat_opened.connect(_on_chat_opened)
+	SignalBus.area_one_entered.connect(_on_area_one_entered)
 	
 	objective_one_done.connect(_on_objective_one_done)
 	restless_diag_one_done.connect(_on_restless_diag_one_done)
@@ -169,6 +174,10 @@ func _input(event: InputEvent) -> void:
 						maps["house"]["name"],
 						maps["house"]["spawn_points"]["door"]
 					)
+					ObjectiveManager.complete_objective(scene_objectives[4]["ID"])
+					await get_tree().create_timer(0.5).timeout
+					Hud.hide_objectives()
+					Hud.clear_objectives()
 		"tricycle_hometown":
 			can_interact = false
 			if not bought_meds:
@@ -236,6 +245,31 @@ func _input(event: InputEvent) -> void:
 				#ObjectiveManager.complete_objective(scene_objectives[3]["ID"])
 			else:
 				DialogueManager.show_dialogue_balloon(A_3S_3, "drugstore_clerk_bought")
+		"bed":
+			can_interact = false
+			second_mini_game = true
+			danilo_collision_shape_2d.disabled = true
+			player_danilo.animation_locked = true
+			player_danilo.force_cannot_move = true
+			danilo_animated_sprite_2d.play("sitting")
+
+			var spawn_location = current_location.get_node_or_null("danilo_hometown_house/y-sorted/spawn_points/bed_point")
+			if spawn_location:
+				player_danilo.velocity = Vector2.ZERO  # Reset velocity first
+				player_danilo.global_position = spawn_location.global_position
+			else:
+				push_error("Bed spawn point not found!")
+
+			await get_tree().process_frame
+
+			# Force position again after physics update to ensure it sticks
+			if spawn_location:
+				player_danilo.global_position = spawn_location.global_position
+
+			SignalBus.sat_on_bed.emit()
+			start_mini_game.emit()
+
+			
 
 func _game_state_flow() -> void:
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
@@ -363,22 +397,37 @@ func _start_mini_game(map_name: String = maps["house"]["name"] , spawn_point: St
 	danilo_animated_sprite_2d.play("sq_sit_right")
 
 func _on_mini_game_done()->void:
-	mini_game.queue_free()
-	_tween_camera_to(Vector2.ZERO, 3.0)
-	danilo_collision_shape_2d.disabled = false
-	player_danilo.animation_locked = false
-	danilo_animated_sprite_2d.play("idle_down")
-	_remove_tension_effect()
-	DialogueManager.show_dialogue_balloon(A_3S_3, "buy_meds_restless")
-	intro_sequence_done.emit()
-	player_danilo.force_cannot_move = false
+	if first_mini_game:
+		mini_game.queue_free()
+		_tween_camera_to(Vector2.ZERO, 3.0)
+		danilo_collision_shape_2d.disabled = false
+		player_danilo.animation_locked = false
+		danilo_animated_sprite_2d.play("idle_down")
+		_remove_tension_effect()
+		DialogueManager.show_dialogue_balloon(A_3S_3, "buy_meds_restless")
+		intro_sequence_done.emit()
+		player_danilo.force_cannot_move = false
+		first_mini_game = false
+	elif second_mini_game:
+		mini_game.queue_free()
+		_tween_camera_to(Vector2.ZERO, 3.0)
+		_remove_tension_effect()
+		add_notification(SCHED_ICON, "Reminder", "Take Medication")
+		await get_tree().create_timer(0.5).timeout
+		Hud.phone_intro()
+		DialogueManager.show_dialogue_balloon(A_3S_3, "reminder")
 
 func _on_intro_sequence_done() -> void:
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	if moral_choice == "relief":
 		Hud.show_objectives()
 	
-
+func play_taking_meds()->void:
+	danilo_animated_sprite_2d.play("taking_meds_sit_right")
+	await danilo_animated_sprite_2d.animation_finished
+	danilo_animated_sprite_2d.play("sitting")
+	_act_3_scene_3_done()
+	print("scene finished")
 
 # CAMERA HELPERS ===========================================================================================================================
 func _set_camera(map_name: String) -> void:
@@ -450,3 +499,21 @@ func _on_restless_diag_one_done () -> void:
 
 func _on_went_outside_find_tricycle () -> void:
 	ObjectiveManager.add_objective(scene_objectives[2]["ID"], scene_objectives[2]["text"])
+
+func _on_area_one_entered()->void:
+	await get_tree().create_timer(0.2).timeout
+	animation_player.play("tensioning")
+	can_interact = false
+	DialogueManager.show_dialogue_balloon(A_3S_3, "paranoia")
+
+func add_notification(image: Texture2D, app_name: String, notif_content: String) -> void:
+	Hud.get_node("Control/phone/MarginContainer/lock_screen").add_notification(image, app_name, notif_content)
+
+
+func _act_3_scene_3_done() -> void:
+	if Hud.phone_showing:
+		Hud.phone_outro()
+	SaveManager.game_save.current_act = "act_3"
+	SaveManager.game_save.current_scene = "scene_4"
+	SignalBus.act_num_scene_num_done.emit("act_3", "scene_3", "res://scenes/menu/menu_main.tscn")
+	ObjectiveManager.empty_objectives()
