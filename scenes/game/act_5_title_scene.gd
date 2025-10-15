@@ -9,13 +9,13 @@ func _ready() -> void:
 	
 	# All 3 lines stacked vertically
 	var lines = [
-		"“Memory is a cruel storyteller.”",
-		"“It lets me see only pieces I’m meant to see.”",
-		"“And now, I’m back… to where everything started.”"
+		"“I thought I was ready for this.“",
+		"“But I was wrong... so wrong.“",
+		"“The truth is heavier than I imagined.“"
 	]
 	
 	await NarrationPanel.show_narration_typewriter(lines, 0.05)
 	await NarrationPanel.hide_narration()
 	
 	# Fade transition after click
-	SignalBus.next_scene.emit("res://scenes/game/act_3/scene_1/act_3_scene_1.tscn")
+	SignalBus.next_scene.emit("res://scenes/game/act_5/scene_1/act_5_scene_1.tscn")

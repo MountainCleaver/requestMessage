@@ -1,13 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwjv31yt7w6rx"]
+[gd_scene load_steps=9 format=3 uid="uid://cx8k137kdn861"]
 
-[ext_resource type="Script" uid="uid://ciwgndukeg450" path="res://scenes/game/act_3_title_scene.gd" id="1_xa4f1"]
-[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_vjscj"]
+[ext_resource type="Script" uid="uid://pfh374hre3kc" path="res://scenes/game/act_4_title_scene.gd" id="1_vj25p"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_t7s61"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ku4u"]
 bg_color = Color(0.0509804, 0.0509804, 0.0823529, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_y6b2h"]
-font = ExtResource("2_vjscj")
+font = ExtResource("2_t7s61")
 font_size = 80
 
 [sub_resource type="LabelSettings" id="LabelSettings_uwf8f"]
@@ -81,7 +81,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xa4f1")
+script = ExtResource("1_vj25p")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -102,7 +102,7 @@ offset_top = -11.1667
 offset_bottom = 11.1667
 grow_horizontal = 2
 grow_vertical = 2
-text = "ACT 3"
+text = "ACT 4"
 label_settings = SubResource("LabelSettings_y6b2h")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -120,7 +120,7 @@ offset_right = 42.0
 offset_bottom = 39.8334
 grow_horizontal = 2
 grow_vertical = 0
-text = "Back to Where It All Started"
+text = "The Hidden Path"
 label_settings = SubResource("LabelSettings_uwf8f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
