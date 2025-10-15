@@ -269,8 +269,6 @@ func _input(event: InputEvent) -> void:
 			SignalBus.sat_on_bed.emit()
 			start_mini_game.emit()
 
-			
-
 func _game_state_flow() -> void:
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
 	GameState.load_game()
@@ -335,6 +333,7 @@ func _intro_sequence (moral_choice: String) -> void:
 			relief_choice_consequence()
 
 func relief_choice_consequence()->void:
+	first_mini_game = true
 	DialogueManager.show_dialogue_balloon(A_3S_3, "start_relief")
 	danilo_collision_shape_2d.disabled = true
 	player_danilo.animation_locked = true
@@ -347,6 +346,8 @@ func relief_choice_consequence()->void:
 	)
 
 func resltess_choice_consequence() -> void:
+	first_mini_game = false
+	second_mini_game = true
 	player_danilo.force_cannot_move = true
 	ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"], Color.RED)
 	Hud.show_objectives()
@@ -419,6 +420,7 @@ func _on_mini_game_done()->void:
 
 func _on_intro_sequence_done() -> void:
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
+	second_mini_game = true
 	if moral_choice == "relief":
 		Hud.show_objectives()
 	
