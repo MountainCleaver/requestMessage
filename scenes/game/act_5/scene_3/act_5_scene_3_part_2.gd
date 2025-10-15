@@ -19,11 +19,12 @@ func _on_wendy_body_entered(body: Node2D)->void:
 		npcwendy.visible = true
 		wendy.queue_free()
 		DialogueManager.show_dialogue_balloon(A_5S_3, "wendy")
-		_all_three_walking_together()
 
-func _all_three_walking_together()->void:
+func make_danilo_follow_mateo()->void:
 	pass
 
+func make_wendy_follow_mateo_and_danilo()->void:
+	pass
 
 func _on_finish_body_entered(body: Node2D) -> void:
 	act_5_scene_3_done()
