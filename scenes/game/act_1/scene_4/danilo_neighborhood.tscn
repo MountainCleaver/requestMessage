@@ -1,4 +1,5 @@
 [gd_scene load_steps=38 format=4 uid="uid://jd2yum8hdwy4"]
+[gd_scene load_steps=40 format=4 uid="uid://jd2yum8hdwy4"]
 
 [ext_resource type="Script" uid="uid://bkbt254e1xe40" path="res://scenes/game/act_1/scene_4/danilo_neighborhood.gd" id="1_v3cio"]
 [ext_resource type="Texture2D" uid="uid://bsi3qrmawmrso" path="res://assets/tilesets/act1_s2_tilemap.png" id="2_onmre"]
@@ -9,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="7_tt4ib"]
 [ext_resource type="Texture2D" uid="uid://2trbatq6low4" path="res://assets/character_sprites/jeep2.png" id="8_bfduq"]
 [ext_resource type="AudioStream" uid="uid://c8h20eekm6dv4" path="res://sound/mobile-vibrate-sfx-323777.mp3" id="9_onmre"]
+[ext_resource type="AudioStream" uid="uid://1klbt5qklnji" path="res://sound/Lightless-Dawn(chosic.com).mp3" id="10_vx0hi"]
+[ext_resource type="AudioStream" uid="uid://cecv2nsdf0egc" path="res://sound/night-sounds-august-54695.mp3" id="11_hcya2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5c7ju"]
 texture = ExtResource("2_onmre")
@@ -9736,6 +9739,17 @@ position = Vector2(-1, -2)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bahay"]
 position = Vector2(56, -200)
 shape = SubResource("RectangleShape2D_onmre")
+
+[node name="BGMNeighborhood2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_vx0hi")
+autoplay = true
+bus = &"music"
+
+[node name="SFXNeighborhood2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_hcya2")
+volume_db = -9.087
+autoplay = true
+bus = &"sfx"
 
 [connection signal="body_entered" from="bahay" to="." method="_on_bahay_body_entered"]
 [connection signal="body_exited" from="bahay" to="." method="_on_bahay_body_exited"]

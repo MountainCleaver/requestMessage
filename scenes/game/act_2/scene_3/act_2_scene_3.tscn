@@ -1,4 +1,5 @@
 [gd_scene load_steps=42 format=4 uid="uid://cufo6e4mgj2jy"]
+[gd_scene load_steps=43 format=4 uid="uid://cufo6e4mgj2jy"]
 
 [ext_resource type="PackedScene" uid="uid://dg5rdj5dftbue" path="res://scenes/game/act_2/scene_3/bus_terminal.tscn" id="1_4qgvt"]
 [ext_resource type="Script" uid="uid://bfae3i24nnice" path="res://scenes/game/act_2/scene_3/act_2_scene_3.gd" id="1_wp4ah"]
@@ -12,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="9_saaa3"]
 [ext_resource type="PackedScene" uid="uid://cqo3oq6dh2qgd" path="res://assets/character_sprites/jeep2.tscn" id="9_wp4ah"]
 [ext_resource type="Texture2D" uid="uid://dbrsiich4o3bd" path="res://assets/character_sprites/jeep2-Sheet.png" id="11_cifa0"]
+[ext_resource type="AudioStream" uid="uid://bsjmgjnkab88d" path="res://sound/drone-deep-ambient-150933.mp3" id="13_2ds7q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sf27w"]
 texture = ExtResource("2_wp4ah")
@@ -639,6 +641,7 @@ libraries = {
 }
 autoplay = "RESET"
 
+[node name="BGMBus" type="AudioStreamPlayer" parent="."]
 [connection signal="body_entered" from="bus_terminal/y-sorted2/npcs_collidable/StaticBody2D/npc" to="." method="_on_npc_body_entered"]
 [connection signal="body_exited" from="bus_terminal/y-sorted2/npcs_collidable/StaticBody2D/npc" to="." method="_on_npc_body_exited"]
 [connection signal="body_entered" from="bus_terminal/y-sorted2/bus/bus_interact" to="." method="_on_bus_interact_body_entered"]

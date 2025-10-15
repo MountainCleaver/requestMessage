@@ -188,12 +188,15 @@ func reset_phone_state() -> void:
 	for child in phone_container.get_children():
 		child.queue_free()
 
+	await get_tree().process_frame  # ensure old ones are actually gone
+
 	lock_screen_active = true
 	phone_main_active = false
 	chat_open = false
 	phone_showing = false
 
 	var lock_screen_scene = preload("res://scenes/game/lock_screen.tscn").instantiate()
+	lock_screen_scene.name = "lock_screen" # <--- fix name
 	phone_container.add_child(lock_screen_scene)
 	lock_screen_scene.visible = true
 

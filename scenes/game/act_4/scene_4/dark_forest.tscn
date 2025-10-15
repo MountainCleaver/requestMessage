@@ -1,9 +1,11 @@
 [gd_scene load_steps=13 format=4 uid="uid://ciwb07kh3ghdu"]
+[gd_scene load_steps=14 format=4 uid="uid://ciwb07kh3ghdu"]
 
 [ext_resource type="Script" uid="uid://d0bttnfk35w0f" path="res://scenes/game/act_4/scene_4/dark_forest.gd" id="1_hfvsf"]
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_xhb44"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_38ki2"]
 [ext_resource type="Script" uid="uid://b81clbprfy1ko" path="res://scenes/game/act_4/scene_4/portal.gd" id="3_a28et"]
+[ext_resource type="AudioStream" uid="uid://u2835b7rt2l8" path="res://sound/horror-atmosphere-background(chosic.com).mp3" id="5_puqq2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
 texture = ExtResource("1_xhb44")
@@ -107,3 +109,10 @@ script = ExtResource("3_a28et")
 position = Vector2(0, -29)
 shape = SubResource("RectangleShape2D_hy5cb")
 debug_color = Color(0.88233536, 0.32717732, 0.20909005, 0.41960785)
+
+[node name="BGMForest" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-9, 346)
+stream = ExtResource("5_puqq2")
+autoplay = true
+max_distance = 600.0
+bus = &"music"
