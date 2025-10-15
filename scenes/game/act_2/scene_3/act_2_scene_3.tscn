@@ -514,7 +514,6 @@ tile_set = SubResource("TileSet_6m70n")
 
 [node name="player_danilo" parent="bus_terminal/y-sorted2" instance=ExtResource("6_vnh1l")]
 position = Vector2(447, 41)
-RUNNING_SPEED = 400.0
 
 [node name="Camera2D" type="Camera2D" parent="bus_terminal/y-sorted2/player_danilo"]
 zoom = Vector2(3, 3)

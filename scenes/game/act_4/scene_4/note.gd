@@ -1,0 +1,38 @@
+extends Area2D
+
+const A_4S_4 := preload("res://dialogues/act_4/scene_4/a4s4.dialogue")
+
+@export var diary_note: Sprite2D
+var player_in_range := false
+static var note_collected := false
+
+func get_note_image() -> Sprite2D:
+	return diary_note
+
+func _ready():
+	monitoring = true
+	set_deferred("monitorable", true)
+	set_process(true)
+	connect("body_entered", Callable(self, "_on_body_entered"))
+	connect("body_exited", Callable(self, "_on_body_exited"))
+
+func _on_body_entered(body: Node2D):
+	if body.is_in_group("player"):
+		player_in_range = true
+		SignalBus.in_npc.emit("Press [E] to read the paper")
+
+func _on_body_exited(body: Node2D):
+	if body.is_in_group("player"):
+		player_in_range = false
+		SignalBus.out_npc.emit("clear")
+
+func _process(_delta):
+	if player_in_range and Input.is_action_just_pressed("interact"):
+		SignalBus.out_npc.emit("clear")
+		ObjectiveManager.complete_objective(1)
+
+		if Hud.has_method("mark_objective_done"):
+			Hud.mark_objective_done()
+		DialogueManager.show_dialogue_balloon(A_4S_4, "after_found_paper")
+		note_collected = true
+		call_deferred("queue_free")
