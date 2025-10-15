@@ -6,7 +6,7 @@ const A_4S_4 := preload("res://dialogues/act_4/scene_4/a4s4.dialogue")
 @onready var player_danilo: CharacterBody2D = $"y-sorted/player_danilo"
 
 var scene_objectives = [
-	{"ID": 1, "text": "Find the last paper under the rocks"},
+	{"ID": 2, "text": "Find the last paper under the rocks"}
 ]
 
 var unknown_sender_opened: bool = false
@@ -22,6 +22,8 @@ func _ready() -> void:
 		var target_portal = get_node_or_null(NodePath(last_portal_name))
 		if target_portal:
 			player_danilo.global_position = target_portal.global_position
+			
+			ObjectiveManager.complete_objective(1)
 			print("Spawned player at:", target_portal.name)
 
 	enable_phone_trigger()
