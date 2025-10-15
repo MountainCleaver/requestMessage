@@ -1,11 +1,10 @@
-[gd_scene load_steps=44 format=4 uid="uid://c4d0ibusf1g3t"]
+[gd_scene load_steps=42 format=4 uid="uid://c4d0ibusf1g3t"]
 
 [ext_resource type="Texture2D" uid="uid://dva0k2uey6rgk" path="res://assets/tilesets/chapel_decorations.png" id="1_35h23"]
 [ext_resource type="Texture2D" uid="uid://gk78kt1brxun" path="res://assets/tilesets/chapel_tiles.png" id="2_sjeyo"]
 [ext_resource type="Texture2D" uid="uid://dnyktsb36uad" path="res://assets/tilesets/chapel_tile.png" id="3_casby"]
 [ext_resource type="Texture2D" uid="uid://yosu7nenesso" path="res://assets/tilesets/chapel_grime.png" id="4_vmlcj"]
 [ext_resource type="Texture2D" uid="uid://dhoeaapdj36hr" path="res://assets/tilesets/mateo_things.png" id="5_0k0ol"]
-[ext_resource type="PackedScene" uid="uid://crw5fnxxfkvuv" path="res://assets/tilesets/lighter.tscn" id="6_4cmk0"]
 [ext_resource type="PackedScene" uid="uid://coby7tj5oue2p" path="res://assets/tilesets/candle.tscn" id="7_r60st"]
 [ext_resource type="PackedScene" uid="uid://crrv2wig3v8ef" path="res://assets/tilesets/big_candle.tscn" id="8_2yu6o"]
 [ext_resource type="PackedScene" uid="uid://cehrjw85vbr2x" path="res://scenes/characters/npc_shadowy_ghost.tscn" id="9_w7p0e"]
@@ -1477,9 +1476,6 @@ texture = ExtResource("5_0k0ol")
 physics_layer_0/collision_layer = 8
 sources/0 = SubResource("TileSetAtlasSource_eo3jy")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2mts"]
-size = Vector2(30, 20)
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ou5ug"]
 texture = ExtResource("1_35h23")
 2:8/next_alternative_id = 2
@@ -1875,17 +1871,6 @@ scale = Vector2(0.9933216, 0.9475289)
 tile_map_data = PackedByteArray("AAAEAPv/AAAUAAYAAAAEAPz/AAAUAAcAAAAFAPv/AAAVAAYAAAAFAPz/AAAVAAcAAAAGAPv/AAAWAAYAAAAHAPr/AAAXAAUAAAAHAPv/AAAXAAYAAAAGAPz/AAAWAAcAAAAGAP3/AAAWAAgAAAAHAPz/AAAXAAcAAAAHAP3/AAAXAAgAAAA=")
 tile_set = SubResource("TileSet_qbw7n")
 
-[node name="lighter" parent="map" instance=ExtResource("6_4cmk0")]
-y_sort_enabled = true
-position = Vector2(0, 95)
-collision_layer = 2
-
-[node name="lighter_area" type="Area2D" parent="map/lighter"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="map/lighter/lighter_area"]
-position = Vector2(1, 0)
-shape = SubResource("RectangleShape2D_k2mts")
-
 [node name="table_candle" type="TileMapLayer" parent="map"]
 y_sort_enabled = true
 position = Vector2(6, 13)
@@ -2010,6 +1995,9 @@ tile_set = SubResource("TileSet_g2r1l")
 [node name="cabinet_1" parent="y-sorted" instance=ExtResource("11_8xc82")]
 position = Vector2(-90, -99)
 
+[node name="cabinet" parent="y-sorted/cabinet_1" index="0"]
+region_rect = Rect2(33, 0.8467314, 29.821976, 32.194782)
+
 [node name="cabinet_1_trigger" type="Area2D" parent="y-sorted/cabinet_1"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="y-sorted/cabinet_1/cabinet_1_trigger"]
@@ -2024,6 +2012,9 @@ shape = SubResource("RectangleShape2D_eo3jy")
 
 [node name="cabinet_2" parent="y-sorted" instance=ExtResource("11_8xc82")]
 position = Vector2(87, -99)
+
+[node name="cabinet" parent="y-sorted/cabinet_2" index="0"]
+region_rect = Rect2(33, 0.8467314, 30, 32.194782)
 
 [node name="cabinet_2_trigger" type="Area2D" parent="y-sorted/cabinet_2"]
 
@@ -2076,12 +2067,12 @@ debug_color = Color(0.9733214, 0.046764627, 0.4046645, 0.41960785)
 [node name="lighting" type="Node2D" parent="."]
 
 [node name="Good" type="DirectionalLight2D" parent="lighting"]
+visible = false
 color = Color(0.017732391, 0.017732391, 0.01773239, 1)
 energy = 1.01
 blend_mode = 2
 
 [node name="Bad" type="DirectionalLight2D" parent="lighting"]
-visible = false
 color = Color(0.00069389754, 0.00069389766, 0.0006938976, 1)
 blend_mode = 2
 
