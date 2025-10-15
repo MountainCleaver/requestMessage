@@ -126,9 +126,9 @@ func _on_dialogue_ended(resource: DialogueResource) -> void:
 	await get_tree().process_frame
 
 	var lines = [
-		"Danilo can’t shake off the feeling that something’s wrong.",
-		"…A familiar name coils in his mind, quiet yet persistent.",
-		"…Something shifts, though he can’t say what."
+		"There was an unease he couldn’t explain.",
+		"A name surfaced in his thoughts.",
+		"Familiar yet distant."
 	]
 
 	await NarrationPanel.show_narration_typewriter(lines, 0.05)
