@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7ufelds3m81i"]
+[gd_scene load_steps=9 format=3 uid="uid://c7ufelds3m81i"]
 
 [ext_resource type="Script" uid="uid://dwl7pjg3yydfy" path="res://scenes/game/act_3/scene_3/scene_3_danilo_house.gd" id="1_5i88b"]
 [ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="1_nbn68"]
 [ext_resource type="Texture2D" uid="uid://k3fvhpun83o5" path="res://assets/tilesets/danilo_hometown_house_interior_decoration.png" id="2_us8ib"]
+[ext_resource type="Texture2D" uid="uid://tufc0rj0skyh" path="res://assets/tilesets/glass_ov_woa.png" id="4_bkqbu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5i88b"]
 texture = ExtResource("2_us8ib")
@@ -15,6 +16,8 @@ sources/0 = SubResource("TileSetAtlasSource_5i88b")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_us8ib"]
 size = Vector2(32, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5i88b"]
 
 [node name="scen_3_danilo_house" type="Node2D"]
 script = ExtResource("1_5i88b")
@@ -57,7 +60,23 @@ collision_layer = 4
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_us8ib")
 
+[node name="bed_area" type="Area2D" parent="."]
+position = Vector2(-69, 7)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bed_area"]
+shape = SubResource("RectangleShape2D_5i88b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-94, 6)
+texture = ExtResource("4_bkqbu")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="bed_area" to="." method="_on_bed_area_body_entered"]
+[connection signal="body_exited" from="bed_area" to="." method="_on_bed_area_body_exited"]
 
 [editable path="danilo_hometown_house"]
