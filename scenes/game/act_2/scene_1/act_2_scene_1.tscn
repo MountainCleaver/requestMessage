@@ -12,3 +12,15 @@ script = ExtResource("1_a1dml")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
+[node name="BGMRoom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_q61tw")
+volume_db = -6.679
+autoplay = true
+bus = &"music"
+
+[node name="SFXRoom" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-1, -2)
+stream = ExtResource("2_ib622")
+autoplay = true
+max_distance = 86.0
+bus = &"sfx"
