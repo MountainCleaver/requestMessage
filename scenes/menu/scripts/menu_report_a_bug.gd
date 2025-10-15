@@ -113,7 +113,8 @@ func _clear_report_fields() -> void:
 # BUG REPORT SUBMISSION
 # -----------------------------
 func _submit_bug_report():
-	var user_name = Global.username
+	# var user_name = Global.username
+	var user_name = Session.username
 	if user_name == "":
 		user_name = "Anonymous"
 

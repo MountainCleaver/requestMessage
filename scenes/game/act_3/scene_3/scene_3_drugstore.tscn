@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=4 uid="uid://7wtc2deofp0e"]
+
+[ext_resource type="PackedScene" uid="uid://br3x1sybvvdrp" path="res://drugstore.tscn" id="1_1gu5s"]
+[ext_resource type="Script" uid="uid://q5ed0b2np2dd" path="res://scenes/game/act_3/scene_3/scene_3_drugstore.gd" id="1_8eqnp"]
+[ext_resource type="Texture2D" uid="uid://cj2bpt3elm4p5" path="res://assets/tilesets/hospital_interior.png" id="2_vywam"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8eqnp"]
+texture = ExtResource("2_vywam")
+6:2/0 = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_myaiv"]
+physics_layer_0/collision_layer = 4
+sources/0 = SubResource("TileSetAtlasSource_8eqnp")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vywam"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8eqnp"]
+size = Vector2(45, 20)
+
+[node name="scene_3_drugstore" type="Node2D"]
+script = ExtResource("1_8eqnp")
+
+[node name="drugstore" parent="." instance=ExtResource("1_1gu5s")]
+
+[node name="block" type="TileMapLayer" parent="drugstore/map" index="0"]
+tile_map_data = PackedByteArray("AAADAAcAAAAGAAIAAAADAAgAAAAGAAIAAAAEAAgAAAAGAAIAAAAFAAgAAAAGAAIAAAAGAAgAAAAGAAIAAAAGAAcAAAAGAAIAAAA=")
+tile_set = SubResource("TileSet_myaiv")
+
+[node name="spawn_points" type="Node2D" parent="drugstore/y-sorted" index="1"]
+
+[node name="drugstore_door_point" type="Marker2D" parent="drugstore/y-sorted/spawn_points"]
+position = Vector2(80, 113)
+
+[node name="areas" type="Node2D" parent="drugstore"]
+
+[node name="door_area" type="Area2D" parent="drugstore/areas"]
+position = Vector2(80, 107)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="drugstore/areas/door_area"]
+shape = SubResource("RectangleShape2D_vywam")
+debug_color = Color(0.76908624, 0.27347016, 0.87340724, 0.41960785)
+
+[node name="npc_area" type="Area2D" parent="drugstore/areas"]
+position = Vector2(81, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="drugstore/areas/npc_area"]
+position = Vector2(2.5, 0)
+shape = SubResource("RectangleShape2D_8eqnp")
+debug_color = Color(0, 0.64257616, 0.3206864, 0.41960785)
+
+[connection signal="body_entered" from="drugstore/areas/door_area" to="." method="_on_door_area_body_entered"]
+[connection signal="body_exited" from="drugstore/areas/door_area" to="." method="_on_door_area_body_exited"]
+[connection signal="body_entered" from="drugstore/areas/npc_area" to="." method="_on_npc_area_body_entered"]
+[connection signal="body_exited" from="drugstore/areas/npc_area" to="." method="_on_npc_area_body_exited"]
+
+[editable path="drugstore"]
