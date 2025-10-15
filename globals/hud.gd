@@ -192,6 +192,11 @@ func reset_phone_state() -> void:
 	chat_open = false
 	phone_showing = false
 
+<<<<<<< Updated upstream
+=======
+	await get_tree().create_timer(0.8).timeout
+
+>>>>>>> Stashed changes
 	var lock_screen_scene = preload("res://scenes/game/lock_screen.tscn").instantiate()
 	phone_container.add_child(lock_screen_scene)
 	lock_screen_scene.visible = true
