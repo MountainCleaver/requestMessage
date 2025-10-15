@@ -1,4 +1,3 @@
-[gd_scene load_steps=37 format=4 uid="uid://dfwbp3b1101vg"]
 [gd_scene load_steps=38 format=4 uid="uid://dfwbp3b1101vg"]
 
 [ext_resource type="Script" uid="uid://dcpcot3w8tvuc" path="res://scenes/game/act_3/scene_1/act_3_scene_1.gd" id="1_pfe4b"]

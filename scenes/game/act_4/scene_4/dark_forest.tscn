@@ -1,4 +1,3 @@
-[gd_scene load_steps=13 format=4 uid="uid://ciwb07kh3ghdu"]
 [gd_scene load_steps=14 format=4 uid="uid://ciwb07kh3ghdu"]
 
 [ext_resource type="Script" uid="uid://d0bttnfk35w0f" path="res://scenes/game/act_4/scene_4/dark_forest.gd" id="1_hfvsf"]

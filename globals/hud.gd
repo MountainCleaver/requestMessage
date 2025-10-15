@@ -202,8 +202,6 @@ func reset_phone_state() -> void:
 
 	phone_intro()
 
-
-
 # ==================================
 # === RESTORE PHONE STATE (local) ===
 # ==================================

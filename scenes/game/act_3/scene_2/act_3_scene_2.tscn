@@ -1,4 +1,3 @@
-[gd_scene load_steps=16 format=3 uid="uid://tnda2d107s7p"]
 [gd_scene load_steps=17 format=3 uid="uid://tnda2d107s7p"]
 
 [ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="1_5u0wn"]
