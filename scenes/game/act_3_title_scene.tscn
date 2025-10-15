@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://4vfen0xjbf0f"]
+[gd_scene load_steps=9 format=3 uid="uid://cwjv31yt7w6rx"]
 
 [ext_resource type="Script" uid="uid://ciwgndukeg450" path="res://scenes/game/act_3_title_scene.gd" id="1_xa4f1"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_vjscj"]
