@@ -34,6 +34,7 @@ func _ready() -> void:
 		bgm.stream = music
 		bgm.bus = "music"
 		bgm.volume_db = -20
+		bgm.volume_db = -5
 		bgm.autoplay = false
 		if bgm.stream.has_method("set_loop"):
 			bgm.stream.set_loop(true)

@@ -1,4 +1,5 @@
 [gd_scene load_steps=40 format=4 uid="uid://bvr6jnqrdpdgd"]
+[gd_scene load_steps=41 format=4 uid="uid://bvr6jnqrdpdgd"]
 
 [ext_resource type="Script" uid="uid://epp6clbotfbk" path="res://scenes/game/act_4/scene_4/cliff.gd" id="1_60q0d"]
 [ext_resource type="Texture2D" uid="uid://cqlemxpf5ymis" path="res://assets/tilesets/cliff_tileset.png" id="1_oqg1l"]
@@ -12,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://jq5u2gfvckxx" path="res://scenes/game/act_4/scene_4/rock.tscn" id="10_0srgl"]
 [ext_resource type="Script" uid="uid://3fmwuculc8uj" path="res://scenes/game/act_4/scene_4/portal2.gd" id="11_60q0d"]
 [ext_resource type="AudioStream" uid="uid://bleocupbn07tb" path="res://sound/strong-howling-wind-132281.mp3" id="11_dk38r"]
+[ext_resource type="AudioStream" uid="uid://4sjldp28msn7" path="res://sound/midnight-cricket-sound-403101.mp3" id="13_4ysv2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fpllf"]
 texture = ExtResource("1_oqg1l")
@@ -329,6 +331,13 @@ shape = SubResource("RectangleShape2D_dk38r")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.08650524, 0.06233176, 0.058878735, 1)
+
+[node name="BGMCliff" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(308, 229)
+stream = ExtResource("13_4ysv2")
+autoplay = true
+max_distance = 1000.0
+bus = &"sfx"
 
 [connection signal="body_entered" from="windarea" to="windarea" method="_on_body_entered"]
 [connection signal="body_entered" from="phone_trigger" to="." method="_on_phone_trigger_body_entered"]

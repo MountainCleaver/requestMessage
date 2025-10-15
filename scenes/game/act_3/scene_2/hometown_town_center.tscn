@@ -1,4 +1,5 @@
 [gd_scene load_steps=25 format=4 uid="uid://dphe7c6imiltt"]
+[gd_scene load_steps=26 format=4 uid="uid://dphe7c6imiltt"]
 
 [ext_resource type="Texture2D" uid="uid://dpxclb43v72sn" path="res://assets/tilesets/act3_s3_BAYAN_HOUSES.png" id="2_brh3w"]
 [ext_resource type="Texture2D" uid="uid://vgnr8ky4tko4" path="res://assets/tilesets/rizal_tile_png.png" id="2_ospwe"]
@@ -7,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bdjeb5nyl1oyu" path="res://assets/tilesets/rizal_asset_png.png" id="4_brh3w"]
 [ext_resource type="Texture2D" uid="uid://q2whql3ij4jj" path="res://assets/tilesets/act_1_s3.png" id="5_2auxa"]
 [ext_resource type="Texture2D" uid="uid://qk4wxfvkg00v" path="res://assets/tilesets/rizal_asset.png" id="6_brh3w"]
+[ext_resource type="AudioStream" uid="uid://bc2ctok01tbi5" path="res://sound/soft-piano-music-272453.mp3" id="8_ospwe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bxrlh"]
 texture = ExtResource("2_brh3w")
@@ -17645,3 +17647,7 @@ tile_set = SubResource("TileSet_gyaw7")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color(0.37254903, 0.40392157, 0.62352943, 1)
+
+[node name="BGMTown" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ospwe")
+volume_db = -5.0
