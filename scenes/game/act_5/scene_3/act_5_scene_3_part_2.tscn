@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://22beus6b8tv0"]
+
+[ext_resource type="Script" uid="uid://hx604jh0owqq" path="res://scenes/game/act_5/scene_3/act_5_scene_3_part_2.gd" id="1_20vto"]
+[ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="1_coahb"]
+[ext_resource type="PackedScene" uid="uid://bslujs6mipwsy" path="res://scenes/characters/player_mateo.tscn" id="2_c2va1"]
+[ext_resource type="PackedScene" uid="uid://kn2wx8c77c4t" path="res://scenes/game/act_5/scene_3/npc_danilo.tscn" id="3_c2va1"]
+[ext_resource type="PackedScene" uid="uid://d1vnt1mlybwuq" path="res://scenes/characters/npc_wendy.tscn" id="5_pqxvr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20vto"]
+size = Vector2(116, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqxvr"]
+size = Vector2(20, 134)
+
+[node name="act_5_scene_3_part_2" type="Node2D"]
+script = ExtResource("1_20vto")
+
+[node name="danilo_hometown" parent="." instance=ExtResource("1_coahb")]
+
+[node name="player_mateo" parent="danilo_hometown/y-sorted-objects" index="2" instance=ExtResource("2_c2va1")]
+position = Vector2(-85, 184)
+RUNNING_SPEED = 120.0
+
+[node name="Camera2D" type="Camera2D" parent="danilo_hometown/y-sorted-objects/player_mateo"]
+zoom = Vector2(3, 3)
+limit_left = -715
+limit_top = -659
+limit_right = 709
+limit_bottom = 636
+
+[node name="npc_danilo" parent="danilo_hometown/y-sorted-objects" index="3" instance=ExtResource("3_c2va1")]
+position = Vector2(-108, 174)
+
+[node name="wendy" parent="danilo_hometown/y-sorted-objects" index="4" instance=ExtResource("5_pqxvr")]
+visible = false
+position = Vector2(-328, 338)
+
+[node name="wendy" type="Area2D" parent="."]
+position = Vector2(-339, 229)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wendy"]
+shape = SubResource("RectangleShape2D_20vto")
+
+[node name="finish" type="Area2D" parent="."]
+position = Vector2(-682, 230)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="finish"]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_pqxvr")
+
+[connection signal="body_entered" from="wendy" to="." method="_on_wendy_body_entered"]
+[connection signal="body_entered" from="finish" to="." method="_on_finish_body_entered"]
+
+[editable path="danilo_hometown"]
+[editable path="danilo_hometown/y-sorted-objects/npc_danilo"]

@@ -1,0 +1,16 @@
+~ start
+Danilo: Kailangan ko bumalik sa lumang kapilya.
+=> END
+
+~ back_to_chapel_again
+Danilo: [shake rate=20 level=10]Babalik na naman ako dito...[/shake]
+Danilo: [shake rate=20 level=10]Sana... di na mauulit ‘yung nakita ko kanina...[/shake]
+=> END
+
+~ light_candle
+Danilo: Kailangan ko uli sindihan lahat ng kandila.
+=> END
+
+~ all_candles_lit_up
+Danilo: Ok
+=> END

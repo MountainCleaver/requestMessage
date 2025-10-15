@@ -1,0 +1,16 @@
+~ start
+Manang_Matet: Lagi ka nalang walang pake!
+Manang_Matet: Wala kang iniisip kundi sarili mo, 
+Manang_Matet: Hindi mo man lang inaalala kung anong nangyayari sa pamilya natin!
+Mang_Gino: Ikaw ang may kasalanan kung bakit lagi tayong nagbabangayan!
+Mang_Gino: Araw-araw na lang gulo, wala kang tigil sa pagsisi at paninisi!
+=> mateo_mono
+=> END
+~ mateo_mono
+Mateo_Child: [center]Hindi na sila natapos, sigawan ulit.[/center]
+Mateo_Child: [center]Ayoko na dito.[/center]
+Mateo_Child: [center]Gusto ko nalang pumunta sa lugar kung saan walang sigawan...[/center]
+Mateo_Child: [center]Tahimik...[/center]
+do ObjectiveManager.add_objective(1, "Leave the house")
+do Hud.show_objectives()
+=> END
