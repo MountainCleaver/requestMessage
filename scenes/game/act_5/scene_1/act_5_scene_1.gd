@@ -15,19 +15,25 @@ const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
 @onready var locations: Node2D = $locations
 var player_danilo: CharacterBody2D
 var tip_interact: Sprite2D
+var animated_sprite_2d: AnimatedSprite2D
 var current_location: Node
-
+var anim_player: AnimationPlayer
 # Areas
 var dark_forest_entrance_area: Area2D
 var door_area: Area2D
 var before_door_area: Area2D
+var altar_area_1: Area2D
+var altar_area_2: Area2D
+var can_sit_altar_1 := false
+var can_sit_altar_2 := false
 
 # ===================
 # OBJECTIVES
 # ===================
 var scene_objectives = [
 	{"ID": 1, "text": "Return to the old chapel"},
-	{"ID": 2, "text": "Light up all the candles"}
+	{"ID": 2, "text": "Light up all the candles"},
+	{"ID": 3, "text": "Sit at the altar to begin reading"}
 ]
 
 # ===================
@@ -39,7 +45,7 @@ var dialogue_triggered = false
 
 var can_interact_candle := false
 var candle_ignited := false
-var lit_candles := {} # key: candle index (1-7), value: true
+var lit_candles := {} 
 var total_candles := 7
 
 # ===================
@@ -82,14 +88,49 @@ func _switch_to_chapel_exterior() -> void:
 	await get_tree().process_frame
 	switch_location(CHAPEL_EXTERIOR)
 
-func _switch_to_chapel_interior() -> void:
+func _switch_to_chapel_interior(from_where: String = "default") -> void:
+	await get_tree().process_frame
 	switch_location(CHAPEL_INTERIOR)
-	DialogueManager.show_dialogue_balloon(A_5S_1, "light_candle")
-	await DialogueManager.dialogue_ended
 
-	# Add objective for all candles (progress type)
-	ObjectiveManager.add_progress_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"], total_candles)
-	_setup_all_candle_areas()
+	# Spawn player depending on which path triggered
+	var spawn_marker: Node2D = null
+	if from_where == "first_entry":
+		spawn_marker = current_location.get_node_or_null("spawn_marker_1")
+	elif from_where == "after_arrange_pages":
+		spawn_marker = current_location.get_node_or_null("spawn_marker_2")
+
+	if spawn_marker and player_danilo:
+		player_danilo.global_position = spawn_marker.global_position
+
+	match from_where:
+		"first_entry":
+			DialogueManager.show_dialogue_balloon(A_5S_1, "light_candle")
+			await DialogueManager.dialogue_ended
+			ObjectiveManager.add_progress_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"], total_candles)
+			_setup_all_candle_areas()
+		
+		"after_arrange_pages":
+			# Re-light all candles visually when coming back
+			for index in lit_candles.keys():
+				var sprite_path = "map/candle/big_candle/candle" if index == 0 else "map/candle/candle_%d/candle" % index
+				var light_path = "map/candle/big_candle/PointLight2D" if index == 0 else "map/candle/candle_%d/PointLight2D" % index
+
+				var sprite: Sprite2D = current_location.get_node_or_null(sprite_path)
+				var light: PointLight2D = current_location.get_node_or_null(light_path)
+
+				if sprite:
+					sprite.region_enabled = true
+					sprite.region_rect = Rect2(21, 0, 20.8, 29) if index == 0 else Rect2(9,0,9,20)
+				if light:
+					light.visible = true
+					light.texture_scale = 1.7 if index == 0 else 5.0
+
+			DialogueManager.show_dialogue_balloon(A_5S_1, "after_arrange_pages")
+			await DialogueManager.dialogue_ended
+			Hud.show_objectives()
+			ObjectiveManager.add_objective(scene_objectives[2]["ID"], scene_objectives[2]["text"])
+
+
 
 # ===================
 # LOCATION HANDLER
@@ -101,8 +142,10 @@ func switch_location(scene: PackedScene) -> void:
 	current_location = scene.instantiate()
 	locations.add_child(current_location)
 
-	player_danilo = current_location.get_node("y-sorted/player_danilo")
+	player_danilo = current_location.get_node_or_null("y-sorted/player_danilo")
 	tip_interact = player_danilo.get_node_or_null("tip_interact") if player_danilo else null
+	animated_sprite_2d = player_danilo.get_node_or_null("AnimatedSprite2D") if player_danilo else null
+	anim_player = current_location.get_node_or_null("AnimationPlayer")
 
 	door_area = current_location.get_node_or_null("door_area")
 	before_door_area = current_location.get_node_or_null("before_door_area")
@@ -116,6 +159,18 @@ func switch_location(scene: PackedScene) -> void:
 	if door_area:
 		door_area.body_entered.connect(_on_door_area_body_entered)
 		door_area.body_exited.connect(_on_door_area_body_exited)
+		
+	altar_area_1 = current_location.get_node_or_null("altar_area_1")
+	altar_area_2 = current_location.get_node_or_null("altar_area_2")
+
+	if altar_area_1:
+		altar_area_1.body_entered.connect(_on_altar_area_1_entered)
+		altar_area_1.body_exited.connect(_on_altar_area_1_exited)
+
+	if altar_area_2:
+		altar_area_2.body_entered.connect(_on_altar_area_2_entered)
+		altar_area_2.body_exited.connect(_on_altar_area_2_exited)
+
 
 # ===================
 # AREA HANDLERS
@@ -139,6 +194,35 @@ func _on_door_area_body_exited(body):
 		if tip_interact:
 			tip_interact.visible = false
 
+func _on_altar_area_1_entered(body):
+	if body == player_danilo:
+		# Only allow sitting if all candles are lit
+		if lit_candles.size() >= total_candles:
+			can_sit_altar_1 = true
+			if tip_interact:
+				tip_interact.visible = true
+
+func _on_altar_area_1_exited(body):
+	if body == player_danilo:
+		can_sit_altar_1 = false
+		if tip_interact:
+			tip_interact.visible = false
+
+func _on_altar_area_2_entered(body):
+	if body == player_danilo:
+		# Only allow sitting if all candles are lit
+		if lit_candles.size() >= total_candles:
+			can_sit_altar_2 = true
+			if tip_interact:
+				tip_interact.visible = true
+
+func _on_altar_area_2_exited(body):
+	if body == player_danilo:
+		can_sit_altar_2 = false
+		if tip_interact:
+			tip_interact.visible = false
+
+
 # ===================
 # INPUT HANDLER
 # ===================
@@ -152,6 +236,12 @@ func _process(_delta):
 		var candle_index = current_location.get_meta("current_candle")
 		if candle_index != null and not lit_candles.has(candle_index):
 			_light_candle(candle_index)
+	# Sit at altar interaction
+
+	if can_sit_altar_1 and Input.is_action_just_pressed("interact"):
+			_sit_at_marker_1()
+	elif can_sit_altar_2 and Input.is_action_just_pressed("interact"):
+			_sit_at_marker_2()
 
 # ===================
 # INTERACTIONS
@@ -164,7 +254,7 @@ func _door_interacted():
 	TransitionFade.transition()
 	await SignalBus.on_transition_finished
 	ObjectiveManager.complete_objective(1)
-	_switch_to_chapel_interior()
+	_switch_to_chapel_interior("first_entry")
 
 # ===================
 # CANDLE LOGIC
@@ -249,14 +339,91 @@ func _light_candle(index: int) -> void:
 		var tween = create_tween()
 		tween.tween_property(light, "texture_scale", 1.7 if index==0 else 5.0, 0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
-	# Hide tip interact immediately
 	if tip_interact:
 		tip_interact.visible = false
 
-	# Update objective progre`ss
 	ObjectiveManager.update_progress(scene_objectives[1]["ID"])
 
-	# Check completion
 	if lit_candles.size() >= total_candles:
 		ObjectiveManager.complete_objective(scene_objectives[1]["ID"])
-		DialogueManager.show_dialogue_balloon(A_5S_1, "all_candles_lit_up")
+		await get_tree().create_timer(1).timeout
+		Hud.hide_objectives()
+		Hud.clear_objectives()
+		# Switch location to narration panel
+		TransitionFade.transition()
+		await SignalBus.on_transition_finished
+		switch_location(NARRATION_PANEL)
+		await get_tree().process_frame
+
+		var lines = [
+			"The candles burn without wavering,",
+			"as I carefully arrange each pages.",
+			"The room feels still, waiting for something to begin."
+		]
+
+		await NarrationPanel.show_narration_typewriter(lines, 0.05)
+		await NarrationPanel.hide_narration()
+
+		TransitionFade.transition()
+		await SignalBus.on_transition_finished
+		_switch_to_chapel_interior("after_arrange_pages")
+
+func _sit_at_marker_1():
+	if tip_interact:
+		tip_interact.visible = false
+	var sit_marker = current_location.get_node_or_null("sit_marker_1")
+
+	if sit_marker and player_danilo:
+		player_danilo.global_position = sit_marker.global_position
+		player_danilo.can_move = false
+		if animated_sprite_2d:
+			animated_sprite_2d.z_index = 1000
+			animated_sprite_2d.play("read_notebook")
+		else:
+			push_warning("AnimatedSprite2D not found!")
+		
+		ObjectiveManager.complete_objective(3)
+		Hud.hide_objectives()
+		
+		if anim_player:
+			anim_player.play("zoom_in")
+			await anim_player.animation_finished
+		scene_3_done()
+
+
+func _sit_at_marker_2():
+	if tip_interact:
+		tip_interact.visible = false
+	var sit_marker = current_location.get_node_or_null("sit_marker_2")
+	var sprite: AnimatedSprite2D = player_danilo.get_node_or_null("AnimatedSprite2D") if player_danilo else null
+	
+	if sit_marker and player_danilo:
+		player_danilo.global_position = sit_marker.global_position
+		player_danilo.can_move = false
+		if sprite:
+			sprite.z_index = 1000
+			sprite.play("read_notebook")
+			
+		ObjectiveManager.complete_objective(3)
+		Hud.hide_objectives()
+		
+		if anim_player:
+			anim_player.play("zoom_in")
+			await anim_player.animation_finished
+		scene_3_done()
+		
+
+# ===================
+# COMPLETE SCENE
+# ===================
+func scene_3_done() -> void:
+	Hud.clear_objectives()
+	SaveManager.game_save.current_act = "act_5"
+	SaveManager.game_save.current_scene = "scene_1"
+	GameState.save_game()
+	print("ACT 5 SCENE 1 DONE")
+	SignalBus.act_num_scene_num_done.emit(
+		"act_5", 
+		"scene_1", 
+        "res://scenes/game/act_5/scene_2/act_5_scene_2.tscn"
+	)
