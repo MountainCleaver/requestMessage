@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://dblxd5gduaar6"]
+[gd_scene load_steps=118 format=3 uid="uid://dblxd5gduaar6"]
 
 [ext_resource type="Texture2D" uid="uid://bf73p6f1cex2c" path="res://assets/character_sprites/DANILO.png" id="1_31iy4"]
 [ext_resource type="Script" uid="uid://5x72ywgk1iqf" path="res://scenes/characters/player_danilo.gd" id="1_upm5t"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b01uh2lvmy86w" path="res://assets/character_sprites/DANILO_PUSHING_ROCKS.png" id="5_y4l36"]
 [ext_resource type="Texture2D" uid="uid://bavf5qg7ni6xa" path="res://assets/character_sprites/DANILO_SQUARE_BREATHING_STANDING_AND_SITTING.png" id="7_v7fvk"]
 [ext_resource type="Texture2D" uid="uid://bwrh4xd2b7a0n" path="res://assets/character_sprites/DANILO_TAKING_MEDS.png" id="8_y4l36"]
+[ext_resource type="Texture2D" uid="uid://dk073uyq3ov8q" path="res://assets/character_sprites/DANILO_WITH_NOTEBOOK.png" id="9_4xi8a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nbajt"]
 atlas = ExtResource("2_k222o")
@@ -304,6 +305,22 @@ region = Rect2(384, 0, 48, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fcwq5"]
 atlas = ExtResource("4_njh5v")
 region = Rect2(432, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwkh2"]
+atlas = ExtResource("9_4xi8a")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb2co"]
+atlas = ExtResource("9_4xi8a")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3fnr"]
+atlas = ExtResource("9_4xi8a")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2top"]
+atlas = ExtResource("9_4xi8a")
+region = Rect2(48, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cqv2w"]
 atlas = ExtResource("4_30v03")
@@ -698,6 +715,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_rwkh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwkh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwkh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bb2co")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3fnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3fnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2top")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2top")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2top")
+}],
+"loop": true,
+"name": &"read_notebook",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cqv2w")
 }],
 "loop": true,
@@ -883,7 +932,7 @@ script = ExtResource("1_upm5t")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_krebh")
-animation = &"idle_down"
+animation = &"read_notebook"
 autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
