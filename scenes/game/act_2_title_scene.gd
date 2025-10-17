@@ -18,6 +18,4 @@ func _ready() -> void:
 	await NarrationPanel.hide_narration()
 	
 	# Fade transition after click
-	SaveManager.game_save.current_act = "act_1"
-	SaveManager.game_save.current_scene = "scene_4"
-	SignalBus.act_num_scene_num_done.emit("act_1", "scene_4", "res://scenes/game/act_2/scene_1/act_2_scene_1.tscn")
+	SignalBus.next_scene.emit("res://scenes/game/act_2/scene_1/act_2_scene_1.tscn")

@@ -174,7 +174,7 @@ func _after_phone_outro_narration() -> void:
 	switch_location(NARRATION_PANEL)
 	await get_tree().process_frame
 	Hud.phone_outro()
-	var lines = ["Danilo contemplates everything that happened that day."]
+	var lines = ["Danilo contemplates everything that happened today."]
 
 	await NarrationPanel.show_narration_typewriter(lines, 0.05)
 	await NarrationPanel.hide_narration()
