@@ -99,7 +99,7 @@ func _save_has_finished_scenes(save_data: SaveGameResource) -> bool :
 	
 
 func track_save() -> void:
-	var url = "http://localhost/RequestMessage_Admin/api/track_save.php"
+	var url = "https://requestmessage-admin.onrender.com/api/track_save.php"
 	var request = HTTPRequest.new()
 	add_child(request)
 	var data = { "save": true }  
