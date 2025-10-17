@@ -10,6 +10,7 @@ extends Control
 @onready var clear: Button = $Panel/BUTTONS/CLEAR
 @onready var confirmation_dialog: ConfirmationDialog = $ConfirmationDialog
 @onready var menu_loading_screen: CanvasLayer = $menu_loading_screen
+@onready var accept_dialog: AcceptDialog = $AcceptDialog
 
 const BASIS_33 = preload("res://assets/fonts/basis33.ttf")
 @onready var bug_type_popup = bug_type.get_popup()
@@ -17,14 +18,15 @@ var pending_action: String = ""
 
 
 func _ready() -> void:
+	accept_dialog.hide()
 	menu_loading_screen.hide()
 	file_dialog.filters = ["*.png ; PNG Images", "*.jpg ; JPEG Images"]
 	file_dialog.file_selected.connect(Callable(self, "_on_file_selected"))
 	_style_popup(bug_type_popup)
 
 
-func _process(delta: float) -> void:
-	submit.disabled = text_edit.text == ""
+#func _process(delta: float) -> void:
+	#submit.disabled = text_edit.text == ""
 
 
 func _input(event: InputEvent) -> void:
@@ -187,5 +189,12 @@ func _on_request_completed(result: int, response_code: int, headers: Array, body
 	else:
 		print("Error submitting bug report: ", parse_result.get("message", "Unknown error"))
 		
-	
+	_report_feedback_success_or_not(response_code)
+
+func _report_feedback_success_or_not(res_code: int)->void:
+	if res_code != 200:
+		accept_dialog.dialog_text = "An error occured when trying to submit your report, please try again later."
+	else:
+		accept_dialog.dialog_text = "Your report was successfully submitted."
+	accept_dialog.show()
 	menu_loading_screen.hide()
