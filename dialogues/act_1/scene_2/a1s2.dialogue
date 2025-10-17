@@ -44,7 +44,7 @@ do set_table_used("table_3")
 
 ~ pick_table_4
 Danilo: Ayan, pwede na tayo dito.
-do ObjectiveManager.complete_objective(2)
+do ObjectiveManager.complete_objective(3)
 do set_table_used("table_4")
 do wendy_unfollow()
 => END
