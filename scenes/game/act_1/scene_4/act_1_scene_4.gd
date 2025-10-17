@@ -273,6 +273,8 @@ func _input(event: InputEvent) -> void:
 func scene_4_done() -> void:
 	Hud.hide_objectives()
 	Hud.clear_objectives()
+	SaveManager.game_save.current_act = "act_1"
+	SaveManager.game_save.current_scene = "scene_4"
 	GameState.save_game()
 	SignalBus.next_scene.emit("res://scenes/game/act_2_title_scene.tscn")
 	print("act 1 scene 4 is done. ACT 1 DONE !!!!!!!!!!!!!!!!!!")
