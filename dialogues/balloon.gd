@@ -56,6 +56,12 @@ var mutation_cooldown: Timer = Timer.new()
 
 @onready var talk_sound: AudioStreamPlayer = $TalkSound
 
+# === Flicker background reference ===
+@onready var background_chat: PanelContainer = $Balloon/MarginContainer/PanelContainer
+
+# === Flicker tween ===
+var flicker_tween: Tween = null
+
 func _ready() -> void:
 	balloon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	balloon.hide()
@@ -149,6 +155,17 @@ func apply_dialogue_line() -> void:
 	balloon.show()
 	will_hide_balloon = false
 
+	# === Apply unknown sender visual flicker ===
+	if raw_character_name.to_lower() == "unknown_sender":
+		start_flicker()
+		character_label.add_theme_color_override("default_color", Color.WHITE)
+		dialogue_label.add_theme_color_override("default_color", Color.WHITE)
+	else:
+		stop_flicker()
+		character_label.add_theme_color_override("default_color", Color(0, 0, 0))
+		dialogue_label.add_theme_color_override("default_color", Color(0, 0, 0))
+
+
 	dialogue_label.show()
 	if not dialogue_line.text.is_empty():
 		dialogue_label.type_out()
@@ -222,3 +239,31 @@ func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float) -
 	if not letter in ["."," "]:
 		talk_sound.pitch_scale = randf_range(0.9, 1.1)
 		talk_sound.play()
+
+
+func start_flicker():
+	stop_flicker()
+	
+	# Instantly set the background to the dark tone (no fade-in)
+	background_chat.self_modulate = Color(0.05, 0.0, 0.0, 1.0)
+	
+	flicker_tween = create_tween()
+	flicker_tween.set_loops(-1)
+	
+	var color1 = Color(0.104, 0.0, 0.0, 1.0)
+	var color2 = Color(0.05, 0.0, 0.0, 1.0)
+	var color3 = Color(0.0, 0.0, 0.0, 1.0)
+	
+	flicker_tween.tween_property(background_chat, "self_modulate", color1, 0.6)
+	flicker_tween.tween_property(background_chat, "self_modulate", color2, 0.6)
+	flicker_tween.tween_property(background_chat, "self_modulate", color3, 0.8)
+	flicker_tween.tween_property(background_chat, "self_modulate", color2, 0.6)
+	flicker_tween.tween_property(background_chat, "self_modulate", color1, 0.6)
+
+
+
+func stop_flicker():
+	if flicker_tween and flicker_tween.is_valid():
+		flicker_tween.stop()
+	flicker_tween = null
+	background_chat.self_modulate = Color(1, 1, 1, 1)

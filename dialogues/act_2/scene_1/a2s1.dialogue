@@ -48,8 +48,9 @@ do Hud.show_objectives()
 => END
 
 ~ choices_danilo_1
+Danilo: ...
 - Wen, ikaw ba yung nagchachat sakin? => reply_danilo_5
-- Wen, prinaprank mo ata ako ah! => reply_danilo_5
+- Prinaprank mo ata ako ah! => reply_danilo_5
 => END
 
 ~ reply_danilo_5

@@ -1,16 +1,16 @@
 ~ start
-Manang_Matet: Lagi ka nalang walang pake!
-Manang_Matet: Wala kang iniisip kundi sarili mo, 
-Manang_Matet: Hindi mo man lang inaalala kung anong nangyayari sa pamilya natin!
-Mang_Gino: Ikaw ang may kasalanan kung bakit lagi tayong nagbabangayan!
-Mang_Gino: Araw-araw na lang gulo, wala kang tigil sa pagsisi at paninisi!
+Manang_Matet: [shake rate=20 level=10]Lagi ka nalang walang pake![/shake]
+Manang_Matet: [shake rate=20 level=10]Wala kang iniisip kundi sarili mo![/shake]
+Manang_Matet: [shake rate=20 level=10]Hindi mo man lang inaalala kung anong nangyayari sa pamilya natin![/shake]
+Mang_Gino: [shake rate=20 level=10]Ikaw ang may kasalanan kung bakit lagi tayong nagbabangayan![/shake]
+Mang_Gino: [shake rate=20 level=10]Araw-araw na lang gulo, wala kang tigil sa pagsisi at paninisi![/shake]
 => mateo_mono
 => END
 ~ mateo_mono
-Mateo_Child: [center]Hindi na sila natapos, sigawan ulit.[/center]
-Mateo_Child: [center]Ayoko na dito.[/center]
-Mateo_Child: [center]Gusto ko nalang pumunta sa lugar kung saan walang sigawan...[/center]
-Mateo_Child: [center]Tahimik...[/center]
+Mateo_child: [center]Hindi na sila natapos, sigawan ulit.[/center]
+Mateo_child: [center]Ayoko na dito.[/center]
+Mateo_child: [center]Gusto ko nalang pumunta sa lugar kung saan walang sigawan...[/center]
+Mateo_child: [center]Tahimik...[/center]
 do ObjectiveManager.add_objective(1, "Leave the house")
 do Hud.show_objectives()
 => END

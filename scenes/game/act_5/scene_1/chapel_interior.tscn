@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://c4d0ibusf1g3t"]
+[gd_scene load_steps=45 format=4 uid="uid://c4d0ibusf1g3t"]
 
 [ext_resource type="Texture2D" uid="uid://dva0k2uey6rgk" path="res://assets/tilesets/chapel_decorations.png" id="1_35h23"]
 [ext_resource type="Texture2D" uid="uid://gk78kt1brxun" path="res://assets/tilesets/chapel_tiles.png" id="2_sjeyo"]
@@ -1500,9 +1500,6 @@ sources/0 = SubResource("TileSetAtlasSource_ou5ug")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unk1a"]
 size = Vector2(32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vo37"]
-size = Vector2(65, 52)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oeg6y"]
 size = Vector2(23, 45)
 
@@ -1845,6 +1842,70 @@ size = Vector2(297, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_as7bp"]
 size = Vector2(32, 15)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vo37"]
+size = Vector2(34, 16)
+
+[sub_resource type="Animation" id="Animation_ualbp"]
+resource_name = "zoom_in"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2.3, 2.3), Vector2(8, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -85)]
+}
+
+[sub_resource type="Animation" id="Animation_35h23"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.3, 2.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -43)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sjeyo"]
+_data = {
+&"RESET": SubResource("Animation_35h23"),
+&"zoom_in": SubResource("Animation_ualbp")
+}
+
 [node name="chapel_interior" type="Node2D"]
 
 [node name="map" type="Node2D" parent="."]
@@ -1961,12 +2022,6 @@ region_rect = Rect2(-0.21955872, 0, 20.995487, 29.185291)
 energy = 2.43
 texture_scale = 3.1
 
-[node name="candle_trigger" type="Area2D" parent="map/candle/big_candle"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="map/candle/big_candle/candle_trigger"]
-position = Vector2(-1.5, 11)
-shape = SubResource("RectangleShape2D_3vo37")
-
 [node name="big_candle_area" type="Area2D" parent="map/candle/big_candle"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="map/candle/big_candle/big_candle_area"]
@@ -2077,7 +2132,7 @@ color = Color(0.00069389754, 0.00069389766, 0.0006938976, 1)
 blend_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, -43)
 offset = Vector2(0, 37)
 zoom = Vector2(2.3, 2.3)
 limit_left = -301
@@ -2096,6 +2151,39 @@ shape = SubResource("RectangleShape2D_y8xea")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="exit_area"]
 position = Vector2(0, 168.5)
 shape = SubResource("RectangleShape2D_as7bp")
+
+[node name="altar_area_1" type="Area2D" parent="."]
+position = Vector2(-31, -51)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="altar_area_1"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_3vo37")
+
+[node name="altar_area_2" type="Area2D" parent="."]
+position = Vector2(29, -52)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="altar_area_2"]
+position = Vector2(1, 9)
+shape = SubResource("RectangleShape2D_3vo37")
+
+[node name="sit_marker_1" type="Marker2D" parent="."]
+position = Vector2(-31, -51)
+scale = Vector2(0.1999988, 0.120000005)
+
+[node name="sit_marker_2" type="Marker2D" parent="."]
+position = Vector2(30, -51)
+scale = Vector2(0.32, 0.24000001)
+
+[node name="spawn_marker_1" type="Marker2D" parent="."]
+position = Vector2(-1, 153)
+
+[node name="spawn_marker_2" type="Marker2D" parent="."]
+position = Vector2(0, 44)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sjeyo")
+}
 
 [editable path="map/candle/candle_1"]
 [editable path="map/candle/candle_2"]

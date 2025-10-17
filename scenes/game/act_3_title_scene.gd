@@ -11,7 +11,7 @@ func _ready() -> void:
 	var lines = [
 		"“Memory is a cruel storyteller.”",
 		"“It lets me see only pieces I’m meant to see.”",
-		"“And now, I’m back… to where everything started.”"
+		"“And now, I’m back... to where everything started.”"
 	]
 	
 	await NarrationPanel.show_narration_typewriter(lines, 0.05)
