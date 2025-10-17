@@ -8,6 +8,7 @@ var username: String = ""
 var user_ID: int = 0
 var logged_in: bool = false
 
+signal session_loaded
 
 func _ready() -> void:
 	# Auto-load session when the game starts
@@ -35,6 +36,8 @@ func save_session(_username: String, _user_ID: int) -> void:
 
 	logged_in = true
 	print("SessionManager: Session saved successfully.")
+	emit_signal("session_loaded") # this triggers SaveManager._on_session_loaded()
+
 
 
 # ----------------------------------------------------------------
@@ -68,6 +71,7 @@ func load_session() -> void:
 	user_ID = id_val
 	logged_in = true
 	print("SessionManager: Session loaded. Welcome back, %s" % username)
+	emit_signal("session_loaded")
 
 
 # ----------------------------------------------------------------
