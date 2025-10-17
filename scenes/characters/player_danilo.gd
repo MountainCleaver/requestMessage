@@ -132,7 +132,7 @@ func _play_animation(direction: Vector2) -> void:
 			Vector2.LEFT:
 				animated_sprite_2d.play("idle_left")
 			Vector2.DOWN:
-				animated_sprite_2d.play("idle_front")
+				animated_sprite_2d.play("idle_down")
 			Vector2.UP:
 				animated_sprite_2d.play("idle_up")
 	else:

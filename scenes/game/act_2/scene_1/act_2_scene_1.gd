@@ -165,12 +165,15 @@ func _on_type_message_clicked(chat_name: String) -> void:
 # POST PHONE OUTRO NARRATION
 # ===================
 func _after_phone_outro_narration() -> void:
+	Hud.phone_outro()
+	Hud.hide_objectives()
+	
+	await get_tree().process_frame
 	TransitionFade.transition()
 	await SignalBus.on_transition_finished
-
 	switch_location(NARRATION_PANEL)
 	await get_tree().process_frame
-
+	Hud.phone_outro()
 	var lines = ["Danilo contemplates everything that happened that day."]
 
 	await NarrationPanel.show_narration_typewriter(lines, 0.05)
