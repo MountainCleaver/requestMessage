@@ -5,6 +5,7 @@ const BACKUP_PATH := "user://saves.bak.res"
 
 var game_save: SaveGameResource
 var next_scene_path: String
+var current_username: String = "" 
 
 func _ready() -> void:
 	SignalBus.act_num_scene_num_done.connect(_save_game_progress)
@@ -52,6 +53,8 @@ func mark_scene_finished(act: String, scene: String) -> void:
 	game_save.finished_scenes[act] = scenes
 	# Track save in admin (total saves only)
 	track_save()
+	# Track current act and scene progress
+	track_save_progress(current_username, act, scene)
 
 func is_scene_finished(act: String, scene: String) -> bool:
 	return scene in game_save.finished_scenes.get(act, [])
@@ -110,7 +113,31 @@ func track_save() -> void:
 		HTTPClient.METHOD_POST,
 		json
 	)
+
+func set_player_username(username: String) -> void:
+	current_username = username
 	
+func track_save_progress(username: String, act: String, scene: String) -> void:
+	var url = "https://requestmessage-admin.onrender.com/api/update_progress.php"
+	var request = HTTPRequest.new()
+	add_child(request)
+
+	var data = {
+		"username": username,
+		"act": act,
+		"scene": scene,
+		"timestamp": Time.get_datetime_string_from_system()
+	}
+
+	var json = JSON.stringify(data)
+	request.request(
+		url,
+		["Content-Type: application/json"],
+		HTTPClient.METHOD_POST,
+		json
+	)
+
+
 func save_moral_choice(act_scene: String, choice: String)-> void:
 	game_save.choices[act_scene] = choice
 	match choice:
