@@ -15,8 +15,7 @@ func _ready() -> void:
 
 func _on_session_loaded():
 	current_username = Session.username
-	print("Session loaded: username =", current_username, "ID =", Session.user_ID)
-	load_game()  # reload save for this user
+	load_game()
 
 
 func _save_game_progress(act: String, scene: String, next_scene: String) -> void:
@@ -56,7 +55,6 @@ func save_game_next_scene() -> void:
 
 
 func mark_scene_finished(act: String, scene: String) -> void:
-	print("Marking scene finished: Act", act, "Scene", scene)
 	
 	# Update local save
 	var scenes: Array = game_save.finished_scenes.get(act, [])
@@ -159,8 +157,8 @@ func track_save_progress(user_id: int, act: String, scene: String) -> void:
 
 func switch_account(new_username: String) -> void:
 	current_username = new_username
-	print("SaveManager: Switched account to:", current_username)
-	load_game() # optionally load the save file for this user
+	print("SaveManager: Switched account to: ", current_username)
+	load_game() 
 	
 func save_moral_choice(act_scene: String, choice: String)-> void:
 	game_save.choices[act_scene] = choice
