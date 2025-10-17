@@ -311,35 +311,39 @@ func _on_explore_triggered(body, spot_name: String):
 	explored_spots[spot_name] = true
 	ObjectiveManager.update_progress(explore_objective_id)
 
+	var danilo_light: PointLight2D = null
+	if player_danilo:
+		danilo_light = player_danilo.get_node_or_null("PointLight2D")
+
+	# === Light grows before dialogue ===
+	if danilo_light:
+		danilo_light.visible = true
+		var grow_tween = create_tween()
+		grow_tween.tween_property(danilo_light, "texture_scale", 1.0, 0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
 	match spot_name:
 		"cabinet":
 			DialogueManager.show_dialogue_balloon(A_4S_3, "explore_cabinet")
 			await DialogueManager.dialogue_ended
+
 		"mateo_things":
-			var danilo_light: PointLight2D = null
-
-			if player_danilo:
-				danilo_light = player_danilo.get_node_or_null("PointLight2D")
-				if danilo_light:
-					danilo_light.visible = true
-					var grow_tween = create_tween()
-					grow_tween.tween_property(danilo_light, "texture_scale", 1.0, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
 			DialogueManager.show_dialogue_balloon(A_4S_3, "explore_mateo_things")
 			await DialogueManager.dialogue_ended
-
-			if danilo_light:
-				var shrink_tween = create_tween()
-				shrink_tween.tween_property(danilo_light, "texture_scale", 0.5, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 
 		"candle":
 			DialogueManager.show_dialogue_balloon(A_4S_3, "explore_candle")
 			await DialogueManager.dialogue_ended
 
+	# === Light shrinks back after dialogue ===
+	if danilo_light:
+		var shrink_tween = create_tween()
+		shrink_tween.tween_property(danilo_light, "texture_scale", 0.5, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+
 	if explored_spots.size() >= total_explore_spots:
 		ObjectiveManager.complete_objective(explore_objective_id)
 		await get_tree().create_timer(1.0).timeout
 		DialogueManager.show_dialogue_balloon(A_4S_3, "after_explore_all")
+
 
 # ===================
 # INPUT HANDLER
@@ -795,5 +799,5 @@ func scene_3_done() -> void:
 	SignalBus.act_num_scene_num_done.emit(
 		"act_4", 
 		"scene_3", 
-        "res://scenes/game/act_4/scene_4/act_4_scene_4.tscn"
+        "res://scenes/game/act_4/scene_4/dark_forest.tscn"
 	)
