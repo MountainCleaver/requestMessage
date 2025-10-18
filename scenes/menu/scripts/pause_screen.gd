@@ -70,11 +70,20 @@ func _on_exit_to_main_menu_pressed() -> void:
 
 func _on_exit_main_menu_dialog_confirmed() -> void:
 	
-	if GameState.phone_showing:
-		Hud.phone_outro()
-		#await get_tree().create_timer(1.0).timeout
 	
-	if Hud.objectives_panel.visible and ObjectiveManager.objectives:
+	# clean phone screens
+	if Hud.has_node("Control/phone/MarginContainer"):
+		var phone_margin_container = Hud.get_node("Control/phone/MarginContainer")
+		for node in phone_margin_container.get_children():
+			if node.name != "lock_screen":
+				node.queue_free()
+
+	if Hud.phone_showing:
+		Hud.phone_outro() # shit aint working, cant fix it :(
+		print("Remove phone: phone outro playing")
+	
+	if Hud.objectives_panel.visible or ObjectiveManager.objectives:
+		ObjectiveManager.empty_objectives()
 		Hud.hide_objectives()
 		Hud.clear_objectives()
 	
@@ -83,6 +92,8 @@ func _on_exit_main_menu_dialog_confirmed() -> void:
 	
 	hide_pause_screen()
 	SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
+	
+
 
 
 func _on_exit_main_menu_dialog_canceled() -> void:

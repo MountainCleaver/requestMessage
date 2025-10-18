@@ -101,7 +101,7 @@ Danilo: May notification na naman? [wait=0.5]
 
 ~ open_phone_again
 do stop_buzz()
-do Hud.phone_intro()
+do Hud.reset_phone_state()
 do ObjectiveManager.complete_objective(7)
 => END
 
@@ -111,4 +111,5 @@ Danilo: Huh… Sino ‘to? [wait=1.5]
 
 ~ chat_unknown_sender
 do ChatManager.send_chat("unknown_sender", "Unknown Number", "Hello, Danilo")
+Unknown_sender: [wait=1.5]Hello, Danilo.
 => END

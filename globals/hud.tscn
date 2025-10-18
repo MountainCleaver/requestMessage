@@ -260,7 +260,6 @@ theme_override_constants/margin_bottom = 25
 
 [node name="lock_screen" parent="Control/phone/MarginContainer" instance=ExtResource("3_esk0b")]
 layout_mode = 2
-lock_visible = true
 
 [node name="Panel" type="Panel" parent="Control/phone"]
 layout_mode = 1

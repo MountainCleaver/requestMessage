@@ -32,7 +32,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hukn4")
 time_value = "12:00"
-
 lock_visible = true
 phone_scenes = Array[PackedScene]([ExtResource("2_epe7q"), ExtResource("3_uxtme")])
 
@@ -100,5 +99,3 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ph3dx")
 icon = ExtResource("2_hukn4")
 icon_alignment = 1
 expand_icon = true
-
-[connection signal="pressed" from="Panel/lock" to="." method="_on_lock_pressed"]

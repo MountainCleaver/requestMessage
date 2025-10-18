@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://crw5fnxxfkvuv"]
+
+[ext_resource type="Texture2D" uid="uid://df635yeh7umaf" path="res://assets/tilesets/lighter.png" id="1_ow76d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0783h"]
+size = Vector2(7, 8)
+
+[node name="lighter" type="StaticBody2D"]
+
+[node name="lighter" type="Sprite2D" parent="."]
+texture = ExtResource("1_ow76d")
+region_enabled = true
+region_rect = Rect2(0, 0, 7.91621, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 3)
+shape = SubResource("RectangleShape2D_0783h")

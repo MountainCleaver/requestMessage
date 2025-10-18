@@ -34,8 +34,8 @@ var looked_tables = {
 
 # OBJECTIVES
 var scene_objectives = [
-	{"ID": 1, "text": "Look around for Wendy."},
-	{"ID": 2, "text": "Find an empty table."}
+	{"ID": 2, "text": "Look around for Wendy."},
+	{"ID": 3, "text": "Find an empty table."}
 ]
 
 func _ready() -> void:
@@ -184,7 +184,7 @@ func npc_face_player(npc: CharacterBody2D, player_position: Vector2) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "player_danilo" and not camera_panned_to_wendy:
-		ObjectiveManager.complete_objective(scene_objectives[0]["ID"]);
+		ObjectiveManager.complete_objective(2);
 		print("play camera")
 		camera_panned_to_wendy = true
 		await pan_camera_to_wendy()

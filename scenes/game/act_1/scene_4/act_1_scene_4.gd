@@ -146,10 +146,11 @@ func _on_chat_opened(chat_name: String) -> void:
 			
 				if lock_screen_instance:
 					lock_screen_instance.objectives_done = true
-				
+					
 				await get_tree().create_timer(5).timeout
 				Hud.hide_objectives()
 				Hud.phone_outro()
+				await get_tree().create_timer(0.8).timeout
 				scene_4_done()
 
 func _on_chat_closed(chat_name: String) -> void:
@@ -272,6 +273,8 @@ func _input(event: InputEvent) -> void:
 func scene_4_done() -> void:
 	Hud.hide_objectives()
 	Hud.clear_objectives()
+	SaveManager.game_save.current_act = "act_1"
+	SaveManager.game_save.current_scene = "scene_4"
 	GameState.save_game()
-	SignalBus.next_scene.emit("res://scenes/game/act_2_title_scene.tscn")
+	SignalBus.act_num_scene_num_done.emit("act_1", "scene_4", "res://scenes/game/act_2_title_scene.tscn")
 	print("act 1 scene 4 is done. ACT 1 DONE !!!!!!!!!!!!!!!!!!")

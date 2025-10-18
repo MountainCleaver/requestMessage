@@ -4,15 +4,18 @@ extends Control
 
 @onready var status_label: Label = $call_screen/Panel2/status
 @onready var name_label: Label = $call_screen/Panel2/danilo
-@onready var icon: TextureRect = $call_screen/Panel2/Icon2  # Add this line
+@onready var icon: TextureRect = $call_screen/Panel2/Icon2 
 
 @onready var panel_logo: Panel = $call_screen/Panel2/LOGOPANEL
 @onready var panel_icon: TextureRect = $call_screen/Panel2/Icon2
+
+const A_2S_4 = "res://dialogues/act_2/scene_4/a2s4.dialogue"
 
 var call_target: String = ""
 var previous_scene: Control = null
 var return_to_app_call := false
 var dialogue_started := false  
+
 
 # =========================
 # === CALL SETUP LOGIC ====
@@ -36,7 +39,7 @@ func set_call_target(target: String) -> void:
 			name_label.text = target.capitalize()
 			status_label.text = "Calling..."
 			if icon:
-				icon.texture = preload("res://assets/character_sprites/portrait_danilo.png") 
+				icon.texture = preload("res://assets/character_sprites/portrait_mira.png") 
 
 	print("Calling " + target + "...")
 
@@ -69,7 +72,7 @@ func _start_mira_dialogue() -> void:
 	if status_label.text == "Call ended.":
 		return
 	DialogueManager.show_dialogue_balloon(
-		preload("res://dialogues/act_2/scene_4/a2s4.dialogue"),
+		load(A_2S_4), 
 		"call_mira_convo"
 	)
 
@@ -107,7 +110,7 @@ func _end_call() -> void:
 
 	if call_target == "danilo":
 		DialogueManager.show_dialogue_balloon(
-			preload("res://dialogues/act_2/scene_4/a2s4.dialogue"),
+			load(A_2S_4),
 			"call_voicemail"
 		)
 		return_to_app_call = true
