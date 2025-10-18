@@ -540,6 +540,7 @@ position = Vector2(109, 93.5)
 shape = SubResource("RectangleShape2D_wp4ah")
 
 [node name="npc" type="Area2D" parent="bus_terminal/y-sorted2/npcs_collidable/StaticBody2D"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bus_terminal/y-sorted2/npcs_collidable/StaticBody2D/npc"]
 position = Vector2(109, 93)
@@ -650,7 +651,6 @@ bus = &"music"
 [connection signal="body_exited" from="bus_terminal/y-sorted2/npcs_collidable/StaticBody2D/npc" to="." method="_on_npc_body_exited"]
 [connection signal="body_entered" from="bus_terminal/y-sorted2/bus/bus_interact" to="." method="_on_bus_interact_body_entered"]
 [connection signal="body_exited" from="bus_terminal/y-sorted2/bus/bus_interact" to="." method="_on_bus_interact_body_exited"]
-[connection signal="area_exited" from="bus_terminal/entrance" to="." method="_on_entrance_area_exited"]
 [connection signal="body_entered" from="bus_terminal/entrance" to="." method="_on_entrance_body_entered"]
 [connection signal="body_entered" from="bus_terminal/bus_trigger" to="." method="_on_bus_trigger_body_entered"]
 [connection signal="body_entered" from="bus_terminal/phone_trigger" to="." method="_on_phone_trigger_body_entered"]
