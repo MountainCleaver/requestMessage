@@ -10,5 +10,6 @@ script = ExtResource("1_2msth")
 
 [node name="pause_overlay" type="CanvasLayer" parent="."]
 layer = 101
+visible = false
 
 [node name="pause_screen" parent="pause_overlay" instance=ExtResource("2_sexqy")]
