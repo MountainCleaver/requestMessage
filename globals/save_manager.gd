@@ -172,3 +172,11 @@ func get_moral_choice(act_scene: String) -> String:
 	if act_scene in game_save.choices:
 		return game_save.choices[act_scene]
 	return ""
+
+func took_meds()->void:
+	game_save.meds_taken += 1
+	print("Uminom ng gamot, current na na-inom: " + str(game_save.meds_taken))
+	# save pag tapos ng scene, not right after mag add ng count sa counter
+
+func get_count_meds_taken()->int:
+	return game_save.meds_taken
