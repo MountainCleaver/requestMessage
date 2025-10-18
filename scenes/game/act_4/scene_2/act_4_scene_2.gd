@@ -132,27 +132,20 @@ func _on_grave_exit_triggered() -> void:
 	if not returning_from_hut:
 		return
 
-	print("⚰️ Player exited Graveyard — ending Act 4 Scene 2")
-
-	var player = _get_scene_player()
-	if player:
-		player.can_move = false
-		player.can_interact = false
-		player.force_cannot_move = true
-
-	await SignalBus.on_transition_finished
-	await get_tree().process_frame
-
 	ObjectiveManager.complete_objective(7)
 	Hud.hide_objectives()
-
-	ProgressManager.save_state()
+	Hud.clear_objectives()
+	
 	print("💾 Act 4 Scene 2 saved successfully via ProgressManager.")
-
+	await TransitionFade.transition()
+	SaveManager.game_save.current_act = "act_4"
+	SaveManager.game_save.current_scene = "scene_2"
+	GameState.save_game()
+	print("ACT 4 SCENE 2 DONE")
 	SignalBus.act_num_scene_num_done.emit(
-		"act_4",
-		"scene_2",
-		"res://scenes/game/act_4/scene_3/act_4_scene_3.tscn"
+		"act_4", 
+		"scene_2", 
+        "res://scenes/game/act_4/scene_3/act_4_scene_3.tscn"
 	)
 
 # === HELPERS ===
