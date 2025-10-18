@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://coby7tj5oue2p"]
+
+[ext_resource type="Texture2D" uid="uid://wb41bsw1qpcx" path="res://assets/tilesets/candle.png" id="1_gyc5g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arn31"]
+size = Vector2(10, 10)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+light_mask = 2
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gyc5g")
+region_enabled = true
+region_rect = Rect2(-0.022615433, -0.09101498, 8.132081, 20.12296)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_arn31")

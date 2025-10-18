@@ -57,7 +57,7 @@ var mutation_cooldown: Timer = Timer.new()
 @onready var talk_sound: AudioStreamPlayer = $TalkSound
 
 func _ready() -> void:
-	balloon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 

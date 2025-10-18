@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://2wrqavdubqck"]
+
+[ext_resource type="Texture2D" uid="uid://ktir25grlcr7" path="res://assets/tilesets/dirt_key.png" id="1_ib43m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ib43m"]
+size = Vector2(14, 6)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+y_sort_enabled = true
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ib43m")
+region_enabled = true
+region_rect = Rect2(1.8386433, 0, 13.135425, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ib43m")

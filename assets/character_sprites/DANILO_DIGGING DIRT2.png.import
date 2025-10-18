@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6fuaxtvm24qu"
-path="res://.godot/imported/DANILO_with_flashlight (1).png-ace7d47e06acc87656f87fad8bd30032.ctex"
+uid="uid://bl25hqj4i5ug2"
+path="res://.godot/imported/DANILO_DIGGING DIRT2.png-620265a798dc45917792e5f6dcbc869f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character_sprites/DANILO_with_flashlight (1).png"
-dest_files=["res://.godot/imported/DANILO_with_flashlight (1).png-ace7d47e06acc87656f87fad8bd30032.ctex"]
+source_file="res://assets/character_sprites/DANILO_DIGGING DIRT2.png"
+dest_files=["res://.godot/imported/DANILO_DIGGING DIRT2.png-620265a798dc45917792e5f6dcbc869f.ctex"]
 
 [params]
 

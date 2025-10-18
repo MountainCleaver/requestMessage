@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://cufo6e4mgj2jy"]
+[gd_scene load_steps=43 format=4 uid="uid://cufo6e4mgj2jy"]
 
 [ext_resource type="PackedScene" uid="uid://dg5rdj5dftbue" path="res://scenes/game/act_2/scene_3/bus_terminal.tscn" id="1_4qgvt"]
 [ext_resource type="Script" uid="uid://bfae3i24nnice" path="res://scenes/game/act_2/scene_3/act_2_scene_3.gd" id="1_wp4ah"]
@@ -303,6 +303,12 @@ normal = Vector2(-1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k26f6"]
 normal = Vector2(1, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ds7q"]
+size = Vector2(84, 59.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnh1l"]
+size = Vector2(58, 23)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mrfva"]
 texture = ExtResource("2_wp4ah")
 4:11/size_in_atlas = Vector2i(4, 3)
@@ -374,9 +380,6 @@ size = Vector2(18, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dgv4f"]
 size = Vector2(54, 23)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ds7q"]
-size = Vector2(84, 59.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qniim"]
 atlas = ExtResource("11_cifa0")
@@ -507,6 +510,25 @@ shape = SubResource("WorldBoundaryShape2D_k26f6")
 [node name="y-sorted2" type="Node2D" parent="bus_terminal"]
 y_sort_enabled = true
 
+[node name="StaticBody2D" type="StaticBody2D" parent="bus_terminal/y-sorted2"]
+y_sort_enabled = true
+collision_layer = 2
+
+[node name="bus" parent="bus_terminal/y-sorted2/StaticBody2D" instance=ExtResource("9_dgv4f")]
+position = Vector2(247, -368)
+
+[node name="bus_interact" type="Area2D" parent="bus_terminal/y-sorted2/StaticBody2D/bus"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact"]
+position = Vector2(0, -7.75)
+shape = SubResource("RectangleShape2D_2ds7q")
+debug_color = Color(0.6133335, 0.44245046, 0.79771394, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bus_terminal/y-sorted2/StaticBody2D"]
+position = Vector2(244, -375.5)
+shape = SubResource("RectangleShape2D_vnh1l")
+debug_color = Color(0.57324696, 0.5262058, 0.49309194, 0.41960785)
+
 [node name="decorations" type="TileMapLayer" parent="bus_terminal/y-sorted2"]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("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")
@@ -540,21 +562,12 @@ position = Vector2(109, 93.5)
 shape = SubResource("RectangleShape2D_wp4ah")
 
 [node name="npc" type="Area2D" parent="bus_terminal/y-sorted2/npcs_collidable/StaticBody2D"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bus_terminal/y-sorted2/npcs_collidable/StaticBody2D/npc"]
 position = Vector2(109, 93)
 shape = SubResource("RectangleShape2D_dgv4f")
 debug_color = Color(0.67107624, 0.50277305, 0.22725758, 0.41960785)
-
-[node name="bus" parent="bus_terminal/y-sorted2" instance=ExtResource("9_dgv4f")]
-position = Vector2(247, -368)
-
-[node name="bus_interact" type="Area2D" parent="bus_terminal/y-sorted2/bus"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bus_terminal/y-sorted2/bus/bus_interact"]
-position = Vector2(0, -7.75)
-shape = SubResource("RectangleShape2D_2ds7q")
-debug_color = Color(0.6133335, 0.44245046, 0.79771394, 0.41960785)
 
 [node name="jeep" parent="bus_terminal/y-sorted2" instance=ExtResource("9_wp4ah")]
 position = Vector2(429.00003, 38)
@@ -640,11 +653,10 @@ libraries = {
 }
 autoplay = "RESET"
 
+[connection signal="body_entered" from="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact" to="." method="_on_bus_interact_body_entered"]
+[connection signal="body_exited" from="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact" to="." method="_on_bus_interact_body_exited"]
 [connection signal="body_entered" from="bus_terminal/y-sorted2/npcs_collidable/StaticBody2D/npc" to="." method="_on_npc_body_entered"]
 [connection signal="body_exited" from="bus_terminal/y-sorted2/npcs_collidable/StaticBody2D/npc" to="." method="_on_npc_body_exited"]
-[connection signal="body_entered" from="bus_terminal/y-sorted2/bus/bus_interact" to="." method="_on_bus_interact_body_entered"]
-[connection signal="body_exited" from="bus_terminal/y-sorted2/bus/bus_interact" to="." method="_on_bus_interact_body_exited"]
-[connection signal="area_exited" from="bus_terminal/entrance" to="." method="_on_entrance_area_exited"]
 [connection signal="body_entered" from="bus_terminal/entrance" to="." method="_on_entrance_body_entered"]
 [connection signal="body_entered" from="bus_terminal/bus_trigger" to="." method="_on_bus_trigger_body_entered"]
 [connection signal="body_entered" from="bus_terminal/phone_trigger" to="." method="_on_phone_trigger_body_entered"]
