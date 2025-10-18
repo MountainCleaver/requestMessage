@@ -13,6 +13,7 @@ Danilo: [shake]Ano yun? [wait=1.0]Guni-guni ko lang?[/shake]
 #do _prevent_chat_exit_while_dialoging()
 #do _clean_phone()
 do Hud.phone_outro()
+do Hud.reset_phone_dont_show()
 Danilo: Huff Huff
 do _remove_tension_effect()
 do player_danilo.force_cannot_move = false

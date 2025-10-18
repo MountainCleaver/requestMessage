@@ -82,7 +82,7 @@ func _ready() -> void:
 	await get_tree().create_timer(1.0).timeout
 	Hud.clear_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
-	Hud.objective_intro_anim()
+	Hud.show_objectives()
 	
 	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = false
 

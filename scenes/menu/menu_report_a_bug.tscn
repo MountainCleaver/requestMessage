@@ -353,10 +353,14 @@ text = "  EXIT"
 alignment = 0
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
 
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
+oversampling_override = 1.0
 title = "Report Status"
-size = Vector2i(200, 100)
+initial_position = 2
+size = Vector2i(329, 100)
+dialog_text = "Your report was successfully submitted. "
 
 [node name="menu_loading_screen" parent="." instance=ExtResource("7_5ab1i")]
 
