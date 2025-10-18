@@ -21,3 +21,5 @@ class_name SaveGameResource
 @export var choices : Dictionary = {
 	
 }
+
+@export var meds_taken : int = 0
