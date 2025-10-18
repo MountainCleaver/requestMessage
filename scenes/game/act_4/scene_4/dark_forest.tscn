@@ -93,11 +93,12 @@ texture = SubResource("GradientTexture2D_a28et")
 position = Vector2(2, -4)
 zoom = Vector2(3, 3)
 limit_left = -692
-limit_top = -336
+limit_top = -331
 limit_right = 1343
 limit_bottom = 350
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.076835774, 0.07683585, 0.0768358, 1)
 
 [node name="portal" type="Area2D" parent="."]

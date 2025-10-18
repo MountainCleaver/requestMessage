@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://b81pheiysdhv7"]
+[gd_scene load_steps=24 format=4 uid="uid://b81pheiysdhv7"]
 
 [ext_resource type="Script" uid="uid://cqt73nqcoiosu" path="res://scenes/game/act_4/scene_2/graveyard.gd" id="1_avryt"]
 [ext_resource type="Texture2D" uid="uid://cvyn0215nw1hb" path="res://assets/tilesets/graveyard_floor.png" id="1_qq610"]
@@ -1101,7 +1101,7 @@ sources/0 = SubResource("TileSetAtlasSource_rxxet")
 size = Vector2(20, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nvkko"]
-size = Vector2(22, 37)
+size = Vector2(22, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6x08"]
 size = Vector2(31, 76)
@@ -1299,7 +1299,7 @@ texture = ExtResource("9_cwevg")
 [node name="house_enter" type="Area2D" parent="Interactable"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/house_enter"]
-position = Vector2(-245, -17.5)
+position = Vector2(-245, -10)
 shape = SubResource("RectangleShape2D_nvkko")
 debug_color = Color(0.6242685, 0.5289223, 0.22159728, 0.41960785)
 
@@ -1397,6 +1397,7 @@ position = Vector2(232, -9)
 shape = SubResource("RectangleShape2D_my1an")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
 
 [node name="House_exit" type="Marker2D" parent="."]
