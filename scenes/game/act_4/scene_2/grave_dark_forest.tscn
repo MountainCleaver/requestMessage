@@ -138,6 +138,7 @@ position = Vector2(0, -31)
 texture = ExtResource("5_6j1wm")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
 
 [node name="entrance" type="Area2D" parent="."]
@@ -147,6 +148,9 @@ collision_layer = 16
 position = Vector2(-501, -5.5)
 shape = SubResource("RectangleShape2D_ymqp3")
 debug_color = Color(0.8662791, 0.32122794, 0.39150935, 0.41960785)
+
+[node name="Grave_exit" type="Marker2D" parent="."]
+position = Vector2(-420, -4)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="y-sorted/decorations/signage" to="." method="_on_signage_body_entered"]

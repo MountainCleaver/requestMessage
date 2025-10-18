@@ -63,7 +63,7 @@ var mutation_cooldown: Timer = Timer.new()
 var flicker_tween: Tween = null
 
 func _ready() -> void:
-	balloon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
