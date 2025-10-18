@@ -126,9 +126,9 @@ func _on_dialogue_ended(resource: DialogueResource) -> void:
 	await get_tree().process_frame
 
 	var lines = [
-		"Danilo can’t shake off the feeling that something’s wrong.",
-		"…A familiar name coils in his mind, quiet yet persistent.",
-		"…Something shifts, though he can’t say what."
+		"There was an unease he couldn’t explain.",
+		"A name surfaced in his thoughts.",
+		"Familiar yet distant."
 	]
 
 	await NarrationPanel.show_narration_typewriter(lines, 0.05)
@@ -165,13 +165,16 @@ func _on_type_message_clicked(chat_name: String) -> void:
 # POST PHONE OUTRO NARRATION
 # ===================
 func _after_phone_outro_narration() -> void:
+	Hud.phone_outro()
+	Hud.hide_objectives()
+	
+	await get_tree().process_frame
 	TransitionFade.transition()
 	await SignalBus.on_transition_finished
-
 	switch_location(NARRATION_PANEL)
 	await get_tree().process_frame
-
-	var lines = ["Danilo contemplates everything that happened that day."]
+	Hud.phone_outro()
+	var lines = ["Danilo contemplates everything that happened today."]
 
 	await NarrationPanel.show_narration_typewriter(lines, 0.05)
 	await NarrationPanel.hide_narration()

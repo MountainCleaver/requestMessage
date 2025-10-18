@@ -75,28 +75,30 @@ do _prevent_chat_exit_while_dialoging()
 => END
 
 ~ call_with_wendy
+do _prevent_end_call_while_dialog_is_not_finished()
 Danilo: Hello Wen, kumusta?
-#Wendy: [wave]Ito nag aalala sayo.[/wave]
-#Wendy: Sigurado ka bang re-sched yung appointment mo ngayon?
-#Danilo: Oo, sorry napauwi ako bigla
-#Wendy: Alam ko, tumawag ako kay Tita Mira since 'di ka nagrereply.
-#Wendy: Buti nalang sinabi niya sakin.
-#Wendy: Ikaw, kumusta?
-#Danilo: Kani-kanina lang ako dumating.
-#Danilo: Nakita ko pa si Lola Ising.
-#Danilo: Nag-aabang parin siya ng pasalubong sayo.
-#Wendy: Haynako, si Lola talaga. Lagi akong pinapauwi. May sinabi ba siya?
-#Danilo: Sinabihan niya 'kong iwasan ang gubat.... [shake]Dahil kay Mateo.[/shake]
-#Wendy: Take your meds ha, sabi ni tita paubos na raw yung sayo.
-#Danilo: Pupunta nga ako sa bayan bukas para bumili.
-#Wendy: Good, kailan ka babalik?
-#Danilo: 2 weeks ang leave ko pero baka bumalik ako earlier.
-#Wendy: You deserve the break. [wave]Call me if you need anything, okay?[/wave]
+Wendy: [wave]Ito nag aalala sayo.[/wave]
+Wendy: Sigurado ka bang re-sched yung appointment mo ngayon?
+Danilo: Oo, sorry napauwi ako bigla
+Wendy: Alam ko, tumawag ako kay Tita Mira since 'di ka nagrereply.
+Wendy: Buti nalang sinabi niya sakin.
+Wendy: Ikaw, kumusta?
+Danilo: Kani-kanina lang ako dumating.
+Danilo: Nakita ko pa si Lola Ising.
+Danilo: Nag-aabang parin siya ng pasalubong sayo.
+Wendy: Haynako, si Lola talaga. Lagi akong pinapauwi. May sinabi ba siya?
+Danilo: Sinabihan niya 'kong iwasan ang gubat.... [shake]Dahil kay Mateo.[/shake]
+Wendy: Take your meds ha, sabi ni tita paubos na raw yung sayo.
+Danilo: Pupunta nga ako sa bayan bukas para bumili.
+Wendy: Good, kailan ka babalik?
+Danilo: 1 week ang leave ko pero baka bumalik ako earlier.
+Wendy: You deserve the break. [wave]Call me if you need anything, okay?[/wave]
 Danilo: Will do. Salamat.
 do replied_to_wendy = true
 do call_with_wendy_done = true
 do SignalBus.call_done.emit()
 do reply_finish.emit()
+do _prevent_end_call_while_dialog_is_not_finished()
 do _prevent_chat_exit_while_dialoging()
 => END
 

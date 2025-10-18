@@ -1,0 +1,23 @@
+~ unknown_message
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Pumwesto ka sa likod ng bato para hindi ka maihip ng hangin")
+Unknown_sender: [wait=1.5] Pumwesto ka sa likod ng bato para hindi ka maihip ng hangin
+- Ignore => Ignore
+=> END
+
+~ Ignore
+do SaveManager.save_moral_choice("act_4_scene_4", "relief")
+Danilo: ...
+do Hud.phone_outro()
+=> after_phone
+
+~ after_phone
+Danilo: Ang lakas ng hangin, kailangan ko na magmadali.
+=> END
+
+~ exited_lee
+Danilo: Kailangan ko agad mahanap ang huling papel.
+=> END
+
+~ after_found_paper
+Danilo: Oras na para bumalik ng chapel.
+=> END

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cde3awyuodkdu"]
+
+[ext_resource type="Script" uid="uid://chdex8gxj1b5i" path="res://scenes/game/act_5/scene_1/act_5_scene_1.gd" id="1_0uce2"]
+
+[node name="act_5_scene_1" type="Node2D"]
+script = ExtResource("1_0uce2")
+
+[node name="locations" type="Node2D" parent="."]

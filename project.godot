@@ -38,6 +38,7 @@ ChatManager="*res://globals/chat_manager.gd"
 NarrationPanel="*res://helpers/narration_panel.gd"
 GameState="*res://globals/game_state.gd"
 Session="*res://globals/session_manager.gd"
+BuzzManager="*res://globals/buzz_manager.gd"
 
 [dialogue_manager]
 
@@ -116,16 +117,17 @@ phone={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/act_1/scene_1/a1s1.dialogue", "res://dialogues/act_1/scene_2/a1s2.dialogue", "res://dialogues/act_1/scene_2/test.dialogue", "res://dialogues/act_1/scene_3/a1s3.dialogue", "res://dialogues/act_3/scene_1/a3s1.dialogue", "res://dialogues/act_3/scene_2/a3s2.dialogue", "res://dialogues/act_1/scene_4/a1s4.dialogue", "res://dialogues/act_2/scene_1/a2s1.dialogue", "res://chat_test.dialogue", "res://dialogues/act_2/scene_4/a2s4.dialogue", "res://dialogues/act_2/scene_3/a2s3.dialogue", "res://dialogues/act_2/scene_2/a2s2.dialogue", "res://dialogues/act_4/a4s2.dialogue")
-<<<<<<<Updatedupstreamlocale/translations_pot_files=PackedStringArray("res://dialogues/act_1/scene_1/a1s1.dialogue", "res://dialogues/act_1/scene_2/a1s2.dialogue", "res://dialogues/act_1/scene_2/test.dialogue", "res://dialogues/act_1/scene_3/a1s3.dialogue", "res://dialogues/act_3/scene_1/a3s1.dialogue", "res://dialogues/act_3/scene_2/a3s2.dialogue", "res://dialogues/act_1/scene_4/a1s4.dialogue", "res://dialogues/act_2/scene_1/a2s1.dialogue", "res://chat_test.dialogue", "res://dialogues/act_2/scene_4/a2s4.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/act_1/scene_1/a1s1.dialogue", "res://dialogues/act_1/scene_2/a1s2.dialogue", "res://dialogues/act_1/scene_2/test.dialogue", "res://dialogues/act_1/scene_3/a1s3.dialogue", "res://dialogues/act_1/scene_4/a1s4.dialogue", "res://dialogues/act_2/scene_1/a2s1.dialogue", "res://dialogues/act_2/scene_2/a2s2.dialogue", "res://dialogues/act_2/scene_3/a2s3.dialogue", "res://dialogues/act_2/scene_4/a2s4.dialogue", "res://dialogues/act_3/scene_1/a3s1.dialogue", "res://dialogues/act_3/scene_2/a3s2.dialogue", "res://dialogues/act_3/scene_3/a3s3.dialogue", "res://dialogues/act_4/scene_2/a4s2.dialogue", "res://dialogues/act_4/scene_3/a4s3.dialogue", "res://dialogues/act_4/scene_4/a4s4.dialogue", "res://dialogues/act_5/scene_1/a5s1.dialogue", "res://dialogues/act_5/scene_2/a5s2.dialogue", "res://dialogues/act_5/scene_3/a5s3.dialogue", "res://chat_test.dialogue")
 
 [layer_names]
 
+2d_render/layer_7="rocks"
 2d_physics/layer_1="player"
 2d_physics/layer_2="npc"
 2d_physics/layer_3="world"
 2d_physics/layer_4="items"
 2d_physics/layer_5="dialogue"
+2d_physics/layer_6="rocks"
 
 [rendering]
 

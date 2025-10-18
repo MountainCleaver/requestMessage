@@ -9,9 +9,9 @@ func _ready() -> void:
 	
 	# All 3 lines stacked vertically
 	var lines = [
-		"Memory is a cruel storyteller.",
-		"It shows what it wants... and hides what it must.",
-		"But truth always finds a way back."
+		"“Memory is a cruel storyteller.”",
+		"“It lets me see only pieces I’m meant to see.”",
+		"“And now, I’m back... to where everything started.”"
 	]
 	
 	await NarrationPanel.show_narration_typewriter(lines, 0.05)

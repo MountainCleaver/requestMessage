@@ -1,0 +1,106 @@
+~ start_restless
+Danilo: [shake]????????????????[/shake]
+Danilo: Totoo ba yung nakita ko?
+do restless_diag_one_done.emit()
+=> END
+
+~ start_restless_2
+#do Hud.show_phone_with_unknown_sender()
+#do Hud.phone_intro()
+#do _prevent_chat_exit_while_dialoging()
+Danilo: . . .
+Danilo: [shake]Ano yun? [wait=1.0]Guni-guni ko lang?[/shake]
+#do _prevent_chat_exit_while_dialoging()
+#do _clean_phone()
+do Hud.phone_outro()
+do Hud.reset_phone_dont_show()
+Danilo: Huff Huff
+do _remove_tension_effect()
+do player_danilo.force_cannot_move = false
+do intro_sequence_done.emit()
+=> buy_meds_restless
+=> END
+
+~ start_relief
+Danilo: ...
+Danilo: [wave]Kailangan kong kumalma.[/wave]
+do start_mini_game.emit()
+=> END
+
+~ buy_meds_restless
+Danilo: Kailangan ko nang bumili ng gamot.
+=> END
+
+~ buy_meds_relief
+Danilo: Okay
+Danilo: Bibili na'ko ng gamot.
+=> END
+
+~ tricycle_start
+Danilo: ...
+- Go to Bayan 
+	do _switch_location(SCENE_3_TOWN_CENTER,maps["town_center"]["name"],maps["town_center"]["spawn_points"]["middle"])
+	do ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]["text"])
+do can_interact = true
+=> END
+
+~ tricycle_start_bought
+Danilo: Di ko kailangan sumakay ngayon
+do can_interact = true
+=> END
+
+~ drugstore_clerk
+Danilo: Magandang araw po.
+Pharmacist: Magandang araw naman, ano hong kailangan niyo?
+Danilo: Kailangan ko po nito.
+Danilo: Good for one week sana.
+Pharmacist: Sorry sir, tatlong piraso nalang po ang available.
+- Buy it all => drugstore_clerk_2
+- Buy everything => drugstore_clerk_2
+=> END
+~ drugstore_clerk_2
+Danilo: [center]Kulang, pero okay na siguro 'to...[/center]
+Danilo: Sige, kunin ko na po lahat yan.
+Pharmacist: Ito po sir, salamat po.
+Danilo: Salamat po.
+do can_interact = true
+do bought_meds = true
+do SignalBus.bought_meds_done.emit()
+do SignalBus.bought_meds = true
+=> END
+
+~ drugstore_clerk_bought
+Pharmacist: Sa uulitin po.
+do can_interact = true
+=> END
+
+~ not_yet_bought_meds
+Danilo: [center]Kailangan ko pang bumili ng gamot.[/center]
+do can_interact = true
+=> END
+
+~ alreay_bought_meds
+Danilo: Nakabili nako ng gamot.
+do can_interact = true
+=> END
+
+~ rushed_home
+Danilo: ...
+do can_interact = true
+=> END
+
+~ paranoia
+Danilo: [center]Bakit parang… may nakasunod? Huwag mo lang pansinin, Danilo. Bilisan mo na lang.[/center]
+- Walk Faster
+	do player_danilo.SPEED = 150
+	do player_danilo.RUNNING_SPEED = 200
+do can_interact = true
+=> END
+
+
+~ reminder
+Danilo: Buti pinaalala. Kailangan ko ‘to para makatulog.
+- Take medications and sleep
+	do play_taking_meds()
+do can_interact = true
+=> END

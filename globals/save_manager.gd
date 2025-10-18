@@ -5,16 +5,26 @@ const BACKUP_PATH := "user://saves.bak.res"
 
 var game_save: SaveGameResource
 var next_scene_path: String
+var current_username: String = "" 
 
 func _ready() -> void:
 	SignalBus.act_num_scene_num_done.connect(_save_game_progress)
 	load_game()
 
+	Session.connect("session_loaded", Callable(self, "_on_session_loaded"))
+
+func _on_session_loaded():
+	current_username = Session.username
+	load_game()
+
+
 func _save_game_progress(act: String, scene: String, next_scene: String) -> void:
-	print("go to saving screen")
+	print("Saving progress for user:", current_username, "ID:", Session.user_ID, "Act:", act, "Scene:", scene)
+
 	GameSceneManager._change_scene("res://scenes/game/saving_screen.tscn")
 	next_scene_path = next_scene
 	mark_scene_finished(act, scene)
+
 
 func load_game() -> void:
 	if FileAccess.file_exists(SAVE_PATH):
@@ -45,13 +55,23 @@ func save_game_next_scene() -> void:
 
 
 func mark_scene_finished(act: String, scene: String) -> void:
-	print("save finished scene")
+	
+	# Update local save
 	var scenes: Array = game_save.finished_scenes.get(act, [])
 	if scene not in scenes:
 		scenes.append(scene)
 	game_save.finished_scenes[act] = scenes
-	# Track save in admin (total saves only)
+	save_game()  # Save locally
+	
+	# Track save in admin (total saves)
 	track_save()
+	
+	# Track progress per player using user_ID
+	if Session.user_ID != 0:
+		track_save_progress(Session.user_ID, act, scene)
+	else:
+		print("Warning: user_ID is 0. Progress not sent to API.")
+
 
 func is_scene_finished(act: String, scene: String) -> bool:
 	return scene in game_save.finished_scenes.get(act, [])
@@ -99,7 +119,7 @@ func _save_has_finished_scenes(save_data: SaveGameResource) -> bool :
 	
 
 func track_save() -> void:
-	var url = "http://localhost/RequestMessage_Admin/api/track_save.php"
+	var url = "https://requestmessage-admin.onrender.com/api/track_save.php"
 	var request = HTTPRequest.new()
 	add_child(request)
 	var data = { "save": true }  
@@ -110,6 +130,35 @@ func track_save() -> void:
 		HTTPClient.METHOD_POST,
 		json
 	)
+
+func set_player_username(username: String) -> void:
+	current_username = username
+	print("Current username set to: ", current_username)
+	
+func track_save_progress(user_id: int, act: String, scene: String) -> void:
+	var url = "https://requestmessage-admin.onrender.com/api/update_progress.php"
+	var request = HTTPRequest.new()
+	add_child(request)
+
+	var data = {
+		"user_id": user_id,
+		"act": act,
+		"scene": scene,
+		"timestamp": Time.get_datetime_string_from_system()
+	}
+
+	var json = JSON.stringify(data)
+	request.request(
+		url,
+		["Content-Type: application/json"],
+		HTTPClient.METHOD_POST,
+		json
+	)
+
+func switch_account(new_username: String) -> void:
+	current_username = new_username
+	print("SaveManager: Switched account to: ", current_username)
+	load_game() 
 	
 func save_moral_choice(act_scene: String, choice: String)-> void:
 	game_save.choices[act_scene] = choice

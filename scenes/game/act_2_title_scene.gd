@@ -9,9 +9,9 @@ func _ready() -> void:
 	
 	# All 3 lines stacked vertically
 	var lines = [
-		"Some messages are not meant to be ignored.",
-		"…Some memories are best left forgotten.",
-		"…But they find you anyway."
+		"“It came out of nowhere.”",
+		"“A message I wasn’t expecting.”",
+		"“And now I can’t stop thinking about it.”"
 	]
 	
 	await NarrationPanel.show_narration_typewriter(lines, 0.05)

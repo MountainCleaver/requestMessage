@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7pocr3nl02f3"]
+[gd_scene load_steps=4 format=3 uid="uid://b7pocr3nl02f3"]
 
 [ext_resource type="Script" uid="uid://chbo28kc2lbk4" path="res://scenes/game/act_2/scene_1/act_2_scene_1.gd" id="1_a1dml"]
+[ext_resource type="AudioStream" uid="uid://cc65bhb7u5kc0" path="res://sound/archi-soundscape-space3(chosic.com).mp3" id="2_ib622"]
+[ext_resource type="AudioStream" uid="uid://hvg2bj6eq248" path="res://sound/Horror-Long-Version(chosic.com).mp3" id="2_q61tw"]
 
 [node name="act_2_scene_1" type="Node2D"]
 script = ExtResource("1_a1dml")
@@ -8,3 +10,16 @@ script = ExtResource("1_a1dml")
 [node name="locations" type="Node2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="BGMRoom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_q61tw")
+volume_db = -6.679
+autoplay = true
+bus = &"music"
+
+[node name="SFXRoom" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-1, -2)
+stream = ExtResource("2_ib622")
+autoplay = true
+max_distance = 86.0
+bus = &"sfx"

@@ -33,6 +33,7 @@ var replied_to_mira: bool = false
 var call_with_wendy_done: bool = false
 
 var chat_exit_disabled : bool = false
+var call_end_disabled : bool = false
 
 var window_1_closed : bool = false
 var window_2_closed : bool = false
@@ -62,13 +63,18 @@ func _ready() -> void:
 	
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.unknown_sender_label_visible = false
-	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = true
+	
 	danilo_collision_shape_2d.disabled = true
 	player_danilo.animation_locked = true
 	player_danilo.force_cannot_move = true
 	animated_sprite_2d.play("sitting")
-
-	Hud.phone_intro()
+	
+	Hud.get_node("Control/phone/MarginContainer/lock_screen").clear_notifications()
+	Hud.reset_phone_state()
+	await get_tree().create_timer(1.0).timeout
+	
+	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = true
+	
 	add_notification(CHAT_ICON, "Chat", "2 missed calls from Mira")
 	await get_tree().create_timer(1.0).timeout
 	add_notification(CHAT_ICON, "Chat", "Wendy: Dan, you didn’t even inform me you were going home. We were worried, hindi ka sumasagot sa chats ko. Akala ko may nangyari na sayo")
@@ -76,7 +82,7 @@ func _ready() -> void:
 	await get_tree().create_timer(1.0).timeout
 	Hud.clear_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
-	Hud.objective_intro_anim()
+	Hud.show_objectives()
 	
 	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = false
 
@@ -141,6 +147,7 @@ func _on_reply_finished() -> void:
 		Hud.phone_outro()
 		# also clear current children of the margin container
 		shadow_appear()
+		GameState.save_game()
 
 func _on_wendy_calling() -> void:
 	var lockscreen = Hud.get_node("Control/phone/MarginContainer")
@@ -165,10 +172,12 @@ func shadow_appear() -> void:
 
 func _close_windows_obj() -> void:
 	ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"], Color.RED)
-	player_danilo.position = marker_2d.position
-	player_danilo.force_cannot_move = false;
-	player_danilo.animation_locked = false;
 	player_danilo.last_direction = Vector2.DOWN;
+	player_danilo.position = marker_2d.position
+	player_danilo.animation_locked = false;
+
+func enable_player_movement () -> void:
+	player_danilo.force_cannot_move = false;
 	danilo_collision_shape_2d.disabled = false; 
 
 func _on_window_area_1_body_entered(body: Node2D) -> void:
@@ -200,7 +209,7 @@ func _on_window_closed () -> void:
 		ObjectiveManager.complete_objective(scene_objectives[1]["ID"])
 		shadow_figure_vanish()
 		shock_sprite.queue_free()
-		_remove_previous_chat_scene_for_unkown_sender()
+		#_remove_previous_chat_scene_for_unkown_sender()
 		DialogueManager.show_dialogue_balloon(A_3S_2, "unknown")
 
 func shadow_figure_vanish()->void:
@@ -218,6 +227,14 @@ func _prevent_chat_exit_while_dialoging () -> void:
 		Hud.get_node("Control/phone/MarginContainer/app_chat_convo/screen/Panel/EXIT").disabled = false
 		chat_exit_disabled = false
 
+func _prevent_end_call_while_dialog_is_not_finished () -> void:
+	if not call_end_disabled:
+		Hud.get_node("Control/phone/MarginContainer/incoming_call/HBoxContainer2/Button").disabled = true
+		call_end_disabled = true
+	else:
+		Hud.get_node("Control/phone/MarginContainer/incoming_call/HBoxContainer2/Button").disabled = false
+		call_end_disabled = false
+
 func _remove_previous_chat_scene_for_unkown_sender() -> void:
 	var app_chat = Hud.get_node("Control/phone/MarginContainer/app_chat")
 	var app_chat_convo = Hud.get_node("Control/phone/MarginContainer/app_chat_convo")
@@ -232,9 +249,8 @@ func _play_tension_anim() -> void:
 
 func _act_3_scene_2_done() -> void:
 	print(SaveManager.get_moral_choice("act_3_scene_2"))
-	
 	SaveManager.game_save.current_act = "act_3"
 	SaveManager.game_save.current_scene = "scene_3" # badly named I admit. this is for the 'continue' part in main menu
-	SignalBus.act_num_scene_num_done.emit("act_3", "scene_2", "res://scenes/menu/menu_main.tscn") # caught in save manager
+	SignalBus.act_num_scene_num_done.emit("act_3", "scene_2", "res://scenes/game/act_3/scene_3/act_3_scene_3.tscn") # caught in save manager
 	Hud.clear_objectives();
-	pass;
+	Hud.hide_objectives()
