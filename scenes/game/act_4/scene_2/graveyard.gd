@@ -5,7 +5,7 @@ signal hut_entered
 signal grave_exit_triggered
 
 # === PRELOADS ===
-const A_4S_2 = preload("res://dialogues/act_4/a4s2.dialogue")
+const A_4S_2 = preload("res://dialogues/act_4/scene_2/a4s2.dialogue")
 
 # === NODES ===
 @onready var player_danilo: CharacterBody2D = $"y-sorted/player_danilo"
@@ -367,4 +367,3 @@ func interact_house_after_key():
 func enable_grave_exit():
 	grave_exit.monitoring = true
 	grave_exit.set_deferred("monitorable", true)
-	ProgressManager.set_grave_exit_enabled(true)
