@@ -216,3 +216,10 @@ func reset_lola_ising_progress() -> void:
 		game_save.finished_scenes[act].erase(scene)
 	
 	save_game()
+
+func has_received_real_flashlight() -> bool:
+
+	var lola_cash_given = has_given_lola_ising_cash()
+	var scene_done = is_scene_finished("act_3", "scene_1")
+
+	return lola_cash_given or scene_done
