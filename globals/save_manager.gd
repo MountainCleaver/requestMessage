@@ -180,3 +180,39 @@ func took_meds()->void:
 
 func get_count_meds_taken()->int:
 	return game_save.meds_taken
+	
+func set_given_lola_ising_cash(value: bool) -> void:
+	if not game_save:
+		game_save = SaveGameResource.new()
+		
+	print("[SaveManager] Setting given_lola_ising_cash to:", value)
+	game_save.choices["given_lola_ising_cash"] = value
+	save_game()
+	print("[SaveManager] given_lola_ising_cash saved successfully via choices dictionary!")
+
+func has_given_lola_ising_cash() -> bool:
+	if not game_save:
+		game_save = SaveGameResource.new()
+	
+	if "given_lola_ising_cash" in game_save.choices:
+		var val = game_save.choices["given_lola_ising_cash"]
+		print("[SaveManager] Checking given_lola_ising_cash:", val)
+		return val
+	else:
+		print("[SaveManager] No saved flag yet for lola_ising, returning false.")
+		return false
+
+func reset_lola_ising_progress() -> void:
+	if not game_save:
+		game_save = SaveGameResource.new()
+	
+	if "given_lola_ising_cash" in game_save.choices:
+		game_save.choices.erase("given_lola_ising_cash")
+		print("[SaveManager] Removed old given_lola_ising_cash flag.")
+	
+	var act := "act_3"
+	var scene := "scene_1" 
+	if act in game_save.finished_scenes and scene in game_save.finished_scenes[act]:
+		game_save.finished_scenes[act].erase(scene)
+	
+	save_game()
