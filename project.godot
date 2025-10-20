@@ -40,6 +40,7 @@ Session="*res://globals/session_manager.gd"
 ProgressManager="*res://globals/ProgressManager.gd"
 BuzzManager="*res://globals/buzz_manager.gd"
 SaveManager="*res://globals/save_manager.gd"
+FlashlightManager="*res://globals/flashlight_manager.gd"
 
 [dialogue_manager]
 
