@@ -80,6 +80,7 @@ func _start_scene() -> void:
 	Hud.show_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 
+	FlashlightManager.phone_flashlight_enabled_signal.connect(_on_phone_flashlight_enabled)
 # ===================
 # LOCATION SWITCHES
 # ===================
@@ -297,6 +298,8 @@ func _ising_interacted() -> void:
 			flashlight_node.visible = true
 			print("Flashlight is now visible in scene!")
 
+func _on_phone_flashlight_enabled() -> void:
+	ObjectiveManager.complete_objective(666)
 
 # ===================
 # ISING MOVEMENT
