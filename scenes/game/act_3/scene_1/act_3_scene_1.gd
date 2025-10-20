@@ -23,6 +23,7 @@ var lola_ising_reavealed : bool = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SaveManager.reset_lola_ising_progress()
 	ising_collision_shape_2d.disabled = true;
 	player_danilo.force_cannot_move = true;
 
