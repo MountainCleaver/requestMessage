@@ -40,7 +40,14 @@ func _on_chat_pressed() -> void:
 	SignalBus.app_chat_opened.emit()
 	
 func _on_flashlight_pressed() -> void:
-	pass
+	FlashlightManager.toggle_phone_flashlight()
+	if FlashlightManager.phone_flashlight_enabled:
+		print("Phone flashlight ON")
+	else:
+		print("Phone flashlight OFF")
+		
+	Hud.phone_outro()
+	queue_free()
 
 func _on_sched_pressed() -> void:
 	var parent = get_parent()
