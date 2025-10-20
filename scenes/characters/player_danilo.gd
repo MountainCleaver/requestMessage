@@ -4,6 +4,9 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var tip_interact: Sprite2D = $tip_interact
 
+@onready var real_flashlight: PointLight2D = $real_flashlight
+@onready var phone_flashlight: PointLight2D = $phone_flashlight
+
 @export var SPEED: float = 80.0
 @export var RUNNING_SPEED: float = 200.0
 var last_direction: Vector2 = Vector2.DOWN
@@ -31,6 +34,9 @@ func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_finish)
 	SignalBus.in_npc.connect(show_tip)
 	SignalBus.out_npc.connect(hide_tip)
+
+	# Initialize FlashlightManager
+	FlashlightManager.init(real_flashlight, phone_flashlight)
 
 func _physics_process(delta: float) -> void:
 	if not can_player_move():
@@ -72,36 +78,26 @@ func _physics_process(delta: float) -> void:
 		query.exclude = [self]
 		var result = space_state.intersect_ray(query)
 		if result and result.collider is CharacterBody2D and "rock" in result.collider.name:
-		# Trigger the pushing animation
+			# Trigger the pushing animation
 			animated_sprite_2d.play("push_left")
 			result.collider.push_left()
 
 func _apply_wind_effects() -> void:
-	"""Apply wind forces to player movement if not blocked"""
 	if is_in_wind and wind_source:
 		if not _is_wind_blocked():
 			velocity += wind_force
 
-# ----------- DEBUGGING ENHANCED -----------
 func _is_wind_blocked() -> bool:
-	"""Check if there are obstacles blocking wind between player and upwind side, with debug output."""
 	if wind_force == Vector2.ZERO:
-		print("Wind force is zero, cannot block.")
 		return false
 	var from := global_position
 	var to := from - wind_force.normalized() * wind_check_length
-	print("Raycast from: ", from, " to: ", to)
 	var query := PhysicsRayQueryParameters2D.create(from, to)
 	query.exclude = [self]
 	query.collision_mask = wind_block_mask
 	var result = get_world_2d().direct_space_state.intersect_ray(query)
-	print("Raycast result: ", result)
-	if result and result.collider:
-		print("Collider hit: ", result.collider.name, " Type: ", typeof(result.collider))
-		if "rock" in result.collider.name.to_lower():
-			print("Wind blocked by: ", result.collider.name)
-			return true
-	print("No valid rock blocks wind here.")
+	if result and result.collider and "rock" in result.collider.name.to_lower():
+		return true
 	return false
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -110,9 +106,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_released("run"):
 		is_running = false
 
+	# Flashlight toggle
+	if event.is_action_pressed("flashlight"):
+		FlashlightManager.toggle_real_flashlight()
+
 func _get_direction() -> Vector2:
 	var direction: Vector2 = Vector2.ZERO
-
 	if Input.is_action_pressed("arrow_left"):
 		direction.x = -1
 	elif Input.is_action_pressed("arrow_right"):
@@ -121,30 +120,39 @@ func _get_direction() -> Vector2:
 		direction.y = -1
 	elif Input.is_action_pressed("arrow_down"):
 		direction.y = 1
-
 	return direction
 
 func _play_animation(direction: Vector2) -> void:
-	if direction == Vector2.ZERO or not can_player_move():
-		match last_direction:
-			Vector2.RIGHT:
-				animated_sprite_2d.play("idle_right")
-			Vector2.LEFT:
-				animated_sprite_2d.play("idle_left")
-			Vector2.DOWN:
-				animated_sprite_2d.play("idle_down")
-			Vector2.UP:
-				animated_sprite_2d.play("idle_up")
+	var flashlight_on = FlashlightManager.flashlight_enabled
+
+	if flashlight_on:
+		# Flashlight animations
+		if direction == Vector2.ZERO:
+			match last_direction:
+				Vector2.RIGHT: animated_sprite_2d.play("flashlight_idle_right")
+				Vector2.LEFT: animated_sprite_2d.play("flashlight_idle_left")
+				Vector2.DOWN: animated_sprite_2d.play("flashlight_idle_down")
+				Vector2.UP: animated_sprite_2d.play("flashlight_idle_up")
+		else:
+			match direction:
+				Vector2.RIGHT: animated_sprite_2d.play("flashlight_walk_right")
+				Vector2.LEFT: animated_sprite_2d.play("flashlight_walk_left")
+				Vector2.DOWN: animated_sprite_2d.play("flashlight_walk_down")
+				Vector2.UP: animated_sprite_2d.play("flashlight_walk_up")
 	else:
-		match direction:
-			Vector2.RIGHT:
-				animated_sprite_2d.play("walk_right")
-			Vector2.LEFT:
-				animated_sprite_2d.play("walk_left")
-			Vector2.DOWN:
-				animated_sprite_2d.play("walk_down")
-			Vector2.UP:
-				animated_sprite_2d.play("walk_up")
+		# Normal animations
+		if direction == Vector2.ZERO or not can_player_move():
+			match last_direction:
+				Vector2.RIGHT: animated_sprite_2d.play("idle_right")
+				Vector2.LEFT: animated_sprite_2d.play("idle_left")
+				Vector2.DOWN: animated_sprite_2d.play("idle_down")
+				Vector2.UP: animated_sprite_2d.play("idle_up")
+		else:
+			match direction:
+				Vector2.RIGHT: animated_sprite_2d.play("walk_right")
+				Vector2.LEFT: animated_sprite_2d.play("walk_left")
+				Vector2.DOWN: animated_sprite_2d.play("walk_down")
+				Vector2.UP: animated_sprite_2d.play("walk_up")
 
 func _on_dialogue_start(_resource):
 	can_move = false
@@ -174,7 +182,6 @@ func apply_wind(force: Vector2, source: Node2D) -> void:
 	wind_source = source
 
 func remove_wind(source: Node2D = null) -> void:
-	print("Wind removed by: ", source)
 	wind_force = Vector2.ZERO
 	is_in_wind = false
 	wind_source = null
