@@ -1,5 +1,16 @@
-[gd_scene format=3 uid="uid://b210y7hkos7oi"]
+[gd_scene load_steps=3 format=3 uid="uid://b210y7hkos7oi"]
+
+[ext_resource type="Script" uid="uid://0k5us13xs42t" path="res://scenes/game/act_4/scene_1/act_4_scene_1.gd" id="1_qqtb8"]
+[ext_resource type="PackedScene" path="res://map_test.tscn" id="2_g7wly"]
 
 [node name="act_4_scene_1" type="Node2D"]
+script = ExtResource("1_qqtb8")
 
 [node name="locations" type="Node2D" parent="."]
+
+[node name="map_test" parent="." instance=ExtResource("2_g7wly")]
+
+[node name="Flashlight" parent="map_test" index="1"]
+visible = false
+
+[editable path="map_test"]
