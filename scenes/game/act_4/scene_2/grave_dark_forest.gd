@@ -15,6 +15,7 @@ const A_4S_2 = preload("res://dialogues/act_4/scene_2/a4s2.dialogue")
 var dialogue_shown: bool = false
 
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_4", "scene_2")
 	tip.visible = false
 	signage.body_entered.connect(_on_signage_body_entered)
 	signage.body_exited.connect(_on_signage_body_exited)

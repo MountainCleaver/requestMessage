@@ -92,9 +92,9 @@ position = Vector2(-220, 239)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="danilo/y-sorted-objects/npc_lola_ising/lola_ising_area"]
 shape = SubResource("RectangleShape2D_vvfp4")
 
-[node name="ising_give_flashlight" type="Area2D" parent="."]
+[node name="flashlight_determinant" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ising_give_flashlight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flashlight_determinant"]
 position = Vector2(-683, 234.5)
 shape = SubResource("RectangleShape2D_ibm7l")
 

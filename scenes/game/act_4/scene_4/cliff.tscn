@@ -207,6 +207,7 @@ limit_right = 619
 limit_bottom = 189
 
 [node name="PointLight2D3" type="PointLight2D" parent="y-sorted/player_danilo"]
+visible = false
 position = Vector2(-1, -10.000013)
 rotation = -1.5707964
 scale = Vector2(1.0856009, 1.1815554)
@@ -329,7 +330,6 @@ position = Vector2(2, 110.625)
 shape = SubResource("RectangleShape2D_dk38r")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.08650524, 0.06233176, 0.058878735, 1)
 
 [node name="BGMCliff" type="AudioStreamPlayer2D" parent="."]

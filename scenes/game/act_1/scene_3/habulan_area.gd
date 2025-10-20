@@ -8,6 +8,7 @@ extends Node2D
 @onready var npc_shadowy_chaser: CharacterBody2D = $"y-sorted-areas/npc_shadowy_chaser"
 
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_1", "scene_3")
 	if BgmManager:
 		BgmManager.stop_music();
 		

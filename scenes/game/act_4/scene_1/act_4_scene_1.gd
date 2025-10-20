@@ -27,7 +27,7 @@ var karatula_area: Area2D
 var to_habulan_area: Area2D
 
 var ising_walk_target: Marker2D
-var ising_give_flashlight: Area2D
+var flashlight_determinant: Area2D
 
 # ===================
 # STATES & FLAGS
@@ -60,6 +60,11 @@ func _ready():
 	_start_scene()
 
 func _game_state_flow() -> void:
+	FlashlightManager.set_current_scene("act_4", "scene_1")
+	# Ensure it starts disabled
+	FlashlightManager.real_flashlight_enabled = false
+	FlashlightManager.phone_flashlight_enabled = false
+
 	GameState.load_game()
 	GameState.current_act = "act_4"
 	GameState.current_scene = "scene_1"
@@ -114,7 +119,7 @@ func switch_location(scene: PackedScene) -> void:
 	door_area = current_location.get_node_or_null("door_area")
 	karatula_area = current_location.get_node_or_null("danilo/y-sorted-objects/areas/karatula_area")
 	to_habulan_area = current_location.get_node_or_null("danilo/y-sorted-objects/areas/to_habulan_area")
-	ising_give_flashlight = current_location.get_node_or_null("ising_give_flashlight")
+	flashlight_determinant = current_location.get_node_or_null("flashlight_determinant")
 	
 	ising_walk_target = current_location.get_node_or_null("danilo/y-sorted-objects/spawn_points/ising_walk")
 		
@@ -129,8 +134,8 @@ func switch_location(scene: PackedScene) -> void:
 	if to_habulan_area:
 		to_habulan_area.body_entered.connect(_on_to_habulan_area_body_entered)
 	
-	if ising_give_flashlight:
-		ising_give_flashlight.body_entered.connect(_on_ising_give_flashlight_body_entered)
+	if flashlight_determinant:
+		flashlight_determinant.body_entered.connect(_on_flashlight_determinant_body_entered)
 		
 	if npc_lola_ising:
 		npc_lola_ising.visible = false
@@ -183,7 +188,7 @@ func _on_ising_interact_area_exited(body: Node2D) -> void:
 		if tip_interact:
 			tip_interact.visible = false
 			
-func _on_ising_give_flashlight_body_entered(body: Node2D) -> void:
+func _on_flashlight_determinant_body_entered(body: Node2D) -> void:
 	if body != player_danilo:
 		return
 
@@ -214,9 +219,9 @@ func _on_ising_give_flashlight_body_entered(body: Node2D) -> void:
 		await DialogueManager.dialogue_ended
 		ObjectiveManager.add_objective(666, "Open phone flashlight") 
 
-	if ising_give_flashlight:
-		ising_give_flashlight.set_deferred("monitoring", false)
-		ising_give_flashlight.set_deferred("monitorable", false)
+	if flashlight_determinant:
+		flashlight_determinant.set_deferred("monitoring", false)
+		flashlight_determinant.set_deferred("monitorable", false)
 # ===================
 # INPUT HANDLER
 # ===================
@@ -273,20 +278,25 @@ func _ising_interacted() -> void:
 		if tip_interact:
 			tip_interact.visible = false
 
+		# Dialogue
 		DialogueManager.show_dialogue_balloon(A_4S_1, "ising_give_flashlight")
 		await DialogueManager.dialogue_ended
 		ObjectiveManager.complete_objective(999)
 
-		var ising_area = npc_lola_ising.get_node_or_null("lola_ising_area")
-		if ising_area:
-			ising_area.set_deferred("monitoring", false)
-			ising_area.set_deferred("monitorable", false)
-			
-		# Make flashlight visible in scene
+		# Unlock real flashlight
+		FlashlightManager.unlock_real_flashlight()
+
+		# Force it enabled for current scene
+		FlashlightManager.real_flashlight_enabled = true
+
+		print("[FlashlightManager] Real flashlight ENABLED after Lola Ising dialogue.")
+
+		# Make the flashlight node in scene visible
 		var flashlight_node = $map_test/Flashlight
 		if flashlight_node:
 			flashlight_node.visible = true
-			print("Flashlight is now visible!")
+			print("Flashlight is now visible in scene!")
+
 
 # ===================
 # ISING MOVEMENT

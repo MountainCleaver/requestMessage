@@ -1284,6 +1284,7 @@ position = Vector2(0, -31)
 texture = ExtResource("6_avryt")
 
 [node name="PointLight2D2" type="PointLight2D" parent="y-sorted/player_danilo"]
+visible = false
 position = Vector2(0, -5)
 scale = Vector2(0.772, 0.772)
 color = Color(0.9166399, 0.91663986, 0.9166398, 1)
@@ -1397,7 +1398,6 @@ position = Vector2(232, -9)
 shape = SubResource("RectangleShape2D_my1an")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
 
 [node name="House_exit" type="Marker2D" parent="."]

@@ -111,6 +111,7 @@ var moral_choice : String
 
 
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_3", "scene_3")
 	Hud.reset_phone_dont_show()
 	#camera_2d.position_smoothing_enabled = true
 	#camera_2d.position_smoothing_speed = 10.0

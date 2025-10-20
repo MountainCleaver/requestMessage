@@ -82,6 +82,7 @@ debug_color = Color(0.8901961, 0.19607843, 0.6431373, 0.56078434)
 position = Vector2(-8, 339)
 
 [node name="PointLight2D2" type="PointLight2D" parent="y-sorted/player_danilo"]
+visible = false
 position = Vector2(-1, -10.000013)
 rotation = -1.5707964
 scale = Vector2(1.0856009, 1.1815554)
@@ -98,7 +99,6 @@ limit_right = 1343
 limit_bottom = 350
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.076835774, 0.07683585, 0.0768358, 1)
 
 [node name="portal" type="Area2D" parent="."]
