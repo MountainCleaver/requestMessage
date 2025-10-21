@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=4 uid="uid://cojksxhkmxtcr"]
+[gd_scene load_steps=15 format=4 uid="uid://cojksxhkmxtcr"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_wy3md"]
 [ext_resource type="Script" uid="uid://dstfluwnkraup" path="res://scenes/game/act_4/scene_2/grave_dark_forest.gd" id="1_ymqp3"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_qjqsf"]
 [ext_resource type="Texture2D" uid="uid://cbaqwksgv6wix" path="res://assets/character_sprites/light1.png" id="3_pu0bd"]
 [ext_resource type="Texture2D" uid="uid://be6h5vldaqlfi" path="res://assets/character_sprites/tip_interact.png" id="5_6j1wm"]
+[ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="6_pdcvj"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="7_4ujqg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
 texture = ExtResource("1_wy3md")
@@ -151,6 +153,14 @@ debug_color = Color(0.8662791, 0.32122794, 0.39150935, 0.41960785)
 
 [node name="Grave_exit" type="Marker2D" parent="."]
 position = Vector2(-420, -4)
+
+[node name="explorer_hud" parent="." instance=ExtResource("6_pdcvj")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("7_4ujqg")]
+visible = false
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="y-sorted/decorations/signage" to="." method="_on_signage_body_entered"]
