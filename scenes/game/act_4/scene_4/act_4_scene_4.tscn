@@ -6,6 +6,4 @@
 [node name="act_4_scene_4" type="Node2D"]
 script = ExtResource("1_e5nnb")
 
-[node name="locations" type="Node2D" parent="."]
-
-[node name="dark_forest" parent="locations" instance=ExtResource("2_e5nnb")]
+[node name="dark_forest" parent="." instance=ExtResource("2_e5nnb")]
