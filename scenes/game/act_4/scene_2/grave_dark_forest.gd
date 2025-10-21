@@ -3,7 +3,7 @@ extends Node2D
 signal entrance_triggered
 
 # === PRELOADS ===
-const A_4S_2 = preload("res://dialogues/act_4/a4s2.dialogue")
+const A_4S_2 = preload("res://dialogues/act_4/scene_2/a4s2.dialogue")
 
 @onready var player_danilo: CharacterBody2D = $"y-sorted/player_danilo"
 @onready var entrance: Area2D = $"entrance"
