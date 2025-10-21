@@ -226,6 +226,9 @@ offset = Vector2(0, 32.02)
 [node name="player_danilo" parent="." instance=ExtResource("3_v7vjx")]
 position = Vector2(-46, 0)
 
+[node name="AnimatedSprite2D" parent="player_danilo" index="0"]
+animation = &"woken"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -43)
 zoom = Vector2(17, 17)

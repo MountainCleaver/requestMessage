@@ -18,6 +18,8 @@ Danilo: Huff Huff
 do _remove_tension_effect()
 do player_danilo.force_cannot_move = false
 do intro_sequence_done.emit()
+do sfx_sqbr.stop()
+do bgm_home.play()
 => buy_meds_restless
 => END
 
