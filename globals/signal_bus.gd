@@ -57,3 +57,18 @@ signal bought_meds_done
 var bought_meds : bool = false
 signal area_one_entered
 signal sat_on_bed
+
+
+#dream
+signal dream_done
+
+signal start_theresa
+signal start_vanesa
+signal knocked_jonathan
+signal start_jonathan
+signal jonathan_done
+signal asked_a_neighbor
+var asked_neighbors_done : bool = false
+signal fade_to_blackness
+signal remove_npc(npc: String)
+signal last_words
