@@ -20,6 +20,7 @@ var player_phone_flashlight: PointLight2D
 var player_node: Node = null
 
 signal phone_flashlight_enabled_signal
+signal current_scene_changed(act: String, scene: String)
 
 # Used to prevent repeating console spam
 var _last_debug_message := ""
@@ -63,22 +64,34 @@ func init(real_flash: PointLight2D, phone_flash: PointLight2D) -> void:
 
 	var act = data.get("current_act", "")
 	var scene = data.get("current_scene", "")
+	var scene_number = 0
+	if scene != "":
+		scene_number = int(scene.replace("scene_", ""))
 
-	# Disable both flashlights completely for early acts
+	# -----------------------------
+	# ACT-based flashlight rules
+	# -----------------------------
 	if act in ["act_1", "act_2", "act_3"]:
+		# Disable all flashlights for early acts
 		data["real_flashlight_enabled"] = false
 		data["phone_flashlight_enabled"] = false
 
-	elif act == "act_4" and scene == "scene_1":
-		if not data.get("phone_flashlight_enabled", false):
-			data["phone_flashlight_enabled"] = false
-		else:
-			_print_once("[FlashlightManager] Phone flashlight already unlocked — keeping ON.")
-
 	elif act == "act_4":
-		var scene_number = int(scene.replace("scene_", ""))
-		# Re-enable flashlight after giving cash to Lola Ising
+		# Scene 1: phone flashlight unlock logic
+		if scene_number == 1:
+			if not data.get("phone_flashlight_enabled", false):
+				data["phone_flashlight_enabled"] = false  # stays off until player unlocks
+			else:
+				_print_once("[FlashlightManager] Phone flashlight already unlocked — keeping ON.")
+
+		# Scene >= 2: auto-enable phone flashlight if cash NOT given
 		if scene_number >= 2:
+			if not SaveManager.has_given_lola_ising_cash():
+				# Auto-enable phone flashlight for safety
+				data["phone_flashlight_enabled"] = true
+				_print_once("[FlashlightManager] Phone flashlight auto-enabled because cash not yet given.")
+			
+			# Real flashlight logic
 			if SaveManager.has_given_lola_ising_cash():
 				data["real_flashlight_enabled"] = true
 				data["real_flashlight_unlocked"] = true
@@ -86,9 +99,8 @@ func init(real_flash: PointLight2D, phone_flash: PointLight2D) -> void:
 			else:
 				data["real_flashlight_enabled"] = false
 				data["real_flashlight_unlocked"] = false
-		else:
-			if data.get("real_flashlight_enabled", false):
-				_print_once("[FlashlightManager] Real flashlight already unlocked — keeping ON.")
+
+
 	else:
 		_print_once("[FlashlightManager] Flashlight states loaded for %s %s" % [act, scene])
 
@@ -97,6 +109,7 @@ func init(real_flash: PointLight2D, phone_flash: PointLight2D) -> void:
 
 	_print_once("[FlashlightManager] Initialized. Real flashlight unlocked: %s" % str(data["real_flashlight_unlocked"]))
 	_save_json()
+
 
 # ===================
 # FLASHLIGHT CONTROL
@@ -156,25 +169,18 @@ func _update_lights() -> void:
 	if phone_flashlight_enabled:
 		emit_signal("phone_flashlight_enabled_signal")
 
-
-# ==========================================
-# FADE EFFECT HANDLER
-# ==========================================
 func _fade_light(light: PointLight2D, turn_on: bool, duration: float = 0.3) -> void:
 	if not light:
 		return
 
-	# Ensure visible if turning on
 	if turn_on:
 		light.visible = true
 
-	# Kill any previous active tween
 	if light.has_meta("fade_tween"):
 		var old_tween = light.get_meta("fade_tween")
 		if old_tween and old_tween.is_running():
 			old_tween.kill()
 
-	# Create new scene tree tween (Godot 4 way)
 	var tween := get_tree().create_tween()
 	light.set_meta("fade_tween", tween)
 
@@ -200,7 +206,8 @@ func set_current_scene(act: String, scene: String) -> void:
 		reset_flashlight_state()
 
 	_save_json()
-
+	emit_signal("current_scene_changed", act, scene)
+	
 # ===================
 # RESET
 # ===================
