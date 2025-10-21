@@ -15,6 +15,10 @@ do Hud.reset_phone_state()
 Lola ising: Iho... saan ka pupunta? Gabi na... delikado sa labas.
 => END
 
+~ talk_to_ising_first
+Danilo: Kailangan ko muna kausapin si Lola Ising.
+=> END
+
 ~ ising_give_flashlight
 Danilo: May kailangan lang akong gawin, La... sandali lang po ‘to.
 Lola ising: Iho, gabi na. Hindi ba puwedeng bukas na lang?
@@ -24,4 +28,19 @@ Lola ising: Kung gano’n, dalhin mo ‘to.
 Lola ising: Flashlight. Huwag mong hayaang mawalan ka ng ilaw sa daan.
 Danilo: ...
 Danilo: Salamat, La. Una na po ako.
+=> END
+
+~ complain_phone_flashlight
+Danilo: Medyo mahina 'tong gamit ko na flashlight sa phone ko.
+Danilo: Andilim pa naman sobra.
+Danilo: Kung meron lang akong totoong flashlight na magagamit...
+=> END
+
+~ danilo_saw_ghost
+Danilo: [shake rate=30 level=10]!!!![/shake]
+=> END
+
+~ ghost_gone
+Danilo: [shake rate=20 level=10]A-ano... kaya yun? Hindi ko naabutan. Ang bilis...[/shake]
+Danilo: Pero parang... may nakamasid sa akin. [shake rate=20 level=10]Pinagmamasdan ako.[/shake]
 => END
