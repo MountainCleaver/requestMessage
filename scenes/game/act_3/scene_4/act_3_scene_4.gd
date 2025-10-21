@@ -79,9 +79,6 @@ func _ready() -> void:
 func _on_last_words()->void:
 	DialogueManager.show_dialogue_balloon(A_3S_4, "last_statement_1")
 
-func _process(delta: float) -> void:
-	print("can interact: " + str(can_interact))
-
 func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("interact"):
@@ -246,10 +243,15 @@ func _intro_sequence()->void:
 func _get_out_of_bed () -> void:
 	player_danilo.last_direction = Vector2.DOWN
 	
+	
 	await get_tree().create_timer(1.0).timeout
 	animated_sprite_2d.play("idle_down")
 	
 	player_danilo.global_position = current_location.get_node("danilo_hometown_house/y-sorted/spawn_points/bed_beside").global_position
+	# here logic for recording meds taken
+	
+	animated_sprite_2d.play("taking_meds_sit_right")
+	await animated_sprite_2d.animation_finished
 	
 	await get_tree().create_timer(1.0).timeout
 	animated_sprite_2d.play("idle_right")
