@@ -142,6 +142,9 @@ region = Rect2(288, 96, 48, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gfkr"]
 atlas = ExtResource("2_4xi8a")
 region = Rect2(336, 96, 48, 32)
+[ext_resource type="Texture2D" uid="uid://by0kaihorepuq" path="res://assets/character_sprites/danilo_sleeping_and_then_startledbed_in_hometown.png" id="6_4xi8a"]
+[ext_resource type="Texture2D" uid="uid://bavf5qg7ni6xa" path="res://assets/character_sprites/DANILO_SQUARE_BREATHING_STANDING_AND_SITTING.png" id="7_v7fvk"]
+[ext_resource type="Texture2D" uid="uid://bwrh4xd2b7a0n" path="res://assets/character_sprites/DANILO_TAKING_MEDS.png" id="8_y4l36"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nbajt"]
 atlas = ExtResource("2_k222o")
@@ -934,6 +937,21 @@ animations = [{
 }],
 "loop": true,
 "name": &"flashlight_walk_up",
+"texture": SubResource("AtlasTexture_rwkh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3fnr")
+}],
+"loop": true,
+"name": &"hometown_sleep",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs1sa")
+}],
+"loop": true,
+"name": &"hometown_wake",
 "speed": 5.0
 }, {
 "frames": [{

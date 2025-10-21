@@ -17,6 +17,11 @@ const SCHED_ICON = preload("uid://d1ye4ylli8nca")
 @onready var danilo_collision_shape_2d: CollisionShape2D = $player_danilo/CollisionShape2D
 @onready var danilo_animated_sprite_2d: AnimatedSprite2D = $player_danilo/AnimatedSprite2D
 
+# --- AUDIO NODES ---
+@onready var sfx_sqbr: AudioStreamPlayer = $SFXsqbr
+@onready var bgm_home: AudioStreamPlayer = $BGMHome
+@onready var sfx_paranoia: AudioStreamPlayer = $SFXParanoia
+
 
 var _debounce_timer: SceneTreeTimer = null
 const DEBOUNCE_DELAY := 0.5 
@@ -106,35 +111,25 @@ var scene_objectives : Array[Dictionary] = [
 	{"ID" : 5, "text" : "Go Back Home"},
 ]
 
-
 var moral_choice : String
-
 
 func _ready() -> void:
 	Hud.reset_phone_dont_show()
-	#camera_2d.position_smoothing_enabled = true
-	#camera_2d.position_smoothing_speed = 10.0
-	
 	_game_state_flow()
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.mini_game_done.connect(_on_mini_game_done)
 	SignalBus.chat_opened.connect(_on_chat_opened)
 	SignalBus.area_one_entered.connect(_on_area_one_entered)
-	
 	objective_one_done.connect(_on_objective_one_done)
 	restless_diag_one_done.connect(_on_restless_diag_one_done)
 	went_outside_find_tricycle.connect(_on_went_outside_find_tricycle)
-	
-	#DialogueManager.dialogue_started.connect(_on_dialogue_started)
-	#DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
-	
 	moral_choice = SaveManager.get_moral_choice("act_3_scene_2")
 	_intro_sequence(moral_choice)
-	
 	_put_tension_effect()
-	
 	start_mini_game.connect(_start_mini_game)
 	intro_sequence_done.connect(_on_intro_sequence_done)
+   
+	bgm_home.stop()    
 
 func _input(event: InputEvent) -> void:
 	if not event.is_action_pressed("interact"):
@@ -364,24 +359,10 @@ func _put_tension_effect()->void:
 func _remove_tension_effect()->void:
 	animation_player.play("tension_out")
 
-#func _prevent_chat_exit_while_dialoging () -> void:
-	#if not chat_exit_disabled:
-		#Hud.get_node("Control/phone/MarginContainer/app_chat_convo/screen/Panel/EXIT").disabled = true
-		#chat_exit_disabled = true
-	#else:
-		#Hud.get_node("Control/phone/MarginContainer/app_chat_convo/screen/Panel/EXIT").disabled = false
-		#chat_exit_disabled = false
-
-#func _clean_phone() ->void:
-	#var phone_margin_container = Hud.get_node("Control/phone/MarginContainer")
-	#var nodes = phone_margin_container.get_children()
-	#
-	#for node in nodes:
-		#if node.name != "lock_screen":
-			#node.queue_free()
-
 func _start_mini_game(map_name: String = maps["house"]["name"] , spawn_point: String = maps["house"]["spawn_points"]["sq_house"])->void:
-	
+	sfx_sqbr.play()
+	bgm_home.stop()
+	sfx_paranoia.stop()
 	var target_pos = Vector2(player_danilo.global_position.x + 30, camera_2d.position.y)
 	_tween_camera_to(target_pos, 6, 0.2)
 	var sq_mg = SQUARE_BREATHING_MINI_GAME.instantiate()
@@ -398,6 +379,8 @@ func _start_mini_game(map_name: String = maps["house"]["name"] , spawn_point: St
 	danilo_animated_sprite_2d.play("sq_sit_right")
 
 func _on_mini_game_done()->void:
+	sfx_sqbr.stop()      # Stop SFX
+	bgm_home.play()      # Play BGM!
 	if first_mini_game:
 		mini_game.queue_free()
 		_tween_camera_to(Vector2.ZERO, 3.0)
@@ -507,15 +490,16 @@ func _on_area_one_entered()->void:
 	animation_player.play("tensioning")
 	can_interact = false
 	DialogueManager.show_dialogue_balloon(A_3S_3, "paranoia")
+	sfx_paranoia.play()
+	bgm_home.stop()
 
 func add_notification(image: Texture2D, app_name: String, notif_content: String) -> void:
 	Hud.get_node("Control/phone/MarginContainer/lock_screen").add_notification(image, app_name, notif_content)
-
 
 func _act_3_scene_3_done() -> void:
 	if Hud.phone_showing:
 		Hud.phone_outro()
 	SaveManager.game_save.current_act = "act_3"
 	SaveManager.game_save.current_scene = "scene_4"
-	SignalBus.act_num_scene_num_done.emit("act_3", "scene_3", "res://scenes/menu/menu_main.tscn")
+	SignalBus.act_num_scene_num_done.emit("act_3", "scene_3", "res://scenes/game/act_4/scene_3/act_4_scene_3.tscn")
 	ObjectiveManager.empty_objectives()

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://fy7e7t6xdur0"
+path="res://.godot/imported/paclicnic .mp3-4757d4d13b101a12fb5de287c14d9118.mp3str"
+
+[deps]
+
+source_file="res://sound/paclicnic .mp3"
+dest_files=["res://.godot/imported/paclicnic .mp3-4757d4d13b101a12fb5de287c14d9118.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
