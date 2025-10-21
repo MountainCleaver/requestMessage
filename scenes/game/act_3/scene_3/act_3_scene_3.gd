@@ -411,6 +411,10 @@ func play_taking_meds()->void:
 	danilo_animated_sprite_2d.play("taking_meds_sit_right")
 	await danilo_animated_sprite_2d.animation_finished
 	danilo_animated_sprite_2d.play("sitting")
+	
+	player_danilo.global_position = Vector2(-88.0, 8.0)
+	danilo_animated_sprite_2d.play("sleep_only_hometown")
+	await get_tree().create_timer(1.0).timeout
 	_act_3_scene_3_done()
 	print("scene finished")
 
@@ -501,5 +505,5 @@ func _act_3_scene_3_done() -> void:
 		Hud.phone_outro()
 	SaveManager.game_save.current_act = "act_3"
 	SaveManager.game_save.current_scene = "scene_4"
-	SignalBus.act_num_scene_num_done.emit("act_3", "scene_3", "res://scenes/game/act_4/scene_3/act_4_scene_3.tscn")
+	SignalBus.act_num_scene_num_done.emit("act_3", "scene_3", "res://scenes/game/act_3/scene_4/act_3_scene_4.tscn")
 	ObjectiveManager.empty_objectives()
