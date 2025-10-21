@@ -25,7 +25,8 @@ do _tween_camera_to_ghost()
 Danilo: ???
 Danilo: Ano yun?
 Danilo: Anong panaginip yun?
-do _get_out_of_bed()
+- Take medications
+	do _get_out_of_bed()
 => END
 
 ~ window_is_open
