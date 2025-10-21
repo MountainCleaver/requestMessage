@@ -1,0 +1,194 @@
+~ start
+Danilo: ...
+do _void_appear()
+=> END
+
+~ saw_light
+Danilo: ?
+do see_light.queue_free()
+=> END
+
+~ facing_void
+Danilo: [shake]!!![/shake]
+do player_danilo.last_direction = Vector2.LEFT
+do in_dialogue = false
+=> END
+
+~ reminisce
+Danilo: Dito kami naglalaro dati...
+Danilo: Itong-ito parin yun, tila hindi nagbago… pero ano yan?
+# pan camera to the shadow figure
+do _tween_camera_to_ghost()
+=> END
+
+~ woke_up
+Danilo: ???
+Danilo: Ano yun?
+Danilo: Anong panaginip yun?
+do _get_out_of_bed()
+=> END
+
+~ window_is_open
+Danilo: Sinara ko ‘to lahat kanina, bakit ‘yan naka bukas?
+Danilo: Sinong nag bukas niyan?
+do can_interact = true
+=> END
+
+
+~ gino_knock
+do ObjectiveManager.update_progress(1, 1)
+Danilo: [center]*knock *knock *knock[/center]
+Danilo: [center]Wala yatang tao...[/center]
+do gino_knocked = true
+do can_interact = true
+do _check_objectives()
+do SignalBus.asked_a_neighbor.emit()
+=> END
+
+~ gino_knock_again
+Danilo: [center]Walang tao dito.[/center]
+do can_interact = true
+=> END
+
+~ theresa
+do ObjectiveManager.update_progress(1, 1)
+Danilo: Magandang araw po, [wave]Aling Theresa[/wave]
+Aling_Theresa: Oh Danilo! Umuwi ka pala. 
+Aling_Theresa: Bakasyon lang?
+Danilo: Opo, hindi rin ako magtatagal.
+Danilo: May nakita po ba kayong pumunta sa bahay kanina?
+Aling_Theresa: [wave]Wala[/wave], abala ako sa pagluluto.
+Danilo: Ah ganun po ba? Sige po salamat po.
+do SignalBus.remove_npc.emit("npc_theresa_scene_4")
+do theresa_asked = true
+do player_danilo.force_cannot_move = false
+do _check_objectives()
+do can_interact = true
+do SignalBus.asked_a_neighbor.emit()
+=> END
+
+~ theresa_again
+Aling_Theresa: Mag ingat ka palagi.
+do can_interact = true
+=> END
+
+~ vanesa
+do ObjectiveManager.update_progress(1, 1)
+Danilo: Magandang Araw, Vanesa.
+Danilo: May nakita ka bang pumunta sa bahay kanina?
+Vanesa: [wave]Wala.[/wave]
+Vanesa: Kanina pa ako dito, wala naman akong nakita.
+Vanesa: Pero kahapon, nakita kitang nagmamadali umuwi.
+Danilo: May kasunod ba 'ko nun?
+Vanesa: [wave]Oo,[/wave][wait=1.5][wave]si Jonathan.[/wave]
+Vanesa: Nagulat nga ako sa bilis mong umuwi.
+Danilo: Ganun ba... Salamat
+do vanesa_asked = true
+do can_interact = true
+do _check_objectives()
+do SignalBus.asked_a_neighbor.emit()
+=> END
+
+~ vanesa_again
+Vanesa: ...
+do can_interact = true
+=> END
+
+~ jonathan_knock
+Danilo: [center]*knock *knock *knock[/center]
+Danilo: [center]Wala yatang tao...[/center]
+do jonthan_knocked = true
+do can_interact = true
+=> END
+
+~ jonathan_knock_again
+Danilo: [center]Wala yatang tao dito...[/center]
+do can_interact = true
+=> END
+
+
+~ jonathan
+do ObjectiveManager.update_progress(1, 1)
+Jonathan: Uy Danilo!
+Jonathan: [wave]Tatawagin sana kita kahapon kaso ang bilis mo.[/wave]
+Danilo: Ikaw pala yung nakasunod sakin?
+Jonathan: Hindi kita sinusundan.
+Jonathan: Galing din ako ng bayan, gusto lang sana kitang kamustahin.
+Danilo: Pasensya na, may iniisip lang ako.
+Danilo: Pero may nakita ka bang pumunta sa bahay kanina?
+Jonathan: [wave]Wala.[/wave]
+Jonathan: Galing ako sa pangingisda kasama si Mang Gino. Kakauwi ko lang.
+Danilo: Ah ganun, sige, salamat.
+do can_interact = true
+do player_danilo.force_cannot_move = false
+do SignalBus.jonathan_done.emit("npc_jonathan")
+do _check_objectives()
+do SignalBus.asked_a_neighbor.emit()
+=> END
+
+~ jonathan_again
+Jonathan: ...
+do can_interact = true
+=> END
+
+~ home_door
+Danilo: Mag tatanong muna ako sa mga kapitbahay.
+do can_interact = true
+=> END
+
+~ asked_neighbors
+Danilo: Natanong ko na sila...
+do can_interact = true
+=> END
+
+~ picture_frame
+do player_danilo.force_cannot_move = true
+Danilo: ...
+- Take Image
+	do Hud.add_popup_image("res://assets/tilesets/frame_blurred_only.png")
+	do Hud._toggle_popup()
+	Danilo: Bakit nagka ganito 'to?
+	do Hud._toggle_popup()
+	Danilo: ...
+	- Flip image
+		do Hud.add_popup_image("res://assets/tilesets/frame_behind.png")
+		do Hud._toggle_popup()
+		Danilo: [center][wave]Find [wait=1.0]me...[/wave][/center]
+		Danilo: Anong ibig sabihin nito?
+		Danilo: ... ...
+		Danilo: Something's off...
+		do Hud._toggle_popup()
+		Danilo: ...
+		- Take piece of paper
+			do Hud.add_popup_image("res://assets/HUD/map.png")
+			do Hud._toggle_popup()
+			Danilo: Huh? 
+			Danilo: [shake]Anong ginagawa ng mapang ‘to dito? [/shake]
+			Danilo: [shake]Hindi ko maalala kung kailan ko ‘to huling nakita…[/shake]
+			do Hud._toggle_popup()
+			do inspected_picture_frame = true
+			do SignalBus.fade_to_blackness.emit()
+			do can_interact = true
+=> END
+
+~ picture_frame_done
+Danilo: ...
+do can_interact = true
+=> END
+
+~ last_statement_1
+Danilo: Kung may kasagutan man sa likod ng lahat nang to… 
+Danilo: [wave]sana hindi pa huli ang lahat.[/wave]
+- Put the map inside bag
+Danilo: Hintayin mo ‘ko.
+do _act_3_scene_4_done()
+=> END
+
+~ disapointment
+do player_danilo.force_cannot_move = true
+do can_interact = false
+Danilo: Wala akong napala...
+Danilo: Uuwi nalang ako.
+do can_interact = true
+do player_danilo.force_cannot_move = false
+=> END
