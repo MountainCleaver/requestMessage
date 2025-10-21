@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7llhi27g161s"]
+
+[ext_resource type="PackedScene" uid="uid://kn2wx8c77c4t" path="res://scenes/game/act_5/scene_3/npc_danilo.tscn" id="1_hkfgu"]
+[ext_resource type="PackedScene" uid="uid://bslujs6mipwsy" path="res://scenes/characters/player_mateo.tscn" id="2_kcjbl"]
+
+[node name="danilo_follow_mateo" type="Node2D"]
+
+[node name="npc_danilo" parent="." instance=ExtResource("1_hkfgu")]
+
+[node name="player_mateo" parent="." instance=ExtResource("2_kcjbl")]
