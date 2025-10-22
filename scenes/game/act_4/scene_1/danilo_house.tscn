@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5gngeqkegqte"]
+[gd_scene load_steps=11 format=3 uid="uid://b5gngeqkegqte"]
 
-[ext_resource type="Script" uid="uid://dwl7pjg3yydfy" path="res://scenes/game/act_3/scene_3/scene_3_danilo_house.gd" id="1_5cqid"]
 [ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="2_una6p"]
 [ext_resource type="Texture2D" uid="uid://k3fvhpun83o5" path="res://assets/tilesets/danilo_hometown_house_interior_decoration.png" id="3_4c20w"]
 [ext_resource type="Texture2D" uid="uid://tufc0rj0skyh" path="res://assets/tilesets/glass_ov_woa.png" id="4_4meo3"]
+[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="4_dlaq7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5i88b"]
 texture = ExtResource("3_4c20w")
@@ -14,50 +14,71 @@ texture = ExtResource("3_4c20w")
 physics_layer_0/collision_layer = 4
 sources/0 = SubResource("TileSetAtlasSource_5i88b")
 
+[sub_resource type="Gradient" id="Gradient_ilr38"]
+colors = PackedColorArray(1, 1, 0.513726, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yyp5a"]
+gradient = SubResource("Gradient_ilr38")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.782051, 0.200855)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_us8ib"]
 size = Vector2(32, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5i88b"]
 size = Vector2(59, 52)
 
-[node name="scen_3_danilo_house" type="Node2D"]
-script = ExtResource("1_5cqid")
+[node name="danilo_house" type="Node2D"]
 
-[node name="danilo_hometown_house" parent="." instance=ExtResource("2_una6p")]
+[node name="danilo" parent="." instance=ExtResource("2_una6p")]
 
-[node name="TileMap" type="TileMap" parent="danilo_hometown_house/map" index="0"]
+[node name="TileMap" type="TileMap" parent="danilo/map" index="0"]
 tile_set = SubResource("TileSet_bkqbu")
 format = 2
 layer_0/tile_data = PackedInt32Array(327684, 1179648, 18, 327685, 1179648, 18, 262150, 1179648, 18, 262147, 1179648, 18)
 
-[node name="window_1" parent="danilo_hometown_house/map" index="4"]
+[node name="window_1" parent="danilo/map" index="4"]
 region_rect = Rect2(0, 0, 32, 32)
 
-[node name="window_2" parent="danilo_hometown_house/map" index="5"]
+[node name="window_2" parent="danilo/map" index="5"]
 region_rect = Rect2(0, 0, 32, 32)
 
-[node name="window_3" parent="danilo_hometown_house/map" index="6"]
+[node name="window_3" parent="danilo/map" index="6"]
 region_rect = Rect2(0, 0, 32, 32)
 
-[node name="spawn_points" type="Node2D" parent="danilo_hometown_house/y-sorted" index="1"]
+[node name="PointLight2D" type="PointLight2D" parent="danilo/y-sorted/decorations" index="0"]
+light_mask = 16
+position = Vector2(-30, -33)
+scale = Vector2(1.265625, 1.140625)
+energy = 1.3
+shadow_enabled = true
+shadow_color = Color(0.0885599, 0.0885599, 0.0885599, 0)
+shadow_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_yyp5a")
 
-[node name="door_point" type="Marker2D" parent="danilo_hometown_house/y-sorted/spawn_points"]
+[node name="spawn_points" type="Node2D" parent="danilo/y-sorted" index="1"]
+
+[node name="door_point" type="Marker2D" parent="danilo/y-sorted/spawn_points"]
 position = Vector2(80, 72)
 
-[node name="middle_point" type="Marker2D" parent="danilo_hometown_house/y-sorted/spawn_points"]
+[node name="middle_point" type="Marker2D" parent="danilo/y-sorted/spawn_points"]
 position = Vector2(0, 26)
 
-[node name="bed_point" type="Marker2D" parent="danilo_hometown_house/y-sorted/spawn_points"]
+[node name="bed_point" type="Marker2D" parent="danilo/y-sorted/spawn_points"]
 position = Vector2(-77, 2)
 
-[node name="sq_point" type="Marker2D" parent="danilo_hometown_house/y-sorted/spawn_points"]
+[node name="sq_point" type="Marker2D" parent="danilo/y-sorted/spawn_points"]
 position = Vector2(-36, 2)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="player_danilo" parent="danilo/y-sorted" index="2" instance=ExtResource("4_dlaq7")]
+position = Vector2(69, 4)
+
+[node name="door_area" type="Area2D" parent="."]
 position = Vector2(80, 72)
 collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door_area"]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_us8ib")
 
@@ -76,9 +97,21 @@ texture = ExtResource("4_4meo3")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.1704902, 0.19745782, 0.48475146, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+limit_enabled = false
+limit_left = -270
+limit_top = -206
+limit_right = 253
+limit_bottom = 191
+
+[connection signal="body_entered" from="door_area" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="door_area" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="bed_area" to="." method="_on_bed_area_body_entered"]
 [connection signal="body_exited" from="bed_area" to="." method="_on_bed_area_body_exited"]
 
-[editable path="danilo_hometown_house"]
+[editable path="danilo"]
+[editable path="danilo/y-sorted/player_danilo"]

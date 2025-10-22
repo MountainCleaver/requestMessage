@@ -100,6 +100,7 @@ func _on_chat_opened(c: String) -> void:
 
 func _game_state_flow() -> void:
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
+	FlashlightManager.set_current_scene("act_3", "scene_2")
 	GameState.load_game()
 	GameState.current_act = "act_3"
 	GameState.current_scene = "scene_2"

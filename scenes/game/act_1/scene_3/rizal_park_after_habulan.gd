@@ -11,6 +11,7 @@ var wendy_gone : bool = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_1", "scene_3")
 	danilo_collision_shape_2d.disabled = true;
 	wendy_collision_shape_2d.disabled = true;
 	

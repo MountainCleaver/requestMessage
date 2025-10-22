@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0ha8vf4nkmlc"]
+[gd_scene load_steps=3 format=3 uid="uid://b0ha8vf4nkmlc"]
 
 [ext_resource type="Script" uid="uid://d0eogttxbtruq" path="res://scenes/game/act_1/scene_4/act_1_scene_4.gd" id="1_v4s46"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="2_gup0w"]
 
 [node name="act_1_scene_4" type="Node2D"]
 script = ExtResource("1_v4s46")
 
 [node name="locations" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("2_gup0w")]
+visible = false

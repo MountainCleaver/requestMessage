@@ -34,7 +34,7 @@ var inside_bed : bool = false;
 var can_interact : bool = false;
 
 func _ready() -> void:
-	
+	FlashlightManager.set_current_scene("act_1", "scene_1")
 	DialogueManager.dialogue_started.connect(_on_dialogue_start);
 	DialogueManager.dialogue_ended.connect(_on_dialogue_finish);
 	

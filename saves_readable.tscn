@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://do6oub3mf3bf2"]
+
+[ext_resource type="Script" uid="uid://nrwcglohh8vk" path="res://saves_readable.gd" id="1_r0mi4"]
+
+[node name="SavesReadable" type="Node"]
+script = ExtResource("1_r0mi4")

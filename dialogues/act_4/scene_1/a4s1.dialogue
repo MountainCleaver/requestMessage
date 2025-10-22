@@ -1,0 +1,97 @@
+~ start
+Danilo: Hintayin mo ako, Mateo.
+=> END
+
+~ open_phone_flashlight
+Danilo: Ang dilim na pala... tingin ko kailangan ko na buksan yung flashlight ko sa phone.
+- Open the phone => show_phone
+=> END
+
+~ show_phone
+do Hud.reset_phone_state()
+=> END
+
+~ ising_call_danilo
+Lola ising: Iho... saan ka pupunta? Gabi na... delikado sa labas.
+=> END
+
+~ talk_to_ising_first
+Danilo: Kailangan ko muna kausapin si Lola Ising.
+=> END
+
+~ ising_give_flashlight
+Danilo: May kailangan lang akong gawin, La... sandali lang po ‘to.
+Lola ising: Iho, gabi na. Hindi ba puwedeng bukas na lang?
+Danilo: Hindi ko po kayang hintayin bukas... kailangan ko na pong pumunta.
+Lola ising: ...
+Lola ising: Kung gano’n, dalhin mo ‘to. 
+Lola ising: Flashlight. Huwag mong hayaang mawalan ka ng ilaw sa daan.
+Danilo: ...
+Danilo: Salamat, La. Una na po ako.
+=> END
+
+~ complain_phone_flashlight
+Danilo: Medyo mahina 'tong gamit ko na flashlight sa phone ko.
+Danilo: Andilim pa naman sobra.
+Danilo: Kung meron lang akong totoong flashlight na magagamit...
+=> END
+
+~ danilo_saw_ghost
+Danilo: [shake rate=30 level=10]!!!![/shake]
+=> END
+
+~ ghost_gone
+Danilo: [shake rate=20 level=10]A-ano... kaya yun? Hindi ko naabutan. Ang bilis...[/shake]
+Danilo: Pero ba't parang... may nakamasid sa akin. [shake rate=20 level=10]Pinagmamasdan ba ako?[/shake]
+=> END
+
+~ marked_map
+Danilo: Hindi ba ito ‘yung lugar na may marka sa mapa...
+Danilo: Sandali, ano ‘yung nasa lupa?
+=> END
+
+~ picked_up_notebook
+Danilo: Mukhang punit punit naman mga pahina nito.
+Danilo: [shake rate=20 level=10]???[/shake]
+Danilo: [shake rate=20 level=10]Hindi 'to maaari...[/shake]
+Danilo: Hindi ba ito yung diary ni... [shake rate=20 level=10]Mateo?[/shake]
+Danilo: [shake rate=20 level=10]Hindi ko maintindihan...[/shake]
+Danilo: [shake rate=20 level=10]Paano 'to napunta dito?[/shake]
+do BuzzManager.start_buzz()
+Danilo: ...
+- Open the phone => open_phone
+=> END
+
+~ open_phone
+do BuzzManager.stop_buzz()
+do _open_phone_notifications()
+=> END
+
+~ take_meds_or_continue_looking
+Danilo: Oras na pala para uminom ng gamot...
+- Go back home to take medications => take_meds
+- Continue looking for clues => continue_looking
+=> END
+
+~ take_meds
+do SaveManager.save_moral_choice("act_4_scene_1", "relief")
+Danilo: Kaya uuwi muna siguro ako ng bahay.
+Danilo: Kailangan kong uminom ng gamot.
+Danilo: Pero pagkatapos nun... itutuloy ko pa rin ‘to.
+Danilo: Hindi pa ‘to tapos.
+do _on_take_meds_chosen()
+do Hud.phone_outro()
+=> END
+
+~ continue_looking
+do SaveManager.save_moral_choice("act_4_scene_1", "restless")
+Danilo: Pero... kung totoo nga lahat ng ‘to...
+Danilo: Hindi... hindi ako titigil ngayon.
+Danilo: Kailangan kong malaman kung ano talaga ang nangyayari.
+do _on_continue_looking_chosen()
+do Hud.phone_outro()
+=> END
+
+~ back_to_adventure
+Danilo: Pwede na ako magpatuloy...
+=> END

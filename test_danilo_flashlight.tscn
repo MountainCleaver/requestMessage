@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca11xsp3frybh"]
+
+[ext_resource type="PackedScene" uid="uid://b26ke7ifx5fu3" path="res://mateo_house.tscn" id="1_c677d"]
+[ext_resource type="Script" uid="uid://ddgqi2mshy5jr" path="res://test_danilo_flashlight.gd" id="1_xunlm"]
+[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_hslr0"]
+[ext_resource type="PackedScene" uid="uid://de0wf81643agn" path="res://map_test.tscn" id="3_hslr0"]
+
+[node name="test_danilo_flashlight" type="Node2D"]
+script = ExtResource("1_xunlm")
+
+[node name="MateoHouse" parent="." instance=ExtResource("1_c677d")]
+
+[node name="player_danilo" parent="MateoHouse" instance=ExtResource("2_hslr0")]
+position = Vector2(0, 42)
+
+[node name="Camera2D" type="Camera2D" parent="MateoHouse/player_danilo"]
+zoom = Vector2(3.5, 3.5)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.011087578, 0.01108758, 0.011087572, 1)
+
+[node name="map_test" parent="." instance=ExtResource("3_hslr0")]

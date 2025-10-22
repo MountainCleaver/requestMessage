@@ -16,7 +16,7 @@ var phone_main_active: bool = false
 var chat_open: bool = false
 
 func _ready() -> void:
-
+	FlashlightManager.set_current_scene("act_4", "scene_4")
 	if get_tree().has_meta("last_portal_name"):
 		var last_portal_name = str(get_tree().get_meta("last_portal_name"))
 		var target_portal = get_node_or_null(NodePath(last_portal_name))

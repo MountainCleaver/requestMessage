@@ -16,6 +16,7 @@ var scene_objectives = [
 
 # === READY FUNCTION ===
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_2", "scene_4")
 	print("Act 2 Scene 4 initializing...")
 
 	# Load game state

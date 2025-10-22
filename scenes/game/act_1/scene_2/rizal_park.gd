@@ -42,6 +42,7 @@ func _ready() -> void:
 	if BgmManager:
 		BgmManager.stop_music()
 
+	FlashlightManager.set_current_scene("act_1", "scene_2")
 	Hud.show_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	camera_2d.position = player_danilo.global_position

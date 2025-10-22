@@ -8,6 +8,7 @@ const A_1S_4 = preload("res://dialogues/act_1/scene_4/a1s4.dialogue")
 var _in_reflection := false
 
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_1", "scene_4")
 	if DialogueManager:
 		DialogueManager.connect("dialogue_ended", Callable(self, "_on_dialogue_ended"))
 		DialogueManager.show_dialogue_balloon(A_1S_4, "start")

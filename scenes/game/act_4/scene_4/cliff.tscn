@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://bvr6jnqrdpdgd"]
+[gd_scene load_steps=43 format=4 uid="uid://bvr6jnqrdpdgd"]
 
 [ext_resource type="Script" uid="uid://epp6clbotfbk" path="res://scenes/game/act_4/scene_4/cliff.gd" id="1_60q0d"]
 [ext_resource type="Texture2D" uid="uid://cqlemxpf5ymis" path="res://assets/tilesets/cliff_tileset.png" id="1_oqg1l"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://3fmwuculc8uj" path="res://scenes/game/act_4/scene_4/portal2.gd" id="11_60q0d"]
 [ext_resource type="AudioStream" uid="uid://bleocupbn07tb" path="res://sound/strong-howling-wind-132281.mp3" id="11_dk38r"]
 [ext_resource type="AudioStream" uid="uid://4sjldp28msn7" path="res://sound/midnight-cricket-sound-403101.mp3" id="13_4ysv2"]
+[ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="14_rjira"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="15_huid5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fpllf"]
 texture = ExtResource("1_oqg1l")
@@ -207,6 +209,7 @@ limit_right = 619
 limit_bottom = 189
 
 [node name="PointLight2D3" type="PointLight2D" parent="y-sorted/player_danilo"]
+visible = false
 position = Vector2(-1, -10.000013)
 rotation = -1.5707964
 scale = Vector2(1.0856009, 1.1815554)
@@ -329,7 +332,6 @@ position = Vector2(2, 110.625)
 shape = SubResource("RectangleShape2D_dk38r")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.08650524, 0.06233176, 0.058878735, 1)
 
 [node name="BGMCliff" type="AudioStreamPlayer2D" parent="."]
@@ -338,6 +340,14 @@ stream = ExtResource("13_4ysv2")
 autoplay = true
 max_distance = 1000.0
 bus = &"sfx"
+
+[node name="explorer_hud" parent="." instance=ExtResource("14_rjira")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("15_huid5")]
+visible = false
 
 [connection signal="body_entered" from="windarea" to="windarea" method="_on_body_entered"]
 [connection signal="body_entered" from="phone_trigger" to="." method="_on_phone_trigger_body_entered"]

@@ -59,6 +59,7 @@ var can_interact_papers: bool = false
 var current_paper_name: String = ""
 
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_4", "scene_2")
 	tip.visible = false
 	mark.visible = false
 	paper5_collsion.disabled = false

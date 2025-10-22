@@ -1,10 +1,9 @@
 [gd_scene load_steps=13 format=4 uid="uid://bvkcvkexin57k"]
 
-[ext_resource type="Script" uid="uid://dtn2n5kxkaorp" path="res://scenes/game/act_3/scene_3/scene_3_danilo_hometown.gd" id="1_aeeoa"]
 [ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="2_dnr32"]
 [ext_resource type="Texture2D" uid="uid://bnwgscwxng3ne" path="res://assets/tilesets/Sprite-0005.png" id="3_ayu2q"]
-[ext_resource type="PackedScene" uid="uid://byxc4ejvsxd7k" path="res://scenes/characters/tricycle.tscn" id="4_laj6i"]
-[ext_resource type="PackedScene" uid="uid://dw7yle2rdkcn2" path="res://scenes/characters/npc_jonathan.tscn" id="5_8ftny"]
+[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="4_gt2ej"]
+[ext_resource type="PackedScene" uid="uid://j6gfyiki6msu" path="res://scenes/characters/npc_lola_ising.tscn" id="4_vvfp4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixdqi"]
 texture = ExtResource("3_ayu2q")
@@ -19,109 +18,108 @@ size = Vector2(16, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fs3wg"]
 size = Vector2(14, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbfas"]
-size = Vector2(272.5, 24)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gt2ej"]
+size = Vector2(11, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lb2ga"]
-size = Vector2(196, 22)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xygvm"]
+size = Vector2(20, 15)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxl4f"]
-size = Vector2(176, 14)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvfp4"]
+size = Vector2(18, 12)
 
-[node name="scene_3_danilo_hometown" type="Node2D"]
-script = ExtResource("1_aeeoa")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibm7l"]
+size = Vector2(2, 91)
 
-[node name="danilo_hometown" parent="." instance=ExtResource("2_dnr32")]
+[node name="danilo_hometown" type="Node2D"]
 
-[node name="guide" type="TileMapLayer" parent="danilo_hometown/map" index="4"]
+[node name="danilo" parent="." instance=ExtResource("2_dnr32")]
+
+[node name="guide" type="TileMapLayer" parent="danilo/map" index="4"]
 self_modulate = Color(1, 1, 1, 0.32941177)
 tile_map_data = PackedByteArray("AAD6/w4AAAAAAAAAAGD9/w0AAAAAAAAAAGACAA8AAAAAAAAAAGAFAA0AAAAAAAAAADAEAAoAAAAAAAAAADAFAAMAAAAAAAAAADAFAP7/AAAAAAAAADAFAPf/AAAAAAAAAGA=")
 tile_set = SubResource("TileSet_fs3wg")
 
-[node name="tricycle" parent="danilo_hometown/y-sorted-objects" index="2" instance=ExtResource("4_laj6i")]
-position = Vector2(146, -130)
+[node name="spawn_points" type="Node2D" parent="danilo/y-sorted-objects" index="2"]
 
-[node name="spawn_points" type="Node2D" parent="danilo_hometown/y-sorted-objects" index="3"]
-
-[node name="house_door_step_point" type="Marker2D" parent="danilo_hometown/y-sorted-objects/spawn_points"]
+[node name="house_door_step_point" type="Marker2D" parent="danilo/y-sorted-objects/spawn_points"]
 position = Vector2(-87, 163)
 
-[node name="tricycle_off_point" type="Marker2D" parent="danilo_hometown/y-sorted-objects/spawn_points"]
-position = Vector2(179, -146)
+[node name="ising_walk" type="Marker2D" parent="danilo/y-sorted-objects/spawn_points"]
+position = Vector2(-401, 230)
 
-[node name="areas" type="Node2D" parent="danilo_hometown/y-sorted-objects" index="4"]
+[node name="back_to_hometown_point" type="Marker2D" parent="danilo/y-sorted-objects/spawn_points"]
+position = Vector2(-717, 232)
 
-[node name="karatula_area" type="Area2D" parent="danilo_hometown/y-sorted-objects/areas"]
+[node name="house_door_step_point2" type="Marker2D" parent="danilo/y-sorted-objects/spawn_points"]
+position = Vector2(-87, 163)
+
+[node name="areas" type="Node2D" parent="danilo/y-sorted-objects" index="3"]
+
+[node name="karatula_area" type="Area2D" parent="danilo/y-sorted-objects/areas"]
 position = Vector2(-693, 227)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo_hometown/y-sorted-objects/areas/karatula_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo/y-sorted-objects/areas/karatula_area"]
 position = Vector2(-2, -3)
 shape = SubResource("RectangleShape2D_ixdqi")
 debug_color = Color(0.96168846, 1.540184e-06, 0.51167804, 0.41960785)
 
-[node name="house_door_outside" type="Area2D" parent="danilo_hometown/y-sorted-objects/areas"]
+[node name="house_door_outside" type="Area2D" parent="danilo/y-sorted-objects/areas"]
 collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo_hometown/y-sorted-objects/areas/house_door_outside"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo/y-sorted-objects/areas/house_door_outside"]
 position = Vector2(-88, 162)
 shape = SubResource("RectangleShape2D_fs3wg")
 debug_color = Color(0.575415, 0.40358803, 0, 0.41960785)
 
-[node name="jonathan_chase_1" type="Area2D" parent="danilo_hometown/y-sorted-objects/areas"]
-position = Vector2(63, -20)
-collision_layer = 4
+[node name="to_habulan_area" type="Area2D" parent="danilo/y-sorted-objects/areas"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo_hometown/y-sorted-objects/areas/jonathan_chase_1"]
-shape = SubResource("RectangleShape2D_pbfas")
-debug_color = Color(0, 0.62271327, 0.54649323, 0.41960785)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo/y-sorted-objects/areas/to_habulan_area"]
+position = Vector2(-725.5, 232)
+shape = SubResource("RectangleShape2D_gt2ej")
 
-[node name="jonathan_chase_2" type="Area2D" parent="danilo_hometown/y-sorted-objects/areas"]
-position = Vector2(63, 12)
-collision_layer = 4
+[node name="danilo_house_area" type="Area2D" parent="danilo/y-sorted-objects/areas"]
+position = Vector2(-87, 161)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo_hometown/y-sorted-objects/areas/jonathan_chase_2"]
-shape = SubResource("RectangleShape2D_lb2ga")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo/y-sorted-objects/areas/danilo_house_area"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_xygvm")
 
-[node name="jonathan_chase_3" type="Area2D" parent="danilo_hometown/y-sorted-objects/areas"]
-position = Vector2(63, 38)
-collision_layer = 4
+[node name="player_danilo" parent="danilo/y-sorted-objects" index="4" instance=ExtResource("4_gt2ej")]
+position = Vector2(-87, 164)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo_hometown/y-sorted-objects/areas/jonathan_chase_3"]
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_wxl4f")
+[node name="tip_interact" parent="danilo/y-sorted-objects/player_danilo" index="2"]
+y_sort_enabled = true
 
-[node name="npc_jonathan" parent="danilo_hometown/y-sorted-objects" index="5" instance=ExtResource("5_8ftny")]
-modulate = Color(0.30677596, 0.16367781, 0.29034814, 0.32941177)
-position = Vector2(-16, -202)
+[node name="Camera2D" type="Camera2D" parent="danilo/y-sorted-objects/player_danilo"]
+zoom = Vector2(3, 3)
+limit_left = -744
+limit_top = -689
+limit_right = 723
+limit_bottom = 636
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 
-[node name="jonathan_spawn" type="Node2D" parent="danilo_hometown/y-sorted-objects" index="6"]
+[node name="npc_lola_ising" parent="danilo/y-sorted-objects" index="5" instance=ExtResource("4_vvfp4")]
+position = Vector2(-218, 244)
 
-[node name="spawn_1" type="Marker2D" parent="danilo_hometown/y-sorted-objects/jonathan_spawn"]
-position = Vector2(37, -126)
+[node name="lola_ising_area" type="Area2D" parent="danilo/y-sorted-objects/npc_lola_ising"]
 
-[node name="spawn_2" type="Marker2D" parent="danilo_hometown/y-sorted-objects/jonathan_spawn"]
-position = Vector2(36, -64)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo/y-sorted-objects/npc_lola_ising/lola_ising_area"]
+shape = SubResource("RectangleShape2D_vvfp4")
 
-[node name="spawn_3" type="Marker2D" parent="danilo_hometown/y-sorted-objects/jonathan_spawn"]
-position = Vector2(37, -5)
+[node name="flashlight_determinant" type="Area2D" parent="."]
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-color = Color(1, 1, 0.76862746, 1)
-energy = 0.4
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flashlight_determinant"]
+position = Vector2(-683, 234.5)
+shape = SubResource("RectangleShape2D_ibm7l")
 
-[connection signal="body_entered" from="danilo_hometown/y-sorted-objects/tricycle/tricycle_area" to="." method="_on_tricycle_area_body_entered"]
-[connection signal="body_exited" from="danilo_hometown/y-sorted-objects/tricycle/tricycle_area" to="." method="_on_tricycle_area_body_exited"]
-[connection signal="body_entered" from="danilo_hometown/y-sorted-objects/areas/karatula_area" to="." method="_on_karatula_area_body_entered"]
-[connection signal="body_exited" from="danilo_hometown/y-sorted-objects/areas/karatula_area" to="." method="_on_karatula_area_body_exited"]
-[connection signal="body_entered" from="danilo_hometown/y-sorted-objects/areas/house_door_outside" to="." method="_on_house_door_outside_body_entered"]
-[connection signal="body_exited" from="danilo_hometown/y-sorted-objects/areas/house_door_outside" to="." method="_on_house_door_outside_body_exited"]
-[connection signal="body_entered" from="danilo_hometown/y-sorted-objects/areas/jonathan_chase_1" to="." method="_on_jonathan_chase_1_body_entered"]
-[connection signal="body_exited" from="danilo_hometown/y-sorted-objects/areas/jonathan_chase_1" to="." method="_on_jonathan_chase_1_body_exited"]
-[connection signal="body_entered" from="danilo_hometown/y-sorted-objects/areas/jonathan_chase_2" to="." method="_on_jonathan_chase_2_body_entered"]
-[connection signal="body_exited" from="danilo_hometown/y-sorted-objects/areas/jonathan_chase_2" to="." method="_on_jonathan_chase_2_body_exited"]
-[connection signal="body_entered" from="danilo_hometown/y-sorted-objects/areas/jonathan_chase_3" to="." method="_on_jonathan_chase_3_body_entered"]
-[connection signal="body_exited" from="danilo_hometown/y-sorted-objects/areas/jonathan_chase_3" to="." method="_on_jonathan_chase_3_body_exited"]
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.11038878, 0.12960136, 0.33725905, 1)
 
-[editable path="danilo_hometown"]
-[editable path="danilo_hometown/y-sorted-objects/tricycle"]
+[connection signal="body_entered" from="danilo/y-sorted-objects/areas/house_door_outside" to="." method="_on_house_door_outside_body_entered"]
+[connection signal="body_exited" from="danilo/y-sorted-objects/areas/house_door_outside" to="." method="_on_house_door_outside_body_exited"]
+
+[editable path="danilo"]
+[editable path="danilo/y-sorted-objects/player_danilo"]
+[editable path="danilo/y-sorted-objects/npc_lola_ising"]

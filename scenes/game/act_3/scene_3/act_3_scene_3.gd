@@ -114,6 +114,7 @@ var scene_objectives : Array[Dictionary] = [
 var moral_choice : String
 
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_3", "scene_3")
 	Hud.reset_phone_dont_show()
 	_game_state_flow()
 	SignalBus.unknown_sender_unlocked = true

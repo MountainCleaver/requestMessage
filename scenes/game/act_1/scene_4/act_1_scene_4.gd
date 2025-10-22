@@ -73,6 +73,7 @@ func _start_scene() -> void:
 	show_initial_lock_screen()
 
 func _game_state_flow() -> void:
+	FlashlightManager.set_current_scene("act_1", "scene_4")
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
 	GameState.current_act = "act_1"
 	GameState.current_scene = "scene_4"

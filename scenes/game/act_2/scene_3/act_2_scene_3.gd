@@ -92,6 +92,7 @@ func _ready() -> void:
 	bus_interact.set_deferred("monitorable", false)
 
 func _game_state_flow() -> void:
+	FlashlightManager.set_current_scene("act_2", "scene_3")
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
 	GameState.load_game()
 	GameState.current_act = "act_2"

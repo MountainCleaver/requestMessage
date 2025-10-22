@@ -11,12 +11,15 @@ Lola Ising: Kamustahin mo nalang ako kay Wendy ha?
 Lola Ising: Miss na miss ko na kamo sya.
 Lola Ising: Oh siya, dito na ako at mahaba pa ang binyahe mo.
 Danilo: ...
-- Continue Walking
+- Continue Walking =>< nothing_happens
 - Give Lola Ising Some Cash =>< given_money
 => END
 
+~ nothing_happens
+=> END
+
 ~ given_money
-do SaveManager.game_save.given_lola_ising_cash = true
+do SaveManager.set_given_lola_ising_cash(true)
 Lola Ising: Ay aba! hinding hindi ako tatangi sa grasya! Salamat iho.
 Danilo: Walang anuman ho, Lola Ising.
 => END

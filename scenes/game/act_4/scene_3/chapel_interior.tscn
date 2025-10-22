@@ -2053,6 +2053,7 @@ position = Vector2(0, -27.500008)
 texture = ExtResource("12_as7bp")
 
 [node name="PointLight2D" type="PointLight2D" parent="y-sorted/player_danilo"]
+visible = false
 position = Vector2(-0.8333333, -9.166664)
 scale = Vector2(0.772, 0.772)
 color = Color(0.9166399, 0.91663986, 0.9166398, 1)

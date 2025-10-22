@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="9_saaa3"]
 [ext_resource type="PackedScene" uid="uid://cqo3oq6dh2qgd" path="res://assets/character_sprites/jeep2.tscn" id="9_wp4ah"]
 [ext_resource type="Texture2D" uid="uid://dbrsiich4o3bd" path="res://assets/character_sprites/jeep2-Sheet.png" id="11_cifa0"]
-[ext_resource type="AudioStream" uid="uid://bsjmgjnkab88d" path="res://sound/drone-deep-ambient-150933.mp3" id="13_2ds7q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sf27w"]
 texture = ExtResource("2_wp4ah")
@@ -597,12 +596,6 @@ collision_layer = 16
 position = Vector2(9, -257)
 shape = SubResource("RectangleShape2D_cifa0")
 
-[node name="pause_overlay" type="CanvasLayer" parent="."]
-layer = 101
-
-[node name="pause_screen" parent="pause_overlay" instance=ExtResource("9_saaa3")]
-visible = false
-
 [node name="bus_areas" type="Node2D" parent="."]
 
 [node name="montelargo" type="Area2D" parent="bus_areas"]
@@ -652,6 +645,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_vnh1l")
 }
 autoplay = "RESET"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("9_saaa3")]
+visible = false
 
 [connection signal="body_entered" from="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact" to="." method="_on_bus_interact_body_entered"]
 [connection signal="body_exited" from="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact" to="." method="_on_bus_interact_body_exited"]

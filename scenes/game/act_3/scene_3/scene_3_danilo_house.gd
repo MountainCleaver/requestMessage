@@ -3,6 +3,7 @@ extends Node2D
 @onready var bed_area: Area2D = $bed_area
 
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_3", "scene_3")
 	SignalBus.sat_on_bed.connect(_on_sat_on_bed)
 
 
