@@ -2315,6 +2315,7 @@ texture = ExtResource("1_k8g1j")
 26:25/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_8ycym"]
+physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_hox4p")
 
 [node name="trees" type="TileMapLayer"]

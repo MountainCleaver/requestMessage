@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://v1xy12dc50of"]
+
+[ext_resource type="Texture2D" uid="uid://c046c7b0uecbv" path="res://assets/character_sprites/bus2png.png" id="1_f8emq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yqqy"]
+atlas = ExtResource("1_f8emq")
+region = Rect2(0, 0, 80, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fs3b"]
+atlas = ExtResource("1_f8emq")
+region = Rect2(80, 0, 80, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwg8g"]
+atlas = ExtResource("1_f8emq")
+region = Rect2(160, 0, 80, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmi5j"]
+atlas = ExtResource("1_f8emq")
+region = Rect2(240, 0, 80, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvi77"]
+atlas = ExtResource("1_f8emq")
+region = Rect2(320, 0, 80, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wbhl4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yqqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fs3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwg8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmi5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvi77")
+}],
+"loop": false,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="bus" type="AnimatedSprite2D"]
+position = Vector2(457, -550)
+sprite_frames = SubResource("SpriteFrames_wbhl4")

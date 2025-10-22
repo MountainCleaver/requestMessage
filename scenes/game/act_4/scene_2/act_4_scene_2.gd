@@ -15,6 +15,7 @@ var returning_from_hut := false
 # === READY ===
 func _ready() -> void:
 	print("✅ Act 4 Controller Ready")
+	_game_state_flow()
 
 	if has_node("/root/ProgressManager"):
 		ProgressManager.reset()

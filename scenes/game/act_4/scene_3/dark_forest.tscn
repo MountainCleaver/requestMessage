@@ -135,6 +135,7 @@ position = Vector2(0, -31)
 texture = ExtResource("5_6j1wm")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
 
 [node name="entrance" type="Area2D" parent="."]

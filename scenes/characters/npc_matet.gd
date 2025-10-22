@@ -38,14 +38,14 @@ func _update_animation() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print(body.name)
 	if body.name == "player_danilo":
-		SignalBus.in_npc.emit("npc_manong_gino")
+		SignalBus.in_npc.emit("npc_manang_matet")
 		
 	if body.name == "player_wendy":
-		SignalBus.in_npc.emit("npc_manong_gino")
+		SignalBus.in_npc.emit("npc_manang_matet")
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.name == "player_danilo":
-		SignalBus.out_npc.emit("npc_manong_gino")
+		SignalBus.out_npc.emit("npc_manang_matet")
 	
 	if body.name == "player_wendy":
-		SignalBus.out_npc.emit("npc_manong_gino")
+		SignalBus.out_npc.emit("npc_manang_matet")
