@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://sd3ohpeld7ih"]
+
+[ext_resource type="Script" uid="uid://vyq3hxt8vx1d" path="res://scenes/game/act_5/scene_8/act_5_scene_8.gd" id="1_bboq8"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="1_q36yt"]
+[ext_resource type="PackedScene" uid="uid://dinpfs4j50eb" path="res://scenes/game/act_4/scene_3/chapel_interior.tscn" id="2_k4njg"]
+
+[node name="act_5_scene_8" type="Node2D"]
+script = ExtResource("1_bboq8")
+
+[node name="locations" type="Node2D" parent="."]
+
+[node name="chapel_interior" parent="locations" instance=ExtResource("2_k4njg")]
+
+[node name="PointLight2D" parent="locations/chapel_interior/map/candle/candle_1" index="2"]
+visible = true
+
+[node name="PointLight2D" parent="locations/chapel_interior/map/candle/candle_2" index="2"]
+visible = true
+
+[node name="PointLight2D" parent="locations/chapel_interior/map/candle/candle_3" index="2"]
+visible = true
+
+[node name="PointLight2D" parent="locations/chapel_interior/map/candle/candle_4" index="2"]
+visible = true
+
+[node name="PointLight2D" parent="locations/chapel_interior/map/candle/candle_5" index="2"]
+visible = true
+
+[node name="PointLight2D" parent="locations/chapel_interior/map/candle/candle_6" index="2"]
+visible = true
+
+[node name="PointLight2D" parent="locations/chapel_interior/map/candle/big_candle" index="2"]
+visible = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("1_q36yt")]
+visible = false
+
+[node name="reading_position" type="Marker2D" parent="."]
+position = Vector2(29, -63)
+
+[editable path="locations/chapel_interior"]
+[editable path="locations/chapel_interior/map/candle/candle_1"]
+[editable path="locations/chapel_interior/map/candle/candle_2"]
+[editable path="locations/chapel_interior/map/candle/candle_3"]
+[editable path="locations/chapel_interior/map/candle/candle_4"]
+[editable path="locations/chapel_interior/map/candle/candle_5"]
+[editable path="locations/chapel_interior/map/candle/candle_6"]
+[editable path="locations/chapel_interior/map/candle/big_candle"]
+[editable path="locations/chapel_interior/y-sorted/cabinet_1"]
+[editable path="locations/chapel_interior/y-sorted/cabinet_2"]
+[editable path="locations/chapel_interior/y-sorted/player_danilo"]

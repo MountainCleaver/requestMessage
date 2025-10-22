@@ -1,0 +1,53 @@
+~ condition_stabilized
+# Reading diary
+Danilo: Hindi ko alam na ganito pala pinagdadaanan mo...
+Danilo: [shake]Akala ko masaya ka...[/shake]
+Danilo: [wave]Sorry Mateo.[/wave]
+# Mateo appears
+Danilo: Mateo?
+Mateo_good_ghost: [wave]Tumpak![/wave] Haha!
+Mateo_good_ghost: Nahanap mo rin ang lugar na hindi ko naipakita sayo noon.
+Danilo: ... ...
+Mateo_good_ghost: Hindi ka ba masayang makita ako?
+Danilo: Hindi ako makapaniwalang nakakausap pa kita.
+Mateo_good_ghost: ...
+Danilo: Pinag antay kita ng matagal-tagal, at ngayon [wave]nahanap na kita[/wave]
+# Mateo, tumalikod
+Mateo_good_ghost: ...
+Danilo: San tayo pupunta? Hintayin moko.
+# Mateo walks
+# transition outside / cliff
+Mateo_good_ghost: Danilo, andami ko pang gustong magawa na kasama kayo.
+Danilo: ...
+Mateo_good_ghost: Ang dami ko pang gustong gawin kasama kayo… 
+Mateo_good_ghost: Pero salamat, Danilo. 
+Mateo_good_ghost: [wave]Dahil hinanap mo ako[/wave], kaya ko nang magpahinga.
+# Mateo fading away
+# Fading pause until these line are done
+Danilo: Saglit lang Mateo.
+Danilo: Ang dami ko pang gustong ikwento sayo. 
+Danilo: Lumipat na kami sa Maynila. 
+Danilo: May trabaho na ako. 
+Danilo: Si Wendy… psychiatrist na siya. 
+Danilo: Ang dami naming pinagdaanan na hindi ka kasama. 
+Danilo: Kahit saglit lang, dito ka muna.
+# Mateo fading away continues, and finishes
+Mateo_good_ghost: Salamat sa paghahanap sakin, mabuhay ka Danilo.
+=> END
+
+~ condition_worsened
+# reading diary
+Danilo: Mateo... Diyos ko... lahat pala  'to tinago mo samin...
+# chapel darken, soundfx
+Danilo: Akala ko... Masaya ka... na wala kang dinadala...
+Danilo: Pero pinabayaan kita.
+Danilo: Mateo... Sorry...
+???: ...Danilo...bakit... iniwan mo ako...
+Danilo: Mateo... Ikaw ba 'yan?
+???: Halika... dito tayo... Danilo... dito...
+# transition outside/cliff
+# shadow stand near edge of cliff
+Danilo: Mateo... saglit lang... wag mo muna ako iwan...
+# shadow fades to nothing
+# Danilo collapsed at the edge. The voices screamed louder, swallowing him in darkness.
+=> END
