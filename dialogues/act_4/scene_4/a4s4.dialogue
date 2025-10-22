@@ -5,7 +5,6 @@ Unknown_sender: [wait=1.5] Pumwesto ka sa likod ng bato para hindi ka maihip ng 
 => END
 
 ~ Ignore
-do SaveManager.save_moral_choice("act_4_scene_4", "relief")
 Danilo: ...
 do Hud.phone_outro()
 => after_phone
