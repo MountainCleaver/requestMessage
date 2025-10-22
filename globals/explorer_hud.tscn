@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://isy10eb7hc4"]
+[gd_scene load_steps=8 format=3 uid="uid://isy10eb7hc4"]
 
 [ext_resource type="Script" uid="uid://d01x0j4mgcai0" path="res://globals/explorer_hud.gd" id="1_c7aqf"]
 [ext_resource type="Texture2D" uid="uid://dlp43e7qb0pcy" path="res://assets/HUD/map_icon.png" id="2_eab4r"]
@@ -12,6 +12,13 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cws6g"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="explorer_hud" type="CanvasLayer"]
 script = ExtResource("1_c7aqf")
@@ -42,6 +49,27 @@ theme_override_font_sizes/font_size = 25
 text = "M"
 horizontal_alignment = 1
 
+[node name="Guide" type="Panel" parent="Map/Panel/Label"]
+visible = false
+layout_mode = 0
+offset_top = 31.0
+offset_right = 328.0
+offset_bottom = 111.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cws6g")
+
+[node name="Label" type="Label" parent="Map/Panel/Label/Guide"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 6.0
+offset_right = 312.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.29954746, 0.29954746, 0.29954743, 1)
+theme_override_fonts/font = ExtResource("3_5m4lj")
+theme_override_font_sizes/font_size = 25
+text = "A map… maybe it will help.
+Press [M] to toggle map."
+horizontal_alignment = 1
+
 [node name="Flashlight" type="TextureButton" parent="."]
 visible = false
 offset_left = 82.0
@@ -69,7 +97,28 @@ theme_override_font_sizes/font_size = 25
 text = "F"
 horizontal_alignment = 1
 
+[node name="Guide" type="Panel" parent="Flashlight/Panel/Label"]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 374.0
+offset_bottom = 111.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cws6g")
+
+[node name="Label" type="Label" parent="Flashlight/Panel/Label/Guide"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 15.0
+offset_right = 361.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0.29954746, 0.29954746, 0.29954743, 1)
+theme_override_fonts/font = ExtResource("3_5m4lj")
+theme_override_font_sizes/font_size = 25
+text = "The darkness seems thinner now.
+Press [F] to toggle flashlight."
+horizontal_alignment = 1
+
 [node name="FullMapPanel" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

@@ -21,6 +21,7 @@ var player_node: Node = null
 
 signal phone_flashlight_enabled_signal
 signal current_scene_changed(act: String, scene: String)
+signal real_flashlight_unlocked_signal
 
 # Used to prevent repeating console spam
 var _last_debug_message := ""
@@ -118,6 +119,7 @@ func unlock_real_flashlight() -> void:
 	# Unlock the real flashlight permanently
 	real_flashlight_unlocked = true
 	_print_once("[FlashlightManager] Real flashlight UNLOCKED!")
+	emit_signal("real_flashlight_unlocked_signal")
 
 func toggle_real_flashlight() -> void:
 	# Toggle real flashlight if allowed
