@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://bvkcvkexin57k"]
+[gd_scene load_steps=16 format=4 uid="uid://bvkcvkexin57k"]
 
 [ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="2_dnr32"]
 [ext_resource type="Texture2D" uid="uid://bnwgscwxng3ne" path="res://assets/tilesets/Sprite-0005.png" id="3_ayu2q"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="4_gt2ej"]
 [ext_resource type="PackedScene" uid="uid://j6gfyiki6msu" path="res://scenes/characters/npc_lola_ising.tscn" id="4_vvfp4"]
+[ext_resource type="Texture2D" uid="uid://cuo886qs3guh8" path="res://assets/character_sprites/Light.png" id="5_vvfp4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixdqi"]
 texture = ExtResource("3_ayu2q")
@@ -29,6 +30,12 @@ size = Vector2(18, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibm7l"]
 size = Vector2(2, 91)
+
+[sub_resource type="Gradient" id="Gradient_yynb5"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ibm7l"]
+gradient = SubResource("Gradient_yynb5")
 
 [node name="danilo_hometown" type="Node2D"]
 
@@ -116,6 +123,225 @@ shape = SubResource("RectangleShape2D_ibm7l")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.11038878, 0.12960136, 0.33725905, 1)
+
+[node name="lights" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="lights"]
+position = Vector2(-54, 291)
+scale = Vector2(0.65625, 0.15625)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D14" type="PointLight2D" parent="lights"]
+position = Vector2(-283.5, 144)
+scale = Vector2(0.23437504, 0.15625)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D15" type="PointLight2D" parent="lights"]
+position = Vector2(-602.75, 144.5)
+scale = Vector2(0.14843705, 0.078125)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D16" type="PointLight2D" parent="lights"]
+position = Vector2(-674.875, 290.25)
+scale = Vector2(0.37109375, 0.24218768)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D17" type="PointLight2D" parent="lights"]
+position = Vector2(-670.00006, 319.00003)
+scale = Vector2(0.37109375, 0.24218768)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D18" type="PointLight2D" parent="lights"]
+position = Vector2(-694.9375, 320.125)
+scale = Vector2(0.15429728, 0.089843385)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D19" type="PointLight2D" parent="lights"]
+position = Vector2(-347.46878, 319.5625)
+scale = Vector2(0.20214966, 0.1386718)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D20" type="PointLight2D" parent="lights"]
+position = Vector2(-652.00006, -2)
+scale = Vector2(0.20214966, 0.1386718)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D21" type="PointLight2D" parent="lights"]
+position = Vector2(-363.73444, -0.71874887)
+scale = Vector2(0.21045099, 0.14746091)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D22" type="PointLight2D" parent="lights"]
+position = Vector2(-344, 1.1406254)
+scale = Vector2(0.15624975, 0.08935545)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D23" type="PointLight2D" parent="lights"]
+position = Vector2(438, 31.57031)
+scale = Vector2(0.21874988, 0.13842769)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D24" type="PointLight2D" parent="lights"]
+position = Vector2(389, 146)
+scale = Vector2(0.4687496, 0.13842769)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D25" type="PointLight2D" parent="lights"]
+position = Vector2(388, 167.28516)
+scale = Vector2(0.4687496, 0.2098388)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D26" type="PointLight2D" parent="lights"]
+position = Vector2(660, 177.14258)
+scale = Vector2(0.21875006, 0.1517944)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D27" type="PointLight2D" parent="lights"]
+position = Vector2(389.5, 337.0713)
+scale = Vector2(0.1718748, 0.12277243)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D28" type="PointLight2D" parent="lights"]
+position = Vector2(581.25, 335.53564)
+scale = Vector2(0.2109378, 0.17076133)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D29" type="PointLight2D" parent="lights"]
+position = Vector2(226.12498, 314.26782)
+scale = Vector2(0.4023436, 0.14788081)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D30" type="PointLight2D" parent="lights"]
+position = Vector2(216.5625, 341.6339)
+scale = Vector2(0.2011718, 0.23019107)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D31" type="PointLight2D" parent="lights"]
+position = Vector2(232, 338.31696)
+scale = Vector2(0.15624996, 0.11509553)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D8" type="PointLight2D" parent="lights"]
+position = Vector2(-107.5, 144)
+scale = Vector2(0.203125, 0.15625)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D2" type="PointLight2D" parent="lights"]
+position = Vector2(-64, 321.5)
+scale = Vector2(0.37499997, 0.14062524)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D3" type="PointLight2D" parent="lights"]
+position = Vector2(149.50002, 176.75)
+scale = Vector2(0.1406248, 0.10156275)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D4" type="PointLight2D" parent="lights"]
+position = Vector2(-27.5, -0.5000002)
+scale = Vector2(0.20312497, 0.140625)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D5" type="PointLight2D" parent="lights"]
+position = Vector2(247.99998, 16)
+scale = Vector2(0.15625001, 0.09375)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D6" type="PointLight2D" parent="lights"]
+position = Vector2(268, -13.999998)
+scale = Vector2(0.3749999, 0.21874993)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D7" type="PointLight2D" parent="lights"]
+position = Vector2(272.00003, 15)
+scale = Vector2(0.31249982, 0.1875)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ibm7l")
+
+[node name="PointLight2D9" type="PointLight2D" parent="lights"]
+position = Vector2(-107.00001, 144)
+scale = Vector2(0.128, 0.119999975)
+energy = 1.09
+blend_mode = 2
+texture = ExtResource("5_vvfp4")
+
+[node name="PointLight2D10" type="PointLight2D" parent="lights"]
+position = Vector2(-56, 315.5)
+scale = Vector2(0.21800002, 0.21399999)
+energy = 1.09
+blend_mode = 2
+texture = ExtResource("5_vvfp4")
+
+[node name="PointLight2D11" type="PointLight2D" parent="lights"]
+position = Vector2(152, 177.00002)
+scale = Vector2(0.09600001, 0.10399992)
+energy = 1.09
+blend_mode = 2
+texture = ExtResource("5_vvfp4")
+
+[node name="PointLight2D12" type="PointLight2D" parent="lights"]
+position = Vector2(259, 8)
+scale = Vector2(0.15500003, 0.16599996)
+energy = 1.09
+blend_mode = 2
+texture = ExtResource("5_vvfp4")
+
+[node name="PointLight2D13" type="PointLight2D" parent="lights"]
+position = Vector2(-25, 2)
+scale = Vector2(0.15500003, 0.16599996)
+energy = 1.09
+blend_mode = 2
+texture = ExtResource("5_vvfp4")
 
 [connection signal="body_entered" from="danilo/y-sorted-objects/areas/house_door_outside" to="." method="_on_house_door_outside_body_entered"]
 [connection signal="body_exited" from="danilo/y-sorted-objects/areas/house_door_outside" to="." method="_on_house_door_outside_body_exited"]
