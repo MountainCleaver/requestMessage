@@ -32,4 +32,7 @@ do lalabas_ng_bahay()
 ~ wendy
 Wendy_child: Ooooooooooy!
 Wendy_child: Wait lang!
+do make_wendy_follow_mateo_and_danilo()
+do player_mateo.force_cannot_move = false
+do wendy.show()
 => END

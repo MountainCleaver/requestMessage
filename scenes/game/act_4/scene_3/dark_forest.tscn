@@ -114,6 +114,7 @@ debug_color = Color(0.8901961, 0.19607843, 0.6431373, 0.56078434)
 position = Vector2(-478, -1)
 
 [node name="PointLight2D2" type="PointLight2D" parent="y-sorted/player_danilo"]
+visible = false
 position = Vector2(0, -5)
 scale = Vector2(0.772, 0.772)
 color = Color(0.9166399, 0.91663986, 0.9166398, 1)

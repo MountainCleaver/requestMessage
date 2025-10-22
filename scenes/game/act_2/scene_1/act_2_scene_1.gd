@@ -104,6 +104,7 @@ func _start_scene() -> void:
 		bed_area.monitoring = false
 		
 func _game_state_flow() -> void:
+	FlashlightManager.set_current_scene("act_2", "scene_1")
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
 	GameState.load_game()
 	GameState.current_act = "act_2"

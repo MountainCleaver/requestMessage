@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://iw5y556roeg2"]
+
+[ext_resource type="Shader" uid="uid://bwd0jmb4csuk0" path="res://scenes/game/act_3/scene_4/fog.gdshader" id="1_do42c"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_do42c"]
+frequency = 0.0017
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dimc3"]
+width = 1440
+height = 1025
+noise = SubResource("FastNoiseLite_do42c")
+seamless = true
+seamless_blend_skirt = 0.75
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dimc3"]
+shader = ExtResource("1_do42c")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_dimc3")
+shader_parameter/density = 1.0
+shader_parameter/speed = Vector2(0.02, 0.01)
+
+[node name="fog" type="ParallaxBackground"]
+layer = 5
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1440, 1024)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxLayer"]
+material = SubResource("ShaderMaterial_dimc3")
+offset_right = 1440.0
+offset_bottom = 1024.0

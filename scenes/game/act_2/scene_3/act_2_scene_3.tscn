@@ -596,12 +596,6 @@ collision_layer = 16
 position = Vector2(9, -257)
 shape = SubResource("RectangleShape2D_cifa0")
 
-[node name="pause_overlay" type="CanvasLayer" parent="."]
-layer = 101
-
-[node name="pause_screen" parent="pause_overlay" instance=ExtResource("9_saaa3")]
-visible = false
-
 [node name="bus_areas" type="Node2D" parent="."]
 
 [node name="montelargo" type="Area2D" parent="bus_areas"]
@@ -651,6 +645,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_vnh1l")
 }
 autoplay = "RESET"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("9_saaa3")]
+visible = false
 
 [connection signal="body_entered" from="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact" to="." method="_on_bus_interact_body_entered"]
 [connection signal="body_exited" from="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact" to="." method="_on_bus_interact_body_exited"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7llhi27g161s"]
+
+[ext_resource type="PackedScene" uid="uid://kn2wx8c77c4t" path="res://scenes/game/act_5/scene_3/npc_danilo.tscn" id="1_hkfgu"]
+[ext_resource type="Script" uid="uid://c1nlaj8dhuwc2" path="res://scenes/game/act_5/scene_3/danilo_follow_mateo.gd" id="1_kcjbl"]
+[ext_resource type="PackedScene" uid="uid://bslujs6mipwsy" path="res://scenes/characters/player_mateo.tscn" id="2_kcjbl"]
+[ext_resource type="PackedScene" uid="uid://d1vnt1mlybwuq" path="res://scenes/characters/npc_wendy.tscn" id="2_x18m5"]
+
+[node name="danilo_follow_mateo" type="Node2D"]
+script = ExtResource("1_kcjbl")
+
+[node name="wendy" parent="." instance=ExtResource("2_x18m5")]
+
+[node name="AnimatedSprite2D" parent="wendy" index="0"]
+position = Vector2(0, -5)
+
+[node name="CollisionShape2D" parent="wendy" index="1"]
+disabled = true
+
+[node name="npc_danilo" parent="." instance=ExtResource("1_hkfgu")]
+
+[node name="AnimatedSprite2D" parent="npc_danilo" index="0"]
+y_sort_enabled = true
+
+[node name="player_mateo" parent="." instance=ExtResource("2_kcjbl")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[editable path="wendy"]
+[editable path="npc_danilo"]

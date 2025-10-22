@@ -66,6 +66,7 @@ var hut_already_entered: bool = false
 
 # === READY ===
 func _ready():
+	FlashlightManager.set_current_scene("act_4", "scene_2")
 	tip.visible = false
 	mark.visible = false
 	setup_dirt_connections()

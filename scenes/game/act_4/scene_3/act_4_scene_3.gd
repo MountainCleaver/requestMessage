@@ -100,6 +100,7 @@ func _ready():
 	SignalBus.unknown_sender_label_visible = false
 
 func _game_state_flow() -> void:
+	FlashlightManager.set_current_scene("act_4", "scene_3")
 	GameState.load_game()
 	GameState.current_act = "act_4"
 	GameState.current_scene = "scene_3"

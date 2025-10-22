@@ -24,6 +24,7 @@ func _ready() -> void:
 
 func _game_state_flow() -> void:
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
+	FlashlightManager.set_current_scene("act_4", "scene_2")
 	GameState.load_game()
 	GameState.current_act = "act_4"
 	GameState.current_scene = "scene_2"
