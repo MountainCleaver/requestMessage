@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bvkcvkexin57k"]
+[gd_scene load_steps=13 format=4 uid="uid://bvkcvkexin57k"]
 
 [ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="2_dnr32"]
 [ext_resource type="Texture2D" uid="uid://bnwgscwxng3ne" path="res://assets/tilesets/Sprite-0005.png" id="3_ayu2q"]
@@ -20,6 +20,9 @@ size = Vector2(14, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gt2ej"]
 size = Vector2(11, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xygvm"]
+size = Vector2(20, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvfp4"]
 size = Vector2(18, 12)
@@ -43,6 +46,12 @@ position = Vector2(-87, 163)
 
 [node name="ising_walk" type="Marker2D" parent="danilo/y-sorted-objects/spawn_points"]
 position = Vector2(-401, 230)
+
+[node name="back_to_hometown_point" type="Marker2D" parent="danilo/y-sorted-objects/spawn_points"]
+position = Vector2(-717, 232)
+
+[node name="house_door_step_point2" type="Marker2D" parent="danilo/y-sorted-objects/spawn_points"]
+position = Vector2(-87, 163)
 
 [node name="areas" type="Node2D" parent="danilo/y-sorted-objects" index="3"]
 
@@ -69,6 +78,13 @@ debug_color = Color(0.575415, 0.40358803, 0, 0.41960785)
 position = Vector2(-725.5, 232)
 shape = SubResource("RectangleShape2D_gt2ej")
 
+[node name="danilo_house_area" type="Area2D" parent="danilo/y-sorted-objects/areas"]
+position = Vector2(-87, 161)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo/y-sorted-objects/areas/danilo_house_area"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_xygvm")
+
 [node name="player_danilo" parent="danilo/y-sorted-objects" index="4" instance=ExtResource("4_gt2ej")]
 position = Vector2(-87, 164)
 
@@ -85,7 +101,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="npc_lola_ising" parent="danilo/y-sorted-objects" index="5" instance=ExtResource("4_vvfp4")]
-position = Vector2(-220, 239)
+position = Vector2(-218, 244)
 
 [node name="lola_ising_area" type="Area2D" parent="danilo/y-sorted-objects/npc_lola_ising"]
 

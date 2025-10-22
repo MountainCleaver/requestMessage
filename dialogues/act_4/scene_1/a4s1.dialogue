@@ -42,5 +42,56 @@ Danilo: [shake rate=30 level=10]!!!![/shake]
 
 ~ ghost_gone
 Danilo: [shake rate=20 level=10]A-ano... kaya yun? Hindi ko naabutan. Ang bilis...[/shake]
-Danilo: Pero parang... may nakamasid sa akin. [shake rate=20 level=10]Pinagmamasdan ako.[/shake]
+Danilo: Pero ba't parang... may nakamasid sa akin. [shake rate=20 level=10]Pinagmamasdan ba ako?[/shake]
+=> END
+
+~ marked_map
+Danilo: Hindi ba ito ‘yung lugar na may marka sa mapa...
+Danilo: Sandali, ano ‘yung nasa lupa?
+=> END
+
+~ picked_up_notebook
+Danilo: Mukhang punit punit naman mga pahina nito.
+Danilo: [shake rate=20 level=10]???[/shake]
+Danilo: [shake rate=20 level=10]Hindi 'to maaari...[/shake]
+Danilo: Hindi ba ito yung diary ni... [shake rate=20 level=10]Mateo?[/shake]
+Danilo: [shake rate=20 level=10]Hindi ko maintindihan...[/shake]
+Danilo: [shake rate=20 level=10]Paano 'to napunta dito?[/shake]
+do BuzzManager.start_buzz()
+Danilo: ...
+- Open the phone => open_phone
+=> END
+
+~ open_phone
+do BuzzManager.stop_buzz()
+do _open_phone_notifications()
+=> END
+
+~ take_meds_or_continue_looking
+Danilo: Oras na pala para uminom ng gamot...
+- Go back home to take medications => take_meds
+- Continue looking for clues => continue_looking
+=> END
+
+~ take_meds
+do SaveManager.save_moral_choice("act_4_scene_1", "relief")
+Danilo: Kaya uuwi muna siguro ako ng bahay.
+Danilo: Kailangan kong uminom ng gamot.
+Danilo: Pero pagkatapos nun... itutuloy ko pa rin ‘to.
+Danilo: Hindi pa ‘to tapos.
+do _on_take_meds_chosen()
+do Hud.phone_outro()
+=> END
+
+~ continue_looking
+do SaveManager.save_moral_choice("act_4_scene_1", "restless")
+Danilo: Pero... kung totoo nga lahat ng ‘to...
+Danilo: Hindi... hindi ako titigil ngayon.
+Danilo: Kailangan kong malaman kung ano talaga ang nangyayari.
+do _on_continue_looking_chosen()
+do Hud.phone_outro()
+=> END
+
+~ back_to_adventure
+Danilo: Pwede na ako magpatuloy...
 => END

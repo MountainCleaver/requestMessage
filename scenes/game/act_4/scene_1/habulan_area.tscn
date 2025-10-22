@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://b526ha1fje6y2"]
+[gd_scene load_steps=23 format=4 uid="uid://b526ha1fje6y2"]
 
 [ext_resource type="PackedScene" uid="uid://c3glrajf2ba8i" path="res://scenes/game/act_1/scene_3/habulan_ground.tscn" id="2_n8td8"]
 [ext_resource type="Texture2D" uid="uid://dp4lljuakpb1d" path="res://assets/tilesets/habulan_area_entry_to_dark_forest_playground_assets.png" id="3_138e5"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dy8w1ggvx51vf" path="res://assets/character_sprites/MATEO_BOTHERED.png" id="6_l75ou"]
 [ext_resource type="Texture2D" uid="uid://b26tbvt5h4mc8" path="res://assets/character_sprites/MATEO__SHOCKED.png" id="7_msp3e"]
 [ext_resource type="AudioStream" uid="uid://bark61xgh126b" path="res://sound/Come-Out-And-Play-Remixed-Royalty-Free(chosic.com).mp3" id="10_g1k3x"]
+[ext_resource type="Texture2D" uid="uid://umb5qi1ym8pw" path="res://assets/tilesets/diary.png" id="10_p1mi3"]
 [ext_resource type="AudioStream" uid="uid://cgl77xcrs43cw" path="res://sound/children-giggling-kids-laughing-hd-378111.mp3" id="11_je80a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nibkr"]
@@ -5187,8 +5188,20 @@ _data = {
 &"bothered_in": SubResource("Animation_cn6d4")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pts6c"]
+radius = 5.0990195
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p1mi3"]
+radius = 9.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pts6c"]
 size = Vector2(14, 218)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msp3e"]
+size = Vector2(5, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1mi3"]
+size = Vector2(4, 231)
 
 [node name="habulan_area" type="Node2D"]
 
@@ -5247,11 +5260,32 @@ texture = ExtResource("7_msp3e")
 [node name="npc_shadowy_ghost" parent="danilo/y-sorted" instance=ExtResource("5_pts6c")]
 position = Vector2(511, -7)
 
+[node name="StaticBody2D" type="StaticBody2D" parent="danilo/y-sorted"]
+visible = false
+position = Vector2(-67, 3)
+collision_layer = 2
+
+[node name="mateo_diary" type="Sprite2D" parent="danilo/y-sorted/StaticBody2D"]
+y_sort_enabled = true
+position = Vector2(6.5, 1)
+scale = Vector2(0.90625, 0.875)
+texture = ExtResource("10_p1mi3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo/y-sorted/StaticBody2D"]
+position = Vector2(-2, 1)
+shape = SubResource("CircleShape2D_pts6c")
+
+[node name="mateo_diary_area" type="Area2D" parent="danilo/y-sorted/StaticBody2D"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo/y-sorted/StaticBody2D/mateo_diary_area"]
+shape = SubResource("CircleShape2D_p1mi3")
+
 [node name="area" type="Node2D" parent="."]
 
-[node name="camera_pan" type="Area2D" parent="area"]
+[node name="ghost_spawn_1" type="Area2D" parent="area"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="area/camera_pan"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area/ghost_spawn_1"]
 position = Vector2(156, -6)
 shape = SubResource("RectangleShape2D_pts6c")
 
@@ -5260,6 +5294,32 @@ position = Vector2(390, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area/ghost_spawn_2"]
 position = Vector2(-613, 3)
+shape = SubResource("RectangleShape2D_pts6c")
+
+[node name="ghost_gone" type="Area2D" parent="area"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area/ghost_gone"]
+position = Vector2(-521.5, -14.5)
+shape = SubResource("RectangleShape2D_msp3e")
+
+[node name="marked_map" type="Area2D" parent="area"]
+position = Vector2(-223, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area/marked_map"]
+position = Vector2(-95, -16.5)
+shape = SubResource("RectangleShape2D_p1mi3")
+
+[node name="dark_forest_way" type="Area2D" parent="area"]
+position = Vector2(-25, -21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area/dark_forest_way"]
+position = Vector2(-613, 3)
+shape = SubResource("RectangleShape2D_pts6c")
+
+[node name="hometown_way" type="Area2D" parent="area"]
+position = Vector2(771, -4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area/hometown_way"]
 shape = SubResource("RectangleShape2D_pts6c")
 
 [node name="BGMHide-and-seek" type="AudioStreamPlayer" parent="."]
@@ -5275,7 +5335,6 @@ autoplay = true
 bus = &"sfx"
 
 [node name="lighting" type="Node2D" parent="."]
-visible = false
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="lighting"]
 color = Color(0.020112451, 0.0040829256, 0.18742177, 0.8745098)
@@ -5284,8 +5343,11 @@ blend_mode = 2
 
 [node name="spawn_points" type="Node2D" parent="."]
 
+[node name="back_to_habulan_area" type="Marker2D" parent="spawn_points"]
+position = Vector2(762, -1)
+
 [node name="shadowy_ghost_gone" type="Marker2D" parent="spawn_points"]
-position = Vector2(301, -7)
+position = Vector2(288, 0)
 
 [node name="shadowy_ghost_appear" type="Marker2D" parent="spawn_points"]
 position = Vector2(44, -5)
@@ -5298,6 +5360,9 @@ position = Vector2(-315, -13)
 
 [node name="shadowy_ghost_gone3" type="Marker2D" parent="spawn_points"]
 position = Vector2(-561, -12)
+
+[node name="habulan_area_step_point" type="Marker2D" parent="spawn_points"]
+position = Vector2(762, -1)
 
 [editable path="danilo/y-sorted/player_danilo"]
 [editable path="danilo/y-sorted/npc_shadowy_ghost"]
