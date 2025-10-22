@@ -22,7 +22,7 @@ Danilo: ... [wait = 0.5]
 
 ~ open_phone
 do stop_buzz()
-do Hud.phone_intro()
+do Hud.reset_phone_state()
 => after_open_phone
 
 ~ ignore_phone
@@ -44,6 +44,7 @@ Wendy: Chat me pag nakauwi ka na.
 => END
 
 ~ reply 
+Danilo: ...
 - Nasa tapat pa lang ako ng bahay. => reply_answer1
 - Kakababa ko pa lang ng jeep.    => reply_answer2
 
@@ -69,6 +70,7 @@ Mira: Nak, wag mo kalimutan mga gamot mo ah... tsaka yung appointment bukas.
 => END
 
 ~ reply_mira_answer
+Danilo: ...
 - Opo Ma, pauwi pa lang ako. => reply_mira_answer1
 
 ~ reply_mira_answer1
@@ -110,6 +112,6 @@ Danilo: Huh… Sino ‘to? [wait=1.5]
 => END
 
 ~ chat_unknown_sender
-do ChatManager.send_chat("unknown_sender", "Unknown Number", "Hello, Danilo")
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Hello, Danilo.")
 Unknown_sender: [wait=1.5]Hello, Danilo.
 => END

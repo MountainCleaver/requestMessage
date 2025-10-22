@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cscvgwx87p4w4"]
+
+[ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="1_b3bhf"]
+[ext_resource type="Script" uid="uid://idnd5plqp7il" path="res://scenes/game/act_5/scene_7/act_5_scene_7.gd" id="1_btl1l"]
+[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_sjxjj"]
+[ext_resource type="PackedScene" uid="uid://dwm8ct5kn32i0" path="res://scenes/game/act_5/scene_3/npc_mira.tscn" id="3_btl1l"]
+
+[node name="act_5_scene_7" type="Node2D"]
+script = ExtResource("1_btl1l")
+
+[node name="danilo_hometown_house" parent="." instance=ExtResource("1_b3bhf")]
+
+[node name="player_danilo" parent="." instance=ExtResource("2_sjxjj")]
+position = Vector2(-78, 6)
+
+[node name="AnimatedSprite2D" parent="player_danilo" index="0"]
+position = Vector2(-10, -5)
+animation = &"hometown_sleep"
+
+[node name="npc_mira" parent="." instance=ExtResource("3_btl1l")]
+position = Vector2(-53, -6)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-44, 11)
+
+[editable path="player_danilo"]

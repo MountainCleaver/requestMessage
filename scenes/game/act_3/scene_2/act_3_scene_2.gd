@@ -20,6 +20,10 @@ extends Node2D
 @onready var npc_shadowy_chaser: CharacterBody2D = $danilo_hometown_house/map/npc_shadowy_chaser
 @onready var tension_anim: AnimationPlayer = $tension_anim
 
+# BGM NODES
+@onready var bgm_danilo: AudioStreamPlayer = $BGMDanilo
+@onready var bgm_tension: AudioStreamPlayer = $BGMTension
+
 const A_3S_2 = preload("uid://vpb3fshkkblr")
 const CHAT_ICON = preload("uid://vdiek8gwmqdx")
 const BALLOON = preload("uid://2i4i7d4jd8qg")
@@ -51,7 +55,11 @@ var scene_objectives: Array[Dictionary] = [
 
 func _ready() -> void:
 	_game_state_flow()
-	
+
+	# BGM: Play calm at the start, make sure tension is stopped
+	bgm_danilo.play()
+	bgm_tension.stop()
+
 	reply_finish.connect(_on_reply_finished)
 	wendy_calling.connect(_on_wendy_calling)
 	window_closed.connect(_on_window_closed)
@@ -60,21 +68,22 @@ func _ready() -> void:
 	SignalBus.call_done.connect(_on_call_done)
 	SignalBus.app_chat_opened.connect(_on_app_chat_opened)
 	SignalBus.chat_opened.connect(_on_chat_opened)
-	
+
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.unknown_sender_label_visible = false
-	
+
 	danilo_collision_shape_2d.disabled = true
 	player_danilo.animation_locked = true
 	player_danilo.force_cannot_move = true
 	animated_sprite_2d.play("sitting")
-	
+
+	Hud.show_objectives()
 	Hud.get_node("Control/phone/MarginContainer/lock_screen").clear_notifications()
 	Hud.reset_phone_state()
 	await get_tree().create_timer(1.0).timeout
-	
+
 	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = true
-	
+
 	add_notification(CHAT_ICON, "Chat", "2 missed calls from Mira")
 	await get_tree().create_timer(1.0).timeout
 	add_notification(CHAT_ICON, "Chat", "Wendy: Dan, you didn’t even inform me you were going home. We were worried, hindi ka sumasagot sa chats ko. Akala ko may nangyari na sayo")
@@ -88,7 +97,7 @@ func _ready() -> void:
 
 func _on_chat_opened(c: String) -> void:
 	print(c)
-	
+
 func _game_state_flow() -> void:
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
 	FlashlightManager.set_current_scene("act_3", "scene_2")
@@ -97,7 +106,7 @@ func _game_state_flow() -> void:
 	GameState.current_scene = "scene_2"
 	GameState.overwrite_current_scene_keep_previous()
 	GameState.save_game()
-	
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		match player_danilo.current_npc:
@@ -139,7 +148,6 @@ func reply_to_chat(chat_name: String) -> void:
 				DialogueManager.show_dialogue_balloon(A_3S_2, "unknown")
 				unknown_sender_open = true
 
-
 func _on_reply_finished() -> void:
 	if replied_to_mira and replied_to_wendy:
 		camera_2d.zoom.x = 3.0
@@ -150,6 +158,10 @@ func _on_reply_finished() -> void:
 		shadow_appear()
 		GameState.save_game()
 
+		# BGM: Stop calm, play tension
+		bgm_danilo.stop()
+		bgm_tension.play()
+
 func _on_wendy_calling() -> void:
 	var lockscreen = Hud.get_node("Control/phone/MarginContainer")
 	for node in lockscreen.get_children():
@@ -157,7 +169,7 @@ func _on_wendy_calling() -> void:
 
 	var phone_call_instance = PHONE_INCOMING_CALL.instantiate()
 	lockscreen.add_child(phone_call_instance)
-	
+
 	phone_call_instance.set_caller("Wendy")
 
 func _on_answered_call() -> void:
@@ -206,7 +218,7 @@ func _on_window_area_3_body_exited(body: Node2D) -> void:
 		SignalBus.out_npc.emit("window_3")
 
 func _on_window_closed () -> void:
-	if window_1_closed and window_1_closed and window_3_closed:
+	if window_1_closed and window_2_closed and window_3_closed:
 		ObjectiveManager.complete_objective(scene_objectives[1]["ID"])
 		shadow_figure_vanish()
 		shock_sprite.queue_free()
@@ -251,7 +263,7 @@ func _play_tension_anim() -> void:
 func _act_3_scene_2_done() -> void:
 	print(SaveManager.get_moral_choice("act_3_scene_2"))
 	SaveManager.game_save.current_act = "act_3"
-	SaveManager.game_save.current_scene = "scene_3" # badly named I admit. this is for the 'continue' part in main menu
-	SignalBus.act_num_scene_num_done.emit("act_3", "scene_2", "res://scenes/game/act_3/scene_3/act_3_scene_3.tscn") # caught in save manager
+	SaveManager.game_save.current_scene = "scene_3" 
+	SignalBus.act_num_scene_num_done.emit("act_3", "scene_2", "res://scenes/game/act_3/scene_3/act_3_scene_3.tscn")
 	Hud.clear_objectives();
 	Hud.hide_objectives()
