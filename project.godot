@@ -128,7 +128,33 @@ flashlight={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/act_1/scene_1/a1s1.dialogue", "res://dialogues/act_1/scene_2/a1s2.dialogue", "res://dialogues/act_1/scene_2/test.dialogue", "res://dialogues/act_1/scene_3/a1s3.dialogue", "res://dialogues/act_1/scene_4/a1s4.dialogue", "res://dialogues/act_2/scene_1/a2s1.dialogue", "res://dialogues/act_2/scene_2/a2s2.dialogue", "res://dialogues/act_2/scene_3/a2s3.dialogue", "res://dialogues/act_2/scene_4/a2s4.dialogue", "res://dialogues/act_3/scene_1/a3s1.dialogue", "res://dialogues/act_3/scene_2/a3s2.dialogue", "res://dialogues/act_3/scene_3/a3s3.dialogue", "res://dialogues/act_3/scene_4/a3s4.dialogue", "res://dialogues/act_4/scene_2/a4s2.dialogue", "res://dialogues/act_4/scene_3/a4s3.dialogue", "res://dialogues/act_4/scene_4/a4s4.dialogue", "res://dialogues/act_5/scene_1/a5s1.dialogue", "res://dialogues/act_5/scene_2/a5s2.dialogue", "res://dialogues/act_5/scene_3/a5s3.dialogue", "res://dialogues/act_5/scene_6/a5s6.dialogue", "res://dialogues/act_5/scene_7/a5s7.dialogue", "res://chat_test.dialogue", "res://dialogues/act_4/scene_1/a4s1.dialogue")
+locale/translations_pot_files=PackedStringArray(
+    "res://dialogues/act_1/scene_1/a1s1.dialogue",
+    "res://dialogues/act_1/scene_2/a1s2.dialogue",
+    "res://dialogues/act_1/scene_2/test.dialogue",
+    "res://dialogues/act_1/scene_3/a1s3.dialogue",
+    "res://dialogues/act_1/scene_4/a1s4.dialogue",
+    "res://dialogues/act_2/scene_1/a2s1.dialogue",
+    "res://dialogues/act_2/scene_2/a2s2.dialogue",
+    "res://dialogues/act_2/scene_3/a2s3.dialogue",
+    "res://dialogues/act_2/scene_4/a2s4.dialogue",
+    "res://dialogues/act_3/scene_1/a3s1.dialogue",
+    "res://dialogues/act_3/scene_2/a3s2.dialogue",
+    "res://dialogues/act_3/scene_3/a3s3.dialogue",
+    "res://dialogues/act_3/scene_4/a3s4.dialogue",
+    "res://dialogues/act_4/scene_1/a4s1.dialogue",
+    "res://dialogues/act_4/scene_2/a4s2.dialogue",
+    "res://dialogues/act_4/scene_3/a4s3.dialogue",
+    "res://dialogues/act_4/scene_4/a4s4.dialogue",
+    "res://dialogues/act_5/scene_1/a5s1.dialogue",
+    "res://dialogues/act_5/scene_2/a5s2.dialogue",
+    "res://dialogues/act_5/scene_3/a5s3.dialogue",
+    "res://dialogues/act_5/scene_4/a5s4.dialogue",
+    "res://dialogues/act_5/scene_6/a5s6.dialogue",
+    "res://dialogues/act_5/scene_7/a5s7.dialogue",
+    "res://chat_test.dialogue"
+)
+
 
 [layer_names]
 
