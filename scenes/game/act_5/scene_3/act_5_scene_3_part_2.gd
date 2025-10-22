@@ -16,8 +16,6 @@ func _ready() -> void:
 	
 	wendy_area.body_entered.connect(_on_wendy_body_entered)
 	
-func _process(delta: float) -> void:
-	print(player_mateo.velocity)
 
 func _on_wendy_body_entered(body: Node2D)->void:
 	if body.name == "player_mateo":
