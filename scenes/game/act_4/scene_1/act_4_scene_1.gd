@@ -327,7 +327,7 @@ func _on_to_habulan_area_body_entered(body: Node2D) -> void:
 
 	var spawn_point = next_habulan_spawn
 
-	if flashlight_dialogue_triggered:
+	if flashlight_dialogue_triggered or phone_flashlight_complained:
 		_switch_to_habulan_area(spawn_point)
 	else:
 		DialogueManager.show_dialogue_balloon(A_4S_1, "talk_to_ising_first")

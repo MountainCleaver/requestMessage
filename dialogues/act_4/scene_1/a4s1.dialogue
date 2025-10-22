@@ -3,6 +3,7 @@ Danilo: Hintayin mo ako, Mateo.
 => END
 
 ~ open_phone_flashlight
+do player_danilo.force_cannot_move = true
 Danilo: Ang dilim na pala... tingin ko kailangan ko na buksan yung flashlight ko sa phone.
 - Open the phone => show_phone
 => END
@@ -34,6 +35,7 @@ Danilo: Salamat, La. Una na po ako.
 Danilo: Medyo mahina 'tong gamit ko na flashlight sa phone ko.
 Danilo: Andilim pa naman sobra.
 Danilo: Kung meron lang akong totoong flashlight na magagamit...
+do player_danilo.force_cannot_move = false
 => END
 
 ~ danilo_saw_ghost
