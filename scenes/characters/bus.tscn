@@ -1,9 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://byxfqdlohkx6p"]
+[gd_scene load_steps=8 format=3 uid="uid://byxfqdlohkx6p"]
 
-[ext_resource type="Texture2D" uid="uid://dxxe7ghtnd7al" path="res://assets/character_sprites/BUSpng.png" id="1_vnae2"]
+[ext_resource type="Texture2D" uid="uid://c046c7b0uecbv" path="res://assets/character_sprites/bus2png.png" id="1_vnae2"]
 
-[node name="bus" type="Sprite2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnae2"]
+atlas = ExtResource("1_vnae2")
+region = Rect2(0, 0, 80, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mg8p"]
+atlas = ExtResource("1_vnae2")
+region = Rect2(80, 0, 80, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbnia"]
+atlas = ExtResource("1_vnae2")
+region = Rect2(160, 0, 80, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6ul6"]
+atlas = ExtResource("1_vnae2")
+region = Rect2(240, 0, 80, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3hqo"]
+atlas = ExtResource("1_vnae2")
+region = Rect2(320, 0, 80, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qc46k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnae2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mg8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbnia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6ul6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3hqo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 y_sort_enabled = true
-texture = ExtResource("1_vnae2")
-offset = Vector2(0, -16)
-hframes = 8
+position = Vector2(2, -15)
+sprite_frames = SubResource("SpriteFrames_qc46k")
+autoplay = "default"

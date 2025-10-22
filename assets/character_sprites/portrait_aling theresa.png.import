@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d00bric4jvrex"
-path="res://.godot/imported/portrait_mang_gino.png-aac9bc2ab2d1e682248a3906d104b8aa.ctex"
+uid="uid://ysx4jptlvc7c"
+path="res://.godot/imported/portrait_aling theresa.png-f9d774fb4b7398b3c1dc9867f71d0d81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character_sprites/portrait_mang_gino.png"
-dest_files=["res://.godot/imported/portrait_mang_gino.png-aac9bc2ab2d1e682248a3906d104b8aa.ctex"]
+source_file="res://assets/character_sprites/portrait_aling theresa.png"
+dest_files=["res://.godot/imported/portrait_aling theresa.png-f9d774fb4b7398b3c1dc9867f71d0d81.ctex"]
 
 [params]
 

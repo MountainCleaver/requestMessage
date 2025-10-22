@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
-@onready var area_2d: Area2D = $Area2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var speed: float = 50.0
 var direction: Vector2 = Vector2.ZERO
 
+@onready var area_2d: Area2D = $Area2D
 func _physics_process(delta: float) -> void:
 	if direction == Vector2.ZERO:
 		velocity = Vector2.ZERO
@@ -38,8 +38,14 @@ func _update_animation() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print(body.name)
 	if body.name == "player_danilo":
-		SignalBus.in_npc.emit("wendy")
+		SignalBus.in_npc.emit("npc_vanesa")
+		
+	if body.name == "player_wendy":
+		SignalBus.in_npc.emit("npc_vanesa")
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.name == "player_danilo":
-		SignalBus.out_npc.emit("wendy")
+		SignalBus.out_npc.emit("npc_vanesa")
+	
+	if body.name == "player_wendy":
+		SignalBus.out_npc.emit("npc_vanesa")

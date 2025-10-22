@@ -2046,6 +2046,8 @@ collision_mask = 62
 [node name="AnimatedSprite2D" parent="y-sorted/player_danilo" index="0"]
 animation = &"idle_up"
 autoplay = "idle_up"
+frame = 0
+frame_progress = 0.0
 
 [node name="tip_shocked" type="Sprite2D" parent="y-sorted/player_danilo"]
 visible = false
