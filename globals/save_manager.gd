@@ -160,27 +160,88 @@ func switch_account(new_username: String) -> void:
 	print("SaveManager: Switched account to: ", current_username)
 	load_game() 
 	
-func save_moral_choice(act_scene: String, choice: String)-> void:
+func save_moral_choice(act_scene: String, choice: String) -> void:
+	if not game_save:
+		game_save = SaveGameResource.new()
+
+	if act_scene in game_save.choices:
+		var old_choice = game_save.choices[act_scene]
+		if old_choice == "restless":
+			game_save.karma += 1
+		elif old_choice == "relief":
+			game_save.karma -= 1
+		print("[SaveManager] Scene replay detected. Resetting old moral choice:", old_choice)
+	
 	game_save.choices[act_scene] = choice
+	
 	match choice:
 		"restless":
 			game_save.karma -= 1
 		"relief":
 			game_save.karma += 1
 	
+	print("[SaveManager] New moral choice saved:", act_scene, "=", choice)
+	print("[SaveManager] Current Karma:", game_save.karma)
+
+	save_game_with_backup()
+
+func save_game_with_backup() -> void:
+	if FileAccess.file_exists(SAVE_PATH):
+		var copy_err := DirAccess.copy_absolute(SAVE_PATH, BACKUP_PATH)
+		if copy_err != OK:
+			push_error("Failed to create backup before saving moral choice: %s" % copy_err)
+	
+	var save_err := ResourceSaver.save(game_save, SAVE_PATH)
+	if save_err != OK:
+		push_error("Failed to save game after moral choice: %s" % save_err)
+	else:
+		print("[SaveManager] Moral choice saved successfully with backup.")
+
 func get_moral_choice(act_scene: String) -> String:
 	if act_scene in game_save.choices:
 		return game_save.choices[act_scene]
 	return ""
 
-func took_meds()->void:
-	game_save.meds_taken += 1
-	print("Uminom ng gamot, current na na-inom: " + str(game_save.meds_taken))
-	# save pag tapos ng scene, not right after mag add ng count sa counter
+func reset_all_moral_choices() -> void:
+	game_save.choices.clear()
+	game_save.karma = 0
+	save_game()
+	print("[SaveManager] All moral choices and karma reset.")
 
-func get_count_meds_taken()->int:
-	return game_save.meds_taken
+func took_meds(act_scene: String) -> void:
+	# Check if the scene is being replayed
+	if is_scene_finished_from_meds(act_scene):
+		print("[SaveManager] Scene replay detected. Resetting meds counter for scene:", act_scene)
+		game_save.meds_taken = 0
+
+	# Increase meds_taken, capped at 3
+	game_save.meds_taken = min(game_save.meds_taken + 1, 3)
+	print("Uminom ng gamot, current na na-inom: " + str(game_save.meds_taken))
+
+	# Auto-save with backup
+	save_game_with_backup()
 	
+	# Mark scene finished so replay logic works
+	mark_scene_finished_for_meds(act_scene)
+	
+
+func get_count_meds_taken() -> int:
+	return game_save.meds_taken
+
+
+# Track finished meds scenes separately to handle replay
+func mark_scene_finished_for_meds(act_scene: String) -> void:
+	if not game_save.meds_finished_scenes:
+		game_save.meds_finished_scenes = []
+	if act_scene not in game_save.meds_finished_scenes:
+		game_save.meds_finished_scenes.append(act_scene)
+
+
+func is_scene_finished_from_meds(act_scene: String) -> bool:
+	if not game_save.meds_finished_scenes:
+		return false
+	return act_scene in game_save.meds_finished_scenes
+
 func set_given_lola_ising_cash(value: bool) -> void:
 	if not game_save:
 		game_save = SaveGameResource.new()
