@@ -39,19 +39,23 @@ func _ready() -> void:
 	FlashlightManager.init(real_flashlight, phone_flashlight)
 
 func _physics_process(delta: float) -> void:
+	# Block movement if the player can't move
 	if not can_player_move():
 		velocity = Vector2.ZERO
 		move_and_slide()
+		is_running = false  # reset running state
 		if not animation_locked:
 			_play_animation(Vector2.ZERO)
 		return
 
 	var direction = _get_direction()
 
+	# Apply speed based on run state
+	var current_speed = SPEED
 	if is_running:
-		velocity = direction.normalized() * RUNNING_SPEED
-	else:
-		velocity = direction.normalized() * SPEED
+		current_speed = RUNNING_SPEED
+
+	velocity = direction.normalized() * current_speed
 
 	# Apply wind effects
 	_apply_wind_effects()
@@ -68,6 +72,7 @@ func _physics_process(delta: float) -> void:
 		_play_animation(direction)
 	else:
 		_play_animation(Vector2.ZERO)
+
 
 	# --- Pushable rock detection
 	if Input.is_action_pressed("arrow_left"):
@@ -101,6 +106,9 @@ func _is_wind_blocked() -> bool:
 	return false
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not can_player_move():
+		return
+
 	if event.is_action_pressed("run"):
 		is_running = true
 	elif event.is_action_released("run"):
@@ -109,6 +117,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Flashlight toggle
 	if event.is_action_pressed("flashlight"):
 		FlashlightManager.toggle_real_flashlight()
+
 
 func _get_direction() -> Vector2:
 	var direction: Vector2 = Vector2.ZERO
@@ -157,10 +166,13 @@ func _play_animation(direction: Vector2) -> void:
 func _on_dialogue_start(_resource):
 	can_move = false
 	can_interact = false
+	is_running = false 
+
 
 func _on_dialogue_finish(_resource):
 	can_move = true
 	can_interact = true
+	is_running = false 
 
 func show_tip(npc_name: String) -> void:
 	tip_interact.visible = true
