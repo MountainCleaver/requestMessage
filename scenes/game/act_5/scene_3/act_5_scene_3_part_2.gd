@@ -2,31 +2,39 @@ extends Node2D
 
 const A_5S_3 = preload("uid://dntq0tdotjt87")
 
-@onready var player_mateo: CharacterBody2D = $"danilo_hometown/y-sorted-objects/player_mateo"
-@onready var npc_danilo: CharacterBody2D = $"danilo_hometown/y-sorted-objects/npc_danilo"
-@onready var wendy: Area2D = $wendy
+@onready var wendy_area: Area2D = $wendy
 @onready var npcwendy: CharacterBody2D = $"danilo_hometown/y-sorted-objects/wendy"
+@onready var wendy: CharacterBody2D = $"danilo_hometown/y-sorted-objects/danilo_follow_mateo/wendy"
+@onready var player_mateo: CharacterBody2D = $"danilo_hometown/y-sorted-objects/danilo_follow_mateo/player_mateo"
+
+var wendy_is_following: bool =  false
 
 func _ready() -> void:
 	npcwendy.visible = false
-	$"danilo_hometown/y-sorted-objects/npc_danilo/AnimatedSprite2D".play("idle_down")
-	player_mateo.last_direction = Vector2.DOWN
+	wendy.hide()
+	$"danilo_hometown/y-sorted-objects/danilo_follow_mateo/player_mateo".last_direction = Vector2.DOWN
 	
-	wendy.body_entered.connect(_on_wendy_body_entered)
+	wendy_area.body_entered.connect(_on_wendy_body_entered)
+	
 
 func _on_wendy_body_entered(body: Node2D)->void:
 	if body.name == "player_mateo":
+		wendy_is_following = true
 		npcwendy.visible = true
-		wendy.queue_free()
+		player_mateo.force_cannot_move = true
+		await get_tree().create_timer(0.5).timeout
 		DialogueManager.show_dialogue_balloon(A_5S_3, "wendy")
-
-func make_danilo_follow_mateo()->void:
-	pass
+		wendy_area.queue_free()
 
 func make_wendy_follow_mateo_and_danilo()->void:
-	pass
-
+	TransitionFade.transition()
+	await SignalBus.on_transition_finished
+	npcwendy.visible = false
+	wendy.show()
+	
 func _on_finish_body_entered(body: Node2D) -> void:
+	if not wendy_is_following:
+		return
 	act_5_scene_3_done()
 
 func act_5_scene_3_done() -> void:
