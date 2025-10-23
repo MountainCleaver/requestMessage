@@ -5,6 +5,7 @@ const A_1S_2 = preload("res://dialogues/act_1/scene_2/a1s2.dialogue")
 
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_1", "scene_2")
+	FlashlightManager.disable_flashlights()
 	ObjectiveManager.add_objective(1, "Ride a Jeepney to Rizal Park")
 	Hud.show_objectives()
 	if BgmManager:

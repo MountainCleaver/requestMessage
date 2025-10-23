@@ -21,6 +21,7 @@ var inside_chase_zone: bool = false
 
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_3", "scene_3")
+	FlashlightManager.disable_flashlights()
 	get_tree().node_added.connect(_on_node_added)
 
 func _on_node_added(node: Node) -> void:

@@ -35,6 +35,7 @@ var can_interact : bool = false;
 
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_1", "scene_1")
+	FlashlightManager.disable_flashlights() # force all flashlights OFF (fix for first-run leftovers)
 	DialogueManager.dialogue_started.connect(_on_dialogue_start);
 	DialogueManager.dialogue_ended.connect(_on_dialogue_finish);
 	

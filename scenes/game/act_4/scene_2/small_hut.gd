@@ -60,6 +60,7 @@ var current_paper_name: String = ""
 
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_2")
+	FlashlightManager.enable_flashlight_by_cash()
 	tip.visible = false
 	mark.visible = false
 	paper5_collsion.disabled = false

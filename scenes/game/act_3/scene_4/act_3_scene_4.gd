@@ -66,6 +66,8 @@ var scene_objectives: Array[Dictionary] = [
 ]
 
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_3", "scene_4")
+	FlashlightManager.disable_flashlights()
 	_switch_location(
 		SCENE_4_HOUSE,
 		"house",

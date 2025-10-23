@@ -24,6 +24,8 @@ var camera_2d : Camera2D
 var asked_neighbors : bool = true
 
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_3", "scene_4")
+	FlashlightManager.disable_flashlights()
 	SignalBus.fade_to_blackness.connect(_fade_to_black)
 	get_tree().node_added.connect(_on_node_added)
 	_set_image()

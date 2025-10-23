@@ -4,6 +4,7 @@ extends Node2D
 
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_3", "scene_3")
+	FlashlightManager.disable_flashlights()
 	SignalBus.sat_on_bed.connect(_on_sat_on_bed)
 
 
