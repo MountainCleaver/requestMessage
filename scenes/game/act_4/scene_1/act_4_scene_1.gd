@@ -119,6 +119,10 @@ func _start_scene() -> void:
 func _switch_to_danilo_hometown(from_where: String = "") -> void:
 	await get_tree().process_frame
 	switch_location(DANILO_HOMETOWN)
+	
+	if from_where == "house_door_step_2":
+		print("✅ Resetting triggers after narration...")
+		_reset_hometown_triggers(true)
 
 	for area in current_location.get_tree().get_nodes_in_group("areas"):
 		if area is Area2D:
@@ -195,12 +199,32 @@ func _switch_to_habulan_area(from_where: String = "") -> void:
 		ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]["text"])
 		
 	if dark_forest_way_area:
-		dark_forest_way_area.monitoring = true
-		dark_forest_way_area.monitorable = true
-		dark_forest_way_area.visible = true
-		if not dark_forest_way_area.is_connected("body_entered", Callable(self, "_on_dark_forest_way_area_entered")):
-			dark_forest_way_area.body_entered.connect(_on_dark_forest_way_area_entered)
+		var is_completed = false
 
+		if "completed_objectives" in ObjectiveManager and ObjectiveManager.completed_objectives.has(3):
+			is_completed = true
+
+		if is_completed:
+			dark_forest_way_area.monitoring = true
+			dark_forest_way_area.monitorable = true
+			dark_forest_way_area.visible = true
+			if not dark_forest_way_area.is_connected("body_entered", Callable(self, "_on_dark_forest_way_area_entered")):
+				dark_forest_way_area.body_entered.connect(_on_dark_forest_way_area_entered)
+		else:
+			dark_forest_way_area.monitoring = false
+			dark_forest_way_area.monitorable = false
+			dark_forest_way_area.visible = false
+
+
+	if from_where == "back_to_habulan_area":
+		if dark_forest_way_area:
+			dark_forest_way_area.monitoring = true
+			dark_forest_way_area.monitorable = true
+			dark_forest_way_area.visible = true
+			if not dark_forest_way_area.is_connected("body_entered", Callable(self, "_on_dark_forest_way_area_entered")):
+				dark_forest_way_area.body_entered.connect(_on_dark_forest_way_area_entered)
+		return
+		
 # ===================
 # LOCATION HANDLER
 # ===================
@@ -723,18 +747,17 @@ func _danilo_house_area_interacted() -> void:
 	Hud.hide_objectives()
 	Hud.clear_objectives()
 	switch_location(NARRATION_PANEL)
+	_reset_hometown_triggers()
 	await get_tree().process_frame
 	var lines = [
 		"“I let the medicines settle for a moment.“",
-		"“Somehow, feels like I made the right call...“",
-		"“The room feels lighter around me.“"
+		"“Somehow, feels like I made the right call...“"
 	]
 	await NarrationPanel.show_narration_typewriter(lines, 0.05)
 	await NarrationPanel.hide_narration()
 	
 	TransitionFade.transition()
 	await SignalBus.on_transition_finished
-	
 	next_habulan_spawn = "back_to_habulan_area"
 	_switch_to_danilo_hometown("house_door_step_2")
 
@@ -811,16 +834,16 @@ func _trigger_shadowy_ghost_event() -> void:
 # ===================
 # RESET TRIGGERS/MONITORING
 # ===================
-func _reset_hometown_triggers() -> void:
-	if to_habulan_area:
+func _reset_hometown_triggers(reset_flashlight_only := false) -> void:
+	if not reset_flashlight_only and to_habulan_area:
 		to_habulan_area.monitoring = false
 		to_habulan_area.monitorable = false
-		to_habulan_area.visible = true 
+		to_habulan_area.visible = false
 
 	if flashlight_determinant:
 		flashlight_determinant.monitoring = false
 		flashlight_determinant.monitorable = false
-		flashlight_determinant.visible = true 
+		flashlight_determinant.visible = false
 
 func _reset_danilo_house_area() -> void:
 	if danilo_house_area:
