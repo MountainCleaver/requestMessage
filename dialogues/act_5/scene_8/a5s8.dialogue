@@ -3,27 +3,43 @@
 Danilo: Hindi ko alam na ganito pala pinagdadaanan mo...
 Danilo: [shake]Akala ko masaya ka...[/shake]
 Danilo: [wave]Sorry Mateo.[/wave]
+
 # Mateo appears
+do ghost_appears.emit("relief")
+
+=> END
+
+~ relief_mateo_appeared
 Danilo: Mateo?
-Mateo_good_ghost: [wave]Tumpak![/wave] Haha!
-Mateo_good_ghost: Nahanap mo rin ang lugar na hindi ko naipakita sayo noon.
+Mateo: [wave]Tumpak![/wave] Haha!
+Mateo: Nahanap mo rin ang lugar na hindi ko naipakita sayo noon.
 Danilo: ... ...
-Mateo_good_ghost: Hindi ka ba masayang makita ako?
+Mateo: Hindi ka ba masayang makita ako?
 Danilo: Hindi ako makapaniwalang nakakausap pa kita.
-Mateo_good_ghost: ...
-Danilo: Pinag antay kita ng matagal-tagal, at ngayon [wave]nahanap na kita[/wave]
+Mateo: ...
+Danilo: Pinag antay kita nang matagal-tagal, at ngayon [wave]nahanap na kita[/wave]
+do mateo_turn("relief")
+=> END
+
+~ relief_mateo_turned
 # Mateo, tumalikod
-Mateo_good_ghost: ...
+Mateo: ... [wave]halika[/wave]
 Danilo: San tayo pupunta? Hintayin moko.
 # Mateo walks
+do mateo_walk_down("relief")
+=> END
+
+~ relief_cliff
 # transition outside / cliff
-Mateo_good_ghost: Danilo, andami ko pang gustong magawa na kasama kayo.
+Mateo: Danilo, andami ko pang gustong magawa na kasama kayo.
 Danilo: ...
-Mateo_good_ghost: Ang dami ko pang gustong gawin kasama kayo… 
-Mateo_good_ghost: Pero salamat, Danilo. 
-Mateo_good_ghost: [wave]Dahil hinanap mo ako[/wave], kaya ko nang magpahinga.
+Mateo: Ang dami ko pang gustong gawin kasama kayo… 
+Mateo: Pero salamat, Danilo. 
+Mateo: [wave]Dahil hinanap mo ako[/wave], kaya ko nang magpahinga.
+do _ghost_left("relief")
 # Mateo fading away
 # Fading pause until these line are done
+do _ghost_vanish("relief")
 Danilo: Saglit lang Mateo.
 Danilo: Ang dami ko pang gustong ikwento sayo. 
 Danilo: Lumipat na kami sa Maynila. 
@@ -32,8 +48,13 @@ Danilo: Si Wendy… psychiatrist na siya.
 Danilo: Ang dami naming pinagdaanan na hindi ka kasama. 
 Danilo: Kahit saglit lang, dito ka muna.
 # Mateo fading away continues, and finishes
-Mateo_good_ghost: Salamat sa paghahanap sakin, mabuhay ka Danilo.
+Mateo: Salamat sa paghahanap sakin, mabuhay ka Danilo.
+do whitey_vanish_full()
 => END
+
+##################################################################
+##################################################################
+##################################################################
 
 ~ condition_worsened
 # reading diary
@@ -42,12 +63,40 @@ Danilo: Mateo... Diyos ko... lahat pala  'to tinago mo samin...
 Danilo: Akala ko... Masaya ka... na wala kang dinadala...
 Danilo: Pero pinabayaan kita.
 Danilo: Mateo... Sorry...
-???: ...Danilo...bakit... iniwan mo ako...
+# ghost appears
+do _candle_dim()
+do ghost_appears.emit("restless")
+=> END
+
+~ resltess_ghost_appeared
+Entity: ...Danilo...bakit... iniwan mo ako...
 Danilo: Mateo... Ikaw ba 'yan?
-???: Halika... dito tayo... Danilo... dito...
+do show_distortion()
+#=> END
+#
+#~ restless_ghost_turn_and_walk_a_bit
+do mateo_turn("restless")
+Entity: Halika... dito tayo... Danilo... dito...
+do _candle_dimmer()
+do mateo_walk_down("restless")
+=> END
+
+~ restless_cliff
 # transition outside/cliff
 # shadow stand near edge of cliff
-Danilo: Mateo... saglit lang... wag mo muna ako iwan...
+Danilo: Mateo... 
+Entity: ...
+# look down
+do _ghost_down("restless")
+Entity: ...
+Danilo: saglit lang... 
+Entity: ...
+# look left
+do _ghost_left("restless")
+Danilo: wag mo muna ako iwan...
+Entity: [fade]...[/fade]
+do _ghost_vanish("restless")
+Danilo: nooooooooooooooooo
 # shadow fades to nothing
 # Danilo collapsed at the edge. The voices screamed louder, swallowing him in darkness.
 => END
