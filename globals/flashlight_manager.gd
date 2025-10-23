@@ -281,7 +281,6 @@ func _load_json() -> void:
 			var parsed = JSON.parse_string(json_text)
 			if typeof(parsed) == TYPE_DICTIONARY:
 				data = parsed
-				_print_once("[FlashlightManager] Flashlight state loaded from JSON.")
 			file.close()
 	else:
 		_print_once("[FlashlightManager] JSON not found, using defaults.")
