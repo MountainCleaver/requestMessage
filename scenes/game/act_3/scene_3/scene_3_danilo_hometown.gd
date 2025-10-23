@@ -111,3 +111,7 @@ func _on_jonathan_chase_3_body_exited(body: Node2D) -> void:
 		if SignalBus.bought_meds:
 			npc_jonathan.hide()
 			jonathan_chase_3.queue_free()
+
+
+func _on_check_outside_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

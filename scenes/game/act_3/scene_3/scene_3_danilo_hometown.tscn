@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://fgxe57bsbw2l"]
+[gd_scene load_steps=14 format=4 uid="uid://fgxe57bsbw2l"]
 
 [ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="1_85dup"]
 [ext_resource type="Script" uid="uid://dtn2n5kxkaorp" path="res://scenes/game/act_3/scene_3/scene_3_danilo_hometown.gd" id="1_ixdqi"]
@@ -27,6 +27,9 @@ size = Vector2(196, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxl4f"]
 size = Vector2(176, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_re4s7"]
+size = Vector2(130, 11)
 
 [node name="scene_3_danilo_hometown" type="Node2D"]
 script = ExtResource("1_ixdqi")
@@ -91,6 +94,13 @@ collision_layer = 4
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_wxl4f")
 
+[node name="check_outside" type="Area2D" parent="danilo_hometown/y-sorted-objects/areas"]
+position = Vector2(-94, 202)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danilo_hometown/y-sorted-objects/areas/check_outside"]
+position = Vector2(14, 4.5)
+shape = SubResource("RectangleShape2D_re4s7")
+
 [node name="npc_jonathan" parent="danilo_hometown/y-sorted-objects" index="5" instance=ExtResource("5_fs3wg")]
 modulate = Color(0.30677596, 0.16367781, 0.29034814, 0.32941177)
 position = Vector2(-16, -202)
@@ -122,6 +132,7 @@ energy = 0.4
 [connection signal="body_exited" from="danilo_hometown/y-sorted-objects/areas/jonathan_chase_2" to="." method="_on_jonathan_chase_2_body_exited"]
 [connection signal="body_entered" from="danilo_hometown/y-sorted-objects/areas/jonathan_chase_3" to="." method="_on_jonathan_chase_3_body_entered"]
 [connection signal="body_exited" from="danilo_hometown/y-sorted-objects/areas/jonathan_chase_3" to="." method="_on_jonathan_chase_3_body_exited"]
+[connection signal="body_entered" from="danilo_hometown/y-sorted-objects/areas/check_outside" to="." method="_on_check_outside_body_entered"]
 
 [editable path="danilo_hometown"]
 [editable path="danilo_hometown/y-sorted-objects/tricycle"]
