@@ -25,6 +25,10 @@ var jonthan_knocked : bool = false
 
 var inspected_picture_frame : bool = false
 
+var wendy_opened: bool = false
+var wendy_reply_shown: bool = false
+var chat_open: bool = false
+
 #var asked_neighbors : bool = false
 
 func asked_neighbors () -> bool :
@@ -66,6 +70,7 @@ var scene_objectives: Array[Dictionary] = [
 ]
 
 func _ready() -> void:
+	_game_state_flow()
 	FlashlightManager.set_current_scene("act_3", "scene_4")
 	FlashlightManager.disable_flashlights()
 	_switch_location(
@@ -78,6 +83,21 @@ func _ready() -> void:
 	SignalBus.start_jonathan.connect(_on_start_jonathan)
 	SignalBus.last_words.connect(_on_last_words)
 
+	SignalBus.optional_chats_locked = false
+	chat_open = false
+	SignalBus.chat_opened.connect(_on_chat_opened)
+	SignalBus.chat_message_sent.connect(_on_chat_message_sent)
+	SignalBus.unknown_sender_unlocked = true
+	SignalBus.unknown_sender_label_visible = false
+	
+func _game_state_flow() -> void:
+	# PUT THIS AT THE BEGINNING OF FUNC _READY
+	GameState.load_game()
+	GameState.current_act = "act_3"
+	GameState.current_scene = "scene_4"
+	GameState.overwrite_current_scene_keep_previous()
+	GameState.save_game()
+	
 func _on_last_words()->void:
 	DialogueManager.show_dialogue_balloon(A_3S_4, "last_statement_1")
 
@@ -149,6 +169,7 @@ func _input(event: InputEvent) -> void:
 			"picture_frame":
 				can_interact = false
 				npc_interactions(inspected_picture_frame, "picture_frame", "picture_frame_done")
+				
 func _check_objectives()->void:
 	if asked_neighbors():
 		await get_tree().create_timer(1.0).timeout
@@ -242,7 +263,7 @@ func _intro_sequence()->void:
 	await get_tree().create_timer(0.5).timeout
 	DialogueManager.show_dialogue_balloon(A_3S_4, "woke_up")
 
-func _get_out_of_bed () -> void:
+func _get_out_of_bed_take_meds () -> void:
 	player_danilo.last_direction = Vector2.DOWN
 	
 	
@@ -271,12 +292,54 @@ func _get_out_of_bed () -> void:
 	player_danilo.force_cannot_move = false
 	player_danilo.animation_locked = false
 	collision_shape_2d.disabled = false
+	
+func _get_out_of_bed_check_phone () -> void:
+	player_danilo.last_direction = Vector2.DOWN
+	
+	
+	await get_tree().create_timer(1.0).timeout
+	animated_sprite_2d.play("idle_down")
+	
+	player_danilo.global_position = current_location.get_node("danilo_hometown_house/y-sorted/spawn_points/bed_beside").global_position
+	# here logic for recording meds taken
+	
+	await get_tree().create_timer(1.0).timeout
+	animated_sprite_2d.play("idle_right")
+	
+func _notice_open_window () -> void:
+	player_danilo.last_direction = Vector2.RIGHT
+	
+	await get_tree().create_timer(1.0).timeout
+	animated_sprite_2d.play("idle_up")
+	
+	await get_tree().create_timer(1.0).timeout
+	DialogueManager.show_dialogue_balloon(A_3S_4, "window_is_open")
+	
+	await get_tree().create_timer(0.5).timeout
+	ObjectiveManager.add_progress_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"], 4)
+	Hud.show_objectives()
+	
+	player_danilo.force_cannot_move = false
+	player_danilo.animation_locked = false
+	collision_shape_2d.disabled = false
+	
+func _on_chat_opened(chat_name: String) -> void:
+	if chat_name == "wendy" and not wendy_opened:
+		wendy_opened = true
+		ObjectiveManager.complete_objective(scene_objectives[0]["ID"])
+		DialogueManager.show_dialogue_balloon(A_3S_4, "chat_of_wendy")
 
+func _on_chat_message_sent(chat_name: String) -> void:
+	if chat_name == "wendy" and not wendy_reply_shown:
+		wendy_reply_shown = true
+		DialogueManager.show_dialogue_balloon(A_3S_4, "choice_of_danilo")
+	
 func _on_start_jonathan() -> void:
 	DialogueManager.show_dialogue_balloon(A_3S_4, "jonathan")
 
 func _act_3_scene_4_done() -> void:
 	SaveManager.game_save.current_act = "act_4"
 	SaveManager.game_save.current_scene = "scene_1"
+	GameState.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_3", "scene_4", "res://scenes/game/act_4/scene_1/act_4_scene_1.tscn") # caught in save manager
 	Hud.clear_objectives();
