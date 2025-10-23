@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var area_2d: Area2D = $Area2D
 
 @export var speed: float = 50.0
 var direction: Vector2 = Vector2.ZERO
@@ -32,19 +33,18 @@ func _update_animation() -> void:
 			else:
 				animated_sprite.play("walk_up")
 
-
 # NPC interaction detection
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print(body.name)
 	if body.name == "player_danilo":
-		SignalBus.in_npc.emit("npc_manong_gino")
+		SignalBus.in_npc.emit("npc_aling_theresa")
 		
 	if body.name == "player_wendy":
-		SignalBus.in_npc.emit("npc_manong_gino")
+		SignalBus.in_npc.emit("npc_aling_theresa")
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.name == "player_danilo":
-		SignalBus.out_npc.emit("npc_manong_gino")
+		SignalBus.out_npc.emit("npc_aling_theresa")
 	
 	if body.name == "player_wendy":
-		SignalBus.out_npc.emit("npc_manong_gino")
+		SignalBus.out_npc.emit("npc_aling_theresa")

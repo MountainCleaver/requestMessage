@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://dguktkmdv5cec"]
+
+[ext_resource type="PackedScene" uid="uid://blkwf5qawehnc" path="res://assets/character_sprites/player_wendy.tscn" id="1_7yx5n"]
+[ext_resource type="Script" uid="uid://d76bedac3aic" path="res://scenes/characters/wendy_and_npcs.gd" id="1_ljxcm"]
+[ext_resource type="Texture2D" uid="uid://dy8w1ggvx51vf" path="res://assets/character_sprites/MATEO_BOTHERED.png" id="2_isft7"]
+[ext_resource type="PackedScene" uid="uid://j6gfyiki6msu" path="res://scenes/characters/npc_lola_ising.tscn" id="3_7p4wm"]
+[ext_resource type="PackedScene" uid="uid://dw7yle2rdkcn2" path="res://scenes/characters/npc_jonathan.tscn" id="4_ljxcm"]
+[ext_resource type="PackedScene" uid="uid://cj5sqsl826j3g" path="res://scenes/characters/npc_vanesa.tscn" id="5_asxtm"]
+[ext_resource type="PackedScene" uid="uid://di6l7loqc8thw" path="res://scenes/characters/npc_aling_theresa.tscn" id="6_dinlg"]
+[ext_resource type="PackedScene" uid="uid://dw2hx8ujxd23b" path="res://scenes/characters/npc_gino.tscn" id="7_r0iox"]
+[ext_resource type="PackedScene" uid="uid://csl2srhadkcgx" path="res://scenes/characters/npc_matet.tscn" id="8_fqlbv"]
+
+[node name="wendy_and_npcs" type="Node2D"]
+y_sort_enabled = true
+position = Vector2(70, -4)
+script = ExtResource("1_ljxcm")
+
+[node name="player_wendy" parent="." instance=ExtResource("1_7yx5n")]
+position = Vector2(-187, -25)
+
+[node name="wendy_bother" type="Sprite2D" parent="player_wendy"]
+visible = false
+position = Vector2(-691, -64)
+texture = ExtResource("2_isft7")
+
+[node name="npc_lola_ising" parent="." instance=ExtResource("3_7p4wm")]
+position = Vector2(-143, 0)
+collision_layer = 1
+collision_mask = 30
+
+[node name="npc_jonathan" parent="." instance=ExtResource("4_ljxcm")]
+position = Vector2(-104, -3)
+collision_layer = 1
+collision_mask = 30
+
+[node name="npc_vanesa" parent="." instance=ExtResource("5_asxtm")]
+position = Vector2(-84, -7)
+collision_layer = 1
+collision_mask = 30
+
+[node name="npc_aling_theresa" parent="." instance=ExtResource("6_dinlg")]
+position = Vector2(-123, -7)
+collision_layer = 1
+collision_mask = 30
+
+[node name="npc_gino" parent="." instance=ExtResource("7_r0iox")]
+position = Vector2(-45, 0)
+collision_layer = 1
+collision_mask = 30
+
+[node name="npc_matet" parent="." instance=ExtResource("8_fqlbv")]
+position = Vector2(-64, -1)
+collision_layer = 1
+collision_mask = 30
+
+[editable path="player_wendy"]
+[editable path="npc_lola_ising"]
+[editable path="npc_jonathan"]
+[editable path="npc_vanesa"]
+[editable path="npc_aling_theresa"]
+[editable path="npc_gino"]
+[editable path="npc_matet"]

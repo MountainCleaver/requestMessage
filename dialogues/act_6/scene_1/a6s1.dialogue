@@ -1,0 +1,199 @@
+~ start
+Wendy: Asan ka na Danilo...
+Wendy: I tried calling him pero, hindi niya sinasagot...
+Wendy: Should i go back as well?
+Wendy: Dapat kasi, nakauwi na siya a day ago
+Wendy: I'm worried, i think should go back too
+Wendy: Just to check if he's alright
+do Hud.show_objectives()
+=> END
+
+~ hometown
+do ObjectiveManager.complete_objective(1)
+Wendy: It's been a while since i've gone back here
+Wendy: I just hope Danilo's fine
+Wendy: I should go na, and surprise Lola first
+do Hud.show_objectives()
+=> END
+
+~ notice
+do ObjectiveManager.complete_objective(2)
+Wendy: Ummm...
+Wendy: Bat parang madaming taong nasa labas
+Wendy: Ano kayang meron
+=> END
+
+~ lola_spotted
+Wendy: Nasa labas si lola
+Wendy: May hinhintay kaya siya?
+Wendy: I haven't send her a message na uuwi ako
+=> END
+
+~ talk_to_lola_ising
+do ObjectiveManager.complete_objective(3)
+Wendy: Oh, lola bakit nasa labas ka?
+Wendy: Nahulaan mong uuwi ako?
+Wendy: Anyways, I brought pasalubongs with me, should we go in na?
+Lola Ising: Mamaya na yan apo...
+Lola Ising: May mas importante kang dapat na malaman...
+Lola Ising: Apo... apo... Si Danilo...
+Wendy: What happened po kay Danilo?
+Lola Ising: Nawawala siya...
+Wendy: What do you mean na nawawala lola? 
+Lola Ising: Nung isang araw nakita ko siya... 
+Lola Ising: Paalis ng bahay nung gabi... 
+Lola Ising: Akala ko may kasama siya kaya't hinayaan ko na siyang umalis...
+Lola Ising: Pero kinabukasan nang araw na yon', Hindi na siya umuwi ng bahay...
+Wendy: Hinanap niyo na po ba siya?
+Lola Ising: Oo, simula kahapon pa namin siya hinahanap pero... hindi pa rin namin siya nakikita 
+Wendy: Asan kaya si Danilo
+Wendy: Sige po lola, i'll try to get some info sa mga nakausap ni Danilo during his stay here
+Wendy: I think that way, mabibigyan tayo ng clues kung nasaan ngayong si Danilo
+=> END
+
+~ talk_to_jonathan
+Wendy: Hello, jonathan
+Jonathan: Oh Wendy, napauwi ka rin
+Jonathan: Alam mo na bang nawawala si Danilo? 
+Jonathan: Parang nung isang araw nakausap ko lang siya...
+Jonathan: Bigla siya nawala na parang bula, na hindi namin mahanap
+Wendy: Nakausap mo si Danilo before siya nawala?
+Jonathan: Oo, nagkassabay kami nung uwi galing bayan pero parang hindi niya ako namukhaan.
+Jonathan: Ngayon, lalapit sana ako sa kanya. Parang mangangamusta ba, pero bigla siyang kumaripas ng takbo
+Wendy: Do you know why tumakbo siya?
+Jonathan: Hindi ko rin alam eh... pero kinabukasan ng araw na yun dun ko lang siya nakausap
+Wendy: Anong pinagusapan niyo that time?
+Wendy: I'm curious why he run though kilala ka naman niya
+Jonathan: Nagtanong lang siya nung time na yun and nalaman niya ako yung kasunod niya nung time na tumakbo siya
+Wendy: Hmm... I see. Pero do you notice if somethings wrong with him?
+Jonathan: Wala naman, pero napansin ko lang na medjo alerto siya 
+Wendy: Ok, thank you Jonathan
+=> END
+
+~ talk_to_vanesa
+Wendy: Hello, Vanesa it's been a while
+Vanesa: Oh hello, Wendy
+Vanesa: Wala ka pa ring pinagbago, super slay parin hanggang ngayon
+Wendy: Oh, thanks haha
+Wendy: Nga pala, I'm just curious if you've talked or seen to Danilo before siya mawala
+Vanesa: Ay, oo
+Vanesa: Naalala ko may tinanong siya nung kung may nakita ba daw akong tao na sumusunod sa kanya nung pauwi siya
+Vanesa: Eh nung time na yung hindi ko naman alam na umuwi siya dito
+Vanesa: Nung time lang na nagtanong siya at pumunta sa bahay
+Wendy: Did you see someone na sumusunod sa kanya?
+Vanesa: Hindi eh... Nasa loob kasi ako ng bahay at naglalaba nung mga oras na yun kaya wala akong napansin
+Vanesa: Siguro kung na-timingan na nagsasampay ako, baka may nakita ako
+Wendy: Ah ganun ba, sge thank you sa information Vanesa
+=> END
+
+~ talk_to_manang_matet
+Wendy: Hello po, Tita Matet
+Manang Matet: Oh iha nandito ka pala
+Manang Matet: Alam mo na bang nawawala si Danilo?
+Wendy: Yes po, kakarinig ko lang kay Lola
+Manang Matet: Grabe nga, hindi ko man lang nakamusta yung batang yun'
+Manang Matet: Sabi ni Jonathan, kumatok daw sa bahay nung isang araw kaso nasa clinic ako ng mga oras na yun'
+Manang Matet: Akala ko pupunta na siya kinabukasan para mangamusta pero... hindi siya pumunta kaya ako na lang pumunta sa kanila
+Manang Matet: Pinagluto ko siya nung paborito nilang ulam ni Mateo...
+Manang Matet: Sana't mahanap natin siya
+Wendy: I will help po sa paghahanap sa kanya.
+Wendy: Sige po magpahinga muna po kayo
+Manang Matet: Salamat , Iha
+=> END
+
+~ talk_to_mang_gino
+Wendy: Hello po, Manong Gino
+Mang Gino: Kung tungkol kay Danilo ang itatanong mo
+Mang Gino: Hindi ko siya nakausap
+Wendy: Ah ganun po ba, sige salamat po
+=> END
+
+~ talk_to_aling_theresa
+Wendy: Hello po, Aling theresa
+Wendy: Magtatanong po sana ako if you talked or seen Danilo before po siya mawala
+Aling Theresa: Ay oo, nagtanong siya sakin kung mat tao ba yun'
+Aling Theresa: Basta may tinanong siya sa akin, kaso hindi komasyadong naintindihan
+Aling Theresa: Mahina na kasi pandinig at paningin ko.
+Aling Theresa: Tsaka pala, hindi ko rin alam kasi nagluluto ako nung panahon na yun
+Wendy: Salamat po Aling theresa
+Wendy: Walang anuman, Iha
+=> END
+
+~ wendy_contemplate
+Wendy: [center] According sa mga napagtanungan ko...[/center]
+Wendy: [center] I think Danilo's bothered by something pero...[/center]
+Wendy: [center] During our calls, Parang nothings wrong[/center]
+Wendy: [center] its better to just find him, he needs to take his meds already.[/center]
+=> END
+
+~ signage1
+Wendy: Palaruan... Dito kami naglalaro noon. 
+=> END
+
+~ lola_final
+Wendy: Sige, lola i'll go first po muna
+Wendy: Since pagod pa kayo
+Wendy: Please tell everyone to take rest
+Lola Ising: Ok apo, susunod na lang kami sayo pagtapo magpahinga
+Wendy: Salamat po lola, uuna na po ako
+=> END
+
+~ lola_here
+Lola Ising: Dito lang muna ako apo
+Lola Ising: Kausapin mo muna mga kapitbahay natin
+=> END
+
+~ wendy_start
+Wendy: Bale where na po ba yung mga, nahanapan niyo nang place
+Aling Theresa: Kasama na ang kabilang baryo na naghahanap rin sa baryo nila
+Vanesa: Pinahanap na rin ni kapitan sa bayan pero hindi rin nila nahanap
+Lola Ising: Nahanapan na rin naminyung pinaglalaruan niyo dati na pinagbawalan na namin kayong pumunta
+Manang Matet: Pumunta na rin kami doon sa laging pinagtataguan ni Mateo nung mga bata pa kayo
+Wendy: what do you mean na pinagtataguan tita?
+Manang Matet: Ah, hindi mo pala alam 
+Manang Matet: Hilig ni Mateo magtago noon, mga puntong hindi na siya nauwi ng bahay at don na natutulog
+Manang Matet: Mas gugustuhin niya pang matulog sa ibang lugar, kesa marinig bangayan ng mga magulang niya
+Wendy: Tita...
+Wendy: Hindi ko alam na may taguan na ganyan si Mateo
+Wendy: Don't lose hope tita, only time will tell. Mahahanap din natin si Mateo
+Wendy: At ngayon si Danilo din
+=> END
+
+~ mang_gino_Cliff_hint
+Mang Gino: Saglit...
+Wendy: Ano po yung Mang gino?
+Mang Gino: ...
+Wendy: Pasensya na po pero, i still to find my missing friend
+Wendy: Uuna na po kami, if hindi kayo tutulong sa paghahanap kay Danilo
+Mang Gino: ...
+Mang Gino: May alam akong lugar na hindi niyo pa napupuntahan
+Manang Matet: Bakit hindi mo pa sinabi kaagad!
+Mang Gino: Masukal ang parte na yun kaya't hindi basta basta ang pagpunta doon
+Mang Gino: Pero tinabas ko naman na ang dadaanan kaya pwede na natin itong daaanan
+Mang Gino: Malapit yung daanan na yung sa bangin kaya, iilan lang rin ang nakakaalamm
+Wendy: Ganun po pala...
+Wendy: Thank you po Mang Gino
+Wendy: Yun na lang po ang unahin nating puntahan
+=> END
+
+~ enter_dark_forest
+Wendy: [center] Just wait Danilo, hindi kami susukong hanapin ka[/center]
+=> END
+
+~ signage_darkforest
+Wendy: So base po dito sa signage, tama po bang pataas po ang dadaanan natin Mang Gino
+Mang Gino: Oo, ayan nga ang dadaanan natin
+=> END
+
+~ cliff_entry
+Mang Gino: Mag-ingat kayong lahat, alalahanin bangin ang dinadaanan natin
+Wendy: [center] ... [/center]
+Wendy: [center] Please, Danilo I hope you're here [/center]
+=> END
+
+~ seen_danilo
+Wendy: [shake] Omyghad Danilo!!! [/shake]
+Wendy: [shake] Anong nangyari sayo [/shake]
+Wendy: [shake] Please wake up [/shake]
+Wendy: [shake] Danilo!!! [/shake]
+=> END

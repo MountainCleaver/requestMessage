@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d00bric4jvrex"
-path="res://.godot/imported/portrait_mang_gino.png-aac9bc2ab2d1e682248a3906d104b8aa.ctex"
+uid="uid://bl2d1gm4v1vhh"
+path="res://.godot/imported/danilo_sleeping_bed_in_hospital.png-a75f1ea59c2bdfe93367e3061192f566.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character_sprites/portrait_mang_gino.png"
-dest_files=["res://.godot/imported/portrait_mang_gino.png-aac9bc2ab2d1e682248a3906d104b8aa.ctex"]
+source_file="res://assets/character_sprites/danilo_sleeping_bed_in_hospital.png"
+dest_files=["res://.godot/imported/danilo_sleeping_bed_in_hospital.png-a75f1ea59c2bdfe93367e3061192f566.ctex"]
 
 [params]
 
