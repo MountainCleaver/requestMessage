@@ -1,0 +1,114 @@
+[gd_scene load_steps=10 format=3 uid="uid://cuvq8dt1fwj82"]
+
+[ext_resource type="PackedScene" uid="uid://dbddyp51xik5v" path="res://cliff2.tscn" id="1_3eq80"]
+[ext_resource type="Script" uid="uid://b87xklruv5euu" path="res://scenes/game/act_5/scene_8/act_5_scene_8_outside_scene.gd" id="1_hxqlv"]
+[ext_resource type="PackedScene" uid="uid://jq5u2gfvckxx" path="res://scenes/game/act_4/scene_4/rock.tscn" id="2_vmj5f"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="3_co010"]
+[ext_resource type="PackedScene" uid="uid://c35qv5jw6am7y" path="res://scenes/characters/npc_whitey_ghost.tscn" id="3_jcv7v"]
+[ext_resource type="PackedScene" uid="uid://cehrjw85vbr2x" path="res://scenes/characters/npc_shadowy_ghost.tscn" id="4_hxqlv"]
+[ext_resource type="Shader" uid="uid://cwcvnm4jhoofm" path="res://scenes/game/act_5/scene_8/act_5_scene_8.gdshader" id="7_pepyy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pepyy"]
+size = Vector2(20, 300)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pepyy"]
+shader = ExtResource("7_pepyy")
+shader_parameter/intensity = 0.5
+shader_parameter/glitch_frequency = 2.0
+shader_parameter/glitch_duration = 0.1
+shader_parameter/red_displacement = 0.02
+shader_parameter/green_displacement = 0.02
+shader_parameter/blue_displacement = 0.02
+shader_parameter/scanline_intensity = 0.3
+shader_parameter/noise_intensity = 0.2
+shader_parameter/slice_intensity = 0.4
+shader_parameter/ghost_intensity = 0.1
+shader_parameter/negative_intensity = 0.0
+
+[node name="act_5_scene_8_outside_scene" type="Node2D"]
+script = ExtResource("1_hxqlv")
+
+[node name="locations" type="Node2D" parent="."]
+
+[node name="cliff" parent="locations" instance=ExtResource("1_3eq80")]
+
+[node name="player_danilo" parent="locations/cliff/y-sorted" index="1"]
+position = Vector2(-302, -284)
+
+[node name="Camera2D" parent="locations/cliff/y-sorted/player_danilo" index="5"]
+enabled = false
+
+[node name="rocks" type="Node2D" parent="locations/cliff/y-sorted" index="2"]
+y_sort_enabled = true
+position = Vector2(14, 0)
+
+[node name="rock" parent="locations/cliff/y-sorted/rocks" instance=ExtResource("2_vmj5f")]
+position = Vector2(-427, -290)
+max_pushes = 0
+
+[node name="rock2" parent="locations/cliff/y-sorted/rocks" instance=ExtResource("2_vmj5f")]
+position = Vector2(-395, -323)
+max_pushes = 0
+
+[node name="rock3" parent="locations/cliff/y-sorted/rocks" instance=ExtResource("2_vmj5f")]
+position = Vector2(-394, -264)
+max_pushes = 0
+
+[node name="rock4" parent="locations/cliff/y-sorted/rocks" instance=ExtResource("2_vmj5f")]
+position = Vector2(-366, -295)
+max_pushes = 0
+
+[node name="npc_whitey_ghost" parent="locations/cliff/y-sorted" index="3" instance=ExtResource("3_jcv7v")]
+position = Vector2(-725, -329)
+
+[node name="npc_shadowy_ghost" parent="locations/cliff/y-sorted" index="4" instance=ExtResource("4_hxqlv")]
+position = Vector2(-725, -307)
+collision_mask = 29
+
+[node name="markers" type="Node2D" parent="locations/cliff/y-sorted" index="5"]
+
+[node name="ghost_location" type="Marker2D" parent="locations/cliff/y-sorted/markers"]
+position = Vector2(-449, -290)
+
+[node name="whitey_initial_location" type="Marker2D" parent="locations/cliff/y-sorted/markers"]
+position = Vector2(-325, -290)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="locations/cliff/y-sorted" index="6"]
+position = Vector2(-430, -293)
+collision_layer = 4
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="locations/cliff/y-sorted/StaticBody2D"]
+shape = SubResource("RectangleShape2D_pepyy")
+debug_color = Color(0.65199333, 0.42577687, 0.7735606, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="locations/cliff/y-sorted/StaticBody2D"]
+position = Vector2(-32, 3)
+shape = SubResource("RectangleShape2D_pepyy")
+debug_color = Color(0.65199333, 0.42577687, 0.7735606, 0.41960785)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("3_co010")]
+visible = false
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.16968146, 0.20766535, 0.4230367, 1)
+
+[node name="distortion" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="distortion"]
+material = SubResource("ShaderMaterial_pepyy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-380, -291)
+zoom = Vector2(3, 3)
+
+[editable path="locations/cliff"]

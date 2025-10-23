@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://diydr4bjr36si"
-path="res://.godot/imported/portrait_mateo_bad_ghost_2.png-e75e3eef4ac8f61c8c0e206173b51303.ctex"
+path="res://.godot/imported/portrait_mateo_ghostly.png-398afa95bd53ee442c7d9dbb8b326da7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character_sprites/portrait_mateo_bad_ghost_2.png"
-dest_files=["res://.godot/imported/portrait_mateo_bad_ghost_2.png-e75e3eef4ac8f61c8c0e206173b51303.ctex"]
+source_file="res://assets/character_sprites/portrait_mateo_ghostly.png"
+dest_files=["res://.godot/imported/portrait_mateo_ghostly.png-398afa95bd53ee442c7d9dbb8b326da7.ctex"]
 
 [params]
 

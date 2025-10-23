@@ -1419,7 +1419,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_566en")
 }],
-"loop": true,
+"loop": false,
 "name": &"sleep_only_hometown",
 "speed": 5.0
 }, {
