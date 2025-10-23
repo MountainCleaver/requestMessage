@@ -394,7 +394,7 @@ func _on_ghost_spawn_1_area_entered(body: Node) -> void:
 
 		var ghost_anim: AnimatedSprite2D = shadowy_ghost.get_node_or_null("AnimatedSprite2D")
 		if ghost_anim:
-			ghost_anim.play("idle")
+			ghost_anim.play("idle_down")
 
 		for c in shadowy_ghost.get_children():
 			if c is CollisionShape2D:
@@ -713,6 +713,7 @@ func _on_continue_looking_chosen() -> void:
 	ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]["text"])
 
 func _danilo_house_area_interacted() -> void:
+	SaveManager.took_meds("act_4_scene_1")
 	can_enter_danilo_house_area = false
 	if tip_interact:
 		tip_interact.visible = false
