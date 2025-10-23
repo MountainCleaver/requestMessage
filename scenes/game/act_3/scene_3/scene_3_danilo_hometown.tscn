@@ -52,6 +52,9 @@ position = Vector2(-87, 163)
 [node name="tricycle_off_point" type="Marker2D" parent="danilo_hometown/y-sorted-objects/spawn_points"]
 position = Vector2(179, -146)
 
+[node name="check_out_outside" type="Marker2D" parent="danilo_hometown/y-sorted-objects/spawn_points"]
+position = Vector2(64, 131)
+
 [node name="areas" type="Node2D" parent="danilo_hometown/y-sorted-objects" index="4"]
 
 [node name="karatula_area" type="Area2D" parent="danilo_hometown/y-sorted-objects/areas"]

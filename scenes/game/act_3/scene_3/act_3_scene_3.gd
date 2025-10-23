@@ -50,6 +50,8 @@ var can_interact : bool = true # for guarding against spamming "E" when an inter
 
 var mini_game_completed: bool = false
 
+var already_triggered_paranoia := false
+
 const A_3S_3 = preload("uid://befctg2rwc1x7")
 
 var maps = {
@@ -87,7 +89,8 @@ var maps = {
 		"name" : "danilo_hometown",
 		"spawn_points" : {
 			"house_door" : "house_door_step_point",
-			"tri_off" : "tricycle_off_point"
+			"tri_off" : "tricycle_off_point",
+			"check_outside" : "check_out_outside"
 		},
 		"camera_limits": {
 			"top": -700, 
@@ -248,22 +251,20 @@ func _input(event: InputEvent) -> void:
 				DialogueManager.show_dialogue_balloon(A_3S_3, "drugstore_clerk_bought")
 		"bed":
 			can_interact = false
-
-			# If player already completed mini-game → sleep directly
 			if second_mini_game and mini_game_completed:
 				danilo_collision_shape_2d.disabled = true
 				player_danilo.animation_locked = true
 				player_danilo.force_cannot_move = true
-				danilo_animated_sprite_2d.play("sitting")
-				await get_tree().create_timer(0.5).timeout
-				play_taking_meds()
+				player_danilo.global_position = Vector2(-88.0, 8.0)
+				danilo_animated_sprite_2d.play("sleep_only_hometown")
+				await get_tree().create_timer(1.0).timeout
+				_act_3_scene_3_done()
 			else:
-				# Otherwise normal mini-game flow
 				second_mini_game = true
 				danilo_collision_shape_2d.disabled = true
 				player_danilo.animation_locked = true
 				player_danilo.force_cannot_move = true
-				danilo_animated_sprite_2d.play("sleep_only_hometown")
+				danilo_animated_sprite_2d.play("sitting")
 
 				var spawn_location = current_location.get_node_or_null("danilo_hometown_house/y-sorted/spawn_points/bed_point")
 				if spawn_location:
@@ -507,14 +508,18 @@ func _on_restless_diag_one_done () -> void:
 func _on_went_outside_find_tricycle () -> void:
 	ObjectiveManager.add_objective(scene_objectives[2]["ID"], scene_objectives[2]["text"])
 
-func _on_area_one_entered()->void:
+func _on_area_one_entered() -> void:
+	if already_triggered_paranoia:
+		return
+	already_triggered_paranoia = true
+
 	await get_tree().create_timer(0.2).timeout
 	animation_player.play("tensioning")
 	can_interact = false
 	DialogueManager.show_dialogue_balloon(A_3S_3, "paranoia")
 	sfx_paranoia.play()
 	bgm_home.stop()
-
+	
 func add_notification(image: Texture2D, app_name: String, notif_content: String) -> void:
 	Hud.get_node("Control/phone/MarginContainer/lock_screen").add_notification(image, app_name, notif_content)
 	
@@ -524,46 +529,61 @@ func _on_second_house_exit() -> void:
 		push_error("Out bed spawn point not found!")
 		return
 
-	# Move Danilo beside bed after mini-game
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
 	player_danilo.global_position = spawn_location.global_position
 	danilo_collision_shape_2d.disabled = false
 	player_danilo.force_cannot_move = false
 	player_danilo.animation_locked = false
-	danilo_animated_sprite_2d.play("idle_down")
+	danilo_animated_sprite_2d.play("idle_up")
 
 	second_mini_game = true
 	mini_game_completed = true 
 
-	# Wait for mini-game dialogue to finish (reminder)
 	await DialogueManager.dialogue_ended
+	await get_tree().create_timer(0.5).timeout
+	
 	can_interact = false
 
-	# Step 1: Go outside and check surroundings
 	_switch_location(
 		SCENE_3_DANILO_HOMETOWN,
 		maps["hometown"]["name"],
-		maps["hometown"]["spawn_points"]["house_door"]
+		maps["hometown"]["spawn_points"]["check_outside"]
 	)
 	await get_tree().process_frame
+	await get_tree().process_frame
+	
+	await _play_look_around_sequence()
+
 	DialogueManager.show_dialogue_balloon(A_3S_3, "check_outside")
 	await DialogueManager.dialogue_ended
 
-	# Step 2: Return back to house after checking
+	await get_tree().create_timer(0.5).timeout
+	
 	_switch_location(
 		SCENE_3_DANILO_HOUSE,
 		maps["house"]["name"],
 		maps["house"]["spawn_points"]["door"]
 	)
 	await get_tree().process_frame
+	await get_tree().process_frame
+	
 
-	# ✅ Force his state again after map switch
 	danilo_collision_shape_2d.disabled = false
 	player_danilo.force_cannot_move = false
 	player_danilo.animation_locked = false
-	danilo_animated_sprite_2d.play("idle_down")
 
 	can_interact = true
 
+func _play_look_around_sequence() -> void:
+	var directions = ["idle_up", "idle_left", "idle_right", "idle_down"]
+
+	for dir in directions:
+		danilo_animated_sprite_2d.play(dir)
+		await get_tree().create_timer(0.8).timeout
+
+	danilo_animated_sprite_2d.play("idle_down")
 
 	
 func _act_3_scene_3_done() -> void:

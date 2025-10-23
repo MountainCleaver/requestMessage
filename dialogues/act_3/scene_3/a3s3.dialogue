@@ -114,13 +114,16 @@ do can_interact = true
 ~ ignore_medications
 do Hud.phone_outro()
 do SignalBus.second_house_exit.emit()
-Danilo: Pero... sino kaya yung nasunod sa akin kanina?
+Danilo: Pero... hindi, may sumusunod talaga sa akin kanina.
+Danilo: Parang... hindi ko siya maalis sa isip ko.
+Danilo: Kailangan ko na lang lumabas at tingnan... kahit ayoko.
 => END
 
 ~ check_outside
 Danilo: Hmm...
 Danilo: Mukhang wala na siya?
 Danilo: Mabuti pa't itulog ko na lang 'to.
+Danilo: Sana bukas, mawala na rin ‘to...
 => END
 
 
