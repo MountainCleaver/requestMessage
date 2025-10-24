@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://buwijkji1636f"]
+[gd_scene load_steps=6 format=3 uid="uid://buwijkji1636f"]
 
 [ext_resource type="Script" uid="uid://dpm3vc76rh3gs" path="res://scenes/game/meds_lighting_handler.gd" id="1_uiptd"]
+[ext_resource type="Shader" uid="uid://b77orfxuhdrtp" path="res://scenes/game/distortion_shader.gdshader" id="2_2wp07"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s6752"]
+frequency = 0.0007
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5hfkf"]
+noise = SubResource("FastNoiseLite_s6752")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_snxmh"]
+shader = ExtResource("2_2wp07")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_5hfkf")
+shader_parameter/time = 0.0
 
 [node name="meds_lighting_handler" type="Node2D"]
 script = ExtResource("1_uiptd")
@@ -15,3 +27,13 @@ blend_mode = 2
 visible = false
 color = Color(0.00069389754, 0.00069389766, 0.0006938976, 1)
 blend_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="bad_lighting"]
+
+[node name="ColorRect" type="ColorRect" parent="bad_lighting/CanvasLayer"]
+material = SubResource("ShaderMaterial_snxmh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
