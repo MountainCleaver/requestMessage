@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://ciwb07kh3ghdu"]
+[gd_scene load_steps=17 format=4 uid="uid://ciwb07kh3ghdu"]
 
 [ext_resource type="Script" uid="uid://d0bttnfk35w0f" path="res://scenes/game/act_4/scene_4/dark_forest.gd" id="1_hfvsf"]
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_xhb44"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://u2835b7rt2l8" path="res://sound/horror-atmosphere-background(chosic.com).mp3" id="5_puqq2"]
 [ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="6_vypgd"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="7_dfldy"]
+[ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="8_4m1m1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
 texture = ExtResource("1_xhb44")
@@ -100,9 +101,6 @@ limit_top = -331
 limit_right = 1343
 limit_bottom = 350
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.076835774, 0.07683585, 0.0768358, 1)
-
 [node name="portal" type="Area2D" parent="."]
 position = Vector2(-9, -292)
 script = ExtResource("3_a28et")
@@ -126,3 +124,7 @@ layer = 101
 
 [node name="pause_screen" parent="CanvasLayer" instance=ExtResource("7_dfldy")]
 visible = false
+
+[node name="meds_lighting_handler" parent="." instance=ExtResource("8_4m1m1")]
+
+[editable path="meds_lighting_handler"]

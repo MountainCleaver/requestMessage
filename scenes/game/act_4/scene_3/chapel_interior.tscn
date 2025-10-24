@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://dinpfs4j50eb"]
+[gd_scene load_steps=46 format=4 uid="uid://dinpfs4j50eb"]
 
 [ext_resource type="Texture2D" uid="uid://dva0k2uey6rgk" path="res://assets/tilesets/chapel_decorations.png" id="1_su0q4"]
 [ext_resource type="Texture2D" uid="uid://gk78kt1brxun" path="res://assets/tilesets/chapel_tiles.png" id="2_su717"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://b26tbvt5h4mc8" path="res://assets/character_sprites/MATEO__SHOCKED.png" id="12_as7bp"]
 [ext_resource type="PackedScene" uid="uid://cehrjw85vbr2x" path="res://scenes/characters/npc_shadowy_ghost.tscn" id="14_3vo37"]
 [ext_resource type="AudioStream" uid="uid://dq6ssn6dyrpa0" path="res://sound/music-box-horror-369338.mp3" id="15_oeg6y"]
+[ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="16_sk22o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h46de"]
 texture = ExtResource("1_su0q4")
@@ -2075,18 +2076,6 @@ position = Vector2(106, -58.5)
 shape = SubResource("RectangleShape2D_wid3f")
 debug_color = Color(0.9733214, 0.046764627, 0.4046645, 0.41960785)
 
-[node name="lighting" type="Node2D" parent="."]
-
-[node name="Good" type="DirectionalLight2D" parent="lighting"]
-color = Color(0.017732391, 0.017732391, 0.01773239, 1)
-energy = 1.01
-blend_mode = 2
-
-[node name="Bad" type="DirectionalLight2D" parent="lighting"]
-visible = false
-color = Color(0.00069389754, 0.00069389766, 0.0006938976, 1)
-blend_mode = 2
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 2)
 offset = Vector2(0, 37)
@@ -2113,6 +2102,8 @@ stream = ExtResource("15_oeg6y")
 autoplay = true
 bus = &"music"
 
+[node name="meds_lighting_handler" parent="." instance=ExtResource("16_sk22o")]
+
 [editable path="map/candle/candle_1"]
 [editable path="map/candle/candle_2"]
 [editable path="map/candle/candle_3"]
@@ -2123,3 +2114,4 @@ bus = &"music"
 [editable path="y-sorted/cabinet_1"]
 [editable path="y-sorted/cabinet_2"]
 [editable path="y-sorted/player_danilo"]
+[editable path="meds_lighting_handler"]
