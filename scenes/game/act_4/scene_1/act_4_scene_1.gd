@@ -697,7 +697,7 @@ func _mateo_diary_interacted() -> void:
 	
 func _open_phone_notifications() -> void:
 	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = true
-	Hud.phone_intro()
+	Hud.reset_phone_state()
 	await get_tree().create_timer(1.0).timeout
 	add_notification(SCHED_ICON, "Reminder", "Take Medication")
 	DialogueManager.show_dialogue_balloon(A_4S_1, "take_meds_or_continue_looking")
