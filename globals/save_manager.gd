@@ -208,39 +208,72 @@ func reset_all_moral_choices() -> void:
 	save_game()
 	print("[SaveManager] All moral choices and karma reset.")
 
+func recalc_meds_taken() -> void:
+	var count := 0
+	for act_scene in game_save.meds_finished_scenes.keys():
+		if game_save.meds_finished_scenes[act_scene] == "took":
+			count += 1
+	game_save.meds_taken = count
+
+
 func took_meds(act_scene: String) -> void:
-	# Check if the scene is being replayed
-	if is_scene_finished_from_meds(act_scene):
-		print("[SaveManager] Scene replay detected. Resetting meds counter for scene:", act_scene)
-		game_save.meds_taken = 0
+	var prev_choice = game_save.meds_finished_scenes.get(act_scene, "")
+	
+	if prev_choice == "took":
+		print("[SaveManager] Already took meds in this scene, not incrementing.")
+		return
+	elif prev_choice == "missed":
+		print("[SaveManager] Overwriting previous missed choice with took.")
 
-	# Increase meds_taken, capped at 3
-	game_save.meds_taken = min(game_save.meds_taken + 1, 3)
+	game_save.meds_finished_scenes[act_scene] = "took"
+
+	recalc_meds_taken()
+
 	print("Uminom ng gamot, current na na-inom: " + str(game_save.meds_taken))
+	save_game()
 
-	# Auto-save with backup
-	save_game_with_backup()
+
+func missed_meds(act_scene: String) -> void:
+	var prev_choice = game_save.meds_finished_scenes.get(act_scene, "")
 	
-	# Mark scene finished so replay logic works
-	mark_scene_finished_for_meds(act_scene)
-	
+	if prev_choice == "missed":
+		print("[SaveManager] Already missed meds in this scene, not decrementing.")
+		return
+	elif prev_choice == "took":
+		print("[SaveManager] Overwriting previous took choice with missed.")
+
+	game_save.meds_finished_scenes[act_scene] = "missed"
+
+	recalc_meds_taken()
+
+	print("Hindi uminom ng gamot, current count: " + str(game_save.meds_taken))
+	save_game()
+
 
 func get_count_meds_taken() -> int:
 	return game_save.meds_taken
 
 
-# Track finished meds scenes separately to handle replay
-func mark_scene_finished_for_meds(act_scene: String) -> void:
+func mark_scene_finished_for_meds(act_scene: String, choice: String) -> void:
+	# choice should be "took" or "missed"
 	if not game_save.meds_finished_scenes:
-		game_save.meds_finished_scenes = []
-	if act_scene not in game_save.meds_finished_scenes:
-		game_save.meds_finished_scenes.append(act_scene)
+		game_save.meds_finished_scenes = {}
+	
+	game_save.meds_finished_scenes[act_scene] = choice
+	print("[SaveManager] Meds scene marked as finished:", act_scene, "Choice:", choice)
 
 
 func is_scene_finished_from_meds(act_scene: String) -> bool:
-	if not game_save.meds_finished_scenes:
-		return false
-	return act_scene in game_save.meds_finished_scenes
+	return game_save.meds_finished_scenes.has(act_scene) and game_save.meds_finished_scenes[act_scene] != ""
+
+func reset_all_meds() -> void:
+	if not game_save:
+		game_save = SaveGameResource.new()
+
+	game_save.meds_finished_scenes.clear()
+	game_save.meds_taken = 0
+	print("[SaveManager] All meds data reset.")
+	save_game()
 
 func set_given_lola_ising_cash(value: bool) -> void:
 	if not game_save:

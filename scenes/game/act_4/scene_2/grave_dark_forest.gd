@@ -16,9 +16,11 @@ var dialogue_shown: bool = false
 
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_2")
+	FlashlightManager.enable_flashlight_by_cash()
 	tip.visible = false
 	signage.body_entered.connect(_on_signage_body_entered)
 	signage.body_exited.connect(_on_signage_body_exited)
+	player_danilo.last_direction = Vector2.LEFT
 	player_danilo.can_move = false
 
 	# Optional: If controller just placed player, he's already at grave_exit

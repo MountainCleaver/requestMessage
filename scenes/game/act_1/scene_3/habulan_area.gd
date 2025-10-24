@@ -9,6 +9,7 @@ extends Node2D
 
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_1", "scene_3")
+	FlashlightManager.disable_flashlights()
 	if BgmManager:
 		BgmManager.stop_music();
 		

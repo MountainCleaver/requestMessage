@@ -25,6 +25,7 @@ var lola_ising_reavealed : bool = false;
 func _ready() -> void:
 	SaveManager.reset_lola_ising_progress()
 	FlashlightManager.set_current_scene("act_3", "scene_1")
+	FlashlightManager.disable_flashlights()
 	ising_collision_shape_2d.disabled = true;
 	player_danilo.force_cannot_move = true;
 

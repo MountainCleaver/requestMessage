@@ -57,7 +57,7 @@ signal bought_meds_done
 var bought_meds : bool = false
 signal area_one_entered
 signal sat_on_bed
-
+signal second_house_exit
 
 #dream
 signal dream_done

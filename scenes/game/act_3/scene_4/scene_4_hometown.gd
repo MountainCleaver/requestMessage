@@ -37,6 +37,8 @@ var first_time_here : bool = true
 var count_neighbors_asked : int = 0;
 
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_3", "scene_4")
+	FlashlightManager.disable_flashlights()
 	get_tree().node_added.connect(_on_node_added)
 	
 	SignalBus.start_theresa.connect(_on_start_theresa)

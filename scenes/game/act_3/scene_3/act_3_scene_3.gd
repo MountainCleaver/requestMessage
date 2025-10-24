@@ -48,6 +48,10 @@ var chat_exit_disabled : bool = false
 
 var can_interact : bool = true # for guarding against spamming "E" when an interaction triggers a dialog
 
+var mini_game_completed: bool = false
+
+var already_triggered_paranoia := false
+
 const A_3S_3 = preload("uid://befctg2rwc1x7")
 
 var maps = {
@@ -85,7 +89,8 @@ var maps = {
 		"name" : "danilo_hometown",
 		"spawn_points" : {
 			"house_door" : "house_door_step_point",
-			"tri_off" : "tricycle_off_point"
+			"tri_off" : "tricycle_off_point",
+			"check_outside" : "check_out_outside"
 		},
 		"camera_limits": {
 			"top": -700, 
@@ -115,12 +120,15 @@ var moral_choice : String
 
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_3", "scene_3")
+	FlashlightManager.disable_flashlights()
 	Hud.reset_phone_dont_show()
 	_game_state_flow()
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.mini_game_done.connect(_on_mini_game_done)
 	SignalBus.chat_opened.connect(_on_chat_opened)
 	SignalBus.area_one_entered.connect(_on_area_one_entered)
+	SignalBus.second_house_exit.connect(_on_second_house_exit)
+	SignalBus.mini_game_done.connect(_on_mini_game_done)
 	objective_one_done.connect(_on_objective_one_done)
 	restless_diag_one_done.connect(_on_restless_diag_one_done)
 	went_outside_find_tricycle.connect(_on_went_outside_find_tricycle)
@@ -149,7 +157,7 @@ func _input(event: InputEvent) -> void:
 					maps["hometown"]["name"],
 					maps["hometown"]["spawn_points"]["house_door"]
 				)
-
+				# Emit objectives/events only if not done yet
 				if not done_objective_one:
 					done_objective_one = true
 					objective_one_done.emit()
@@ -157,8 +165,9 @@ func _input(event: InputEvent) -> void:
 				if not done_objective_three:
 					went_outside_find_tricycle.emit()
 			else:
-				SignalBus.out_npc.emit("door_inside")
-				DialogueManager.show_dialogue_balloon(A_3S_3, "rushed_home")
+				if not second_mini_game or not mini_game_completed:
+					DialogueManager.show_dialogue_balloon(A_3S_3, "rushed_home")
+
 		"door_outside":
 			can_interact = false
 			if not bought_meds:
@@ -243,27 +252,35 @@ func _input(event: InputEvent) -> void:
 				DialogueManager.show_dialogue_balloon(A_3S_3, "drugstore_clerk_bought")
 		"bed":
 			can_interact = false
-			second_mini_game = true
-			danilo_collision_shape_2d.disabled = true
-			player_danilo.animation_locked = true
-			player_danilo.force_cannot_move = true
-			danilo_animated_sprite_2d.play("sitting")
-
-			var spawn_location = current_location.get_node_or_null("danilo_hometown_house/y-sorted/spawn_points/bed_point")
-			if spawn_location:
-				player_danilo.velocity = Vector2.ZERO  # Reset velocity first
-				player_danilo.global_position = spawn_location.global_position
+			if second_mini_game and mini_game_completed:
+				danilo_collision_shape_2d.disabled = true
+				player_danilo.animation_locked = true
+				player_danilo.force_cannot_move = true
+				player_danilo.global_position = Vector2(-88.0, 8.0)
+				danilo_animated_sprite_2d.play("sleep_only_hometown")
+				await get_tree().create_timer(1.0).timeout
+				_act_3_scene_3_done()
 			else:
-				push_error("Bed spawn point not found!")
+				second_mini_game = true
+				danilo_collision_shape_2d.disabled = true
+				player_danilo.animation_locked = true
+				player_danilo.force_cannot_move = true
+				danilo_animated_sprite_2d.play("sitting")
 
-			await get_tree().process_frame
+				var spawn_location = current_location.get_node_or_null("danilo_hometown_house/y-sorted/spawn_points/bed_point")
+				if spawn_location:
+					player_danilo.velocity = Vector2.ZERO
+					player_danilo.global_position = spawn_location.global_position
+				else:
+					push_error("Bed spawn point not found!")
 
-			# Force position again after physics update to ensure it sticks
-			if spawn_location:
-				player_danilo.global_position = spawn_location.global_position
+				await get_tree().process_frame
+				if spawn_location:
+					player_danilo.global_position = spawn_location.global_position
 
-			SignalBus.sat_on_bed.emit()
-			start_mini_game.emit()
+				SignalBus.sat_on_bed.emit()
+				start_mini_game.emit()
+
 
 func _game_state_flow() -> void:
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
@@ -401,6 +418,8 @@ func _on_mini_game_done()->void:
 		await get_tree().create_timer(0.5).timeout
 		Hud.phone_intro()
 		DialogueManager.show_dialogue_balloon(A_3S_3, "reminder")
+		mini_game_done.emit()
+		mini_game_completed = true 
 
 func _on_intro_sequence_done() -> void:
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
@@ -490,17 +509,84 @@ func _on_restless_diag_one_done () -> void:
 func _on_went_outside_find_tricycle () -> void:
 	ObjectiveManager.add_objective(scene_objectives[2]["ID"], scene_objectives[2]["text"])
 
-func _on_area_one_entered()->void:
+func _on_area_one_entered() -> void:
+	if already_triggered_paranoia:
+		return
+	already_triggered_paranoia = true
+
 	await get_tree().create_timer(0.2).timeout
 	animation_player.play("tensioning")
 	can_interact = false
 	DialogueManager.show_dialogue_balloon(A_3S_3, "paranoia")
 	sfx_paranoia.play()
 	bgm_home.stop()
-
+	
 func add_notification(image: Texture2D, app_name: String, notif_content: String) -> void:
 	Hud.get_node("Control/phone/MarginContainer/lock_screen").add_notification(image, app_name, notif_content)
+	
+func _on_second_house_exit() -> void:
+	var spawn_location = current_location.get_node_or_null("danilo_hometown_house/y-sorted/spawn_points/out_bed_point")
+	if not spawn_location:
+		push_error("Out bed spawn point not found!")
+		return
 
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
+	player_danilo.global_position = spawn_location.global_position
+	danilo_collision_shape_2d.disabled = false
+	player_danilo.force_cannot_move = false
+	player_danilo.animation_locked = false
+	danilo_animated_sprite_2d.play("idle_up")
+
+	second_mini_game = true
+	mini_game_completed = true 
+
+	await DialogueManager.dialogue_ended
+	await get_tree().create_timer(0.5).timeout
+	
+	can_interact = false
+
+	_switch_location(
+		SCENE_3_DANILO_HOMETOWN,
+		maps["hometown"]["name"],
+		maps["hometown"]["spawn_points"]["check_outside"]
+	)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
+	await _play_look_around_sequence()
+
+	DialogueManager.show_dialogue_balloon(A_3S_3, "check_outside")
+	await DialogueManager.dialogue_ended
+
+	await get_tree().create_timer(0.5).timeout
+	
+	_switch_location(
+		SCENE_3_DANILO_HOUSE,
+		maps["house"]["name"],
+		maps["house"]["spawn_points"]["door"]
+	)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
+
+	danilo_collision_shape_2d.disabled = false
+	player_danilo.force_cannot_move = false
+	player_danilo.animation_locked = false
+
+	can_interact = true
+
+func _play_look_around_sequence() -> void:
+	var directions = ["idle_up", "idle_left", "idle_right", "idle_down"]
+
+	for dir in directions:
+		danilo_animated_sprite_2d.play(dir)
+		await get_tree().create_timer(0.8).timeout
+
+	danilo_animated_sprite_2d.play("idle_down")
+
+	
 func _act_3_scene_3_done() -> void:
 	if Hud.phone_showing:
 		Hud.phone_outro()

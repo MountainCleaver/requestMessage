@@ -21,6 +21,7 @@ var inside_chase_zone: bool = false
 
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_3", "scene_3")
+	FlashlightManager.disable_flashlights()
 	get_tree().node_added.connect(_on_node_added)
 
 func _on_node_added(node: Node) -> void:
@@ -111,3 +112,7 @@ func _on_jonathan_chase_3_body_exited(body: Node2D) -> void:
 		if SignalBus.bought_meds:
 			npc_jonathan.hide()
 			jonathan_chase_3.queue_free()
+
+
+func _on_check_outside_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

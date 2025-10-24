@@ -5,7 +5,6 @@ extends Node2D
 
 func _ready() -> void:
 	Hud.phone_intro()
-	SignalBus.phone_flashlight_activated.connect(_on_phone_flashlight_activated)
 
 func _on_phone_flashlight_activated() -> void:
 	print("Phone flashlight activated — enabling flashlight for player_danilo.")
