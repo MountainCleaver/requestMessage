@@ -1,0 +1,34 @@
+~ mateo_running
+Mateo_child_crying: Takbo lang… takbo lang… huwag kang lilingon… 
+Mateo_child_crying: huwag kang mahuli…
+Mang gino: [font_size=55.0][shake level=20 connected=0] MATEO! BUMALIK KA DITO!!![/shake]
+=> END
+
+~ mang_gino_being_a_bitch
+Mang gino: [font_size=55.0][shake level=20 connected=0]IKAW BATA KA! MAY PATAKBO-TAKBO KA PANG NALALAMAN?![/shake]
+Mateo_child_crying: [shake level=20 connected=0]Tama na po 'tay!! [/shake] [font_size=60.0][shake level=20 connected=0]tama na po! Ayoko na![/shake]
+Mang gino: [font_size=55.0][shake level=20 connected=0]Ah, dito ka pala lagi nagtatago?[/shake]
+Mang gino: [font_size=55.0][shake level=20 connected=0]Ang dami pang dalang damit![/shake]
+Mang gino: [font_size=55.0][shake level=20 connected=0]Ano, lalayas ka na?[/shake]
+Mang gino: [font_size=70.0][shake level=20 connected=0]SIGE LUMAYAS KA! WALA KA NAMANG SILBI![/shake]
+Mateo_child_crying: [shake level=20 connected=0]Tama na po, babalik na'ko sa bahay! [/shake] [font_size=55.0][shake]Huwag niyo pong sirain mga gamit ko![/shake]
+Mang gino: [font_size=70.0][shake level=20 connected=0]GAMIT MO? NI SINGKONG DULING WALA KA!![/shake]
+Mang gino: [font_size=55.0][shake level=20 connected=0]Pinagkukuha mo lang lahat yan sa bahay![/shake]
+Mang gino: [font_size=55.0][shake level=20 connected=0]At akala mo ba hahanapin ka pa namin ng nanay mo?[/shake]
+Mang gino: [font_size=120.0][shake level=20 connected=0]HINDI![/shake]
+Mang gino: [font_size=70.0][shake level=20 connected=0]MAG-ISA KA DITO!![/shake]
+Mang gino: [font_size=90.0][shake level=20 connected=0]HINDI KA NAMIN KAILANGAN![/shake]
+=> END
+
+~ mateo_monologue
+Mateo_child_crying: [speed=0.2][center][shake]Ayoko na… ayoko na… bakit ba nangyayari lahat ‘to sa akin?[/shake][/center]
+=> END
+
+~ mateo_calling_for_help
+Mateo_child_crying: [speed=0.5][font_size=55.0]TULONG! TULONG! 
+Mateo_child_crying: [wave]ITAY! INAY![/wave]
+Mateo_child_crying: [speed=0.5][font_size=50.0]NANDITO AKO!!!
+Mateo_child_crying: [speed=0.5][font_size=45.0][shake]Danilo… Wendy… 
+Mateo_child_crying: [speed=0.5][font_size=40.0][shake]ayoko pang mamatay… [/shake]
+Mateo_child_crying: [speed=0.5][font_size=37.0][shake]ang dami ko pang gustong[/shake][fade] [shake]gawin…[/shake]
+=> END
