@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://3qa8rw4763rv"
-path="res://.godot/imported/portrait_manang_matet.png-50a3507de16074bea2d5e01230e22d51.ctex"
+path="res://.godot/imported/portrait_manang matet.png-fcaa1b37f36c51fc62dfbca5cd09719b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character_sprites/portrait_manang_matet.png"
-dest_files=["res://.godot/imported/portrait_manang_matet.png-50a3507de16074bea2d5e01230e22d51.ctex"]
+source_file="res://assets/character_sprites/portrait_manang matet.png"
+dest_files=["res://.godot/imported/portrait_manang matet.png-fcaa1b37f36c51fc62dfbca5cd09719b.ctex"]
 
 [params]
 
