@@ -21,5 +21,5 @@ class_name SaveGameResource
 @export var choices : Dictionary = {
 	
 }
-@export var meds_finished_scenes: Array = []
+@export var meds_finished_scenes: Dictionary = {}
 @export var meds_taken : int = 0
