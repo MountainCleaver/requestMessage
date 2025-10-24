@@ -20,6 +20,7 @@ func _ready() -> void:
 	tip.visible = false
 	signage.body_entered.connect(_on_signage_body_entered)
 	signage.body_exited.connect(_on_signage_body_exited)
+	player_danilo.last_direction = Vector2.LEFT
 	player_danilo.can_move = false
 
 	# Optional: If controller just placed player, he's already at grave_exit

@@ -156,6 +156,7 @@ func _switch_to_danilo_hometown(from_where: String = "") -> void:
 		ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]["text"])
 
 	if from_where == "back_to_hometown":
+		player_danilo.last_direction = Vector2.RIGHT
 		_reset_hometown_triggers()
 
 func _switch_to_habulan_area(from_where: String = "") -> void:
@@ -165,7 +166,7 @@ func _switch_to_habulan_area(from_where: String = "") -> void:
 	TransitionFade.transition()
 	await SignalBus.on_transition_finished
 	switch_location(HABULAN_AREA)
-
+	player_danilo.last_direction = Vector2.LEFT
 	if from_where == "habulan_area_step_point":
 		_trigger_shadowy_ghost_event()
 
@@ -737,7 +738,6 @@ func _on_continue_looking_chosen() -> void:
 	ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]["text"])
 
 func _danilo_house_area_interacted() -> void:
-	SaveManager.took_meds("act_4_scene_1")
 	can_enter_danilo_house_area = false
 	if tip_interact:
 		tip_interact.visible = false
