@@ -5,7 +5,7 @@ const A_3S_1 = preload("uid://d0b51f51nu0te")
 @onready var player_danilo: CharacterBody2D = $"locations/danilo_hometown/y-sorted-objects/player_danilo"
 @onready var npc_lola_ising: CharacterBody2D = $"locations/danilo_hometown/y-sorted-objects/npc_lola_ising"
 
-@onready var bus: Sprite2D = $"locations/danilo_hometown/y-sorted-objects/bus"
+@onready var bus: AnimatedSprite2D = $"locations/danilo_hometown/y-sorted-objects/bus"
 #@onready var bus_animation_player: AnimationPlayer = $"locations/danilo_hometown/y-sorted-objects/bus/AnimationPlayer"
 @onready var camera_2d: Camera2D = $Camera2D
 

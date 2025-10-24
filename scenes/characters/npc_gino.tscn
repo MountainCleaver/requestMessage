@@ -1,7 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://dw2hx8ujxd23b"]
+[gd_scene load_steps=39 format=3 uid="uid://dw2hx8ujxd23b"]
 
 [ext_resource type="Script" uid="uid://d1fwrv4g3lt2t" path="res://scenes/characters/npc_gino.gd" id="1_1ibls"]
 [ext_resource type="Texture2D" uid="uid://14locru82iu2" path="res://assets/character_sprites/MANG_GINO.png" id="1_01jbo"]
+[ext_resource type="Texture2D" uid="uid://b26tbvt5h4mc8" path="res://assets/character_sprites/MATEO__SHOCKED.png" id="3_6ejl8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ibls"]
 atlas = ExtResource("1_01jbo")
@@ -271,11 +272,15 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01jbo"]
-size = Vector2(10, 6)
+size = Vector2(14, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ibls"]
+size = Vector2(16, 15)
 
 [node name="npc_gino" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 2
-collision_mask = 29
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_1ibls")
 
@@ -287,5 +292,18 @@ autoplay = "idle_down"
 frame_progress = 0.22963841
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_01jbo")
+
+[node name="mang_gino" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mang_gino"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_1ibls")
+debug_color = Color(0.927067, 0.0816387, 0.631029, 0.42)
+
+[node name="gino_shocked" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -26)
+texture = ExtResource("3_6ejl8")

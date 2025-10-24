@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://j6gfyiki6msu"]
+[gd_scene load_steps=38 format=3 uid="uid://j6gfyiki6msu"]
 
 [ext_resource type="Texture2D" uid="uid://cfkf0omv2pl74" path="res://assets/character_sprites/LOLA_ISING.png" id="1_83rkm"]
 [ext_resource type="Script" uid="uid://b2xlj3smn0kmt" path="res://scenes/characters/npc_lola_ising.gd" id="1_pgfgn"]
@@ -271,12 +271,15 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6ij2"]
-size = Vector2(10, 7)
+size = Vector2(14, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgfgn"]
+size = Vector2(18, 15)
 
 [node name="npc_lola_ising" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 2
-collision_mask = 7
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_pgfgn")
 
@@ -288,5 +291,13 @@ autoplay = "idle_down"
 frame_progress = 0.7805838
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_l6ij2")
+
+[node name="lola_ising" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lola_ising"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_pgfgn")
+debug_color = Color(0.927067, 0.0816387, 0.631029, 0.42)

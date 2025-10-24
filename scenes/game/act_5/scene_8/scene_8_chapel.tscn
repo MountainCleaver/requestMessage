@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1xb63rckof7r"]
+
+[ext_resource type="PackedScene" uid="uid://dinpfs4j50eb" path="res://scenes/game/act_4/scene_3/chapel_interior.tscn" id="1_r1bi8"]
+
+[node name="scene_8_chapel" type="Node2D"]
+
+[node name="chapel_interior" parent="." instance=ExtResource("1_r1bi8")]
+
+[node name="PointLight2D" parent="chapel_interior/map/candle/candle_1" index="2"]
+visible = true
+
+[node name="PointLight2D" parent="chapel_interior/map/candle/candle_2" index="2"]
+visible = true
+
+[node name="PointLight2D" parent="chapel_interior/map/candle/candle_3" index="2"]
+visible = true
+
+[node name="PointLight2D" parent="chapel_interior/map/candle/candle_4" index="2"]
+visible = true
+
+[node name="PointLight2D" parent="chapel_interior/map/candle/candle_5" index="2"]
+visible = true
+
+[node name="PointLight2D" parent="chapel_interior/map/candle/candle_6" index="2"]
+visible = true
+
+[node name="PointLight2D" parent="chapel_interior/map/candle/big_candle" index="2"]
+visible = true
+
+[editable path="chapel_interior"]
+[editable path="chapel_interior/map/candle/candle_1"]
+[editable path="chapel_interior/map/candle/candle_2"]
+[editable path="chapel_interior/map/candle/candle_3"]
+[editable path="chapel_interior/map/candle/candle_4"]
+[editable path="chapel_interior/map/candle/candle_5"]
+[editable path="chapel_interior/map/candle/candle_6"]
+[editable path="chapel_interior/map/candle/big_candle"]
+[editable path="chapel_interior/y-sorted/cabinet_1"]
+[editable path="chapel_interior/y-sorted/cabinet_2"]
+[editable path="chapel_interior/y-sorted/player_danilo"]

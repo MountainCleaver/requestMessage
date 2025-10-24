@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d00bric4jvrex"
-path="res://.godot/imported/portrait_mang_gino.png-aac9bc2ab2d1e682248a3906d104b8aa.ctex"
+uid="uid://r36kgvn408di"
+path="res://.godot/imported/portrait_entity.png-87d3c766240026d81fb4cf0009ef8184.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character_sprites/portrait_mang_gino.png"
-dest_files=["res://.godot/imported/portrait_mang_gino.png-aac9bc2ab2d1e682248a3906d104b8aa.ctex"]
+source_file="res://assets/character_sprites/portrait_entity.png"
+dest_files=["res://.godot/imported/portrait_entity.png-87d3c766240026d81fb4cf0009ef8184.ctex"]
 
 [params]
 

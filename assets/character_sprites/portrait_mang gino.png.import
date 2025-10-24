@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diydr4bjr36si"
-path="res://.godot/imported/portrait_mateo_bad_ghost_2.png-e75e3eef4ac8f61c8c0e206173b51303.ctex"
+uid="uid://d00bric4jvrex"
+path="res://.godot/imported/portrait_mang gino.png-58d8edc7c7482c5d07848280ca0e0f57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character_sprites/portrait_mateo_bad_ghost_2.png"
-dest_files=["res://.godot/imported/portrait_mateo_bad_ghost_2.png-e75e3eef4ac8f61c8c0e206173b51303.ctex"]
+source_file="res://assets/character_sprites/portrait_mang gino.png"
+dest_files=["res://.godot/imported/portrait_mang gino.png-58d8edc7c7482c5d07848280ca0e0f57.ctex"]
 
 [params]
 

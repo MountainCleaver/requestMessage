@@ -17,6 +17,7 @@ func _ready() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_2")
 	FlashlightManager.enable_flashlight_by_cash()
 	print("✅ Act 4 Controller Ready")
+	_game_state_flow()
 
 	if has_node("/root/ProgressManager"):
 		ProgressManager.reset()
