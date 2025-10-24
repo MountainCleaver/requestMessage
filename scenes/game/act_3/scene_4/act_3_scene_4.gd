@@ -264,6 +264,7 @@ func _intro_sequence()->void:
 	DialogueManager.show_dialogue_balloon(A_3S_4, "woke_up")
 
 func _get_out_of_bed_take_meds () -> void:
+	SaveManager.took_meds("act_3_scene_4")
 	player_danilo.last_direction = Vector2.DOWN
 	
 	
@@ -294,6 +295,7 @@ func _get_out_of_bed_take_meds () -> void:
 	collision_shape_2d.disabled = false
 	
 func _get_out_of_bed_check_phone () -> void:
+	SaveManager.missed_meds("act_3_scene_4")
 	player_danilo.last_direction = Vector2.DOWN
 	
 	

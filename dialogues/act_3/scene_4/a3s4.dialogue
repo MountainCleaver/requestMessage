@@ -30,7 +30,6 @@ Danilo: Anong panaginip yun?
 => END
 
 ~ take_medications
-do SaveManager.took_meds("act_3_scene_4")
 do _get_out_of_bed_take_meds()
 => END
 

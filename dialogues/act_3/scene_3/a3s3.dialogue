@@ -107,12 +107,14 @@ Danilo: May notification pala...
 => END
 
 ~ take_medications
-	do play_taking_meds()
+do SaveManager.took_meds("act_3_scene_3") 
+do play_taking_meds()
 do can_interact = true
 => END
 
 ~ ignore_medications
 do Hud.phone_outro()
+do SaveManager.missed_meds("act_3_scene_3")
 do SignalBus.second_house_exit.emit()
 Danilo: Pero... hindi, may sumusunod talaga sa akin kanina.
 Danilo: Parang... hindi ko siya maalis sa isip ko.
