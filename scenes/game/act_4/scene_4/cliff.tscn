@@ -204,10 +204,10 @@ RUNNING_SPEED = 100.0
 [node name="Camera2D" type="Camera2D" parent="y-sorted/player_danilo"]
 position = Vector2(0, -1)
 zoom = Vector2(3, 3)
-limit_left = -651
-limit_top = -526
-limit_right = 619
-limit_bottom = 189
+limit_left = -650
+limit_top = -525
+limit_right = 620
+limit_bottom = 196
 
 [node name="PointLight2D3" type="PointLight2D" parent="y-sorted/player_danilo"]
 visible = false
