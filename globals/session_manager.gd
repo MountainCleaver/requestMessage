@@ -11,13 +11,20 @@ var logged_in: bool = false
 signal session_loaded
 
 func _ready() -> void:
-	# Auto-load session when the game starts
 	load_session()
 
 # ----------------------------------------------------------------
 # Save session to file with signature
 # ----------------------------------------------------------------
 func save_session(_username: String, _user_ID: int) -> void:
+	await get_tree().process_frame
+
+	var sm = get_node_or_null("/root/SaveManager")
+	if sm:
+		print("[SessionManager] SaveManager will load data after session is saved.")
+	else:
+		print("Warning: SaveManager not ready during save_session.")
+
 	username = _username
 	user_ID = _user_ID
 
@@ -36,7 +43,7 @@ func save_session(_username: String, _user_ID: int) -> void:
 
 	logged_in = true
 	print("SessionManager: Session saved successfully.")
-	emit_signal("session_loaded") # this triggers SaveManager._on_session_loaded()
+	emit_signal("session_loaded")
 
 
 
@@ -82,16 +89,24 @@ func logout_session() -> void:
 	user_ID = 0
 	logged_in = false
 
+	var sm = get_node_or_null("/root/SaveManager")
+	if sm:
+		print("[SessionManager] Not resetting SaveManager — next login will load its own save.")
+	else:
+		print("Warning: SaveManager not ready during logout.")
+
 	if FileAccess.file_exists(SESSION_PATH):
 		var file: FileAccess = FileAccess.open(SESSION_PATH, FileAccess.WRITE)
 		if file:
-			file.store_string("") # Overwrite content
+			file.store_string("")
 			file.close()
 			print("SessionManager: Session file cleared.")
 		else:
 			push_warning("SessionManager: Failed to clear session file.")
 	else:
 		print("SessionManager: No session file found to clear.")
+
+
 
 
 # ----------------------------------------------------------------
