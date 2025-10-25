@@ -1,23 +1,67 @@
 extends Node
 
-const SAVE_PATH := "user://saves.res"
-const BACKUP_PATH := "user://saves.bak.res"
+var SAVE_PATH: String = ""
+var BACKUP_PATH: String = ""
 
 var game_save: SaveGameResource
 var next_scene_path: String
 var current_username: String = "" 
+var current_user_id: int = 0
 
 func _ready() -> void:
 	SignalBus.act_num_scene_num_done.connect(_save_game_progress)
-	load_game()
 
-	Session.connect("session_loaded", Callable(self, "_on_session_loaded"))
+	if not Session.is_connected("session_loaded", Callable(self, "_on_session_loaded")):
+		Session.connect("session_loaded", Callable(self, "_on_session_loaded"))
+
+	if Session.logged_in:
+		_on_session_loaded()
 
 func _on_session_loaded():
+	print("[SaveManager] _on_session_loaded() triggered for user:", Session.username)
 	current_username = Session.username
-	load_game()
+	current_user_id = Session.user_ID
+	_set_save_paths()
 
+	print("[SaveManager] Session loaded. Save path:", SAVE_PATH)
 
+	if FileAccess.file_exists(SAVE_PATH):
+		print("[SaveManager] Existing save found for", current_username)
+		load_game()
+		print("[SaveManager] Save data loaded for", current_username)
+	else:
+		print("[SaveManager] No save found for", current_username, "— creating new one.")
+		reset_save_state()
+		save_game() 
+
+	
+func _set_save_paths():
+	var user_folder = "user://users/%s_%d" % [Session.username, Session.user_ID]
+
+	var users_dir = DirAccess.open("user://users")
+	if not users_dir:
+		var root_dir = DirAccess.open("user://")
+		if root_dir:
+			var err = root_dir.make_dir("users")
+			if err != OK:
+				push_error("Failed to create 'users' folder")
+				return
+			users_dir = DirAccess.open("user://users")
+
+	var user_dir = DirAccess.open(user_folder)
+	if not user_dir:
+		var err = users_dir.make_dir("%s_%d" % [Session.username, Session.user_ID])
+		if err != OK:
+			push_error("Failed to create folder for user: %s" % user_folder)
+			return
+
+	SAVE_PATH = "%s/save.res" % user_folder
+	BACKUP_PATH = "%s/backup.res" % user_folder
+
+	print("[SaveManager] Save path set to:", SAVE_PATH)
+	print("[SaveManager] Backup path set to:", BACKUP_PATH)
+
+		
 func _save_game_progress(act: String, scene: String, next_scene: String) -> void:
 	print("Saving progress for user:", current_username, "ID:", Session.user_ID, "Act:", act, "Scene:", scene)
 
@@ -33,45 +77,42 @@ func load_game() -> void:
 	elif FileAccess.file_exists(BACKUP_PATH):
 		print("Main save missing, loading backup.")
 		game_save = load(BACKUP_PATH) as SaveGameResource
-		save_game()  # Immediately restore main save
+		save_game()
 	else:
 		game_save = SaveGameResource.new()
 		save_game()
 
 func save_game() -> void:
 	print("saving game")
-	# Backup old save if it exists
 	if FileAccess.file_exists(SAVE_PATH):
 		var copy_err := DirAccess.copy_absolute(SAVE_PATH, BACKUP_PATH)
 		if copy_err != OK:
 			push_error("Failed to create backup: %s" % copy_err)
-	# Save new file
+
 	var error := ResourceSaver.save(game_save, SAVE_PATH)
 	if error != OK:
 		push_error("Failed to save game: %s" % error)
 
+func reset_save_state():
+	print("[SaveManager] Resetting local save state (keeping username and paths).")
+	game_save = SaveGameResource.new()
+
 func save_game_next_scene() -> void:
 	GameSceneManager._change_scene(next_scene_path)
 
-
 func mark_scene_finished(act: String, scene: String) -> void:
-	
-	# Update local save
 	var scenes: Array = game_save.finished_scenes.get(act, [])
 	if scene not in scenes:
 		scenes.append(scene)
 	game_save.finished_scenes[act] = scenes
-	save_game()  # Save locally
+	save_game()
 	
-	# Track save in admin (total saves)
 	track_save()
-	
-	# Track progress per player using user_ID
+
 	if Session.user_ID != 0:
 		track_save_progress(Session.user_ID, act, scene)
 	else:
 		print("Warning: user_ID is 0. Progress not sent to API.")
-
 
 func is_scene_finished(act: String, scene: String) -> bool:
 	return scene in game_save.finished_scenes.get(act, [])
