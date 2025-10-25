@@ -1,17 +1,22 @@
 extends CharacterBody2D
 
-#@onready var area_2d: Area2D = $Area2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+
+@export var target : CharacterBody2D
 
 @export var speed: float = 50.0
 var direction: Vector2 = Vector2.ZERO
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:	
 	if direction == Vector2.ZERO:
 		velocity = Vector2.ZERO
 		# prevents tiny pushes
 		move_and_collide(Vector2.ZERO)  
 	else:
+		
+		navigation_agent_2d.target_position = target.global_position
+		direction = global_position.direction_to(navigation_agent_2d.get_next_path_position())
 		velocity = direction * speed
 		move_and_slide()
 	_update_animation()
@@ -38,8 +43,14 @@ func _update_animation() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print(body.name)
 	if body.name == "player_danilo":
-		SignalBus.in_npc.emit("wendy")
+		SignalBus.in_npc.emit("npc_manong_gino")
+		
+	if body.name == "player_wendy":
+		SignalBus.in_npc.emit("npc_manong_gino")
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.name == "player_danilo":
-		SignalBus.out_npc.emit("wendy")
+		SignalBus.out_npc.emit("npc_manong_gino")
+	
+	if body.name == "player_wendy":
+		SignalBus.out_npc.emit("npc_manong_gino")

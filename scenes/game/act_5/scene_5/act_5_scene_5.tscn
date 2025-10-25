@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3hko7qrauj"]
+
+[sub_resource type="TileSet" id="TileSet_t21er"]
+
+[sub_resource type="TileSet" id="TileSet_8mc3o"]
+
+[node name="act_5_scene_5" type="Node2D"]
+
+[node name="map" type="Node2D" parent="."]
+
+[node name="ground" type="TileMapLayer" parent="map"]
+tile_set = SubResource("TileSet_t21er")
+
+[node name="decorations" type="Node2D" parent="."]
+
+[node name="decorations" type="TileMapLayer" parent="decorations"]
+tile_set = SubResource("TileSet_8mc3o")
