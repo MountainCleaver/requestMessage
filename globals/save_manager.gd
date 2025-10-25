@@ -382,7 +382,7 @@ func has_received_real_flashlight() -> bool:
 
 
 
-
+#------------------------------------------------------------------------------------------------------------------------------#
 
 func _sync_online_save() -> void:
 	if Session.user_ID == 0:
@@ -400,11 +400,10 @@ func _on_online_save_fetched(result, response_code, headers, body):
 		return
 
 	var body_text = body.get_string_from_utf8()
-	var parse_result = JSON.parse_string(body_text) # returns JSONParseResult
+	var parse_result = JSON.parse_string(body_text)
 
-	var json_result: Dictionary  # declare it here so scope is correct
+	var json_result: Dictionary
 
-	# Check if parse_result is already a Dictionary (Godot sometimes auto-converts)
 	if typeof(parse_result) == TYPE_DICTIONARY:
 		json_result = parse_result
 	else:
@@ -413,7 +412,6 @@ func _on_online_save_fetched(result, response_code, headers, body):
 			return
 		json_result = parse_result.result
 
-	# Check if result exists
 	if not json_result.has("result") or json_result["result"] == null:
 		print("[SaveManager] No online save found, using local save.")
 		return
@@ -440,14 +438,12 @@ func _push_online_save(latest_act: String, latest_scene: String) -> void:
 		"latest_scene": latest_scene
 	}
 
-	print("[SaveManager] Sending online save:", data)
 
 	var json_body = JSON.stringify(data)
 	request.request(url, ["Content-Type: application/json"], HTTPClient.METHOD_POST, json_body)
 
 
 func _merge_online_save(online_data: Dictionary) -> void:
-	# Merge finished scenes
 	for act in online_data.finished_scenes:
 		if act in game_save.finished_scenes:
 			for scene in online_data.finished_scenes[act]:
@@ -456,11 +452,9 @@ func _merge_online_save(online_data: Dictionary) -> void:
 		else:
 			game_save.finished_scenes[act] = online_data.finished_scenes[act]
 
-	# Merge choices
 	for act_scene in online_data.choices:
 		if act_scene not in game_save.choices:
 			game_save.choices[act_scene] = online_data.choices[act_scene]
 
-	# Merge karma and meds
 	game_save.karma = max(game_save.karma, online_data.karma)
 	game_save.meds_taken = max(game_save.meds_taken, online_data.meds_taken)
