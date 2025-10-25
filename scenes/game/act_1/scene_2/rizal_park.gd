@@ -52,7 +52,7 @@ func _ready() -> void:
 	SignalBus.out_npc.connect(interact_npc)
 	
 	# Connect all table areas dynamically
-	setup_table_connections()
+	
 
 func _process(delta: float) -> void:
 	print(player_danilo.current_npc)
@@ -72,6 +72,7 @@ func _input(event: InputEvent) -> void:
 	if current_npc == "wendy" and can_talk_to_wendy:
 		play_dialog(current_npc)
 		npc_face_player(wendy, player_danilo.global_position)
+		setup_table_connections()
 		return
 	
 	# Handle table interactions

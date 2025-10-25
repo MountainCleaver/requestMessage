@@ -21,9 +21,13 @@ do _paalam_kay_mama()
 
 ~ paalam
 Danilo_child: Ma, Maglalaro lang kami sa labas.
-Mira: Sinong kasama mo? Saan kayo banda maglalaro?
-Danilo_child: Kasama ko si Mateo at si Wendy, dun lang daw kami sa bukiran.
-Danilo_child: Alis na 'ko Ma, sinusundo na nila ako.
+Mira: Sinu-sino naman mga kalaro mo at san kayo banda maglalaro?
+Mira: Oh, andiyan ka pala Mateo
+Mateo_Child: Hello, po
+Danilo_child: Sa may laruan lang kami banda
+Mira: Talagang dun kayo maglalaro ah
+Mira: Kapag kayo nahuli ko na naman andun sa libingan, naku ewan ko na lang
+Danilo_child: Sige na ma, alis na 'ko
 Mira: Saglit lang, talaga 'tong batang 'to—
 do can_interact = true
 do lalabas_ng_bahay()

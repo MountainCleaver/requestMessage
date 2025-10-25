@@ -304,10 +304,10 @@ normal = Vector2(-1, 0)
 normal = Vector2(1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ds7q"]
-size = Vector2(84, 59.5)
+size = Vector2(79, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vnh1l"]
-size = Vector2(58, 23)
+size = Vector2(62, 35)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mrfva"]
 texture = ExtResource("2_wp4ah")
@@ -503,7 +503,6 @@ position = Vector2(20, -3)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bus_terminal/map2/world_limits/west_limit"]
-visible = false
 position = Vector2(-474, -16)
 shape = SubResource("WorldBoundaryShape2D_k26f6")
 
@@ -512,7 +511,7 @@ y_sort_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="bus_terminal/y-sorted2"]
 y_sort_enabled = true
-collision_layer = 2
+collision_layer = 4
 
 [node name="bus" parent="bus_terminal/y-sorted2/StaticBody2D" instance=ExtResource("9_dgv4f")]
 position = Vector2(247, -368)
@@ -520,12 +519,12 @@ position = Vector2(247, -368)
 [node name="bus_interact" type="Area2D" parent="bus_terminal/y-sorted2/StaticBody2D/bus"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact"]
-position = Vector2(0, -7.75)
+position = Vector2(-3.5, 7)
 shape = SubResource("RectangleShape2D_2ds7q")
 debug_color = Color(0.6133335, 0.44245046, 0.79771394, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bus_terminal/y-sorted2/StaticBody2D"]
-position = Vector2(244, -375.5)
+position = Vector2(243, -361.5)
 shape = SubResource("RectangleShape2D_vnh1l")
 debug_color = Color(0.57324696, 0.5262058, 0.49309194, 0.41960785)
 
