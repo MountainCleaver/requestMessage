@@ -9,6 +9,7 @@ var current_location : Node = null;
 
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_1", "scene_3")
+	FlashlightManager.disable_flashlights()
 	BgmManager.stop_music()
 	_switch_location_to(HABULAN_AREA);
 	SignalBus.habulan_done.connect(_switch_to_rizal);

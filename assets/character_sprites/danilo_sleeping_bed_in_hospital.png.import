@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r36kgvn408di"
-path="res://.godot/imported/portrait_mateo_bad_ghost_1.png-261c21e7c4a58bbceb11bb6d7b41262a.ctex"
+uid="uid://bl2d1gm4v1vhh"
+path="res://.godot/imported/danilo_sleeping_bed_in_hospital.png-a75f1ea59c2bdfe93367e3061192f566.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character_sprites/portrait_mateo_bad_ghost_1.png"
-dest_files=["res://.godot/imported/portrait_mateo_bad_ghost_1.png-261c21e7c4a58bbceb11bb6d7b41262a.ctex"]
+source_file="res://assets/character_sprites/danilo_sleeping_bed_in_hospital.png"
+dest_files=["res://.godot/imported/danilo_sleeping_bed_in_hospital.png-a75f1ea59c2bdfe93367e3061192f566.ctex"]
 
 [params]
 

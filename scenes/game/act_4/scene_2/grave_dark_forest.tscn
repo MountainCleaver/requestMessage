@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cojksxhkmxtcr"]
+[gd_scene load_steps=16 format=4 uid="uid://cojksxhkmxtcr"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_wy3md"]
 [ext_resource type="Script" uid="uid://dstfluwnkraup" path="res://scenes/game/act_4/scene_2/grave_dark_forest.gd" id="1_ymqp3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://be6h5vldaqlfi" path="res://assets/character_sprites/tip_interact.png" id="5_6j1wm"]
 [ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="6_pdcvj"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="7_4ujqg"]
+[ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="8_6ww2v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
 texture = ExtResource("1_wy3md")
@@ -140,9 +141,6 @@ z_index = 999
 position = Vector2(0, -31)
 texture = ExtResource("5_6j1wm")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
-
 [node name="entrance" type="Area2D" parent="."]
 collision_layer = 16
 
@@ -162,7 +160,11 @@ layer = 101
 [node name="pause_screen" parent="CanvasLayer" instance=ExtResource("7_4ujqg")]
 visible = false
 
+[node name="meds_lighting_handler" parent="." instance=ExtResource("8_6ww2v")]
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="y-sorted/decorations/signage" to="." method="_on_signage_body_entered"]
 [connection signal="body_exited" from="y-sorted/decorations/signage" to="." method="_on_signage_body_exited"]
 [connection signal="body_entered" from="entrance" to="." method="_on_entrance_body_entered"]
+
+[editable path="meds_lighting_handler"]

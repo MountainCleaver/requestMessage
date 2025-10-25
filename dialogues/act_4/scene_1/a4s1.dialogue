@@ -76,6 +76,7 @@ Danilo: Oras na pala para uminom ng gamot...
 => END
 
 ~ take_meds
+do SaveManager.took_meds("act_4_scene_1")
 do SaveManager.save_moral_choice("act_4_scene_1", "relief")
 Danilo: Kaya uuwi muna siguro ako ng bahay.
 Danilo: Kailangan kong uminom ng gamot.
@@ -86,6 +87,7 @@ do Hud.phone_outro()
 => END
 
 ~ continue_looking
+do SaveManager.missed_meds("act_4_scene_1")
 do SaveManager.save_moral_choice("act_4_scene_1", "restless")
 Danilo: Pero... kung totoo nga lahat ng ‘to...
 Danilo: Hindi... hindi ako titigil ngayon.

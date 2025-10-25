@@ -25,12 +25,53 @@ do _tween_camera_to_ghost()
 Danilo: ???
 Danilo: Ano yun?
 Danilo: Anong panaginip yun?
-- Take medications
-	do _get_out_of_bed()
+- Take medications => take_medications
+- Check phone for messages => check_phone
 => END
 
+~ take_medications
+do _get_out_of_bed_take_meds()
+=> END
+
+~ check_phone
+do Hud.phone_intro()
+do _get_out_of_bed_check_phone()
+=> END
+
+~ chat_of_wendy
+do ChatManager.send_chat("wendy", "Wendy", "Danilo, have you heard that?")
+Wendy: Danilo, have you heard that?
+
+do ChatManager.send_chat("wendy", "Wendy", "Ang lakas ng kulog dito.")
+Wendy: [wait=1.5]Ang lakas ng kulog dito.
+=> END
+
+~ choice_of_danilo
+Danilo: ...
+- Diyan rin pala sa city. => reply_danilo_1
+- Akala ko dito lang sa province. => reply_danilo_1
+=> END
+
+~ reply_danilo_1
+do ChatManager.send_chat("wendy", "Player", "Diyan rin pala sa city. Akala ko dito lang sa province.")
+Danilo: Diyan rin pala sa city. Akala ko dito lang sa province.
+=> reply_wendy_1
+
+~ reply_wendy_1
+do ChatManager.send_chat("wendy", "Wendy", "Seems like anytime soon, baka umulan. Ingat ka, Dan.")
+Wendy: [wait=1.5]Seems like anytime soon, baka umulan. Ingat ka, Dan.
+- Ikaw rin, Wen. => reply_danilo_2
+=> END
+
+~ reply_danilo_2
+do ChatManager.send_chat("wendy", "Player", "Ikaw rin, Wen.")
+Danilo: Ikaw rin, Wen.
+do Hud.phone_outro()
+do _notice_open_window()
+=> END
 ~ window_is_open
-Danilo: Sinara ko ‘to lahat kanina, bakit ‘yan naka bukas?
+Danilo: [shake rate=20 level=10]!!![/shake]
+Danilo: Sinara ko ‘to lahat kanina, bakit naka bukas 'tong bintana?
 Danilo: Sinong nag bukas niyan?
 do can_interact = true
 => END

@@ -74,6 +74,7 @@ func _start_scene() -> void:
 
 func _game_state_flow() -> void:
 	FlashlightManager.set_current_scene("act_1", "scene_4")
+	FlashlightManager.disable_flashlights()
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
 	GameState.current_act = "act_1"
 	GameState.current_scene = "scene_4"

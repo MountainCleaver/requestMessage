@@ -101,6 +101,7 @@ func _ready():
 
 func _game_state_flow() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_3")
+	FlashlightManager.enable_flashlight_by_cash()
 	GameState.load_game()
 	GameState.current_act = "act_4"
 	GameState.current_scene = "scene_3"

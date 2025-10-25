@@ -21,5 +21,17 @@ class_name SaveGameResource
 @export var choices : Dictionary = {
 	
 }
-
+@export var meds_finished_scenes: Dictionary = {}
 @export var meds_taken : int = 0
+
+func to_dict() -> Dictionary:
+	return {
+		"current_scene": current_scene,
+		"current_act": current_act,
+		"finished_scenes": finished_scenes,
+		"karma": karma,
+		"given_lola_ising_cash": given_lola_ising_cash,
+		"choices": choices,
+		"meds_finished_scenes": meds_finished_scenes,
+		"meds_taken": meds_taken
+	}

@@ -92,7 +92,7 @@ do can_interact = true
 => END
 
 ~ paranoia
-Danilo: [center]Bakit parang… may nakasunod? Huwag mo lang pansinin, Danilo. Bilisan mo na lang.[/center]
+Danilo: [center]Bakit parang... may nakasunod? Huwag mo lang pansinin, Danilo. Bilisan mo na lang.[/center]
 - Walk Faster
 	do player_danilo.SPEED = 150
 	do player_danilo.RUNNING_SPEED = 200
@@ -101,8 +101,31 @@ do can_interact = true
 
 
 ~ reminder
-Danilo: Buti pinaalala. Kailangan ko ‘to para makatulog.
-- Take medications and sleep
-	do play_taking_meds()
+Danilo: May notification pala...
+- Check who's following outside  => ignore_medications
+- Take medications and sleep => take_medications
+=> END
+
+~ take_medications
+do SaveManager.took_meds("act_3_scene_3") 
+do play_taking_meds()
 do can_interact = true
 => END
+
+~ ignore_medications
+do Hud.phone_outro()
+do SaveManager.missed_meds("act_3_scene_3")
+do SignalBus.second_house_exit.emit()
+Danilo: Pero... hindi, may sumusunod talaga sa akin kanina.
+Danilo: Parang... hindi ko siya maalis sa isip ko.
+Danilo: Kailangan ko na lang lumabas at tingnan... kahit ayoko.
+=> END
+
+~ check_outside
+Danilo: Hmm...
+Danilo: Mukhang wala na siya?
+Danilo: Mabuti pa't itulog ko na lang 'to.
+Danilo: Sana bukas, mawala na rin ‘to...
+=> END
+
+

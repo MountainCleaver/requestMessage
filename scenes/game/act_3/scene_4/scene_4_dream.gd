@@ -29,6 +29,8 @@ var void_appeance_done : bool = false
 var fog_and_void_gone : bool = false
 
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_3", "scene_4")
+	FlashlightManager.disable_flashlights()
 	blocking_trees.hide()
 	blocking_trees.collision_enabled = false
 	DialogueManager.show_dialogue_balloon(A_3S_4, "start")

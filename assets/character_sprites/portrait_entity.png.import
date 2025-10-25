@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg5bsha31abhx"
-path="res://.godot/imported/portrait_mateo_good_ghost.png-36e0ed580512a56799b4bbde5bb39f5d.ctex"
+uid="uid://r36kgvn408di"
+path="res://.godot/imported/portrait_entity.png-87d3c766240026d81fb4cf0009ef8184.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character_sprites/portrait_mateo_good_ghost.png"
-dest_files=["res://.godot/imported/portrait_mateo_good_ghost.png-36e0ed580512a56799b4bbde5bb39f5d.ctex"]
+source_file="res://assets/character_sprites/portrait_entity.png"
+dest_files=["res://.godot/imported/portrait_entity.png-87d3c766240026d81fb4cf0009ef8184.ctex"]
 
 [params]
 

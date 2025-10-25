@@ -261,6 +261,29 @@ func can_use_phone_flashlight() -> bool:
 			return true
 
 	return false
+	
+# ===================
+# MANUAL ENABLE / DISABLE FLASHLIGHT HANDLER
+# ===================
+func disable_flashlights() -> void:
+	data["real_flashlight_enabled"] = false
+	data["phone_flashlight_enabled"] = false
+	
+	_update_lights()
+	_save_json()
+	
+func enable_flashlight_by_cash() -> void:
+	if SaveManager.has_given_lola_ising_cash():
+		data["real_flashlight_enabled"] = true
+		data["phone_flashlight_enabled"] = false
+		data["real_flashlight_unlocked"] = true
+	else:
+		data["real_flashlight_enabled"] = false
+		data["phone_flashlight_enabled"] = true
+		data["real_flashlight_unlocked"] = false
+	
+	_update_lights()
+	_save_json()
 
 # ===================
 # JSON PERSISTENCE
@@ -281,7 +304,6 @@ func _load_json() -> void:
 			var parsed = JSON.parse_string(json_text)
 			if typeof(parsed) == TYPE_DICTIONARY:
 				data = parsed
-				_print_once("[FlashlightManager] Flashlight state loaded from JSON.")
 			file.close()
 	else:
 		_print_once("[FlashlightManager] JSON not found, using defaults.")
