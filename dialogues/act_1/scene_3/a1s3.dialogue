@@ -5,8 +5,7 @@ Danilo: [center]Sasabihin ko ba kay Wendy... yung naalala ko?[/center]
 Wendy: Huy, Dan?
 - Tell her about the figure in the memory =>< tell
 - Keep it to yourself =>< keep
-#- asdfsa
-do leave_the_park()
+do _leave_the_park()
 => END
 
 ~ tell

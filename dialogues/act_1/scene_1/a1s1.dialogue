@@ -20,7 +20,7 @@ do add_notification()
 do player_danilo.can_move = false
 Danilo: Ngayon pala yung araw na yun?
 do tension_in_anim()
-Danilo : Anniversary na naman ng [wave]pagkawala[/wave] ni Mateo
+Danilo : Anniversary na naman ng [wave]pagkawala[/wave] niya
 Danilo: ... [wait = 0.5] ... [wait = 0.5] ... 
 do tension_out_anim()
 do Hud.phone_outro()
@@ -45,6 +45,3 @@ do Hud.phone_intro()
 => phone_time
 => END
 
-~ test
-Danilo: haha
-=> END
