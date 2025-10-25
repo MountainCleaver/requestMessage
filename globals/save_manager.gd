@@ -23,16 +23,18 @@ func _on_session_loaded():
 	current_user_id = Session.user_ID
 	_set_save_paths()
 
-	print("[SaveManager] Session loaded. Save path:", SAVE_PATH)
-
 	if FileAccess.file_exists(SAVE_PATH):
 		print("[SaveManager] Existing save found for", current_username)
 		load_game()
-		print("[SaveManager] Save data loaded for", current_username)
 	else:
 		print("[SaveManager] No save found for", current_username, "— creating new one.")
 		reset_save_state()
 		save_game() 
+
+	# Fetch and merge online save automatically
+	if Session.user_ID != 0:
+		_sync_online_save()
+
 
 	
 func _set_save_paths():
@@ -68,6 +70,12 @@ func _save_game_progress(act: String, scene: String, next_scene: String) -> void
 	GameSceneManager._change_scene("res://scenes/game/saving_screen.tscn")
 	next_scene_path = next_scene
 	mark_scene_finished(act, scene)
+	
+	if Session.user_ID != 0:
+		track_save_progress(Session.user_ID, act, scene)
+	print("[SaveManager] About to push online save for act:", act, "scene:", scene)
+	_push_online_save(act, scene)
+
 
 
 func load_game() -> void:
@@ -111,6 +119,7 @@ func mark_scene_finished(act: String, scene: String) -> void:
 
 	if Session.user_ID != 0:
 		track_save_progress(Session.user_ID, act, scene)
+		_push_online_save(act, scene) 
 	else:
 		print("Warning: user_ID is 0. Progress not sent to API.")
 
@@ -200,7 +209,7 @@ func switch_account(new_username: String) -> void:
 	current_username = new_username
 	print("SaveManager: Switched account to: ", current_username)
 	load_game() 
-	
+
 func save_moral_choice(act_scene: String, choice: String) -> void:
 	if not game_save:
 		game_save = SaveGameResource.new()
@@ -358,3 +367,100 @@ func has_received_real_flashlight() -> bool:
 	var scene_done = is_scene_finished("act_3", "scene_1")
 
 	return lola_cash_given or scene_done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _sync_online_save() -> void:
+	if Session.user_ID == 0:
+		return
+
+	var url = "https://requestmessage-admin.onrender.com/api/get_save.php?user_id=%d" % Session.user_ID
+	var request = HTTPRequest.new()
+	add_child(request)
+	request.connect("request_completed", Callable(self, "_on_online_save_fetched"))
+	request.request(url)
+
+func _on_online_save_fetched(result, response_code, headers, body):
+	if response_code != 200:
+		print("[SaveManager] Failed to fetch online save:", response_code)
+		return
+
+	var body_text = body.get_string_from_utf8()
+	var parse_result = JSON.parse_string(body_text) # returns JSONParseResult
+
+	var json_result: Dictionary  # declare it here so scope is correct
+
+	# Check if parse_result is already a Dictionary (Godot sometimes auto-converts)
+	if typeof(parse_result) == TYPE_DICTIONARY:
+		json_result = parse_result
+	else:
+		if parse_result.error != OK:
+			print("[SaveManager] Failed to parse JSON:", parse_result.error_string)
+			return
+		json_result = parse_result.result
+
+	# Check if result exists
+	if not json_result.has("result") or json_result["result"] == null:
+		print("[SaveManager] No online save found, using local save.")
+		return
+
+	var online_save: Dictionary = json_result["result"]
+	_merge_online_save(online_save)
+	save_game()
+	print("[SaveManager] Online save merged with local save.")
+
+
+
+func _push_online_save(latest_act: String, latest_scene: String) -> void:
+	if Session.user_ID == 0:
+		return
+
+	var url = "https://requestmessage-admin.onrender.com/api/update_save.php"
+	var request = HTTPRequest.new()
+	add_child(request)
+
+	var data = {
+		"user_id": Session.user_ID,
+		"save_data": game_save.to_dict(),
+		"latest_act": latest_act,
+		"latest_scene": latest_scene
+	}
+
+	print("[SaveManager] Sending online save:", data)
+
+	var json_body = JSON.stringify(data)
+	request.request(url, ["Content-Type: application/json"], HTTPClient.METHOD_POST, json_body)
+
+
+func _merge_online_save(online_data: Dictionary) -> void:
+	# Merge finished scenes
+	for act in online_data.finished_scenes:
+		if act in game_save.finished_scenes:
+			for scene in online_data.finished_scenes[act]:
+				if scene not in game_save.finished_scenes[act]:
+					game_save.finished_scenes[act].append(scene)
+		else:
+			game_save.finished_scenes[act] = online_data.finished_scenes[act]
+
+	# Merge choices
+	for act_scene in online_data.choices:
+		if act_scene not in game_save.choices:
+			game_save.choices[act_scene] = online_data.choices[act_scene]
+
+	# Merge karma and meds
+	game_save.karma = max(game_save.karma, online_data.karma)
+	game_save.meds_taken = max(game_save.meds_taken, online_data.meds_taken)
