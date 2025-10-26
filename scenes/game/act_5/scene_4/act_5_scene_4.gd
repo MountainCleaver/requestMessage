@@ -9,6 +9,7 @@ const A_5S_4 = preload("uid://by7wjj33esup2")
 @onready var wendy: CharacterBody2D = $TileMapLayer/wendy
 @onready var npc_gino: CharacterBody2D = $TileMapLayer/npc_gino_with_stick
 
+
 # === References: Hiding Spots ===
 @onready var danilo_hiding_spot: Marker2D = $spawn_points/daniloHidingSpot
 @onready var mateo_hiding_spot: Marker2D = $spawn_points/mateoHidingSpot
@@ -98,7 +99,7 @@ func _aim_camera_to_mateo() -> void:
 func act_5_scene_4_done() -> void:
 	SaveManager.game_save.current_act = "act_5"
 	SaveManager.game_save.current_scene = "scene_5"
-	SignalBus.act_num_scene_num_done.emit("act_5", "scene_4", "res://scenes/game/act_5/scene_5/act_5_scene_5.tscn")
+	SignalBus.act_num_scene_num_done.emit("act_5", "scene_4", "res://scenes/game/act_5/scene_5/act_5_scene_5_mini_game_start.tscn")
 
 func _on_scene_end_body_entered(body: Node2D) -> void:
 	if body.name == "mateo":
