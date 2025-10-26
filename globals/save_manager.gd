@@ -5,8 +5,12 @@ var BACKUP_PATH: String = ""
 
 var game_save: SaveGameResource
 var next_scene_path: String
-var current_username: String = "" 
+var current_username: String = ""
 var current_user_id: int = 0
+var current_slot: int = 0
+var play_timer: Timer
+var play_start_time: int = 0
+
 
 func _ready() -> void:
 	SignalBus.act_num_scene_num_done.connect(_save_game_progress)
@@ -16,6 +20,15 @@ func _ready() -> void:
 
 	if Session.logged_in:
 		_on_session_loaded()
+		
+	play_timer = Timer.new()
+	play_timer.wait_time = 1.0
+	play_timer.autostart = true
+	play_timer.one_shot = false
+	play_timer.timeout.connect(_on_play_timer_tick)
+	add_child(play_timer)
+
+	play_start_time = Time.get_unix_time_from_system()
 
 func _on_session_loaded():
 	print("[SaveManager] _on_session_loaded() triggered for user:", Session.username)
@@ -27,35 +40,38 @@ func _on_session_loaded():
 		print("[SaveManager] Existing save found for", current_username)
 		load_game()
 	else:
-		print("[SaveManager] No save found for", current_username, "— creating new one.")
+		print("[SaveManager] No save found for", current_username, "— creating new save.")
 		reset_save_state()
-		save_game() 
 
 	# Fetch and merge online save automatically
 	if Session.user_ID != 0:
 		_sync_online_save()
 
+func _on_play_timer_tick() -> void:
+	if game_save:
+		game_save.playtime_seconds += 1
 
 	
 func _set_save_paths():
-	var user_folder = "user://users/%s_%d" % [Session.username, Session.user_ID]
+	if current_slot < 1 or current_slot > 3:
+		current_slot = 1 
+
+	var user_folder = "user://users/%s_%d/slot_%d" % [Session.username, Session.user_ID, current_slot]
 
 	var users_dir = DirAccess.open("user://users")
 	if not users_dir:
 		var root_dir = DirAccess.open("user://")
 		if root_dir:
-			var err = root_dir.make_dir("users")
-			if err != OK:
-				push_error("Failed to create 'users' folder")
-				return
+			root_dir.make_dir("users")
 			users_dir = DirAccess.open("user://users")
 
-	var user_dir = DirAccess.open(user_folder)
+	var user_dir = DirAccess.open("user://users/%s_%d" % [Session.username, Session.user_ID])
 	if not user_dir:
-		var err = users_dir.make_dir("%s_%d" % [Session.username, Session.user_ID])
-		if err != OK:
-			push_error("Failed to create folder for user: %s" % user_folder)
-			return
+		users_dir.make_dir("%s_%d" % [Session.username, Session.user_ID])
+
+	var slot_dir = DirAccess.open(user_folder)
+	if not slot_dir:
+		users_dir.make_dir("%s_%d/slot_%d" % [Session.username, Session.user_ID, current_slot])
 
 	SAVE_PATH = "%s/save.res" % user_folder
 	BACKUP_PATH = "%s/backup.res" % user_folder
@@ -63,7 +79,7 @@ func _set_save_paths():
 	print("[SaveManager] Save path set to:", SAVE_PATH)
 	print("[SaveManager] Backup path set to:", BACKUP_PATH)
 
-		
+
 func _save_game_progress(act: String, scene: String, next_scene: String) -> void:
 	print("Saving progress for user:", current_username, "ID:", Session.user_ID, "Act:", act, "Scene:", scene)
 
@@ -91,19 +107,31 @@ func load_game() -> void:
 		save_game()
 
 func save_game() -> void:
+	var now = Time.get_unix_time_from_system()
+	var elapsed = now - play_start_time
+	game_save.playtime_seconds += elapsed
+	play_start_time = now
 	print("saving game")
 	if FileAccess.file_exists(SAVE_PATH):
 		var copy_err := DirAccess.copy_absolute(SAVE_PATH, BACKUP_PATH)
 		if copy_err != OK:
 			push_error("Failed to create backup: %s" % copy_err)
-
 	var error := ResourceSaver.save(game_save, SAVE_PATH)
 	if error != OK:
 		push_error("Failed to save game: %s" % error)
 
+
 func reset_save_state():
 	print("[SaveManager] Resetting local save state (keeping username and paths).")
 	game_save = SaveGameResource.new()
+	
+	game_save.current_act = "act_1"
+	game_save.current_scene = "scene_1"
+	game_save.finished_scenes = {"act_1": ["scene_1"]}
+	game_save.playtime_seconds = 0
+	game_save.date_created = Time.get_unix_time_from_system()
+
+
 
 func save_game_next_scene() -> void:
 	GameSceneManager._change_scene(next_scene_path)
@@ -113,8 +141,11 @@ func mark_scene_finished(act: String, scene: String) -> void:
 	if scene not in scenes:
 		scenes.append(scene)
 	game_save.finished_scenes[act] = scenes
-	save_game()
 	
+	game_save.current_act = act
+	game_save.current_scene = scene
+	
+	save_game()
 	track_save()
 
 	if Session.user_ID != 0:
@@ -209,6 +240,12 @@ func switch_account(new_username: String) -> void:
 	current_username = new_username
 	print("SaveManager: Switched account to: ", current_username)
 	load_game() 
+
+func set_last_played_slot(slot_index: int) -> void:
+	current_slot = slot_index
+	if game_save:
+		game_save.last_played_slot = slot_index
+	save_game()
 
 func save_moral_choice(act_scene: String, choice: String) -> void:
 	if not game_save:
@@ -369,61 +406,106 @@ func has_received_real_flashlight() -> bool:
 	return lola_cash_given or scene_done
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-#------------------------------------------------------------------------------------------------------------------------------#
-
+# ===================
+# ONLINE SAVE
+# ===================
 func _sync_online_save() -> void:
+	print("[SaveManager] Syncing all online saves for user:", Session.user_ID)
+	_sync_online_save_slot1()
+	_sync_online_save_slot2()
+	_sync_online_save_slot3()
+	
+func _sync_online_save_slot1() -> void:
 	if Session.user_ID == 0:
 		return
-
-	var url = "https://requestmessage-admin.onrender.com/api/get_save.php?user_id=%d" % Session.user_ID
+	var url = "https://requestmessage-admin.onrender.com/api/get_save.php?user_id=%d&slot=1" % Session.user_ID
 	var request = HTTPRequest.new()
 	add_child(request)
-	request.connect("request_completed", Callable(self, "_on_online_save_fetched"))
+	request.connect("request_completed", Callable(self, "_on_online_save_fetched").bind(1))
 	request.request(url)
 
-func _on_online_save_fetched(result, response_code, headers, body):
+func _sync_online_save_slot2() -> void:
+	if Session.user_ID == 0:
+		return
+	var url = "https://requestmessage-admin.onrender.com/api/get_save.php?user_id=%d&slot=2" % Session.user_ID
+	var request = HTTPRequest.new()
+	add_child(request)
+	request.connect("request_completed", Callable(self, "_on_online_save_fetched").bind(2))
+	request.request(url)
+
+func _sync_online_save_slot3() -> void:
+	if Session.user_ID == 0:
+		return
+	var url = "https://requestmessage-admin.onrender.com/api/get_save.php?user_id=%d&slot=3" % Session.user_ID
+	var request = HTTPRequest.new()
+	add_child(request)
+	request.connect("request_completed", Callable(self, "_on_online_save_fetched").bind(3))
+	request.request(url)
+
+
+func _on_online_save_fetched(result, response_code, headers, body, slot_num):
 	if response_code != 200:
-		print("[SaveManager] Failed to fetch online save:", response_code)
+		print("[SaveManager] Failed to fetch online save for slot %d: %d" % [slot_num, response_code])
 		return
 
 	var body_text = body.get_string_from_utf8()
 	var parse_result = JSON.parse_string(body_text)
+	if typeof(parse_result) != TYPE_DICTIONARY:
+		print("[SaveManager] Invalid JSON format for slot %d" % slot_num)
+		return
 
-	var json_result: Dictionary
-
-	if typeof(parse_result) == TYPE_DICTIONARY:
-		json_result = parse_result
-	else:
-		if parse_result.error != OK:
-			print("[SaveManager] Failed to parse JSON:", parse_result.error_string)
-			return
-		json_result = parse_result.result
+	var json_result: Dictionary = parse_result
 
 	if not json_result.has("result") or json_result["result"] == null:
-		print("[SaveManager] No online save found, using local save.")
+		print("[SaveManager] No online save found for slot %d — skipping merge." % slot_num)
 		return
 
 	var online_save: Dictionary = json_result["result"]
-	_merge_online_save(online_save)
-	save_game()
-	print("[SaveManager] Online save merged with local save.")
-	
+	print("[SaveManager] Successfully fetched online save for slot %d" % slot_num)
+
+	var slot_save := SaveGameResource.new()
+	slot_save.current_act = online_save.get("current_act", "")
+	slot_save.current_scene = online_save.get("current_scene", "")
+	slot_save.finished_scenes = online_save.get("finished_scenes", {})
+
+	var online_choices = online_save.get("choices", {})
+
+	match typeof(online_choices):
+		TYPE_DICTIONARY:
+			slot_save.choices = online_choices.duplicate(true)
+		TYPE_ARRAY:
+			var choices_dict := {}
+			for item in online_choices:
+				choices_dict[str(item)] = true
+			slot_save.choices = choices_dict
+		_:
+			print("[SaveManager] Warning: Invalid 'choices' format in online save (slot %d)." % slot_num)
+			slot_save.choices = {}
+			
+	slot_save.karma = online_save.get("karma", 0)
+	slot_save.playtime_seconds = online_save.get("playtime_seconds", 0)
+	slot_save.meds_taken = online_save.get("meds_taken", 0)
+	slot_save.date_created = online_save.get("date_created", Time.get_unix_time_from_system())
+
+	var slot_dir_path = "user://users/%s_%d/slot_%d" % [Session.username, Session.user_ID, slot_num]
+	var slot_path = slot_dir_path + "/save.res"
+
+	if not DirAccess.dir_exists_absolute(slot_dir_path):
+		DirAccess.make_dir_recursive_absolute(slot_dir_path)
+
+	var err = ResourceSaver.save(slot_save, slot_path)
+	if err != OK:
+		print("[SaveManager] Failed to save slot %d → %s" % [slot_num, slot_path])
+	else:
+		print("[SaveManager] Slot %d online save saved locally → %s" % [slot_num, slot_path])
+
+	if slot_num == current_slot:
+		_merge_online_save(online_save)
+		play_start_time = Time.get_unix_time_from_system()
+		save_game()
+		print("[SaveManager] Slot %d merged into active save." % slot_num)
+
 	SignalBus.online_save_merged.emit()
-
-
 
 func _push_online_save(latest_act: String, latest_scene: String) -> void:
 	if Session.user_ID == 0:
@@ -435,16 +517,16 @@ func _push_online_save(latest_act: String, latest_scene: String) -> void:
 
 	var data = {
 		"user_id": Session.user_ID,
+		"slot": current_slot,
 		"save_data": game_save.to_dict(),
 		"latest_act": latest_act,
 		"latest_scene": latest_scene
 	}
 
-	print("[SaveManager] Sending online save:", data)  
-	
+	print("[SaveManager] Sending online save for slot %d:" % current_slot, data)
+
 	var json_body = JSON.stringify(data)
 	request.request(url, ["Content-Type: application/json"], HTTPClient.METHOD_POST, json_body)
-
 
 func _merge_online_save(online_data: Dictionary) -> void:
 	for act in online_data.finished_scenes:
@@ -461,3 +543,13 @@ func _merge_online_save(online_data: Dictionary) -> void:
 
 	game_save.karma = max(game_save.karma, online_data.karma)
 	game_save.meds_taken = max(game_save.meds_taken, online_data.meds_taken)
+
+	var latest_act = ""
+	var latest_scene = ""
+	for act in game_save.finished_scenes.keys():
+		for scene in game_save.finished_scenes[act]:
+			latest_act = act
+			latest_scene = scene
+	if latest_act != "" and latest_scene != "":
+		game_save.current_act = latest_act
+		game_save.current_scene = latest_scene
