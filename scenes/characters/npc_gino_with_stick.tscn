@@ -270,15 +270,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kjko3"]
-size = Vector2(12, 7)
+[sub_resource type="CircleShape2D" id="CircleShape2D_csl78"]
+radius = 7.017834
 
 [node name="npc_gino_with_stick" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 2
 collision_mask = 29
 motion_mode = 1
 script = ExtResource("1_csl78")
-speed = 80.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
@@ -290,6 +290,9 @@ frame_progress = 0.36110675
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_kjko3")
+shape = SubResource("CircleShape2D_csl78")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+path_postprocessing = 1
+debug_enabled = true
