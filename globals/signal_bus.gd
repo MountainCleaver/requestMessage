@@ -7,6 +7,7 @@ signal on_white_transition_finished
 
 # save game
 signal save_game_done
+signal online_save_merged
 
 #menu
 signal exit_overlay

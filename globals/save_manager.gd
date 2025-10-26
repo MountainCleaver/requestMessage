@@ -420,6 +420,8 @@ func _on_online_save_fetched(result, response_code, headers, body):
 	_merge_online_save(online_save)
 	save_game()
 	print("[SaveManager] Online save merged with local save.")
+	
+	SignalBus.online_save_merged.emit()
 
 
 
@@ -438,7 +440,8 @@ func _push_online_save(latest_act: String, latest_scene: String) -> void:
 		"latest_scene": latest_scene
 	}
 
-
+	print("[SaveManager] Sending online save:", data)  
+	
 	var json_body = JSON.stringify(data)
 	request.request(url, ["Content-Type: application/json"], HTTPClient.METHOD_POST, json_body)
 
