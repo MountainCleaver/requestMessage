@@ -80,12 +80,6 @@ func _ready() -> void:
 		area.monitoring = false
 		area.set_deferred("monitorable", false)
 	
-	for paper_name in paper_areas.keys():
-		var area = paper_areas[paper_name]
-		area.body_entered.connect(func(body):
-			_on_paper_body_entered(paper_name, body))
-		area.body_exited.connect(func(body):
-			_on_paper_body_exited(paper_name, body))
 
 func _input(event: InputEvent) -> void:
 	if not event.is_action_pressed("interact"):
@@ -154,6 +148,13 @@ func _on_phone_trigger_body_entered(body: Node2D) -> void:
 	player_danilo.force_cannot_move = false
 	player_danilo.can_move = true
 	player_danilo.can_interact = true
+	
+	for paper_name in paper_areas.keys():
+		var area = paper_areas[paper_name]
+		area.body_entered.connect(func(body):
+			_on_paper_body_entered(paper_name, body))
+		area.body_exited.connect(func(body):
+			_on_paper_body_exited(paper_name, body))
 
 func enable_phone_trigger():
 	phone_trigger.visible = true

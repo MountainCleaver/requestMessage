@@ -22,7 +22,7 @@ do to_rizal_park()
 ~ wendy_start
 Danilo: Wen! Kanina ka pa ba?
 Wendy: Kararating ko lang din.
-Wendy: I thought male-late ka ka nanaman.
+Wendy: I thought male-late ka na naman.
 Danilo: Nagbabagong buhay na ako. Tara maghanap na tayo ng upuan.
 do wendy_follow()
 => END
@@ -43,7 +43,7 @@ do set_table_used("table_3")
 => END
 
 ~ pick_table_4
-Danilo: Ayan, pwede na tayo dito.
+Danilo: Ayan, pwede na tayo rito.
 do ObjectiveManager.complete_objective(3)
 do set_table_used("table_4")
 do wendy_unfollow()
@@ -51,27 +51,26 @@ do wendy_unfollow()
 
 ~ table_conversation
 Wendy: Grabe,[wait=0.4] fifteen years na pala no?
-Wendy: Kumusta ka naman?[wait=0.4] Lalo na ngayon?
+Wendy: Kumusta ka naman?[wait=0.4] Especially now...
 Danilo: Ah,[wait=0.3]okay lang naman...
 Danilo: [wave]Hindi lang maganda gising ko kanina. [/wave]
-Danilo: Parang ang bigat lang.
+Danilo: Parang... ang bigat lang.
 Wendy: Siguro dahil sa araw ngayon.
 Wendy: Bigat din sa'kin eh.
-Wendy: Ilang taong na rin na 'di natin kasam si Mateo...
 Wendy: [speed=0.8]...
-Wendy: [center]Kailangan ko siguro pagaanin ang usapan.[/center]
+Wendy: [center]I do really need to lighten up the mood.[/center]
 Wendy: [center]Ayoko naman na puro lungkot ang maalala namin.[/center]
-Wendy: Naalala mo pa ba nung maliliit tayo?
+Wendy: Dan, remember when we were kids...
 Wendy: Ang hilig natin maglaro ng tagu-taguan.
 Wendy: [wave]Tapos ikaw...[/wave]
-Wendy: ikaw lagi mo akong sinasama magtago kahit alam mong mali.
+Wendy: ikaw lagi mo akong sinasamang magtago kahit alam mong mali.
 Wendy: Gusto mo lang siguro may kakampi,
-Wendy: o gusto mo lang makita si Mateo matalo.
-Wendy: Isang beses, ang tagal niyong lumabas... Akala ko umuwi kayo.
+Wendy: or gusto mo lang makita siyang matalo.
+Wendy: One time, ang tagal niyong lumabas... Here, I thought na umuwi na kayo.
 Wendy: Yun pala, nagtago lang kayo sa may damuhan malapit sa puno.
 Wendy: Di ko kayo mahanap kasi nakahiga kayo pareho.
 Wendy: (buntong hininga)
-Wendy: Ilang taon narin pala no... [wave]na hinda natin siya kasama.[/wave]
+Wendy: Ilang taon narin pala no... [wave]na hindi na natin siya kasama.[/wave]
 Danilo: ...
 Wendy: Danilo? [wait=1.0]
 Danilo: ... ...

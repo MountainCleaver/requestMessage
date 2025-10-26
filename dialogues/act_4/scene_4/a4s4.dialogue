@@ -1,7 +1,7 @@
 ~ unknown_message
 do ChatManager.send_chat("unknown_sender", "Unknown Number", "Pumwesto ka sa likod ng bato para hindi ka maihip ng hangin")
 Unknown_sender: [wait=1.5] Pumwesto ka sa likod ng bato para hindi ka maihip ng hangin
-- Ignore => Ignore
+- ... => Ignore
 => END
 
 ~ Ignore

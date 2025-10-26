@@ -17,6 +17,10 @@ extends Control
 var current_choice = 0
 
 func _ready() -> void:
+	SignalBus.online_save_merged.connect(_on_online_save_ready)
+	
+	_update_continue_visibility()
+	
 	print("finished scenes: " + str(SaveManager.game_save.finished_scenes))
 	print("scene choices: " + str(SaveManager.game_save.choices))
 	print("Current Karma: " + str(SaveManager.game_save.karma))
@@ -115,3 +119,13 @@ func _on_logout_confirmation_dialog_confirmed() -> void:
 func _on_logout_confirmation_dialog_canceled() -> void:
 	# do nothing
 	pass # Replace with function body.
+
+func _update_continue_visibility() -> void:
+	if SaveManager.has_save():
+		continue_game.visible = true
+	else:
+		continue_game.visible = false
+
+func _on_online_save_ready() -> void:
+	print("[MenuMain] Online save merged — refreshing Continue button visibility")
+	_update_continue_visibility()
