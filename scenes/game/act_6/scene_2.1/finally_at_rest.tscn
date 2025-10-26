@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bty3dc07c3yer"]
+[gd_scene load_steps=6 format=3 uid="uid://bty3dc07c3yer"]
 
 [ext_resource type="Script" uid="uid://c7a5v5hme6sbv" path="res://scenes/game/act_6/scene_2.1/finally_at_rest.gd" id="1_0m65k"]
 [ext_resource type="PackedScene" uid="uid://cvwpche3m7mwe" path="res://scenes/game/act_6/scene_2.1/hospital.tscn" id="1_448x2"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_0m65k"]
 [ext_resource type="PackedScene" uid="uid://d1vnt1mlybwuq" path="res://scenes/characters/npc_wendy.tscn" id="4_uyni6"]
+[ext_resource type="AudioStream" uid="uid://d2isaj5r05nju" path="res://sound/relaxing-box-music-127982.mp3" id="5_38jbd"]
 
 [node name="finally at rest" type="Node2D"]
 script = ExtResource("1_0m65k")
@@ -22,5 +23,9 @@ zoom = Vector2(4, 4)
 
 [node name="wendy" parent="hospital" instance=ExtResource("4_uyni6")]
 position = Vector2(23, 8)
+
+[node name="BGMGood1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_38jbd")
+autoplay = true
 
 [editable path="hospital/player_danilo"]

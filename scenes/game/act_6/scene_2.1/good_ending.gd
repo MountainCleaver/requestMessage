@@ -2,29 +2,21 @@ extends Node2D
 
 @onready var narration_text: RichTextLabel = $CanvasLayer/Control/Panel/TextureRect/RichTextLabel
 @onready var skip_button: Button = $CanvasLayer/Control/Panel/TextureRect/Button
+@onready var play_pause_button: Button = $CanvasLayer/Control/Panel/TextureRect/play_pause_button
 @onready var bgm: AudioStreamPlayer = $BGMGood
 
+var pause_icon = preload("res://assets/character_sprites/pause.png")  
+var play_icon = preload("res://assets/character_sprites/play.png")    
+
 var story_lines = [
-	"[center]The next morning, Danilo begged the villagers to go back to the cliff with him.",
-	"They were unsure, but they saw how much he needed to go, so they agreed.[/center]",
+	"[center]The next morning, Danilo begged the villagers to go back to the cliff with him. They were unsure, but they saw how much he needed to go, so they agreed. They climbed down the side of the cliff and started to dig in the spot Danilo showed them. After many hours, they found bones. They were small and delicate, the bones of a child who had been missing for a long time. The villagers lit candles and began to pray. Then, a faint image of the boy, Mateo, appeared by the cliff. He was smiling and finally at peace.[/center]",
 	"",
-	"[center]They climbed down the side of the cliff and started to dig in the spot Danilo showed them.",
-	"After many hours, they found bones.",
-	"They were small and delicate, the bones of a child who had been missing for a long time.[/center]",
 	"",
-	"[center]The villagers lit candles and began to pray.",
-	"Then, a faint image of the boy, Mateo, appeared by the cliff.",
-	"He was smiling and finally at peace.[/center]",
-	"",
-	"[center]He whispered a thank you that only Danilo could hear.[/center]",
-	"",
-	"[center]Tears fell down Danilo's face.",
-	"Wendy held his hand tightly.",
-	"For the first time in fifteen years, the heavy feeling in his heart was gone.[/center]"
+	"[center]He whispered a thank you that only Danilo could hear. Tears fell down Danilo's face. Wendy held his hand tightly. For the first time in fifteen years, the heavy feeling in his heart was gone.[/center]"
 ]
 
 var current_line_index := 0
-var scroll_speed := 18.0
+var scroll_speed := 22.0
 var is_scrolling := true
 var initial_y_position := 0.0
 var has_shown_end := false
@@ -33,16 +25,30 @@ var screen_height := 0.0
 func _ready():
 	screen_height = get_viewport().get_visible_rect().size.y
 	
+	narration_text.add_theme_constant_override("line_separation", 15) 
+	
+	var style = StyleBoxFlat.new()
+	style.content_margin_left = 200
+	style.content_margin_right = 200
+	style.content_margin_top = 80
+	style.content_margin_bottom = 80
+	style.bg_color = Color(0, 0, 0, 0) 
+	narration_text.add_theme_stylebox_override("normal", style)
+	
 	narration_text.scroll_active = false
 	narration_text.scroll_following = false
 	
 	skip_button.visible = false
+	play_pause_button.visible = true
+	
+	play_pause_button.icon = pause_icon
 	
 	initial_y_position = narration_text.position.y
 	
 	narration_text.text = "\n".join(story_lines)
 	
 	skip_button.pressed.connect(_on_back_button_pressed)
+	play_pause_button.pressed.connect(_on_play_pause_button_pressed)
 	
 	if bgm.stream != null:
 		bgm.play()
@@ -61,6 +67,8 @@ func _process(delta):
 
 func show_the_end():
 	has_shown_end = true
+	
+	play_pause_button.visible = false
 	
 	var end_label = Label.new()
 	end_label.name = "TheEndLabel"
@@ -104,6 +112,14 @@ func show_the_end():
 func start_scrolling():
 	is_scrolling = true
 
+func _on_play_pause_button_pressed():
+	is_scrolling = !is_scrolling
+	
+	if is_scrolling:
+		play_pause_button.icon = pause_icon 
+	else:
+		play_pause_button.icon = play_icon  
+
 func _on_back_button_pressed():
 	is_scrolling = false
 	
@@ -113,11 +129,11 @@ func _on_back_button_pressed():
 		tween.tween_callback(bgm.stop)
 		await tween.finished
 	
-	get_tree().change_scene_to_file("res://scenes/menu/menu_main.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/menu_credits.tscn")
 
 func _input(event):
 	if event.is_action_pressed("ui_accept") and not has_shown_end:
-		is_scrolling = !is_scrolling
+		_on_play_pause_button_pressed()
 	
 	if event.is_action_pressed("ui_accept") and has_shown_end:
 		_on_back_button_pressed()
