@@ -555,14 +555,26 @@ func _merge_online_save(online_data: Dictionary) -> void:
 		game_save.current_scene = latest_scene
 
 func _set_current_scene_from_path(scene_path: String) -> void:
-	var file_name = scene_path.get_file().get_basename() # e.g., "act_1_scene_2"
+	var file_name = scene_path.get_file().get_basename() # e.g., "act_1_title_scene" or "act_2_scene_3"
 	var parts = file_name.split("_")
-	if parts.size() >= 4:
-		var act = parts[0] + "_" + parts[1]          # "act_1"
-		var scene = parts[2] + "_" + parts[3]        # "scene_2"
+	
+	if parts.size() >= 2:
+		var act = parts[0] + "_" + parts[1] # "act_1", "act_2", etc.
+		var scene = "" # declare it first
+		
+		# If it's a title scene, default to "scene_1"
+		if file_name.to_lower().find("title") != -1:
+			scene = "scene_1"
+			print("[SaveManager] Title scene detected. Skipping to first scene:", act, "-", scene)
+		elif parts.size() >= 4:
+			scene = parts[2] + "_" + parts[3] # "scene_2", etc.
+		else:
+			push_error("[SaveManager] Could not parse scene from path: " + scene_path)
+			return
+		
 		game_save.current_act = act
 		game_save.current_scene = scene
 		save_game()
 		print("[SaveManager] Current scene updated to:", act, "-", scene)
 	else:
-		push_error("[SaveManager] Failed to parse next_scene path: " + scene_path)
+		push_error("[SaveManager] Failed to parse act from next_scene path: " + scene_path)
