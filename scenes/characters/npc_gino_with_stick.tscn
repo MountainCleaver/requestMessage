@@ -216,7 +216,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_down",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -233,7 +233,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_left",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -250,7 +250,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_right",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -267,7 +267,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_up",
-"speed": 5.0
+"speed": 6.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_csl78"]
@@ -284,9 +284,9 @@ script = ExtResource("1_csl78")
 y_sort_enabled = true
 position = Vector2(1, -6)
 sprite_frames = SubResource("SpriteFrames_lmh0i")
-animation = &"idle_down"
+animation = &"walk_up"
 autoplay = "idle_down"
-frame_progress = 0.36110675
+frame_progress = 0.100415684
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -295,4 +295,3 @@ shape = SubResource("CircleShape2D_csl78")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
 path_postprocessing = 1
-debug_enabled = true
