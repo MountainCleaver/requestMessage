@@ -1,7 +1,7 @@
 extends Node2D
 
 # PRELOADS
-const A_1S_4 = preload("res://dialogues/act_1/scene_4/a1s4.dialogue")
+var A_1S_4: Resource
 const DANILO_NEIGHBORHOOD = preload("res://scenes/game/act_1/scene_4/danilo_neighborhood.tscn")
 const DANILO_ROOM = preload("res://scenes/game/act_1/scene_4/danilo_room.tscn")
 const DANILO_LOCK = preload("res://scenes/game/lock_screen.tscn")
@@ -44,7 +44,7 @@ var lock_screen_instance: Control = null
 
 func _ready() -> void:
 	_game_state_flow()
-	
+	_load_dialogue()
 	switch_location(DANILO_NEIGHBORHOOD)
 
 	# Buzz Timer setup
@@ -63,6 +63,16 @@ func _ready() -> void:
 
 	_start_scene()
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_1/scene_4/a1s4_en.dialogue"
+	else:
+		path = "res://dialogues/act_1/scene_4/a1s4.dialogue"
+	
+	A_1S_4 = load(path)
+	
 # ===================
 # SCENE START
 # ===================

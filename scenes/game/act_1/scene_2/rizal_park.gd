@@ -1,6 +1,6 @@
 extends Node2D
 
-const A_1S_2 = preload("res://dialogues/act_1/scene_2/a1s2.dialogue")
+var A_1S_2: Resource
 const DANILO_AND_WENDY = preload("res://scenes/characters/danilo_and_wendy.tscn")
 
 const NPC_WENDY_ALONE = preload("res://scenes/characters/npc_wendy.tscn")
@@ -44,6 +44,7 @@ func _ready() -> void:
 
 	FlashlightManager.set_current_scene("act_1", "scene_2")
 	FlashlightManager.disable_flashlights()
+	_load_dialogue()
 	Hud.show_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	camera_2d.position = player_danilo.global_position
@@ -51,7 +52,16 @@ func _ready() -> void:
 	SignalBus.in_npc.connect(interact_npc)
 	SignalBus.out_npc.connect(interact_npc)
 	
-	# Connect all table areas dynamically
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_1/scene_2/a1s2_en.dialogue"
+	else:
+		path = "res://dialogues/act_1/scene_2/a1s2.dialogue"
+	
+	A_1S_2 = load(path)
+
 	
 var last_npc = ""
 
