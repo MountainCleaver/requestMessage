@@ -29,10 +29,21 @@ func _refresh_grid() -> void:
 		print("No save loaded for this slot")
 		return
 
+	# Keep track of added buttons to avoid duplicates
+	var added_scenes := {}
+
 	for act in slot_save.finished_scenes.keys():
 		var scenes: Array = slot_save.finished_scenes[act]
 		for scene in scenes:
 			_create_button(act, scene)
+			added_scenes["%s_%s" % [act, scene]] = true
+
+	# Add current scene if not finished yet
+	if slot_save.current_act != "" and slot_save.current_scene != "":
+		var key = "%s_%s" % [slot_save.current_act, slot_save.current_scene]
+		if not added_scenes.has(key):
+			_create_button(slot_save.current_act, slot_save.current_scene)
+
 
 
 func _create_button(act: String, scene: String) -> void:
