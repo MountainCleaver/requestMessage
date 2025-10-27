@@ -83,24 +83,13 @@ theme_override_fonts/font = ExtResource("3_tkyxw")
 theme_override_font_sizes/font_size = 26
 text = "CREATED:"
 
-[node name="last_played" type="Label" parent="slot_1"]
-visible = false
-layout_mode = 0
-offset_left = 510.0
-offset_top = 164.0
-offset_right = 1260.0
-offset_bottom = 193.0
-theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 26
-text = "LAST PLAYED:"
-
 [node name="playtime" type="Label" parent="slot_1"]
 visible = false
 layout_mode = 0
 offset_left = 510.0
-offset_top = 196.0
+offset_top = 171.0
 offset_right = 1260.0
-offset_bottom = 225.0
+offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
 theme_override_font_sizes/font_size = 26
 text = "PLAYTIME:"
@@ -155,24 +144,13 @@ theme_override_fonts/font = ExtResource("3_tkyxw")
 theme_override_font_sizes/font_size = 26
 text = "CREATED:"
 
-[node name="last_played" type="Label" parent="slot_2"]
-visible = false
-layout_mode = 0
-offset_left = 510.0
-offset_top = 164.0
-offset_right = 1260.0
-offset_bottom = 193.0
-theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 26
-text = "LAST PLAYED:"
-
 [node name="playtime" type="Label" parent="slot_2"]
 visible = false
 layout_mode = 0
 offset_left = 510.0
-offset_top = 196.0
+offset_top = 171.0
 offset_right = 1260.0
-offset_bottom = 225.0
+offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
 theme_override_font_sizes/font_size = 26
 text = "PLAYTIME:"
@@ -227,24 +205,13 @@ theme_override_fonts/font = ExtResource("3_tkyxw")
 theme_override_font_sizes/font_size = 26
 text = "CREATED:"
 
-[node name="last_played" type="Label" parent="slot_3"]
-visible = false
-layout_mode = 0
-offset_left = 510.0
-offset_top = 164.0
-offset_right = 1260.0
-offset_bottom = 193.0
-theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 26
-text = "LAST PLAYED:"
-
 [node name="playtime" type="Label" parent="slot_3"]
 visible = false
 layout_mode = 0
 offset_left = 510.0
-offset_top = 196.0
+offset_top = 171.0
 offset_right = 1260.0
-offset_bottom = 225.0
+offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
 theme_override_font_sizes/font_size = 26
 text = "PLAYTIME:"
