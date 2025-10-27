@@ -1,7 +1,7 @@
 ~ start
 Danilo: Siguro kailangan ko lang muna mapanatag ang isip ko.
 Danilo: ...
-Danilo: Oo... baka mas tahimik dun.
+Danilo: Oo... baka mas tahimik dun sa probinsya.
 do Hud.show_objectives()
 => END
 
@@ -103,18 +103,14 @@ Danilo: Siguro, aalis na ako.
 => END
 
 ~ sakay_jeep
-Danilo: Pasakay po, manong! =>< sakay_jeep_choices
-=> END
-
-~ sakay_jeep_choices
-Danilo: ... [wait = 0.5]
+Danilo: Pasakay po, manong! 
 - Bus Terminal => bus_terminal
 - Rizal Park => rizal_park
 - Cancel => END
 => END
 
 ~ rizal_park
-Danilo: Wala 'to sa plano ngayon... => sakay_jeep_choices
+Danilo: Wala 'to sa plano ngayon... => sakay_jeep
 => END
 
 ~ bus_terminal

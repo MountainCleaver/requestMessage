@@ -41,7 +41,7 @@ Danilo: Hindi ko alam... [wait=0.5]pero bakit yun agad pumasok sa isip ko?[wait=
 do SignalBus.emit_signal("show_locked_label")
 Danilo: ...[wait=1]
 Danilo: Bakit hindi ko na siya machat? [wait=0.5]Marami pa akong gustong itanong sa kanya.[wait=1]
-Danilo: Kung si [color=#8B0000][i]Mateo[/i][/color][/wave] nga yun? [wait=0.5]Hindi kaya’t buhay pa siya?[wait=1]
+Danilo: Kung si [color=#8B0000][i]Mateo[/i][/color] nga yun? [wait=0.5]Hindi kaya’t buhay pa siya?[wait=1]
 Danilo: Pero... [wait=0.5]Bakit ngayon lang siya nagparamdam?[wait=1]
 Danilo: Ilang... [wait=0.5]Ilang taon na ang lumipas nang nawala siya...[wait=1]
 do Hud.show_objectives()
@@ -154,7 +154,7 @@ Unknown_sender: [wait=1.5]Andoon ka. Nakita mo lahat ang nangyari. Hindi mo lang
 
 ~ reply_danilo_10
 - Kasalanan ko ba?
-- Ikaw ba talaga si [color=#8B0000][i]Mateo[/i][/color][/wave]?
+- Ikaw ba talaga si Mateo?
 - O ginagawa mo lang ‘to para guluhin ako?
 => reply_danilo_11
 
@@ -174,9 +174,9 @@ do SaveManager.save_moral_choice("act_2_scene_1", "restless")
 do stop_buzz()
 do _prevent_end_call_while_dialog_is_not_finished()
 Unknown_sender: [shake rate=20 level=10].. -. .. .-- .- -. / -- --- / .- -.- ---[/shake]
-Danilo: S-sino ka ba talaga...?
+Danilo: [shake rate=20 level=30]S-sino ka ba talaga...?[/shake]
 Unknown_sender: [shake rate=20 level=10].. -. .. .-- .- -. / -- --- / .- -.- ---[/shake]
-Danilo: Tigilan mo na ako!
+Danilo: [shake rate=20 level=30]Tigilan mo na ako![/shake]
 Unknown_sender: [shake rate=20 level=10].. -. .. .-- .- -. / -- --- / .- -.- ---[/shake]
 do unknown_sender_calling.emit()
 do call_with_unknown_sender_done = true

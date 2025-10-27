@@ -1,5 +1,5 @@
 ~ start
-Danilo: Hintayin mo ako, [color=#8B0000][i]Mateo[/i][/color][/wave].
+Danilo: Hintayin mo ako, [color=#8B0000][i]Mateo[/i][/color].
 => END
 
 ~ open_phone_flashlight
@@ -12,21 +12,21 @@ Danilo: Ang dilim na pala... tingin ko kailangan ko na buksan yung flashlight ko
 do Hud.reset_phone_state()
 => END
 
-~ ising_call_danilo
-Lola ising: Iho... saan ka pupunta? Gabi na... delikado sa labas.
+~ Ising_call_danilo
+Lola Ising: Iho... saan ka pupunta? Gabi na... delikado sa labas.
 => END
 
-~ talk_to_ising_first
+~ talk_to_Ising_first
 Danilo: Kailangan ko muna kausapin si Lola Ising.
 => END
 
-~ ising_give_flashlight
+~ Ising_give_flashlight
 Danilo: May kailangan lang akong gawin, La... sandali lang po ‘to.
-Lola ising: Iho, gabi na. Hindi ba puwedeng bukas na lang?
+Lola Ising: Iho, gabi na. Hindi ba puwedeng bukas na lang?
 Danilo: Hindi ko po kayang hintayin bukas... kailangan ko na pong pumunta.
-Lola ising: ...
-Lola ising: Kung gano’n, dalhin mo ‘to. 
-Lola ising: Flashlight. Huwag mong hayaang mawalan ka ng ilaw sa daan.
+Lola Ising: ...
+Lola Ising: Kung gano’n, dalhin mo ‘to. 
+Lola Ising: Flashlight. Huwag mong hayaang mawalan ka ng ilaw sa daan.
 Danilo: ...
 Danilo: Salamat, La. Una na po ako.
 => END

@@ -50,7 +50,7 @@ Danilo: [center]Kailagan ko munang hanapin yung bus pa Santa Claridad bago ako b
 
 ~ unknown_message
 do ChatManager.send_chat("unknown_sender", "Unknown Number", "So, nagdecide ka pa lang bumalik?")
-Unknown_sender: [wait=1.5] So, nagdecide ka pa lang bumalik?
+Unknown_sender: [wait=1.5]So, nagdecide ka pa lang bumalik?
 - Answer => Answer
 - Ignore => Ignore
 => END

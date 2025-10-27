@@ -44,10 +44,6 @@ Wendy: Danilo, have you heard that?
 
 do ChatManager.send_chat("wendy", "Wendy", "Ang lakas ng kulog dito.")
 Wendy: [wait=1.5]Ang lakas ng kulog dito.
-=> END
-
-~ choice_of_danilo
-Danilo: ...
 - Diyan rin pala sa city. => reply_danilo_1
 - Akala ko dito lang sa province. => reply_danilo_1
 => END
@@ -189,7 +185,7 @@ Danilo: ...
 - Take image
 	do Hud.add_popup_image("res://assets/tilesets/frame_blurred_only.png")
 	do Hud._toggle_popup()
-	Danilo: Bakit nagka ganito 'to?
+	Danilo: Bakit nagkaganito 'to?
 	do Hud._toggle_popup()
 	Danilo: ...
 	- Flip image
@@ -219,9 +215,9 @@ do can_interact = true
 => END
 
 ~ last_statement_1
-Danilo: Kung may kasagutan man sa likod ng lahat nang to...
+Danilo: Kung may kasagutan man sa likod ng lahat nang 'to...
 Danilo: [wave]Sana hindi pa huli ang lahat.[/wave]
-Danilo: Hintayin mo ‘ko.
+Danilo: Hintayin mo ‘ko, [color=#8B0000][i]Mateo[/i][/color].
 do _act_3_scene_4_done()
 => END
 
