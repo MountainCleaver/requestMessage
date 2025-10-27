@@ -13,6 +13,8 @@ const A_3S_4 = preload("uid://15o68hvrk4n0")
 @onready var animated_sprite_2d: AnimatedSprite2D = $player_danilo/AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $player_danilo/CollisionShape2D
 
+@onready var bgm_house: AudioStreamPlayer = $BGM_HOUSE
+
 var current_location: Node2D
 
 var first_switch: bool = true
