@@ -53,9 +53,14 @@ func _ready() -> void:
 	
 	# Connect all table areas dynamically
 	
+var last_npc = ""
 
 func _process(delta: float) -> void:
-	print(player_danilo.current_npc)
+	var current_npc = str(player_danilo.current_npc)
+	if current_npc != last_npc:
+		print("Current NPC: ", current_npc)
+		last_npc = current_npc
+
 	if not camera_panned_to_wendy:
 		camera_2d.position = player_danilo.global_position
 
