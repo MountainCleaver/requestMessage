@@ -1,0 +1,47 @@
+~ start
+Danilo: The rain... it feels heavier tonight.  
+Danilo: Like it’s pressing down on me.  
+do Hud.show_objectives()
+#do Player.looked_window = true
+=> END
+
+~ phone_time
+do player_danilo.can_move = false
+Danilo: Too early... Way too early for this.  
+Danilo: My head... it feels... foggy.  
+do player_danilo.can_move = true
+do ObjectiveManager.complete_objective(2)
+do get_tree().create_timer(1).timeout
+do add_notification()
+=> reminder
+=> END
+
+~ reminder
+do player_danilo.can_move = false
+Danilo: Today... again.  
+do tension_in_anim()
+Danilo: Another anniversary of [wave][color=#8B0000][i]his[/i][/color][/wave] disappearance.
+Danilo: Every year it feels... heavier... 
+do tension_out_anim()
+do Hud.phone_outro()
+=> go_bed
+do player_danilo.can_move = true
+=> END
+
+~ go_bed
+Danilo: I can’t stay awake... I need to... just sleep.  
+Danilo: I still have plans later.
+do ObjectiveManager.add_objective(scene_objectives[2]["ID"], scene_objectives[2]["text"])
+do activate_bed()
+=> END!
+
+~ water
+Danilo: Maybe water... might help... maybe not...  
+do drink_water_anim()
+do ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
+#do Player.drank_water = true
+do get_tree().create_timer(2).timeout
+do Hud.phone_intro()
+do Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = true
+=> phone_time
+=> END
