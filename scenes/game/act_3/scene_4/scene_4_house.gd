@@ -23,6 +23,7 @@ var camera_2d : Camera2D
 
 var asked_neighbors : bool = true
 
+
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_3", "scene_4")
 	FlashlightManager.disable_flashlights()
@@ -71,7 +72,6 @@ func _on_door_area_body_entered(body: Node2D) -> void:
 func _on_door_area_body_exited(body: Node2D) -> void:
 	if body.name == "player_danilo":
 		SignalBus.out_npc.emit("")
-
 
 func _on_picture_area_body_entered(body: Node2D) -> void:
 	if body.name == "player_danilo":

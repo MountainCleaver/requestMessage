@@ -13,6 +13,8 @@ const A_2S_3 = preload("res://dialogues/act_2/scene_3/a2s3.dialogue")
 @onready var jeep: AnimatedSprite2D = $"bus_terminal/y-sorted2/jeep"
 @onready var camera_2d: Camera2D = $"bus_terminal/y-sorted2/player_danilo/Camera2D"
 
+@onready var car_noise: AudioStreamPlayer = $SFX_CAR
+
 @onready var bus_areas = {
 	"montelargo": $bus_areas/montelargo,
 	"santa_claridad": $bus_areas/santa_claridad,
@@ -72,7 +74,7 @@ var chat_open: bool = false
 
 func _ready() -> void:
 	_game_state_flow()
-		
+	car_noise.play()
 	player_danilo.force_cannot_move = true;
 	entrance.body_entered.connect(_on_entrance_body_entered)
 	setup_bus_connections()
@@ -106,6 +108,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	intro_anim_done  = true;
 	Hud.show_objectives();
 	ObjectiveManager.add_objective(1, "Enter bus terminal.")
+	car_noise.stop()
 
 func _on_entrance_body_entered(body: Node2D) -> void:
 	if body.name != "player_danilo":
