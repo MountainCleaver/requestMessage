@@ -81,16 +81,23 @@ func _set_save_paths():
 
 
 func _save_game_progress(act: String, scene: String, next_scene: String) -> void:
-	print("Saving progress for user:", current_username, "ID:", Session.user_ID, "Act:", act, "Scene:", scene)
+	print("Saving progress for user:", current_username, "ID:", current_user_id, "Finished Act:", act, "Scene:", scene)
 
-	GameSceneManager._change_scene("res://scenes/game/saving_screen.tscn")
-	next_scene_path = next_scene
+	# Mark the scene the player just finished
 	mark_scene_finished(act, scene)
+
+	# Parse next_scene to set current_act and current_scene correctly
+	_set_current_scene_from_path(next_scene)
+
+	# Set next scene for transition
+	next_scene_path = next_scene
+	GameSceneManager._change_scene("res://scenes/game/saving_screen.tscn")
 	
-	if Session.user_ID != 0:
-		track_save_progress(Session.user_ID, act, scene)
-	print("[SaveManager] About to push online save for act:", act, "scene:", scene)
-	_push_online_save(act, scene)
+	if current_user_id != 0:
+		track_save_progress(current_user_id, act, scene)
+		_push_online_save(act, scene)
+	print("[SaveManager] Progress saved. Next scene:", next_scene_path)
+
 
 
 
@@ -158,24 +165,17 @@ func is_scene_finished(act: String, scene: String) -> bool:
 	return scene in game_save.finished_scenes.get(act, [])
 
 func has_save() -> bool:
-	if game_save:
-		return _save_has_finished_scenes(game_save);
-	
-	var path : String = ""
-	
+	var path := ""
 	if FileAccess.file_exists(SAVE_PATH):
 		path = SAVE_PATH
 	elif FileAccess.file_exists(BACKUP_PATH):
 		path = BACKUP_PATH
 	else:
 		return false
-	
-	var save_data = load(path) as SaveGameResource
-	
-	if not save_data:
-		return false;
-	
-	return _save_has_finished_scenes(save_data)
+
+	var test_save = load(path) as SaveGameResource
+	return test_save != null
+
 
 func _save_has_finished_scenes(save_data: SaveGameResource) -> bool :
 	if not save_data:
@@ -553,3 +553,16 @@ func _merge_online_save(online_data: Dictionary) -> void:
 	if latest_act != "" and latest_scene != "":
 		game_save.current_act = latest_act
 		game_save.current_scene = latest_scene
+
+func _set_current_scene_from_path(scene_path: String) -> void:
+	var file_name = scene_path.get_file().get_basename() # e.g., "act_1_scene_2"
+	var parts = file_name.split("_")
+	if parts.size() >= 4:
+		var act = parts[0] + "_" + parts[1]          # "act_1"
+		var scene = parts[2] + "_" + parts[3]        # "scene_2"
+		game_save.current_act = act
+		game_save.current_scene = scene
+		save_game()
+		print("[SaveManager] Current scene updated to:", act, "-", scene)
+	else:
+		push_error("[SaveManager] Failed to parse next_scene path: " + scene_path)
