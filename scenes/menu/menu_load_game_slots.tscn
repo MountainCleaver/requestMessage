@@ -41,6 +41,27 @@ offset_bottom = -107.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="overwriteConfirmationDialog" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
+title = "Confirm Overwrite"
+initial_position = 2
+size = Vector2i(337, 130)
+ok_button_text = "Yes"
+dialog_text = "This slot already contains saved progress.
+Do you want to overwrite it?
+"
+
+[node name="newsaveConfirmationDialog" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
+title = "Create New Save"
+initial_position = 2
+size = Vector2i(351, 130)
+ok_button_text = "Yes"
+dialog_text = "This slot is empty.
+Do you want to create a new save file here?"
+
+[node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
+
 [node name="slot_1" type="Button" parent="."]
 layout_mode = 0
 offset_left = 80.0
@@ -83,24 +104,13 @@ theme_override_fonts/font = ExtResource("4_ytvd3")
 theme_override_font_sizes/font_size = 26
 text = "CREATED:"
 
-[node name="last_played" type="Label" parent="slot_1"]
-visible = false
-layout_mode = 0
-offset_left = 510.0
-offset_top = 164.0
-offset_right = 1260.0
-offset_bottom = 193.0
-theme_override_fonts/font = ExtResource("4_ytvd3")
-theme_override_font_sizes/font_size = 26
-text = "LAST PLAYED:"
-
 [node name="playtime" type="Label" parent="slot_1"]
 visible = false
 layout_mode = 0
 offset_left = 510.0
-offset_top = 196.0
+offset_top = 171.0
 offset_right = 1260.0
-offset_bottom = 225.0
+offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("4_ytvd3")
 theme_override_font_sizes/font_size = 26
 text = "PLAYTIME:"
@@ -155,24 +165,13 @@ theme_override_fonts/font = ExtResource("4_ytvd3")
 theme_override_font_sizes/font_size = 26
 text = "CREATED:"
 
-[node name="last_played" type="Label" parent="slot_2"]
-visible = false
-layout_mode = 0
-offset_left = 510.0
-offset_top = 164.0
-offset_right = 1260.0
-offset_bottom = 193.0
-theme_override_fonts/font = ExtResource("4_ytvd3")
-theme_override_font_sizes/font_size = 26
-text = "LAST PLAYED:"
-
 [node name="playtime" type="Label" parent="slot_2"]
 visible = false
 layout_mode = 0
 offset_left = 510.0
-offset_top = 196.0
+offset_top = 171.0
 offset_right = 1260.0
-offset_bottom = 225.0
+offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("4_ytvd3")
 theme_override_font_sizes/font_size = 26
 text = "PLAYTIME:"
@@ -227,24 +226,13 @@ theme_override_fonts/font = ExtResource("4_ytvd3")
 theme_override_font_sizes/font_size = 26
 text = "CREATED:"
 
-[node name="last_played" type="Label" parent="slot_3"]
-visible = false
-layout_mode = 0
-offset_left = 510.0
-offset_top = 164.0
-offset_right = 1260.0
-offset_bottom = 193.0
-theme_override_fonts/font = ExtResource("4_ytvd3")
-theme_override_font_sizes/font_size = 26
-text = "LAST PLAYED:"
-
 [node name="playtime" type="Label" parent="slot_3"]
 visible = false
 layout_mode = 0
 offset_left = 510.0
-offset_top = 196.0
+offset_top = 171.0
 offset_right = 1260.0
-offset_bottom = 225.0
+offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("4_ytvd3")
 theme_override_font_sizes/font_size = 26
 text = "PLAYTIME:"
@@ -256,27 +244,6 @@ offset_top = 12.0
 offset_right = 434.0
 offset_bottom = 237.0
 texture = ExtResource("5_7e2vi")
-
-[node name="overwriteConfirmationDialog" type="ConfirmationDialog" parent="."]
-oversampling_override = 1.0
-title = "Confirm Overwrite"
-initial_position = 2
-size = Vector2i(337, 130)
-ok_button_text = "Yes"
-dialog_text = "This slot already contains saved progress.
-Do you want to overwrite it?
-"
-
-[node name="newsaveConfirmationDialog" type="ConfirmationDialog" parent="."]
-oversampling_override = 1.0
-title = "Create New Save"
-initial_position = 2
-size = Vector2i(351, 130)
-ok_button_text = "Yes"
-dialog_text = "This slot is empty.
-Do you want to create a new save file here?"
-
-[node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="pressed" from="back_tips/Panel/Button" to="." method="_on_exit_pressed"]
 

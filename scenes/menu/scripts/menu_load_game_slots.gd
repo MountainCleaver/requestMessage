@@ -37,14 +37,12 @@ func _update_slot_ui(slot_num: int) -> void:
 	var texture_rect = slot_node.get_node("TextureRect")
 	var empty_label = slot_node.get_node("empty_slot")
 	var date_label = slot_node.get_node("date_created")
-	var last_played_label = slot_node.get_node("last_played")
 	var playtime_label = slot_node.get_node("playtime")
 	var current_progress = slot_node.get_node("current_progress")
 
 	if FileAccess.file_exists(slot_path):
 		empty_label.visible = false
 		date_label.visible = true
-		last_played_label.visible = true
 		playtime_label.visible = true
 		current_progress.visible = true
 
@@ -61,18 +59,6 @@ func _update_slot_ui(slot_num: int) -> void:
 			var ampm = "AM" if dt.hour < 12 else "PM"
 			var formatted_12h = "%02d:%02d %s" % [hour_12, dt.minute, ampm]
 			date_label.text = "Date Created: %s (%s)" % [formatted_24h, formatted_12h]
-
-			# --- Last Played using file mod time ---
-			var mod_time = FileAccess.get_modified_time(slot_path)
-			dt = Time.get_datetime_dict_from_unix_time(mod_time)
-			dt.hour = (dt.hour + 8) % 24
-			formatted_24h = "%04d-%02d-%02d %02d:%02d:%02d" % [dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second]
-			hour_12 = dt.hour % 12
-			if hour_12 == 0:
-				hour_12 = 12
-			ampm = "AM" if dt.hour < 12 else "PM"
-			formatted_12h = "%02d:%02d %s" % [hour_12, dt.minute, ampm]
-			last_played_label.text = "Last Played: %s (%s)" % [formatted_24h, formatted_12h]
 
 			# --- Progress ---
 			var act_text = str(save_data.current_act) if save_data.current_act != "" else ""
@@ -106,14 +92,13 @@ func _update_slot_ui(slot_num: int) -> void:
 		else:
 			empty_label.visible = true
 			date_label.visible = false
-			last_played_label.visible = false
 			playtime_label.visible = false
 			current_progress.visible = false
 			texture_rect.texture = load("res://assets/main menu/slot_placeholder.png")
 	else:
+		# empty slot
 		empty_label.visible = true
 		date_label.visible = false
-		last_played_label.visible = false
 		playtime_label.visible = false
 		current_progress.visible = false
 		texture_rect.texture = load("res://assets/main menu/slot_placeholder.png")

@@ -46,6 +46,10 @@ func _ready() -> void:
 	for option in options_menu:
 		option.mouse_entered.connect(_option_hover.bind(option))
 
+	if not continue_confirmation_dialog.confirmed.is_connected(_start_continue_game):
+		continue_confirmation_dialog.confirmed.connect(_start_continue_game)
+
+	
 func _option_hover(option: Button) -> void:
 
 	current_choice = options.get_children().find(option)
@@ -70,8 +74,6 @@ func _start_continue_game() -> void:
 	SignalBus.next_scene.emit("res://scenes/game/" + act + "/" + scene + "/" + act + "_" + scene + ".tscn")
 
 func _on_new_game_pressed() -> void:
-	if BgmManager:
-		BgmManager.stop_music()
 	_option_overlayer("res://scenes/menu/menu_new_game_slots.tscn")
 
 
