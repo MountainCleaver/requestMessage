@@ -1,8 +1,7 @@
 ~ unknown_message
-do ChatManager.send_chat("unknown_sender", "Unknown Number", "Pumwesto ka sa likod ng bato para hindi ka maihip ng hangin")
-Unknown_sender: [wait=1.5] Pumwesto ka sa likod ng bato para hindi ka maihip ng hangin
-- ... => Ignore
-=> END
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Pumwesto ka sa likod ng bato para hindi ka maihip ng hangin.")
+Unknown_sender: [wait=1.5]Pumwesto ka sa likod ng bato para hindi ka maihip ng hangin.
+=> Ignore
 
 ~ Ignore
 Danilo: ...
@@ -18,5 +17,5 @@ Danilo: Kailangan ko agad mahanap ang huling papel.
 => END
 
 ~ after_found_paper
-Danilo: Oras na para bumalik ng chapel.
+Danilo: Kailangan ko na umalis dito.
 => END
