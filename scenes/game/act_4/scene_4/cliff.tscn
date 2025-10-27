@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://bvr6jnqrdpdgd"]
+[gd_scene load_steps=44 format=4 uid="uid://bvr6jnqrdpdgd"]
 
 [ext_resource type="Script" uid="uid://epp6clbotfbk" path="res://scenes/game/act_4/scene_4/cliff.gd" id="1_60q0d"]
 [ext_resource type="Texture2D" uid="uid://cqlemxpf5ymis" path="res://assets/tilesets/cliff_tileset.png" id="1_oqg1l"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://4sjldp28msn7" path="res://sound/midnight-cricket-sound-403101.mp3" id="13_4ysv2"]
 [ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="14_rjira"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="15_huid5"]
+[ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="16_n52yo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fpllf"]
 texture = ExtResource("1_oqg1l")
@@ -203,10 +204,10 @@ RUNNING_SPEED = 100.0
 [node name="Camera2D" type="Camera2D" parent="y-sorted/player_danilo"]
 position = Vector2(0, -1)
 zoom = Vector2(3, 3)
-limit_left = -651
-limit_top = -526
-limit_right = 619
-limit_bottom = 189
+limit_left = -650
+limit_top = -525
+limit_right = 620
+limit_bottom = 196
 
 [node name="PointLight2D3" type="PointLight2D" parent="y-sorted/player_danilo"]
 visible = false
@@ -331,9 +332,6 @@ script = ExtResource("11_60q0d")
 position = Vector2(2, 110.625)
 shape = SubResource("RectangleShape2D_dk38r")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.08650524, 0.06233176, 0.058878735, 1)
-
 [node name="BGMCliff" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(308, 229)
 stream = ExtResource("13_4ysv2")
@@ -349,5 +347,9 @@ layer = 101
 [node name="pause_screen" parent="CanvasLayer" instance=ExtResource("15_huid5")]
 visible = false
 
+[node name="meds_lighting_handler" parent="." instance=ExtResource("16_n52yo")]
+
 [connection signal="body_entered" from="windarea" to="windarea" method="_on_body_entered"]
 [connection signal="body_entered" from="phone_trigger" to="." method="_on_phone_trigger_body_entered"]
+
+[editable path="meds_lighting_handler"]

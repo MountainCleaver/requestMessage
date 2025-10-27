@@ -14,6 +14,8 @@ var returning_from_hut := false
 
 # === READY ===
 func _ready() -> void:
+	FlashlightManager.set_current_scene("act_4", "scene_2")
+	FlashlightManager.enable_flashlight_by_cash()
 	print("✅ Act 4 Controller Ready")
 	_game_state_flow()
 
@@ -24,7 +26,6 @@ func _ready() -> void:
 
 func _game_state_flow() -> void:
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
-	FlashlightManager.set_current_scene("act_4", "scene_2")
 	GameState.load_game()
 	GameState.current_act = "act_4"
 	GameState.current_scene = "scene_2"

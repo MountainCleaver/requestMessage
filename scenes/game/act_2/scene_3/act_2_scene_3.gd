@@ -8,10 +8,12 @@ const A_2S_3 = preload("res://dialogues/act_2/scene_3/a2s3.dialogue")
 @onready var player_danilo: CharacterBody2D = $"bus_terminal/y-sorted2/player_danilo"
 @onready var entrance: Area2D = $bus_terminal/entrance
 @onready var npc_area: Area2D = $"bus_terminal/y-sorted2/npcs_collidable/StaticBody2D/npc"
-@onready var bus: Sprite2D = $"bus_terminal/y-sorted2/StaticBody2D/bus"
+@onready var bus: AnimatedSprite2D = $"bus_terminal/y-sorted2/StaticBody2D/bus"
 @onready var bus_interact: Area2D = $"bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact"
 @onready var jeep: AnimatedSprite2D = $"bus_terminal/y-sorted2/jeep"
 @onready var camera_2d: Camera2D = $"bus_terminal/y-sorted2/player_danilo/Camera2D"
+
+@onready var car_noise: AudioStreamPlayer = $SFX_CAR
 
 @onready var bus_areas = {
 	"montelargo": $bus_areas/montelargo,
@@ -72,7 +74,7 @@ var chat_open: bool = false
 
 func _ready() -> void:
 	_game_state_flow()
-		
+	car_noise.play()
 	player_danilo.force_cannot_move = true;
 	entrance.body_entered.connect(_on_entrance_body_entered)
 	setup_bus_connections()
@@ -93,6 +95,7 @@ func _ready() -> void:
 
 func _game_state_flow() -> void:
 	FlashlightManager.set_current_scene("act_2", "scene_3")
+	FlashlightManager.disable_flashlights()
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
 	GameState.load_game()
 	GameState.current_act = "act_2"
@@ -105,6 +108,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	intro_anim_done  = true;
 	Hud.show_objectives();
 	ObjectiveManager.add_objective(1, "Enter bus terminal.")
+	car_noise.stop()
 
 func _on_entrance_body_entered(body: Node2D) -> void:
 	if body.name != "player_danilo":

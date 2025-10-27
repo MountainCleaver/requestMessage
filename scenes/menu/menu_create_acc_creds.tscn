@@ -50,3 +50,4 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="menu_loading_screen" parent="." instance=ExtResource("5_rktm2")]
+visible = false

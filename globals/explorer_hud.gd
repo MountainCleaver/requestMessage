@@ -53,6 +53,7 @@ func _check_tutorial_guides():
 	var act = FlashlightManager.data.get("current_act", "")
 	var scene = FlashlightManager.data.get("current_scene", "")
 
+	# Only show tutorial in Act 4 Scene 1
 	if act == "act_4" and scene == "scene_1":
 		tutorial_active = true
 		_fade_in_guide(map_guide)
@@ -61,11 +62,17 @@ func _check_tutorial_guides():
 			_fade_in_guide(flashlight_guide)
 
 		var timer = Timer.new()
-		timer.wait_time = 7.0
+		timer.wait_time = 5.0
 		timer.one_shot = true
 		timer.autostart = true
 		add_child(timer)
 		timer.timeout.connect(Callable(self, "_end_tutorial_guides"))
+	else:
+		# Hide guides when not in Act 4 Scene 1
+		tutorial_active = false
+		_fade_out_guide(map_guide)
+		_fade_out_guide(flashlight_guide)
+
 
 func _end_tutorial_guides():
 	tutorial_active = false
@@ -127,6 +134,9 @@ func _on_hover_exit():
 # SCENE CHANGED
 # ===================
 func _on_scene_changed(act: String, scene: String):
+	_fade_out_guide(map_guide)
+	_fade_out_guide(flashlight_guide)
+
 	_update_flashlight_visibility()
 	_check_tutorial_guides()
 
@@ -157,31 +167,39 @@ func _update_flashlight_visibility():
 	var act = FlashlightManager.data.get("current_act", "")
 	var scene = FlashlightManager.data.get("current_scene", "")
 
-	if act != "act_4":
+	# Only show flashlight for act_4 or act_5
+	if act != "act_4" and act != "act_5":
 		flashlight_button.visible = false
+		_fade_out_guide(flashlight_guide)
 		return
 
 	var scene_number = int(scene.replace("scene_", "0"))
-
 	var should_show_button = false
 
-	if scene_number == 1:
-		if FlashlightManager.real_flashlight_unlocked:
-			should_show_button = true
-	else:
+	if act == "act_4":
+		if scene_number == 1:
+			if FlashlightManager.real_flashlight_unlocked:
+				should_show_button = true
+		else:
+			if FlashlightManager.real_flashlight_unlocked or SaveManager.has_given_lola_ising_cash():
+				should_show_button = true
+	elif act == "act_5":
 		if FlashlightManager.real_flashlight_unlocked or SaveManager.has_given_lola_ising_cash():
 			should_show_button = true
 
-	if should_show_button and not flashlight_button.visible:
-		flashlight_button.visible = true
-		flashlight_button.modulate.a = 0
-		var tween = create_tween()
-		tween.tween_property(flashlight_button, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-
-		_fade_in_guide(flashlight_guide)
-
+	if should_show_button:
+		if not flashlight_button.visible:
+			flashlight_button.visible = true
+			flashlight_button.modulate.a = 0
+			var tween = create_tween()
+			tween.tween_property(flashlight_button, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		# Always fade in the guide in Act 5 if unlocked
+		if act == "act_5":
+			_fade_in_guide(flashlight_guide)
 	elif not should_show_button:
 		flashlight_button.visible = false
+		_fade_out_guide(flashlight_guide)
+
 
 
 # ===================

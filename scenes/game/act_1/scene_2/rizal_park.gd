@@ -43,6 +43,7 @@ func _ready() -> void:
 		BgmManager.stop_music()
 
 	FlashlightManager.set_current_scene("act_1", "scene_2")
+	FlashlightManager.disable_flashlights()
 	Hud.show_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	camera_2d.position = player_danilo.global_position
@@ -51,10 +52,15 @@ func _ready() -> void:
 	SignalBus.out_npc.connect(interact_npc)
 	
 	# Connect all table areas dynamically
-	setup_table_connections()
+	
+var last_npc = ""
 
 func _process(delta: float) -> void:
-	print(player_danilo.current_npc)
+	var current_npc = str(player_danilo.current_npc)
+	if current_npc != last_npc:
+		print("Current NPC: ", current_npc)
+		last_npc = current_npc
+
 	if not camera_panned_to_wendy:
 		camera_2d.position = player_danilo.global_position
 
@@ -71,6 +77,7 @@ func _input(event: InputEvent) -> void:
 	if current_npc == "wendy" and can_talk_to_wendy:
 		play_dialog(current_npc)
 		npc_face_player(wendy, player_danilo.global_position)
+		setup_table_connections()
 		return
 	
 	# Handle table interactions

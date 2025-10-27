@@ -5,20 +5,27 @@ extends Node2D
 @onready var collision_shape_danilo: CollisionShape2D = $hospital/player_danilo/CollisionShape2D
 @onready var wendy: CharacterBody2D = $hospital/wendy
 @onready var animated_sprite_2d_wendy: AnimatedSprite2D = $hospital/wendy/AnimatedSprite2D
-@onready var NarrationPanel = get_node("/root/NarrationPanel")
 
 func _ready():
-	start_cutscene()
+	await get_tree().process_frame   
+	await _show_intro_narration()
 
-func start_cutscene() -> void:
+func _show_intro_narration() -> void:
+	var lines = [
+		"The villagers rush Danilo to the local hospital.",
+        "Few days later, he awakens in a dimly lit room, Wendy at his side."
+	]
+	await NarrationPanel.show_narration_typewriter(lines, 0.05)
+	await NarrationPanel.hide_narration()
+	await _run_cutscene()
+
+func _run_cutscene() -> void:
 	player_danilo.animation_locked = true
 	player_danilo.can_move = false
 	collision_shape_danilo.disabled = true
 
 	animated_sprite_2d_danilo.play("sleep_hospital")
-
 	animated_sprite_2d_wendy.play("idle_right")
-
 	await get_tree().create_timer(2.0).timeout
 
 	animated_sprite_2d_danilo.play("wake_hospital")
@@ -27,7 +34,7 @@ func start_cutscene() -> void:
 	animated_sprite_2d_danilo.play("idle_bed")
 
 	var balloon = DialogueManager.show_dialogue_balloon(
-		load("res://dialogues/act_6/a6s2.1.dialogue"),
+		load("res://dialogues/act_6/scene_2.1/a6s2.1.dialogue"),
 		"start",
 		[self]
 	)
@@ -36,18 +43,16 @@ func start_cutscene() -> void:
 
 func _on_dialogue_done():
 	await _danilo_breathe_animation()
-	await _show_narration_scene()
+	await _end_scene()
 
 func _danilo_breathe_animation() -> void:
 	animated_sprite_2d_danilo.play("close_eyes")
 	await get_tree().create_timer(0.8).timeout
-
 	animated_sprite_2d_danilo.play("open_eyes")
 	await get_tree().create_timer(0.6).timeout
 
-func _show_narration_scene() -> void:
+func _end_scene() -> void:
 	SignalBus.on_transition_finished.connect(_on_transition_finished, CONNECT_ONE_SHOT)
-	
 	TransitionFade.transition()
 
 func _on_transition_finished():

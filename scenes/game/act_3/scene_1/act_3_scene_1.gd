@@ -18,6 +18,9 @@ const A_3S_1 = preload("uid://d0b51f51nu0te")
 
 @onready var wind: AnimatedSprite2D = $wind
 
+@onready var sfx_bus: AudioStreamPlayer = $SFX_BUS
+@onready var sfx_wind: AudioStreamPlayer = $SFX_WIND
+
 var intro_anim_done : bool = false;
 var lola_ising_reavealed : bool = false;
 
@@ -25,13 +28,18 @@ var lola_ising_reavealed : bool = false;
 func _ready() -> void:
 	SaveManager.reset_lola_ising_progress()
 	FlashlightManager.set_current_scene("act_3", "scene_1")
+	FlashlightManager.disable_flashlights()
 	ising_collision_shape_2d.disabled = true;
 	player_danilo.force_cannot_move = true;
+	sfx_bus.play()
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	sfx_bus.stop()
 	wind.play("default");
+	sfx_wind.play()
 	bus.queue_free();
 	await wind.animation_finished
+	sfx_wind.stop()
 	wind.queue_free()
 	player_danilo.force_cannot_move = false;
 	camera_2d.position = player_danilo.global_position;

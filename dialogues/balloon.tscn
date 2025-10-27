@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://2i4i7d4jd8qg"]
+[gd_scene load_steps=20 format=3 uid="uid://2i4i7d4jd8qg"]
 
 [ext_resource type="Script" uid="uid://5wu2mtqucmsl" path="res://dialogues/balloon.gd" id="1_36de5"]
 [ext_resource type="Texture2D" uid="uid://dps3kuwfihl5i" path="res://assets/portraits/portrait_danilo.jpg" id="2_7c2jb"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_pa16h"]
+[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="5_rvrp7"]
 [ext_resource type="AudioStream" uid="uid://cnnn0p3nx3e5t" path="res://sound/blip.wav" id="6_7c2jb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
@@ -228,7 +229,9 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_pa16h")
+theme_override_fonts/italics_font = ExtResource("5_rvrp7")
 theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/italics_font_size = 34
 text = "Dialogue..."
 
 [node name="ResponsesMenu" type="VBoxContainer" parent="Balloon" node_paths=PackedStringArray("response_template")]

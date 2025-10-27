@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://b81pheiysdhv7"]
+[gd_scene load_steps=27 format=4 uid="uid://b81pheiysdhv7"]
 
 [ext_resource type="Script" uid="uid://cqt73nqcoiosu" path="res://scenes/game/act_4/scene_2/graveyard.gd" id="1_avryt"]
 [ext_resource type="Texture2D" uid="uid://cvyn0215nw1hb" path="res://assets/tilesets/graveyard_floor.png" id="1_qq610"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cow5dh6yexjcx" path="res://assets/character_sprites/question.png" id="9_cwevg"]
 [ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="10_u5qgj"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="11_my1an"]
+[ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="12_7yelt"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v2uog"]
 load_path = "res://.godot/imported/dirt_key.png-f89916853116860d075e2fb51bf1bb7f.ctex"
@@ -1399,9 +1400,6 @@ debug_color = Color(0.70471436, 0.4665268, 0.41368905, 0.41960785)
 position = Vector2(232, -9)
 shape = SubResource("RectangleShape2D_my1an")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
-
 [node name="House_exit" type="Marker2D" parent="."]
 position = Vector2(-245, 5)
 
@@ -1413,6 +1411,8 @@ layer = 101
 [node name="pause_screen" parent="CanvasLayer" instance=ExtResource("11_my1an")]
 visible = false
 
+[node name="meds_lighting_handler" parent="." instance=ExtResource("12_7yelt")]
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="Interactable/house_enter" to="." method="_on_house_enter_body_entered"]
 [connection signal="body_exited" from="Interactable/house_enter" to="." method="_on_house_enter_body_exited"]
@@ -1420,3 +1420,5 @@ visible = false
 [connection signal="body_entered" from="Interactable/phone_trigger" to="." method="_on_phone_trigger_body_entered"]
 [connection signal="body_entered" from="Interactable/Key" to="." method="_on_key_body_entered"]
 [connection signal="body_exited" from="Interactable/Key" to="." method="_on_key_body_exited"]
+
+[editable path="meds_lighting_handler"]

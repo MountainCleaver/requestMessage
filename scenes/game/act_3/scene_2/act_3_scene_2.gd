@@ -30,6 +30,8 @@ const BALLOON = preload("uid://2i4i7d4jd8qg")
 const PHONE_INCOMING_CALL = preload("res://scenes/game/phone_incoming_call.tscn")
 
 var wendy_open: bool = false
+var wendy_opened: bool = false
+var wendy_reply_shown: bool = false
 var mira_open: bool = false
 var unknown_sender_open : bool = false
 var replied_to_wendy: bool = false
@@ -95,12 +97,15 @@ func _ready() -> void:
 	
 	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = false
 
-func _on_chat_opened(c: String) -> void:
-	print(c)
+func _on_chat_opened(chat_name: String) -> void:
+	if chat_name == "wendy" and not wendy_opened:
+		wendy_opened = true
+		DialogueManager.show_dialogue_balloon(A_3S_2, "first_chat_wendy")
 
 func _game_state_flow() -> void:
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
 	FlashlightManager.set_current_scene("act_3", "scene_2")
+	FlashlightManager.disable_flashlights()
 	GameState.load_game()
 	GameState.current_act = "act_3"
 	GameState.current_scene = "scene_2"

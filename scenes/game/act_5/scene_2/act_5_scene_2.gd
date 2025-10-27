@@ -18,6 +18,7 @@ func _input(event: InputEvent) -> void:
 		ObjectiveManager.complete_objective(1)
 		await get_tree().create_timer(0.2).timeout
 		Hud.hide_objectives()
+		Hud.clear_objectives()
 		act_5_scene_2_done()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -30,5 +31,5 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func act_5_scene_2_done() -> void:
 	SaveManager.game_save.current_act = "act_5"
-	SaveManager.game_save.current_scene = "scene_3"
+	SaveManager.game_save.current_scene = "scene_2"
 	SignalBus.act_num_scene_num_done.emit("act_5", "scene_2", "res://scenes/game/act_5/scene_3/act_5_scene_3.tscn")

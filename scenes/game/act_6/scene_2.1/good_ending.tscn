@@ -1,13 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://bduaovbd80guj"]
+[gd_scene load_steps=10 format=3 uid="uid://bduaovbd80guj"]
 
 [ext_resource type="Script" uid="uid://xnl54w1ogusf" path="res://scenes/game/act_6/scene_2.1/good_ending.gd" id="1_orgmt"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_ukau7"]
+[ext_resource type="Texture2D" uid="uid://3girgjikjdkx" path="res://assets/character_sprites/note-paper.png" id="2_p0ewm"]
+[ext_resource type="Texture2D" uid="uid://bhg3o375xtwut" path="res://assets/character_sprites/pause.png" id="4_5ohg7"]
+[ext_resource type="AudioStream" uid="uid://bgmgrk1h78oyp" path="res://sound/old-broken-music-box-sound-effect-386717.mp3" id="5_c87e6"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukau7"]
-bg_color = Color(0.8340884, 0.88940823, 0.99259883, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ohg7"]
+texture = ExtResource("2_p0ewm")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ohg7"]
+content_margin_left = 200.0
+content_margin_top = 60.0
+content_margin_right = 200.0
+content_margin_bottom = 60.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0ewm"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c87e6"]
+bg_color = Color(0.6, 0.6, 0.6, 0.023529412)
 
 [node name="good_ending" type="Node2D"]
 script = ExtResource("1_orgmt")
@@ -27,7 +40,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ukau7")
+theme_override_styles/panel = SubResource("StyleBoxTexture_5ohg7")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Panel"]
 layout_mode = 0
@@ -48,6 +61,7 @@ theme_override_font_sizes/bold_font_size = 32
 theme_override_font_sizes/bold_italics_font_size = 32
 theme_override_font_sizes/italics_font_size = 32
 theme_override_font_sizes/mono_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_5ohg7")
 bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -59,10 +73,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -246.75
-offset_top = -129.41675
-offset_right = 246.75
-offset_bottom = -52.0
+offset_left = -247.0
+offset_top = -146.0
+offset_right = 246.5
+offset_bottom = -68.58325
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.111196615, 0.11119693, 0.11119672, 1)
@@ -70,6 +84,19 @@ theme_override_colors/font_hover_color = Color(0.27022162, 0.27022195, 0.2702225
 theme_override_fonts/font = ExtResource("1_ukau7")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_p0ewm")
-text = "Back to Main Menu"
+text = "Continue"
+
+[node name="play_pause_button" type="Button" parent="CanvasLayer/Control/Panel/TextureRect"]
+layout_mode = 1
+offset_left = 1285.0
+offset_top = 120.0
+offset_right = 1337.0
+offset_bottom = 174.6
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c87e6")
+icon = ExtResource("4_5ohg7")
+flat = true
+expand_icon = true
 
 [node name="BGMGood" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_c87e6")
+bus = &"music"

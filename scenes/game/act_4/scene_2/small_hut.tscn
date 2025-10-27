@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://di37kargq3x1t"]
+[gd_scene load_steps=47 format=4 uid="uid://di37kargq3x1t"]
 
 [ext_resource type="Script" uid="uid://dusqln0xf3b37" path="res://scenes/game/act_4/scene_2/small_hut.gd" id="1_gu5j6"]
 [ext_resource type="Texture2D" uid="uid://b0tn0w1inmrqo" path="res://assets/tilesets/ACT4_S2_HUT _INTERIOR_ground.png" id="1_mc4yw"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cow5dh6yexjcx" path="res://assets/character_sprites/question.png" id="14_51ptb"]
 [ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="15_o8l7t"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="16_5b6ej"]
+[ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="17_xrk4s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i8dfo"]
 texture = ExtResource("2_i8dfo")
@@ -3005,9 +3006,6 @@ position = Vector2(-6.75, 100)
 shape = SubResource("RectangleShape2D_5pqmn")
 debug_color = Color(0.26734608, 0.52466196, 0.92949784, 0.41960785)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
-
 [node name="House_entered" type="Marker2D" parent="."]
 position = Vector2(-7, 145)
 
@@ -3019,6 +3017,8 @@ layer = 101
 [node name="pause_screen" parent="CanvasLayer" instance=ExtResource("16_5b6ej")]
 visible = false
 
+[node name="meds_lighting_handler" parent="." instance=ExtResource("17_xrk4s")]
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="Interactable/P5" to="." method="_on_p_5_body_entered"]
 [connection signal="body_entered" from="Interactable/Sala" to="." method="_on_sala_body_entered"]
@@ -3026,3 +3026,5 @@ visible = false
 [connection signal="body_entered" from="Interactable/Kwarto1" to="." method="_on_kwarto_1_body_entered"]
 [connection signal="body_entered" from="Interactable/Kwarto2" to="." method="_on_kwarto_2_body_entered"]
 [connection signal="body_entered" from="Interactable/Cr" to="." method="_on_cr_body_entered"]
+
+[editable path="meds_lighting_handler"]

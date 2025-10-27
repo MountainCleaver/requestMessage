@@ -101,6 +101,7 @@ func _ready():
 
 func _game_state_flow() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_3")
+	FlashlightManager.enable_flashlight_by_cash()
 	GameState.load_game()
 	GameState.current_act = "act_4"
 	GameState.current_scene = "scene_3"
@@ -125,6 +126,7 @@ func _start_scene() -> void:
 func _switch_to_dark_forest() -> void:
 	await get_tree().process_frame
 	switch_location(DARK_FOREST)
+	player_danilo.last_direction = Vector2.RIGHT
 	Hud.show_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 
@@ -168,7 +170,7 @@ func _switch_to_chapel_interior() -> void:
 	Hud.clear_objectives()
 	Hud.hide_objectives()
 	switch_location(CHAPEL_INTERIOR)
-	
+	player_danilo.last_direction = Vector2.UP
 	await get_tree().process_frame
 	DialogueManager.show_dialogue_balloon(A_4S_3, "exploration_chat")
 	await DialogueManager.dialogue_ended

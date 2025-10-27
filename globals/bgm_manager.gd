@@ -11,7 +11,9 @@ const MENU_SCENE_PATHS := [
 	"res://scenes/menu/menu_game_settings.tscn",
 	"res://scenes/menu/menu_load_scenes.tscn",
 	"res://scenes/menu/menu_login_acc.tscn",
-	"res://scenes/menu/menu_report_a_bug.tscn"
+	"res://scenes/menu/menu_report_a_bug.tscn",
+	"res://scenes/menu/menu_new_game_slots.tscn",
+	"res://scenes/menu/menu_load_game_slots.tscn"
 ]
 
 const MENU_SCENE_NAMES := [
@@ -33,7 +35,7 @@ func _ready() -> void:
 	if music and music is AudioStream:
 		bgm.stream = music
 		bgm.bus = "music"
-		bgm.volume_db = -5
+		bgm.volume_db = -20
 		bgm.autoplay = false
 		if bgm.stream.has_method("set_loop"):
 			bgm.stream.set_loop(true)

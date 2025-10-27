@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4qxnst1u27p"]
+
+[ext_resource type="Script" uid="uid://cyee4jpyew2xk" path="res://scenes/game/act_6/scene_2.2/unending_guilt.gd" id="1_7betg"]
+[ext_resource type="PackedScene" uid="uid://cvwpche3m7mwe" path="res://scenes/game/act_6/scene_2.1/hospital.tscn" id="2_m2iqg"]
+[ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="3_bffae"]
+[ext_resource type="PackedScene" uid="uid://d1vnt1mlybwuq" path="res://scenes/characters/npc_wendy.tscn" id="4_3kgec"]
+[ext_resource type="AudioStream" uid="uid://b28gvne6wm7g8" path="res://sound/music-box-horror-190275.mp3" id="5_puwaj"]
+
+[node name="unending_guilt" type="Node2D"]
+script = ExtResource("1_7betg")
+
+[node name="hospital" parent="." instance=ExtResource("2_m2iqg")]
+
+[node name="player_danilo" parent="hospital" instance=ExtResource("3_bffae")]
+position = Vector2(57, 13)
+
+[node name="AnimatedSprite2D" parent="hospital/player_danilo" index="0"]
+animation = &"sleep_hospital"
+
+[node name="Camera2D" type="Camera2D" parent="hospital"]
+position = Vector2(20, 24)
+zoom = Vector2(4, 4)
+
+[node name="wendy" parent="hospital" instance=ExtResource("4_3kgec")]
+position = Vector2(23, 7)
+
+[node name="BGMBad1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_puwaj")
+volume_db = -5.0
+autoplay = true
+bus = &"music"
+
+[editable path="hospital/player_danilo"]

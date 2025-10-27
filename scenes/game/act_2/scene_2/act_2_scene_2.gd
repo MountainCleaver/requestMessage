@@ -60,6 +60,7 @@ func _ready():
 	SignalBus.unknown_sender_label_visible = false
 
 func _game_state_flow() -> void:
+	FlashlightManager.disable_flashlights()
 	FlashlightManager.set_current_scene("act_2", "scene_2")
 	GameState.load_game()
 	GameState.current_act = "act_2"
@@ -154,8 +155,10 @@ func switch_location(scene: PackedScene) -> void:
 
 	# === Connect Door Area Signals ===
 	if door_area:
+		door_area.monitoring = false 
 		door_area.body_entered.connect(_on_door_area_body_entered)
 		door_area.body_exited.connect(_on_door_area_body_exited)
+
 
 # ===================
 # CABINET AREA HANDLERS
@@ -282,6 +285,9 @@ func _on_chat_message_sent(chat_name: String) -> void:
 		Hud.clear_objectives()
 		ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]["text"])
 		DialogueManager.show_dialogue_balloon(A_2S_2, "go_outside")
+		
+		if door_area:
+			door_area.monitoring = true
 
 # ===================
 # COMPLETE SCENE

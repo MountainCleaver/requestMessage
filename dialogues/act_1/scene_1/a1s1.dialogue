@@ -7,7 +7,7 @@ do Hud.show_objectives()
 
 ~ phone_time
 do player_danilo.can_move = false
-Danilo: Hmmm... ang aga pa pala
+Danilo: Hmmm... ang aga pa pala.
 Danilo: ...
 do player_danilo.can_move = true
 do ObjectiveManager.complete_objective(2)
@@ -18,9 +18,9 @@ do add_notification()
 
 ~ reminder
 do player_danilo.can_move = false
-Danilo: Ngayon pala yung araw na yun?
+Danilo: Ngayon pala yung araw na 'yun?
 do tension_in_anim()
-Danilo : Anniversary na naman ng [wave]pagkawala[/wave] ni Mateo
+Danilo : Anniversary na naman ng pagkawala [wave][color=#8B0000][i]niya[/i][/color][/wave].
 Danilo: ... [wait = 0.5] ... [wait = 0.5] ... 
 do tension_out_anim()
 do Hud.phone_outro()
@@ -29,22 +29,20 @@ do player_danilo.can_move = true
 => END
 
 ~ go_bed
-Danilo: Matutulog nalang uli ako.
+Danilo: Matutulog na lang ulit ako.
 Danilo: May lakad pa mamaya.
 do ObjectiveManager.add_objective(scene_objectives[2]["ID"], scene_objectives[2]["text"])
 do activate_bed()
 => END!
 
 ~ water
-Danilo: Isang basong tubig.
+Danilo: Kailangan ko siguro uminom ng tubig.
 do drink_water_anim()
 do ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
 #do Player.drank_water = true
 do get_tree().create_timer(2).timeout
 do Hud.phone_intro()
+do Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = true
 => phone_time
 => END
 
-~ test
-Danilo: haha
-=> END

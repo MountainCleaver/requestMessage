@@ -336,6 +336,7 @@ libraries = {
 stream = ExtResource("7_460kb")
 volume_db = -9.0
 autoplay = true
+bus = &"music"
 
 [node name="BGMTension" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_oe54g")

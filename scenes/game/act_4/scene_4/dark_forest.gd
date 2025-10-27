@@ -8,6 +8,8 @@ var scene_objectives = [
 
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_4")
+	FlashlightManager.enable_flashlight_by_cash()
+	player_danilo.last_direction = Vector2.UP
 	Hud.show_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	if get_tree().has_meta("last_portal_name"):

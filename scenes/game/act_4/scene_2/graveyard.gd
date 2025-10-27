@@ -67,6 +67,8 @@ var hut_already_entered: bool = false
 # === READY ===
 func _ready():
 	FlashlightManager.set_current_scene("act_4", "scene_2")
+	FlashlightManager.enable_flashlight_by_cash()
+	player_danilo.last_direction = Vector2.LEFT
 	tip.visible = false
 	mark.visible = false
 	setup_dirt_connections()

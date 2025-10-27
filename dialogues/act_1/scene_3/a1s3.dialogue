@@ -1,50 +1,50 @@
 ~ start
-Wendy: Huy...
-Wendy: Okay ka lang?
+Wendy: Dan...
+Wendy: Are you okay?
 Danilo: [center]Sasabihin ko ba kay Wendy... yung naalala ko?[/center]
-Wendy: Huy, Dan?
+Wendy: Dan?
 - Tell her about the figure in the memory =>< tell
 - Keep it to yourself =>< keep
-#- asdfsa
 do leave_the_park()
 => END
 
 ~ tell
 do SaveManager.save_moral_choice("act_1_scene_3", "relief")
-Danilo: Ah… may naalala lang ako...
+Danilo: Ah... may naalala lang ako...
 Danilo: habang naglalaro tayo noon...
 Danilo: may nakita akong...
 Danilo: [wave]parang anino.[/wave]
 Danilo: Sinundan siya.
 Wendy: Anino?
-Wendy: Dan... bakit ngayon mo lang sinabi?
-Danilo: Hindi ko rin alam... Ngayon lang ulit bumalik.
-Danilo: Malabo pa rin… pero sigurado akong may sumusunod sa kanya.
+Wendy: Dan... why are you only telling me this now?
+Wendy: Bakit hindi mo agad binanggit noon pa?
+Danilo: Hindi ko rin alam... Ngayon lang ulit bumalik sa isip ko.
+Danilo: Malabo pa rin... pero sigurado akong may sumusunod talaga sa kanya.
 Wendy: Dan... this could be important.
-Wendy: Kahit piraso lang, sabihin mo agad.
-Wendy: [shake]You’re starting to remember kasi kailangan mo rin harapin ‘to.[/shake]
-Danilo: Pero… paano kung ako yung may kasalanan?
+Wendy: Kung may naaalala ka pa, kahit piraso lang, sabihin mo agad sa akin.
+Wendy: [shake]You’re starting to remember because something inside you wants to face it.[/shake]
+Danilo: Pero... paano kung ako yung may kasalanan?
 Danilo: Paano kung ako yung dahilan bakit siya nawala?
 Wendy: Hindi mo kasalanan.
-Wendy: Pero kung gusto natin ng kapayapaan... kailangan nating harapin ang totoo.
+Wendy: But if we want to find peace, we have to face what really happened.
 => END
 
 ~ keep
 do SaveManager.save_moral_choice("act_1_scene_3", "restless")
 Wendy: Ayos ka lang?
-Wendy: Napansin ko, tulala ka.
-Danilo: Ah… naalala ko lang si Mateo ulit.
-Wendy: Hays... kung nasaan man siya... sana masaya siya.
-Wendy: Pero Danilo... kung may gusto kang sabihin... [fade]I’m here.[/fade]
-Wendy: Hindi mo kailangang buhatin mag-isa.
+Wendy: Napansin ko na tulala ka.
+Danilo: Ah... naalala ko lang [wave][color=#8B0000][i]siya[/i][/color][/wave].
+Wendy: Danilo... kung meron ka man gustong sabihin...
+Wendy: You know I am always here, right?
+Wendy: You don’t have to carry this alone.
 Danilo: Oo, salamat...
-Danilo: *buntong hininga...
-Danilo: [center]Alam ko... dapat kong sabihin.[/center]
-Danilo: [center]Pero... hindi ko pa maintindihan.[/center]
+Danilo: [color=#808080](buntong hininga)[/color]
+Danilo: [center]Alam ko... dapat ko 'tong sabihin sa kanya.[/center]
+Danilo: [center]Pero... hindi ko pa maintindihan sa ngayon.[/center]
 => END
 
 ~ pauwi
-Wendy: Ingat ka pauwi, Danilo
+Wendy: Have a safe trip, Danilo.
 Danilo: Ikaw din Wen, salamat.
 do re_enable_collisions()
 do wendy_walk_away()
@@ -54,7 +54,7 @@ do ObjectiveManager.add_objective(1, "Get home")
 
 ~ jeep
 Danilo: Pasakay po manong.
-- Home
+- Neighborhood
 	do scene_3_done()
 - Cancel
 => END

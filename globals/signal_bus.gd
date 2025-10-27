@@ -7,6 +7,7 @@ signal on_white_transition_finished
 
 # save game
 signal save_game_done
+signal online_save_merged
 
 #menu
 signal exit_overlay
@@ -57,7 +58,7 @@ signal bought_meds_done
 var bought_meds : bool = false
 signal area_one_entered
 signal sat_on_bed
-
+signal second_house_exit
 
 #dream
 signal dream_done

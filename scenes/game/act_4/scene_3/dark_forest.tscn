@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://cojksxhkmxtcr"]
+[gd_scene load_steps=13 format=4 uid="uid://xjkpqrmnbvzt"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_wy3md"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_qjqsf"]
 [ext_resource type="Texture2D" uid="uid://cbaqwksgv6wix" path="res://assets/character_sprites/light1.png" id="3_pu0bd"]
 [ext_resource type="Texture2D" uid="uid://be6h5vldaqlfi" path="res://assets/character_sprites/tip_interact.png" id="5_6j1wm"]
+[ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="5_mswv5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
 texture = ExtResource("1_wy3md")
@@ -135,10 +136,6 @@ z_index = 999
 position = Vector2(0, -31)
 texture = ExtResource("5_6j1wm")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
-
 [node name="entrance" type="Area2D" parent="."]
 collision_layer = 16
 
@@ -147,7 +144,11 @@ position = Vector2(-5, 261.125)
 shape = SubResource("RectangleShape2D_ymqp3")
 debug_color = Color(0.8662791, 0.32122794, 0.39150935, 0.41960785)
 
+[node name="meds_lighting_handler" parent="." instance=ExtResource("5_mswv5")]
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="y-sorted/decorations/signage" to="." method="_on_signage_body_entered"]
 [connection signal="body_exited" from="y-sorted/decorations/signage" to="." method="_on_signage_body_exited"]
 [connection signal="body_entered" from="entrance" to="." method="_on_entrance_body_entered"]
+
+[editable path="meds_lighting_handler"]
