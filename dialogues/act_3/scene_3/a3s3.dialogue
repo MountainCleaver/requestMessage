@@ -14,7 +14,7 @@ Danilo: [shake]Ano yun? [wait=1.0]Guni-guni ko lang?[/shake]
 #do _clean_phone()
 do Hud.phone_outro()
 do Hud.reset_phone_dont_show()
-Danilo: Huff Huff
+Danilo: [color=#808080](buntong hininga)[/color]
 do _remove_tension_effect()
 do player_danilo.force_cannot_move = false
 do intro_sequence_done.emit()
@@ -34,7 +34,7 @@ Danilo: Kailangan ko nang bumili ng gamot.
 => END
 
 ~ buy_meds_relief
-Danilo: Okay
+Danilo: Okay.
 Danilo: Bibili na'ko ng gamot.
 => END
 
@@ -47,7 +47,7 @@ do can_interact = true
 => END
 
 ~ tricycle_start_bought
-Danilo: Di ko kailangan sumakay ngayon
+Danilo: 'Di ko kailangan sumakay ngayon.
 do can_interact = true
 => END
 
@@ -93,7 +93,7 @@ do can_interact = true
 
 ~ paranoia
 Danilo: [center]Bakit parang... may nakasunod? Huwag mo lang pansinin, Danilo. Bilisan mo na lang.[/center]
-- Walk Faster
+- Walk faster
 	do player_danilo.SPEED = 150
 	do player_danilo.RUNNING_SPEED = 200
 do can_interact = true

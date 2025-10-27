@@ -1,3 +1,15 @@
+~ first_chat_wendy
+do _prevent_chat_exit_while_dialoging()
+do ChatManager.send_chat("wendy", "Wendy", "Dan, you didn’t even inform me you were going home. ")
+Wendy: Dan, you didn’t even inform me you were going home.
+
+do ChatManager.send_chat("wendy", "Wendy", "We were worried, hindi ka sumasagot sa chats ko.") 
+Wendy: [wait=1.5]We were worried, hindi ka sumasagot sa chats ko.
+
+do ChatManager.send_chat("wendy", "Wendy", "Akala ko may nangyari na sayo.") 
+Wendy: [wait=1.5][shake rate=20 level=10]Akala ko may nangyari na sayo.[/shake]
+=> reply_wendy
+
 ~ reply_wendy
 do _prevent_chat_exit_while_dialoging()
 Danilo: ...
@@ -5,20 +17,20 @@ Danilo: ...
 => END
 
 ~ reply_wendy_1
-do ChatManager.send_chat("wendy", "Player", "Sorry Wen, 'di kita nasabihan. Biglaan kasi lagat. Tingin ko...")
+do ChatManager.send_chat("wendy", "Player", "Sorry Wen, ‘di kita nasabihan. Biglaan kasi laHat. Tingin ko...")
 Danilo: Sorry Wen, 'di kita nasabihan. Biglaan kasi lahat. Tingin ko...
 - kailangan ko muna magpahinga. => reply_wendy_2
 => END
 
 ~ reply_wendy_2
-do ChatManager.send_chat("wendy", "Player", "kailangan ko muna magpahinga. ")
-Danilo: kailangan ko muna magpahinga. 
+do ChatManager.send_chat("wendy", "Player", "Kailangan ko muna magpahinga.")
+Danilo: Kailangan ko muna magpahinga. 
 - Pa-resched na lang muna... => reply_wendy_3
 => END
 
 ~ reply_wendy_3
-do ChatManager.send_chat("wendy", "Player", "Pa-resched na lang muna ng appointment ko")
-Danilo: Pa-resched na lang muna ng appointment ko
+do ChatManager.send_chat("wendy", "Player", "Pa-resched na lang muna ng appointment ko.")
+Danilo: Pa-resched na lang muna ng appointment ko.
 => reply_from_wendy
 => END
 
@@ -43,8 +55,8 @@ Danilo: ...
 => END
 
 ~ reply_mira_1
-do ChatManager.send_chat("mira", "Player", "Andito na 'ko ma")
-Danilo: Andito na 'ko ma
+do ChatManager.send_chat("mira", "Player", "Andito na 'ko, ma.")
+Danilo: Andito na 'ko, ma.
 - ‘Di ako nakabili kanina... => reply_mira_2
 => END
 
@@ -76,18 +88,22 @@ do _prevent_chat_exit_while_dialoging()
 
 ~ call_with_wendy
 do _prevent_end_call_while_dialog_is_not_finished()
-Danilo: Hello Wen, kumusta?
-Wendy: [wave]Ito nag aalala sayo.[/wave]
-Wendy: Sigurado ka bang re-sched yung appointment mo ngayon?
-Danilo: Oo, sorry napauwi ako bigla
-Wendy: Alam ko, tumawag ako kay Tita Mira since 'di ka nagrereply.
-Wendy: Buti nalang sinabi niya sakin.
-Wendy: Ikaw, kumusta?
+Danilo: ...?
+Wendy: Dan, sigurado ka bang re-sched yung appointment mo ngayon?
+Danilo: Oo, sorry napauwi kasi ako bigla.
+Wendy: Alam ko, tumawag ako kay Tita Mira since ‘di ka nagrereply.
+Wendy: Buti nalang sinabi niya sa akin.
+Danilo: Kumusta ka, Wen?
+Wendy: I'm good, Dan.
+Wendy: Honestly, I wish you had at least texted me.
+Wendy: I was worried...
+Wendy: ...
+Wendy: Natraffic ka ba on the way? Kumusta sa province?
 Danilo: Kani-kanina lang ako dumating.
 Danilo: Nakita ko pa si Lola Ising.
-Danilo: Nag-aabang parin siya ng pasalubong sayo.
-Wendy: Haynako, si Lola talaga. Lagi akong pinapauwi. May sinabi ba siya?
-Danilo: Sinabihan niya 'kong iwasan ang gubat.... [shake]Dahil kay Mateo.[/shake]
+Danilo: Nag-aabang pa rin siya ng pasalubong mula sayo.
+Wendy: Hay nako, si Lola talaga. Lagi akong pinapauwi. May sinabi pa ba siya?
+Danilo: Sinabihan niya 'kong iwasan ang gubat... [shake]Dahil kay [color=#8B0000][i]Mateo[/i][/color][/wave].[/shake]
 Wendy: Take your meds ha, sabi ni tita paubos na raw yung sayo.
 Danilo: Pupunta nga ako sa bayan bukas para bumili.
 Wendy: Good, kailan ka babalik?
@@ -115,7 +131,7 @@ do Hud.phone_outro()
 
 ~ check_photo_question
 Danilo: [shake rate=100.0 level=10]?????????????????????????????[/shake]
-- Check the Photo Again
+- Check the photo again
 	do SaveManager.save_moral_choice("act_3_scene_2", "restless")
 - Ignore it
 	do SaveManager.save_moral_choice("act_3_scene_2", "relief")

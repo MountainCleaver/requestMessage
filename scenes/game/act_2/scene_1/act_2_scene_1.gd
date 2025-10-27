@@ -40,6 +40,7 @@ var wendy_reply_shown: bool = false
 var inside_bed: bool = false
 var can_interact: bool = true
 var call_with_unknown_sender_done: bool = false
+var call_end_disabled : bool = false
 var current_location: Node = null
 var buzz_timer: Timer
 var phone_instance: Control = null
@@ -371,6 +372,14 @@ func _on_buzz_timeout() -> void:
 	var buzz = current_location.get_node_or_null("buzz_audio")
 	if buzz:
 		buzz.play()
+
+func _prevent_end_call_while_dialog_is_not_finished () -> void:
+	if not call_end_disabled:
+		Hud.get_node("Control/phone/MarginContainer/incoming_call/HBoxContainer2/Button").disabled = true
+		call_end_disabled = true
+	else:
+		Hud.get_node("Control/phone/MarginContainer/incoming_call/HBoxContainer2/Button").disabled = false
+		call_end_disabled = false
 
 # ===================
 # SCENE COMPLETE

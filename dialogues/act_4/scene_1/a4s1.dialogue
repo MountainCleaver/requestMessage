@@ -1,5 +1,5 @@
 ~ start
-Danilo: Hintayin mo ako, Mateo.
+Danilo: Hintayin mo ako, [color=#8B0000][i]Mateo[/i][/color][/wave].
 => END
 
 ~ open_phone_flashlight
@@ -44,7 +44,7 @@ Danilo: [shake rate=30 level=10]!!!![/shake]
 
 ~ ghost_gone
 Danilo: [shake rate=20 level=10]A-ano... kaya yun? Hindi ko naabutan. Ang bilis...[/shake]
-Danilo: Pero ba't parang... may nakamasid sa akin. [shake rate=20 level=10]Pinagmamasdan ba ako?[/shake]
+Danilo: Pero ba't parang... siya yung nasa panaginip ko? [shake rate=20 level=10]Pinagmamasdan ba ako?[/shake]
 => END
 
 ~ marked_map
@@ -56,7 +56,7 @@ Danilo: Sandali, ano ‘yung nasa lupa?
 Danilo: Mukhang punit punit naman mga pahina nito.
 Danilo: [shake rate=20 level=10]???[/shake]
 Danilo: [shake rate=20 level=10]Hindi 'to maaari...[/shake]
-Danilo: Hindi ba ito yung diary ni... [shake rate=20 level=10]Mateo?[/shake]
+Danilo: Hindi ba ito yung diary ni... [shake rate=20 level=10][color=#8B0000][i]Mateo[/i][/color][/wave]?[/shake]
 Danilo: [shake rate=20 level=10]Hindi ko maintindihan...[/shake]
 Danilo: [shake rate=20 level=10]Paano 'to napunta dito?[/shake]
 do BuzzManager.start_buzz()

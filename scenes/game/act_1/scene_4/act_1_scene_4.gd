@@ -20,7 +20,7 @@ var scene_objectives = [
 	{"ID": 5, "text": "Close/Lock phone"},
 	{"ID": 6, "text": "Go Home"},
 	{"ID": 7, "text": "Check the phone again"},
-	{"ID": 8, "text": "Check the unknown number and its request message"}
+	{"ID": 8, "text": "[shake]Check the unknown number and its request message[/shake]"}
 ]
 
 # FLAGS
@@ -58,8 +58,8 @@ func _ready() -> void:
 	SignalBus.sched_opened.connect(_on_sched_opened)
 	SignalBus.app_chat_opened.connect(_on_app_chat_opened)
 	SignalBus.chat_opened.connect(_on_chat_opened)
-	SignalBus.chat_message_sent.connect(_on_chat_message_sent)
 	SignalBus.chat_closed.connect(_on_chat_closed)
+	SignalBus.unknown_sender_label_visible = true
 
 	_start_scene()
 
@@ -68,6 +68,7 @@ func _ready() -> void:
 # ===================
 func _start_scene() -> void:
 	DialogueManager.show_dialogue_balloon(A_1S_4, "start")
+	await DialogueManager.dialogue_ended
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	await get_tree().create_timer(1.0).timeout
 	show_initial_lock_screen()
@@ -157,17 +158,6 @@ func _on_chat_opened(chat_name: String) -> void:
 
 func _on_chat_closed(chat_name: String) -> void:
 	print("%s chat closed" % chat_name)
-
-func _on_chat_message_sent(chat_name: String) -> void:
-	match chat_name:
-		"wendy":
-			if not wendy_reply_shown:
-				wendy_reply_shown = true
-				DialogueManager.show_dialogue_balloon(A_1S_4, "reply")
-		"mira":
-			if not mira_reply_shown:
-				mira_reply_shown = true
-				DialogueManager.show_dialogue_balloon(A_1S_4, "reply_mira_answer")
 
 # ===================
 # CHAT HELPERS

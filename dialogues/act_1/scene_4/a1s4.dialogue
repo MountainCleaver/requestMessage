@@ -1,5 +1,5 @@
 ~ start
-Danilo: ... [wait = 0.5]
+Danilo: ...
 Danilo: [center]Dala lang siguro ng pagod kaya naalala ko yung mga yun.[/center]
 => END
 
@@ -10,14 +10,15 @@ Danilo: [center]Kahit papaano gumaan pakiramdam ko.[/center]
 
 ~ option_restless
 Danilo: [center]Alam kong dapat ko na itong sabihin sa kanya...[/center]
-Danilo: [center]...pero paano ‘pag hindi niya ako pinaniwalaan... [wait=0.5]paano kung magalit siya sakin... [wait=0.5]paano kung...[/center]
+Danilo: [center]...pero paano ‘pag hindi niya ako pinaniwalaan...[/center]
+Danilo: [center]paano kung magalit siya sakin... [wait=0.5]paano kung...[/center]
 => choices
 
 ~ choices
 do start_buzz()
 Danilo: ... [wait = 0.5]
-- Open the phone. => open_phone
-- Ignore the phone. => ignore_phone
+- Open the phone => open_phone
+- Ignore the phone => ignore_phone
 => END
 
 ~ open_phone
@@ -26,7 +27,7 @@ do Hud.reset_phone_state()
 => after_open_phone
 
 ~ ignore_phone
-Danilo: Ang ingay ng phone... => choices
+Danilo: Ang ingay ng phone... kailangan ko siguro tignan.=> choices
 => END
 
 ~ after_open_phone
@@ -41,12 +42,9 @@ Danilo: May appointment pala ako bukas.
 ~ reply_wendy
 do ChatManager.send_chat("wendy", "Wendy", "Chat me pag nakauwi ka na.")
 Wendy: Chat me pag nakauwi ka na.
-=> END
-
-~ reply 
-Danilo: ...
 - Nasa tapat pa lang ako ng bahay. => reply_answer1
 - Kakababa ko pa lang ng jeep.    => reply_answer2
+=> END
 
 ~ reply_answer1
 do ChatManager.send_chat("wendy", "Player", "Nasa tapat pa lang ako ng bahay.")
@@ -67,11 +65,8 @@ Wendy: [wait=1.5]Okay, ingat ka on your way home.
 ~ reply_mira
 do ChatManager.send_chat("mira", "Mira", "Nak, wag mo kalimutan mga gamot mo ah... tsaka yung appointment bukas.")
 Mira: Nak, wag mo kalimutan mga gamot mo ah... tsaka yung appointment bukas.
-=> END
-
-~ reply_mira_answer
-Danilo: ...
 - Opo Ma, pauwi pa lang ako. => reply_mira_answer1
+=> END
 
 ~ reply_mira_answer1
 do ChatManager.send_chat("mira", "Player", "Opo Ma, pauwi pa lang ako.")
@@ -98,7 +93,7 @@ Danilo: Dami nilang chats.
 ~ after_home
 do start_buzz()
 Danilo: May notification na naman? [wait=0.5] 
-- Open the phone. => open_phone_again
+- Open the phone => open_phone_again
 => END
 
 ~ open_phone_again
@@ -108,7 +103,7 @@ do ObjectiveManager.complete_objective(7)
 => END
 
 ~ after_open_phone_2
-Danilo: Huh… Sino ‘to? [wait=1.5] 
+Danilo: Huh... Sino ‘to? [wait=1.5] 
 => END
 
 ~ chat_unknown_sender

@@ -1,8 +1,9 @@
 ~ start
-Wendy: Hindi siya nagpaalam. Iba 'to. Hindi ito gaya ng dati.
+Wendy: Hindi siya nagpaalam. 
+Wendy: Iba 'to. Hindi 'to gaya ng dati.
 do Hud.show_objectives()
 Wendy: ...
-- Check the phone. => open_phone
+- Check the phone => open_phone
 => END
 
 ~ open_phone
@@ -11,19 +12,21 @@ do Hud.reset_phone_state()
 
 ~ call_voicemail
 do ObjectiveManager.complete_objective(1)
-Wendy: His phone is turned off. The call goes straight to voicemail.
+Wendy: Hindi ko siya matawagan... diretso sa voicemail pumupunta. 
 Wendy: Try ko tawagan si Tita Mira.
 => END
 
 ~ call_mira_convo
 do ObjectiveManager.complete_objective(2)
+Wendy: ... ...
 Wendy: Hi tita. 
 Wendy: Gusto ko lang po itanong kung andiyan po ba sa inyo si Danilo?
 Wendy: Hindi po kasi sya sumasagot sa mga calls and messages ko.
-Mira: Ah, Wendy. Umalis si Danilo kaninang umaga. 
-Mira: Umuwi muna dito sa probinsya.
-Wendy: May dala po ba siyang gamot niya? 
-Wendy: May sinabi po ba kung bakit siya biglang umalis?
+Mira: Ah, Wendy, Nak. Lumuwas si Danilo kaninang umaga. 
+Mira: Umuwi muna rito sa probinsya.
+Mira: Pinaalalahanan kong bumili ng gamot bago lumuwas, nak. 
+Wendy: Salamat ‘ta, kilala niyo naman po si Dan...
+Wendy: May sinabi po ba kung bakit biglang umalis?  
 Mira: Wala eh. Basta sabi niya gusto lang niyang mapanatag muna. 
 Mira: Hindi ko rin masyado kinulit.
 => END

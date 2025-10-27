@@ -1,17 +1,17 @@
 ~ start
-Danilo: [center] Yung tambayan na lang yung uunahin kong puntahan.[/center]
-Danilo: [center] Kaso kailangan ko munang dumaan sa may semeteryo papunta dun.[/center]
+Danilo: [center]Tambayan na lang yung uunahin kong pupuntahan.[/center]
+Danilo: [center]Kaso, kailangan ko munang dumaan sa may semeteryo papunta do'n.[/center]
 do ObjectiveManager.add_objective(1, "Enter graveyard")
 do Hud.show_objectives()
 => END
 
 ~ signage
-Danilo: [center] Dire-diretso lang pala ang dadaanan ko papuntang sementeryo.[/center]
+Danilo: [center]Dire-diretso lang pala ang dadaanan ko papuntang sementeryo.[/center]
 => END
 
 ~ grave_entry
-Danilo: [center] [shake]Hanggang ngayon natatakot pa rin akong dumaan dito mag-isa[/shake][/center]
-Danilo: [center] [shake]Pero... wala akong magagawa kailangan kong dumaan dito.[/shake][/center]
+Danilo: [center][shake]Hanggang ngayon natatakot pa rin akong dumaan dito mag-isa.[/shake][/center]
+Danilo: [center][shake]Pero... wala akong magagawa. Kailangan kong dumaan dito.[/shake][/center]
 do Hud.clear_objectives()
 do ObjectiveManager.add_objective(2, "Find small hut")
 do Hud.show_objectives()
@@ -19,88 +19,88 @@ do Hud.show_objectives()
 
 ~ smallhut_lock
 do ObjectiveManager.complete_objective(2)
-Danilo: [center] Nakalock? ... hindi naman to kinakandado noon.[/center]
-Danilo: [center] Nasaan kaya ang susi nito.[/center]
+Danilo: [center]Naka-lock? ...Hindi naman to kinakandado noon.[/center]
+Danilo: [center]Nasaan kaya susi nito?[/center]
 do ObjectiveManager.add_objective(3, "Look around to get clues")
 => END
 
 ~ no_key
-Danilo: [center] Kailangan ko munang hanapin ang susi para mabuksan to.[/center]
+Danilo: [center]Kailangan ko munang hanapin yung susi para mabuksan 'to.[/center]
 => END
 
 ~ unknown_sender_clue
 do ChatManager.send_chat("unknown_sender", "Unknown Number", "Ano ba unang nadaanan mo?")
-Unknown_sender: [wait=1.5] Ano ba unang nadaanan mo?
+Unknown_sender: [wait=1.5]Ano ba unang nadaanan mo?
 do ChatManager.send_chat("unknown_sender", "Unknown Number", "Doon mo hanapin ang susi upang mabuksan ang pintuang ‘yan.")
-Unknown_sender: [wait=1.5] Doon mo hanapin ang susi upang mabuksan ang pintuang ‘yan.
+Unknown_sender: [wait=1.5]Doon mo hanapin ang susi para mabuksan yang pintuan na 'yan.
 do ObjectiveManager.complete_objective(3)
 do Hud.phone_outro()
 
-Danilo: [center] [shake]Nasa sementeryo yung susi? [/shake][/center]
-Danilo: [center] [shake]Pero... ayaw kong magtagal dun [/shake][/center]
-Danilo: [center] [shake]Pero... kailangan ko rin yung susi para mabuksan tong pinto.[/shake][/center]
+Danilo: [center][shake]Nasa sementeryo yung susi?[/shake][/center]
+Danilo: [center][shake]Pero... ayaw kong magtagal do'n.[/shake][/center]
+Danilo: [center][shake]Pero... kailangan ko rin yung susi para mabuksan 'tong pinto.[/shake][/center]
 do ObjectiveManager.add_objective(4, "Search graveyard to get key")
 => END
 
 ~ dirt_1
-Danilo: [center] [shake]Wala dito ang susi... Baka nasa ibang lapida pa [/shake] [/center]
+Danilo: [center][shake]Wala dito ang susi... baka nasa ibang lapida pa.[/shake][/center]
 => END
 
 ~ dirt_2
-Danilo: [center] [shake]Wala dito ang susi... Baka nasa ibang lapida pa [/shake] [/center]
+Danilo: [center][shake]Wala dito ang susi... baka nasa ibang lapida pa.[/shake][/center]
 => END
 
 ~ dirt_3
-Danilo: [center] [shake]Wala dito ang susi... Baka nasa ibang lapida pa [/shake] [/center]
+Danilo: [center][shake]Wala dito ang susi... baka nasa ibang lapida pa.[/shake][/center]
 => END
 
 ~ dirt_4
-Danilo: [center] [shake]Wala dito ang susi... Baka nasa ibang lapida pa [/shake] [/center]
+Danilo: [center][shake]Wala dito ang susi... baka nasa ibang lapida pa.[/shake][/center]
 => END
 
 ~ dirt_5
-Danilo: [center]Sa wakas nandito lang pala tong susi na to' [/center]
-Danilo: [center]Ngayon mabubuksan ko na yung pintuan para makapasok sa loob ng tambayan. [/center]
+Danilo: [center]Sa wakas nandito lang pala tong susi na to'.[/center]
+Danilo: [center]Ngayon, mabubuksan ko na yung pintuan para makapasok sa loob ng tambayan.[/center]
 do ObjectiveManager.complete_objective(4)
 do ObjectiveManager.add_objective(5, "Enter the small hut")
 => END
 
 ~ dirt_6
-Danilo: [center] [shake]Wala dito ang susi... Baka nasa ibang lapida pa [/shake] [/center]
+Danilo: [center][shake]Wala dito ang susi... baka nasa ibang lapida pa.[/shake][/center]
 => END
 
 ~ dirt_7
-Danilo: [center] [shake]Wala dito ang susi... Baka nasa ibang lapida pa [/shake] [/center]
+Danilo: [center][shake]Wala dito ang susi... baka nasa ibang lapida pa.[/shake][/center]
 => END
 
 ~ dirt_8
-Danilo: [center] [shake]Wala dito ang susi... Baka nasa ibang lapida pa [/shake] [/center]
+Danilo: [center][shake]Wala dito ang susi... baka nasa ibang lapida pa.[/shake][/center]
 => END
 
 ~ house_entry
 do ObjectiveManager.complete_objective(5)
 do Hud.hide_objectives()
-Danilo: [center] Ang dilim, halos wala na akong makita [/center]
-Danilo: [center] Kailangan ko nang bilisan, at hanapin ang mga pinunit na pahina sa diary ni Mateo[/center]
+Danilo: [center]Ang dilim, halos wala na akong makita.[/center]
+Danilo: [center]Kailangan ko nang bilisan, at hanapin ang mga pinunit na pahina sa diary ni [color=#8B0000][i]Mateo[/i][/color].[/center]
 => END
 
 ~ paper_5
 do Hud.clear_objectives()
-Danilo: [center] Papel? Pero bakit kapiraso lang ito? [/center]
-Danilo: [center] Nasaan kaya ang mga kapiraso nito? [/center]
-Danilo: [center] Saglit... bakit parang kaparehas ito ng papel sa Diary ni Mateo [/center]
-Danilo: [center] Hindi kaya't pinagpupunit-punit ito?  [/center]
+Danilo: [center]Papel? Pero bakit kapiraso lang 'to?[/center]
+Danilo: [center]Nasaan kaya mga kapiraso nito?[/center]
+Danilo: [center]Saglit... bakit parang kaparehas 'to ng papel sa diary ni [color=#8B0000][i]Mateo[/i][/color].[/center]
+Danilo: [center]Hindi kaya't pinagpupunit-punit 'to?[/center]
 => END
 
 ~ unknown_sender_paper_clue
-do ChatManager.send_chat("unknown_sender", "Unknown Number", "Ngayong nakapasok ka na sa loob")
-Unknown_sender: [wait=1.5] Ngayong nakapasok ka na sa loob
-do ChatManager.send_chat("unknown_sender", "Unknown Number", "Hanapin mo ang mga kapiraso ng papel na yan'")
-Unknown_sender: [wait=1.5] Hanapin mo ang mga kapiraso ng papel na yan'
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Ngayon, nakapasok ka na sa loob.")
+Unknown_sender: [wait=1.5]Ngayon, nakapasok ka na sa loob.
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Hanapin mo mga kapiraso ng papel na 'yan.")
+Unknown_sender: [wait=1.5]Hanapin mo mga kapiraso ng papel na yan.
 do Hud.phone_outro()
 
-Danilo: [center] Nasa loob ng tambayan ang mga kapiraso ng papel na to. [/center]
-Danilo: [center] Kailangan kong hanapin silang lahat para mabuo ang pahinang pinunit sa Diary ni Mateo. [/center]
+Danilo: [center]Nasa loob ng tambayan ang mga kapiraso ng papel na 'to.[/center]
+Danilo: [center]Kailangan kong hanapin silang lahat para mabuo yung pahinang pinunit sa diary ni [color=#8B0000][i]Mateo[/i][/color].[/center]
 do ObjectiveManager.add_objective(6, "Find all scattered paper inside small hut")
 do Hud.show_objectives()
 => END
@@ -116,19 +116,19 @@ Danilo: [center] Hindi ako titigil hangga’t hindi ko nabubuo ‘to. [/center]
 => END
 
 ~ paper_3
-Danilo: [center] Ito, isa pang papel [/center]
+Danilo: [center] Ito, isa pang papel. [/center]
 Danilo: [center] Ilang papel pa kaya ang kailangan kong hanapin? [/center]
 => END
 
 ~ paper_4
 Danilo: [center] Ito may isa pa. [/center]
-Danilo: [center] Asan pa kaya yung ibang piraso. [/center]
+Danilo: [center] Asan pa kaya yung ibang piraso? [/center]
 => END
 
 ~ paper_found
 Danilo: [center] Sa wakas nahanap ko na lahat. [/center]
 Danilo: [center] Pero... ang hirap nito buohin at basahin dito. [/center]
-Danilo: [center] Itatago ko muna ito at puntahan yung ibang lugar sa mapa. [/center]
+Danilo: [center] Itatago ko muna 'to at puntahan yung ibang lugar sa mapa. [/center]
 do ObjectiveManager.complete_objective(6)
 do ObjectiveManager.add_objective(7, "Exit small hut and graveyard")
 => END
@@ -150,18 +150,18 @@ Danilo: [center] Ano bang ine-expect ko? Wala namang naglilinis dito. [/center]
 ~ enter_kusina
 Danilo: [center] Kusina ng tambayan. [/center]
 Danilo: [center] Dito kami madalas magluto-lutuan noon. [/center]
-Danilo: [center] Madalas kaming ayain ni Mateo na maglaro dito. [/center]
+Danilo: [center] Madalas kaming ayain ni [color=#8B0000][i]Mateo[/i][/color] na maglaro dito. [/center]
 Danilo: [center] Kaya akala ko, paglaki namin, magiging chef siya. [/center]
 Danilo: [center] Pero... hanggang ngayon, hindi pa rin niya nagagawa ‘yon. [/center]
-Danilo: [center] Mateo... sana makita ka pa namin. [/center]
+Danilo: [center] [color=#8B0000][i]Mateo[/i][/color]... sana makita ka pa namin. [/center]
 Danilo: [center] Lutuan mo ulit kami ng mga paborito mong lutuin. [/center]
 => END
 
 ~ enter_kwarto2
 Danilo: [center] Kwarto ng tambayan. [/center]
 Danilo: [center] Patulog-tulog lang kami dito noon. [/center]
-Danilo: [center] Ako sa gitna, sa kanan ko si Wendy, at sa kaliwa ko naman si Mateo. [/center]
-Danilo: [center] Ang sarap ng tulog namin noon... tapos nagising na lang kami, buhat-buhat na ni Mang Gino si Mateo. [/center]
+Danilo: [center] Ako sa gitna, sa kanan ko si Wendy, at sa kaliwa ko naman si [color=#8B0000][i]Mateo[/i][/color]. [/center]
+Danilo: [center] Ang sarap ng tulog namin noon... tapos nagising na lang kami, buhat-buhat na ni Mang Gino si [color=#8B0000][i]Mateo[/i][/color]. [/center]
 Danilo: [center] Umiyak siya noon... hindi ko alam kung dahil sa takot o sa sakit. [/center]
 Danilo: [center] Lagi kasing may hawak na pamalo si Mang Gino tuwing sinusundo siya pauwi. [/center]
 Danilo: [center] Sana may nagawa ako noon para maprotektahan siya. [/center]
