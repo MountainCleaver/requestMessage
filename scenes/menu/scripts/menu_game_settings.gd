@@ -32,6 +32,8 @@ func _on_option_display_pressed() -> void:
 func _on_option_controls_pressed() -> void:
 	_setting_switcher("res://scenes/menu/settings_controls.tscn")
 
+func _on_option_language_pressed() -> void:
+	_setting_switcher("res://scenes/menu/settings_language.tscn")
 
 func _setting_switcher(path: String):
 	for child in setting_container.get_children():
