@@ -153,9 +153,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action("interact") and can_interact and inside_bed:
 		_go_to_sleep();
 		bed_area.monitoring = false;
+		
 func add_notification() -> void:
+	Hud.get_node("Control/phone/MarginContainer/lock_screen").clear_notifications()
 	const SCHED_ICON = preload("res://assets/HUD/sched_icon.png")
-	Hud.get_node("Control/phone/MarginContainer/lock_screen").add_notification(SCHED_ICON, "Reminders", "Day of Mateo's disapearnce");
+	Hud.get_node("Control/phone/MarginContainer/lock_screen").add_notification(SCHED_ICON, "Reminders", "Day of *****'s disappearance");
 
 func get_scene_type() -> String:
 	return "game"
