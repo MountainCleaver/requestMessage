@@ -827,6 +827,7 @@ func set_wendy_idle_up() -> void:
 func act_6_scene_1_done() -> void:
 	SaveManager.game_save.current_act = "act_6"
 	SaveManager.game_save.current_scene = "scene_1"
+	SaveManager.save_game()
 	print("ACT 6 SCENE 1 DONE")
 	SignalBus.act_num_scene_num_done.emit(
 		"act_6", 

@@ -61,6 +61,7 @@ func _load_dialogue() -> void:
 func act_5_scene_6_done() -> void:
 	SaveManager.game_save.current_act = "act_5"
 	SaveManager.game_save.current_scene = "scene_6"
+	SaveManager.save_game()
 	GameState.save_game()
 
 	print("ACT 5 SCENE 6 DONE")

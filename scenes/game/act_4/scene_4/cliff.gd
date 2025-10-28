@@ -90,7 +90,7 @@ func act_4_scene_4_done() -> void:
 	SaveManager.game_save.current_act = "act_4"
 	SaveManager.game_save.current_scene = "scene_4"
 	GameState.save_game()
-
+	SaveManager.save_game()
 	print("ACT 4 SCENE 4 DONE")
 
 	# Emit signal to transition to the next scene
