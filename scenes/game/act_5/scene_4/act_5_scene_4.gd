@@ -1,7 +1,7 @@
 extends Node2D
 
 # === Preloads ===
-const A_5S_4 = preload("uid://by7wjj33esup2")
+var A_5S_4: Resource
 
 # === References: Characters ===
 @onready var mateo: CharacterBody2D = $TileMapLayer/mateo
@@ -34,6 +34,7 @@ var chase_camera: bool = false
 func _ready() -> void:
 	npc_gino.visible = false
 
+	_load_dialogue()
 	# Set initial character animations
 	wendy_animated_sprite_2d.play("idle_down")
 	danilo_animated_sprite_2d.play("idle_up")
@@ -41,7 +42,17 @@ func _ready() -> void:
 
 	await get_tree().create_timer(1.0).timeout
 	DialogueManager.show_dialogue_balloon(A_5S_4, "start")
-
+	
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_5/scene_4/a5s4_en.dialogue"
+	else:
+		path = "res://dialogues/act_5/scene_4/a5s4.dialogue"
+	
+	A_5S_4 = load(path)
+	
 
 func _physics_process(delta: float) -> void:
 	if chase_camera:

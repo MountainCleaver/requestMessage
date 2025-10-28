@@ -105,8 +105,7 @@ func _load_dialogue() -> void:
 	
 func _game_state_flow() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_1")
-	FlashlightManager.real_flashlight_enabled = false
-	FlashlightManager.phone_flashlight_enabled = false
+	FlashlightManager.disable_flashlights()
 
 	GameState.load_game()
 	GameState.current_act = "act_4"

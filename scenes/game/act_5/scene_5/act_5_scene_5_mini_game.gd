@@ -1,6 +1,6 @@
 extends Node2D
 
-const A_5S_5 = preload("uid://chxxs3lhxttid")
+var A_5S_5: Resource
 
 @onready var npc_gino_with_stick: CharacterBody2D = $decorations/npc_gino_with_stick
 @onready var player_mateo: CharacterBody2D = $decorations/player_mateo
@@ -10,10 +10,21 @@ const A_5S_5 = preload("uid://chxxs3lhxttid")
 @onready var animation_player: AnimationPlayer = $tension/AnimationPlayer
 
 func _ready() -> void:
+	_load_dialogue()
 	player_mateo.force_cannot_move = true
 	game_over.hide()
 	count_down.play("count_down")
-
+	
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_5/scene_5/a5s5_en.dialogue"
+	else:
+		path = "res://dialogues/act_5/scene_5/a5s5.dialogue"
+	
+	A_5S_5 = load(path)
+	
 func _on_game_over_body_entered(body: Node2D) -> void:
 	if body.name == "npc_gino_with_stick":
 		player_mateo.set_physics_process(false)

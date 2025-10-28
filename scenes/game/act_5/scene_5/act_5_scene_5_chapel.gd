@@ -1,6 +1,6 @@
 extends Node2D
 
-const A_5S_5 = preload("uid://chxxs3lhxttid")
+var A_5S_5: Resource
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var gino: CharacterBody2D = $"act_5_chapel/y-sorted/npc_gino_with_stick"
@@ -21,10 +21,21 @@ const A_5S_5 = preload("uid://chxxs3lhxttid")
 var is_hit: bool = false
 
 func _ready() -> void:
+	_load_dialogue()
 	_spawn_mateo()
 	await get_tree().create_timer(2.0).timeout
 	_spawn_gino()
-
+	
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_5/scene_5/a5s5_en.dialogue"
+	else:
+		path = "res://dialogues/act_5/scene_5/a5s5.dialogue"
+	
+	A_5S_5 = load(path)
+	
 func _spawn_mateo() -> void:
 	await get_tree().create_timer(0.6).timeout
 	mateo_animated_sprite_2d.play("idle_up")

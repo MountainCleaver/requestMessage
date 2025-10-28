@@ -6,10 +6,21 @@ extends Node2D
 @onready var endimation: AnimationPlayer = $end/endimation
 @onready var atmosphere: CanvasModulate = $act_5_scene_5/atmosphere
 
-const A_5S_5 = preload("uid://chxxs3lhxttid")
+var A_5S_5: Resource
 
 func _ready() -> void:
+	_load_dialogue()
 	end.visible = false
+	
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_5/scene_5/a5s5_en.dialogue"
+	else:
+		path = "res://dialogues/act_5/scene_5/a5s5.dialogue"
+	
+	A_5S_5 = load(path)
 
 func _mateo_run_down() -> void:
 	mateo.direction = Vector2.DOWN
