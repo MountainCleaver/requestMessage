@@ -5,7 +5,7 @@ signal hut_entered
 signal grave_exit_triggered
 
 # === PRELOADS ===
-const A_4S_2 = preload("res://dialogues/act_4/scene_2/a4s2.dialogue")
+var A_4S_2: Resource
 
 # === NODES ===
 @onready var player_danilo: CharacterBody2D = $"y-sorted/player_danilo"
@@ -68,6 +68,7 @@ var hut_already_entered: bool = false
 func _ready():
 	FlashlightManager.set_current_scene("act_4", "scene_2")
 	FlashlightManager.enable_flashlight_by_cash()
+	_load_dialogue()
 	player_danilo.last_direction = Vector2.LEFT
 	tip.visible = false
 	mark.visible = false
@@ -98,6 +99,16 @@ func _ready():
 	key_area.monitoring = false
 	key_area.set_deferred("monitorable", false)
 	key_available = false
+
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_4/scene_2/a4s2_en.dialogue"
+	else:
+		path = "res://dialogues/act_4/scene_2/a4s2.dialogue"
+	
+	A_4S_2 = load(path)
 	
 # === INPUT HANDLER ===
 func _input(event: InputEvent) -> void:

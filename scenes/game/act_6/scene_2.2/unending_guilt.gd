@@ -1,5 +1,5 @@
 extends Node2D
-
+var A_6S_2_2: Resource
 @onready var player_danilo: CharacterBody2D = $hospital/player_danilo
 @onready var animated_sprite_2d_danilo: AnimatedSprite2D = $hospital/player_danilo/AnimatedSprite2D
 @onready var collision_shape_danilo: CollisionShape2D = $hospital/player_danilo/CollisionShape2D
@@ -17,11 +17,23 @@ var glitch_timer := 0.0
 var glitch_interval := 2.5
 
 func _ready():
+	_load_dialogue()
 	create_blink_overlay()
 	create_glitch_overlay()
 	await get_tree().process_frame
 	await _show_intro_narration()
 
+
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_6/scene_2.2/a6s2.2_en.dialogue"
+	else:
+		path = "res://dialogues/act_6/scene_2.2/a6s2.2.dialogue"
+	
+	A_6S_2_2 = load(path)
+	
 func _show_intro_narration() -> void:
 	var lines = [
 		"The villagers rush Danilo to the local hospital.",
@@ -156,7 +168,7 @@ func start_cutscene() -> void:
 	animated_sprite_2d_danilo.play("idle_bed")
 
 	var balloon = DialogueManager.show_dialogue_balloon(
-		load("res://dialogues/act_6/scene_2.2/a6s2.2.dialogue"),
+		A_6S_2_2,
 		"start",
 		[self]
 	)

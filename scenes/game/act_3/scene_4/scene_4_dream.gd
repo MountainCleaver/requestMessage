@@ -25,7 +25,7 @@ extends Node2D
 @onready var bgm_afterrun: AudioStreamPlayer = $BGM_AFTERRUN
 
 # preloads
-const A_3S_4 = preload("uid://15o68hvrk4n0")
+var A_3S_4: Resource
 
 # flags
 var in_dialogue : bool = false
@@ -35,12 +35,23 @@ var fog_and_void_gone : bool = false
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_3", "scene_4")
 	FlashlightManager.disable_flashlights()
+	_load_dialogue()
 	blocking_trees.hide()
 	blocking_trees.collision_enabled = false
 	DialogueManager.show_dialogue_balloon(A_3S_4, "start")
 	bgm_forest.play()
 	sfx_breathing.play()
-
+	
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_3/scene_4/a3s4_en.dialogue"
+	else:
+		path = "res://dialogues/act_3/scene_4/a3s4.dialogue"
+	
+	A_3S_4 = load(path)
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("arrow_right"):
 		

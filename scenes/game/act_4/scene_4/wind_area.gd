@@ -4,10 +4,11 @@ extends Area2D
 @export var wind_strength: float = 60.0
 @onready var wind_sprite: AnimatedSprite2D = $wind2
 @onready var sfx_wind: Node = $SFXWind
-const A_4S_4 := preload("res://dialogues/act_4/scene_4/a4s4.dialogue")
+var A_4S_4: Resource
 var exited_lee_done := false 
 
 func _ready():
+	_load_dialogue()
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	if wind_sprite:
@@ -15,6 +16,16 @@ func _ready():
 	if sfx_wind:
 		sfx_wind.show()
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_4/scene_4/a4s4_en.dialogue"
+	else:
+		path = "res://dialogues/act_4/scene_4/a4s4.dialogue"
+	
+	A_4S_4 = load(path)
+	
 func _on_body_entered(body: Node2D):
 	print("Entered wind area: ", body)
 	if body.is_in_group("player") and body.has_method("apply_wind"):

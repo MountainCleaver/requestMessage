@@ -1,6 +1,6 @@
 extends Node2D
 
-const A_5S_8 = preload("uid://cdmrub6bunwtt")
+var A_5S_8: Resource
 
 var act_4_scene_1_choice : String = ""
 @onready var player_danilo: CharacterBody2D = $"locations/chapel_interior/y-sorted/player_danilo"
@@ -24,7 +24,8 @@ var act_4_scene_1_choice : String = ""
 signal ghost_appears(choice: String)
 
 func _ready() -> void:
-	
+	FlashlightManager.set_current_scene("act_5", "scene_8")
+	_load_dialogue()
 	ghost_appears.connect(_ghost_appear)
 	
 	act_4_scene_1_choice = SaveManager.get_moral_choice("act_4_scene_1")
@@ -33,6 +34,16 @@ func _ready() -> void:
 	#play_dialog(act_4_scene_1_choice)
 	play_dialog("restless")
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_5/scene_8/a5s8_en.dialogue"
+	else:
+		path = "res://dialogues/act_5/scene_8/a5s8.dialogue"
+	
+	A_5S_8 = load(path)
+	
 func _set_danilo_altar()-> void: # danilo sitting on the altar, reading the diary
 	player_danilo.global_position = reading_position.global_position
 	player_danilo.animation_locked = true

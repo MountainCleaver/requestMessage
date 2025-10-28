@@ -1,6 +1,6 @@
 extends Node2D
 
-const A_5S_3 = preload("uid://dntq0tdotjt87")
+var A_5S_3: Resource
 
 @onready var wendy_area: Area2D = $wendy
 @onready var npcwendy: CharacterBody2D = $"danilo_hometown/y-sorted-objects/wendy"
@@ -10,12 +10,23 @@ const A_5S_3 = preload("uid://dntq0tdotjt87")
 var wendy_is_following: bool =  false
 
 func _ready() -> void:
+	_load_dialogue()
 	ObjectiveManager.add_objective(2, "Go to Laruan")
 	npcwendy.visible = false
 	wendy.hide()
 	$"danilo_hometown/y-sorted-objects/danilo_follow_mateo/player_mateo".last_direction = Vector2.DOWN
 	
 	wendy_area.body_entered.connect(_on_wendy_body_entered)
+
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_5/scene_3/a5s3_en.dialogue"
+	else:
+		path = "res://dialogues/act_5/scene_3/a5s3.dialogue"
+	
+	A_5S_3 = load(path)
 	
 func _on_wendy_body_entered(body: Node2D)->void:
 	if body.name == "player_mateo":

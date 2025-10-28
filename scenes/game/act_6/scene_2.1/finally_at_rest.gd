@@ -1,5 +1,7 @@
 extends Node2D
 
+var A_6S_2_1: Resource
+
 @onready var player_danilo: CharacterBody2D = $hospital/player_danilo
 @onready var animated_sprite_2d_danilo: AnimatedSprite2D = $hospital/player_danilo/AnimatedSprite2D
 @onready var collision_shape_danilo: CollisionShape2D = $hospital/player_danilo/CollisionShape2D
@@ -7,8 +9,19 @@ extends Node2D
 @onready var animated_sprite_2d_wendy: AnimatedSprite2D = $hospital/wendy/AnimatedSprite2D
 
 func _ready():
+	_load_dialogue()
 	await get_tree().process_frame   
 	await _show_intro_narration()
+
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_6/scene_2.1/a6s2.1_en.dialogue"
+	else:
+		path = "res://dialogues/act_6/scene_2.1/a6s2.1.dialogue"
+	
+	A_6S_2_1 = load(path)
 
 func _show_intro_narration() -> void:
 	var lines = [
@@ -34,7 +47,7 @@ func _run_cutscene() -> void:
 	animated_sprite_2d_danilo.play("idle_bed")
 
 	var balloon = DialogueManager.show_dialogue_balloon(
-		load("res://dialogues/act_6/scene_2.1/a6s2.1.dialogue"),
+		A_6S_2_1,
 		"start",
 		[self]
 	)

@@ -52,7 +52,7 @@ var mini_game_completed: bool = false
 
 var already_triggered_paranoia := false
 
-const A_3S_3 = preload("uid://befctg2rwc1x7")
+var A_3S_3: Resource
 
 var maps = {
 	
@@ -121,6 +121,7 @@ var moral_choice : String
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_3", "scene_3")
 	FlashlightManager.disable_flashlights()
+	_load_dialogue()
 	Hud.reset_phone_dont_show()
 	_game_state_flow()
 	SignalBus.unknown_sender_unlocked = true
@@ -138,8 +139,18 @@ func _ready() -> void:
 	start_mini_game.connect(_start_mini_game)
 	intro_sequence_done.connect(_on_intro_sequence_done)
    
-	bgm_home.stop()    
-
+	bgm_home.stop()   
+	 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_3/scene_3/a3s3_en.dialogue"
+	else:
+		path = "res://dialogues/act_3/scene_3/a3s3.dialogue"
+	
+	A_3S_3 = load(path)
+	
 func _input(event: InputEvent) -> void:
 	if not event.is_action_pressed("interact"):
 		return

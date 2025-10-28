@@ -170,3 +170,4 @@ color = Color(1, 1, 1, 0)
 [editable path="locations/chapel_interior/y-sorted/cabinet_1"]
 [editable path="locations/chapel_interior/y-sorted/cabinet_2"]
 [editable path="locations/chapel_interior/y-sorted/player_danilo"]
+[editable path="locations/chapel_interior/meds_lighting_handler"]
