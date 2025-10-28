@@ -8,6 +8,12 @@ extends Control
 var selected_slot: int = 0
 
 func _ready() -> void:
+	for i in range(1, 4):
+		var tr: TextureRect = get_node("slot_%d/TextureRect" % i)
+		tr.custom_minimum_size = Vector2(400, 225)  # set fixed size
+		tr.expand = true
+		tr.stretch_mode = TextureRect.STRETCH_SCALE
+	
 	_update_slot_ui(1)
 	_update_slot_ui(2)
 	_update_slot_ui(3)
