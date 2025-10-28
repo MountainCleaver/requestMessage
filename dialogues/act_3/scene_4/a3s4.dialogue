@@ -191,7 +191,7 @@ Danilo: ...
 	- Flip image
 		do Hud.add_popup_image("res://assets/tilesets/frame_behind.png")
 		do Hud._toggle_popup()
-		Danilo: [center][wave][i]"Find [wait=1.0]me...[/i][/wave][/center]
+		Danilo: [center][wave][i]"Find [wait=1.0]me..."[/i][/wave][/center]
 		Danilo: Anong ibig sabihin nito?
 		Danilo: ... ...
 		Danilo: Parang may mali.
