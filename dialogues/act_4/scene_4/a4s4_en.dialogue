@@ -1,0 +1,21 @@
+~ unknown_message
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Pumwesto ka sa likod ng bato para hindi ka maihip ng hangin.")
+Unknown_sender: [wait=1.5]Stand behind the rock... don’t let the wind touch you.
+=> Ignore
+
+~ Ignore
+Danilo: ...
+do Hud.phone_outro()
+=> after_phone
+
+~ after_phone
+Danilo: The wind... it’s strong. I have to move, now.
+=> END
+
+~ exited_lee
+Danilo: I need to find the last page... before it’s too late.
+=> END
+
+~ after_found_paper
+Danilo: I have to get out of here... quickly.
+=> END

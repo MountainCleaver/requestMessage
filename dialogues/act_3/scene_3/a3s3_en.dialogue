@@ -1,0 +1,124 @@
+~ start_restless
+Danilo: [shake]????????????????[/shake]
+Danilo: Was that... real?
+do restless_diag_one_done.emit()
+=> END
+
+~ start_restless_2
+Danilo: . . .
+Danilo: [shake]What was that? [wait=1.0]Just my imagination... right?[/shake]
+do Hud.phone_outro()
+do Hud.reset_phone_dont_show()
+Danilo: [color=#808080](sigh)[/color]
+do _remove_tension_effect()
+do player_danilo.force_cannot_move = false
+do intro_sequence_done.emit()
+do sfx_sqbr.stop()
+do bgm_home.play()
+=> buy_meds_restless
+=> END
+
+~ start_relief
+Danilo: ...
+Danilo: [wave]I need to calm down.[/wave]
+do start_mini_game.emit()
+=> END
+
+~ buy_meds_restless
+Danilo: I... I need to buy my medication.
+=> END
+
+~ buy_meds_relief
+Danilo: Alright.
+Danilo: I’ll go buy my medication now.
+=> END
+
+~ tricycle_start
+Danilo: ...
+- Go to Town 
+	do _switch_location(SCENE_3_TOWN_CENTER, maps["town_center"]["name"], maps["town_center"]["spawn_points"]["middle"])
+	do ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]["text"])
+do can_interact = true
+=> END
+
+~ tricycle_start_bought
+Danilo: I don’t need to take a ride right now.
+do can_interact = true
+=> END
+
+~ drugstore_clerk
+Danilo: Good day.
+Pharmacist: Good day, sir. What do you need?
+Danilo: I need this.
+Danilo: Should last about a week.
+Pharmacist: Sorry, there's only three left.
+- Buy it all => drugstore_clerk_2
+- Buy everything => drugstore_clerk_2
+=> END
+
+~ drugstore_clerk_2
+Danilo: [center]Not enough... but I guess it’ll do.[/center]
+Danilo: Alright, I’ll take everything then.
+Pharmacist: Here you go, sir. Thank you.
+Danilo: Thanks.
+do can_interact = true
+do bought_meds = true
+do SignalBus.bought_meds_done.emit()
+do SignalBus.bought_meds = true
+=> END
+
+~ drugstore_clerk_bought
+Pharmacist: See you next time.
+do can_interact = true
+=> END
+
+~ not_yet_bought_meds
+Danilo: [center]I still need to get my medication.[/center]
+do can_interact = true
+=> END
+
+~ alreay_bought_meds
+Danilo: I already bought my medication.
+do can_interact = true
+=> END
+
+~ rushed_home
+Danilo: ...
+do can_interact = true
+=> END
+
+~ paranoia
+Danilo: [center]Why... do I feel like someone’s following me? Just ignore it, Danilo. Just keep moving.[/center]
+- Walk faster
+	do player_danilo.SPEED = 150
+	do player_danilo.RUNNING_SPEED = 200
+do can_interact = true
+=> END
+
+~ reminder
+Danilo: Oh... a notification.
+- Check who's outside following me => ignore_medications
+- Take medications and sleep => take_medications
+=> END
+
+~ take_medications
+do SaveManager.took_meds("act_3_scene_3") 
+do play_taking_meds()
+do can_interact = true
+=> END
+
+~ ignore_medications
+do Hud.phone_outro()
+do SaveManager.missed_meds("act_3_scene_3")
+do SignalBus.second_house_exit.emit()
+Danilo: No... someone really was following me earlier.
+Danilo: I can’t get them out of my head.
+Danilo: I guess I have to go out and check... even if I don’t want to.
+=> END
+
+~ check_outside
+Danilo: Hmm...
+Danilo: Looks like... they’re gone?
+Danilo: Maybe I should just sleep.
+Danilo: Hopefully... it’ll all be gone by tomorrow.
+=> END

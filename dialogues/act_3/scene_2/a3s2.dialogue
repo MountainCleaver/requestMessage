@@ -17,7 +17,7 @@ Danilo: ...
 => END
 
 ~ reply_wendy_1
-do ChatManager.send_chat("wendy", "Player", "Sorry Wen, ‘di kita nasabihan. Biglaan kasi laHat. Tingin ko...")
+do ChatManager.send_chat("wendy", "Player", "Sorry Wen, ‘di kita nasabihan. Biglaan kasi lahat. Tingin ko...")
 Danilo: Sorry Wen, 'di kita nasabihan. Biglaan kasi lahat. Tingin ko...
 - kailangan ko muna magpahinga. => reply_wendy_2
 => END

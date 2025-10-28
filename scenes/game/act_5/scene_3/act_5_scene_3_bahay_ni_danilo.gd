@@ -9,18 +9,29 @@ extends Node2D
 @onready var marker_2d: Marker2D = $"danilo_hometown_house/y-sorted/Marker2D"
 @onready var marker_2d_2: Marker2D = $"danilo_hometown_house/y-sorted/Marker2D2"
 
-const A_5S_3 = preload("uid://dntq0tdotjt87")
+var A_5S_3: Resource
 
 var interacting_with : String = ""
 var can_interact : bool = true
 
 func _ready() -> void:
+	_load_dialogue()
 	$"danilo_hometown_house/y-sorted/npc_danilo/AnimatedSprite2D".play("idle_left")
 	$"danilo_hometown_house/y-sorted/npc_mira/AnimatedSprite2D".play("idle_up")
 	player_mateo.last_direction = Vector2.UP
 	area_2d.body_entered.connect(_on_area_2d_body_entered)
 	area_2d.body_exited.connect(_on_area_2d_body_exit)
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_5/scene_3/a5s3_en.dialogue"
+	else:
+		path = "res://dialogues/act_5/scene_3/a5s3.dialogue"
+	
+	A_5S_3 = load(path)
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		if not can_interact:

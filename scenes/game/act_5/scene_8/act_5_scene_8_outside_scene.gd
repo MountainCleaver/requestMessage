@@ -13,10 +13,11 @@ extends Node2D
 @onready var whitey_initial_location: Marker2D = $"locations/cliff/y-sorted/markers/whitey_initial_location"
 
 var act_4_scene_1_choice : String
-const A_5S_8 = preload("uid://cdmrub6bunwtt")
+var A_5S_8: Resource
 
 func _ready() -> void:
-	
+
+	_load_dialogue()
 	player_danilo.force_cannot_move = true
 	player_danilo.last_direction = Vector2.LEFT
 	act_4_scene_1_choice = SaveManager.get_moral_choice("act_4_scene_1")
@@ -27,6 +28,16 @@ func _ready() -> void:
 
 	_set_ghost_position(act_4_scene_1_choice)
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_5/scene_8/a5s8_en.dialogue"
+	else:
+		path = "res://dialogues/act_5/scene_8/a5s8.dialogue"
+	
+	A_5S_8 = load(path)
+	
 func _set_ghost_position(choice: String)->void:
 	if choice == "restless":
 		canvas_modulate.color = Color("4e2564")

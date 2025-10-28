@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://begsx4c7cce18"
+path="res://.godot/imported/a4s2_en.dialogue-6c75fd2fe85ecd3afefc5689bdcf7703.tres"
+
+[deps]
+
+source_file="res://dialogues/act_4/scene_2/a4s2_en.dialogue"
+dest_files=["res://.godot/imported/a4s2_en.dialogue-6c75fd2fe85ecd3afefc5689bdcf7703.tres"]
+
+[params]
+
+defaults=true

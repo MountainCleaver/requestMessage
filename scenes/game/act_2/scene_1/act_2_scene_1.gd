@@ -1,7 +1,7 @@
 extends Node2D
 
 # === PRELOADS ===
-const A_2S_1 = preload("res://dialogues/act_2/scene_1/a2s1.dialogue")
+var A_2S_1: Resource
 const DANILO_ROOM = preload("res://scenes/game/act_1/scene_4/danilo_room.tscn")
 const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
 const PHONE_INCOMING_CALL = preload("res://scenes/game/phone_incoming_call.tscn")
@@ -56,7 +56,7 @@ func _ready():
 		
 	switch_location(DANILO_ROOM)
 	_start_scene()
-
+	_load_dialogue()
 	
 	# === SIGNAL CONNECTIONS ===
 	if not unknown_sender_calling.is_connected(_on_unknown_sender_calling):
@@ -87,6 +87,15 @@ func _ready():
 	buzz_timer.one_shot = false
 	buzz_timer.connect("timeout", Callable(self, "_on_buzz_timeout"))
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_2/scene_1/a2s1_en.dialogue"
+	else:
+		path = "res://dialogues/act_2/scene_1/a2s1.dialogue"
+	
+	A_2S_1 = load(path)
 # ===================
 # START SCENE
 # ===================

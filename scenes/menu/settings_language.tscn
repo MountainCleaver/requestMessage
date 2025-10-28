@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://cqaltyu22s6u5"]
+
+[ext_resource type="Script" uid="uid://g2f2m46jdrio" path="res://scenes/menu/scripts/settings_language.gd" id="1_fflf6"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_2me2o"]
+[ext_resource type="Texture2D" uid="uid://c0rv7wh6es8um" path="res://assets/main menu/icons/radio.png" id="3_7c4l5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mbspy"]
+font = ExtResource("2_2me2o")
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_65wt5"]
+font_color = Color(1, 1, 1, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbspy"]
+atlas = ExtResource("3_7c4l5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65wt5"]
+atlas = ExtResource("3_7c4l5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_65wt5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pe472"]
+font_color = Color(1, 1, 1, 0)
+
+[node name="settings_language" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fflf6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="DIALOGUE LANGUAGE" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/DIALOGUE LANGUAGE"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DIALOGUE LANGUAGE"
+label_settings = SubResource("LabelSettings_mbspy")
+
+[node name="OPTIONS" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="john_cena" type="Label" parent="VBoxContainer/OPTIONS"]
+layout_mode = 2
+text = "johncena"
+label_settings = SubResource("LabelSettings_65wt5")
+
+[node name="FILIPINO" type="HBoxContainer" parent="VBoxContainer/OPTIONS"]
+layout_mode = 2
+
+[node name="radio_filipino" type="CheckBox" parent="VBoxContainer/OPTIONS/FILIPINO"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_2me2o")
+theme_override_font_sizes/font_size = 36
+theme_override_icons/radio_checked = SubResource("AtlasTexture_mbspy")
+theme_override_icons/radio_unchecked = SubResource("AtlasTexture_65wt5")
+button_pressed = true
+button_group = SubResource("ButtonGroup_65wt5")
+text = " Filipino"
+
+[node name="Label" type="Label" parent="VBoxContainer/OPTIONS"]
+layout_mode = 2
+text = "drax"
+label_settings = SubResource("LabelSettings_pe472")
+
+[node name="ENGLISH" type="HBoxContainer" parent="VBoxContainer/OPTIONS"]
+layout_mode = 2
+
+[node name="radio_english" type="CheckBox" parent="VBoxContainer/OPTIONS/ENGLISH"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_2me2o")
+theme_override_font_sizes/font_size = 36
+theme_override_icons/radio_checked = SubResource("AtlasTexture_mbspy")
+theme_override_icons/radio_unchecked = SubResource("AtlasTexture_65wt5")
+button_group = SubResource("ButtonGroup_65wt5")
+text = " English"

@@ -1,0 +1,20 @@
+~ mira_wake_up
+Mira: Danilo, wake up, Nak...
+=> END
+
+~ start
+danilo_child: Why, Ma?
+Mira: Weren't you playing with Mateo yesterday?
+danilo_child: Yes, but when we tried to find him...
+danilo_child: We couldn’t see him anywhere we had looked.
+danilo_child: We were going to keep looking, but then the rain suddenly started pouring.
+Mira: Oh... I see...
+danilo_child: Has Mateo come home yet?
+Mira: How do I put this...?
+Mira: Nak... Mateo is missing.
+Mira: The police are outside.
+Mira: Can you tell them what you know?
+danilo_child: ???
+danilo_child: What do you mean, Ma?
+danilo_child: [shake rate=20 level=10]Mateo's missing??[/shake]
+=> END

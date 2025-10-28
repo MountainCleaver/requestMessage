@@ -3,7 +3,7 @@ extends Node2D
 # ===================
 # PRELOADS
 # ===================
-const A_4S_3 = preload("res://dialogues/act_4/scene_3/a4s3.dialogue")
+var A_4S_3: Resource
 const DARK_FOREST = preload("res://scenes/game/act_4/scene_3/dark_forest.tscn")
 const CHAPEL_EXTERIOR = preload("res://scenes/game/act_4/scene_3/chapel_exterior.tscn")
 const CHAPEL_INTERIOR = preload("res://scenes/game/act_4/scene_3/chapel_interior.tscn")
@@ -94,11 +94,22 @@ var scene_objectives = [
 # ===================
 func _ready():
 	_game_state_flow()
+	_load_dialogue()
 	switch_location(NARRATION_PANEL)
 	_start_scene()
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.unknown_sender_label_visible = false
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_4/scene_3/a4s3_en.dialogue"
+	else:
+		path = "res://dialogues/act_4/scene_3/a4s3.dialogue"
+	
+	A_4S_3 = load(path)
+	
 func _game_state_flow() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_3")
 	FlashlightManager.enable_flashlight_by_cash()

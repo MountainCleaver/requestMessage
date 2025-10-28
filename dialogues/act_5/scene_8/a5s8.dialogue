@@ -61,6 +61,7 @@ do whitey_vanish_full()
 Danilo: Mateo... Diyos ko... lahat pala  'to tinago mo samin...
 # chapel darken, soundfx
 Danilo: Akala ko... Masaya ka... na wala kang dinadala...
+Danilo: Hindi ko alam... tinatago mo pala lahat ng 'yon sa likod ng tawa mo...
 Danilo: Pero pinabayaan kita.
 Danilo: Mateo... Sorry...
 # ghost appears
@@ -69,7 +70,7 @@ do ghost_appears.emit("restless")
 => END
 
 ~ resltess_ghost_appeared
-Entity: ...Danilo...bakit... iniwan mo ako...
+Entity: ...Danilo... bakit... iniwan mo ako...?
 Danilo: Mateo... Ikaw ba 'yan?
 do show_distortion()
 #=> END

@@ -69,9 +69,9 @@ anchor_top = 0.676
 anchor_right = 1.0
 anchor_bottom = 1.239
 offset_left = 8.0
-offset_top = 40.004
+offset_top = 59.004
 offset_right = 106.0
-offset_bottom = 176.031
+offset_bottom = 233.031
 grow_vertical = 2
 theme_override_constants/separation = 10
 
@@ -79,8 +79,8 @@ theme_override_constants/separation = 10
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 45
-theme_override_styles/focus = SubResource("StyleBoxFlat_keq5n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_keq5n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_keq5n")
 text = " AUDIO"
 alignment = 0
 
@@ -88,8 +88,8 @@ alignment = 0
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 45
-theme_override_styles/focus = SubResource("StyleBoxFlat_keq5n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_keq5n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_keq5n")
 text = " DISPLAY"
 alignment = 0
 
@@ -97,9 +97,18 @@ alignment = 0
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 45
-theme_override_styles/focus = SubResource("StyleBoxFlat_keq5n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_keq5n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_keq5n")
 text = " CONTROLS"
+alignment = 0
+
+[node name="option_language" parent="options_label/VBoxContainer" instance=ExtResource("3_keq5n")]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 45
+theme_override_styles/hover = SubResource("StyleBoxFlat_keq5n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_keq5n")
+text = " LANGUAGE"
 alignment = 0
 
 [node name="exit" parent="." instance=ExtResource("3_keq5n")]
@@ -113,8 +122,8 @@ offset_top = -17.5681
 offset_right = 192.48
 offset_bottom = 18.4319
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_keq5n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_keq5n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_keq5n")
 text = " EXIT"
 alignment = 0
 
@@ -136,4 +145,5 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_xmlxi")
 [connection signal="pressed" from="options_label/VBoxContainer/option_audio" to="." method="_on_option_audio_pressed"]
 [connection signal="pressed" from="options_label/VBoxContainer/option_display" to="." method="_on_option_display_pressed"]
 [connection signal="pressed" from="options_label/VBoxContainer/option_controls" to="." method="_on_option_controls_pressed"]
+[connection signal="pressed" from="options_label/VBoxContainer/option_language" to="." method="_on_option_language_pressed"]
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

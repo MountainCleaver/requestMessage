@@ -1,6 +1,6 @@
 extends Node2D
 
-const A_3S_1 = preload("uid://d0b51f51nu0te")
+var A_3S_1: Resource
 
 @onready var player_danilo: CharacterBody2D = $"locations/danilo_hometown/y-sorted-objects/player_danilo"
 @onready var npc_lola_ising: CharacterBody2D = $"locations/danilo_hometown/y-sorted-objects/npc_lola_ising"
@@ -29,10 +29,21 @@ func _ready() -> void:
 	SaveManager.reset_lola_ising_progress()
 	FlashlightManager.set_current_scene("act_3", "scene_1")
 	FlashlightManager.disable_flashlights()
+	_load_dialogue()
 	ising_collision_shape_2d.disabled = true;
 	player_danilo.force_cannot_move = true;
 	sfx_bus.play()
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_3/scene_1/a3s1_en.dialogue"
+	else:
+		path = "res://dialogues/act_3/scene_1/a3s1.dialogue"
+	
+	A_3S_1 = load(path)
+	
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	sfx_bus.stop()
 	wind.play("default");

@@ -1,0 +1,182 @@
+~ start
+Danilo: [center]I’ll just head to the hangout first.[/center]
+Danilo: [center]But... I have to pass through the graveyard on the way.[/center]
+do ObjectiveManager.add_objective(1, "Enter graveyard")
+do Hud.show_objectives()
+=> END
+
+~ signage
+Danilo: [center]So, I'll just have to go straight to the graveyard...[/center]
+=> END
+
+~ grave_entry
+Danilo: [center][shake]I’m still scared to walk through here alone.[/shake][/center]
+Danilo: [center][shake]But... I have no choice. I need to go through.[/shake][/center]
+do Hud.clear_objectives()
+do ObjectiveManager.add_objective(2, "Find small hut")
+do Hud.show_objectives()
+=> END
+
+~ smallhut_lock
+do ObjectiveManager.complete_objective(2)
+Danilo: [center]Locked? ...It wasn’t locked before.[/center]
+Danilo: [center]Where could the key be?[/center]
+do ObjectiveManager.add_objective(3, "Look around to get clues")
+=> END
+
+~ no_key
+Danilo: [center]I need to find the key first to open this.[/center]
+=> END
+
+~ unknown_sender_clue
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Ano ba unang nadaanan mo?")
+Unknown_sender: [wait=1.5]What did you pass first?
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Doon mo hanapin ang susi upang mabuksan ang pintuang ‘yan.")
+Unknown_sender: [wait=1.5]Look there for the key to open that door.
+do ObjectiveManager.complete_objective(3)
+do Hud.phone_outro()
+
+Danilo: [center][shake]The key... in the graveyard?[/shake][/center]
+Danilo: [center][shake]I don’t want to linger there.[/shake][/center]
+Danilo: [center][shake]But... I also need the key to open this door.[/shake][/center]
+do ObjectiveManager.add_objective(4, "Search graveyard to get key")
+=> END
+
+~ dirt_1
+Danilo: [center][shake]Not here... maybe it’s under another tombstone.[/shake][/center]
+=> END
+
+~ dirt_2
+Danilo: [center][shake]Not here... maybe it’s under another tombstone.[/shake][/center]
+=> END
+
+~ dirt_3
+Danilo: [center][shake]Not here... maybe it’s under another tombstone.[/shake][/center]
+=> END
+
+~ dirt_4
+Danilo: [center][shake]Not here... maybe it’s under another tombstone.[/shake][/center]
+=> END
+
+~ dirt_5
+Danilo: [center]Finally... here’s the key.[/center]
+Danilo: [center]I can now open the door and enter the hangout.[/center]
+do ObjectiveManager.complete_objective(4)
+do ObjectiveManager.add_objective(5, "Enter the small hut")
+=> END
+
+~ dirt_6
+Danilo: [center][shake]Not here... maybe it’s under another tombstone.[/shake][/center]
+=> END
+
+~ dirt_7
+Danilo: [center][shake]Not here... maybe it’s under another tombstone.[/shake][/center]
+=> END
+
+~ dirt_8
+Danilo: [center][shake]Not here... maybe it’s under another tombstone.[/shake][/center]
+=> END
+
+~ house_entry
+do ObjectiveManager.complete_objective(5)
+do Hud.hide_objectives()
+Danilo: [center]It’s so dark... I can barely see.[/center]
+Danilo: [center]I need to hurry and find the torn pages from [color=#8B0000][i]Mateo[/i][/color]’s diary.[/center]
+=> END
+
+~ paper_5
+do Hud.clear_objectives()
+Danilo: [center]A piece of paper... but why is it only a fragment?[/center]
+Danilo: [center]Where could the rest be?[/center]
+Danilo: [center]Wait... is this from [color=#8B0000][i]Mateo[/i][/color]’s diary?[/center]
+Danilo: [center]Was it teared up...?[/center]
+=> END
+
+~ unknown_sender_paper_clue
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Ngayon, nakapasok ka na sa loob.")
+Unknown_sender: [wait=1.5]Now, you’re here.
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Hanapin mo mga kapiraso ng papel na 'yan.")
+Unknown_sender: [wait=1.5]Find all the fragments of that paper.
+do Hud.phone_outro()
+
+Danilo: [center]The fragments are inside the hangout.[/center]
+Danilo: [center]I need to collect all of them to reconstruct the torn page from [color=#8B0000][i]Mateo[/i][/color]’s diary.[/center]
+do ObjectiveManager.add_objective(6, "Find all scattered paper inside small hut")
+do Hud.show_objectives()
+=> END
+
+~ paper_1
+Danilo: [center]Another torn piece...[/center]
+Danilo: [center]I’m slowly putting it together.[/center]
+=> END
+
+~ paper_2
+Danilo: [center]Here’s another one.[/center]
+Danilo: [center]I won’t stop until it’s complete.[/center]
+=> END
+
+~ paper_3
+Danilo: [center]Another fragment.[/center]
+Danilo: [center]How many more are there?[/center]
+=> END
+
+~ paper_4
+Danilo: [center]Here’s one more.[/center]
+Danilo: [center]Where are the rest?[/center]
+=> END
+
+~ paper_found
+Danilo: [center]Finally... I found all the pieces.[/center]
+Danilo: [center]But... it’s hard to piece them together and read them here.[/center]
+Danilo: [center]I’ll hide them for now and explore the other locations on the map.[/center]
+do ObjectiveManager.complete_objective(6)
+do ObjectiveManager.add_objective(7, "Exit small hut and graveyard")
+=> END
+
+~ enter_sala
+Danilo: [center]Hangout living room.[/center]
+Danilo: [center]So dusty in here.[/center]
+Danilo: [center]The chairs and some boxes are still here.[/center]
+Danilo: [center]Feels like time hasn’t passed at all.[/center]
+=> END
+
+~ enter_cr
+Danilo: [center]Hangout bathroom.[/center]
+Danilo: [center]Nothing’s changed.[/center]
+Danilo: [center]Still unpleasant smelling.[/center]
+Danilo: [center]What did I expect? No one cleans here.[/center]
+=> END
+
+~ enter_kusina
+Danilo: [center]Hangout kitchen.[/center]
+Danilo: [center]We used to cook here often.[/center]
+Danilo: [center][color=#8B0000][i]Mateo[/i][/color] often invited us to play here too.[/center]
+Danilo: [center]I thought... maybe he’d become a chef when we grew up.[/center]
+Danilo: [center]But... he never did.[/center]
+Danilo: [center][color=#8B0000][i]Mateo[/i][/color]... I hope we see you again.[/center]
+Danilo: [center]Cook us with your favorite dishes again.[/center]
+=> END
+
+~ enter_kwarto2
+Danilo: [center]Hangout bedroom.[/center]
+Danilo: [center]We used to nap here.[/center]
+Danilo: [center]Me in the middle, Wendy to my right, and [color=#8B0000][i]Mateo[/i][/color] to my left.[/center]
+Danilo: [center]Sleep felt good... until Mang Gino carried [color=#8B0000][i]Mateo[/i][/color] away.[/center]
+Danilo: [center]He cried... I don’t know if from fear or pain.[/center]
+Danilo: [center]Mang Gino always had a stick when he picked him up.[/center]
+Danilo: [center]I wish I could have done something to protect him.[/center]
+=> END
+
+~ enter_kwarto1
+Danilo: [center]Hangout bedroom.[/center]
+Danilo: [center]This is where our chase games usually started.[/center]
+Danilo: [center]Probably the last time we played here before being forbidden.[/center]
+Danilo: [center]Wendy got hurt... and Lola Ising is very strict.[/center]
+Danilo: [center]Our parents found out, so we were banned here completely.[/center]
+Danilo: [center]After that, we could only play with toys.[/center]
+=> END
+
+~ already_entered
+Danilo: [center]I’ve already been here.[/center]
+Danilo: [center]I should explore the other places on the map.[/center]
+=> END

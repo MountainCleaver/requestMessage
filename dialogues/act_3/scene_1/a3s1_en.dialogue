@@ -1,0 +1,35 @@
+~ start
+Lola Ising: Is that you, iho?
+Danilo: Oh, it’s you, Lola! You really startled me!
+Lola Ising: What’s with the sudden visit home, iho? Where’s Wendy?
+Lola Ising: [wave]I’ve been waiting so long for that child to come home.[/wave]
+Danilo: I just happened to get home, that’s all.
+Danilo: I didn’t tell Wendy because this wasn’t planned.
+Lola Ising: Oh, I see, iho.
+Lola Ising: Make sure to greet me through Wendy, okay?
+Lola Ising: I really miss her.
+Lola Ising: Alright then, let's part ways here... that long bus ride must’ve tired you out.
+Danilo: Okay, Lola.
+Danilo: ...
+- Continue walking =>< nothing_happens
+- Give Lola Ising some cash =>< given_money
+=> END
+
+~ nothing_happens
+=> END
+
+~ given_money
+do SaveManager.set_given_lola_ising_cash(true)
+Lola Ising: Oh dear! I won’t turn away this blessing. Thank you, iho!
+Danilo: You’re welcome, Lola Ising.
+=> END
+
+~ lola_warning
+Lola Ising: [wave]Be careful at night, iho.[/wave]
+Lola Ising: Stay away from the forest if you can... it’s dark, twisted, and not welcoming.
+Danilo: Thank you for the warning, Lola. I’ll go ahead first.
+=> END
+
+~ echoes
+Danilo: ... [shake]Don’t go into the forest... [/shake]
+=> END

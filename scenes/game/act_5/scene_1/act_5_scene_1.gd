@@ -3,7 +3,7 @@ extends Node2D
 # ===================
 # PRELOADS
 # ===================
-const A_5S_1 = preload("res://dialogues/act_5/scene_1/a5s1.dialogue")
+var A_5S_1: Resource
 const DARK_FOREST = preload("res://scenes/game/act_5/scene_1/dark_forest.tscn")
 const CHAPEL_EXTERIOR = preload("res://scenes/game/act_5/scene_1/chapel_exterior.tscn")
 const CHAPEL_INTERIOR = preload("res://scenes/game/act_5/scene_1/chapel_interior.tscn")
@@ -53,11 +53,22 @@ var total_candles := 7
 # ===================
 func _ready():
 	_game_state_flow()
+	_load_dialogue()
 	switch_location(DARK_FOREST)
 	_start_scene()
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.unknown_sender_label_visible = false
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_5/scene_1/a5s1_en.dialogue"
+	else:
+		path = "res://dialogues/act_5/scene_1/a5s1.dialogue"
+	
+	A_5S_1 = load(path)
+	
 func _game_state_flow() -> void:
 	FlashlightManager.set_current_scene("act_5", "scene_1")
 	FlashlightManager.enable_flashlight_by_cash()

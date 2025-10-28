@@ -3,7 +3,7 @@ extends Node2D
 const SCENE_4_DREAM = preload("uid://cic4mooq5xw0c")
 const SCENE_4_HOUSE = preload("uid://2y5djxd1h1rf")
 const SCENE_4_HOMETOWN = preload("uid://fck7x2vrgla1")
-const A_3S_4 = preload("uid://15o68hvrk4n0")
+var A_3S_4: Resource
 
 
 @onready var locations: Node2D = $locations
@@ -75,6 +75,7 @@ func _ready() -> void:
 	_game_state_flow()
 	FlashlightManager.set_current_scene("act_3", "scene_4")
 	FlashlightManager.disable_flashlights()
+	_load_dialogue()
 	_switch_location(
 		SCENE_4_HOUSE,
 		"house",
@@ -90,6 +91,16 @@ func _ready() -> void:
 	SignalBus.chat_opened.connect(_on_chat_opened)
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.unknown_sender_label_visible = false
+	
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_3/scene_4/a3s4_en.dialogue"
+	else:
+		path = "res://dialogues/act_3/scene_4/a3s4.dialogue"
+	
+	A_3S_4 = load(path)
 	
 func _game_state_flow() -> void:
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
