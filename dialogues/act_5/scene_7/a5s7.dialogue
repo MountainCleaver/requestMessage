@@ -1,5 +1,5 @@
 ~ mira_wake_up
-Mira: Danilo, gumising ka na anak…
+Mira: Danilo, gumising ka na anak...
 => END
 
 ~ start
@@ -7,11 +7,11 @@ danilo_child: Bakit po ma?
 Mira: Diba kasama niyong naglaro kahapon si Mateo?
 danilo_child: Opo, kaso nung hinahanap na namin siya, hindi namin siya nakita sa mga lugar na pinagtataguan namin.
 danilo_child: Hahanapin pa sana namin kaso bumuhos po yung ulan.
-Mira: Ah, ganun ba…
+Mira: Ah, ganun ba...
 danilo_child: Nakauwi na po ba si Mateo?
-Mira: Ano kasi… paano ko ba ito sasabihin, anak… nawawala raw si Mateo.
+Mira: Ano kasi... paano ko ba ito sasabihin, anak... nawawala raw si Mateo.
 Mira: Nasa labas yung mga pulis.
-Mira: Pwede mo bang ikwento sa kanila ang nalalaman mo?
-danilo_child: ??
-danilo_child: Nawawala si Mateo??
+Mira: Pwede mo bang i-kwento sa kanila ang nalalaman mo?
+danilo_child: ???
+danilo_child: [shake rate=20 level=10]Nawawala si Mateo??[/shake]
 => END

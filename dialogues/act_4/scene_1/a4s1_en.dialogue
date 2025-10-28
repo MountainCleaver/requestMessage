@@ -1,0 +1,101 @@
+~ start
+Danilo: Wait for me, [color=#8B0000][i]Mateo[/i][/color].
+=> END
+
+~ open_phone_flashlight
+do player_danilo.force_cannot_move = true
+Danilo: It’s so dark... I think I need to turn on my phone’s flashlight.
+- Open the phone => show_phone
+=> END
+
+~ show_phone
+do Hud.reset_phone_state()
+=> END
+
+~ ising_call_danilo
+Lola Ising: Iho... where are you going? It’s late... it’s dangerous outside.
+=> END
+
+~ talk_to_ising_first
+Danilo: I should talk to Lola Ising first.
+=> END
+
+~ ising_give_flashlight
+Danilo: I just need to do something, La... it’ll just take a moment.
+Lola Ising: Iho, it’s late. Can’t it wait until tomorrow?
+Danilo: I can’t wait until tomorrow... I have to go now.
+Lola Ising: ...
+Lola Ising: If that’s the case, take this. 
+Lola Ising: Flashlight. Don’t let the path swallow you in darkness.
+Danilo: ...
+Danilo: Thank you, La. I’ll go first.
+=> END
+
+~ complain_phone_flashlight
+Danilo: This phone flashlight is barely strong enough.
+Danilo: And it’s pitch dark outside.
+Danilo: If only I had a real flashlight to use...
+do player_danilo.force_cannot_move = false
+=> END
+
+~ danilo_saw_ghost
+Danilo: [shake rate=30 level=10]!!!![/shake]
+=> END
+
+~ ghost_gone
+Danilo: [shake rate=20 level=10]W-what... was that? I missed it. Too fast...[/shake]
+Danilo: But why does it feel... like it was the one from my dreams? [shake rate=20 level=10]Was it watching me?[/shake]
+=> END
+
+~ marked_map
+Danilo: Isn’t this the place marked on the map...?
+Danilo: Wait, what’s on the ground?
+=> END
+
+~ picked_up_notebook
+Danilo: The pages... they’re all torn.
+Danilo: [shake rate=20 level=10]???[/shake]
+Danilo: [shake rate=20 level=10]This can’t be...[/shake]
+Danilo: Isn’t this... [shake rate=20 level=10][color=#8B0000][i]Mateo[/i][/color][/shake]’s diary?
+Danilo: [shake rate=20 level=10]I don’t understand...[/shake]
+Danilo: [shake rate=20 level=10]How did this even end up here?[/shake]
+do BuzzManager.start_buzz()
+Danilo: ...
+- Open the phone => open_phone
+=> END
+
+~ open_phone
+do BuzzManager.stop_buzz()
+do _open_phone_notifications()
+=> END
+
+~ take_meds_or_continue_looking
+Danilo: It’s time to take my medication...
+- Go back home to take medications => take_meds
+- Continue looking for clues => continue_looking
+=> END
+
+~ take_meds
+do SaveManager.took_meds("act_4_scene_1")
+do SaveManager.save_moral_choice("act_4_scene_1", "relief")
+Danilo: Maybe I should go home first.
+Danilo: I need to take my medicine.
+Danilo: But after that... I’ll continue.
+Danilo: This isn’t over yet.
+do _on_take_meds_chosen()
+do Hud.phone_outro()
+=> END
+
+~ continue_looking
+do SaveManager.missed_meds("act_4_scene_1")
+do SaveManager.save_moral_choice("act_4_scene_1", "restless")
+Danilo: But... if all of this is real...
+Danilo: I... I won’t stop now.
+Danilo: I need to find out what’s really happening.
+do _on_continue_looking_chosen()
+do Hud.phone_outro()
+=> END
+
+~ back_to_adventure
+Danilo: I can keep going now...
+=> END

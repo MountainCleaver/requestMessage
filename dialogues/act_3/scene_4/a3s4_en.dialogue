@@ -15,16 +15,16 @@ do in_dialogue = false
 => END
 
 ~ reminisce
-Danilo: Dito kami naglalaro dati...
-Danilo: Itong-ito parin yun, tila hindi nagbago... pero ano [i]'yan[/i]?
+Danilo: We used to play here...
+Danilo: This place... still the same, yet... what is that [i]'thing'[/i]?
 # pan camera to the shadow figure
 do _tween_camera_to_ghost()
 => END
 
 ~ woke_up
 Danilo: ???
-Danilo: Ano yun?
-Danilo: Anong panaginip yun?
+Danilo: What... was that?
+Danilo: What kind of dream was that?
 - Take medications => take_medications
 - Check phone for messages => check_phone
 => END
@@ -43,40 +43,40 @@ do ChatManager.send_chat("wendy", "Wendy", "Danilo, have you heard that?")
 Wendy: Danilo, have you heard that?
 
 do ChatManager.send_chat("wendy", "Wendy", "Ang lakas ng kulog dito.")
-Wendy: [wait=1.5]Ang lakas ng kulog dito.
-- Diyan rin pala sa city. => reply_danilo_1
-- Akala ko dito lang sa province. => reply_danilo_1
+Wendy: [wait=1.5]The thunder is so loud here.
+- In the city too? => reply_danilo_1
+- I thought it was just here... => reply_danilo_1
 => END
 
 ~ reply_danilo_1
 do ChatManager.send_chat("wendy", "Player", "Diyan rin pala sa city. Akala ko dito lang sa province.")
-Danilo: Diyan rin pala sa city. Akala ko dito lang sa province.
+Danilo: Same in the city. I thought it was only here in the province.
 => reply_wendy_1
 
 ~ reply_wendy_1
 do ChatManager.send_chat("wendy", "Wendy", "Seems like anytime soon, baka umulan. Ingat ka, Dan.")
-Wendy: [wait=1.5]Seems like anytime soon, baka umulan. Ingat ka, Dan.
-- Ikaw rin, Wen. => reply_danilo_2
+Wendy: [wait=1.5]Seems like it might rain anytime soon. Be careful, Dan.
+- You too, Wen. => reply_danilo_2
 => END
 
 ~ reply_danilo_2
 do ChatManager.send_chat("wendy", "Player", "Ikaw rin, Wen.")
-Danilo: Ikaw rin, Wen.
+Danilo: You too, Wen.
 do Hud.phone_outro()
 do _notice_open_window()
 => END
+
 ~ window_is_open
 Danilo: [shake rate=20 level=10]!!![/shake]
-Danilo: Sinara ko ‘to lahat kanina, bakit naka bukas 'tong bintana?
-Danilo: Sinong nag bukas n'yan?
+Danilo: I closed all the windows earlier... why is this one open?
+Danilo: Who... opened it?
 do can_interact = true
 => END
-
 
 ~ gino_knock
 do ObjectiveManager.update_progress(1, 1)
 Danilo: [center][color=#808080]*(knock knock knock)*[/color][/center]
-Danilo: [center]Wala yatang tao...[/center]
+Danilo: [center]Doesn’t seem like anyone’s home...[/center]
 do gino_knocked = true
 do can_interact = true
 do _check_objectives()
@@ -84,19 +84,19 @@ do SignalBus.asked_a_neighbor.emit()
 => END
 
 ~ gino_knock_again
-Danilo: [center]Walang tao dito.[/center]
+Danilo: [center]No one here.[/center]
 do can_interact = true
 => END
 
 ~ theresa
 do ObjectiveManager.update_progress(1, 1)
-Danilo: Magandang araw po, [wave]Aling Theresa.[/wave]
-Aling_Theresa: Oh Danilo! Umuwi ka pala. 
-Aling_Theresa: Bakasyon lang?
-Danilo: Opo, hindi rin ako magtatagal.
-Danilo: May nakita po ba kayong pumunta sa bahay kanina?
-Aling_Theresa: [wave]Wala[/wave], abala ako sa pagluluto.
-Danilo: Ah, ganun po ba? Sige po salamat po.
+Danilo: Good day, [wave]Aling Theresa.[/wave]
+Aling_Theresa: Oh Danilo! You’re home.
+Aling_Theresa: Just a short visit?
+Danilo: Yes, I won’t stay long.
+Danilo: Did you see anyone coming to the house earlier?
+Aling_Theresa: [wave]Nope[/wave], I was busy cooking.
+Danilo: Ah, I see. Thank you.
 do SignalBus.remove_npc.emit("npc_theresa_scene_4")
 do theresa_asked = true
 do player_danilo.force_cannot_move = false
@@ -106,21 +106,21 @@ do SignalBus.asked_a_neighbor.emit()
 => END
 
 ~ theresa_again
-Aling_Theresa: Mag-ingat ka palagi.
+Aling_Theresa: Take care always.
 do can_interact = true
 => END
 
 ~ vanesa
 do ObjectiveManager.update_progress(1, 1)
-Danilo: Magandang araw, Vanesa.
-Danilo: May nakita ka bang pumunta sa bahay kanina?
-Vanesa: [wave]Wala.[/wave]
-Vanesa: Kanina pa ako dito, wala naman akong nakita.
-Vanesa: Pero kahapon, nakita kitang nagmamadali umuwi.
-Danilo: May kasunod ba 'ko nun?
-Vanesa: [wave]Oo, [/wave][wait=1.5][wave]si Jonathan.[/wave]
-Vanesa: Nagulat nga ako sa bilis mong umuwi.
-Danilo: Ganun ba... salamat.
+Danilo: Good day, Vanesa.
+Danilo: Did you see anyone going to the house earlier?
+Vanesa: [wave]Nope.[/wave]
+Vanesa: I’ve been here, didn’t see anything.
+Vanesa: But yesterday, I saw you rushing home.
+Danilo: Was anyone following me then?
+Vanesa: [wave]Yes, [/wave][wait=1.5][wave]Jonathan.[/wave]
+Vanesa: I was surprised by how fast you got home.
+Danilo: I see... thanks.
 do vanesa_asked = true
 do can_interact = true
 do _check_objectives()
@@ -134,29 +134,28 @@ do can_interact = true
 
 ~ jonathan_knock
 Danilo: [center][color=#808080]*(knock knock knock)*[/color][/center]
-Danilo: [center]Wala yatang tao...[/center]
+Danilo: [center]Doesn’t seem like anyone’s home...[/center]
 do jonthan_knocked = true
 do can_interact = true
 => END
 
 ~ jonathan_knock_again
-Danilo: [center]Wala yatang tao dito...[/center]
+Danilo: [center]No one seems to be here...[/center]
 do can_interact = true
 => END
 
-
 ~ jonathan
 do ObjectiveManager.update_progress(1, 1)
-Jonathan: Uy, Danilo!
-Jonathan: [wave]Tatawagin sana kita kahapon kaso ang bilis mo.[/wave]
-Danilo: Ikaw pala yung nakasunod sakin?
-Jonathan: Hindi kita sinusundan.
-Jonathan: Galing din ako ng bayan, gusto lang sana kitang kamustahin.
-Danilo: Pasensya na, may iniisip lang ako.
-Danilo: Pero may nakita ka bang pumunta sa bahay kanina?
-Jonathan: [wave]Wala.[/wave]
-Jonathan: Galing ako sa pangingisda kasama si Mang Gino. Kakauwi ko lang.
-Danilo: Ah ganun. Sige, salamat.
+Jonathan: Hey, Danilo!
+Jonathan: [wave]I was going to call you yesterday, but you were too fast.[/wave]
+Danilo: So... you were following me?
+Jonathan: I wasn’t following you.
+Jonathan: I just came back from town, I wanted to check on you.
+Danilo: Sorry, I was... preoccupied.
+Danilo: Did you see anyone going to the house earlier?
+Jonathan: [wave]Nope.[/wave]
+Jonathan: I was fishing with Mang Gino, just got back.
+Danilo: Ah... I see. Thanks.
 do can_interact = true
 do player_danilo.force_cannot_move = false
 do SignalBus.jonathan_done.emit("npc_jonathan")
@@ -170,12 +169,12 @@ do can_interact = true
 => END
 
 ~ home_door
-Danilo: Mag tatanong muna ako sa mga kapitbahay.
+Danilo: I should ask the neighbors first.
 do can_interact = true
 => END
 
 ~ asked_neighbors
-Danilo: Natanong ko na sila...
+Danilo: I asked them all...
 do can_interact = true
 => END
 
@@ -185,24 +184,24 @@ Danilo: ...
 - Take image
 	do Hud.add_popup_image("res://assets/tilesets/frame_blurred_only.png")
 	do Hud._toggle_popup()
-	Danilo: Bakit nagkaganito 'to?
+	Danilo: Why... did it become like this?
 	do Hud._toggle_popup()
 	Danilo: ...
 	- Flip image
 		do Hud.add_popup_image("res://assets/tilesets/frame_behind.png")
 		do Hud._toggle_popup()
 		Danilo: [center][wave][i]"Find [wait=1.0]me...[/i][/wave][/center]
-		Danilo: Anong ibig sabihin nito?
+		Danilo: What does this mean?
 		Danilo: ... ...
-		Danilo: Parang may mali.
+		Danilo: Something feels wrong.
 		do Hud._toggle_popup()
 		Danilo: ...
 		- Take piece of paper
 			do Hud.add_popup_image("res://assets/HUD/map.png")
 			do Hud._toggle_popup()
 			Danilo: Huh? 
-			Danilo: [shake]Anong ginagawa ng mapang ‘to dito? [/shake]
-			Danilo: [shake]Hindi ko maalala kung kailan ko ‘to huling nakita...[/shake]
+			Danilo: [shake]Why is this map here?[/shake]
+			Danilo: [shake]I can’t remember when I last saw this...[/shake]
 			do Hud._toggle_popup()
 			do inspected_picture_frame = true
 			do SignalBus.fade_to_blackness.emit()
@@ -215,17 +214,17 @@ do can_interact = true
 => END
 
 ~ last_statement_1
-Danilo: Kung may kasagutan man sa likod ng lahat nang 'to...
-Danilo: [wave]Sana hindi pa huli ang lahat.[/wave]
-Danilo: Hintayin mo ‘ko, [color=#8B0000][i]Mateo[/i][/color].
+Danilo: If there’s any answer behind all of this...
+Danilo: [wave]I hope it’s not too late.[/wave]
+Danilo: Wait for me, [color=#8B0000][i]Mateo[/i][/color].
 do _act_3_scene_4_done()
 => END
 
 ~ disapointment
 do player_danilo.force_cannot_move = true
 do can_interact = false
-Danilo: Wala akong napala...
-Danilo: Uuwi nalang ako.
+Danilo: I gained nothing...
+Danilo: I’ll just go home.
 do can_interact = true
 do player_danilo.force_cannot_move = false
 => END

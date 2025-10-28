@@ -1,0 +1,198 @@
+~ start
+Wendy: Where are you, Danilo...
+Wendy: I tried calling him, but he didn’t answer.
+Wendy: Should I go back too?
+Wendy: He should’ve been home already... it’s been a day.
+Wendy: I’m worried... I should probably go back.
+Wendy: Just to check if he’s alright.
+do Hud.show_objectives()
+=> END
+
+~ hometown
+do ObjectiveManager.complete_objective(1)
+Wendy: It’s been a while since I came back here.
+Wendy: I just hope Danilo’s fine.
+Wendy: Maybe I’ll go... I’ll try surprising Lola first.
+do Hud.show_objectives()
+=> END
+
+~ notice
+do ObjectiveManager.complete_objective(2)
+Wendy: Umm...
+Wendy: Why are there so many people outside?
+Wendy: What’s going on?
+=> END
+
+~ lola_spotted
+Wendy: Lola is outside.
+Wendy: Is she waiting for someone?
+Wendy: I haven’t told her I’m coming home yet.
+=> END
+
+~ talk_to_lola_ising
+do ObjectiveManager.complete_objective(3)
+Wendy: Oh, Lola, why are you outside?
+Wendy: Did you expect me to come home?
+Wendy: I also brought you a gift.
+Lola Ising: Later, apo...
+Lola Ising: There’s something more important you need to know...
+Lola Ising: Apo... apo... it's about Danilo...
+Wendy: What happened to Danilo, Lola?
+Lola Ising: He’s missing...
+Wendy: What do you mean missing, Lola? 
+Lola Ising: I saw him leave the house last night.
+Lola Ising: I thought he was with someone, so I let him go.
+Lola Ising: But the next day...
+Lola Ising: He didn’t come back home.
+Wendy: Have you already looked for him?
+Lola Ising: Yes, we’ve been searching since yesterday... but still no sign.
+Wendy: Where could Danilo be?
+Wendy: Okay, Lola.
+Wendy: I’ll try gathering some information.
+Wendy: Maybe that way, we can get some clues on where he is now.
+=> END
+
+~ talk_to_jonathan
+Wendy: Hello, Jonathan.
+Jonathan: Oh, Wendy, you’re home too.
+Jonathan: Did you know Danilo is missing?
+Jonathan: Just the other day I spoke to him briefly.
+Jonathan: Then he disappeared like a wisp of smoke... we couldn’t find him.
+Wendy: You talked to Danilo before he disappeared?
+Jonathan: Yes, we were going home together, but he didn’t seem to notice me.
+Jonathan: I was about to approach him...
+Jonathan: Then suddenly he ran off.
+Wendy: Do you know why he ran?
+Jonathan: I don’t... I only saw him again the next day.
+Wendy: What were you talking about back then?
+Jonathan: He was just asking some questions at the time.
+Wendy: Hmm... I see. Did you notice anything unusual about him?
+Jonathan: Nothing obvious, but he seemed a little... [wave amp=25 freq=5]alert[/wave].
+Wendy: Ok, thank you, Jonathan.
+=> END
+
+~ talk_to_vanesa
+Wendy: Hello, Vanesa. It’s been a while.
+Vanesa: Oh, hello, Wendy.
+Vanesa: You haven’t changed at all.
+Wendy: I’m curious... did you talk to or see Danilo before he disappeared?
+Vanesa: Oh, yes.
+Vanesa: I remember he asked if I had seen anyone following him on his way home.
+Vanesa: At that time, I didn’t know he came here.
+Vanesa: He only asked and came to the house briefly.
+Wendy: Did you see anyone following him?
+Vanesa: No, I was inside doing laundry... didn’t notice anyone.
+Vanesa: Maybe if I had been out hanging clothes, I could’ve seen something.
+Wendy: Ah, I see. Thank you for the info, Vanesa.
+=> END
+
+~ talk_to_manang_matet
+Wendy: Hello, Tita Matet.
+Manang Matet: Oh, apo, you’re here.
+Manang Matet: Did you hear that Danilo is missing?
+Wendy: Yes, I just heard it from Lola.
+Manang Matet: Wow... I haven’t even checked on him.
+Manang Matet: Jonathan said he knocked at the house a few days ago.
+Manang Matet: But I was at the hospital at that time.
+Manang Matet: I thought he’d come the next day to check on me.
+Manang Matet: But he didn’t, so I went to them instead.
+Manang Matet: I even cooked his favorite dish.
+Manang Matet: I hope we find him soon.
+Wendy: I’ll help look for him.
+Wendy: You should rest now.
+Manang Matet: Thank you, apo.
+=> END
+
+~ talk_to_mang_gino
+Wendy: Hello, Mang Gino.
+Mang Gino: If this is about Danilo, I haven’t spoken to him.
+Wendy: Ah, I see. Thank you.
+=> END
+
+~ talk_to_aling_theresa
+Wendy: Hello, Aling Theresa.
+Wendy: I want to ask if you saw or spoke to Danilo before he disappeared.
+Aling Theresa: Oh, yes, he asked me something, but I didn’t fully understand.
+Aling Theresa: My hearing and eyesight aren’t that good anymore.
+Aling Theresa: But I didn’t see him.
+Wendy: Thank you, Aling Theresa.
+Wendy: Walang anuman, apo.
+=> END
+
+~ wendy_contemplate
+Wendy: [center]From everyone I asked...[/center]
+Wendy: [center]I think Danilo is troubled by something, but...[/center]
+Wendy: [center]During our calls, he seemed normal.[/center]
+Wendy: [center]I need to find him quickly. He needs his meds already.[/center]
+=> END
+
+~ signage1
+Wendy: The playground... this is where we used to play.
+=> END
+
+~ lola_final
+Wendy: Okay, Lola, I’ll go ahead first.
+Wendy: You should rest now.
+Wendy: Please tell everyone to rest as well.
+Lola Ising: Ok, apo. We’ll follow once we finish resting.
+Wendy: Thank you, Lola. I’ll go ahead.
+=> END
+
+~ lola_here
+Lola Ising: I’ll stay here for now, apo.
+Lola Ising: Talk to the neighbors first.
+=> END
+
+~ wendy_start
+Wendy: So, what places have you all checked already?
+Aling Theresa: Including the neighboring village... they’ve been searching there too.
+Vanesa: Kapitan has also been searching in town... still no sign.
+Lola Ising: We found the playground where you used to play, which we had forbidden you to go before.
+Manang Matet: We also went to the places Mateo used to hide when you were kids.
+Wendy: What do you mean by hiding, Tita?
+Manang Matet: Oh, you didn’t know.
+Manang Matet: Mateo liked hiding back then... sometimes he wouldn’t come home and would sleep elsewhere.
+Manang Matet: He preferred that over hearing everyone fight.
+Wendy: Tita...
+Wendy: I didn’t know Mateo had places like that.
+Wendy: Don’t lose hope. We’ll find Mateo... 
+Wendy: And now, Danilo too.
+=> END
+
+~ mang_gino_Cliff_hint
+Mang Gino: Wait...
+Wendy: What is it, Mang Gino?
+Mang Gino: ...
+Wendy: Sorry, but I need to find Danilo.
+Mang Gino: ...
+Mang Gino: I know a place you haven’t gone yet.
+Manang Matet: Why didn’t you say that sooner?
+Mang Gino: That part is thick with vegetation... hard to reach.
+Mang Gino: But I cleared a path, so we can cross.
+Mang Gino: The path is near the cliff... only a few know it.
+Wendy: I see...
+Wendy: Thanks, Mang Gino.
+Wendy: Let’s go there first.
+=> END
+
+~ enter_dark_forest
+Wendy: [center]Wait for me, Danilo... We won’t give up finding you.[/center]
+=> END
+
+~ signage_darkforest
+Wendy: Based on this sign... Mang Gino, is this the right upward path?
+Mang Gino: Yes... that’s the one we’ll take.
+=> END
+
+~ cliff_entry
+Mang Gino: Be careful, everyone. Remember, we’re walking along a cliff.
+Wendy: [center]...[/center]
+Wendy: [center]Please... Danilo, I hope you’re here.[/center]
+=> END
+
+~ seen_danilo
+Wendy: [shake]Danilo!!![/shake]
+Wendy: [shake]What happened to you?![/shake]
+Wendy: [shake]Please, wake up![/shake]
+Wendy: [shake]Danilo!!![/shake]
+=> END

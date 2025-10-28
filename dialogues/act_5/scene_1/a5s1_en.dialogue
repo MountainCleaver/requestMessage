@@ -1,0 +1,18 @@
+~ start
+Danilo: I need to go back to the old chapel.
+=> END
+
+~ back_to_chapel_again
+Danilo: [shake rate=20 level=10]I’m going back here... again...[/shake]
+Danilo: [shake rate=20 level=10]I just hope... I won’t see what I saw earlier...[/shake]
+=> END
+
+~ light_candle
+Danilo: I have to light all the candles again...  
+=> END
+
+~ after_arrange_pages
+Danilo: [shake rate=20 level=10]I’m terrified[/shake] of what I might discover... but even more [shake rate=20 level=10]terrified[/shake] of what I might miss.  
+Danilo: Should I really continue this?  
+Danilo: Whatever I’m about to read... I just hope I can handle it.
+=> END

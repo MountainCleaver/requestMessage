@@ -4,10 +4,10 @@ do ChatManager.send_chat("wendy", "Wendy", "Dan, you didn’t even inform me you
 Wendy: Dan, you didn’t even inform me you were going home.
 
 do ChatManager.send_chat("wendy", "Wendy", "We were worried, hindi ka sumasagot sa chats ko.") 
-Wendy: [wait=1.5]We were worried, hindi ka sumasagot sa chats ko.
+Wendy: [wait=1.5]We were worried, you weren’t answering my messages.
 
 do ChatManager.send_chat("wendy", "Wendy", "Akala ko may nangyari na sayo.") 
-Wendy: [wait=1.5][shake rate=20 level=10]Akala ko may nangyari na sayo.[/shake]
+Wendy: [wait=1.5][shake rate=20 level=10]I thought something happened to you.[/shake]
 => reply_wendy
 
 ~ reply_wendy
@@ -17,20 +17,21 @@ Danilo: ...
 => END
 
 ~ reply_wendy_1
+do _prevent_chat_exit_while_dialoging()
 do ChatManager.send_chat("wendy", "Player", "Sorry Wen, ‘di kita nasabihan. Biglaan kasi lahat. Tingin ko...")
-Danilo: Sorry Wen, 'di kita nasabihan. Biglaan kasi lahat. Tingin ko...
-- kailangan ko muna magpahinga. => reply_wendy_2
+Danilo: Sorry Wen, I didn’t tell you. Everything happened so suddenly. I think...
+- I need to rest first. => reply_wendy_2
 => END
 
 ~ reply_wendy_2
 do ChatManager.send_chat("wendy", "Player", "Kailangan ko muna magpahinga.")
-Danilo: Kailangan ko muna magpahinga. 
-- Pa-resched na lang muna... => reply_wendy_3
+Danilo: I need to rest first.
+- I’ll just reschedule... => reply_wendy_3
 => END
 
 ~ reply_wendy_3
 do ChatManager.send_chat("wendy", "Player", "Pa-resched na lang muna ng appointment ko.")
-Danilo: Pa-resched na lang muna ng appointment ko.
+Danilo: I’ll just reschedule my appointment for now.
 => reply_from_wendy
 => END
 
@@ -42,45 +43,44 @@ Wendy: [wait=1.5]Okay. But next time, please inform me.
 
 ~ reply_from_wendy_2
 do ChatManager.send_chat("wendy", "Wendy", "I’ll call you.")
-Wendy: [wait=1.5]I'll call you.
+Wendy: [wait=1.5]I’ll call you.
 Wendy: ... ... ...
 do wendy_calling.emit()
 => END
 
-
 ~ reply_mira
 do _prevent_chat_exit_while_dialoging()
 Danilo: ...
-- Andito na 'ko ma => reply_mira_1
+- I just arrived, Ma. => reply_mira_1
 => END
 
 ~ reply_mira_1
 do ChatManager.send_chat("mira", "Player", "Andito na 'ko, ma.")
-Danilo: Andito na 'ko, ma.
-- ‘Di ako nakabili kanina... => reply_mira_2
+Danilo: I just arrived, Ma.
+- I couldn’t buy it earlier... => reply_mira_2
 => END
 
 ~ reply_mira_2
 do ChatManager.send_chat("mira", "Player", "‘Di ako nakabili kanina, ang daming tao sa pharmacy.")
-Danilo: ‘Di ako nakabili kanina, ang daming tao sa pharmacy.
-- Try ko na lang sa bayan bukas.  => reply_mira_3
+Danilo: I couldn’t buy it earlier, the pharmacy was crowded with so many people.
+- I’ll just try to go to the town...  => reply_mira_3
 => END
 
 ~ reply_mira_3
 do ChatManager.send_chat("mira", "Player", "Try ko na lang sa bayan bukas.")
-Danilo: Try ko na lang sa bayan bukas. 
-- Sinabihan mo pala si Wendy? => reply_mira_4
+Danilo: I’ll just try to go to the town tomorrow.
+- ...You told Wendy I left? => reply_mira_4
 => END
 
 ~ reply_mira_4
 do ChatManager.send_chat("mira", "Player", "Sinabihan mo pala si Wendy na umalis ako?")
-Danilo: Sinabihan mo pala si Wendy na umalis ako?
+Danilo: ...You told Wendy I left?
 => reply_from_mira
 => END
 
 ~ reply_from_mira
 do ChatManager.send_chat("mira", "Mira", "Oo nak, nag aalala kasi siya dahil hindi ka raw sumasagot sa messages at tawag niya.")
-Mira: [wait=1.5]Oo nak, nag aalala kasi siya dahil hindi ka raw sumasagot sa messages at tawag niya.
+Mira: [wait=1.5]Yes, nak, she was worried because you weren’t replying to her messages or calls.
 do replied_to_mira = true
 do reply_finish.emit()
 do _prevent_chat_exit_while_dialoging()
@@ -89,27 +89,27 @@ do _prevent_chat_exit_while_dialoging()
 ~ call_with_wendy
 do _prevent_end_call_while_dialog_is_not_finished()
 Danilo: ...?
-Wendy: Dan, sigurado ka bang re-sched yung appointment mo ngayon?
-Danilo: Oo, sorry napauwi kasi ako bigla.
-Wendy: Alam ko, tumawag ako kay Tita Mira since ‘di ka nagrereply.
-Wendy: Buti nalang sinabi niya sa akin.
-Danilo: Kumusta ka, Wen?
-Wendy: I'm good, Dan.
+Wendy: Dan, are you sure you want to reschedule your appointment now?
+Danilo: Yes, sorry, I had to go home suddenly.
+Wendy: I know, I called Tita Mira since you weren’t replying.
+Wendy: Luckily, she told me.
+Danilo: How are you, Wen?
+Wendy: I’m good, Dan.
 Wendy: Honestly, I wish you had at least texted me.
 Wendy: I was worried...
 Wendy: ...
-Wendy: Natraffic ka ba on the way? Kumusta sa province?
-Danilo: Kani-kanina lang ako dumating.
-Danilo: Nakita ko pa si Lola Ising.
-Danilo: Nag-aabang pa rin siya ng pasalubong mula sayo.
-Wendy: Hay nako, si Lola talaga. Lagi akong pinapauwi. May sinabi pa ba siya?
-Danilo: Sinabihan niya 'kong iwasan ang gubat... [shake]Dahil kay [color=#8B0000][i]Mateo[/i][/color].[/shake]
-Wendy: Take your meds ha, sabi ni tita paubos na raw yung sayo.
-Danilo: Pupunta nga ako sa bayan bukas para bumili.
-Wendy: Good, kailan ka babalik?
-Danilo: 1 week ang leave ko pero baka bumalik ako earlier.
+Wendy: Were you stuck in traffic? How was the province visit?
+Danilo: I just arrived.
+Danilo: I even saw Lola Ising.
+Danilo: She’s still waiting for the souvenir from you.
+Wendy: Geez, Lola. She always wants to send me home. Did she say anything else?
+Danilo: She told me to avoid the forest... [shake]Because of [color=#8B0000][i]Mateo[/i][/color].[/shake]
+Wendy: Take your meds, Tita said yours are running out.
+Danilo: I’ll go to town tomorrow to buy some.
+Wendy: Good. When will you return?
+Danilo: My leave is 1 week, but I might come back earlier.
 Wendy: You deserve the break. [wave]Call me if you need anything, okay?[/wave]
-Danilo: Will do. Salamat.
+Danilo: Will do. Thanks.
 do replied_to_wendy = true
 do call_with_wendy_done = true
 do SignalBus.call_done.emit()
