@@ -25,7 +25,7 @@ func _ready() -> void:
 	if act_4_scene_1_choice == "restless":
 		distortion.visible = true
 
-	_set_ghost_position("restless")
+	_set_ghost_position(act_4_scene_1_choice)
 
 func _set_ghost_position(choice: String)->void:
 	if choice == "restless":

@@ -1,8 +1,25 @@
-[gd_scene load_steps=41 format=3 uid="uid://c2hj7wn1ubi2y"]
+[gd_scene load_steps=46 format=3 uid="uid://c2hj7wn1ubi2y"]
 
 [ext_resource type="Script" uid="uid://c3gcx3ta6sbhw" path="res://scenes/characters/npc_mateo.gd" id="1_hsbbv"]
 [ext_resource type="Texture2D" uid="uid://c52llg0na7jwd" path="res://assets/character_sprites/MATEO.png" id="1_o0eur"]
 [ext_resource type="Texture2D" uid="uid://b26tbvt5h4mc8" path="res://assets/character_sprites/MATEO__SHOCKED.png" id="2_p8x34"]
+[ext_resource type="Texture2D" uid="uid://brdugfwixyy17" path="res://assets/character_sprites/mateo_crying.png" id="2_r3j6n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbdud"]
+atlas = ExtResource("2_r3j6n")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njs4o"]
+atlas = ExtResource("2_r3j6n")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abi4q"]
+atlas = ExtResource("2_r3j6n")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ve8u"]
+atlas = ExtResource("2_r3j6n")
+region = Rect2(48, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ni4l0"]
 atlas = ExtResource("1_o0eur")
@@ -134,6 +151,23 @@ region = Rect2(32, 168, 16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gdpq6"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbdud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njs4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abi4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ve8u")
+}],
+"loop": true,
+"name": &"crying",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ni4l0")
@@ -369,9 +403,9 @@ script = ExtResource("1_hsbbv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_gdpq6")
-animation = &"idle_down"
+animation = &"crying"
 autoplay = "idle_down"
-frame_progress = 0.523578
+frame_progress = 0.465426
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
