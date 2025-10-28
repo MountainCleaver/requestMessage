@@ -97,7 +97,7 @@ do _ghost_left("restless")
 Danilo: wag mo muna ako iwan...
 Entity: [fade]...[/fade]
 do _ghost_vanish("restless")
-Danilo: Nooooooooooooooooo!
+Danilo: Mateo...
 # shadow fades to nothing
 # Danilo collapsed at the edge. The voices screamed louder, swallowing him in darkness.
 => END
