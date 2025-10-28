@@ -21,6 +21,7 @@
 - **Audio** – 90% (UI done, needs actual audio integration)  
 - **Display** – 50% (display mode done, brightness not yet)  
 - **Controls** – 10% (UI only, no keybinding logic yet)  
+- **Language** – Done
 
 ### Exit
 - Done
