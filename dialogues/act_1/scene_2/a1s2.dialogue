@@ -45,6 +45,7 @@ do set_table_used("table_3")
 ~ pick_table_4
 Danilo: Ayan, pwede na tayo rito.
 do ObjectiveManager.complete_objective(3)
+do Hud.hide_objectives()
 do set_table_used("table_4")
 do wendy_unfollow()
 => END
