@@ -50,7 +50,7 @@ Wendy: [wait=1.5]The thunder is so loud here.
 
 ~ reply_danilo_1
 do ChatManager.send_chat("wendy", "Player", "Diyan rin pala sa city. Akala ko dito lang sa province.")
-Danilo: Same in the city. I thought it was only here in the province.
+Danilo: In the city too? I thought it was only here in the province.
 => reply_wendy_1
 
 ~ reply_wendy_1
