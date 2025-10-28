@@ -50,6 +50,7 @@ Danilo: Kahit saglit lang, dito ka muna.
 # Mateo fading away continues, and finishes
 Mateo: Salamat sa paghahanap sakin, mabuhay ka Danilo.
 do whitey_vanish_full()
+do act_5_scene_8_done()
 => END
 
 ##################################################################
@@ -100,4 +101,5 @@ do _ghost_vanish("restless")
 Danilo: Mateo...
 # shadow fades to nothing
 # Danilo collapsed at the edge. The voices screamed louder, swallowing him in darkness.
+do act_5_scene_8_done()
 => END

@@ -31,8 +31,8 @@ func _ready() -> void:
 	act_4_scene_1_choice = SaveManager.get_moral_choice("act_4_scene_1")
 	print(act_4_scene_1_choice)
 	_set_danilo_altar()
-	#play_dialog(act_4_scene_1_choice)
-	play_dialog("restless")
+	play_dialog(act_4_scene_1_choice)
+	#play_dialog("restless")
 
 func _load_dialogue() -> void:
 	var lang = Settings.settings.dialogue_language

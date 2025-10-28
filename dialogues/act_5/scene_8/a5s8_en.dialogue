@@ -48,6 +48,7 @@ Danilo: Just for a moment, stay here with me.
 Mateo: Thank you for finding me.
 Mateo: Live well, Danilo.
 do whitey_vanish_full()
+do act_5_scene_8_done()
 => END
 
 ##################################################################
@@ -71,9 +72,9 @@ do ghost_appears.emit("restless")
 Entity: ...Danilo... why... did you leave me...?
 Danilo: Mateo... is that you?
 do show_distortion()
-=> END
-
-~ restless_ghost_turn_and_walk_a_bit
+#=> END
+#
+#~ restless_ghost_turn_and_walk_a_bit
 do mateo_turn("restless")
 Entity: Come... this way... Danilo... here...
 do _candle_dimmer()
@@ -95,7 +96,7 @@ do _ghost_left("restless")
 Danilo: Don’t leave me yet...
 Entity: [fade]...[/fade]
 do _ghost_vanish("restless")
-Danilo: Nooooooooooooooooo!
+do act_5_scene_8_done()
 # Shadow fades to nothing
 # Danilo collapses at the edge. The voices scream louder, swallowing him in darkness.
 => END
