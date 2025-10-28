@@ -103,3 +103,10 @@ func _ghost_vanish(choice: String) -> void:
 func whitey_vanish_full() -> void:
 	var tween = create_tween()
 	tween.tween_property(npc_whitey_ghost, "modulate:a", 0.0, 1.0)
+
+func act_5_scene_8_done() -> void:
+	SaveManager.game_save.current_act = "act_5"
+	SaveManager.game_save.current_scene = "scene_8"
+	SignalBus.act_num_scene_num_done.emit(
+		"act_5", "scene_8", "res://scenes/game/act_6/scene_1/act_6_scene_1.tscn"
+	)
