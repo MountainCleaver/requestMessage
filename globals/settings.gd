@@ -28,6 +28,7 @@ func apply_display_settings() -> void:
 		"windowed":
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
+
 func apply_keybind_settings() -> void:
 	if settings.key_bindings.is_empty():
 		return
@@ -48,3 +49,8 @@ func _event_from_dict(data: Dictionary) -> InputEvent:
 		ev.unicode = data.get("unicode", 0)
 		return ev
 	return null
+
+	
+	# Apply global brightness
+	BrightnessManager.set_brightness(settings.brightness)
+

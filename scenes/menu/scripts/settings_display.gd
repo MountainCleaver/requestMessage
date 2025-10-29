@@ -32,5 +32,9 @@ func _on_radio_windowed_toggled(toggled_on: bool) -> void:
 		Settings.save_settings();
 
 func _on_brightness_slider_value_changed(value: float) -> void:
-	Settings.settings.brightness = value;
-	Settings.save_settings();
+	BrightnessManager.set_brightness(value)
+
+
+	# Save to settings
+	Settings.settings.brightness = value
+	Settings.save_settings()
