@@ -405,6 +405,19 @@ func has_received_real_flashlight() -> bool:
 
 	return lola_cash_given or scene_done
 
+func get_total_karma() -> int:
+	if not game_save:
+		return 0
+	
+	var total := 0
+	for act_scene in game_save.choices.keys():
+		var choice = game_save.choices[act_scene]
+		match choice:
+			"restless":
+				total -= 1
+			"relief":
+				total += 1
+	return total
 
 # ===================
 # ONLINE SAVE
@@ -555,10 +568,9 @@ func _merge_online_save(online_data: Dictionary) -> void:
 		game_save.current_scene = latest_scene
 
 func _set_current_scene_from_path(scene_path: String) -> void:
-	var file_name = scene_path.get_file().get_basename() # e.g., "dark_forest"
-	var parts = scene_path.get_base_dir().split("/") # get folders in path
+	var file_name = scene_path.get_file().get_basename()
+	var parts = scene_path.get_base_dir().split("/") 
 
-	# Extract act folder
 	var act_folder = ""
 	for part in parts:
 		if part.begins_with("act_"):
@@ -566,19 +578,15 @@ func _set_current_scene_from_path(scene_path: String) -> void:
 			break
 
 	if act_folder == "":
-		push_error("[SaveManager] Failed to find act folder in path: " + scene_path)
 		return
 
-	# Default scene
 	var scene_name = "scene_1"
 
-	# Look for scene_X folder
 	for part in parts:
 		if part.begins_with("scene_"):
 			scene_name = part
 			break
 
-	# Special case: Act 4 Scene 4 folder (dark_forest)
 	if act_folder == "act_4" and scene_name == "scene_4":
 		scene_name = "scene_4"
 
