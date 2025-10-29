@@ -816,8 +816,18 @@ func act_6_scene_1_done() -> void:
 	SaveManager.game_save.current_scene = "scene_1"
 	SaveManager.save_game()
 	print("ACT 6 SCENE 1 DONE")
+	
+	# --- Karma-based scene branching ---
+	var total_karma = SaveManager.get_total_karma()
+	var next_scene_path: String
+	if total_karma >= 0:
+		next_scene_path = "res://scenes/game/act_6/scene_2.1/finally_at_rest.tscn"
+	else:
+		next_scene_path = "res://scenes/game/act_6/scene_2.2/unending_guilt.tscn"
+	print("Next scene based on karma:", next_scene_path)
+
 	SignalBus.act_num_scene_num_done.emit(
 		"act_6", 
 		"scene_1", 
-        "res://scenes/game/act_6/scene_2.tscn"
+		next_scene_path
 	)

@@ -115,6 +115,7 @@ func whitey_vanish_full() -> void:
 func act_5_scene_8_done() -> void:
 	SaveManager.game_save.current_act = "act_5"
 	SaveManager.game_save.current_scene = "scene_8"
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit(
 		"act_5", "scene_8", "res://scenes/game/act_6_title_scene.tscn"
 	)
