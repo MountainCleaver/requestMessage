@@ -165,10 +165,16 @@ func _on_slot_hovered(slot_node: Node, slot_num: int) -> void:
 	var summary_label = slot_node.get_node("summary_label")
 	var date_label = slot_node.get_node("date_created")
 	var playtime_label = slot_node.get_node("playtime")
+	var empty_label = slot_node.get_node("empty_slot")
+	
+	if empty_label.visible:
+		summary_label.visible = false
+		return
+	
 	date_label.visible = false
 	playtime_label.visible = false
 	summary_label.visible = true
-
+	
 	var summary_text = slot_node.get_meta("summary_text", "No progress yet.")
 	summary_label.text = summary_text
 
@@ -177,6 +183,12 @@ func _on_slot_unhovered(slot_node: Node, slot_num: int) -> void:
 	var summary_label = slot_node.get_node("summary_label")
 	var date_label = slot_node.get_node("date_created")
 	var playtime_label = slot_node.get_node("playtime")
+	var empty_label = slot_node.get_node("empty_slot")
+	
+	if empty_label.visible:
+		summary_label.visible = false
+		return
+	
 	date_label.visible = true
 	playtime_label.visible = true
 	summary_label.visible = false

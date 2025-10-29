@@ -536,7 +536,7 @@ func _push_online_save(latest_act: String, latest_scene: String) -> void:
 		"latest_scene": latest_scene
 	}
 
-	print("[SaveManager] Sending online save for slot %d:" % current_slot, data)
+	print("[SaveManager] Sending online save for slot %d")
 
 	var json_body = JSON.stringify(data)
 	request.request(url, ["Content-Type: application/json"], HTTPClient.METHOD_POST, json_body)
@@ -589,7 +589,10 @@ func _set_current_scene_from_path(scene_path: String) -> void:
 
 	if act_folder == "act_4" and scene_name == "scene_4":
 		scene_name = "scene_4"
-
+		
+	if act_folder == "act_2" and (scene_name == "scene_2.1" or scene_name == "scene_2.2"):
+		scene_name = "The End"
+	
 	game_save.current_act = act_folder
 	game_save.current_scene = scene_name
 	save_game()
