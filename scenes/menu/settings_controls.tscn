@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmanxjmbnwx8p"]
+[gd_scene load_steps=6 format=3 uid="uid://cmanxjmbnwx8p"]
 
+[ext_resource type="Script" uid="uid://cuw7vnekhnbtj" path="res://scenes/menu/settings_controls.gd" id="1_q7emt"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_rgda0"]
+[ext_resource type="PackedScene" uid="uid://camvb45ixm320" path="res://scenes/menu/key_bind_setting.tscn" id="2_q7emt"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_q7emt"]
-font = ExtResource("1_rgda0")
-font_size = 36
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7emt"]
+bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_rgda0"]
-font = ExtResource("1_rgda0")
-font_size = 36
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awxed"]
+bg_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
 
 [node name="settings_controls" type="Control"]
 layout_mode = 3
@@ -17,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_q7emt")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -26,101 +27,48 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="action_container" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 50
 
-[node name="UP" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="key_bind_setting" parent="HBoxContainer/ScrollContainer/action_container" instance=ExtResource("2_q7emt")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/UP"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "UP"
-label_settings = SubResource("LabelSettings_q7emt")
+[node name="restore_default_btn" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 46.0
+offset_right = 2.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_rgda0")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_q7emt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_awxed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q7emt")
+theme_override_styles/focus = SubResource("StyleBoxFlat_q7emt")
+text = "RESTORE DEFAULTS"
 
-[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/UP"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "up_arrow"
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
+title = "Restore Defaults"
+initial_position = 2
+size = Vector2i(247, 100)
+dialog_text = "Restore Default Key Bindings?"
 
-[node name="DOWN" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/DOWN"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-text = "DOWN"
-label_settings = SubResource("LabelSettings_rgda0")
-
-[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/DOWN"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-text = "down_arrow"
-
-[node name="LEFT" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/LEFT"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-text = "LEFT"
-label_settings = SubResource("LabelSettings_rgda0")
-
-[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/LEFT"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-text = "left_arrow"
-
-[node name="RIGHT" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/RIGHT"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-text = "RIGHT"
-label_settings = SubResource("LabelSettings_rgda0")
-
-[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/RIGHT"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-text = "right_arrow"
-
-[node name="RUN" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/RUN"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-text = "RUN"
-label_settings = SubResource("LabelSettings_rgda0")
-
-[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/RUN"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-text = "shift"
-
-[node name="INTERACT" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/INTERACT"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-text = "INTERACT"
-label_settings = SubResource("LabelSettings_rgda0")
-
-[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/INTERACT"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-text = "e"
+[connection signal="pressed" from="restore_default_btn" to="." method="_on_restore_default_btn_pressed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
