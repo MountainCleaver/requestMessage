@@ -72,9 +72,9 @@ metadata/_edit_group_ = true
 
 [node name="empty_slot" type="Label" parent="slot_1"]
 layout_mode = 0
-offset_left = 462.0
+offset_left = 370.0
 offset_top = 99.0
-offset_right = 1165.0
+offset_right = 1073.0
 offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("4_ytvd3")
 theme_override_font_sizes/font_size = 71
@@ -145,9 +145,9 @@ metadata/_edit_group_ = true
 
 [node name="empty_slot" type="Label" parent="slot_2"]
 layout_mode = 0
-offset_left = 462.0
+offset_left = 370.0
 offset_top = 99.0
-offset_right = 1165.0
+offset_right = 1073.0
 offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("4_ytvd3")
 theme_override_font_sizes/font_size = 71
@@ -218,9 +218,9 @@ metadata/_edit_group_ = true
 
 [node name="empty_slot" type="Label" parent="slot_3"]
 layout_mode = 0
-offset_left = 462.0
+offset_left = 370.0
 offset_top = 99.0
-offset_right = 1165.0
+offset_right = 1073.0
 offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("4_ytvd3")
 theme_override_font_sizes/font_size = 71
