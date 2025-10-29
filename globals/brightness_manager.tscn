@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://1epmrgc2bdfw"]
+
+[ext_resource type="Script" uid="uid://csk3x8m0wrvni" path="res://globals/brightness_manager.gd" id="1_enrh7"]
+
+[node name="CanvasModulate" type="CanvasModulate"]
+top_level = true
+z_index = 4096
+script = ExtResource("1_enrh7")

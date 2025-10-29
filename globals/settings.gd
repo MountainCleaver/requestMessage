@@ -26,3 +26,6 @@ func apply_display_settings() -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		"windowed":
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	
+	# Apply global brightness
+	BrightnessManager.set_brightness(settings.brightness)
