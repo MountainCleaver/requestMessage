@@ -102,6 +102,18 @@ offset_right = 434.0
 offset_bottom = 237.0
 texture = ExtResource("3_7r2u7")
 
+[node name="summary_label" type="Label" parent="slot_1"]
+visible = false
+layout_mode = 0
+offset_left = 509.0
+offset_top = 130.0
+offset_right = 1259.0
+offset_bottom = 159.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 26
+text = "CREATED:"
+autowrap_mode = 3
+
 [node name="slot_2" type="Button" parent="."]
 layout_mode = 0
 offset_left = 80.0
@@ -163,6 +175,18 @@ offset_right = 434.0
 offset_bottom = 237.0
 texture = ExtResource("3_7r2u7")
 
+[node name="summary_label" type="Label" parent="slot_2"]
+visible = false
+layout_mode = 0
+offset_left = 509.0
+offset_top = 130.0
+offset_right = 1259.0
+offset_bottom = 159.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 26
+text = "CREATED:"
+autowrap_mode = 3
+
 [node name="slot_3" type="Button" parent="."]
 layout_mode = 0
 offset_left = 80.0
@@ -223,6 +247,18 @@ offset_top = 12.0
 offset_right = 434.0
 offset_bottom = 237.0
 texture = ExtResource("3_7r2u7")
+
+[node name="summary_label" type="Label" parent="slot_3"]
+visible = false
+layout_mode = 0
+offset_left = 509.0
+offset_top = 130.0
+offset_right = 1259.0
+offset_bottom = 159.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 26
+text = "CREATED:"
+autowrap_mode = 3
 
 [node name="overwriteConfirmationDialog" type="ConfirmationDialog" parent="."]
 oversampling_override = 1.0
