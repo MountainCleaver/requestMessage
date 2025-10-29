@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var tip_interact: Sprite2D = $"danilo_hometown/y-sorted-objects/player_mateo/tip_interact"
 @onready var area_2d: Area2D = $Area2D
+@onready var sfx_knock: AudioStreamPlayer = $SFX_KNOCK
 var A_5S_3: Resource
 
 var can_interact = true
@@ -32,6 +33,7 @@ func _input(event: InputEvent) -> void:
 	
 		if interacting_with == "danilo_door":
 			can_interact = false
+			sfx_knock.play()
 			DialogueManager.show_dialogue_balloon(A_5S_3, "katok")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

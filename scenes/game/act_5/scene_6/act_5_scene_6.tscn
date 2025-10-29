@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dyg46ntqi4atd"]
+[gd_scene load_steps=13 format=4 uid="uid://dyg46ntqi4atd"]
 
 [ext_resource type="PackedScene" uid="uid://c3glrajf2ba8i" path="res://scenes/game/act_1/scene_3/habulan_ground.tscn" id="1_c5jlg"]
 [ext_resource type="Script" uid="uid://vemioxe015tl" path="res://scenes/game/act_5/scene_6/act_5_scene_6.gd" id="1_o3wpp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dp72bvfqjfgw2" path="res://assets/character_sprites/rain-drop.png" id="5_rnnuq"]
 [ext_resource type="Texture2D" uid="uid://bbau41x8o02bb" path="res://assets/character_sprites/rain splash.png" id="6_tukgs"]
 [ext_resource type="AudioStream" uid="uid://dwow3fbcvnre" path="res://sound/calming-rain-257596.mp3" id="7_umajo"]
+[ext_resource type="AudioStream" uid="uid://c0uhogg6bdub6" path="res://sound/the-sad-piano-5861.mp3" id="9_qoh04"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rnnuq"]
 particles_animation = true
@@ -67,7 +68,7 @@ color = Color(0.70380783, 0.70380783, 0.70380783, 1)
 
 [node name="RAINSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_umajo")
-volume_db = -10.0
+volume_db = -17.634
 autoplay = true
 bus = &"sfx"
 
@@ -83,3 +84,8 @@ direction = Vector2(0, 1)
 gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_o3wpp")
 color = Color(1, 1, 1, 0.54509807)
+
+[node name="BGM_DANILO" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_qoh04")
+volume_db = -7.633
+autoplay = true

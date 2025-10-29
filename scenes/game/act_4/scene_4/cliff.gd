@@ -4,6 +4,7 @@ var A_4S_4: Resource
 
 @onready var phone_trigger: Area2D = $phone_trigger
 @onready var player_danilo: CharacterBody2D = $"y-sorted/player_danilo"
+@onready var sfx_notif: AudioStreamPlayer = $SFX_NOTIF
 
 var scene_objectives = [
 	{"ID": 2, "text": "Find the last paper under the rocks"}
@@ -54,6 +55,7 @@ func disable_phone_trigger() -> void:
 	phone_trigger.visible = false
 
 func _on_phone_trigger_body_entered(body: Node2D) -> void:
+	sfx_notif.play()
 	if body.name != "player_danilo":
 		return
 

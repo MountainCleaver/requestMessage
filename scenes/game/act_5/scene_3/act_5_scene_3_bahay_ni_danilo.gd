@@ -9,12 +9,15 @@ extends Node2D
 @onready var marker_2d: Marker2D = $"danilo_hometown_house/y-sorted/Marker2D"
 @onready var marker_2d_2: Marker2D = $"danilo_hometown_house/y-sorted/Marker2D2"
 
+@onready var sfx_washing: AudioStreamPlayer = $SFX_WASHING
+
 var A_5S_3: Resource
 
 var interacting_with : String = ""
 var can_interact : bool = true
 
 func _ready() -> void:
+	sfx_washing.play()
 	_load_dialogue()
 	$"danilo_hometown_house/y-sorted/npc_danilo/AnimatedSprite2D".play("idle_left")
 	$"danilo_hometown_house/y-sorted/npc_mira/AnimatedSprite2D".play("idle_up")
@@ -53,6 +56,7 @@ func _on_area_2d_body_exit(body: Node2D)->void:
 		tip_interact.visible = false
 
 func _paalam_kay_mama()->void:
+	sfx_washing.stop()
 	TransitionFade.transition()
 	await SignalBus.on_transition_finished
 	$"danilo_hometown_house/y-sorted/npc_danilo/AnimatedSprite2D".play("idle_up")

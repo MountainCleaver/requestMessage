@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://bdx5gkodqm75x"]
+[gd_scene load_steps=52 format=4 uid="uid://bdx5gkodqm75x"]
 
 [ext_resource type="Script" uid="uid://5je4budalo0h" path="res://scenes/game/act_5/scene_5/act_5_scene_5_run_to_cliff.gd" id="1_rfuin"]
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="2_rfuin"]
@@ -15,6 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://xpqxbhlnip36" path="res://assets/character_sprites/end_end1.png" id="14_ykqdw"]
 [ext_resource type="Texture2D" uid="uid://cva30cjg2d7fj" path="res://assets/character_sprites/end_end2.png" id="15_mlywb"]
 [ext_resource type="Texture2D" uid="uid://d33bgp4autpjp" path="res://assets/character_sprites/end_end3.png" id="16_s8kx2"]
+[ext_resource type="AudioStream" uid="uid://bwitanjnmskqg" path="res://sound/heartbeat-sfx-320981.mp3" id="17_s8kx2"]
+[ext_resource type="AudioStream" uid="uid://clg772l8q2vgs" path="res://sound/shadows-and-echoes-dramatic-serious-background-free-music-425909.mp3" id="18_rct2k"]
+[ext_resource type="AudioStream" uid="uid://db2segaemf82n" path="res://sound/sadness-in-roads-to-nowhere-23407.mp3" id="18_s8kx2"]
+[ext_resource type="AudioStream" uid="uid://w4m8g8ca5m0g" path="res://sound/crying-male-103153.mp3" id="19_rct2k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0gnlf"]
 texture = ExtResource("2_rfuin")
@@ -77,6 +81,33 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_noc0u"]
 normal = Vector2(0, 1)
+
+[sub_resource type="Animation" id="Animation_1j5ah"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mateo:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1040, 1062)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("act_5_scene_5/atmosphere:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.43152234, 0.46074748, 0.57700264, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_rfuin"]
 resource_name = "run"
@@ -177,33 +208,6 @@ tracks/2/keys = {
 "values": [Color(0.43152234, 0.46074748, 0.57700264, 1), Color(0.43152234, 0.46074748, 0.57700264, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.43137255, 0.45882353, 0.5764706, 1), Color(0.43152234, 0.46074748, 0.57700264, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.43137255, 0.45882353, 0.5764706, 1), Color(0.43152234, 0.46074748, 0.57700264, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.43137255, 0.45882353, 0.5764706, 1), Color(0.43152234, 0.46074748, 0.57700264, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.43137255, 0.45882353, 0.5764706, 1), Color(0.43152234, 0.46074748, 0.57700264, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.43137255, 0.45882353, 0.5764706, 1), Color(0.43152234, 0.46074748, 0.57700264, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.43137255, 0.45882353, 0.5764706, 1), Color(0.43152234, 0.46074748, 0.57700264, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.43137255, 0.45882353, 0.5764706, 1), Color(0.43152234, 0.46074748, 0.57700264, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.43137255, 0.45882353, 0.5764706, 1), Color(0.43152234, 0.46074748, 0.57700264, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.43137255, 0.45882353, 0.5764706, 1), Color(0.43152234, 0.46074748, 0.57700264, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.02237406, 0.024327192, 0.101005055, 1), Color(0.43137255, 0.45882353, 0.5764706, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_1j5ah"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("mateo:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1040, 1062)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("act_5_scene_5/atmosphere:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.43152234, 0.46074748, 0.57700264, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1j5ah"]
 _data = {
 &"RESET": SubResource("Animation_1j5ah"),
@@ -285,6 +289,21 @@ colors = PackedColorArray(0, 0, 0, 1, 0.8217889, 0.82178867, 0.82178867, 1)
 _data = [Vector2(0.383721, 0.1685394), 0.0, 0.0, 0, 0, Vector2(0.5813954, 0.42696637), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_rct2k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_ykqdw")]
+}
+
 [sub_resource type="Animation" id="Animation_s8kx2"]
 resource_name = "end"
 length = 0.6
@@ -300,21 +319,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [ExtResource("14_ykqdw"), ExtResource("15_mlywb"), ExtResource("16_s8kx2")]
-}
-
-[sub_resource type="Animation" id="Animation_rct2k"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("14_ykqdw")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rct2k"]
@@ -464,12 +468,6 @@ gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_ykqdw")
 color = Color(1, 1, 1, 0.54509807)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 101
-
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("9_mlywb")]
-visible = false
-
 [node name="shouts" type="Node2D" parent="."]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="shouts"]
@@ -549,5 +547,29 @@ texture = ExtResource("14_ykqdw")
 libraries = {
 &"": SubResource("AnimationLibrary_rct2k")
 }
+
+[node name="SFX_heartbeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_s8kx2")
+volume_db = -11.45
+pitch_scale = 1.33
+bus = &"sfx"
+
+[node name="BGM_OUT" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_s8kx2")
+volume_db = -11.45
+pitch_scale = 1.33
+bus = &"music"
+
+[node name="BGM_cliff" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_rct2k")
+volume_db = -11.45
+pitch_scale = 1.33
+bus = &"music"
+
+[node name="SFX_CRYING" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_rct2k")
+volume_db = -14.312
+pitch_scale = 1.33
+bus = &"sfx"
 
 [editable path="mateo"]

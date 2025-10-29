@@ -45,11 +45,7 @@ var lock_screen_instance: Control = null
 
 func _ready() -> void:
 	_game_state_flow()
-<<<<<<< HEAD
-
-=======
 	_load_dialogue()
->>>>>>> ff113ca40ec1d17a4568f0feb424d5e2a2cf65be
 	switch_location(DANILO_NEIGHBORHOOD)
 
 	# Buzz Timer setup
@@ -67,8 +63,6 @@ func _ready() -> void:
 	SignalBus.unknown_sender_label_visible = true
 
 	_start_scene()
-<<<<<<< HEAD
-=======
 
 func _load_dialogue() -> void:
 	var lang = Settings.settings.dialogue_language
@@ -79,7 +73,6 @@ func _load_dialogue() -> void:
 		path = "res://dialogues/act_1/scene_4/a1s4.dialogue"
 	
 	A_1S_4 = load(path)
->>>>>>> ff113ca40ec1d17a4568f0feb424d5e2a2cf65be
 	
 # ===================
 # SCENE START

@@ -5,7 +5,7 @@ const SCENE_4_HOUSE = preload("uid://2y5djxd1h1rf")
 const SCENE_4_HOMETOWN = preload("uid://fck7x2vrgla1")
 var A_3S_4: Resource
 
-
+@onready var sfx_knock: AudioStreamPlayer = $SFX_KNOCK
 @onready var locations: Node2D = $locations
 @onready var player_danilo: CharacterBody2D = $player_danilo
 @onready var camera_2d: Camera2D = $Camera2D
@@ -149,9 +149,11 @@ func _input(event: InputEvent) -> void:
 			#door_gino,area_vanessa, door_jonathan, door_theresa
 			
 			"door_gino":
+				sfx_knock.play()
 				npc_interactions(gino_knocked, "gino_knock", "gino_knock_again")
 				
 			"door_theresa":
+				sfx_knock.play()
 				SignalBus.start_theresa.emit()
 				await get_tree().create_timer(0.5).timeout
 				npc_interactions(theresa_asked, "theresa", "theresa_again")
@@ -162,6 +164,7 @@ func _input(event: InputEvent) -> void:
 				npc_interactions(vanesa_asked, "vanesa", "vanesa_again")
 			
 			"door_jonathan":
+				sfx_knock.play()
 				SignalBus.knocked_jonathan.emit()
 				npc_interactions(jonthan_knocked, "jonathan_knock", "jonathan_knock_again")
 			

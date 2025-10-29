@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1xb63rckof7r"]
+[gd_scene load_steps=3 format=3 uid="uid://b1xb63rckof7r"]
 
 [ext_resource type="PackedScene" uid="uid://dinpfs4j50eb" path="res://scenes/game/act_4/scene_3/chapel_interior.tscn" id="1_r1bi8"]
+[ext_resource type="AudioStream" uid="uid://dq6ssn6dyrpa0" path="res://sound/music-box-horror-369338.mp3" id="2_ijs62"]
 
 [node name="scene_8_chapel" type="Node2D"]
 
@@ -27,6 +28,13 @@ visible = true
 [node name="PointLight2D" parent="chapel_interior/map/candle/big_candle" index="2"]
 visible = true
 
+[node name="BGMChapel" parent="chapel_interior" index="8"]
+autoplay = false
+
+[node name="BGMChapel2" type="AudioStreamPlayer" parent="chapel_interior"]
+stream = ExtResource("2_ijs62")
+bus = &"music"
+
 [editable path="chapel_interior"]
 [editable path="chapel_interior/map/candle/candle_1"]
 [editable path="chapel_interior/map/candle/candle_2"]
@@ -38,3 +46,4 @@ visible = true
 [editable path="chapel_interior/y-sorted/cabinet_1"]
 [editable path="chapel_interior/y-sorted/cabinet_2"]
 [editable path="chapel_interior/y-sorted/player_danilo"]
+[editable path="chapel_interior/meds_lighting_handler"]

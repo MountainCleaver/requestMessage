@@ -19,6 +19,7 @@ const GRAVEYARD = preload("res://scenes/game/act_4/scene_2/graveyard.tscn")
 @onready var cr: Area2D = $Interactable/Cr
 @onready var sala: Area2D = $Interactable/Sala
 @onready var paper5_collsion: CollisionShape2D = $"y-sorted/PAPER5/CollisionShape2D"
+@onready var sfx_notif: AudioStreamPlayer = $SFX_NOTIF
 
 @onready var paper_sprites= {
 	"paper_1": $"y-sorted/PAPER1/paper_1",
@@ -137,6 +138,7 @@ func _on_paper5_interacted() -> void:
 	player_danilo.can_move = true
 
 func _on_phone_trigger_body_entered(body: Node2D) -> void:
+	sfx_notif.play()
 	if body.name != "player_danilo":
 		return
 

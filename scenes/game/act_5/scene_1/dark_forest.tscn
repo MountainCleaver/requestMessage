@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://c5niwv58t5pew"]
+[gd_scene load_steps=20 format=4 uid="uid://c5niwv58t5pew"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_qnmuh"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_8m82d"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dp72bvfqjfgw2" path="res://assets/character_sprites/rain-drop.png" id="6_n8ass"]
 [ext_resource type="Texture2D" uid="uid://bbau41x8o02bb" path="res://assets/character_sprites/rain splash.png" id="7_rpser"]
 [ext_resource type="AudioStream" uid="uid://dwow3fbcvnre" path="res://sound/calming-rain-257596.mp3" id="8_eba0v"]
+[ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="10_qrhn8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
 texture = ExtResource("1_qnmuh")
@@ -196,6 +197,12 @@ color = Color(1, 1, 1, 0.54509807)
 [node name="RAINSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_eba0v")
 volume_db = -10.0
+autoplay = true
+bus = &"sfx"
+
+[node name="SFX_DARKFORREST" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_qrhn8")
+volume_db = -8.878
 autoplay = true
 bus = &"sfx"
 

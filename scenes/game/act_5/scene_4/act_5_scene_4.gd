@@ -3,6 +3,16 @@ extends Node2D
 # === Preloads ===
 var A_5S_4: Resource
 
+# === Sounds ===
+@onready var sfx_laughing: AudioStreamPlayer = $SFX_LAUGHING
+@onready var sfx_rustle: AudioStreamPlayer = $SFX_RUSTLE
+@onready var sfx_shock: AudioStreamPlayer = $SFX_SHOCK
+@onready var sfx_clock: AudioStreamPlayer = $SFX_CLOCK
+@onready var bgm_laruan: AudioStreamPlayer = $BGM_LARUAN
+@onready var bgm_tensed: AudioStreamPlayer = $BGM_TENSED
+
+
+
 # === References: Characters ===
 @onready var mateo: CharacterBody2D = $TileMapLayer/mateo
 @onready var npc_danilo: CharacterBody2D = $TileMapLayer/npc_danilo
@@ -33,7 +43,9 @@ var chase_camera: bool = false
 # === Lifecycle ===
 func _ready() -> void:
 	npc_gino.visible = false
-
+	bgm_laruan.play()
+	sfx_laughing.play()
+	
 	_load_dialogue()
 	# Set initial character animations
 	wendy_animated_sprite_2d.play("idle_down")
@@ -78,6 +90,10 @@ func _start_hiding() -> void:
 
 # === Sequence: Gino Appears and Chase Starts ===
 func _mang_gino_appears() -> void:
+	bgm_laruan.stop()
+	sfx_laughing.stop()
+	sfx_shock.play()
+	
 	animation_player.play("camera_shake")
 	await animation_player.animation_finished
 
@@ -90,6 +106,8 @@ func _mang_gino_appears() -> void:
 
 
 func _chase_start() -> void:
+	bgm_tensed.play()
+	sfx_clock.play()
 	mateo.direction = Vector2.DOWN
 	npc_gino.direction = Vector2.DOWN
 
