@@ -28,11 +28,18 @@ func _ready() -> void:
 	_load_dialogue()
 	ghost_appears.connect(_ghost_appear)
 	
-	act_4_scene_1_choice = SaveManager.get_moral_choice("act_4_scene_1")
-	print(act_4_scene_1_choice)
+	var total_karma = SaveManager.get_total_karma()
+	print("[Scenes] Total Karma:", total_karma)
+
+	# Decide outcome based on total karma
+	if total_karma < 0:
+		act_4_scene_1_choice = "restless"
+	else:
+		act_4_scene_1_choice = "relief"
+
 	_set_danilo_altar()
 	play_dialog(act_4_scene_1_choice)
-	#play_dialog("restless")
+
 
 func _load_dialogue() -> void:
 	var lang = Settings.settings.dialogue_language

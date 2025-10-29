@@ -20,7 +20,15 @@ func _ready() -> void:
 	_load_dialogue()
 	player_danilo.force_cannot_move = true
 	player_danilo.last_direction = Vector2.LEFT
-	act_4_scene_1_choice = SaveManager.get_moral_choice("act_4_scene_1")
+	
+	var total_karma = SaveManager.get_total_karma()
+	
+	if total_karma < 0:
+		act_4_scene_1_choice = "restless"  # bad / dark ghost
+	else:
+		act_4_scene_1_choice = "relief"    # good / white ghost
+	# --------------------------------------------------------------
+
 	print(act_4_scene_1_choice)
 	
 	if act_4_scene_1_choice == "restless":
@@ -108,5 +116,5 @@ func act_5_scene_8_done() -> void:
 	SaveManager.game_save.current_act = "act_5"
 	SaveManager.game_save.current_scene = "scene_8"
 	SignalBus.act_num_scene_num_done.emit(
-		"act_5", "scene_8", "res://scenes/game/act_6/scene_1/act_6_scene_1.tscn"
+		"act_5", "scene_8", "res://scenes/game/act_6_title_scene.tscn"
 	)
