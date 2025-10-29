@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpgmt5ocxj8ti"]
+
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_eb4so"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q7emt"]
+font = ExtResource("1_eb4so")
+font_size = 36
+
+[node name="key_binding" type="HBoxContainer"]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "action"
+label_settings = SubResource("LabelSettings_q7emt")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "key"
