@@ -15,6 +15,10 @@ extends Node2D
 var act_4_scene_1_choice : String
 var A_5S_8: Resource
 
+@onready var bgm_good: AudioStreamPlayer = $BGM_GOOD
+@onready var bgm_bad: AudioStreamPlayer = $BGM_BAD
+
+
 func _ready() -> void:
 
 	_load_dialogue()
@@ -25,8 +29,10 @@ func _ready() -> void:
 	
 	if total_karma < 0:
 		act_4_scene_1_choice = "restless"  # bad / dark ghost
+		bgm_bad.play()
 	else:
 		act_4_scene_1_choice = "relief"    # good / white ghost
+		bgm_good.play()
 	# --------------------------------------------------------------
 
 	print(act_4_scene_1_choice)
