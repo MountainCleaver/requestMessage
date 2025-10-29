@@ -28,7 +28,7 @@ Danilo: I’ll just go to our province, Ma.
 
 ~ reply_mira_1
 do ChatManager.send_chat("mira", "Mira", "Nak, huwag mong kalimutan ang gamot mo ha. Bumili ka na rin bago umalis.")
-Mira: [wait=1.5]Son, don’t forget your meds... and buy some before you leave.
+Mira: [wait=1.5]Nak, don’t forget your meds... and buy some before you leave.
 => reply_danilo_2
 
 ~ reply_danilo_2

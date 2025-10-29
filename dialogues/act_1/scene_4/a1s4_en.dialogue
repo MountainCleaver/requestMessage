@@ -64,7 +64,7 @@ Wendy: [wait=1.5]Okay, stay safe on your way home.
 
 ~ reply_mira
 do ChatManager.send_chat("mira", "Mira", "Nak, wag mo kalimutan mga gamot mo ah... tsaka yung appointment bukas.")
-Mira: Son, don’t forget your meds... and your appointment tomorrow.
+Mira: Nak, don’t forget your meds... and your appointment tomorrow.
 - Okay, Ma. I’m still on my way home. => reply_mira_answer1
 => END
 
