@@ -53,4 +53,5 @@ func _on_finish_body_entered(body: Node2D) -> void:
 func act_5_scene_3_done() -> void:
 	SaveManager.game_save.current_act = "act_5"
 	SaveManager.game_save.current_scene = "scene_3"
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_5", "scene_3", "res://scenes/game/act_5/scene_4/act_5_scene_4.tscn")

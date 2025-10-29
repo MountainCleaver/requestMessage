@@ -118,7 +118,8 @@ func _aim_camera_to_mateo() -> void:
 # === Scene Completion ===
 func act_5_scene_4_done() -> void:
 	SaveManager.game_save.current_act = "act_5"
-	SaveManager.game_save.current_scene = "scene_5"
+	SaveManager.game_save.current_scene = "scene_4"
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit(
 		"act_5",
 		"scene_4",
