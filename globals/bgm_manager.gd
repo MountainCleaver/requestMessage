@@ -11,7 +11,9 @@ const MENU_SCENE_PATHS := [
 	"res://scenes/menu/menu_game_settings.tscn",
 	"res://scenes/menu/menu_load_scenes.tscn",
 	"res://scenes/menu/menu_login_acc.tscn",
-	"res://scenes/menu/menu_report_a_bug.tscn"
+	"res://scenes/menu/menu_report_a_bug.tscn",
+	"res://scenes/menu/menu_new_game_slots.tscn",
+	"res://scenes/menu/menu_load_game_slots.tscn"
 ]
 
 const MENU_SCENE_NAMES := [

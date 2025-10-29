@@ -16,3 +16,5 @@ layer = 101
 visible = false
 
 [node name="explorer_hud" parent="." instance=ExtResource("3_lihvk")]
+
+[editable path="explorer_hud"]

@@ -137,14 +137,17 @@ button_group = SubResource("ButtonGroup_65wt5")
 text = " Windowed"
 
 [node name="BRIGHTNESS" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/BRIGHTNESS"]
+visible = false
 layout_mode = 2
 text = "BRIGHTNESS"
 label_settings = SubResource("LabelSettings_mbspy")
 
 [node name="SLIDER" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="john_cena" type="Label" parent="VBoxContainer/SLIDER"]

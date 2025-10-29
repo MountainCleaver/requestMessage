@@ -13,6 +13,7 @@ extends Control
 
 @onready var exit_confirmation_dialog: ConfirmationDialog = $exitConfirmationDialog
 @onready var logout_confirmation_dialog: ConfirmationDialog = $logoutConfirmationDialog
+@onready var continue_confirmation_dialog: ConfirmationDialog = $continueConfirmationDialog
 
 var current_choice = 0
 
@@ -21,11 +22,14 @@ func _ready() -> void:
 	
 	_update_continue_visibility()
 	
-	print("finished scenes: " + str(SaveManager.game_save.finished_scenes))
-	print("scene choices: " + str(SaveManager.game_save.choices))
-	print("Current Karma: " + str(SaveManager.game_save.karma))
-	print("Act to continue: " + str(SaveManager.game_save.current_act))
-	print("Scene to continue: " + str(SaveManager.game_save.current_scene))
+	if SaveManager.game_save:
+		print("finished scenes: " + str(SaveManager.game_save.finished_scenes))
+		print("scene choices: " + str(SaveManager.game_save.choices))
+		print("Current Karma: " + str(SaveManager.game_save.karma))
+		print("Act to continue: " + str(SaveManager.game_save.current_act))
+		print("Scene to continue: " + str(SaveManager.game_save.current_scene))
+	else:
+		print("No local save yet.")
 	
 	if SaveManager.has_save():
 		continue_game.visible = true
@@ -42,12 +46,26 @@ func _ready() -> void:
 	for option in options_menu:
 		option.mouse_entered.connect(_option_hover.bind(option))
 
+	if not continue_confirmation_dialog.confirmed.is_connected(_start_continue_game):
+		continue_confirmation_dialog.confirmed.connect(_start_continue_game)
+
+	
 func _option_hover(option: Button) -> void:
 
 	current_choice = options.get_children().find(option)
 	option.grab_focus()
 
+
 func _on_continue_game_pressed() -> void:
+	if not SaveManager.has_save():
+		return
+	
+	var act = SaveManager.game_save.current_act
+	var scene = SaveManager.game_save.current_scene
+	continue_confirmation_dialog.dialog_text = "You have previous progress in %s - %s.\nDo you want to continue?" % [act.capitalize(), scene.capitalize()]
+	continue_confirmation_dialog.popup_centered()
+
+func _start_continue_game() -> void:
 	if BgmManager:
 		BgmManager.stop_music()
 	SaveManager.load_game()
@@ -56,12 +74,11 @@ func _on_continue_game_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/game/" + act + "/" + scene + "/" + act + "_" + scene + ".tscn")
 
 func _on_new_game_pressed() -> void:
-	if BgmManager:
-		BgmManager.stop_music()
-	SignalBus.next_scene.emit("res://scenes/game/act_1_title_scene.tscn")
+	_option_overlayer("res://scenes/menu/menu_new_game_slots.tscn")
+
 
 func _on_load_game_pressed() -> void:
-	_option_overlayer("res://scenes/menu/menu_load_scenes.tscn")
+	_option_overlayer("res://scenes/menu/menu_load_game_slots.tscn")
 
 func _on_report_bug_pressed() -> void:
 	_option_overlayer("res://scenes/menu/menu_report_a_bug.tscn")

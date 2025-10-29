@@ -1,7 +1,7 @@
 extends Node2D
 
 # === PRELOADS ===
-const A_2S_1 = preload("res://dialogues/act_2/scene_1/a2s1.dialogue")
+var A_2S_1: Resource
 const DANILO_ROOM = preload("res://scenes/game/act_1/scene_4/danilo_room.tscn")
 const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
 const PHONE_INCOMING_CALL = preload("res://scenes/game/phone_incoming_call.tscn")
@@ -40,6 +40,7 @@ var wendy_reply_shown: bool = false
 var inside_bed: bool = false
 var can_interact: bool = true
 var call_with_unknown_sender_done: bool = false
+var call_end_disabled : bool = false
 var current_location: Node = null
 var buzz_timer: Timer
 var phone_instance: Control = null
@@ -55,7 +56,7 @@ func _ready():
 		
 	switch_location(DANILO_ROOM)
 	_start_scene()
-
+	_load_dialogue()
 	
 	# === SIGNAL CONNECTIONS ===
 	if not unknown_sender_calling.is_connected(_on_unknown_sender_calling):
@@ -86,6 +87,15 @@ func _ready():
 	buzz_timer.one_shot = false
 	buzz_timer.connect("timeout", Callable(self, "_on_buzz_timeout"))
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_2/scene_1/a2s1_en.dialogue"
+	else:
+		path = "res://dialogues/act_2/scene_1/a2s1.dialogue"
+	
+	A_2S_1 = load(path)
 # ===================
 # START SCENE
 # ===================
@@ -371,6 +381,14 @@ func _on_buzz_timeout() -> void:
 	var buzz = current_location.get_node_or_null("buzz_audio")
 	if buzz:
 		buzz.play()
+
+func _prevent_end_call_while_dialog_is_not_finished () -> void:
+	if not call_end_disabled:
+		Hud.get_node("Control/phone/MarginContainer/incoming_call/HBoxContainer2/Button").disabled = true
+		call_end_disabled = true
+	else:
+		Hud.get_node("Control/phone/MarginContainer/incoming_call/HBoxContainer2/Button").disabled = false
+		call_end_disabled = false
 
 # ===================
 # SCENE COMPLETE

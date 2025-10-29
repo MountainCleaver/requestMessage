@@ -73,6 +73,16 @@ offset_bottom = -107.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="overwriteConfirmationDialog" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
+title = "Confirm Overwrite"
+initial_position = 2
+size = Vector2i(337, 130)
+ok_button_text = "Yes"
+dialog_text = "This slot already contains saved progress.
+Do you want to overwrite it?
+"
+
 [connection signal="pressed" from="back_tips/Panel/Button" to="." method="_on_exit_pressed"]
 
 [editable path="back_tips"]

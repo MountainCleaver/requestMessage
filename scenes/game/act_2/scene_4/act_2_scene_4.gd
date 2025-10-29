@@ -1,7 +1,7 @@
 extends Node2D
 
 # === PRELOADS ===
-const A_2S_4 = preload("res://dialogues/act_2/scene_4/a2s4.dialogue")
+var A_2S_4: Resource
 const LOCK_SCREEN = preload("res://scenes/game/lock_screen.tscn")
 const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
 
@@ -18,7 +18,7 @@ var scene_objectives = [
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_2", "scene_4")
 	print("Act 2 Scene 4 initializing...")
-
+	_load_dialogue()
 	# Load game state
 	if not GameState.load_game():
 		push_error("Failed to load game state!")
@@ -36,7 +36,16 @@ func _ready() -> void:
 	else:
 		push_error("SignalBus missing 'call_completed' signal!")
 
-
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_2/scene_4/a2s4_en.dialogue"
+	else:
+		path = "res://dialogues/act_2/scene_4/a2s4.dialogue"
+	
+	A_2S_4 = load(path)
+	
 # === INTRO NARRATION ===
 func _start_intro_narration() -> void:
 	await get_tree().process_frame
@@ -75,6 +84,7 @@ func _open_wendy_phone() -> void:
 
 # === CALL COMPLETED HANDLER ===
 func _on_call_completed(call_target: String) -> void:
+	_load_dialogue()
 	print("Call completed signal received for: ", call_target)
 	
 	match call_target:
@@ -120,7 +130,7 @@ func scene_4_done() -> void:
 	
 	SaveManager.game_save.current_act = "act_2"
 	SaveManager.game_save.current_scene = "scene_4"
-	
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit(
 		"act_2",
 		"scene_4",

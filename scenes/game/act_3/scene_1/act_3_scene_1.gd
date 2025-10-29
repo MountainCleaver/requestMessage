@@ -1,6 +1,6 @@
 extends Node2D
 
-const A_3S_1 = preload("uid://d0b51f51nu0te")
+var A_3S_1: Resource
 
 @onready var player_danilo: CharacterBody2D = $"locations/danilo_hometown/y-sorted-objects/player_danilo"
 @onready var npc_lola_ising: CharacterBody2D = $"locations/danilo_hometown/y-sorted-objects/npc_lola_ising"
@@ -29,10 +29,21 @@ func _ready() -> void:
 	SaveManager.reset_lola_ising_progress()
 	FlashlightManager.set_current_scene("act_3", "scene_1")
 	FlashlightManager.disable_flashlights()
+	_load_dialogue()
 	ising_collision_shape_2d.disabled = true;
 	player_danilo.force_cannot_move = true;
 	sfx_bus.play()
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_3/scene_1/a3s1_en.dialogue"
+	else:
+		path = "res://dialogues/act_3/scene_1/a3s1.dialogue"
+	
+	A_3S_1 = load(path)
+	
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	sfx_bus.stop()
 	wind.play("default");
@@ -88,6 +99,7 @@ func _input(event: InputEvent) -> void:
 			print("ACT 2 SCENE 3 DONE");
 			SaveManager.game_save.current_act = "act_2"
 			SaveManager.game_save.current_scene = "scene_3" # badly named I admit. this is for the 'continue' part in main menu
+			SaveManager.save_game()
 			SignalBus.act_num_scene_num_done.emit("act_2", "scene_3", "res://scenes/game/act_3/scene_2/act_3_scene_2.tscn") # caught in save manager
 			ObjectiveManager.complete_objective(1);
 			await get_tree().process_frame 

@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=4 uid="uid://c5niwv58t5pew"]
+[gd_scene load_steps=19 format=4 uid="uid://c5niwv58t5pew"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_qnmuh"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_8m82d"]
 [ext_resource type="Texture2D" uid="uid://cbaqwksgv6wix" path="res://assets/character_sprites/light1.png" id="3_6cxm8"]
 [ext_resource type="Texture2D" uid="uid://be6h5vldaqlfi" path="res://assets/character_sprites/tip_interact.png" id="4_372kj"]
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="5_8m82d"]
+[ext_resource type="Texture2D" uid="uid://dp72bvfqjfgw2" path="res://assets/character_sprites/rain-drop.png" id="6_n8ass"]
+[ext_resource type="Texture2D" uid="uid://bbau41x8o02bb" path="res://assets/character_sprites/rain splash.png" id="7_rpser"]
+[ext_resource type="AudioStream" uid="uid://dwow3fbcvnre" path="res://sound/calming-rain-257596.mp3" id="8_eba0v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
 texture = ExtResource("1_qnmuh")
@@ -86,6 +89,20 @@ size = Vector2(28, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymqp3"]
 size = Vector2(74, 52.25)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qrhn8"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_tjpxi"]
+offsets = PackedFloat32Array(0, 0.24657534)
+colors = PackedColorArray(0, 0, 0, 1, 0.8217889, 0.82178867, 0.82178867, 1)
+
+[sub_resource type="Curve" id="Curve_3tqfb"]
+_data = [Vector2(0.383721, 0.1685394), 0.0, 0.0, 0, 0, Vector2(0.5813954, 0.42696637), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="dark_forest" type="Node2D"]
 
 [node name="map" type="Node2D" parent="."]
@@ -145,6 +162,42 @@ shape = SubResource("RectangleShape2D_ymqp3")
 debug_color = Color(0.8662791, 0.32122794, 0.39150935, 0.41960785)
 
 [node name="meds_lighting_handler" parent="." instance=ExtResource("5_8m82d")]
+
+[node name="Rain" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_qrhn8")
+position = Vector2(-196.00002, -186.00002)
+rotation = -0.06737219
+amount = 250
+texture = ExtResource("6_n8ass")
+lifetime = 2.0
+lifetime_randomness = 0.5
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(500, 1)
+spread = 10.0
+initial_velocity_min = 20.0
+initial_velocity_max = 100.0
+color_ramp = SubResource("Gradient_tjpxi")
+anim_speed_max = 1.0
+
+[node name="Rain_splash" type="CPUParticles2D" parent="."]
+position = Vector2(-139, -18.999998)
+rotation = 0.009001806
+amount = 25
+texture = ExtResource("7_rpser")
+lifetime = 0.3
+emission_shape = 3
+emission_rect_extents = Vector2(165, 65)
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_3tqfb")
+color = Color(1, 1, 1, 0.54509807)
+
+[node name="RAINSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_eba0v")
+volume_db = -10.0
+autoplay = true
+bus = &"sfx"
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="y-sorted/decorations/signage" to="." method="_on_signage_body_entered"]

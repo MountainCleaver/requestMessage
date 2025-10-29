@@ -31,32 +31,47 @@ func _on_btn_create_pressed() -> void:
 	var password = line_edit_password.text
 	var password_confirm = line_edit_password_confirm.text
 
+	# Basic validation
 	if username.is_empty() or email.is_empty() or password.is_empty() or password_confirm.is_empty():
 		some_nice_words.text = "Fields cannot be empty"
-	elif password.length() < 6:
+		return
+
+	# Email validation
+	var email_regex = RegEx.new()
+	email_regex.compile(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$")
+	if not email_regex.search(email):
+		some_nice_words.text = "Invalid email format"
+		return
+
+	# Password validation
+	if password.length() < 6:
 		err_password.text = "Password must be at least 6 characters long!"
+		return
 	elif password_confirm != password:
 		err_password.text = "Passwords do not match!"
-	else:
-		menu_loading_screen.show()
-		login_link.disabled = true;
-		btn_create.disabled = true;
-		var url = "https://requestmessage-admin.onrender.com/api/register.php"
+		return
 
-		# Retrieve metadata set from previous scene
-		var birthday = get_tree().get_meta("birthday")
-		var gender = get_tree().get_meta("gender")
+	# Proceed with HTTP request
+	menu_loading_screen.show()
+	login_link.disabled = true
+	btn_create.disabled = true
+	var url = "https://requestmessage-admin.onrender.com/api/register.php"
 
-		var body = {
-			"username": username,
-			"email": email,
-			"password": password,
-			"birthday": birthday,
-			"gender": gender
-		}
-		var headers = ["Content-Type: application/json"]
+	# Retrieve metadata set from previous scene
+	var birthday = get_tree().get_meta("birthday")
+	var gender = get_tree().get_meta("gender")
 
-		http.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(body))
+	var body = {
+		"username": username,
+		"email": email,
+		"password": password,
+		"birthday": birthday,
+		"gender": gender
+	}
+	var headers = ["Content-Type: application/json"]
+
+	http.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(body))
+
 
 func _on_HTTP_request_request_completed(result, response_code, headers, body):
 	var response_text = body.get_string_from_utf8()

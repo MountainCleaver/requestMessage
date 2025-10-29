@@ -1,0 +1,286 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1aq4smg1y13r"]
+
+[ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_7r2u7"]
+[ext_resource type="Script" uid="uid://cp1ojl3hq2n3l" path="res://scenes/menu/scripts/menu_new_game_slots.gd" id="1_mjo55"]
+[ext_resource type="Texture2D" uid="uid://1wyoo4uhj2in" path="res://assets/main menu/slot_placeholder.png" id="3_7r2u7"]
+[ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="3_mjo55"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_tkyxw"]
+
+[node name="menu_new_game_slots" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mjo55")
+
+[node name="menu_background" parent="." instance=ExtResource("1_7r2u7")]
+layout_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="menu_background"]
+modulate = Color(1, 1, 1, 0.835294)
+self_modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0924945, 0.0775084, 0.185383, 1)
+
+[node name="back_tips" parent="." instance=ExtResource("3_mjo55")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -343.0
+offset_top = -107.0
+offset_right = -343.0
+offset_bottom = -107.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="slot_1" type="Button" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 52.0
+offset_right = 1396.0
+offset_bottom = 301.0
+metadata/_edit_group_ = true
+
+[node name="empty_slot" type="Label" parent="slot_1"]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 99.0
+offset_right = 1165.0
+offset_bottom = 171.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 71
+text = "EMPTY SLOT #1"
+horizontal_alignment = 1
+
+[node name="current_progress" type="Label" parent="slot_1"]
+visible = false
+layout_mode = 0
+offset_left = 542.0
+offset_top = 49.0
+offset_right = 1245.0
+offset_bottom = 121.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 48
+text = "ACT 1 - SCENE 1"
+horizontal_alignment = 1
+
+[node name="date_created" type="Label" parent="slot_1"]
+visible = false
+layout_mode = 0
+offset_left = 509.0
+offset_top = 130.0
+offset_right = 1259.0
+offset_bottom = 159.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 26
+text = "CREATED:"
+
+[node name="playtime" type="Label" parent="slot_1"]
+visible = false
+layout_mode = 0
+offset_left = 510.0
+offset_top = 171.0
+offset_right = 1260.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 26
+text = "PLAYTIME:"
+
+[node name="TextureRect" type="TextureRect" parent="slot_1"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 12.0
+offset_right = 434.0
+offset_bottom = 237.0
+texture = ExtResource("3_7r2u7")
+
+[node name="summary_label" type="Label" parent="slot_1"]
+visible = false
+layout_mode = 0
+offset_left = 509.0
+offset_top = 130.0
+offset_right = 1259.0
+offset_bottom = 159.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 26
+text = "CREATED:"
+autowrap_mode = 3
+
+[node name="slot_2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 344.0
+offset_right = 1396.0
+offset_bottom = 593.0
+metadata/_edit_group_ = true
+
+[node name="empty_slot" type="Label" parent="slot_2"]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 99.0
+offset_right = 1165.0
+offset_bottom = 171.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 71
+text = "EMPTY SLOT #2"
+horizontal_alignment = 1
+
+[node name="current_progress" type="Label" parent="slot_2"]
+visible = false
+layout_mode = 0
+offset_left = 542.0
+offset_top = 49.0
+offset_right = 1245.0
+offset_bottom = 121.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 48
+text = "ACT 1 - SCENE 1"
+horizontal_alignment = 1
+
+[node name="date_created" type="Label" parent="slot_2"]
+visible = false
+layout_mode = 0
+offset_left = 509.0
+offset_top = 130.0
+offset_right = 1259.0
+offset_bottom = 159.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 26
+text = "CREATED:"
+
+[node name="playtime" type="Label" parent="slot_2"]
+visible = false
+layout_mode = 0
+offset_left = 510.0
+offset_top = 171.0
+offset_right = 1260.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 26
+text = "PLAYTIME:"
+
+[node name="TextureRect" type="TextureRect" parent="slot_2"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 12.0
+offset_right = 434.0
+offset_bottom = 237.0
+texture = ExtResource("3_7r2u7")
+
+[node name="summary_label" type="Label" parent="slot_2"]
+visible = false
+layout_mode = 0
+offset_left = 509.0
+offset_top = 130.0
+offset_right = 1259.0
+offset_bottom = 159.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 26
+text = "CREATED:"
+autowrap_mode = 3
+
+[node name="slot_3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 632.0
+offset_right = 1396.0
+offset_bottom = 881.0
+metadata/_edit_group_ = true
+
+[node name="empty_slot" type="Label" parent="slot_3"]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 99.0
+offset_right = 1165.0
+offset_bottom = 171.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 71
+text = "EMPTY SLOT #3"
+horizontal_alignment = 1
+
+[node name="current_progress" type="Label" parent="slot_3"]
+visible = false
+layout_mode = 0
+offset_left = 542.0
+offset_top = 49.0
+offset_right = 1245.0
+offset_bottom = 121.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 48
+text = "ACT 1 - SCENE 1"
+horizontal_alignment = 1
+
+[node name="date_created" type="Label" parent="slot_3"]
+visible = false
+layout_mode = 0
+offset_left = 509.0
+offset_top = 130.0
+offset_right = 1259.0
+offset_bottom = 159.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 26
+text = "CREATED:"
+
+[node name="playtime" type="Label" parent="slot_3"]
+visible = false
+layout_mode = 0
+offset_left = 510.0
+offset_top = 171.0
+offset_right = 1260.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 26
+text = "PLAYTIME:"
+
+[node name="TextureRect" type="TextureRect" parent="slot_3"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 12.0
+offset_right = 434.0
+offset_bottom = 237.0
+texture = ExtResource("3_7r2u7")
+
+[node name="summary_label" type="Label" parent="slot_3"]
+visible = false
+layout_mode = 0
+offset_left = 509.0
+offset_top = 130.0
+offset_right = 1259.0
+offset_bottom = 159.0
+theme_override_fonts/font = ExtResource("3_tkyxw")
+theme_override_font_sizes/font_size = 26
+text = "CREATED:"
+autowrap_mode = 3
+
+[node name="overwriteConfirmationDialog" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
+title = "Confirm Overwrite"
+initial_position = 2
+size = Vector2i(337, 130)
+ok_button_text = "Yes"
+dialog_text = "This slot already contains saved progress.
+Do you want to overwrite it?
+"
+
+[node name="newsaveConfirmationDialog" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
+title = "Create New Save"
+initial_position = 2
+size = Vector2i(351, 130)
+ok_button_text = "Yes"
+dialog_text = "This slot is empty.
+Do you want to create a new save file here?"
+
+[node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="pressed" from="back_tips/Panel/Button" to="." method="_on_exit_pressed"]
+
+[editable path="back_tips"]

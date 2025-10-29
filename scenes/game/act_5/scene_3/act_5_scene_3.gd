@@ -2,18 +2,29 @@ extends Node2D
 
 @onready var tip_interact: Sprite2D = $"danilo_hometown/y-sorted-objects/player_mateo/tip_interact"
 @onready var area_2d: Area2D = $Area2D
-const A_5S_3 = preload("uid://dntq0tdotjt87")
+var A_5S_3: Resource
 
 var can_interact = true
 
 var interacting_with = ""
 
 func _ready() -> void:
+	_load_dialogue()
 	ObjectiveManager.add_objective(1, "Go to Danilo's Home")
 	Hud.show_objectives()
 	area_2d.body_entered.connect(_on_area_2d_body_entered)
 	area_2d.body_exited.connect(_on_area_2d_body_exited)
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_5/scene_3/a5s3_en.dialogue"
+	else:
+		path = "res://dialogues/act_5/scene_3/a5s3.dialogue"
+	
+	A_5S_3 = load(path)
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action("interact"):
 		if not can_interact:

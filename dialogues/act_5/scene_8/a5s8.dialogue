@@ -50,6 +50,7 @@ Danilo: Kahit saglit lang, dito ka muna.
 # Mateo fading away continues, and finishes
 Mateo: Salamat sa paghahanap sakin, mabuhay ka Danilo.
 do whitey_vanish_full()
+do act_5_scene_8_done()
 => END
 
 ##################################################################
@@ -61,6 +62,7 @@ do whitey_vanish_full()
 Danilo: Mateo... Diyos ko... lahat pala  'to tinago mo samin...
 # chapel darken, soundfx
 Danilo: Akala ko... Masaya ka... na wala kang dinadala...
+Danilo: Hindi ko alam... tinatago mo pala lahat ng 'yon sa likod ng tawa mo...
 Danilo: Pero pinabayaan kita.
 Danilo: Mateo... Sorry...
 # ghost appears
@@ -69,7 +71,7 @@ do ghost_appears.emit("restless")
 => END
 
 ~ resltess_ghost_appeared
-Entity: ...Danilo...bakit... iniwan mo ako...
+Entity: ...Danilo... bakit... iniwan mo ako...?
 Danilo: Mateo... Ikaw ba 'yan?
 do show_distortion()
 #=> END
@@ -96,7 +98,8 @@ do _ghost_left("restless")
 Danilo: wag mo muna ako iwan...
 Entity: [fade]...[/fade]
 do _ghost_vanish("restless")
-Danilo: nooooooooooooooooo
+Danilo: Mateo...
 # shadow fades to nothing
 # Danilo collapsed at the edge. The voices screamed louder, swallowing him in darkness.
+do act_5_scene_8_done()
 => END

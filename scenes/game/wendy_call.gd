@@ -9,7 +9,7 @@ extends Control
 @onready var panel_logo: Panel = $call_screen/Panel2/LOGOPANEL
 @onready var panel_icon: TextureRect = $call_screen/Panel2/Icon2
 
-const A_2S_4 = "res://dialogues/act_2/scene_4/a2s4.dialogue"
+var A_2S_4: Resource
 
 var call_target: String = ""
 var previous_scene: Control = null
@@ -20,6 +20,17 @@ var dialogue_started := false
 # =========================
 # === CALL SETUP LOGIC ====
 # =========================
+
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_2/scene_4/a2s4_en.dialogue"
+	else:
+		path = "res://dialogues/act_2/scene_4/a2s4.dialogue"
+	
+	A_2S_4 = load(path)
+	
 func set_call_target(target: String) -> void:
 	await ready 
 
@@ -46,7 +57,8 @@ func set_call_target(target: String) -> void:
 # =========================
 # === READY / MAIN FLOW ===
 # =========================
-func _ready() -> void:
+func _ready() -> void:	
+	_load_dialogue() 
 	if end_btn:
 		end_btn.pressed.connect(_on_end_pressed)
 
@@ -72,7 +84,7 @@ func _start_mira_dialogue() -> void:
 	if status_label.text == "Call ended.":
 		return
 	DialogueManager.show_dialogue_balloon(
-		load(A_2S_4), 
+		A_2S_4,
 		"call_mira_convo"
 	)
 
@@ -109,10 +121,12 @@ func _end_call() -> void:
 	await get_tree().create_timer(1.0).timeout
 
 	if call_target == "danilo":
+		
 		DialogueManager.show_dialogue_balloon(
-			load(A_2S_4),
+			A_2S_4,
 			"call_voicemail"
 		)
+		
 		return_to_app_call = true
 
 	if previous_scene:

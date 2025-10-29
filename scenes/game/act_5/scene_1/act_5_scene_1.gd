@@ -3,7 +3,7 @@ extends Node2D
 # ===================
 # PRELOADS
 # ===================
-const A_5S_1 = preload("res://dialogues/act_5/scene_1/a5s1.dialogue")
+var A_5S_1: Resource
 const DARK_FOREST = preload("res://scenes/game/act_5/scene_1/dark_forest.tscn")
 const CHAPEL_EXTERIOR = preload("res://scenes/game/act_5/scene_1/chapel_exterior.tscn")
 const CHAPEL_INTERIOR = preload("res://scenes/game/act_5/scene_1/chapel_interior.tscn")
@@ -53,11 +53,22 @@ var total_candles := 7
 # ===================
 func _ready():
 	_game_state_flow()
+	_load_dialogue()
 	switch_location(DARK_FOREST)
 	_start_scene()
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.unknown_sender_label_visible = false
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_5/scene_1/a5s1_en.dialogue"
+	else:
+		path = "res://dialogues/act_5/scene_1/a5s1.dialogue"
+	
+	A_5S_1 = load(path)
+	
 func _game_state_flow() -> void:
 	FlashlightManager.set_current_scene("act_5", "scene_1")
 	FlashlightManager.enable_flashlight_by_cash()
@@ -72,7 +83,6 @@ func _game_state_flow() -> void:
 # ===================
 func _start_scene() -> void:
 	await get_tree().process_frame
-	Hud.show_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	DialogueManager.show_dialogue_balloon(A_5S_1, "start")
 
@@ -106,6 +116,7 @@ func _switch_to_chapel_interior(from_where: String = "default") -> void:
 
 	match from_where:
 		"first_entry":
+			player_danilo.last_direction = Vector2.UP
 			DialogueManager.show_dialogue_balloon(A_5S_1, "light_candle")
 			await DialogueManager.dialogue_ended
 			ObjectiveManager.add_progress_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"], total_candles)
@@ -127,6 +138,7 @@ func _switch_to_chapel_interior(from_where: String = "default") -> void:
 					light.visible = true
 					light.texture_scale = 1.7 if index == 0 else 5.0
 
+			player_danilo.last_direction = Vector2.UP
 			DialogueManager.show_dialogue_balloon(A_5S_1, "after_arrange_pages")
 			await DialogueManager.dialogue_ended
 			Hud.show_objectives()

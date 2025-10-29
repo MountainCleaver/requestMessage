@@ -4,7 +4,7 @@ do _void_appear()
 => END
 
 ~ saw_light
-Danilo: ?
+Danilo: ???
 do see_light.queue_free()
 => END
 
@@ -16,7 +16,7 @@ do in_dialogue = false
 
 ~ reminisce
 Danilo: Dito kami naglalaro dati...
-Danilo: Itong-ito parin yun, tila hindi nagbago… pero ano yan?
+Danilo: Itong-ito parin yun, tila hindi nagbago... pero ano [i]'yan[/i]?
 # pan camera to the shadow figure
 do _tween_camera_to_ghost()
 => END
@@ -25,6 +25,7 @@ do _tween_camera_to_ghost()
 Danilo: ???
 Danilo: Ano yun?
 Danilo: Anong panaginip yun?
+Danilo: At ang lakas ng kulog... uulan ba mamaya?  
 - Take medications => take_medications
 - Check phone for messages => check_phone
 => END
@@ -44,10 +45,6 @@ Wendy: Danilo, have you heard that?
 
 do ChatManager.send_chat("wendy", "Wendy", "Ang lakas ng kulog dito.")
 Wendy: [wait=1.5]Ang lakas ng kulog dito.
-=> END
-
-~ choice_of_danilo
-Danilo: ...
 - Diyan rin pala sa city. => reply_danilo_1
 - Akala ko dito lang sa province. => reply_danilo_1
 => END
@@ -72,14 +69,14 @@ do _notice_open_window()
 ~ window_is_open
 Danilo: [shake rate=20 level=10]!!![/shake]
 Danilo: Sinara ko ‘to lahat kanina, bakit naka bukas 'tong bintana?
-Danilo: Sinong nag bukas niyan?
+Danilo: Sinong nag bukas n'yan?
 do can_interact = true
 => END
 
 
 ~ gino_knock
 do ObjectiveManager.update_progress(1, 1)
-Danilo: [center]*knock *knock *knock[/center]
+Danilo: [center][color=#808080]*(knock knock knock)*[/color][/center]
 Danilo: [center]Wala yatang tao...[/center]
 do gino_knocked = true
 do can_interact = true
@@ -94,13 +91,13 @@ do can_interact = true
 
 ~ theresa
 do ObjectiveManager.update_progress(1, 1)
-Danilo: Magandang araw po, [wave]Aling Theresa[/wave]
+Danilo: Magandang araw po, [wave]Aling Theresa.[/wave]
 Aling_Theresa: Oh Danilo! Umuwi ka pala. 
 Aling_Theresa: Bakasyon lang?
 Danilo: Opo, hindi rin ako magtatagal.
 Danilo: May nakita po ba kayong pumunta sa bahay kanina?
 Aling_Theresa: [wave]Wala[/wave], abala ako sa pagluluto.
-Danilo: Ah ganun po ba? Sige po salamat po.
+Danilo: Ah, ganun po ba? Sige po salamat po.
 do SignalBus.remove_npc.emit("npc_theresa_scene_4")
 do theresa_asked = true
 do player_danilo.force_cannot_move = false
@@ -110,21 +107,21 @@ do SignalBus.asked_a_neighbor.emit()
 => END
 
 ~ theresa_again
-Aling_Theresa: Mag ingat ka palagi.
+Aling_Theresa: Mag-ingat ka palagi.
 do can_interact = true
 => END
 
 ~ vanesa
 do ObjectiveManager.update_progress(1, 1)
-Danilo: Magandang Araw, Vanesa.
+Danilo: Magandang araw, Vanesa.
 Danilo: May nakita ka bang pumunta sa bahay kanina?
 Vanesa: [wave]Wala.[/wave]
 Vanesa: Kanina pa ako dito, wala naman akong nakita.
 Vanesa: Pero kahapon, nakita kitang nagmamadali umuwi.
 Danilo: May kasunod ba 'ko nun?
-Vanesa: [wave]Oo,[/wave][wait=1.5][wave]si Jonathan.[/wave]
+Vanesa: [wave]Oo, [/wave][wait=1.5][wave]si Jonathan.[/wave]
 Vanesa: Nagulat nga ako sa bilis mong umuwi.
-Danilo: Ganun ba... Salamat
+Danilo: Ganun ba... salamat.
 do vanesa_asked = true
 do can_interact = true
 do _check_objectives()
@@ -137,7 +134,7 @@ do can_interact = true
 => END
 
 ~ jonathan_knock
-Danilo: [center]*knock *knock *knock[/center]
+Danilo: [center][color=#808080]*(knock knock knock)*[/color][/center]
 Danilo: [center]Wala yatang tao...[/center]
 do jonthan_knocked = true
 do can_interact = true
@@ -151,7 +148,7 @@ do can_interact = true
 
 ~ jonathan
 do ObjectiveManager.update_progress(1, 1)
-Jonathan: Uy Danilo!
+Jonathan: Uy, Danilo!
 Jonathan: [wave]Tatawagin sana kita kahapon kaso ang bilis mo.[/wave]
 Danilo: Ikaw pala yung nakasunod sakin?
 Jonathan: Hindi kita sinusundan.
@@ -160,7 +157,7 @@ Danilo: Pasensya na, may iniisip lang ako.
 Danilo: Pero may nakita ka bang pumunta sa bahay kanina?
 Jonathan: [wave]Wala.[/wave]
 Jonathan: Galing ako sa pangingisda kasama si Mang Gino. Kakauwi ko lang.
-Danilo: Ah ganun, sige, salamat.
+Danilo: Ah ganun. Sige, salamat.
 do can_interact = true
 do player_danilo.force_cannot_move = false
 do SignalBus.jonathan_done.emit("npc_jonathan")
@@ -186,19 +183,19 @@ do can_interact = true
 ~ picture_frame
 do player_danilo.force_cannot_move = true
 Danilo: ...
-- Take Image
+- Take image
 	do Hud.add_popup_image("res://assets/tilesets/frame_blurred_only.png")
 	do Hud._toggle_popup()
-	Danilo: Bakit nagka ganito 'to?
+	Danilo: Bakit nagkaganito 'to?
 	do Hud._toggle_popup()
 	Danilo: ...
 	- Flip image
 		do Hud.add_popup_image("res://assets/tilesets/frame_behind.png")
 		do Hud._toggle_popup()
-		Danilo: [center][wave]Find [wait=1.0]me...[/wave][/center]
+		Danilo: [center][wave][i]"Find [wait=1.0]me..."[/i][/wave][/center]
 		Danilo: Anong ibig sabihin nito?
 		Danilo: ... ...
-		Danilo: Something's off...
+		Danilo: Parang may mali.
 		do Hud._toggle_popup()
 		Danilo: ...
 		- Take piece of paper
@@ -206,7 +203,7 @@ Danilo: ...
 			do Hud._toggle_popup()
 			Danilo: Huh? 
 			Danilo: [shake]Anong ginagawa ng mapang ‘to dito? [/shake]
-			Danilo: [shake]Hindi ko maalala kung kailan ko ‘to huling nakita…[/shake]
+			Danilo: [shake]Hindi ko maalala kung kailan ko ‘to huling nakita...[/shake]
 			do Hud._toggle_popup()
 			do inspected_picture_frame = true
 			do SignalBus.fade_to_blackness.emit()
@@ -219,10 +216,9 @@ do can_interact = true
 => END
 
 ~ last_statement_1
-Danilo: Kung may kasagutan man sa likod ng lahat nang to… 
-Danilo: [wave]sana hindi pa huli ang lahat.[/wave]
-- Put the map inside bag
-Danilo: Hintayin mo ‘ko.
+Danilo: Kung may kasagutan man sa likod ng lahat nang 'to...
+Danilo: [wave]Sana hindi pa huli ang lahat.[/wave]
+Danilo: Hintayin mo ‘ko, [color=#8B0000][i]Mateo[/i][/color].
 do _act_3_scene_4_done()
 => END
 

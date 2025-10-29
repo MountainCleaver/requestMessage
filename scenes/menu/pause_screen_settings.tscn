@@ -20,5 +20,8 @@ layout_mode = 1
 [node name="TextureRect" parent="Options/menu_background" index="0"]
 texture = ExtResource("2_hd365")
 
+[node name="option_language" parent="Options/options_label/VBoxContainer" index="3"]
+visible = false
+
 [editable path="Options"]
 [editable path="Options/menu_background"]

@@ -1,6 +1,6 @@
 extends Node
 
-const A_6S_1 = preload("res://dialogues/act_6/scene_1/a6s1.dialogue")
+var A_6S_1: Resource
 const HOMETOWN = preload("res://scenes/game/act_6/scene_1/hometown.tscn")
 const WENDY_HOUSE = preload("res://scenes/game/act_6/scene_1/wendy_house.tscn")
 const LARUAN = preload("res://scenes/game/act_6/scene_1/laruan.tscn")
@@ -100,7 +100,18 @@ var current_npc: String
 func _ready():
 	switch_location(NARRATION_PANEL)
 	_start_scene()
+	_load_dialogue()
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_6/scene_1/a6s1_en.dialogue"
+	else:
+		path = "res://dialogues/act_6/scene_1/a6s1.dialogue"
+	
+	A_6S_1 = load(path)
+	
 # ===================
 # START SCENE
 # ===================
@@ -816,6 +827,7 @@ func set_wendy_idle_up() -> void:
 func act_6_scene_1_done() -> void:
 	SaveManager.game_save.current_act = "act_6"
 	SaveManager.game_save.current_scene = "scene_1"
+	SaveManager.save_game()
 	print("ACT 6 SCENE 1 DONE")
 	SignalBus.act_num_scene_num_done.emit(
 		"act_6", 

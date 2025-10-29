@@ -1,0 +1,118 @@
+~ start
+Danilo: Maybe I just need some peace of mind.
+Danilo: ...
+Danilo: Yeah... maybe it’ll be quieter in the province.
+do Hud.show_objectives()
+=> END
+
+~ cabinet_clicked
+do ObjectiveManager.complete_objective(1)
+Danilo: ...
+=> END
+
+~ chat_with_mira
+Danilo: I guess I should tell my mother first.
+do Hud.reset_phone_state() 
+=> END
+
+~ choice_danilo_1
+Danilo: ...
+- I’ll just go to our province, Ma. => reply_danilo_1
+=> END
+
+~ reply_danilo_1
+do ObjectiveManager.complete_objective(2)
+do ChatManager.send_chat("mira", "Player", "Pupunta lang akong probinsya natin, Ma.")
+Danilo: I’ll just go to our province, Ma.
+=> reply_mira_1
+
+~ reply_mira_1
+do ChatManager.send_chat("mira", "Mira", "Nak, huwag mong kalimutan ang gamot mo ha. Bumili ka na rin bago umalis.")
+Mira: [wait=1.5]Nak, don’t forget your meds... and buy some before you leave.
+=> reply_danilo_2
+
+~ reply_danilo_2
+do ChatManager.send_chat("mira", "Player", "Opo, ma. Sandali lang naman ako dun.")
+Danilo: Okay, Ma. I’ll only be there for a short while.
+=> reply_danilo_3
+
+~ reply_danilo_3
+do ChatManager.send_chat("mira", "Player", "Gusto ko lang mapanatag.")
+Danilo: I just want some peace of mind.
+=> END
+
+~ chat_with_TL
+Danilo: I also need to notify the TL in our group chat.
+=> END
+
+~ choice_danilo_2
+Danilo: ...
+- Good morning, TL. => reply_danilo_4
+=> END
+
+~ reply_danilo_4
+do ObjectiveManager.complete_objective(3)
+do ChatManager.send_chat("group_chat", "Player", "Good morning, TL.")
+Danilo: Good morning, TL.
+- I’ll use my 3 unplanned leaves. => reply_danilo_5
+=> END
+
+~ reply_danilo_5
+do ChatManager.send_chat("group_chat", "Player", "Gagamitin ko yung 3 kong unplanned leave.")
+Danilo: I’ll use my 3 unplanned leaves.
+- I’ll just go home to the province. => reply_danilo_6
+=> END
+
+~ reply_danilo_6
+do ChatManager.send_chat("group_chat", "Player", "Uuwi lang muna ako sa probinsya.")
+Danilo: I’ll just go home to the province.
+- There’s an emergency. => reply_danilo_7
+=> END
+
+~ reply_danilo_7
+do ChatManager.send_chat("group_chat", "Player", "May emergency kasi.")
+Danilo: There’s an emergency.
+- Thanks. => reply_danilo_8
+=> END
+
+~ reply_danilo_8
+do ChatManager.send_chat("group_chat", "Player", "Salamat.")
+Danilo: Thanks. => reply_TL_1
+=> END
+
+~ reply_TL_1
+do ChatManager.send_chat("group_chat", "TL", "Nagsend ka naman letter sa admin about this notice?")
+TL: You sent a letter to admin about this notice, right?
+- Yes, I already sent it earlier. => reply_danilo_9
+=> END
+
+~ reply_danilo_9
+do ChatManager.send_chat("group_chat", "Player", "Yes, nakasend na ako kanina.")
+Danilo: Yes, I already sent it earlier.
+=> reply_TL_2
+
+~ reply_TL_2
+do ChatManager.send_chat("group_chat", "TL", "Ok, noted.")
+TL: Okay, noted.
+do Hud.phone_outro()
+=> END
+
+~ go_outside
+Danilo: I guess I’ll head out now.
+=> END
+
+~ sakay_jeep
+Danilo: [i]"Pasakay po, manong!"[/i]
+- Bus Terminal => bus_terminal
+- Rizal Park => rizal_park
+- Cancel => END
+=> END
+
+~ rizal_park
+Danilo: This wasn’t in the plan today... => sakay_jeep
+=> END
+
+~ bus_terminal
+do ObjectiveManager.complete_objective(5)
+do scene_2_done()
+=> END

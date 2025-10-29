@@ -3,7 +3,7 @@ extends Node2D
 const SCENE_4_DREAM = preload("uid://cic4mooq5xw0c")
 const SCENE_4_HOUSE = preload("uid://2y5djxd1h1rf")
 const SCENE_4_HOMETOWN = preload("uid://fck7x2vrgla1")
-const A_3S_4 = preload("uid://15o68hvrk4n0")
+var A_3S_4: Resource
 
 
 @onready var locations: Node2D = $locations
@@ -77,6 +77,7 @@ func _ready() -> void:
 	bgm_house.play()
 	FlashlightManager.set_current_scene("act_3", "scene_4")
 	FlashlightManager.disable_flashlights()
+	_load_dialogue()
 	_switch_location(
 		SCENE_4_HOUSE,
 		"house",
@@ -90,9 +91,18 @@ func _ready() -> void:
 	SignalBus.optional_chats_locked = false
 	chat_open = false
 	SignalBus.chat_opened.connect(_on_chat_opened)
-	SignalBus.chat_message_sent.connect(_on_chat_message_sent)
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.unknown_sender_label_visible = false
+	
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_3/scene_4/a3s4_en.dialogue"
+	else:
+		path = "res://dialogues/act_3/scene_4/a3s4.dialogue"
+	
+	A_3S_4 = load(path)
 	
 func _game_state_flow() -> void:
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
@@ -336,11 +346,6 @@ func _on_chat_opened(chat_name: String) -> void:
 		wendy_opened = true
 		ObjectiveManager.complete_objective(scene_objectives[0]["ID"])
 		DialogueManager.show_dialogue_balloon(A_3S_4, "chat_of_wendy")
-
-func _on_chat_message_sent(chat_name: String) -> void:
-	if chat_name == "wendy" and not wendy_reply_shown:
-		wendy_reply_shown = true
-		DialogueManager.show_dialogue_balloon(A_3S_4, "choice_of_danilo")
 	
 func _on_start_jonathan() -> void:
 	DialogueManager.show_dialogue_balloon(A_3S_4, "jonathan")
@@ -348,6 +353,7 @@ func _on_start_jonathan() -> void:
 func _act_3_scene_4_done() -> void:
 	SaveManager.game_save.current_act = "act_4"
 	SaveManager.game_save.current_scene = "scene_1"
+	SaveManager.save_game()
 	GameState.save_game()
-	SignalBus.act_num_scene_num_done.emit("act_3", "scene_4", "res://scenes/game/act_4/scene_1/act_4_scene_1.tscn") # caught in save manager
+	SignalBus.act_num_scene_num_done.emit("act_3", "scene_4", "res://scenes/game/act_4_title_scene.tscn") # caught in save manager
 	Hud.clear_objectives();

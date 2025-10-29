@@ -1,7 +1,7 @@
 extends Node2D
 
 # === PRELOADS ===
-const A_2S_3 = preload("res://dialogues/act_2/scene_3/a2s3.dialogue")
+var A_2S_3: Resource
 
 @onready var bus_trigger: Area2D = $"bus_terminal/bus_trigger"
 @onready var phone_trigger: Area2D = $"bus_terminal/phone_trigger"
@@ -75,6 +75,7 @@ var chat_open: bool = false
 
 func _ready() -> void:
 	_game_state_flow()
+	_load_dialogue()
 	car_noise.play()
 	player_danilo.force_cannot_move = true;
 	entrance.body_entered.connect(_on_entrance_body_entered)
@@ -104,6 +105,16 @@ func _game_state_flow() -> void:
 	GameState.overwrite_current_scene_keep_previous()
 	GameState.save_game()
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_2/scene_3/a2s3_en.dialogue"
+	else:
+		path = "res://dialogues/act_2/scene_3/a2s3.dialogue"
+	
+	A_2S_3 = load(path)
+	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	player_danilo.force_cannot_move = false;
 	intro_anim_done  = true;
