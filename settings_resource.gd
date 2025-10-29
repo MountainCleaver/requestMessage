@@ -13,3 +13,6 @@ class_name SettingsResource
 
 #dialogue language
 @export var dialogue_language: String = "fil" 
+
+# user key bindings
+@export var key_bindings: Dictionary = {}

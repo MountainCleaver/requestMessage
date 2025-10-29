@@ -1,6 +1,6 @@
 ~ mateo_running
-Mateo_child_crying: Takbo lang… takbo lang… huwag kang lilingon… 
-Mateo_child_crying: huwag kang mahuli…
+Mateo_child_crying: Takbo lang... takbo lang... huwag kang lilingon... 
+Mateo_child_crying: huwag kang mahuli...
 Mang gino: [font_size=55.0][shake level=20 connected=0] MATEO! BUMALIK KA DITO!!![/shake]
 => END
 
@@ -37,12 +37,24 @@ do _mateo_run_again()
 => END
 
 ~ mateo_calling_for_help
-Mateo_child_crying: [speed=0.5][font_size=55.0]TULONG! TULONG! 
-Mateo_child_crying: [wave]ITAY! INAY![/wave]
-Mateo_child_crying: [speed=0.5][font_size=50.0]NANDITO AKO!!!
-Mateo_child_crying: [speed=0.5][font_size=45.0][shake]Danilo… Wendy… 
-Mateo_child_crying: [speed=0.5][font_size=40.0][shake]ayoko pang mamatay… [/shake]
-Mateo_child_crying: [speed=0.5][font_size=37.0][shake]ang dami ko pang gustong gawin . . .[/shake]
-Mateo_child_crying: [speed=0.5][font_size=37.0][shake]Nandito lang [/shake][fade]ako . . .
+Mateo_child_crying: [speed=0.5][font_size=55.0][shake]TULONG! TULONG![/shake]  
+Mateo_child_crying: [wave][shake]'TAY! 'NAY![/shake]  
+Mateo_child_crying: [speed=0.5][font_size=50.0][shake]NANDITO AKO!!![/shake]  
+Mateo_child_crying: [speed=0.5][font_size=45.0][shake]Danilo... Wendy...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=40.0][shake]Ayoko pa... ayoko pang mamatay...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=38.0][shake]Ang dami ko pang gustong gawin...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=37.0][shake]Hindi ko na maramdaman ang mga braso ko...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=35.0][shake]Wala na akong lakas...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=33.0][shake]'Tay... patawad...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=33.0][shake]Hindi ko sinasadya...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=32.0][shake]Gusto ko lang... tumigil na lahat...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=31.0][shake]Danilo... patawad...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=30.0][shake]Hindi ko naipakita sa’yo... 'yung pangako ko...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=29.0][shake]Dapat... sabay nating nakita...[/shake]  
+Mateo_child_crying: [speed=0.6][font_size=29.0][shake]Pagod na ako...[/shake]  
+Mateo_child_crying: [speed=0.6][font_size=28.0][shake]Pakiusap... huwag mo akong kalimutan...[/shake]  
+Mateo_child_crying: [speed=0.7][font_size=26.0]Nandito pa ako...  
+Mateo_child_crying: [speed=0.8][font_size=20.0]Nandito pa rin... [fade]... ako...[/fade]  
+Mateo_child_crying: [speed=1.0][font_size=15.0][fade]...  
 do act_5_scene_5_done()
 => END

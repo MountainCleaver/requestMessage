@@ -117,19 +117,6 @@ func _load_dialogue() -> void:
 # ===================
 func _start_scene() -> void:
 	await get_tree().process_frame
-	var lines = [
-		"Danilo was supposed to be home yesterday,",
-		"but he didn’t come back. Now Wendy is worried about him.",
-		"[shake rate=10 level=15][color=#ff5555] Where are you Danilo? [/color][/shake]"
-	]
-	await NarrationPanel.show_narration_typewriter(lines, 0.05)
-	await NarrationPanel.hide_narration()
-	TransitionFade.transition()
-	await SignalBus.on_transition_finished
-	_switch_to_wendy_house()
- 
-func _switch_to_wendy_house() -> void:
-	await get_tree().process_frame
 	switch_location(WENDY_HOUSE)
 	DialogueManager.show_dialogue_balloon(A_6S_1, "start")
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
@@ -829,8 +816,18 @@ func act_6_scene_1_done() -> void:
 	SaveManager.game_save.current_scene = "scene_1"
 	SaveManager.save_game()
 	print("ACT 6 SCENE 1 DONE")
+	
+	# --- Karma-based scene branching ---
+	var total_karma = SaveManager.get_total_karma()
+	var next_scene_path: String
+	if total_karma >= 0:
+		next_scene_path = "res://scenes/game/act_6/scene_2.1/finally_at_rest.tscn"
+	else:
+		next_scene_path = "res://scenes/game/act_6/scene_2.2/unending_guilt.tscn"
+	print("Next scene based on karma:", next_scene_path)
+
 	SignalBus.act_num_scene_num_done.emit(
 		"act_6", 
 		"scene_1", 
-        "res://scenes/game/act_6/scene_2.tscn"
+		next_scene_path
 	)

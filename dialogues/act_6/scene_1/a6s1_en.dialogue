@@ -88,7 +88,7 @@ Wendy: Ah, I see. Thank you for the info, Vanesa.
 
 ~ talk_to_manang_matet
 Wendy: Hello, Tita Matet.
-Manang Matet: Oh, apo, you’re here.
+Manang Matet: Oh, iha, you’re here.
 Manang Matet: Did you hear that Danilo is missing?
 Wendy: Yes, I just heard it from Lola.
 Manang Matet: Wow... I haven’t even checked on him.
@@ -100,7 +100,7 @@ Manang Matet: I even cooked his favorite dish.
 Manang Matet: I hope we find him soon.
 Wendy: I’ll help look for him.
 Wendy: You should rest now.
-Manang Matet: Thank you, apo.
+Manang Matet: Thank you, iha.
 => END
 
 ~ talk_to_mang_gino
@@ -116,7 +116,7 @@ Aling Theresa: Oh, yes, he asked me something, but I didn’t fully understand.
 Aling Theresa: My hearing and eyesight aren’t that good anymore.
 Aling Theresa: But I didn’t see him.
 Wendy: Thank you, Aling Theresa.
-Aling Theresa: No worries, apo.
+Aling Theresa: No worries, iha.
 => END
 
 ~ wendy_contemplate

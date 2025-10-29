@@ -85,11 +85,10 @@ func _update_slot_ui(slot_num: int) -> void:
 			current_progress.text = "%s - %s" % [act_text.capitalize(), scene_text.capitalize()] if act_text != "" else "No progress"
 
 			# --- Thumbnail ---
-			var thumb_path = ""
 			if act_text != "" and scene_text != "":
-				thumb_path = "res://assets/scenes_thumbnails/%s_%s.png" % [act_text.to_lower(), scene_text.to_lower()]
-
-			texture_rect.texture = load(thumb_path) if thumb_path != "" and ResourceLoader.exists(thumb_path) else load("res://assets/main menu/slot_placeholder.png")
+				var thumb_path = "res://assets/scenes_thumbnails/%s_%s.png" % [act_text.to_lower(), scene_text.to_lower()]
+				if ResourceLoader.exists(thumb_path):
+					texture_rect.texture = load(thumb_path)
 
 			# --- Playtime ---
 			if save_data.playtime_seconds > 0:
@@ -109,25 +108,40 @@ func _update_slot_ui(slot_num: int) -> void:
 		date_label.visible = false
 		playtime_label.visible = false
 		current_progress.visible = false
-		texture_rect.texture = load("res://assets/main menu/slot_placeholder.png")
 		summary_label.text = ""
+		texture_rect.texture = null
+
 
 # --- Hover functions ---
 func _on_slot_hovered(slot_node: Node) -> void:
 	var summary_label = slot_node.get_node("summary_label")
 	var date_label = slot_node.get_node("date_created")
 	var playtime_label = slot_node.get_node("playtime")
+	var empty_label = slot_node.get_node("empty_slot")
+	
+	if empty_label.visible:
+		summary_label.visible = false
+		return
+	
 	date_label.visible = false
 	playtime_label.visible = false
 	summary_label.visible = true
+
 
 func _on_slot_unhovered(slot_node: Node) -> void:
 	var summary_label = slot_node.get_node("summary_label")
 	var date_label = slot_node.get_node("date_created")
 	var playtime_label = slot_node.get_node("playtime")
+	var empty_label = slot_node.get_node("empty_slot")
+	
+	if empty_label.visible:
+		summary_label.visible = false
+		return
+	
 	date_label.visible = true
 	playtime_label.visible = true
 	summary_label.visible = false
+
 
 # --- Generate narrative summary ---
 func _generate_narrative_summary(save_data) -> String:
@@ -182,5 +196,6 @@ var scene_summaries := {
 	"act_5_scene_6": "Fragments of Mateo’s diary reveal his fears and secrets, what will Danilo uncover?",
 	"act_5_scene_7": "Fragments of Mateo’s diary reveal his fears and secrets, what will Danilo uncover?",
 	"act_5_scene_8": "Through Mateo’s diary, Danilo uncovers his memories, will he find peace, or be haunted by what was lost?",
-	"act_6_scene_1": "Wendy returns home to search for Danilo, will she find him before it’s too late?"
+	"act_6_scene_1": "Wendy returns home to search for Danilo, will she find him before it’s too late?",
+	"act_6_scene_2": "The End."
 }

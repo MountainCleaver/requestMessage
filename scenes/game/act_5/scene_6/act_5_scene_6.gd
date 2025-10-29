@@ -69,6 +69,6 @@ func act_5_scene_6_done() -> void:
 	# Emit signal to transition to the next scene
 	SignalBus.act_num_scene_num_done.emit(
 		"act_5",
-		"scene_7",
+		"scene_6",
 		"res://scenes/game/act_5/scene_7/act_5_scene_7.tscn"
 	)

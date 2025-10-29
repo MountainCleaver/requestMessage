@@ -45,7 +45,6 @@ func _mateo_run_up() -> void:
 	mateo.direction = Vector2.UP
 	# animated_sprite_2d.play("walk_up")
 
-
 func _show_end() -> void:
 	bgm_out.stop()
 	sfx_crying.play()
@@ -54,7 +53,28 @@ func _show_end() -> void:
 	end.visible = true
 	endimation.play("end")
 	mateo.queue_free()
-	DialogueManager.show_dialogue_balloon(A_5S_5, "mateo_calling_for_help")
+
+	var label: DialogueLabel = $end/TextureRect/DialogueLabel2
+	label.show()
+
+	var line: DialogueLine = await A_5S_5.get_next_dialogue_line("mateo_calling_for_help")
+
+	while line:
+		label.dialogue_line = line 
+		label.type_out() 
+
+		await label.finished_typing
+
+		var advanced := false
+		while not advanced:
+			await get_tree().process_frame
+			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_action_just_pressed("dialog_next"):
+				advanced = true
+
+		if not line.next_id or line.next_id == "END" or line.next_id == "":
+			break
+		line = await A_5S_5.get_next_dialogue_line(line.next_id)
+
 
 func act_5_scene_5_done() -> void:
 	SaveManager.game_save.current_act = "act_5"

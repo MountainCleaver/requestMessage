@@ -38,12 +38,27 @@ do _mateo_run_again()
 => END
 
 ~ mateo_calling_for_help
-Mateo_child_crying: [speed=0.5][font_size=55.0]HELP! HELP! 
-Mateo_child_crying: [wave]'TAY! 'NAY![/wave]
-Mateo_child_crying: [speed=0.5][font_size=50.0]I’M RIGHT HERE!!!
-Mateo_child_crying: [speed=0.5][font_size=45.0][shake]DANILO... WENDY... 
-Mateo_child_crying: [speed=0.5][font_size=40.0][shake]I don’t want to die yet... [/shake]
-Mateo_child_crying: [speed=0.5][font_size=37.0][shake]There’s still so much I want to do...[/shake]
-Mateo_child_crying: [speed=0.5][font_size=37.0][shake]I’m still right [/shake][fade]here . . .
+Mateo_child_crying: [speed=0.5][shake]HELP! HELP![/shake]
+Mateo_child_crying: [wave][shake]'TAY! 'NAY![/shake]
+Mateo_child_crying: [speed=0.5][shake]I’M RIGHT HERE!!![/shake]
+Mateo_child_crying: [speed=0.5][shake]DANILO... WENDY...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=50.0][shake]I don’t want to die yet... [/shake]
+Mateo_child_crying: [speed=0.5][font_size=45.0][shake]There’s still so much I want to do...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=40.0][shake]I’m still right [/shake]here . . .
+Mateo_child_crying: [speed=0.5][font_size=37.0][shake]I... I can’t feel my arms anymore...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=35.0][shake]I don’t have the strength to pull myself up...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=32.0][shake]‘Tay... I’m sorry...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=32.0][shake]I didn’t mean to run...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=32.0][shake]I just wanted it to stop...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=30.0][shake]Danilo... I’m sorry...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=30.0][shake]I never got to show you... my promise...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=30.0][shake]It was supposed to be something special...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=30.0][shake]Guess you’ll... have to find it... without me...[/shake]
+Mateo_child_crying: [speed=0.6][font_size=29.0][shake]I’m so tired...[/shake]
+Mateo_child_crying: [speed=0.6][font_size=28.0][shake]Please... don’t forget me...[/shake]
+Mateo_child_crying: [speed=0.7][font_size=26.0]I’m still here...
+Mateo_child_crying: [speed=0.8][font_size=20.0]Still.[fade].. here...[/fade]
+Mateo_child_crying: [speed=1.0][font_size=15.0][fade]...
 do act_5_scene_5_done()
 => END
+

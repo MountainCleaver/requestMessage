@@ -325,16 +325,6 @@ func _on_explore_triggered(body, spot_name: String):
 	explored_spots[spot_name] = true
 	ObjectiveManager.update_progress(explore_objective_id)
 
-	var danilo_light: PointLight2D = null
-	if player_danilo:
-		danilo_light = player_danilo.get_node_or_null("PointLight2D")
-
-	# === Light grows before dialogue ===
-	if danilo_light:
-		danilo_light.visible = true
-		var grow_tween = create_tween()
-		grow_tween.tween_property(danilo_light, "texture_scale", 1.0, 0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
 	match spot_name:
 		"cabinet":
 			DialogueManager.show_dialogue_balloon(A_4S_3, "explore_cabinet")
@@ -347,11 +337,6 @@ func _on_explore_triggered(body, spot_name: String):
 		"candle":
 			DialogueManager.show_dialogue_balloon(A_4S_3, "explore_candle")
 			await DialogueManager.dialogue_ended
-
-	# === Light shrinks back after dialogue ===
-	if danilo_light:
-		var shrink_tween = create_tween()
-		shrink_tween.tween_property(danilo_light, "texture_scale", 0.5, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 
 	if explored_spots.size() >= total_explore_spots:
 		ObjectiveManager.complete_objective(explore_objective_id)

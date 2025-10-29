@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://bdx5gkodqm75x"]
+[gd_scene load_steps=50 format=4 uid="uid://bdx5gkodqm75x"]
 
 [ext_resource type="Script" uid="uid://5je4budalo0h" path="res://scenes/game/act_5/scene_5/act_5_scene_5_run_to_cliff.gd" id="1_rfuin"]
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="2_rfuin"]
@@ -12,8 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="9_mlywb"]
 [ext_resource type="Texture2D" uid="uid://cqlemxpf5ymis" path="res://assets/tilesets/cliff_tileset.png" id="12_au5ew"]
 [ext_resource type="Texture2D" uid="uid://cttaf3n6wm5sl" path="res://assets/tilesets/CLIFF_WAVE_EFFECT.png" id="13_h57kr"]
+[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="14_mlywb"]
 [ext_resource type="Texture2D" uid="uid://xpqxbhlnip36" path="res://assets/character_sprites/end_end1.png" id="14_ykqdw"]
 [ext_resource type="Texture2D" uid="uid://cva30cjg2d7fj" path="res://assets/character_sprites/end_end2.png" id="15_mlywb"]
+[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="15_s8kx2"]
 [ext_resource type="Texture2D" uid="uid://d33bgp4autpjp" path="res://assets/character_sprites/end_end3.png" id="16_s8kx2"]
 [ext_resource type="AudioStream" uid="uid://bwitanjnmskqg" path="res://sound/heartbeat-sfx-320981.mp3" id="17_s8kx2"]
 [ext_resource type="AudioStream" uid="uid://clg772l8q2vgs" path="res://sound/shadows-and-echoes-dramatic-serious-background-free-music-425909.mp3" id="18_rct2k"]
@@ -542,6 +544,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("14_ykqdw")
+
+[node name="DialogueLabel2" parent="end/TextureRect" instance=ExtResource("14_mlywb")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 56.0
+offset_top = 881.0
+offset_right = -53.0
+offset_bottom = 945.0
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("8_ykqdw")
+theme_override_fonts/italics_font = ExtResource("15_s8kx2")
+theme_override_font_sizes/normal_font_size = 72
+theme_override_font_sizes/italics_font_size = 34
+text = "Dialogue..."
+horizontal_alignment = 1
 
 [node name="endimation" type="AnimationPlayer" parent="end"]
 libraries = {
