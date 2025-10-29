@@ -67,8 +67,6 @@ func _on_exit_to_main_menu_pressed() -> void:
 
 
 func _on_exit_main_menu_dialog_confirmed() -> void:
-	
-	
 	# clean phone screens
 	if Hud.has_node("Control/phone/MarginContainer"):
 		var phone_margin_container = Hud.get_node("Control/phone/MarginContainer")
@@ -76,20 +74,25 @@ func _on_exit_main_menu_dialog_confirmed() -> void:
 			if node.name != "lock_screen":
 				node.queue_free()
 
-	if Hud.phone_showing:
-		Hud.phone_outro() # shit aint working, cant fix it :(
-		print("Remove phone: phone outro playing")
-	
+	# UPDATE: FIXED BY HIDING NA LANG   ||   shit aint working, cant fix it :( 
+	if Hud.has_node("Control/phone"):
+		var phone_node = Hud.get_node("Control/phone")
+		phone_node.visible = false
+
+	# clean objectives
 	if Hud.objectives_panel.visible or ObjectiveManager.objectives:
 		ObjectiveManager.empty_objectives()
 		Hud.hide_objectives()
 		Hud.clear_objectives()
-	
+
+	# hide any popups
 	if Hud.popup_showing:
 		Hud.hide_popup()
-	
+
+	# hide pause screen and go to main menu
 	hide_pause_screen()
 	SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
+
 	
 
 
