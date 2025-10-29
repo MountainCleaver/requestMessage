@@ -45,7 +45,6 @@ func _on_slot_pressed(slot_number: int) -> void:
 
 
 func _on_newsave_confirmed() -> void:
-	print("Creating new game in slot %d" % selected_slot)
 	SaveManager.current_slot = selected_slot
 	SaveManager.reset_save_state()
 	
@@ -55,7 +54,6 @@ func _on_newsave_confirmed() -> void:
 	SaveManager.save_game()
 	
 	if Session.user_ID != 0:
-		print("[MenuLoad] Pushing new save online for user:", Session.user_ID)
 		SaveManager._push_online_save(
 			SaveManager.game_save.current_act,
 			SaveManager.game_save.current_scene
@@ -69,21 +67,16 @@ func _on_newsave_confirmed() -> void:
 
 
 func _on_overwrite_confirmed() -> void:
-	print("Overwriting slot %d" % selected_slot)
-	
 	SaveManager.current_slot = selected_slot
 	SaveManager.reset_save_state()
 	SaveManager.game_save.date_created = Time.get_unix_time_from_system()
 	SaveManager.save_game()
 	
 	if Session.user_ID != 0:
-		print("[MenuLoad] Uploading overwritten save online for user:", Session.user_ID)
 		SaveManager._push_online_save(
 			SaveManager.game_save.current_act,
 			SaveManager.game_save.current_scene
 		)
-	else:
-		print("[MenuLoad] Skipped online push: user not logged in.")
 	
 	if BgmManager:
 		BgmManager.stop_music()
