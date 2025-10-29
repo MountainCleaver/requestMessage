@@ -78,7 +78,8 @@ func _show_end() -> void:
 
 func act_5_scene_5_done() -> void:
 	SaveManager.game_save.current_act = "act_5"
-	SaveManager.game_save.current_scene = "scene_6"
+	SaveManager.game_save.current_scene = "scene_5"
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit(
 		"act_5", "scene_5", "res://scenes/game/act_5/scene_6/act_5_scene_6.tscn"
 	)
