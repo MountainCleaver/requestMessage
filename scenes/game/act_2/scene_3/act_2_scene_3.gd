@@ -14,6 +14,7 @@ const A_2S_3 = preload("res://dialogues/act_2/scene_3/a2s3.dialogue")
 @onready var camera_2d: Camera2D = $"bus_terminal/y-sorted2/player_danilo/Camera2D"
 
 @onready var car_noise: AudioStreamPlayer = $SFX_CAR
+@onready var sfx_notif: AudioStreamPlayer = $SFX_NOTIF
 
 @onready var bus_areas = {
 	"montelargo": $bus_areas/montelargo,
@@ -286,6 +287,7 @@ func enable_bus_trigger():
 
 # Magvibrate yung phone then labas yung hud ng phone then chat ni unknown sender
 func _on_phone_trigger_body_entered(body: Node2D) -> void:
+	sfx_notif.play()
 	if body.name != "player_danilo":
 		return
 

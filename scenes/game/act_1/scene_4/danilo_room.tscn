@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://tufc0rj0skyh" path="res://assets/tilesets/glass_ov_woa.png" id="4_c2l0o"]
 [ext_resource type="Script" uid="uid://bcgenq0ipmuwq" path="res://scenes/game/act_1/scene_1/sprite_2d.gd" id="5_ifv6x"]
 [ext_resource type="AudioStream" uid="uid://c8h20eekm6dv4" path="res://sound/mobile-vibrate-sfx-323777.mp3" id="7_hil60"]
-[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="7_jww3u"]
+[ext_resource type="AudioStream" uid="uid://cuctv0bea2fou" path="res://sound/suspense-piano-theme-131357.mp3" id="7_qg3ye"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hil60"]
 texture = ExtResource("1_jwl4k")
@@ -1968,14 +1968,14 @@ debug_color = Color(0.956643, 5.77569e-07, 0.536835, 0.42)
 [node name="sleep_marker" type="Marker2D" parent="."]
 position = Vector2(-46, 0)
 
-[node name="pause_overlay" type="CanvasLayer" parent="."]
-layer = 101
-
-[node name="pause_screen" parent="pause_overlay" instance=ExtResource("7_jww3u")]
-visible = false
-
 [node name="buzz_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_hil60")
+bus = &"sfx"
+
+[node name="BGMRoom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_qg3ye")
+volume_db = -6.679
+bus = &"music"
 
 [connection signal="body_entered" from="water_glass/water_area" to="." method="_on_water_area_body_entered"]
 [connection signal="body_exited" from="water_glass/water_area" to="." method="_on_water_area_body_exited"]

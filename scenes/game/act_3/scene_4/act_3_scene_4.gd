@@ -14,6 +14,7 @@ const A_3S_4 = preload("uid://15o68hvrk4n0")
 @onready var collision_shape_2d: CollisionShape2D = $player_danilo/CollisionShape2D
 
 @onready var bgm_house: AudioStreamPlayer = $BGM_HOUSE
+@onready var bgm_suspense: AudioStreamPlayer = $BGM_SUSPENSE
 
 var current_location: Node2D
 
@@ -73,6 +74,7 @@ var scene_objectives: Array[Dictionary] = [
 
 func _ready() -> void:
 	_game_state_flow()
+	bgm_house.play()
 	FlashlightManager.set_current_scene("act_3", "scene_4")
 	FlashlightManager.disable_flashlights()
 	_switch_location(
@@ -158,6 +160,8 @@ func _input(event: InputEvent) -> void:
 					can_interact = false
 					DialogueManager.show_dialogue_balloon(A_3S_4, "home_door")
 				else:
+					bgm_house.stop()
+					bgm_suspense.play()
 					can_interact = false
 					_switch_location(
 						SCENE_4_HOUSE,

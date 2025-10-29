@@ -23,6 +23,7 @@ extends Node2D
 @onready var bgm_forest: AudioStreamPlayer = $BGM_FOREST
 @onready var sfx_breathing: AudioStreamPlayer = $SFX_BREATHING
 @onready var bgm_afterrun: AudioStreamPlayer = $BGM_AFTERRUN
+@onready var sfx_thunder: AudioStreamPlayer = $SFX_THUNDER
 
 # preloads
 const A_3S_4 = preload("uid://15o68hvrk4n0")
@@ -130,14 +131,13 @@ func _remove_dream_elements() -> void:
 	glimmering_light.queue_free()
 	void_fx.queue_free()
 
-
 func _on_ghost_turn_left_body_entered(body: Node2D) -> void:
 	if body.name == "npc_shadowy_ghost":
 		_ghot_turn_left()
 		$"y-sorted/player_danilo/shock_sprite".queue_free()
 
-
 func _on_shazam_body_entered(body: Node2D) -> void:
+	sfx_thunder.play()
 	print("play lightning sound here")
 	bgm_afterrun.stop()
 	SignalBus.dream_done.emit()

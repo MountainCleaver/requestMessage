@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://2y5djxd1h1rf"]
+[gd_scene load_steps=22 format=4 uid="uid://2y5djxd1h1rf"]
 
 [ext_resource type="Script" uid="uid://b5sef7lwblaaw" path="res://scenes/game/act_3/scene_4/scene_4_house.gd" id="1_lb2xf"]
 [ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="1_sc0s6"]
@@ -6,7 +6,6 @@
 [ext_resource type="Shader" uid="uid://b3lvkrry8eaot" path="res://scenes/game/act_3/scene_4/glitch.gdshader" id="4_jkcxj"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="5_ut7ow"]
 [ext_resource type="Texture2D" uid="uid://cuo886qs3guh8" path="res://assets/character_sprites/Light.png" id="6_ut7ow"]
-[ext_resource type="AudioStream" uid="uid://dtxk8kgp3xcpn" path="res://sound/dark-loops-000-piano-efect-80-bpm-6329.mp3" id="7_ands5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x6h4v"]
 texture = ExtResource("2_x6h4v")
@@ -558,12 +557,6 @@ texture = ExtResource("6_ut7ow")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="night"]
 color = Color(0.39824685, 0.28982264, 0.46075797, 1)
-
-[node name="BGM_HOUSE" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_ands5")
-volume_db = -5.098
-autoplay = true
-bus = &"music"
 
 [connection signal="body_entered" from="danilo_hometown_house/map/picture_frame/picture_area" to="." method="_on_picture_area_body_entered"]
 [connection signal="body_exited" from="danilo_hometown_house/map/picture_frame/picture_area" to="." method="_on_picture_area_body_exited"]

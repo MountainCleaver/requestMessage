@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://cufo6e4mgj2jy"]
+[gd_scene load_steps=46 format=4 uid="uid://cufo6e4mgj2jy"]
 
 [ext_resource type="PackedScene" uid="uid://dg5rdj5dftbue" path="res://scenes/game/act_2/scene_3/bus_terminal.tscn" id="1_4qgvt"]
 [ext_resource type="Script" uid="uid://bfae3i24nnice" path="res://scenes/game/act_2/scene_3/act_2_scene_3.gd" id="1_wp4ah"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dbrsiich4o3bd" path="res://assets/character_sprites/jeep2-Sheet.png" id="11_cifa0"]
 [ext_resource type="AudioStream" uid="uid://qndbrccsbkrj" path="res://sound/thar-jeep-on-offroad-185664.mp3" id="13_2ds7q"]
 [ext_resource type="AudioStream" uid="uid://fvjnxtxps0a2" path="res://sound/emotional-paino-238158.mp3" id="14_vnh1l"]
+[ext_resource type="AudioStream" uid="uid://tcwf3ci0qbdv" path="res://sound/new-notification-09-352705.wav" id="15_njkv1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sf27w"]
 texture = ExtResource("2_wp4ah")
@@ -664,6 +665,11 @@ stream = ExtResource("14_vnh1l")
 volume_db = -19.372
 autoplay = true
 bus = &"music"
+
+[node name="SFX_NOTIF" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_njkv1")
+volume_db = -5.073
+bus = &"sfx"
 
 [connection signal="body_entered" from="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact" to="." method="_on_bus_interact_body_entered"]
 [connection signal="body_exited" from="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact" to="." method="_on_bus_interact_body_exited"]

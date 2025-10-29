@@ -11,6 +11,7 @@ const DARK_FOREST = preload("res://scenes/game/act_4/scene_3/dark_forest.tscn")
 const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
 const SCHED_ICON = preload("uid://d1ye4ylli8nca")
 
+@onready var bgm_music: AudioStreamPlayer = $BGM_MUSIC
 # ===================
 # NODES
 # ===================

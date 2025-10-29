@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://b81pheiysdhv7"]
+[gd_scene load_steps=32 format=4 uid="uid://b81pheiysdhv7"]
 
 [ext_resource type="Script" uid="uid://cqt73nqcoiosu" path="res://scenes/game/act_4/scene_2/graveyard.gd" id="1_avryt"]
 [ext_resource type="Texture2D" uid="uid://cvyn0215nw1hb" path="res://assets/tilesets/graveyard_floor.png" id="1_qq610"]
@@ -10,8 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://cbaqwksgv6wix" path="res://assets/character_sprites/light1.png" id="8_gmiot"]
 [ext_resource type="Texture2D" uid="uid://cow5dh6yexjcx" path="res://assets/character_sprites/question.png" id="9_cwevg"]
 [ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="10_u5qgj"]
-[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="11_my1an"]
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="12_7yelt"]
+[ext_resource type="AudioStream" uid="uid://dsdh5ru4jekqg" path="res://sound/dark-woods-underscore-by-brolefilmer-16433.mp3" id="13_nvkko"]
+[ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="14_j6x08"]
+[ext_resource type="AudioStream" uid="uid://cjc5ixlprlpu5" path="res://sound/hand-digging-dirt-leaves-crunch-32630.mp3" id="15_mrdkr"]
+[ext_resource type="AudioStream" uid="uid://qx6u4xfeym4y" path="res://sound/Door House Lock 4 - QuickSounds.com.mp3" id="16_66hfa"]
+[ext_resource type="AudioStream" uid="uid://cjvp8k3gmi6kx" path="res://sound/opening-door-411632.mp3" id="17_bs4r0"]
+[ext_resource type="AudioStream" uid="uid://tcwf3ci0qbdv" path="res://sound/new-notification-09-352705.wav" id="18_66hfa"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v2uog"]
 load_path = "res://.godot/imported/dirt_key.png-f89916853116860d075e2fb51bf1bb7f.ctex"
@@ -1405,13 +1410,36 @@ position = Vector2(-245, 5)
 
 [node name="explorer_hud" parent="." instance=ExtResource("10_u5qgj")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 101
-
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("11_my1an")]
-visible = false
-
 [node name="meds_lighting_handler" parent="." instance=ExtResource("12_7yelt")]
+
+[node name="BGM_GRAVE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_nvkko")
+volume_db = -5.073
+autoplay = true
+bus = &"music"
+
+[node name="SFX_GRAVE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_j6x08")
+volume_db = -7.61
+autoplay = true
+bus = &"sfx"
+
+[node name="SFX_DIGGING" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_mrdkr")
+bus = &"sfx"
+
+[node name="SFX_LOCK" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_66hfa")
+bus = &"sfx"
+
+[node name="SFX_OPEN" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_bs4r0")
+bus = &"sfx"
+
+[node name="SFX_NOTIF" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_66hfa")
+volume_db = -5.073
+bus = &"sfx"
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="Interactable/house_enter" to="." method="_on_house_enter_body_entered"]
