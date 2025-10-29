@@ -83,7 +83,6 @@ func _game_state_flow() -> void:
 # ===================
 func _start_scene() -> void:
 	await get_tree().process_frame
-	Hud.show_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	DialogueManager.show_dialogue_balloon(A_5S_1, "start")
 
@@ -117,6 +116,7 @@ func _switch_to_chapel_interior(from_where: String = "default") -> void:
 
 	match from_where:
 		"first_entry":
+			player_danilo.last_direction = Vector2.UP
 			DialogueManager.show_dialogue_balloon(A_5S_1, "light_candle")
 			await DialogueManager.dialogue_ended
 			ObjectiveManager.add_progress_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"], total_candles)
@@ -138,6 +138,7 @@ func _switch_to_chapel_interior(from_where: String = "default") -> void:
 					light.visible = true
 					light.texture_scale = 1.7 if index == 0 else 5.0
 
+			player_danilo.last_direction = Vector2.UP
 			DialogueManager.show_dialogue_balloon(A_5S_1, "after_arrange_pages")
 			await DialogueManager.dialogue_ended
 			Hud.show_objectives()
