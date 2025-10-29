@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://ciwb07kh3ghdu"]
+[gd_scene load_steps=18 format=4 uid="uid://ciwb07kh3ghdu"]
 
 [ext_resource type="Script" uid="uid://d0bttnfk35w0f" path="res://scenes/game/act_4/scene_4/dark_forest.gd" id="1_hfvsf"]
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_xhb44"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://u2835b7rt2l8" path="res://sound/horror-atmosphere-background(chosic.com).mp3" id="5_puqq2"]
 [ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="6_vypgd"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="7_dfldy"]
+[ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="8_3b33a"]
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="8_4m1m1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
@@ -110,13 +111,6 @@ position = Vector2(0, -29)
 shape = SubResource("RectangleShape2D_hy5cb")
 debug_color = Color(0.88233536, 0.32717732, 0.20909005, 0.41960785)
 
-[node name="BGMForest" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-9, 346)
-stream = ExtResource("5_puqq2")
-autoplay = true
-max_distance = 600.0
-bus = &"music"
-
 [node name="explorer_hud" parent="." instance=ExtResource("6_vypgd")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -126,5 +120,17 @@ layer = 101
 visible = false
 
 [node name="meds_lighting_handler" parent="." instance=ExtResource("8_4m1m1")]
+
+[node name="SFX_DARKFORREST" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_3b33a")
+volume_db = -7.61
+autoplay = true
+bus = &"sfx"
+
+[node name="BGM_DARKFORREST" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_puqq2")
+volume_db = -8.878
+autoplay = true
+bus = &"music"
 
 [editable path="meds_lighting_handler"]

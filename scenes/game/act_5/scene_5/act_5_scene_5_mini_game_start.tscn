@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cqlyn65cwpflk"]
+[gd_scene load_steps=27 format=4 uid="uid://cqlyn65cwpflk"]
 
 [ext_resource type="Texture2D" uid="uid://c52llg0na7jwd" path="res://assets/character_sprites/MATEO.png" id="1_0lam3"]
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_6hk6l"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b0vj3gd5e17gq" path="res://assets/character_sprites/MANG_GINO_with_STICK.png" id="2_6hk6l"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="4_1tmfk"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_f2day"]
+[ext_resource type="AudioStream" uid="uid://t52adkog1sgl" path="res://sound/creepy-suspense-horror-background-music-251989.mp3" id="7_mcovd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1tmfk"]
 texture = ExtResource("1_6hk6l")
@@ -221,5 +222,9 @@ vertical_alignment = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_586vk")
+
+[node name="BGM_CHASE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_mcovd")
+autoplay = true
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

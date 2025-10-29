@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://bcachtmhy0ht4"]
+[gd_scene load_steps=29 format=4 uid="uid://bcachtmhy0ht4"]
 
 [ext_resource type="PackedScene" uid="uid://c3glrajf2ba8i" path="res://scenes/game/act_1/scene_3/habulan_ground.tscn" id="1_gowgh"]
 [ext_resource type="Script" uid="uid://dfrixbwkrdmgk" path="res://scenes/game/act_5/scene_4/act_5_scene_4.gd" id="1_n83m4"]
@@ -11,6 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://c1hoimquf721b" path="res://scenes/characters/npc_gino_with_stick.tscn" id="8_x4508"]
 [ext_resource type="PackedScene" uid="uid://c2hj7wn1ubi2y" path="res://scenes/characters/npc_mateo.tscn" id="9_pjcym"]
 [ext_resource type="Script" uid="uid://b37twnoqtpb4t" path="res://scenes/game/act_5/scene_4/gino_with_stick_no_chase.gd" id="10_fbygi"]
+[ext_resource type="AudioStream" uid="uid://bkrv3jjkj8jv6" path="res://sound/kids-giggling-laughing-423434.mp3" id="12_tspk8"]
+[ext_resource type="AudioStream" uid="uid://ofva6m26ytu5" path="res://sound/leaves-rustle-03-329001.mp3" id="13_tdnpr"]
+[ext_resource type="AudioStream" uid="uid://bsxb5w88gurne" path="res://sound/sudden-shock-reveal-bass-283846.mp3" id="14_co12f"]
+[ext_resource type="AudioStream" uid="uid://bb3qlso0v31nk" path="res://sound/450509__abyeditsound__clockticksound_01.mp3" id="15_sxv3j"]
+[ext_resource type="AudioStream" uid="uid://dmtv0s5nxv220" path="res://sound/piano-country-music-61994.mp3" id="16_lv080"]
+[ext_resource type="AudioStream" uid="uid://b1jhcrgh6g76i" path="res://sound/244417__lennyboy__scaryviolins.mp3" id="17_taeto"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fbygi"]
 texture = ExtResource("4_guksf")
@@ -250,6 +256,34 @@ collision_mask = 27
 position = Vector2(0, 149)
 shape = SubResource("RectangleShape2D_guksf")
 debug_color = Color(0.91494787, 8.336246e-05, 0.7163006, 0.41960785)
+
+[node name="SFX_LAUGHING" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_tspk8")
+volume_db = -13.358
+bus = &"sfx"
+
+[node name="SFX_RUSTLE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_tdnpr")
+volume_db = -13.358
+bus = &"sfx"
+
+[node name="SFX_SHOCK" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_co12f")
+volume_db = -13.358
+bus = &"sfx"
+
+[node name="SFX_CLOCK" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_sxv3j")
+volume_db = -13.358
+bus = &"sfx"
+
+[node name="BGM_LARUAN" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_lv080")
+bus = &"music"
+
+[node name="BGM_TENSED" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_taeto")
+bus = &"music"
 
 [connection signal="body_entered" from="areas/scene_end" to="." method="_on_scene_end_body_entered"]
 

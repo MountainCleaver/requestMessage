@@ -10,6 +10,7 @@ const DANILO_LOCK = preload("res://scenes/game/lock_screen.tscn")
 @onready var locations: Node2D = $locations
 @onready var ChatHistory = get_node("/root/ChatHistory")
 var player_danilo: CharacterBody2D = null
+var bgm_room: AudioStreamPlayer = null
 
 # OBJECTIVES
 var scene_objectives = [
@@ -101,7 +102,7 @@ func switch_location(scene: PackedScene) -> void:
 	current_location = scene.instantiate()
 	locations.add_child(current_location)
 	player_danilo = current_location.get_node("player_danilo")
-
+	
 # ===================
 # BUZZ AUDIO
 # ===================
@@ -164,6 +165,9 @@ func _on_chat_opened(chat_name: String) -> void:
 				Hud.hide_objectives()
 				Hud.phone_outro()
 				await get_tree().create_timer(0.8).timeout
+				bgm_room = current_location.get_node_or_null("BGMRoom")
+				if bgm_room:
+					bgm_room.stop()
 				scene_4_done()
 
 func _on_chat_closed(chat_name: String) -> void:
@@ -256,7 +260,9 @@ func _switch_to_danilo_room() -> void:
 	TransitionFade.transition()
 	await SignalBus.on_transition_finished
 	switch_location(DANILO_ROOM)
-
+	bgm_room = current_location.get_node_or_null("BGMRoom")
+	if bgm_room:
+		bgm_room.play() 
 	ObjectiveManager.complete_objective(scene_objectives[5]["ID"])
 	ObjectiveManager.add_objective(scene_objectives[6]["ID"], scene_objectives[6]["text"])
 	DialogueManager.show_dialogue_balloon(A_1S_4, "after_home")
@@ -268,6 +274,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and player_danilo:
 		if player_danilo.get_parent().in_bahay_area:
 			_switch_to_danilo_room()
+			
 
 # ===================
 # SCENE COMPLETE

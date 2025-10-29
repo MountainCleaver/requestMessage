@@ -2047,8 +2047,6 @@ collision_mask = 62
 [node name="AnimatedSprite2D" parent="y-sorted/player_danilo" index="0"]
 animation = &"idle_up"
 autoplay = "idle_up"
-frame = 0
-frame_progress = 0.0
 
 [node name="tip_shocked" type="Sprite2D" parent="y-sorted/player_danilo"]
 visible = false
@@ -2099,12 +2097,12 @@ shape = SubResource("RectangleShape2D_y8xea")
 position = Vector2(0, 168.5)
 shape = SubResource("RectangleShape2D_as7bp")
 
+[node name="meds_lighting_handler" parent="." instance=ExtResource("16_sk22o")]
+
 [node name="BGMChapel" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_oeg6y")
 autoplay = true
 bus = &"music"
-
-[node name="meds_lighting_handler" parent="." instance=ExtResource("16_sk22o")]
 
 [editable path="map/candle/candle_1"]
 [editable path="map/candle/candle_2"]

@@ -6,9 +6,16 @@ extends Node2D
 @onready var endimation: AnimationPlayer = $end/endimation
 @onready var atmosphere: CanvasModulate = $act_5_scene_5/atmosphere
 
+@onready var sfx_crying: AudioStreamPlayer = $SFX_CRYING
+@onready var sfx_heart: AudioStreamPlayer = $SFX_heartbeat
+@onready var bgm_out: AudioStreamPlayer = $BGM_OUT
+@onready var bgm_cliff: AudioStreamPlayer = $BGM_cliff
+
+
 var A_5S_5: Resource
 
 func _ready() -> void:
+	bgm_out.play()
 	_load_dialogue()
 	end.visible = false
 	
@@ -39,6 +46,10 @@ func _mateo_run_up() -> void:
 	# animated_sprite_2d.play("walk_up")
 
 func _show_end() -> void:
+	bgm_out.stop()
+	sfx_crying.play()
+	sfx_heart.play()
+	bgm_cliff.play()
 	end.visible = true
 	endimation.play("end")
 	mateo.queue_free()

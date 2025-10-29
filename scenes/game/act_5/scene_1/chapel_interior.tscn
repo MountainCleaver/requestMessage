@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://c4d0ibusf1g3t"]
+[gd_scene load_steps=48 format=4 uid="uid://c4d0ibusf1g3t"]
 
 [ext_resource type="Texture2D" uid="uid://dva0k2uey6rgk" path="res://assets/tilesets/chapel_decorations.png" id="1_35h23"]
 [ext_resource type="Texture2D" uid="uid://gk78kt1brxun" path="res://assets/tilesets/chapel_tiles.png" id="2_sjeyo"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="14_35h23"]
 [ext_resource type="Texture2D" uid="uid://cbaqwksgv6wix" path="res://assets/character_sprites/light1.png" id="14_ic45s"]
 [ext_resource type="AudioStream" uid="uid://dwow3fbcvnre" path="res://sound/calming-rain-257596.mp3" id="15_sjeyo"]
+[ext_resource type="AudioStream" uid="uid://cve0puc5a58rj" path="res://sound/shadow-pulse-mysterious-atmosphere-preview-376834.mp3" id="16_casby"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h46de"]
 texture = ExtResource("1_35h23")
@@ -2183,6 +2184,12 @@ stream = ExtResource("15_sjeyo")
 volume_db = -20.237
 autoplay = true
 bus = &"sfx"
+
+[node name="BGM_INTERIOR" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_casby")
+volume_db = -8.54
+autoplay = true
+bus = &"music"
 
 [editable path="map/candle/candle_1"]
 [editable path="map/candle/candle_2"]

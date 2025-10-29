@@ -24,8 +24,6 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("escape") and get_tree().paused and not in_overlay:
 		hide_pause_screen();
 
-
-
 func show_pause_screen():
 	# Store what currently has focus BEFORE we take it
 	previous_focus = get_viewport().gui_get_focus_owner()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://de34vsm720wog"]
+[gd_scene load_steps=22 format=4 uid="uid://de34vsm720wog"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_rdawc"]
 [ext_resource type="Texture2D" uid="uid://b0j4r1o73s7f5" path="res://assets/tilesets/GRAVEYARD.png" id="2_q25fv"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="4_q25fv"]
 [ext_resource type="Texture2D" uid="uid://cbaqwksgv6wix" path="res://assets/character_sprites/light1.png" id="5_8rhat"]
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="6_54kyq"]
+[ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="7_0qjjw"]
+[ext_resource type="AudioStream" uid="uid://u2835b7rt2l8" path="res://sound/horror-atmosphere-background(chosic.com).mp3" id="8_2heaj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xxtgj"]
 texture = ExtResource("1_rdawc")
@@ -1427,6 +1429,18 @@ position = Vector2(-138, -230)
 shape = SubResource("RectangleShape2D_54kyq")
 
 [node name="meds_lighting_handler" parent="." instance=ExtResource("6_54kyq")]
+
+[node name="SFX_EXTERIOR" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_0qjjw")
+volume_db = -8.878
+autoplay = true
+bus = &"sfx"
+
+[node name="BGM_EXTERIOR" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_2heaj")
+volume_db = -15.219
+autoplay = true
+bus = &"music"
 
 [editable path="y-sorted/player_danilo"]
 [editable path="meds_lighting_handler"]

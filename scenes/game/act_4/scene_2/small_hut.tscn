@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://di37kargq3x1t"]
+[gd_scene load_steps=49 format=4 uid="uid://di37kargq3x1t"]
 
 [ext_resource type="Script" uid="uid://dusqln0xf3b37" path="res://scenes/game/act_4/scene_2/small_hut.gd" id="1_gu5j6"]
 [ext_resource type="Texture2D" uid="uid://b0tn0w1inmrqo" path="res://assets/tilesets/ACT4_S2_HUT _INTERIOR_ground.png" id="1_mc4yw"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="15_o8l7t"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="16_5b6ej"]
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="17_xrk4s"]
+[ext_resource type="AudioStream" uid="uid://tcwf3ci0qbdv" path="res://sound/new-notification-09-352705.wav" id="18_r17y3"]
+[ext_resource type="AudioStream" uid="uid://b1y2yb345umfi" path="res://sound/dramatic-piano-and-strings-177000.mp3" id="19_tcnoc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i8dfo"]
 texture = ExtResource("2_i8dfo")
@@ -3018,6 +3020,17 @@ layer = 101
 visible = false
 
 [node name="meds_lighting_handler" parent="." instance=ExtResource("17_xrk4s")]
+
+[node name="SFX_NOTIF" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_r17y3")
+volume_db = -5.073
+bus = &"sfx"
+
+[node name="BGM_HUT" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_tcnoc")
+volume_db = -5.073
+autoplay = true
+bus = &"music"
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="Interactable/P5" to="." method="_on_p_5_body_entered"]

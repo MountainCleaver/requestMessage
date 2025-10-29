@@ -5,7 +5,7 @@ const SCENE_4_HOUSE = preload("uid://2y5djxd1h1rf")
 const SCENE_4_HOMETOWN = preload("uid://fck7x2vrgla1")
 var A_3S_4: Resource
 
-
+@onready var sfx_knock: AudioStreamPlayer = $SFX_KNOCK
 @onready var locations: Node2D = $locations
 @onready var player_danilo: CharacterBody2D = $player_danilo
 @onready var camera_2d: Camera2D = $Camera2D
@@ -14,6 +14,7 @@ var A_3S_4: Resource
 @onready var collision_shape_2d: CollisionShape2D = $player_danilo/CollisionShape2D
 
 @onready var bgm_house: AudioStreamPlayer = $BGM_HOUSE
+@onready var bgm_suspense: AudioStreamPlayer = $BGM_SUSPENSE
 
 var current_location: Node2D
 
@@ -73,6 +74,7 @@ var scene_objectives: Array[Dictionary] = [
 
 func _ready() -> void:
 	_game_state_flow()
+	bgm_house.play()
 	FlashlightManager.set_current_scene("act_3", "scene_4")
 	FlashlightManager.disable_flashlights()
 	_load_dialogue()
@@ -147,9 +149,11 @@ func _input(event: InputEvent) -> void:
 			#door_gino,area_vanessa, door_jonathan, door_theresa
 			
 			"door_gino":
+				sfx_knock.play()
 				npc_interactions(gino_knocked, "gino_knock", "gino_knock_again")
 				
 			"door_theresa":
+				sfx_knock.play()
 				SignalBus.start_theresa.emit()
 				await get_tree().create_timer(0.5).timeout
 				npc_interactions(theresa_asked, "theresa", "theresa_again")
@@ -160,6 +164,7 @@ func _input(event: InputEvent) -> void:
 				npc_interactions(vanesa_asked, "vanesa", "vanesa_again")
 			
 			"door_jonathan":
+				sfx_knock.play()
 				SignalBus.knocked_jonathan.emit()
 				npc_interactions(jonthan_knocked, "jonathan_knock", "jonathan_knock_again")
 			
@@ -168,6 +173,8 @@ func _input(event: InputEvent) -> void:
 					can_interact = false
 					DialogueManager.show_dialogue_balloon(A_3S_4, "home_door")
 				else:
+					bgm_house.stop()
+					bgm_suspense.play()
 					can_interact = false
 					_switch_location(
 						SCENE_4_HOUSE,

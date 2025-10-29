@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://22beus6b8tv0"]
+[gd_scene load_steps=8 format=3 uid="uid://22beus6b8tv0"]
 
 [ext_resource type="Script" uid="uid://hx604jh0owqq" path="res://scenes/game/act_5/scene_3/act_5_scene_3_part_2.gd" id="1_20vto"]
 [ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="1_coahb"]
 [ext_resource type="PackedScene" uid="uid://c7llhi27g161s" path="res://scenes/game/act_5/scene_3/danilo_follow_mateo.tscn" id="4_20vto"]
+[ext_resource type="AudioStream" uid="uid://famsm8h8jxxv" path="res://sound/neighborhood-noise-background-33025-320959.mp3" id="5_1eseh"]
 [ext_resource type="PackedScene" uid="uid://d1vnt1mlybwuq" path="res://scenes/characters/npc_wendy.tscn" id="5_pqxvr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_20vto"]
@@ -47,6 +48,12 @@ position = Vector2(-682, 230)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="finish"]
 position = Vector2(0, 15)
 shape = SubResource("RectangleShape2D_pqxvr")
+
+[node name="SFXNeighborhood" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1eseh")
+volume_db = -13.358
+autoplay = true
+bus = &"sfx"
 
 [connection signal="body_entered" from="wendy" to="." method="_on_wendy_body_entered"]
 [connection signal="body_entered" from="finish" to="." method="_on_finish_body_entered"]

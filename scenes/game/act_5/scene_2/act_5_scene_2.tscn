@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://lohc24hpe4iq"]
+[gd_scene load_steps=9 format=3 uid="uid://lohc24hpe4iq"]
 
 [ext_resource type="Script" uid="uid://xckegvk58ogq" path="res://scenes/game/act_5/scene_2/act_5_scene_2.gd" id="1_4w01n"]
 [ext_resource type="PackedScene" uid="uid://cgsw7s7nsjjno" path="res://scenes/game/act_5/scene_2/mateo_home.tscn" id="1_jskr0"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dw2hx8ujxd23b" path="res://scenes/characters/npc_gino.tscn" id="4_iggte"]
 [ext_resource type="PackedScene" uid="uid://csl2srhadkcgx" path="res://scenes/characters/npc_matet.tscn" id="5_fu8t6"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="6_fu8t6"]
+[ext_resource type="AudioStream" uid="uid://cfeusndv578x5" path="res://sound/cinematic-dramatic-sad-piano-drama-259052.mp3" id="7_0i30q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iggte"]
 size = Vector2(40, 19)
@@ -40,6 +41,12 @@ layer = 101
 
 [node name="pause_screen" parent="CanvasLayer" instance=ExtResource("6_fu8t6")]
 visible = false
+
+[node name="BGM_MATEO_HOUSE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_0i30q")
+volume_db = -9.494
+autoplay = true
+bus = &"music"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

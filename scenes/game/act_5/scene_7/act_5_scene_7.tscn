@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cscvgwx87p4w4"]
+[gd_scene load_steps=6 format=3 uid="uid://cscvgwx87p4w4"]
 
 [ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="1_b3bhf"]
 [ext_resource type="Script" uid="uid://idnd5plqp7il" path="res://scenes/game/act_5/scene_7/act_5_scene_7.gd" id="1_btl1l"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_sjxjj"]
 [ext_resource type="PackedScene" uid="uid://dwm8ct5kn32i0" path="res://scenes/game/act_5/scene_3/npc_mira.tscn" id="3_btl1l"]
+[ext_resource type="AudioStream" uid="uid://d18rjhgpgdpcx" path="res://sound/dramatic-scene-separation-melancholy-161657.mp3" id="5_vwkph"]
 
 [node name="act_5_scene_7" type="Node2D"]
 script = ExtResource("1_btl1l")
@@ -25,5 +26,9 @@ zoom = Vector2(4, 4)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-44, 11)
+
+[node name="BGM_LARUAN" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_vwkph")
+autoplay = true
 
 [editable path="player_danilo"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=4 uid="uid://bvkcvkexin57k"]
+[gd_scene load_steps=17 format=4 uid="uid://bvkcvkexin57k"]
 
 [ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="2_dnr32"]
 [ext_resource type="Texture2D" uid="uid://bnwgscwxng3ne" path="res://assets/tilesets/Sprite-0005.png" id="3_ayu2q"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="4_gt2ej"]
 [ext_resource type="PackedScene" uid="uid://j6gfyiki6msu" path="res://scenes/characters/npc_lola_ising.tscn" id="4_vvfp4"]
 [ext_resource type="Texture2D" uid="uid://cuo886qs3guh8" path="res://assets/character_sprites/Light.png" id="5_vvfp4"]
+[ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="6_ibm7l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixdqi"]
 texture = ExtResource("3_ayu2q")
@@ -342,6 +343,12 @@ scale = Vector2(0.15500003, 0.16599996)
 energy = 1.09
 blend_mode = 2
 texture = ExtResource("5_vvfp4")
+
+[node name="SFX_HOMETOWN" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ibm7l")
+volume_db = -20.293
+autoplay = true
+bus = &"sfx"
 
 [connection signal="body_entered" from="danilo/y-sorted-objects/areas/house_door_outside" to="." method="_on_house_door_outside_body_entered"]
 [connection signal="body_exited" from="danilo/y-sorted-objects/areas/house_door_outside" to="." method="_on_house_door_outside_body_exited"]

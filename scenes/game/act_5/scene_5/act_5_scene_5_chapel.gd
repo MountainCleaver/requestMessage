@@ -2,6 +2,11 @@ extends Node2D
 
 var A_5S_5: Resource
 
+#SOUNDS
+@onready var sfx_hit: AudioStreamPlayer = $SFX_HIT
+@onready var sfx_crying: AudioStreamPlayer = $SFX_CRYING
+@onready var sfx_rummage: AudioStreamPlayer = $SFX_RUMMAGE
+
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var gino: CharacterBody2D = $"act_5_chapel/y-sorted/npc_gino_with_stick"
 @onready var mateo: CharacterBody2D = $"act_5_chapel/y-sorted/mateo"
@@ -73,7 +78,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 	await get_tree().create_timer(1.0).timeout
 	mateo_animated_sprite_2d.play("crying")
-
+	sfx_crying.play()
 	mateo_turn.queue_free()
 
 
@@ -96,6 +101,7 @@ func _on_vanish_body_entered(body: Node2D) -> void:
 
 func _hit_mateo(next_anim: String) -> void:
 	print(gino.global_position)
+	sfx_hit.play()
 	gino_animated_sprite_2d.play("hitting")
 	_camera_shake(0.7)
 	await gino_animated_sprite_2d.animation_finished
@@ -110,6 +116,7 @@ func _spawn_gino_mateo_stuff() -> void:
 	gino_animated_sprite_2d.play("idle_down")
 
 func _gino_thrashing_stuff() -> void:
+	sfx_rummage.play()
 	gino_animated_sprite_2d.play("idle_left")
 	await get_tree().create_timer(0.2).timeout
 
@@ -121,6 +128,7 @@ func _gino_thrashing_stuff() -> void:
 	gino_animated_sprite_2d.play("idle_right")
 	await get_tree().create_timer(0.2).timeout
 	gino_animated_sprite_2d.play("idle_left")
+	sfx_rummage.stop()
 
 func _gino_respawn() -> void:
 	gino.global_position = gino_hitting_spawn.global_position
