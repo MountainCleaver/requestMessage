@@ -117,19 +117,6 @@ func _load_dialogue() -> void:
 # ===================
 func _start_scene() -> void:
 	await get_tree().process_frame
-	var lines = [
-		"Danilo was supposed to be home yesterday,",
-		"but he didn’t come back. Now Wendy is worried about him.",
-		"[shake rate=10 level=15][color=#ff5555] Where are you Danilo? [/color][/shake]"
-	]
-	await NarrationPanel.show_narration_typewriter(lines, 0.05)
-	await NarrationPanel.hide_narration()
-	TransitionFade.transition()
-	await SignalBus.on_transition_finished
-	_switch_to_wendy_house()
- 
-func _switch_to_wendy_house() -> void:
-	await get_tree().process_frame
 	switch_location(WENDY_HOUSE)
 	DialogueManager.show_dialogue_balloon(A_6S_1, "start")
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
