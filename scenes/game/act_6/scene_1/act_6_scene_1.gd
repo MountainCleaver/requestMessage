@@ -18,6 +18,12 @@ var camera_2d: Camera2D
 var wendy_bother: Sprite2D
 var gino_shocked: Sprite2D
 
+#SOUNDS
+@onready var bgm_house: AudioStreamPlayer = $BGM_HOUSE
+@onready var bgm_town: AudioStreamPlayer = $BGM_TOWN
+@onready var bgm_find: AudioStreamPlayer = $BGM_FIND
+@onready var sfx_bus: AudioStreamPlayer = $SFX_BUS
+
 #NPC
 var npc_vanesa: CharacterBody2D
 var npc_lola_ising: CharacterBody2D
@@ -116,6 +122,7 @@ func _load_dialogue() -> void:
 # START SCENE
 # ===================
 func _start_scene() -> void:
+	bgm_house.play()
 	await get_tree().process_frame
 	switch_location(WENDY_HOUSE)
 	DialogueManager.show_dialogue_balloon(A_6S_1, "start")
@@ -124,6 +131,7 @@ func _start_scene() -> void:
 func _switch_to_danilo_hometown() -> void:
 	await get_tree().process_frame
 	switch_location(HOMETOWN)
+	sfx_bus.play()
 	_setup_hometown_signage()
 	_on_animation_player_animation_finished("intro")
 
@@ -172,6 +180,8 @@ func _on_dark_forest_exit_entered(body):
 	_switch_to_cliff()
 
 func _on_danilo_body_entered(body) -> void:
+	bgm_town.stop()
+	bgm_find.play()
 	if body.name not in ["player_wendy", "player_wendy2"]:
 		return
 	TransitionFade.transition()
@@ -560,9 +570,12 @@ func _door_interacted():
 
 	# Scene switch (assuming this is only for Wendy)
 	_switch_to_danilo_hometown()
+	
 
 
 func _lola_ising_interacted():
+	bgm_house.stop()
+	bgm_town.play()
 	if tip_interact:
 		tip_interact.visible = false
 
@@ -694,6 +707,7 @@ func _vanesa_interacted():
 # ANIMATION
 # ===================
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	sfx_bus.stop()
 	player_wendy.force_cannot_move = false;
 	intro_anim_done  = true;
 	ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])

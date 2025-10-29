@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://sd3ohpeld7ih"]
+[gd_scene load_steps=12 format=3 uid="uid://sd3ohpeld7ih"]
 
 [ext_resource type="Script" uid="uid://vyq3hxt8vx1d" path="res://scenes/game/act_5/scene_8/act_5_scene_8.gd" id="1_bboq8"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="1_q36yt"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://c35qv5jw6am7y" path="res://scenes/characters/npc_whitey_ghost.tscn" id="3_k4njg"]
 [ext_resource type="Shader" uid="uid://b3lvkrry8eaot" path="res://scenes/game/act_3/scene_4/glitch.gdshader" id="3_xk227"]
 [ext_resource type="Shader" uid="uid://cwcvnm4jhoofm" path="res://scenes/game/act_5/scene_8/act_5_scene_8.gdshader" id="6_qbfuh"]
+[ext_resource type="AudioStream" uid="uid://b05yfeypkb4io" path="res://sound/midnight-lake-387720.mp3" id="7_4paue"]
+[ext_resource type="AudioStream" uid="uid://c7ke4aoqboudb" path="res://sound/soft-dramatic-piano-music-409068.mp3" id="8_4paue"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qbfuh"]
 shader = ExtResource("3_xk227")
@@ -137,6 +139,9 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="locations/chapel_interior/y-sorted/mateo_stap"]
 shape = SubResource("RectangleShape2D_k4njg")
 
+[node name="BGMChapel" parent="locations/chapel_interior" index="8"]
+autoplay = false
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 101
 
@@ -154,6 +159,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
+
+[node name="BGM_GOOD" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4paue")
+bus = &"music"
+
+[node name="BGM_BAD" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4paue")
+bus = &"music"
 
 [connection signal="body_entered" from="locations/chapel_interior/y-sorted/mateo_stap" to="." method="_on_mateo_stap_body_entered"]
 
