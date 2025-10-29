@@ -9,6 +9,8 @@ var A_6S_2_1: Resource
 @onready var animated_sprite_2d_wendy: AnimatedSprite2D = $hospital/wendy/AnimatedSprite2D
 
 func _ready():
+	FlashlightManager.set_current_scene("act_6", "scene_2")
+	FlashlightManager.disable_flashlights()
 	_load_dialogue()
 	await get_tree().process_frame   
 	await _show_intro_narration()

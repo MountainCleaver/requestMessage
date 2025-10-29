@@ -17,6 +17,8 @@ var glitch_timer := 0.0
 var glitch_interval := 2.5
 
 func _ready():
+	FlashlightManager.set_current_scene("act_6", "scene_2")
+	FlashlightManager.disable_flashlights()
 	_load_dialogue()
 	create_blink_overlay()
 	create_glitch_overlay()
