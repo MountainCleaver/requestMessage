@@ -1,11 +1,20 @@
 ~ start
-Danilo: I need to go back to the old chapel.
+Danilo: Huh... it started raining.  
+Danilo: I knew it would. 
+Danilo: Even thunder, just as I expected.  
+Danilo: There’s nowhere to take cover right now.  
+Danilo: I’ll stay at the chapel for now.  
+Danilo: I have to go back to the old chapel.  
+do Hud.show_objectives()
 => END
 
 ~ back_to_chapel_again
-Danilo: [shake rate=20 level=10]I’m going back here... again...[/shake]
-Danilo: [shake rate=20 level=10]I just hope... I won’t see what I saw earlier...[/shake]
+Danilo: [shake rate=20 level=10]Back here again...[/shake]  
+Danilo: [shake rate=20 level=10]I didn’t really have a choice...[/shake]  
+Danilo: [shake rate=20 level=10]The pages will get soaked if I leave them.[/shake]  
+Danilo: [shake rate=20 level=10]I just hope... I don’t see what I saw earlier...[/shake]  
 => END
+
 
 ~ light_candle
 Danilo: I have to light all the candles again...  

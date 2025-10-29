@@ -25,6 +25,7 @@ do _tween_camera_to_ghost()
 Danilo: ???
 Danilo: Ano yun?
 Danilo: Anong panaginip yun?
+Danilo: At ang lakas ng kulog... uulan ba mamaya?  
 - Take medications => take_medications
 - Check phone for messages => check_phone
 => END

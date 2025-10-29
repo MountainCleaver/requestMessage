@@ -25,6 +25,7 @@ do _tween_camera_to_ghost()
 Danilo: ???
 Danilo: What... was that?
 Danilo: What kind of dream was that?
+Danilo: And the thunder... it's so loud... is it going to rain later?  
 - Take medications => take_medications
 - Check phone for messages => check_phone
 => END
