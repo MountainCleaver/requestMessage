@@ -21,6 +21,9 @@ var act_4_scene_1_choice : String = ""
 @onready var color_rect: ColorRect = $DISTORTIOOOOOOOOON/ColorRect
 @onready var big_point_light_2d: PointLight2D = $locations/chapel_interior/map/candle/big_candle/PointLight2D
 
+@onready var bgm_good: AudioStreamPlayer = $BGM_GOOD
+@onready var bgm_bad: AudioStreamPlayer = $BGM_BAD
+
 signal ghost_appears(choice: String)
 
 func _ready() -> void:
@@ -34,8 +37,10 @@ func _ready() -> void:
 	# Decide outcome based on total karma
 	if total_karma < 0:
 		act_4_scene_1_choice = "restless"
+		bgm_bad.play()
 	else:
 		act_4_scene_1_choice = "relief"
+		bgm_good.play()
 
 	_set_danilo_altar()
 	play_dialog(act_4_scene_1_choice)
@@ -103,8 +108,7 @@ func _candle_dim() -> void:
 		tween.tween_property(light, "energy", 1.0, 1.5)
 		tween.tween_property(light, "texture_scale", 4.5, 1.5)
 	
-
-
+		
 func _ghost_appear(choice: String)->void: # after some dialogues, ghost appears, depending on the choice is the one who will appear here
 	# ghost will out of from the shadows then stop in the middle of the chapel
 	tip_shocked.visible = true

@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuvq8dt1fwj82"]
+[gd_scene load_steps=11 format=3 uid="uid://cuvq8dt1fwj82"]
 
 [ext_resource type="PackedScene" uid="uid://dbddyp51xik5v" path="res://cliff2.tscn" id="1_3eq80"]
 [ext_resource type="Script" uid="uid://b87xklruv5euu" path="res://scenes/game/act_5/scene_8/act_5_scene_8_outside_scene.gd" id="1_hxqlv"]
 [ext_resource type="PackedScene" uid="uid://jq5u2gfvckxx" path="res://scenes/game/act_4/scene_4/rock.tscn" id="2_vmj5f"]
-[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="3_co010"]
 [ext_resource type="PackedScene" uid="uid://c35qv5jw6am7y" path="res://scenes/characters/npc_whitey_ghost.tscn" id="3_jcv7v"]
 [ext_resource type="PackedScene" uid="uid://cehrjw85vbr2x" path="res://scenes/characters/npc_shadowy_ghost.tscn" id="4_hxqlv"]
 [ext_resource type="Shader" uid="uid://cwcvnm4jhoofm" path="res://scenes/game/act_5/scene_8/act_5_scene_8.gdshader" id="7_pepyy"]
+[ext_resource type="AudioStream" uid="uid://b05yfeypkb4io" path="res://sound/midnight-lake-387720.mp3" id="8_6kke7"]
+[ext_resource type="AudioStream" uid="uid://c7ke4aoqboudb" path="res://sound/soft-dramatic-piano-music-409068.mp3" id="9_j6474"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pepyy"]
 size = Vector2(20, 300)
@@ -87,12 +88,6 @@ position = Vector2(-32, 3)
 shape = SubResource("RectangleShape2D_pepyy")
 debug_color = Color(0.65199333, 0.42577687, 0.7735606, 0.41960785)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 101
-
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("3_co010")]
-visible = false
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.16968146, 0.20766535, 0.4230367, 1)
 
@@ -110,5 +105,13 @@ grow_vertical = 2
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-380, -291)
 zoom = Vector2(3, 3)
+
+[node name="BGM_GOOD" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_6kke7")
+bus = &"music"
+
+[node name="BGM_BAD" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_j6474")
+bus = &"music"
 
 [editable path="locations/cliff"]
