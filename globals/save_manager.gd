@@ -43,7 +43,6 @@ func _on_session_loaded():
 		print("[SaveManager] No save found for", current_username, "— creating new save.")
 		reset_save_state()
 
-	# Fetch and merge online save automatically
 	if Session.user_ID != 0:
 		_sync_online_save()
 
@@ -51,7 +50,6 @@ func _on_play_timer_tick() -> void:
 	if game_save:
 		game_save.playtime_seconds += 1
 
-	
 func _set_save_paths():
 	if current_slot < 1 or current_slot > 3:
 		current_slot = 1 
@@ -79,27 +77,17 @@ func _set_save_paths():
 	print("[SaveManager] Save path set to:", SAVE_PATH)
 	print("[SaveManager] Backup path set to:", BACKUP_PATH)
 
-
 func _save_game_progress(act: String, scene: String, next_scene: String) -> void:
 	print("Saving progress for user:", current_username, "ID:", current_user_id, "Finished Act:", act, "Scene:", scene)
-
-	# Mark the scene the player just finished
 	mark_scene_finished(act, scene)
-
-	# Parse next_scene to set current_act and current_scene correctly
 	_set_current_scene_from_path(next_scene)
-
-	# Set next scene for transition
 	next_scene_path = next_scene
 	GameSceneManager._change_scene("res://scenes/game/saving_screen.tscn")
 	
 	if current_user_id != 0:
-		track_save_progress(current_user_id, act, scene)
 		_push_online_save(act, scene)
+	
 	print("[SaveManager] Progress saved. Next scene:", next_scene_path)
-
-
-
 
 func load_game() -> void:
 	if FileAccess.file_exists(SAVE_PATH):
@@ -127,7 +115,6 @@ func save_game() -> void:
 	if error != OK:
 		push_error("Failed to save game: %s" % error)
 
-
 func reset_save_state():
 	print("[SaveManager] Resetting local save state (keeping username and paths).")
 	game_save = SaveGameResource.new()
@@ -137,8 +124,6 @@ func reset_save_state():
 	game_save.finished_scenes = {"act_1": ["scene_1"]}
 	game_save.playtime_seconds = 0
 	game_save.date_created = Time.get_unix_time_from_system()
-
-
 
 func save_game_next_scene() -> void:
 	GameSceneManager._change_scene(next_scene_path)
@@ -156,7 +141,6 @@ func mark_scene_finished(act: String, scene: String) -> void:
 	track_save()
 
 	if Session.user_ID != 0:
-		track_save_progress(Session.user_ID, act, scene)
 		_push_online_save(act, scene) 
 	else:
 		print("Warning: user_ID is 0. Progress not sent to API.")
@@ -175,7 +159,6 @@ func has_save() -> bool:
 
 	var test_save = load(path) as SaveGameResource
 	return test_save != null
-
 
 func _save_has_finished_scenes(save_data: SaveGameResource) -> bool :
 	if not save_data:
@@ -198,7 +181,6 @@ func _save_has_finished_scenes(save_data: SaveGameResource) -> bool :
 	
 	return false;
 	
-
 func track_save() -> void:
 	var url = "https://requestmessage-admin.onrender.com/api/track_save.php"
 	var request = HTTPRequest.new()
@@ -216,25 +198,34 @@ func set_player_username(username: String) -> void:
 	current_username = username
 	print("Current username set to: ", current_username)
 	
-func track_save_progress(user_id: int, act: String, scene: String) -> void:
-	var url = "https://requestmessage-admin.onrender.com/api/update_progress.php"
-	var request = HTTPRequest.new()
-	add_child(request)
+func track_ending(user_id: int, current_scene_path: String) -> void:
+	var ending_name := ""
 
-	var data = {
-		"user_id": user_id,
-		"act": act,
-		"scene": scene,
-		"timestamp": Time.get_datetime_string_from_system()
-	}
+	if current_scene_path == "res://scenes/game/act_6/scene_2.1/finally_at_rest.tscn":
+		ending_name = "Good Ending"
+	elif current_scene_path == "res://scenes/game/act_6/scene_2.2/unending_guilt.tscn":
+		ending_name = "Bad Ending"
 
-	var json = JSON.stringify(data)
-	request.request(
-		url,
-		["Content-Type: application/json"],
-		HTTPClient.METHOD_POST,
-		json
-	)
+	if ending_name != "":
+		print("Detected", ending_name, "for user", user_id)
+
+		var request := HTTPRequest.new()
+		add_child(request)
+
+		var url := "https://requestmessage-admin.onrender.com/api/track_endings.php"
+		var data := {
+			"user_id": user_id,
+			"ending_name": ending_name,
+			"achieved_at": Time.get_datetime_string_from_system()
+		}
+
+		var json_data := JSON.stringify(data)
+		request.request(
+			url,
+			["Content-Type: application/json"],
+			HTTPClient.METHOD_POST,
+			json_data
+		)
 
 func switch_account(new_username: String) -> void:
 	current_username = new_username
@@ -302,7 +293,6 @@ func recalc_meds_taken() -> void:
 			count += 1
 	game_save.meds_taken = count
 
-
 func took_meds(act_scene: String) -> void:
 	var prev_choice = game_save.meds_finished_scenes.get(act_scene, "")
 	
@@ -318,7 +308,6 @@ func took_meds(act_scene: String) -> void:
 
 	print("Uminom ng gamot, current na na-inom: " + str(game_save.meds_taken))
 	save_game()
-
 
 func missed_meds(act_scene: String) -> void:
 	var prev_choice = game_save.meds_finished_scenes.get(act_scene, "")
@@ -336,10 +325,8 @@ func missed_meds(act_scene: String) -> void:
 	print("Hindi uminom ng gamot, current count: " + str(game_save.meds_taken))
 	save_game()
 
-
 func get_count_meds_taken() -> int:
 	return game_save.meds_taken
-
 
 func mark_scene_finished_for_meds(act_scene: String, choice: String) -> void:
 	# choice should be "took" or "missed"
@@ -348,7 +335,6 @@ func mark_scene_finished_for_meds(act_scene: String, choice: String) -> void:
 	
 	game_save.meds_finished_scenes[act_scene] = choice
 	print("[SaveManager] Meds scene marked as finished:", act_scene, "Choice:", choice)
-
 
 func is_scene_finished_from_meds(act_scene: String) -> bool:
 	return game_save.meds_finished_scenes.has(act_scene) and game_save.meds_finished_scenes[act_scene] != ""

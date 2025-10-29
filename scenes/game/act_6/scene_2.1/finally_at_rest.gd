@@ -71,4 +71,5 @@ func _end_scene() -> void:
 	TransitionFade.transition()
 
 func _on_transition_finished():
+	SaveManager.track_ending(Session.user_ID, get_tree().current_scene.scene_file_path)
 	get_tree().change_scene_to_file("res://scenes/game/act_6/scene_2.1/good_ending.tscn")
