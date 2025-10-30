@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dp4h52fpsd7vt" path="res://assets/HUD/karatula.png" id="3_vm2el"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5lr3"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v5pfq"]
 bg_color = Color(0, 0, 0, 1)
@@ -89,7 +89,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.112656, 0.112656),
 "update": 0,
-"values": [Vector2(1468.15, 89), Vector2(1111, 89)]
+"values": [Vector2(1468.15, 10), Vector2(1150, 10)]
 }
 
 [sub_resource type="Animation" id="Animation_esk0b"]
@@ -104,7 +104,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(10.9283, 10.9283),
 "update": 0,
-"values": [Vector2(1111, 89), Vector2(1479, 89)]
+"values": [Vector2(1150, 10), Vector2(1479, 10)]
 }
 
 [sub_resource type="Animation" id="Animation_vm2el"]
