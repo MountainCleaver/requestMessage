@@ -685,8 +685,8 @@ func _flicker_all_candles_creepy() -> void:
 		if light:
 			all_lights.append(light)
 
-	var flicker_count := 15  # total flickers
-	var interval := 3.0 / flicker_count  # 3 seconds total
+	var flicker_count := 15
+	var interval := 3.0 / flicker_count
 	_start_creepy_flicker(all_lights, flicker_count, interval)
 
 
@@ -726,14 +726,11 @@ func _start_ghost_slow_approach() -> void:
 	if not npc_ghost or not player_danilo:
 		return
 
-	# Make ghost visible
 	npc_ghost.visible = true
 
-	# Calculate target position (30 px offset from player)
 	var offset = (npc_ghost.global_position - player_danilo.global_position).normalized() * 200
 	var target_pos = player_danilo.global_position - offset
 
-	# Create tween to move ghost over 3 seconds
 	var tween = create_tween()
 	tween.tween_property(npc_ghost, "global_position", target_pos, 3.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
