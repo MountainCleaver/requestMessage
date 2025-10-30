@@ -33,8 +33,10 @@ func _on_radio_windowed_toggled(toggled_on: bool) -> void:
 
 func _on_brightness_slider_value_changed(value: float) -> void:
 	BrightnessManager.set_brightness(value)
-
-
+	
 	# Save to settings
 	Settings.settings.brightness = value
 	Settings.save_settings()
+	
+	# Emit signal to let other scenes know
+	SignalBus.brightness_changed.emit(value)

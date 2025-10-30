@@ -16,6 +16,7 @@ var previous_focus: Control = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.exit_overlay.connect(_exit_overlay)
+	SignalBus.brightness_changed.connect(_on_brightness_changed)
 	hide()
 
 func _input(event: InputEvent) -> void:
@@ -31,6 +32,9 @@ func show_pause_screen():
 	show()
 	get_tree().paused = true
 	continue_option.grab_focus()
+	
+	BrightnessManager.set_brightness(Settings.settings.brightness)
+
 
 func hide_pause_screen():
 	get_viewport().gui_release_focus()
@@ -92,7 +96,8 @@ func _on_exit_main_menu_dialog_confirmed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
 
 	
-
+func _on_brightness_changed(value: float) -> void:
+	BrightnessManager.set_brightness(value)
 
 
 func _on_exit_main_menu_dialog_canceled() -> void:

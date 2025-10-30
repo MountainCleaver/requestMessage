@@ -11,6 +11,7 @@ signal online_save_merged
 
 #menu
 signal exit_overlay
+signal brightness_changed(value)
 
 #phone
 signal phone_in
