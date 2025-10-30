@@ -49,13 +49,16 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
 size = Vector2i(201, 100)
 ok_button_text = "Enter age"
 cancel_button_text = "Exit Game"
 
 [node name="exitConfirmDialog" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
 title = "Confirm Exit"
 initial_position = 2
+size = Vector2i(251, 100)
 ok_button_text = "Yes"
 dialog_text = "Do you want to exit the game?"
 

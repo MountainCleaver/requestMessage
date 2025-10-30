@@ -1,0 +1,180 @@
+[gd_scene load_steps=8 format=3 uid="uid://djn4msvxh86o2"]
+
+[ext_resource type="Script" uid="uid://b0xb6s5qlymsv" path="res://scenes/menu/scripts/privacy_policy.gd" id="1_0h3nn"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="1_5hq7x"]
+[ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_18eaf"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_18eaf"]
+[ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="5_f1lln"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0h3nn"]
+bg_color = Color(0.34117648, 0.34117648, 0.34117648, 0.58431375)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18eaf"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.8784314, 0.2901961, 0.28627452, 0.99215686)
+border_color = Color(0.8784314, 0.2901961, 0.28627452, 0.99215686)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="privacy_policy" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_0h3nn")
+
+[node name="menu_background" parent="." instance=ExtResource("2_18eaf")]
+layout_mode = 1
+offset_right = 1440.0
+offset_bottom = 1024.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 148.0
+offset_top = 24.0
+offset_right = 1288.0
+offset_bottom = 150.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 0.24851418, 0.28477854, 1)
+theme_override_fonts/normal_font = ExtResource("1_5hq7x")
+theme_override_font_sizes/normal_font_size = 70
+text = "REQUEST MESSAGE"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="privacy_holder" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 159.0
+offset_right = 1302.0
+offset_bottom = 909.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0h3nn")
+
+[node name="MarginContainer" type="MarginContainer" parent="privacy_holder"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 4.0
+offset_right = 1151.0
+offset_bottom = 739.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="privacy_holder/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="privacy_holder/MarginContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="policy" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.13333334, 0, 1)
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 45
+text = "
+🔒PRIVACY POLICY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="content_intro" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 27
+text = "
+We value your privacy, your journey and secrets in this mystery remain yours. By signing up,
+you acknowledge andagree to the following:"
+vertical_alignment = 1
+justification_flags = 171
+
+[node name="content_1" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 27
+text = "
+1. Why We Collect Your Info
+
+- To unlock the mysteries behind your story, we collect player data to:
+- Create and secure your account.
+- Provide personalized gameplay and age-appropriate experiences.
+- Restore your progress if you ever get lost."
+
+[node name="content_2" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 27
+text = "
+2. What We Collect
+
+- Contact details (email address, for account access and recovery)
+- Age and birthday (to ensure content is suitable for you)"
+
+[node name="content_3" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 27
+text = "
+3. Data Confidentiality
+
+Your information is kept locked away, never shared with outsiders, unless required by law 
+or with your explicit consent. Only the creators, working behind the shadows, may
+briefly access it to help you if you need support."
+
+[node name="content_4" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 27
+text = "
+4. Data Storage & Retention
+
+Your details are protected in secure server archives, in accordance with digital privacy
+laws.We only keep what’s needed for your adventure, and not a frame longer"
+
+[node name="content_5" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 27
+text = "
+4. Data Storage & Retention
+
+Your details are protected in secure server archives, in accordance with digital privacy
+laws.We only keep what’s needed for your adventure, and not a frame longer"
+
+[node name="outro" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 27
+text = "
+If you accept, your story continues. If you have questions or wish to act on your rights,
+contact us at our official email rm.requestmessage@gmail.com
+
+By creating an account, you consent to this data notice and allow us to shape your experience 
+safely and responsibly."
+
+[node name="btn_accept" type="Button" parent="."]
+layout_mode = 0
+offset_left = 684.0
+offset_top = 938.0
+offset_right = 792.0
+offset_bottom = 987.0
+theme_override_colors/font_color = Color(0.86815435, 0.87741095, 0.8714555, 1)
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_18eaf")
+text = "I accept"
+
+[node name="back_tips" parent="." instance=ExtResource("5_f1lln")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = 1087.0
+offset_top = 922.0
+offset_right = 1087.0
+offset_bottom = 922.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[editable path="back_tips"]
