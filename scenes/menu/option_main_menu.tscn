@@ -1,6 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7yw1h7fpco1e"]
+[gd_scene load_steps=5 format=3 uid="uid://c7yw1h7fpco1e"]
 
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_b7pg7"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="2_4aep4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d282p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7pg7"]
 bg_color = Color(1, 1, 1, 0.52549)
@@ -8,9 +12,6 @@ border_width_left = 80
 border_width_right = 80
 border_color = Color(0.8, 0.8, 0.8, 0)
 border_blend = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d282p"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="option_main_menu" type="Button"]
 anchors_preset = 14
@@ -25,7 +26,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_b7pg7")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxFlat_b7pg7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_b7pg7")
 theme_override_styles/normal = SubResource("StyleBoxFlat_d282p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b7pg7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_b7pg7")
 text = "OPTION"
+script = ExtResource("2_4aep4")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"

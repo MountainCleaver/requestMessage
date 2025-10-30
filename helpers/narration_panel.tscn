@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c22u478jgpm6r"]
+[gd_scene load_steps=7 format=3 uid="uid://c22u478jgpm6r"]
 
 [ext_resource type="Script" uid="uid://cdmfuadykwq1b" path="res://helpers/narration_panel.gd" id="1_gsucg"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_wickx"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="3_8ms4m"]
 [ext_resource type="AudioStream" uid="uid://cl8h4yngn3c0t" path="res://sound/keyboard-typing-one-short-1-2925901.wav" id="3_wickx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsucg"]
@@ -74,6 +75,8 @@ theme_override_fonts/font = ExtResource("2_wickx")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_8ms4m")
 text = "Click to Continue"
+script = ExtResource("3_8ms4m")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

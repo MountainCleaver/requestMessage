@@ -1,6 +1,7 @@
 extends Control
 
 @onready var button: Button = $proceed/Button
+@onready var click: AudioStreamPlayer = $click
 
 var logged_in: bool = false
 
@@ -12,6 +13,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept"):
+		click.play()
 		_go_next_scene()
 
 func _on_proceed_pressed() -> void:

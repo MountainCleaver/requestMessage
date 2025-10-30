@@ -5,7 +5,7 @@ const SCENE_4_HOUSE = preload("uid://2y5djxd1h1rf")
 const SCENE_4_HOMETOWN = preload("uid://fck7x2vrgla1")
 var A_3S_4: Resource
 
-@onready var sfx_knock: AudioStreamPlayer = $SFX_KNOCK
+
 @onready var locations: Node2D = $locations
 @onready var player_danilo: CharacterBody2D = $player_danilo
 @onready var camera_2d: Camera2D = $Camera2D
@@ -15,6 +15,7 @@ var A_3S_4: Resource
 
 @onready var bgm_house: AudioStreamPlayer = $BGM_HOUSE
 @onready var bgm_suspense: AudioStreamPlayer = $BGM_SUSPENSE
+@onready var sfx_knock: AudioStreamPlayer = $SFX_KNOCK
 
 var current_location: Node2D
 

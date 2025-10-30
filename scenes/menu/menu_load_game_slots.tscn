@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvkp6ltunirj6"]
+[gd_scene load_steps=7 format=3 uid="uid://cvkp6ltunirj6"]
 
 [ext_resource type="Script" uid="uid://b6mltrdi1kqt" path="res://scenes/menu/scripts/menu_load_game_slots.gd" id="1_o6fui"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_i2ba1"]
 [ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="3_tr0ge"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_i2ba1"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_ytvd3"]
 [ext_resource type="Texture2D" uid="uid://1wyoo4uhj2in" path="res://assets/main menu/slot_placeholder.png" id="5_7e2vi"]
 
@@ -68,6 +69,8 @@ offset_left = 80.0
 offset_top = 52.0
 offset_right = 1396.0
 offset_bottom = 301.0
+script = ExtResource("4_i2ba1")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 metadata/_edit_group_ = true
 
 [node name="empty_slot" type="Label" parent="slot_1"]
@@ -141,6 +144,8 @@ offset_left = 80.0
 offset_top = 344.0
 offset_right = 1396.0
 offset_bottom = 593.0
+script = ExtResource("4_i2ba1")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 metadata/_edit_group_ = true
 
 [node name="empty_slot" type="Label" parent="slot_2"]
@@ -214,6 +219,8 @@ offset_left = 80.0
 offset_top = 632.0
 offset_right = 1396.0
 offset_bottom = 881.0
+script = ExtResource("4_i2ba1")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 metadata/_edit_group_ = true
 
 [node name="empty_slot" type="Label" parent="slot_3"]

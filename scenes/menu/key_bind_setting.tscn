@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://camvb45ixm320"]
+[gd_scene load_steps=6 format=3 uid="uid://dmt76e2hk0m50"]
 
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="1_6ieko"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_wqf0m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgda0"]
@@ -24,11 +25,14 @@ corner_radius_bottom_left = 5
 
 [node name="key_bind_setting" type="Button"]
 custom_minimum_size = Vector2(0, 50)
+offset_bottom = 50.0
 focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_rgda0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_awxed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q7emt")
 theme_override_styles/focus = SubResource("StyleBoxFlat_q7emt")
+script = ExtResource("1_6ieko")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

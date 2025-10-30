@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1aq4smg1y13r"]
+[gd_scene load_steps=7 format=3 uid="uid://c1aq4smg1y13r"]
 
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_7r2u7"]
 [ext_resource type="Script" uid="uid://cp1ojl3hq2n3l" path="res://scenes/menu/scripts/menu_new_game_slots.gd" id="1_mjo55"]
 [ext_resource type="Texture2D" uid="uid://1wyoo4uhj2in" path="res://assets/main menu/slot_placeholder.png" id="3_7r2u7"]
 [ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="3_mjo55"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_tkyxw"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_jawnl"]
 
 [node name="menu_new_game_slots" type="Control"]
 layout_mode = 3
@@ -47,6 +48,8 @@ offset_left = 80.0
 offset_top = 52.0
 offset_right = 1396.0
 offset_bottom = 301.0
+script = ExtResource("4_jawnl")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 metadata/_edit_group_ = true
 
 [node name="empty_slot" type="Label" parent="slot_1"]
@@ -120,6 +123,8 @@ offset_left = 80.0
 offset_top = 344.0
 offset_right = 1396.0
 offset_bottom = 593.0
+script = ExtResource("4_jawnl")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 metadata/_edit_group_ = true
 
 [node name="empty_slot" type="Label" parent="slot_2"]
@@ -193,6 +198,8 @@ offset_left = 80.0
 offset_top = 632.0
 offset_right = 1396.0
 offset_bottom = 881.0
+script = ExtResource("4_jawnl")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 metadata/_edit_group_ = true
 
 [node name="empty_slot" type="Label" parent="slot_3"]
