@@ -71,7 +71,10 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 	login_link.disabled = false
 
 func _on_signup_link_pressed() -> void:
-	SignalBus.next_scene.emit("res://scenes/menu/menu_create_acc_bday_gender.tscn")
+	SignalBus.next_scene.emit("res://scenes/menu/privacy_policy.tscn")
+
+func _on_forgot_pass_pressed() -> void:
+	SignalBus.next_scene.emit("res://scenes/menu/menu_reset_password.tscn")
 
 func _on_forgot_pass_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_reset_password.tscn")
