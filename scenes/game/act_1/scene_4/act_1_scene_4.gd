@@ -233,9 +233,14 @@ func open_sched() -> void:
 	if not checked_sched:
 		checked_sched = true
 		ObjectiveManager.complete_objective(scene_objectives[0]["ID"])
+		Hud.hide_objectives()
+		Hud.clear_objectives()
 		DialogueManager.show_dialogue_balloon(A_1S_4, "checked_schedule")
+		await DialogueManager.dialogue_ended
+		Hud.show_objectives()
 	if not chat_objectives_added:
 		chat_objectives_added = true
+		Hud.clear_objectives()
 		ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
 		ObjectiveManager.add_objective(scene_objectives[2]["ID"], scene_objectives[2]["text"])
 		ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]["text"])
@@ -245,6 +250,8 @@ func all_chats_checked() -> bool:
 
 func check_add_lock_objective() -> void:
 	if all_chats_checked() and not set1_objective_done:
+		await DialogueManager.dialogue_ended
+		Hud.show_objectives()
 		ObjectiveManager.add_objective(scene_objectives[4]["ID"], scene_objectives[4]["text"])
 
 func _on_last_objective_lock_pressed() -> void:
