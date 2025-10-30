@@ -150,11 +150,11 @@ func _input(event: InputEvent) -> void:
 			#door_gino,area_vanessa, door_jonathan, door_theresa
 			
 			"door_gino":
-				#sfx_knock.play()
+				sfx_knock.play()
 				npc_interactions(gino_knocked, "gino_knock", "gino_knock_again")
 				
 			"door_theresa":
-				#sfx_knock.play()
+				sfx_knock.play()
 				SignalBus.start_theresa.emit()
 				await get_tree().create_timer(0.5).timeout
 				npc_interactions(theresa_asked, "theresa", "theresa_again")
@@ -165,7 +165,7 @@ func _input(event: InputEvent) -> void:
 				npc_interactions(vanesa_asked, "vanesa", "vanesa_again")
 			
 			"door_jonathan":
-				#sfx_knock.play()
+				sfx_knock.play()
 				SignalBus.knocked_jonathan.emit()
 				npc_interactions(jonthan_knocked, "jonathan_knock", "jonathan_knock_again")
 			
