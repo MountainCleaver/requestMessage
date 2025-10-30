@@ -8,7 +8,8 @@ Wendy: [wait=1.5]We were worried, you weren’t answering my messages.
 
 do ChatManager.send_chat("wendy", "Wendy", "Akala ko may nangyari na sayo.") 
 Wendy: [wait=1.5][shake rate=20 level=10]I thought something happened to you.[/shake]
-=> reply_wendy
+do _prevent_chat_exit_while_dialoging()
+=> END
 
 ~ reply_wendy
 do _prevent_chat_exit_while_dialoging()
@@ -17,7 +18,6 @@ Danilo: ...
 => END
 
 ~ reply_wendy_1
-do _prevent_chat_exit_while_dialoging()
 do ChatManager.send_chat("wendy", "Player", "Sorry Wen, ‘di kita nasabihan. Biglaan kasi lahat. Tingin ko...")
 Danilo: Sorry Wen, I didn’t tell you. Everything happened so suddenly. I think...
 - I need to rest first. => reply_wendy_2
