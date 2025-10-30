@@ -96,7 +96,7 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 		ok_btn.pressed.connect(func():
 			Session.save_session(line_edit_username.text, user_ID)
 			popup.queue_free()
-			SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
+			SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn")
 		)
 	else:
 		some_nice_words.text = str(json.get("message", "Unknown error"))
