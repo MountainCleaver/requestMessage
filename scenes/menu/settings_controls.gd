@@ -1,7 +1,7 @@
 extends Control
 
 @onready var action_container: VBoxContainer = $HBoxContainer/ScrollContainer/action_container
-const KEY_BIND_SETTING = preload("uid://camvb45ixm320")
+const KEY_BIND_SETTING = preload("uid://dmt76e2hk0m50")
 @onready var confirmation_dialog: ConfirmationDialog = $ConfirmationDialog
 
 var is_remapping: bool = false
