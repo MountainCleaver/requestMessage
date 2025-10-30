@@ -179,6 +179,12 @@ Danilo: I asked them all...
 do can_interact = true
 => END
 
+~ go_inside
+Danilo: Wait a second...
+Danilo: Something... changed.
+Danilo: The photo...?
+=> END
+
 ~ picture_frame
 do player_danilo.force_cannot_move = true
 Danilo: ...

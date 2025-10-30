@@ -180,6 +180,12 @@ Danilo: Natanong ko na sila...
 do can_interact = true
 => END
 
+~ go_inside
+Danilo: Sandali lang...
+Danilo: Parang... may mali.
+Danilo: 'Yung litrato... bakit parang iba?
+=> END
+
 ~ picture_frame
 do player_danilo.force_cannot_move = true
 Danilo: ...

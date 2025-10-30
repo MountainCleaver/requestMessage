@@ -185,6 +185,9 @@ func _input(event: InputEvent) -> void:
 					ObjectiveManager.complete_objective(scene_objectives[1]["ID"])
 					await get_tree().create_timer(0.4).timeout
 					Hud.hide_objectives()
+					player_danilo.last_direction = Vector2.UP
+					DialogueManager.show_dialogue_balloon(A_3S_4, "go_inside")
+					await DialogueManager.dialogue_ended
 			"picture_frame":
 				can_interact = false
 				npc_interactions(inspected_picture_frame, "picture_frame", "picture_frame_done")
