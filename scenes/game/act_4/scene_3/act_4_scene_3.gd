@@ -341,6 +341,7 @@ func _on_explore_triggered(body, spot_name: String):
 	if explored_spots.size() >= total_explore_spots:
 		ObjectiveManager.complete_objective(explore_objective_id)
 		await get_tree().create_timer(1.0).timeout
+		Hud.clear_objectives()
 		DialogueManager.show_dialogue_balloon(A_4S_3, "after_explore_all")
 
 
@@ -542,7 +543,6 @@ func _light_small_candle(index: int) -> void:
 			cabinet2_sprite.region_enabled = true
 			cabinet2_sprite.region_rect = Rect2(33, 0.847, 30.0, 32.195)
 			
-		await DialogueManager.dialogue_ended
 		ObjectiveManager.add_objective(scene_objectives[5]["ID"], scene_objectives[5]["text"])
 		_enable_cabinet_areas()
 
@@ -685,7 +685,10 @@ func _flicker_all_candles_creepy() -> void:
 		if light:
 			all_lights.append(light)
 
-	_start_creepy_flicker(all_lights, 100, 0.1)
+	var flicker_count := 15  # total flickers
+	var interval := 3.0 / flicker_count  # 3 seconds total
+	_start_creepy_flicker(all_lights, flicker_count, interval)
+
 
 func _start_creepy_flicker(lights: Array, count: int, interval: float) -> void:
 	if count <= 0:
@@ -723,28 +726,17 @@ func _start_ghost_slow_approach() -> void:
 	if not npc_ghost or not player_danilo:
 		return
 
+	# Make ghost visible
 	npc_ghost.visible = true
 
-	if ghost_move_timer:
-		ghost_move_timer.stop()
-		ghost_move_timer.queue_free()
+	# Calculate target position (30 px offset from player)
+	var offset = (npc_ghost.global_position - player_danilo.global_position).normalized() * 200
+	var target_pos = player_danilo.global_position - offset
 
-	ghost_move_timer = Timer.new()
-	ghost_move_timer.wait_time = 2.0
-	ghost_move_timer.autostart = true
-	ghost_move_timer.one_shot = false
-	ghost_move_timer.timeout.connect(func():
-		var ghost_pos = npc_ghost.global_position
-		var player_pos = player_danilo.global_position
-		var distance = ghost_pos.distance_to(player_pos)
-		if distance > 30:
-			var dir = (player_pos - ghost_pos).normalized()
-			var move_step = 20  
-			npc_ghost.global_position += dir * move_step
-		else:
-			npc_ghost.global_position = player_pos - (player_pos - ghost_pos).normalized() * 30
-			ghost_move_timer.stop()
-	)
+	# Create tween to move ghost over 3 seconds
+	var tween = create_tween()
+	tween.tween_property(npc_ghost, "global_position", target_pos, 3.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
 	add_child(ghost_move_timer)
 	_enable_chapel_exit_area()
 
@@ -793,7 +785,6 @@ func scene_3_done() -> void:
 	Hud.clear_objectives()
 	SaveManager.game_save.current_act = "act_4"
 	SaveManager.game_save.current_scene = "scene_3"
-	SaveManager.save_game()
 	GameState.save_game()
 	print("ACT 4 SCENE 3 DONE")
 	SignalBus.act_num_scene_num_done.emit(

@@ -100,11 +100,15 @@ func hide_objectives() -> void:
 	objective_outro_anim()
 
 func update_objective_text(obj_ID: int, new_text: String) -> void:
-	var objectives_nodes = v_box_container.get_children() as Array[RichTextLabel]
-	for obj in objectives_nodes:
-		if obj.get_meta("ID") == obj_ID:
-			obj.text = "[ ]" + new_text
-			return
+	for margin in v_box_container.get_children():
+		if margin is MarginContainer:
+			var panel = margin.get_child(0)
+			if panel is PanelContainer:
+				var obj = panel.get_child(0)
+				if obj.get_meta("ID") == obj_ID:
+					obj.text = "[ ] " + new_text
+					return
+
 
 
 func objective_intro_anim() -> void:
