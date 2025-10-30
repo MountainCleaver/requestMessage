@@ -76,9 +76,6 @@ func _on_signup_link_pressed() -> void:
 func _on_forgot_pass_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_reset_password.tscn")
 
-func _on_forgot_pass_pressed() -> void:
-	SignalBus.next_scene.emit("res://scenes/menu/menu_reset_password.tscn")
-
 func _on_confirmation_dialog_confirmed() -> void:
 	get_tree().quit()
 
