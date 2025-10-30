@@ -1,9 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://cg24bagrgn8w5"]
+[gd_scene load_steps=22 format=3 uid="uid://cg24bagrgn8w5"]
 
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_65wt5"]
 [ext_resource type="Script" uid="uid://dv5lh0ou423ae" path="res://scenes/menu/scripts/settings_display.gd" id="1_pe472"]
 [ext_resource type="Texture2D" uid="uid://c0rv7wh6es8um" path="res://assets/main menu/icons/radio.png" id="2_mbspy"]
 [ext_resource type="Texture2D" uid="uid://bvu6cd50qiv13" path="res://assets/main menu/icons/Sprite-0001-Sheet.png" id="4_kav76"]
+[ext_resource type="Script" uid="uid://bg8w3u57yrdhp" path="res://checkbox_1.gd" id="4_scydi"]
+[ext_resource type="Script" uid="uid://csrp0rch4ntee" path="res://h_slider_1.gd" id="6_r2h1n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mbspy"]
 font = ExtResource("1_65wt5")
@@ -117,6 +119,8 @@ theme_override_icons/radio_unchecked = SubResource("AtlasTexture_65wt5")
 button_pressed = true
 button_group = SubResource("ButtonGroup_65wt5")
 text = " Fullscreen"
+script = ExtResource("4_scydi")
+metadata/_custom_type_script = "uid://bg8w3u57yrdhp"
 
 [node name="Label" type="Label" parent="VBoxContainer/OPTIONS"]
 layout_mode = 2
@@ -135,6 +139,8 @@ theme_override_icons/radio_checked = SubResource("AtlasTexture_mbspy")
 theme_override_icons/radio_unchecked = SubResource("AtlasTexture_65wt5")
 button_group = SubResource("ButtonGroup_65wt5")
 text = " Windowed"
+script = ExtResource("4_scydi")
+metadata/_custom_type_script = "uid://bg8w3u57yrdhp"
 
 [node name="BRIGHTNESS" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -160,6 +166,8 @@ theme_override_icons/grabber_highlight = SubResource("AtlasTexture_scydi")
 theme_override_styles/slider = SubResource("StyleBoxTexture_r2h1n")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_yt1n7")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_r1kqc")
+script = ExtResource("6_r2h1n")
+metadata/_custom_type_script = "uid://csrp0rch4ntee"
 
 [node name="john_cena2" type="Label" parent="VBoxContainer/SLIDER"]
 layout_mode = 2

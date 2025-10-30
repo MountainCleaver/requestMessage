@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6ufomjjkwkbw"]
+[gd_scene load_steps=11 format=3 uid="uid://b6ufomjjkwkbw"]
 
 [ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="2_t4h72"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="3_pxq1l"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_7wfba"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_x5bll"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_t2p8q"]
 font = ExtResource("3_pxq1l")
@@ -166,6 +167,8 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_knne6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vrlwj")
 theme_override_styles/focus = SubResource("StyleBoxFlat_uxglm")
 text = "OK"
+script = ExtResource("4_x5bll")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="holder2" parent="." instance=ExtResource("2_t4h72")]
 modulate = Color(0, 0, 0, 0.580392)

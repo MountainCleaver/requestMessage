@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dkukr0i8tbvid"]
+[gd_scene load_steps=24 format=3 uid="uid://dkukr0i8tbvid"]
 
 [ext_resource type="Script" uid="uid://bmttfvo0b2va1" path="res://scenes/menu/scripts/menu_report_a_bug.gd" id="1_b0lpy"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_t4nnm"]
@@ -6,7 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bbkdr0csbjf5r" path="res://assets/main menu/image.png" id="2_rtw4r"]
 [ext_resource type="PackedScene" uid="uid://c7yw1h7fpco1e" path="res://scenes/menu/option_main_menu.tscn" id="3_ocrco"]
 [ext_resource type="Texture2D" uid="uid://7ywtrbri2gl1" path="res://assets/main menu/icons/upload_icon.png" id="4_rhmlq"]
+[ext_resource type="Script" uid="uid://jwbe8042a3fo" path="res://option_1.gd" id="5_l8bxb"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="6_l7g51"]
 [ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="7_5ab1i"]
+[ext_resource type="Script" uid="uid://dgwa5qxseppf6" path="res://text_edit_1.gd" id="8_u6n7d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ocrco"]
 font = ExtResource("2_1bxss")
@@ -239,6 +242,8 @@ popup/item_3/text = "Dialogue Bug"
 popup/item_3/id = 3
 popup/item_4/text = "Others..."
 popup/item_4/id = 4
+script = ExtResource("5_l8bxb")
+metadata/_custom_type_script = "uid://jwbe8042a3fo"
 
 [node name="SCREENSHOT" type="VBoxContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
@@ -258,6 +263,8 @@ icon = ExtResource("4_rhmlq")
 alignment = 0
 text_overrun_behavior = 3
 clip_text = true
+script = ExtResource("6_l7g51")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="FileDialog" type="FileDialog" parent="Panel/HBoxContainer/SCREENSHOT/UPLOADER"]
 mode = 3
@@ -290,6 +297,8 @@ placeholder_text = "Tell us what happened . . ."
 wrap_mode = 1
 scroll_smooth = true
 caret_blink = true
+script = ExtResource("8_u6n7d")
+metadata/_custom_type_script = "uid://dgwa5qxseppf6"
 
 [node name="BUTTONS" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -319,6 +328,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_u6n7d")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ey87t")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kthqb")
 text = "CLEAR"
+script = ExtResource("6_l7g51")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="SUBMIT" type="Button" parent="Panel/BUTTONS"]
 layout_mode = 2
@@ -329,6 +340,8 @@ theme_override_fonts/font = ExtResource("2_1bxss")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_6fgn1")
 text = "SUBMIT"
+script = ExtResource("6_l7g51")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="ss_preview" type="TextureRect" parent="Panel"]
 layout_mode = 0

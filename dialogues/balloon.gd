@@ -62,8 +62,13 @@ var mutation_cooldown: Timer = Timer.new()
 # === Flicker tween ===
 var flicker_tween: Tween = null
 
+@onready var next_indicators: MarginContainer = $Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel/next_indicators
+@onready var next_label: Label = $Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel/next_indicators/HBoxContainer/next_label
+@onready var next_icon: TextureRect = $Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel/next_indicators/HBoxContainer/next_icon
+
+
 func _ready() -> void:
-	
+	next_indicators.hide()
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
@@ -101,6 +106,7 @@ func start(dialogue_resource: DialogueResource, title: String, extra_game_states
 
 ## Apply any changes to the balloon given a new [DialogueLine].
 func apply_dialogue_line() -> void:
+	next_indicators.hide()
 	mutation_cooldown.stop()
 
 	is_waiting_for_input = false
@@ -185,6 +191,8 @@ func apply_dialogue_line() -> void:
 		is_waiting_for_input = true
 		balloon.focus_mode = Control.FOCUS_ALL
 		balloon.grab_focus()
+		next_indicators.show()
+		update_next_label_text()
 
 
 
@@ -207,27 +215,43 @@ func _on_mutated(_mutation: Dictionary) -> void:
 	will_hide_balloon = true
 	mutation_cooldown.start(0.1)
 
-
+# Left-click or 'dialog_next' key both advance dialogue (no skip typing)
 func _on_balloon_gui_input(event: InputEvent) -> void:
-	# See if we need to skip typing of the dialogue
-	if dialogue_label.is_typing:
-		var mouse_was_clicked: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()
-		var skip_button_was_pressed: bool = event.is_action_pressed(skip_action)
-		if mouse_was_clicked or skip_button_was_pressed:
-			get_viewport().set_input_as_handled()
-			dialogue_label.skip_typing()
-			return
+	# Ignore if dialogue isn't waiting for input or has responses
+	if not is_waiting_for_input or dialogue_line.responses.size() > 0:
+		return
 
-	if not is_waiting_for_input: return
-	if dialogue_line.responses.size() > 0: return
-
-	# When there are no response options the balloon itself is the clickable thing
 	get_viewport().set_input_as_handled()
 
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+	# === Left-click or 'next_action' advances dialogue ===
+	var mouse_was_clicked : bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()
+	var next_button_pressed : bool = event.is_action_pressed(next_action)
+
+	if mouse_was_clicked or next_button_pressed:
 		next(dialogue_line.next_id)
-	elif event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
-		next(dialogue_line.next_id)
+
+
+#func _on_balloon_gui_input(event: InputEvent) -> void:
+	## See if we need to skip typing of the dialogue
+	#if dialogue_label.is_typing:
+		#var mouse_was_clicked: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()
+		#var skip_button_was_pressed: bool = event.is_action_pressed(skip_action)
+		#if mouse_was_clicked or skip_button_was_pressed:
+		##if skip_button_was_pressed:
+			#get_viewport().set_input_as_handled()
+			#dialogue_label.skip_typing()
+			#return
+#
+	#if not is_waiting_for_input: return
+	#if dialogue_line.responses.size() > 0: return
+#
+	## When there are no response options the balloon itself is the clickable thing
+	#get_viewport().set_input_as_handled()
+#
+	#if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		#next(dialogue_line.next_id)
+	#elif event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
+		#next(dialogue_line.next_id)
 
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
@@ -235,7 +259,6 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 
 
 #endregion
-
 
 
 func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float) -> void:
@@ -270,3 +293,17 @@ func stop_flicker():
 		flicker_tween.stop()
 	flicker_tween = null
 	background_chat.self_modulate = Color(1, 1, 1, 1)
+
+
+func update_next_label_text() -> void:
+	var events = InputMap.action_get_events("dialog_next")
+	if events.is_empty():
+		next_label.text = ""
+		return
+
+	for event in events:
+		if event is InputEventKey:
+			next_label.text = " %s " % OS.get_keycode_string(event.physical_keycode)
+			return
+
+	next_label.text = ""

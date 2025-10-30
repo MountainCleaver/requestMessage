@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3fo53ca0h8g4"]
+[gd_scene load_steps=6 format=3 uid="uid://d3fo53ca0h8g4"]
 
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_gqusm"]
 [ext_resource type="Script" uid="uid://d1b1vdrp5txq7" path="res://scenes/menu/scripts/menu_load_scenes.gd" id="1_p41mx"]
 [ext_resource type="Texture2D" uid="uid://ceuemy1j0ahy" path="res://assets/scenes_thumbnails/act_1_scene_1.png" id="3_ye6df"]
 [ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="4_j4fd8"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_twq5s"]
 
 [node name="finished_scenes" type="Control"]
 layout_mode = 3
@@ -60,6 +61,8 @@ size_flags_horizontal = 3
 text = "aa asfsadf"
 icon = ExtResource("3_ye6df")
 vertical_icon_alignment = 0
+script = ExtResource("4_twq5s")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="back_tips" parent="." instance=ExtResource("4_j4fd8")]
 layout_mode = 1
