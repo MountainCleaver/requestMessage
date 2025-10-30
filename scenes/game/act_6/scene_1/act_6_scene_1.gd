@@ -125,6 +125,7 @@ func _start_scene() -> void:
 	bgm_house.play()
 	await get_tree().process_frame
 	switch_location(WENDY_HOUSE)
+	Hud.clear_objectives()
 	DialogueManager.show_dialogue_balloon(A_6S_1, "start")
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 

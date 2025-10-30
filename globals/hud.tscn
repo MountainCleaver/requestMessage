@@ -89,7 +89,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.112656, 0.112656),
 "update": 0,
-"values": [Vector2(1468.15, 10), Vector2(1150, 10)]
+"values": [Vector2(1488.15, 10), Vector2(1150, 10)]
 }
 
 [sub_resource type="Animation" id="Animation_esk0b"]
@@ -216,10 +216,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1428.15
-offset_top = 89.0
-offset_right = 1642.15
-offset_bottom = 389.0
+offset_left = 1448.15
+offset_top = 10.0
+offset_right = 1662.15
+offset_bottom = 310.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_n5lr3")
 
