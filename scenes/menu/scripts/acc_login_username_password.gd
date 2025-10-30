@@ -1,7 +1,6 @@
 extends Control
 
-@onready var line_edit_username: LineEdit = $holder/line_edit_username
-@onready var line_edit_email: LineEdit = $holder/line_edit_email
+@onready var line_edit_user: LineEdit = $holder/line_edit_username_email
 @onready var line_edit_password: LineEdit = $holder/line_edit_password
 @onready var login_error: Label = $holder/login_error
 @onready var btn_login: Button = $holder/btn_login
@@ -29,17 +28,26 @@ func _input(event: InputEvent) -> void:
 			exit_is_showing = false
 
 func _on_btn_login_pressed() -> void:
-	var username = line_edit_username.text
-	var email = line_edit_email.text
+	var user_input = line_edit_user.text.strip_edges()
 	var password = line_edit_password.text
 
-	if username.is_empty() or email.is_empty() or password.is_empty():
+	if user_input.is_empty() or password.is_empty():
 		login_error.text = "All fields are required."
 		return
+
+	var username = ""
+	var email = ""
+
+	# Detect if input is an email or username
+	if user_input.find("@") != -1:
+		email = user_input
+	else:
+		username = user_input
 
 	menu_loading_screen.show()
 	btn_login.disabled = true
 	login_link.disabled = true
+
 	var url = "https://requestmessage-admin.onrender.com/api/login.php"
 	var body = {"username": username, "email": email, "password": password}
 	var headers = ["Content-Type: application/json"]
@@ -51,17 +59,24 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 
 	if response_code != 200:
 		login_error.text = "Server error: " + str(response_code)
+		menu_loading_screen.hide()
+		btn_login.disabled = false
+		login_link.disabled = false
 		return
 
 	var json = JSON.parse_string(response_text)
 	if typeof(json) != TYPE_DICTIONARY:
 		login_error.text = "Invalid server response"
+		menu_loading_screen.hide()
+		btn_login.disabled = false
+		login_link.disabled = false
 		return
 
 	if json.get("status") == "success":
 		var user_ID = json.user_id
-		Global.username = line_edit_username.text
-		Session.save_session(line_edit_username.text, user_ID)
+		var actual_username = json.username if json.has("username") else line_edit_user.text
+		Global.username = actual_username
+		Session.save_session(actual_username, user_ID)
 		SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
 	else:
 		login_error.text = str(json.get("message", "Unknown error"))
@@ -69,6 +84,7 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 	menu_loading_screen.hide()
 	btn_login.disabled = false
 	login_link.disabled = false
+
 
 func _on_signup_link_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/privacy_policy.tscn")
