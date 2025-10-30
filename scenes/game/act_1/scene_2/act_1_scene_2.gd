@@ -45,6 +45,7 @@ func scene_2_done() -> void:
 	
 	SaveManager.game_save.current_act = "act_1"
 	SaveManager.game_save.current_scene = "scene_2" # badly named I admit. this is for the 'continue' part in main menu
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_1", "scene_2", "res://scenes/game/act_1/scene_3/act_1_scene_3.tscn") # caught in save manager
 	Hud.clear_objectives();
 	print("act 1 scene 1 is done")

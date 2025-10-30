@@ -70,7 +70,8 @@ func scene_3_done () -> void:
 	Hud.hide_objectives() 
 	
 	SaveManager.game_save.current_act = "act_1"
-	SaveManager.game_save.current_scene = "scene_4" # badly named I admit. this is for the 'continue' part in main menu
+	SaveManager.game_save.current_scene = "scene_3" # badly named I admit. this is for the 'continue' part in main menu
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_1", "scene_3", "res://scenes/game/act_1/scene_4/act_1_scene_4.tscn") # caught in save manager
 	Hud.clear_objectives();
 

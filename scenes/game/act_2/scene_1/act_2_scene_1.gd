@@ -398,6 +398,7 @@ func scene_1_done() -> void:
 	Hud.clear_objectives()
 	SaveManager.game_save.current_act = "act_2"
 	SaveManager.game_save.current_scene = "scene_1"
+	SaveManager.save_game()
 	GameState.save_game()
 	print("ACT 2 SCENE 1 DONE")
 	SignalBus.act_num_scene_num_done.emit("act_2", "scene_1", "res://scenes/game/act_2/scene_2/act_2_scene_2.tscn")

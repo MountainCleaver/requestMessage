@@ -354,8 +354,8 @@ func _on_start_jonathan() -> void:
 	DialogueManager.show_dialogue_balloon(A_3S_4, "jonathan")
 
 func _act_3_scene_4_done() -> void:
-	SaveManager.game_save.current_act = "act_4"
-	SaveManager.game_save.current_scene = "scene_1"
+	SaveManager.game_save.current_act = "act_3"
+	SaveManager.game_save.current_scene = "scene_4"
 	SaveManager.save_game()
 	GameState.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_3", "scene_4", "res://scenes/game/act_4_title_scene.tscn") # caught in save manager

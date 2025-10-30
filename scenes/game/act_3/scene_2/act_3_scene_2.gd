@@ -278,7 +278,8 @@ func _play_tension_anim() -> void:
 func _act_3_scene_2_done() -> void:
 	print(SaveManager.get_moral_choice("act_3_scene_2"))
 	SaveManager.game_save.current_act = "act_3"
-	SaveManager.game_save.current_scene = "scene_3" 
+	SaveManager.game_save.current_scene = "scene_2" 
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_3", "scene_2", "res://scenes/game/act_3/scene_3/act_3_scene_3.tscn")
 	Hud.clear_objectives();
 	Hud.hide_objectives()

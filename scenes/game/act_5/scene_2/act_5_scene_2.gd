@@ -43,4 +43,5 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 func act_5_scene_2_done() -> void:
 	SaveManager.game_save.current_act = "act_5"
 	SaveManager.game_save.current_scene = "scene_2"
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_5", "scene_2", "res://scenes/game/act_5/scene_3/act_5_scene_3.tscn")

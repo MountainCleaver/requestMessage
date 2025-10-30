@@ -602,6 +602,7 @@ func _act_3_scene_3_done() -> void:
 	if Hud.phone_showing:
 		Hud.phone_outro()
 	SaveManager.game_save.current_act = "act_3"
-	SaveManager.game_save.current_scene = "scene_4"
+	SaveManager.game_save.current_scene = "scene_3"
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_3", "scene_3", "res://scenes/game/act_3/scene_4/act_3_scene_4.tscn")
 	ObjectiveManager.empty_objectives()

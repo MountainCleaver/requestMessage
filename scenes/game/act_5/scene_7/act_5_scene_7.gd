@@ -66,12 +66,13 @@ func _on_scene_7_dialogue_done():
 func act_5_scene_7_done() -> void:
 	SaveManager.game_save.current_act = "act_5"
 	SaveManager.game_save.current_scene = "scene_7"
+	SaveManager.save_game()
 	GameState.save_game()
 
 	print("ACT 5 SCENE 7 DONE")
 
 	SignalBus.act_num_scene_num_done.emit(
 		"act_5",
-		"scene_8",
+		"scene_7",
         "res://scenes/game/act_5/scene_8/act_5_scene_8.tscn"
 	)
