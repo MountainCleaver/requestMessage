@@ -64,9 +64,11 @@ offset_bottom = 29.0
 size_flags_horizontal = 10
 size_flags_vertical = 0
 focus_mode = 0
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0.4)
 theme_override_styles/normal = SubResource("StyleBoxFlat_67qqk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_t17l3")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xvdbo")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_67qqk")
 icon = ExtResource("2_m6o7m")
 icon_alignment = 1
 

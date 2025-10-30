@@ -8,7 +8,8 @@ Wendy: [wait=1.5]We were worried, hindi ka sumasagot sa chats ko.
 
 do ChatManager.send_chat("wendy", "Wendy", "Akala ko may nangyari na sayo.") 
 Wendy: [wait=1.5][shake rate=20 level=10]Akala ko may nangyari na sayo.[/shake]
-=> reply_wendy
+do _prevent_chat_exit_while_dialoging()
+=> END
 
 ~ reply_wendy
 do _prevent_chat_exit_while_dialoging()
@@ -46,7 +47,6 @@ Wendy: [wait=1.5]I'll call you.
 Wendy: ... ... ...
 do wendy_calling.emit()
 => END
-
 
 ~ reply_mira
 do _prevent_chat_exit_while_dialoging()

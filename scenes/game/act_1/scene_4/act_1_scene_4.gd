@@ -11,6 +11,8 @@ const DANILO_LOCK = preload("res://scenes/game/lock_screen.tscn")
 var player_danilo: CharacterBody2D = null
 var bgm_room: AudioStreamPlayer = null
 
+var tension_animation : AnimationPlayer = null
+
 # OBJECTIVES
 var scene_objectives = [
 	{"ID": 1, "text": "Check psych appointment schedule"},
@@ -180,6 +182,10 @@ func _on_chat_opened(chat_name: String) -> void:
 		"unknown_sender":
 			open_chat_generic("unknown_sender", "chat_unknown_sender")
 			unknown_sender_opened = true
+			print("add suspense")
+			tension_animation.play("tension_in")
+			await tension_animation.animation_finished
+			tension_animation.play("tension")
 			if has_gone_home:
 				ObjectiveManager.complete_objective(scene_objectives[7]["ID"])
 				final_objectives_done = true
@@ -291,6 +297,7 @@ func _switch_to_danilo_room() -> void:
 	await SignalBus.on_transition_finished
 	switch_location(DANILO_ROOM)
 	bgm_room = current_location.get_node_or_null("BGMRoom")
+	tension_animation = get_node_or_null("locations/danilo_room/tension_animation")
 	if bgm_room:
 		bgm_room.play()
 	ObjectiveManager.complete_objective(scene_objectives[5]["ID"])
