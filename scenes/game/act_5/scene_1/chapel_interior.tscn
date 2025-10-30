@@ -2187,7 +2187,6 @@ bus = &"sfx"
 
 [node name="BGM_INTERIOR" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_casby")
-volume_db = -8.54
 autoplay = true
 bus = &"music"
 
