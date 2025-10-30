@@ -52,8 +52,7 @@ func _start_intro_narration() -> void:
 	var lines = [
 		"Back in Manila, Wendy scrolls through her messages.",
 		"Nothing from Danilo.",
-		"She checks the group chat.",
-		"Still quiet."
+		"No new messages. No sign of him.",
 	]
 	await NarrationPanel.show_narration_typewriter(lines, 0.05)
 	await NarrationPanel.hide_narration()
