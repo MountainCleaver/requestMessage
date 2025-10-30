@@ -5513,11 +5513,13 @@ color = Color(0.61394, 0.5307038, 0.47831511, 1)
 [node name="BGM_FOREST" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_redhc")
 volume_db = -6.118
+autoplay = true
 bus = &"music"
 
 [node name="SFX_BREATHING" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_ecspc")
 volume_db = -12.236
+autoplay = true
 bus = &"sfx"
 
 [node name="SFX_THUNDER" type="AudioStreamPlayer" parent="."]

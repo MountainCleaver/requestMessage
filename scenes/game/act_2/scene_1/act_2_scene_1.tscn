@@ -20,7 +20,6 @@ visible = false
 
 [node name="BGMRoom" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_q61tw")
-volume_db = -6.679
 autoplay = true
 bus = &"music"
 

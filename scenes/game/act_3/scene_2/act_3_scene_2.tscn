@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://tnda2d107s7p"]
+[gd_scene load_steps=19 format=3 uid="uid://tnda2d107s7p"]
 
 [ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="1_5u0wn"]
 [ext_resource type="Script" uid="uid://ctc7chiqllyi" path="res://scenes/game/act_3/scene_2/act_3_scene_2.gd" id="1_f0so1"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b26tbvt5h4mc8" path="res://assets/character_sprites/MATEO__SHOCKED.png" id="5_rc8oa"]
 [ext_resource type="AudioStream" uid="uid://bc2ctok01tbi5" path="res://sound/soft-piano-music-272453.mp3" id="7_460kb"]
 [ext_resource type="AudioStream" uid="uid://yv8qv4mnth5u" path="res://sound/horror-music-box-preview-421551.mp3" id="8_oe54g"]
+[ext_resource type="AudioStream" uid="uid://ctv4m7abxary4" path="res://sound/window-opening-100430.mp3" id="9_3daj4"]
 
 [sub_resource type="Animation" id="Animation_rc8oa"]
 length = 0.001
@@ -334,15 +335,18 @@ libraries = {
 
 [node name="BGMDanilo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_460kb")
-volume_db = -9.0
-autoplay = true
+volume_db = -1.908
 bus = &"music"
 
 [node name="BGMTension" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_oe54g")
-volume_db = -7.61
-autoplay = true
+volume_db = -2.862
 bus = &"music"
+
+[node name="SFX_CLOSE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_3daj4")
+volume_db = -2.862
+bus = &"sfx"
 
 [connection signal="body_entered" from="window_areas/window_area_1" to="." method="_on_window_area_1_body_entered"]
 [connection signal="body_exited" from="window_areas/window_area_1" to="." method="_on_window_area_1_body_exited"]

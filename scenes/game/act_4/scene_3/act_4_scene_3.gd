@@ -9,6 +9,10 @@ const CHAPEL_EXTERIOR = preload("res://scenes/game/act_4/scene_3/chapel_exterior
 const CHAPEL_INTERIOR = preload("res://scenes/game/act_4/scene_3/chapel_interior.tscn")
 const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
 
+@onready var sfx_light : AudioStreamPlayer = $SFX_LIGHTER
+@onready var sfx_blow : AudioStreamPlayer = $SFX_BLOW
+@onready var sfx_wind: AudioStreamPlayer = $SFX_WIND
+
 # ===================
 # NODES
 # ===================
@@ -418,6 +422,7 @@ func _on_candle_interacted():
 
 	var candle_sprite: Sprite2D = current_location.get_node("map/candle/big_candle/candle")
 	if candle_sprite:
+		sfx_light.play()
 		candle_sprite.region_enabled = true
 		candle_sprite.region_rect = Rect2(21, 0, 20.8, 29)
 
@@ -562,6 +567,7 @@ func _set_first_candle(index: int) -> void:
 	ObjectiveManager.update_progress(scene_objectives[4]["ID"])
 
 func _handle_wrong_candle_progress() -> void:
+	sfx_blow.play()
 	print("Wrong candle! Progress reset, same sequence remains.")
 	DialogueManager.show_dialogue_balloon(A_4S_3, "wrong_candle")
 	await DialogueManager.dialogue_ended
@@ -580,6 +586,7 @@ func _reset_candle_progress() -> void:
 	ObjectiveManager.reset_progress(scene_objectives[4]["ID"])
 
 func _light_candle_visual(index: int) -> void:
+	sfx_light.play()
 	var sprite = current_location.get_node_or_null("map/candle/candle_%d/candle" % index)
 	var light = current_location.get_node_or_null("map/candle/candle_%d/PointLight2D" % index)
 	
@@ -652,6 +659,7 @@ func _on_leave_chapel_interior() -> void:
 		npc_ghost.z_index = 9999
 
 func _on_candle_off_area_entered(body):
+	sfx_wind.play()
 	if body != player_danilo or candle_off_area_triggered:
 		return
 	candle_off_area_triggered = true
@@ -695,6 +703,7 @@ func _start_creepy_flicker(lights: Array, count: int, interval: float) -> void:
 		for light in lights:
 			light.visible = false
 			light.texture_scale = 1.0
+		sfx_wind.stop()
 		DialogueManager.show_dialogue_balloon(A_4S_3, "after_shadow_ghost_forward")
 		if tip_shocked:
 			tip_shocked.visible = false

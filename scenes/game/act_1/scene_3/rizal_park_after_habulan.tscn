@@ -213,13 +213,12 @@ shape = SubResource("RectangleShape2D_3rcpu")
 
 [node name="BGMPark2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_c048n")
-volume_db = -12.404
 autoplay = true
 bus = &"music"
 
 [node name="SFXPark2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_tk8ek")
-volume_db = -13.358
+volume_db = -4.771
 autoplay = true
 bus = &"sfx"
 

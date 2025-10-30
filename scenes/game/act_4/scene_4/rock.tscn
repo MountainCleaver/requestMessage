@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://jq5u2gfvckxx"]
+[gd_scene load_steps=5 format=3 uid="uid://jq5u2gfvckxx"]
 
 [ext_resource type="Script" uid="uid://wp2aq4eyc2mr" path="res://scenes/game/act_4/scene_4/rock.gd" id="1_hblq7"]
 [ext_resource type="Texture2D" uid="uid://ihu210lftmui" path="res://assets/HUD/small_rock.png" id="1_n5nf5"]
+[ext_resource type="AudioStream" uid="uid://bw06fo51rbgsw" path="res://sound/push-stone-statue-3-204992.mp3" id="3_nxglg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hblq7"]
 size = Vector2(21, 12)
@@ -20,3 +21,8 @@ texture = ExtResource("1_n5nf5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 6)
 shape = SubResource("RectangleShape2D_hblq7")
+
+[node name="SFX_PUSH" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nxglg")
+volume_db = -6.679
+pitch_scale = 0.71

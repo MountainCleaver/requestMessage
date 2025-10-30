@@ -9,6 +9,8 @@ const CHAPEL_EXTERIOR = preload("res://scenes/game/act_5/scene_1/chapel_exterior
 const CHAPEL_INTERIOR = preload("res://scenes/game/act_5/scene_1/chapel_interior.tscn")
 const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
 
+@onready var sfx_light : AudioStreamPlayer = $SFX_LIGHTER
+
 # ===================
 # NODES
 # ===================
@@ -335,6 +337,7 @@ func _on_candle_area_exited(body, index: int) -> void:
 
 
 func _light_candle(index: int) -> void:
+	sfx_light.play()
 	lit_candles[index] = true
 
 	# Visuals

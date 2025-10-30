@@ -1,4 +1,4 @@
-[gd_scene load_steps=220 format=3 uid="uid://dblxd5gduaar6"]
+[gd_scene load_steps=221 format=3 uid="uid://dblxd5gduaar6"]
 
 [ext_resource type="Texture2D" uid="uid://bf73p6f1cex2c" path="res://assets/character_sprites/DANILO.png" id="1_31iy4"]
 [ext_resource type="Script" uid="uid://5x72ywgk1iqf" path="res://scenes/characters/player_danilo.gd" id="1_upm5t"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bl2d1gm4v1vhh" path="res://assets/character_sprites/danilo_sleeping_bed_in_hospital.png" id="12_n4epw"]
 [ext_resource type="Texture2D" uid="uid://bwrh4xd2b7a0n" path="res://assets/character_sprites/DANILO_TAKING_MEDS.png" id="12_ntlsp"]
 [ext_resource type="Texture2D" uid="uid://cbaqwksgv6wix" path="res://assets/character_sprites/light1.png" id="14_ntlsp"]
+[ext_resource type="AudioStream" uid="uid://dvkqurmifq6x6" path="res://sound/flashlight-clicking-on-105809.mp3" id="18_7rf3l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2t8d2"]
 atlas = ExtResource("12_n4epw")
@@ -1665,3 +1666,7 @@ texture = ExtResource("14_ntlsp")
 visible = false
 texture = ExtResource("14_ntlsp")
 texture_scale = 0.4
+
+[node name="sfx_flashlight" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_7rf3l")
+bus = &"sfx"

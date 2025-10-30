@@ -1990,7 +1990,6 @@ color = Color(1, 1, 1, 0.29411766)
 
 [node name="BGMMorning" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_xhr1t")
-volume_db = -6.679
 autoplay = true
 bus = &"music"
 

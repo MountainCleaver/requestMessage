@@ -16,6 +16,7 @@ var A_3S_4: Resource
 @onready var bgm_house: AudioStreamPlayer = $BGM_HOUSE
 @onready var bgm_suspense: AudioStreamPlayer = $BGM_SUSPENSE
 @onready var sfx_knock: AudioStreamPlayer = $SFX_KNOCK
+@onready var sfx_meds: AudioStreamPlayer = $SFX_MEDS
 
 var current_location: Node2D
 
@@ -298,6 +299,7 @@ func _get_out_of_bed_take_meds () -> void:
 	player_danilo.global_position = current_location.get_node("danilo_hometown_house/y-sorted/spawn_points/bed_beside").global_position
 	# here logic for recording meds taken
 	
+	sfx_meds.play()
 	animated_sprite_2d.play("taking_meds_sit_right")
 	await animated_sprite_2d.animation_finished
 	

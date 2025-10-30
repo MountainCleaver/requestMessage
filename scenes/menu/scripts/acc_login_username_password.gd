@@ -12,6 +12,7 @@ extends Control
 @onready var exit_confirmation_dialog: ConfirmationDialog = $"../ConfirmationDialog"
 var exit_is_showing : bool = false
 
+
 func _ready() -> void:
 	line_edit_password.secret = true
 	http.request_completed.connect(_on_HTTP_request_request_completed)
@@ -72,9 +73,6 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 
 func _on_signup_link_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/privacy_policy.tscn")
-
-func _on_forgot_pass_pressed() -> void:
-	SignalBus.next_scene.emit("res://scenes/menu/menu_reset_password.tscn")
 
 func _on_forgot_pass_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_reset_password.tscn")
