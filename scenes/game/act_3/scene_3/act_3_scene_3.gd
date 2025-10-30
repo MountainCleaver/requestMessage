@@ -114,6 +114,7 @@ var scene_objectives : Array[Dictionary] = [
 	{"ID": 3, "text" : "Ride a Tricycle to Bayan"},
 	{"ID": 4, "text": "Find a Drugstore"},
 	{"ID" : 5, "text" : "Go Back Home"},
+	{"ID" : 6, "text" : "Go to bed and try to calm yourself"},
 ]
 
 var moral_choice : String
@@ -192,8 +193,8 @@ func _input(event: InputEvent) -> void:
 					)
 					ObjectiveManager.complete_objective(scene_objectives[4]["ID"])
 					await get_tree().create_timer(0.5).timeout
-					Hud.hide_objectives()
 					Hud.clear_objectives()
+					ObjectiveManager.add_objective(scene_objectives[5]["ID"], scene_objectives[5]["text"])
 		"tricycle_hometown":
 			can_interact = false
 			if not bought_meds:
@@ -291,6 +292,9 @@ func _input(event: InputEvent) -> void:
 
 				SignalBus.sat_on_bed.emit()
 				start_mini_game.emit()
+				ObjectiveManager.complete_objective(6)
+				Hud.hide_objectives()
+				Hud.clear_objectives()
 
 
 func _game_state_flow() -> void:
