@@ -47,7 +47,6 @@ func show_narration_typewriter(lines: Array, speed: float = 0.05) -> void:
 	button.visible = true
 	button.text = "Skip"
 
-	# Combine lines into full text
 	var full_text = ""
 	for i in range(lines.size()):
 		full_text += lines[i]
@@ -60,7 +59,6 @@ func show_narration_typewriter(lines: Array, speed: float = 0.05) -> void:
 
 	for i in range(full_text.length()):
 		if _continue_pressed:
-			# === SKIP pressed: immediately show full text ===
 			label.text = full_text
 			_is_typing = false
 			break
@@ -100,9 +98,8 @@ func show_narration_typewriter(lines: Array, speed: float = 0.05) -> void:
 
 		await get_tree().create_timer(delay).timeout
 
-	# === Done typing or skipped ===
 	_is_typing = false
-	_continue_pressed = false  # Reset for next click
+	_continue_pressed = false 
 	button.text = "Click to Continue"
 
 	while not _continue_pressed:
