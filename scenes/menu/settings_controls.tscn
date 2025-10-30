@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmanxjmbnwx8p"]
+[gd_scene load_steps=7 format=3 uid="uid://cmanxjmbnwx8p"]
 
-[ext_resource type="Script" uid="uid://cuw7vnekhnbtj" path="res://scenes/menu/settings_controls.gd" id="1_q7emt"]
+[ext_resource type="Script" path="res://scenes/menu/settings_controls.gd" id="1_q7emt"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_rgda0"]
-[ext_resource type="PackedScene" uid="uid://camvb45ixm320" path="res://scenes/menu/key_bind_setting.tscn" id="2_q7emt"]
+[ext_resource type="PackedScene" uid="uid://dmt76e2hk0m50" path="res://scenes/menu/key_bind_setting.tscn" id="2_q7emt"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_r3loo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7emt"]
 bg_color = Color(0, 0, 0, 1)
@@ -62,6 +63,8 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_awxed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q7emt")
 theme_override_styles/focus = SubResource("StyleBoxFlat_q7emt")
 text = "RESTORE DEFAULTS"
+script = ExtResource("4_r3loo")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 oversampling_override = 1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cykh0p8r2kduc"]
+[gd_scene load_steps=9 format=3 uid="uid://cykh0p8r2kduc"]
 
 [ext_resource type="Script" uid="uid://ucehjejjclhf" path="res://scenes/menu/scripts/menu_main.gd" id="1_blywf"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_wyeju"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c7yw1h7fpco1e" path="res://scenes/menu/option_main_menu.tscn" id="4_d2s0i"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="6_wgaug"]
 [ext_resource type="Texture2D" uid="uid://b8xfs62jmrihe" path="res://assets/HUD/EXIT_ICON_2.png" id="7_o44s4"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="8_o44s4"]
 
 [node name="menu_main" type="Control"]
 layout_mode = 3
@@ -116,6 +117,8 @@ theme_override_font_sizes/font_size = 32
 text = "LOGOUT"
 icon = ExtResource("7_o44s4")
 flat = true
+script = ExtResource("8_o44s4")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="overlayer" type="Control" parent="."]
 visible = false
