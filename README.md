@@ -19,9 +19,12 @@
 
 **Submenus:**  
 - **Audio** – 90% (UI done, needs actual audio integration)  
-- **Display** – Done (remove brightness)
-- **Controls** – 10% (UI only, no keybinding logic yet)  
+- **Display** – Done
+- **Controls** – Done
 - **Language** – Done
 
 ### Exit
 - Done
+
+### Story/Game
+- **Gameplay** – Done
