@@ -6,8 +6,12 @@
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_18eaf"]
 [ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="5_f1lln"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0h3nn"]
-bg_color = Color(0.34117648, 0.34117648, 0.34117648, 0.58431375)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1lln"]
+bg_color = Color(0.41725737, 0.41725743, 0.41725728, 0.41960785)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18eaf"]
 content_margin_left = 7.0
@@ -53,15 +57,15 @@ layout_mode = 0
 offset_left = 152.0
 offset_top = 159.0
 offset_right = 1302.0
-offset_bottom = 909.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_0h3nn")
+offset_bottom = 884.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f1lln")
 
 [node name="MarginContainer" type="MarginContainer" parent="privacy_holder"]
 layout_mode = 0
 offset_left = 31.0
 offset_top = 4.0
-offset_right = 1151.0
-offset_bottom = 739.0
+offset_right = 1150.0
+offset_bottom = 710.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="privacy_holder/MarginContainer"]
 layout_mode = 2
