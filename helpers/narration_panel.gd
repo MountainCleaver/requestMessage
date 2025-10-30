@@ -44,32 +44,25 @@ func show_narration_typewriter(lines: Array, speed: float = 0.05) -> void:
 	var button: Button = panel_instance.get_node("Control/Panel/TextureRect/Button")
 	label.text = ""
 	panel_instance.visible = true
-	button.visible = false
+	button.visible = true
+	button.text = "Skip"
 
-	# === FADE IN ===
-	if panel_instance.has_node("AnimationPlayer"):
-		var anim: AnimationPlayer = panel_instance.get_node("AnimationPlayer")
-		if anim.has_animation("fade_in"):
-			anim.play("fade_in")
-			await anim.animation_finished
-	else:
-		var tween := get_tree().create_tween()
-		tween.tween_property(panel_instance, "modulate:a", 1.0, 0.5)
-		await tween.finished
-
+	# Combine lines into full text
 	var full_text = ""
 	for i in range(lines.size()):
 		full_text += lines[i]
 		if i < lines.size() - 1:
-			full_text += "\n"  
+			full_text += "\n"
 
-	# === TYPEWRITER EFFECT ===
 	var current_text := ""
 	var inside_tag := false
 	var current_tag := ""
 
 	for i in range(full_text.length()):
-		if not _is_typing:
+		if _continue_pressed:
+			# === SKIP pressed: immediately show full text ===
+			label.text = full_text
+			_is_typing = false
 			break
 
 		var char = full_text[i]
@@ -107,14 +100,20 @@ func show_narration_typewriter(lines: Array, speed: float = 0.05) -> void:
 
 		await get_tree().create_timer(delay).timeout
 
+	# === Done typing or skipped ===
 	_is_typing = false
-	button.visible = true
+	_continue_pressed = false  # Reset for next click
+	button.text = "Click to Continue"
 
 	while not _continue_pressed:
 		await get_tree().process_frame
 
 	await hide_narration()
 
+
+func _unhandled_input(event):
+	if event.is_action_pressed("dialog_next"):
+		_on_continue_pressed()
 
 
 func _on_continue_pressed():
