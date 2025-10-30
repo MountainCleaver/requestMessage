@@ -1,18 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6ufomjjkwkbw"]
+[gd_scene load_steps=10 format=3 uid="uid://bwiq4tyarhsfw"]
 
-[ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="2_t4h72"]
-[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="3_pxq1l"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_7wfba"]
+[ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="1_3n5t2"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_0iqqo"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_ku4mr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_t2p8q"]
-font = ExtResource("3_pxq1l")
+font = ExtResource("2_0iqqo")
 font_size = 40
 font_color = Color(0.329412, 0.329412, 0.329412, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_tas5x"]
-font = ExtResource("4_7wfba")
+font = ExtResource("3_ku4mr")
 font_size = 24
-font_color = Color(0.29954728, 0.2995475, 0.29954743, 1)
+font_color = Color(0.29586652, 0.2958665, 0.29586646, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wabu4"]
 content_margin_left = 5.0
@@ -94,7 +94,7 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[node name="acc_create_successfully" type="Control"]
+[node name="acc_reset_pass_successfully" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,7 +104,7 @@ offset_bottom = -1024.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="holder" parent="." instance=ExtResource("2_t4h72")]
+[node name="holder" parent="." instance=ExtResource("1_3n5t2")]
 top_level = true
 layout_mode = 0
 offset_left = 471.0
@@ -124,7 +124,7 @@ offset_right = -80.0
 offset_bottom = 87.599
 grow_horizontal = 2
 grow_vertical = 2
-text = "SUCCESS!"
+text = "Email sent"
 label_settings = SubResource("LabelSettings_t2p8q")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -137,12 +137,12 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -105.5
-offset_top = -18.129
+offset_top = -18.128998
 offset_right = 105.5
 offset_bottom = 6.871
 grow_horizontal = 2
 grow_vertical = 0
-text = "Account created successfully!"
+text = "Please check your email. "
 label_settings = SubResource("LabelSettings_tas5x")
 
 [node name="btn_ok" type="Button" parent="holder"]
@@ -159,7 +159,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
-theme_override_fonts/font = ExtResource("4_7wfba")
+theme_override_fonts/font = ExtResource("3_ku4mr")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_wabu4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_knne6")
@@ -167,12 +167,12 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_vrlwj")
 theme_override_styles/focus = SubResource("StyleBoxFlat_uxglm")
 text = "OK"
 
-[node name="holder2" parent="." instance=ExtResource("2_t4h72")]
+[node name="holder2" parent="." instance=ExtResource("1_3n5t2")]
 modulate = Color(0, 0, 0, 0.580392)
 layout_mode = 0
-offset_left = -387.0
-offset_top = -365.0
-offset_right = 1802.0
-offset_bottom = 1275.0
+offset_left = -385.0
+offset_top = -380.0
+offset_right = 1804.0
+offset_bottom = 1260.0
 
 [connection signal="pressed" from="holder/btn_ok" to="." method="_on_btn_create_pressed"]

@@ -127,7 +127,7 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_bfe6o")
 theme_override_font_sizes/font_size = 29
-text = "This game is intended for players aged 18 and above. Viewer/player discretion is strongly advised. If you are currently struggling with your mental health or find any part of the game emotionally overwhelming, we encourage you to pause and seek support. Your well-being matters more than finishing the game."
+text = "This game is intended for players AGE 18 AND ABOVE. Viewer/player discretion is strongly advised. If you are currently struggling with your mental health or find any part of the game emotionally overwhelming, we encourage you to pause and seek support. Your well-being matters more than finishing the game."
 autowrap_mode = 2
 
 [node name="proceed" type="Panel" parent="."]
@@ -177,6 +177,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 2.000061
+offset_bottom = 2.000061
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_bfe6o")
