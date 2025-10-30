@@ -33,6 +33,23 @@ func _ready() -> void:
 
 func _fade_to_black() -> void:
 	animation_player.play("fade_to_blackness")
+	await animation_player.animation_finished 
+	_show_texts_sequence() 
+
+
+func _show_texts_sequence() -> void:
+	var texts_container := $texts
+	var delay := 0.0
+
+	for child in texts_container.get_children():
+		if child is RichTextLabel:
+			child.modulate.a = 0.0 
+			var tween := create_tween()
+			tween.set_trans(Tween.TRANS_SINE)
+			tween.set_ease(Tween.EASE_OUT)
+			tween.tween_property(child, "modulate:a", 1.0, 1.0).set_delay(delay)
+			delay += 2.0
+
 
 func _set_image()->void:
 	if not SignalBus.asked_neighbors_done: 
