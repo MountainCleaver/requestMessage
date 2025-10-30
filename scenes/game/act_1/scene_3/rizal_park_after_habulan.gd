@@ -1,5 +1,5 @@
 extends Node2D
-const A_1S_3 = preload("res://dialogues/act_1/scene_3/a1s3.dialogue")
+var A_1S_3: Resource
 
 @onready var player_danilo: CharacterBody2D = $"NPC Y-SORT/wendy_and_danilo_holder/player_danilo"
 @onready var wendy: CharacterBody2D = $"NPC Y-SORT/wendy_and_danilo_holder/wendy"
@@ -13,11 +13,22 @@ var wendy_gone : bool = false;
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_1", "scene_3")
 	FlashlightManager.disable_flashlights()
+	_load_dialogue()
 	danilo_collision_shape_2d.disabled = true;
 	wendy_collision_shape_2d.disabled = true;
 	
 	DialogueManager.show_dialogue_balloon(A_1S_3, "start");
-
+	
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_1/scene_3/a1s3_en.dialogue"
+	else:
+		path = "res://dialogues/act_1/scene_3/a1s3.dialogue"
+	
+	A_1S_3 = load(path)
+	
 func _process(delta: float) -> void:
 	if wendy_gone:
 		camera_2d.position = player_danilo.global_position;
@@ -59,7 +70,8 @@ func scene_3_done () -> void:
 	Hud.hide_objectives() 
 	
 	SaveManager.game_save.current_act = "act_1"
-	SaveManager.game_save.current_scene = "scene_4" # badly named I admit. this is for the 'continue' part in main menu
+	SaveManager.game_save.current_scene = "scene_3" # badly named I admit. this is for the 'continue' part in main menu
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_1", "scene_3", "res://scenes/game/act_1/scene_4/act_1_scene_4.tscn") # caught in save manager
 	Hud.clear_objectives();
 

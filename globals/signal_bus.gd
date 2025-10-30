@@ -73,3 +73,6 @@ var asked_neighbors_done : bool = false
 signal fade_to_blackness
 signal remove_npc(npc: String)
 signal last_words
+
+
+signal start_chase

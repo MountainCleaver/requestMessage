@@ -1974,6 +1974,7 @@ layer = 101
 visible = false
 
 [node name="buzz_audio" type="AudioStreamPlayer2D" parent="."]
+bus = &"sfx"
 
 [connection signal="body_entered" from="water_glass/water_area" to="." method="_on_water_area_body_entered"]
 [connection signal="body_exited" from="water_glass/water_area" to="." method="_on_water_area_body_exited"]

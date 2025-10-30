@@ -3,7 +3,7 @@ extends Node2D
 signal entrance_triggered
 
 # === PRELOADS ===
-const A_4S_2 = preload("res://dialogues/act_4/scene_2/a4s2.dialogue")
+var A_4S_2: Resource
 
 @onready var player_danilo: CharacterBody2D = $"y-sorted/player_danilo"
 @onready var entrance: Area2D = $"entrance"
@@ -17,6 +17,7 @@ var dialogue_shown: bool = false
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_2")
 	FlashlightManager.enable_flashlight_by_cash()
+	_load_dialogue()
 	tip.visible = false
 	signage.body_entered.connect(_on_signage_body_entered)
 	signage.body_exited.connect(_on_signage_body_exited)
@@ -28,6 +29,16 @@ func _ready() -> void:
 	DialogueManager.show_dialogue_balloon(A_4S_2, "start")
 	player_danilo.can_move = true
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_4/scene_2/a4s2_en.dialogue"
+	else:
+		path = "res://dialogues/act_4/scene_2/a4s2.dialogue"
+	
+	A_4S_2 = load(path)
+	
 func _input(event: InputEvent) -> void:
 	if not event.is_action_pressed("interact"):
 		return

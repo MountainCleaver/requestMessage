@@ -4,15 +4,26 @@ extends Node2D
 @onready var buzz_audio: AudioStreamPlayer2D = $buzz_audio
 
 var buzz_timer: Timer
-const A_1S_4 = preload("res://dialogues/act_1/scene_4/a1s4.dialogue")
+var A_1S_4: Resource
 var _in_reflection := false
 
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_1", "scene_4")
 	FlashlightManager.disable_flashlights()
+	_load_dialogue()
 	if DialogueManager:
 		DialogueManager.connect("dialogue_ended", Callable(self, "_on_dialogue_ended"))
 		DialogueManager.show_dialogue_balloon(A_1S_4, "start")
+
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_1/scene_4/a1s4_en.dialogue"
+	else:
+		path = "res://dialogues/act_1/scene_4/a1s4.dialogue"
+
+	A_1S_4 = load(path)
 
 func _on_dialogue_ended(resource = null) -> void:
 	if not _in_reflection:

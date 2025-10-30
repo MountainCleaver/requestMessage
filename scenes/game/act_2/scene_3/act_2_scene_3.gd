@@ -1,7 +1,7 @@
 extends Node2D
 
 # === PRELOADS ===
-const A_2S_3 = preload("res://dialogues/act_2/scene_3/a2s3.dialogue")
+var A_2S_3: Resource
 
 @onready var bus_trigger: Area2D = $"bus_terminal/bus_trigger"
 @onready var phone_trigger: Area2D = $"bus_terminal/phone_trigger"
@@ -12,6 +12,9 @@ const A_2S_3 = preload("res://dialogues/act_2/scene_3/a2s3.dialogue")
 @onready var bus_interact: Area2D = $"bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact"
 @onready var jeep: AnimatedSprite2D = $"bus_terminal/y-sorted2/jeep"
 @onready var camera_2d: Camera2D = $"bus_terminal/y-sorted2/player_danilo/Camera2D"
+
+@onready var car_noise: AudioStreamPlayer = $SFX_CAR
+@onready var sfx_notif: AudioStreamPlayer = $SFX_NOTIF
 
 @onready var bus_areas = {
 	"montelargo": $bus_areas/montelargo,
@@ -72,7 +75,8 @@ var chat_open: bool = false
 
 func _ready() -> void:
 	_game_state_flow()
-		
+	_load_dialogue()
+	car_noise.play()
 	player_danilo.force_cannot_move = true;
 	entrance.body_entered.connect(_on_entrance_body_entered)
 	setup_bus_connections()
@@ -101,11 +105,22 @@ func _game_state_flow() -> void:
 	GameState.overwrite_current_scene_keep_previous()
 	GameState.save_game()
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_2/scene_3/a2s3_en.dialogue"
+	else:
+		path = "res://dialogues/act_2/scene_3/a2s3.dialogue"
+	
+	A_2S_3 = load(path)
+	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	player_danilo.force_cannot_move = false;
 	intro_anim_done  = true;
 	Hud.show_objectives();
 	ObjectiveManager.add_objective(1, "Enter bus terminal.")
+	car_noise.stop()
 
 func _on_entrance_body_entered(body: Node2D) -> void:
 	if body.name != "player_danilo":
@@ -178,6 +193,7 @@ func _input(event: InputEvent) -> void:
 		SaveManager.game_save.current_act = "act_2"
 		SaveManager.game_save.current_scene = "scene_3"
 		
+		SaveManager.save_game()
 		GameState.save_game()
 		
 		SignalBus.act_num_scene_num_done.emit(
@@ -283,6 +299,7 @@ func enable_bus_trigger():
 
 # Magvibrate yung phone then labas yung hud ng phone then chat ni unknown sender
 func _on_phone_trigger_body_entered(body: Node2D) -> void:
+	sfx_notif.play()
 	if body.name != "player_danilo":
 		return
 

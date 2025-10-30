@@ -20,8 +20,13 @@ extends Node2D
 @onready var vanish: Area2D = $areas/vanish
 @onready var ghost_flee: Area2D = $areas/ghost_flee
 
+@onready var bgm_forest: AudioStreamPlayer = $BGM_FOREST
+@onready var sfx_breathing: AudioStreamPlayer = $SFX_BREATHING
+@onready var bgm_afterrun: AudioStreamPlayer = $BGM_AFTERRUN
+@onready var sfx_thunder: AudioStreamPlayer = $SFX_THUNDER
+
 # preloads
-const A_3S_4 = preload("uid://15o68hvrk4n0")
+var A_3S_4: Resource
 
 # flags
 var in_dialogue : bool = false
@@ -31,11 +36,23 @@ var fog_and_void_gone : bool = false
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_3", "scene_4")
 	FlashlightManager.disable_flashlights()
+	_load_dialogue()
 	blocking_trees.hide()
 	blocking_trees.collision_enabled = false
 	DialogueManager.show_dialogue_balloon(A_3S_4, "start")
-
-
+	bgm_forest.play()
+	sfx_breathing.play()
+	
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_3/scene_4/a3s4_en.dialogue"
+	else:
+		path = "res://dialogues/act_3/scene_4/a3s4.dialogue"
+	
+	A_3S_4 = load(path)
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("arrow_right"):
 		
@@ -67,10 +84,12 @@ func _on_vanish_body_entered(body: Node2D) -> void:
 	fog_and_void_gone = true
 	
 	_remove_dream_elements()
-	
+	bgm_forest.stop()
+	sfx_breathing.stop()
 	blocking_trees.show()
 	blocking_trees.collision_enabled = true
 	await get_tree().create_timer(1.0).timeout
+	bgm_afterrun.play()
 	DialogueManager.show_dialogue_balloon(A_3S_4, "reminisce")
 
 
@@ -123,15 +142,16 @@ func _remove_dream_elements() -> void:
 	glimmering_light.queue_free()
 	void_fx.queue_free()
 
-
 func _on_ghost_turn_left_body_entered(body: Node2D) -> void:
 	if body.name == "npc_shadowy_ghost":
 		_ghot_turn_left()
 		$"y-sorted/player_danilo/shock_sprite".queue_free()
 
-
 func _on_shazam_body_entered(body: Node2D) -> void:
+	sfx_thunder.play()
 	print("play lightning sound here")
+	bgm_afterrun.stop()
 	SignalBus.dream_done.emit()
 	WhiteTransitionFade.transition()
 	SignalBus.next_scene.emit("res://scenes/game/act_3/scene_4/act_3_scene_4_part_2.tscn")
+	

@@ -1,0 +1,60 @@
+~ mateo_running
+Mateo_child_crying: Takbo lang... takbo lang... huwag kang lilingon... 
+Mateo_child_crying: huwag kang mahuli...
+Mang gino: [font_size=55.0][shake level=20 connected=0] MATEO! BUMALIK KA DITO!!![/shake]
+=> END
+
+~ mang_gino_being_a_bitch
+Mang gino: [font_size=55.0][shake level=20 connected=0]IKAW BATA KA! MAY PATAKBO-TAKBO KA PANG NALALAMAN?![/shake]
+do _hit_mateo("idle_right")
+Mateo_child_crying: [shake level=20 connected=0]Tama na po 'tay!! [/shake] [font_size=60.0][shake level=20 connected=0]tama na po! Ayoko na![/shake]
+do _hit_mateo("idle_down")
+Mang gino: [font_size=55.0][shake level=20 connected=0]Ah, dito ka pala lagi nagtatago?[/shake]
+do _hit_mateo("idle_right")
+Mang gino: [font_size=55.0][shake level=20 connected=0]Ang dami pang dalang damit![/shake]
+do _spawn_gino_mateo_stuff()
+Mang gino: [font_size=55.0][shake level=20 connected=0]Ano, lalayas ka na?[/shake]
+do _gino_thrashing_stuff()
+Mang gino: [font_size=70.0][shake level=20 connected=0]SIGE LUMAYAS KA! WALA KA NAMANG SILBI![/shake]
+Mateo_child_crying: [shake level=20 connected=0]Tama na po, babalik na'ko sa bahay! [/shake] [font_size=55.0][shake]Huwag niyo pong sirain mga gamit ko![/shake]
+do _gino_respawn()
+Mang gino: [font_size=70.0][shake level=20 connected=0]GAMIT MO? NI SINGKONG DULING WALA KA!![/shake]
+do _hit_mateo("idle_right")
+Mang gino: [font_size=55.0][shake level=20 connected=0]Pinagkukuha mo lang lahat yan sa bahay![/shake]
+Mang gino: [font_size=55.0][shake level=20 connected=0]At akala mo ba hahanapin ka pa namin ng nanay mo?[/shake]
+do _hit_mateo("idle_right")
+Mang gino: [font_size=120.0][shake level=20 connected=0]HINDI![/shake]
+Mang gino: [font_size=70.0][shake level=20 connected=0]MAG-ISA KA DITO!![/shake]
+do _hit_mateo("idle_right")
+Mang gino: [font_size=90.0][shake level=20 connected=0]HINDI KA NAMIN KAILANGAN![/shake]
+do is_hit = true
+=>< mateo_monologue
+=> END
+
+~ mateo_monologue
+Mateo_child_crying: [center][shake]Ayoko na. . . ayoko na. . . bakit ba nangyayari lahat ‘to sa akin?[/shake][/center]
+do _mateo_run_again()
+=> END
+
+~ mateo_calling_for_help
+Mateo_child_crying: [speed=0.5][font_size=55.0][shake]TULONG! TULONG![/shake]  
+Mateo_child_crying: [wave][shake]'TAY! 'NAY![/shake]  
+Mateo_child_crying: [speed=0.5][font_size=50.0][shake]NANDITO AKO!!![/shake]  
+Mateo_child_crying: [speed=0.5][font_size=45.0][shake]Danilo... Wendy...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=40.0][shake]Ayoko pa... ayoko pang mamatay...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=38.0][shake]Ang dami ko pang gustong gawin...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=37.0][shake]Hindi ko na maramdaman ang mga braso ko...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=35.0][shake]Wala na akong lakas...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=33.0][shake]'Tay... patawad...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=33.0][shake]Hindi ko sinasadya...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=32.0][shake]Gusto ko lang... tumigil na lahat...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=31.0][shake]Danilo... patawad...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=30.0][shake]Hindi ko naipakita sa’yo... 'yung pangako ko...[/shake]  
+Mateo_child_crying: [speed=0.5][font_size=29.0][shake]Dapat... sabay nating nakita...[/shake]  
+Mateo_child_crying: [speed=0.6][font_size=29.0][shake]Pagod na ako...[/shake]  
+Mateo_child_crying: [speed=0.6][font_size=28.0][shake]Pakiusap... huwag mo akong kalimutan...[/shake]  
+Mateo_child_crying: [speed=0.7][font_size=26.0]Nandito pa ako...  
+Mateo_child_crying: [speed=0.8][font_size=20.0]Nandito pa rin... [fade]... ako...[/fade]  
+Mateo_child_crying: [speed=1.0][font_size=15.0][fade]...  
+do act_5_scene_5_done()
+=> END

@@ -3,7 +3,7 @@ extends Node2D
 # ===================
 # PRELOADS
 # ===================
-const A_4S_1 = preload("res://dialogues/act_4/scene_1/a4s1.dialogue")
+var A_4S_1: Resource
 const DANILO_HOMETOWN = preload("res://scenes/game/act_4/scene_1/danilo_hometown.tscn")
 const DANILO_HOUSE = preload("res://scenes/game/act_4/scene_1/danilo_house.tscn")
 const HABULAN_AREA = preload("res://scenes/game/act_4/scene_1/habulan_area.tscn")
@@ -90,12 +90,22 @@ var scene_objectives = [
 # ===================
 func _ready():
 	_game_state_flow()
+	_load_dialogue()
 	_start_scene()
-
+	
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_4/scene_1/a4s1_en.dialogue"
+	else:
+		path = "res://dialogues/act_4/scene_1/a4s1.dialogue"
+	
+	A_4S_1 = load(path)
+	
 func _game_state_flow() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_1")
-	FlashlightManager.real_flashlight_enabled = false
-	FlashlightManager.phone_flashlight_enabled = false
+	FlashlightManager.disable_flashlights()
 
 	GameState.load_game()
 	GameState.current_act = "act_4"
@@ -895,6 +905,7 @@ func scene_1_done() -> void:
 	Hud.clear_objectives()
 	SaveManager.game_save.current_act = "act_4"
 	SaveManager.game_save.current_scene = "scene_1"
+	SaveManager.save_game()
 	GameState.save_game()
 	print("ACT 4 SCENE 1 DONE")
 	SignalBus.act_num_scene_num_done.emit(

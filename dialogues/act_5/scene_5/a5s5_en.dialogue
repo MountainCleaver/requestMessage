@@ -1,0 +1,64 @@
+~ mateo_running
+Mateo_child_crying: Just keep running... keep running... don’t look back...
+Mateo_child_crying: don’t let him catch you...
+Mang gino: [font_size=55.0][shake level=20 connected=0] MATEO! GET BACK HERE!!! [/shake]
+=> END
+
+~ mang_gino_being_a_bitch
+Mang gino: [font_size=55.0][shake level=20 connected=0]YOU LITTLE BRAT! THINK YOU CAN JUST RUN AWAY LIKE THAT, HUH?![/shake]
+do _hit_mateo("idle_right")
+Mateo_child_crying: [shake level=20 connected=0]Stop it, please [i]‘tay[/i]!! [/shake] [font_size=60.0][shake level=20 connected=0]Please, stop! I don’t want this anymore![/shake]
+do _hit_mateo("idle_down")
+Mang gino: [font_size=55.0][shake level=20 connected=0]So this is where you’ve been hiding, huh?[/shake]
+do _hit_mateo("idle_right")
+Mang gino: [font_size=55.0][shake level=20 connected=0]Look at all these clothes you’ve piled up![/shake]
+do _spawn_gino_mateo_stuff()
+Mang gino: [font_size=55.0][shake level=20 connected=0]What now? You’re leaving me?[/shake]
+do _gino_thrashing_stuff()
+Mang gino: [font_size=70.0][shake level=20 connected=0]THEN GO! LEAVE! YOU’RE USELESS ANYWAY![/shake]
+Mateo_child_crying: [shake level=20 connected=0]Please, stop, [i]‘tay[/i]! I’ll go home! [/shake] [font_size=55.0][shake]Please don’t break my things![/shake]
+do _gino_respawn()
+Mang gino: [font_size=70.0][shake level=20 connected=0]YOUR THINGS? WORTHLESS. YOU DON'T A OWN A SINGLE THING!![/shake]
+do _hit_mateo("idle_right")
+Mang gino: [font_size=55.0][shake level=20 connected=0]Everything you have, you stole it from the house![/shake]
+Mang gino: [font_size=55.0][shake level=20 connected=0]You really think me and your mother would even bother looking for you?[/shake]
+do _hit_mateo("idle_right")
+Mang gino: [font_size=120.0][shake level=20 connected=0]NO![/shake]
+Mang gino: [font_size=70.0][shake level=20 connected=0]YOU’RE ON YOUR OWN![/shake]
+do _hit_mateo("idle_right")
+Mang gino: [font_size=90.0][shake level=20 connected=0]YOU WERE NEVER NEEDED HERE![/shake]
+do is_hit = true
+=>< mateo_monologue
+=> END
+
+~ mateo_monologue
+Mateo_child_crying: [center][shake]I can’t take it anymore... I can’t...[/shake][/center]
+Mateo_child_crying: [center][shake]Why does it always have to be me?[/shake][/center]
+do _mateo_run_again()
+=> END
+
+~ mateo_calling_for_help
+Mateo_child_crying: [speed=0.5][shake]HELP! HELP![/shake]
+Mateo_child_crying: [wave][shake]'TAY! 'NAY![/shake]
+Mateo_child_crying: [speed=0.5][shake]I’M RIGHT HERE!!![/shake]
+Mateo_child_crying: [speed=0.5][shake]DANILO... WENDY...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=50.0][shake]I don’t want to die yet... [/shake]
+Mateo_child_crying: [speed=0.5][font_size=45.0][shake]There’s still so much I want to do...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=40.0][shake]I’m still right [/shake]here . . .
+Mateo_child_crying: [speed=0.5][font_size=37.0][shake]I... I can’t feel my arms anymore...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=35.0][shake]I don’t have the strength to pull myself up...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=32.0][shake]‘Tay... I’m sorry...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=32.0][shake]I didn’t mean to run...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=32.0][shake]I just wanted it to stop...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=30.0][shake]Danilo... I’m sorry...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=30.0][shake]I never got to show you... my promise...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=30.0][shake]It was supposed to be something special...[/shake]
+Mateo_child_crying: [speed=0.5][font_size=30.0][shake]Guess you’ll... have to find it... without me...[/shake]
+Mateo_child_crying: [speed=0.6][font_size=29.0][shake]I’m so tired...[/shake]
+Mateo_child_crying: [speed=0.6][font_size=28.0][shake]Please... don’t forget me...[/shake]
+Mateo_child_crying: [speed=0.7][font_size=26.0]I’m still here...
+Mateo_child_crying: [speed=0.8][font_size=20.0]Still.[fade].. here...[/fade]
+Mateo_child_crying: [speed=1.0][font_size=15.0][fade]...
+do act_5_scene_5_done()
+=> END
+

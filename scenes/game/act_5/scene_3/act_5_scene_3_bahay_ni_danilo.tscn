@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bq5bs6y7w7kfs"]
+[gd_scene load_steps=12 format=4 uid="uid://bq5bs6y7w7kfs"]
 
 [ext_resource type="Script" uid="uid://cgeieobiwpusw" path="res://scenes/game/act_5/scene_3/act_5_scene_3_bahay_ni_danilo.gd" id="1_23lmq"]
 [ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="1_bg5q8"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bbcnf12eroxh8" path="res://assets/tilesets/INDOOR-TILE.png" id="3_ncb6e"]
 [ext_resource type="PackedScene" uid="uid://dwm8ct5kn32i0" path="res://scenes/game/act_5/scene_3/npc_mira.tscn" id="3_o50h8"]
 [ext_resource type="PackedScene" uid="uid://bslujs6mipwsy" path="res://scenes/characters/player_mateo.tscn" id="5_ncb6e"]
+[ext_resource type="AudioStream" uid="uid://lydd5um5muys" path="res://sound/826622__xkeril__memories-of-a-sweet-summer-music-loop.mp3" id="7_mjarc"]
+[ext_resource type="AudioStream" uid="uid://bvbffy8dlvm36" path="res://sound/washing-dishes-56153.mp3" id="8_flvwc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjarc"]
 texture = ExtResource("3_ncb6e")
@@ -310,6 +312,17 @@ position = Vector2(24, 23)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="BGM_DANILO_HOUSE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_mjarc")
+autoplay = true
+bus = &"music"
+
+[node name="SFX_WASHING" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_flvwc")
+volume_db = -5.725
+autoplay = true
+bus = &"sfx"
 
 [editable path="danilo_hometown_house"]
 [editable path="danilo_hometown_house/y-sorted/npc_danilo"]

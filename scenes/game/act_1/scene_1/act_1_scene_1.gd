@@ -1,7 +1,7 @@
 extends Node2D
 
 # PRELOADS
-const A_1S_1 = preload("res://dialogues/act_1/scene_1/a1s1.dialogue");
+var A_1S_1: Resource;
 
 # NODES
 @onready var storm_animation: AnimationPlayer = $storm_animation;
@@ -36,11 +36,22 @@ var can_interact : bool = false;
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_1", "scene_1")
 	FlashlightManager.disable_flashlights() # force all flashlights OFF (fix for first-run leftovers)
+	_load_dialogue()
 	DialogueManager.dialogue_started.connect(_on_dialogue_start);
 	DialogueManager.dialogue_ended.connect(_on_dialogue_finish);
 	
 	camera_animation.play("intro_pan");
 	_intro_anim();
+
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_1/scene_1/a1s1_en.dialogue"
+	else:
+		path = "res://dialogues/act_1/scene_1/a1s1.dialogue"
+	
+	A_1S_1 = load(path)
 
 func _on_dialogue_start(_resource):
 	can_interact = false;
@@ -116,7 +127,8 @@ func _go_to_sleep() -> void:
 	Hud.hide_objectives();
 	
 	SaveManager.game_save.current_act = "act_1"
-	SaveManager.game_save.current_scene = "scene_2" # badly named I admit. this is for the 'continue' part in main menu
+	SaveManager.game_save.current_scene = "scene_1" # badly named I admit. this is for the 'continue' part in main menu
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_1", "scene_1", "res://scenes/game/act_1/scene_2/act_1_scene_2.tscn") # caught in save manager
 	Hud.clear_objectives();
 	print("act 1 scene 1 is done")
@@ -153,9 +165,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action("interact") and can_interact and inside_bed:
 		_go_to_sleep();
 		bed_area.monitoring = false;
+		
 func add_notification() -> void:
+	Hud.get_node("Control/phone/MarginContainer/lock_screen").clear_notifications()
 	const SCHED_ICON = preload("res://assets/HUD/sched_icon.png")
-	Hud.get_node("Control/phone/MarginContainer/lock_screen").add_notification(SCHED_ICON, "Reminders", "Day of Mateo's disapearnce");
+	Hud.get_node("Control/phone/MarginContainer/lock_screen").add_notification(SCHED_ICON, "Reminders", "Day of *****'s disappearance");
 
 func get_scene_type() -> String:
 	return "game"

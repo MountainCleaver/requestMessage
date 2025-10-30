@@ -24,12 +24,14 @@ extends Node2D
 @onready var bgm_danilo: AudioStreamPlayer = $BGMDanilo
 @onready var bgm_tension: AudioStreamPlayer = $BGMTension
 
-const A_3S_2 = preload("uid://vpb3fshkkblr")
+var A_3S_2: Resource
 const CHAT_ICON = preload("uid://vdiek8gwmqdx")
 const BALLOON = preload("uid://2i4i7d4jd8qg")
 const PHONE_INCOMING_CALL = preload("res://scenes/game/phone_incoming_call.tscn")
 
 var wendy_open: bool = false
+var wendy_opened: bool = false
+var wendy_reply_shown: bool = false
 var mira_open: bool = false
 var unknown_sender_open : bool = false
 var replied_to_wendy: bool = false
@@ -55,7 +57,7 @@ var scene_objectives: Array[Dictionary] = [
 
 func _ready() -> void:
 	_game_state_flow()
-
+	_load_dialogue()
 	# BGM: Play calm at the start, make sure tension is stopped
 	bgm_danilo.play()
 	bgm_tension.stop()
@@ -94,9 +96,21 @@ func _ready() -> void:
 	Hud.show_objectives()
 	
 	Hud.get_node("Control/phone/MarginContainer/lock_screen/Panel/lock").disabled = false
-
-func _on_chat_opened(c: String) -> void:
-	print(c)
+	
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_3/scene_2/a3s2_en.dialogue"
+	else:
+		path = "res://dialogues/act_3/scene_2/a3s2.dialogue"
+	
+	A_3S_2 = load(path)
+	
+func _on_chat_opened(chat_name: String) -> void:
+	if chat_name == "wendy" and not wendy_opened:
+		wendy_opened = true
+		DialogueManager.show_dialogue_balloon(A_3S_2, "first_chat_wendy")
 
 func _game_state_flow() -> void:
 	# PUT THIS AT THE BEGINNING OF FUNC _READY
@@ -264,7 +278,8 @@ func _play_tension_anim() -> void:
 func _act_3_scene_2_done() -> void:
 	print(SaveManager.get_moral_choice("act_3_scene_2"))
 	SaveManager.game_save.current_act = "act_3"
-	SaveManager.game_save.current_scene = "scene_3" 
+	SaveManager.game_save.current_scene = "scene_2" 
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_3", "scene_2", "res://scenes/game/act_3/scene_3/act_3_scene_3.tscn")
 	Hud.clear_objectives();
 	Hud.hide_objectives()

@@ -1,0 +1,102 @@
+~ condition_stabilized
+# Reading diary
+Danilo: I didn’t realize you were going through all this...
+Danilo: [shake]I thought you were happy...[/shake]
+Danilo: [wave]I’m sorry, Mateo.[/wave]
+
+# Mateo appears
+do ghost_appears.emit("relief")
+=> END
+
+~ relief_mateo_appeared
+Danilo: Mateo?
+Mateo: [wave]Exactly![/wave]
+Mateo: You finally found the place I never showed you back then.
+Danilo: ... ...
+Mateo: Aren’t you happy to see me?
+Danilo: I can’t believe I’m actually talking to you.
+Mateo: ...
+Danilo: I waited for you for so long, and now [wave]I’ve found you[/wave].
+do mateo_turn("relief")
+=> END
+
+~ relief_mateo_turned
+# Mateo turns away
+Mateo: ... [wave]Come with me[/wave]
+Danilo: Where are we going? Wait for me.
+# Mateo walks
+do mateo_walk_down("relief")
+=> END
+
+~ relief_cliff
+# transition outside / cliff
+Mateo: Danilo, there’s still so much I wanted to do with you all.
+Danilo: ...
+Mateo: So much I wanted to do... But thank you, Danilo.
+Mateo: [wave]Because you searched for me[/wave], I can finally rest.
+do _ghost_left("relief")
+# Mateo fading away
+do _ghost_vanish("relief")
+Danilo: Just a moment, Mateo.
+Danilo: There’s so much I still want to tell you.
+Danilo: We moved to Manila.
+Danilo: I have a job now.
+Danilo: Wendy... she’s a psychiatrist.
+Danilo: So much happened without you here.
+Danilo: Just for a moment, stay here with me.
+# Mateo fading away continues, and finishes
+Mateo: Thank you for finding me.
+Mateo: Live well, Danilo.
+do whitey_vanish_full()
+do act_5_scene_8_done()
+=> END
+
+##################################################################
+##################################################################
+##################################################################
+
+~ condition_worsened
+# Reading diary
+Danilo: Mateo... oh God... you hid all of this from us...
+# Chapel darkens, sound effects
+Danilo: I thought... you were happy... that nothing was weighing you down...
+Danilo: I never knew... you were hiding all that behind your laughter...
+Danilo: But I let you down.
+Danilo: Mateo... I’m sorry...
+# Ghost appears
+do _candle_dim()
+do ghost_appears.emit("restless")
+=> END
+
+~ resltess_ghost_appeared
+Entity: ...Danilo... why... did you leave me...?
+Danilo: Mateo... is that you?
+do show_distortion()
+#=> END
+#
+#~ restless_ghost_turn_and_walk_a_bit
+do mateo_turn("restless")
+Entity: Come... this way... Danilo... here...
+do _candle_dimmer()
+do mateo_walk_down("restless")
+=> END
+
+~ restless_cliff
+# transition outside / cliff
+# Shadow stands near edge
+Danilo: Mateo...
+Entity: ...
+# Look down
+do _ghost_down("restless")
+Entity: ...
+Danilo: Just a moment...
+Entity: ...
+# Look left
+do _ghost_left("restless")
+Danilo: Don’t leave me yet...
+Entity: [fade]...[/fade]
+do _ghost_vanish("restless")
+do act_5_scene_8_done()
+# Shadow fades to nothing
+# Danilo collapses at the edge. The voices scream louder, swallowing him in darkness.
+=> END

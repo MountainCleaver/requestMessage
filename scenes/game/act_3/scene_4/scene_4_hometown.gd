@@ -20,7 +20,6 @@ var player_danilo : CharacterBody2D
 @onready var with_jonathan: Marker2D = $"danilo_hometown/y-sorted-objects/spawn_points/with_jonathan"
 @onready var with_theresa_spawn: Marker2D = $"danilo_hometown/y-sorted-objects/spawn_points/with_theresa_spawn"
 
-
 @onready var gino: Area2D = $"danilo_hometown/y-sorted-objects/areas/gino"
 @onready var vanessa: Area2D = $"danilo_hometown/y-sorted-objects/areas/vanessa"
 @onready var jonathan: Area2D = $"danilo_hometown/y-sorted-objects/areas/jonathan"
@@ -119,8 +118,6 @@ func _remove_npc(npc: String) -> void:
 
 	node.queue_free()
 	
-
-
 func _on_gino_body_entered(body: Node2D) -> void:
 	if body.name == "player_danilo":
 		SignalBus.in_npc.emit("door_gino")
@@ -194,7 +191,6 @@ func _jonathan_and_danilo_talking()->void:
 
 func _on_jonathan_done(npc: String)->void:
 	_remove_npc(npc)
-
 
 func _on_home_door_body_entered(body: Node2D) -> void:
 	if body.name == "player_danilo":

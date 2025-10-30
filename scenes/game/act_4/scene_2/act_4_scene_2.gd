@@ -143,6 +143,7 @@ func _on_grave_exit_triggered() -> void:
 	await TransitionFade.transition()
 	SaveManager.game_save.current_act = "act_4"
 	SaveManager.game_save.current_scene = "scene_2"
+	SaveManager.save_game()
 	GameState.save_game()
 	print("ACT 4 SCENE 2 DONE")
 	SignalBus.act_num_scene_num_done.emit(

@@ -129,7 +129,7 @@ func _on_back_button_pressed():
 		tween.tween_callback(bgm.stop)
 		await tween.finished
 	
-	get_tree().change_scene_to_file("res://scenes/menu/menu_credits.tscn")
+		act_6_scene_2_done()
 
 func _input(event):
 	if event.is_action_pressed("ui_accept") and not has_shown_end:
@@ -140,3 +140,14 @@ func _input(event):
 	
 	if event.is_action_pressed("ui_cancel"):
 		_on_back_button_pressed()
+
+# ===================
+# COMPLETE SCENE
+# ===================
+func act_6_scene_2_done() -> void:
+	SaveManager.game_save.current_act = "act_6"
+	SaveManager.game_save.current_scene = "scene_2" 
+	SaveManager.save_game()
+	print("ACT 6 DONE - The End")
+
+	SignalBus.next_scene.emit("res://scenes/menu/menu_credits.tscn")

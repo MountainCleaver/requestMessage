@@ -113,19 +113,22 @@ func apply_dialogue_line() -> void:
 	# === AUTO FORMATTING ===
 	if raw_character_name.to_lower() == "unknown_sender":
 		display_name = "Unknown Sender"
-	elif raw_character_name.ends_with("_child"):
-		display_name = raw_character_name.replace("_child", "")
-		display_name = display_name.capitalize() + " (child)"
-	elif raw_character_name.ends_with("_ghost"):
-		display_name = raw_character_name.replace("_ghost", "")
-		display_name = display_name.capitalize() + " (ghost)"
-	elif "_" in raw_character_name:
-		# Handle any other underscores
-		var parts = raw_character_name.split("_")
+	else:
+		# Strip common variation suffixes
+		var base_name = raw_character_name
+		var variations = ["_child", "_Child", "_crying", "_ghost", "_ghostly", "_bad_ghost", "_good_ghost", "_ghost_1", "_ghost_2"]
+
+		for v in variations:
+			base_name = base_name.replace(v, "")
+
+		# Remove leftover underscores and format nicely
+		var parts = base_name.split("_")
 		display_name = ""
 		for part in parts:
-			display_name += part.capitalize() + " "
+			if part != "":
+				display_name += part.capitalize() + " "
 		display_name = display_name.strip_edges()
+
 
 	character_label.visible = not raw_character_name.is_empty()
 	character_label.text = tr(display_name, "dialogue")

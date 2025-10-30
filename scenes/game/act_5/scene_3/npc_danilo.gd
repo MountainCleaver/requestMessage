@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var area_2d: Area2D = $Area2D
+#@onready var area_2d: Area2D = $Area2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var speed: float = 50.0

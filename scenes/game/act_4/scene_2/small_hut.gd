@@ -3,7 +3,7 @@ extends Node2D
 signal paper_done
 signal hut_exit
 
-const A_4S_2 = preload("res://dialogues/act_4/scene_2/a4s2.dialogue")
+var A_4S_2: Resource
 const GRAVEYARD = preload("res://scenes/game/act_4/scene_2/graveyard.tscn")
 
 @onready var player_danilo: CharacterBody2D = $"y-sorted/player_danilo"
@@ -19,6 +19,7 @@ const GRAVEYARD = preload("res://scenes/game/act_4/scene_2/graveyard.tscn")
 @onready var cr: Area2D = $Interactable/Cr
 @onready var sala: Area2D = $Interactable/Sala
 @onready var paper5_collsion: CollisionShape2D = $"y-sorted/PAPER5/CollisionShape2D"
+@onready var sfx_notif: AudioStreamPlayer = $SFX_NOTIF
 
 @onready var paper_sprites= {
 	"paper_1": $"y-sorted/PAPER1/paper_1",
@@ -61,6 +62,7 @@ var current_paper_name: String = ""
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_2")
 	FlashlightManager.enable_flashlight_by_cash()
+	_load_dialogue()
 	tip.visible = false
 	mark.visible = false
 	paper5_collsion.disabled = false
@@ -81,6 +83,16 @@ func _ready() -> void:
 		area.set_deferred("monitorable", false)
 	
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_4/scene_2/a4s2_en.dialogue"
+	else:
+		path = "res://dialogues/act_4/scene_2/a4s2.dialogue"
+	
+	A_4S_2 = load(path)
+	
 func _input(event: InputEvent) -> void:
 	if not event.is_action_pressed("interact"):
 		return
@@ -126,6 +138,7 @@ func _on_paper5_interacted() -> void:
 	player_danilo.can_move = true
 
 func _on_phone_trigger_body_entered(body: Node2D) -> void:
+	sfx_notif.play()
 	if body.name != "player_danilo":
 		return
 

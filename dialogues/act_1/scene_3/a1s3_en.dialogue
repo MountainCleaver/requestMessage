@@ -1,0 +1,60 @@
+~ start
+Wendy: Dan...
+Wendy: Are you okay?
+Danilo: [center]Should I tell Wendy... about what I remembered?[/center]
+Wendy: Dan?
+- Tell her about the figure from the memory =>< tell
+- Keep it to yourself =>< keep
+do leave_the_park()
+=> END
+
+~ tell
+do SaveManager.save_moral_choice("act_1_scene_3", "relief")
+Danilo: Ah... something came back to me...
+Danilo: When we were playing back then...
+Danilo: I saw something...
+Danilo: [wave]a shadowy figure...[/wave]
+Danilo: It was following [color=#8B0000][i]him[/i][/color].
+Wendy: A shadow?
+Wendy: Dan... why are you only telling me this now?
+Wendy: Why didn’t you mention it before?
+Danilo: I don’t know... it just resurfaced now.
+Danilo: It’s still blurry... but I’m sure someone was following him that day.
+Wendy: Dan... this could mean something.
+Wendy: If you remember anything else, even fragments, tell me right away.
+Wendy: [shake]You’re remembering because a part of you wants to face it.[/shake]
+Danilo: But... what if it’s my fault?
+Danilo: What if I’m the reason he disappeared?
+Wendy: It’s not your fault.
+Wendy: But if we ever want peace... we have to face what really happened.
+=> END
+
+~ keep
+do SaveManager.save_moral_choice("act_1_scene_3", "restless")
+Wendy: Are you sure you’re okay?
+Wendy: You looked... distant.
+Danilo: Ah... I just remembered [wave][color=#8B0000][i]him[/i][/color][/wave].
+Wendy: Danilo... if there’s something you want to say...
+Wendy: You know I’m always here, right?
+Wendy: You don’t have to carry this alone.
+Danilo: Yeah... thanks.
+Danilo: [color=#808080](sighs)[/color]
+Danilo: [center]I know... I should tell her.[/center]
+Danilo: [center]But... it still refuses to explain itself to me, yet.[/center]
+=> END
+
+~ pauwi
+Wendy: Have a safe trip, Danilo.
+Danilo: You too, Wen. Thanks.
+do re_enable_collisions()
+do wendy_walk_away()
+do Hud.show_objectives()
+do ObjectiveManager.add_objective(1, "Get home")
+=> END
+
+~ jeep
+Danilo: [i]"Pasakay po, manong!"[/i]
+- Neighborhood
+	do scene_3_done()
+- Cancel
+=> END

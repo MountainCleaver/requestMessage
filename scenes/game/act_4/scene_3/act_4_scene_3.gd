@@ -3,7 +3,7 @@ extends Node2D
 # ===================
 # PRELOADS
 # ===================
-const A_4S_3 = preload("res://dialogues/act_4/scene_3/a4s3.dialogue")
+var A_4S_3: Resource
 const DARK_FOREST = preload("res://scenes/game/act_4/scene_3/dark_forest.tscn")
 const CHAPEL_EXTERIOR = preload("res://scenes/game/act_4/scene_3/chapel_exterior.tscn")
 const CHAPEL_INTERIOR = preload("res://scenes/game/act_4/scene_3/chapel_interior.tscn")
@@ -94,11 +94,22 @@ var scene_objectives = [
 # ===================
 func _ready():
 	_game_state_flow()
+	_load_dialogue()
 	switch_location(NARRATION_PANEL)
 	_start_scene()
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.unknown_sender_label_visible = false
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_4/scene_3/a4s3_en.dialogue"
+	else:
+		path = "res://dialogues/act_4/scene_3/a4s3.dialogue"
+	
+	A_4S_3 = load(path)
+	
 func _game_state_flow() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_3")
 	FlashlightManager.enable_flashlight_by_cash()
@@ -126,6 +137,7 @@ func _start_scene() -> void:
 func _switch_to_dark_forest() -> void:
 	await get_tree().process_frame
 	switch_location(DARK_FOREST)
+	player_danilo.last_direction = Vector2.RIGHT
 	Hud.show_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 
@@ -169,7 +181,7 @@ func _switch_to_chapel_interior() -> void:
 	Hud.clear_objectives()
 	Hud.hide_objectives()
 	switch_location(CHAPEL_INTERIOR)
-	
+	player_danilo.last_direction = Vector2.UP
 	await get_tree().process_frame
 	DialogueManager.show_dialogue_balloon(A_4S_3, "exploration_chat")
 	await DialogueManager.dialogue_ended
@@ -313,16 +325,6 @@ func _on_explore_triggered(body, spot_name: String):
 	explored_spots[spot_name] = true
 	ObjectiveManager.update_progress(explore_objective_id)
 
-	var danilo_light: PointLight2D = null
-	if player_danilo:
-		danilo_light = player_danilo.get_node_or_null("PointLight2D")
-
-	# === Light grows before dialogue ===
-	if danilo_light:
-		danilo_light.visible = true
-		var grow_tween = create_tween()
-		grow_tween.tween_property(danilo_light, "texture_scale", 1.0, 0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
 	match spot_name:
 		"cabinet":
 			DialogueManager.show_dialogue_balloon(A_4S_3, "explore_cabinet")
@@ -336,14 +338,10 @@ func _on_explore_triggered(body, spot_name: String):
 			DialogueManager.show_dialogue_balloon(A_4S_3, "explore_candle")
 			await DialogueManager.dialogue_ended
 
-	# === Light shrinks back after dialogue ===
-	if danilo_light:
-		var shrink_tween = create_tween()
-		shrink_tween.tween_property(danilo_light, "texture_scale", 0.5, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-
 	if explored_spots.size() >= total_explore_spots:
 		ObjectiveManager.complete_objective(explore_objective_id)
 		await get_tree().create_timer(1.0).timeout
+		Hud.clear_objectives()
 		DialogueManager.show_dialogue_balloon(A_4S_3, "after_explore_all")
 
 
@@ -545,7 +543,6 @@ func _light_small_candle(index: int) -> void:
 			cabinet2_sprite.region_enabled = true
 			cabinet2_sprite.region_rect = Rect2(33, 0.847, 30.0, 32.195)
 			
-		await DialogueManager.dialogue_ended
 		ObjectiveManager.add_objective(scene_objectives[5]["ID"], scene_objectives[5]["text"])
 		_enable_cabinet_areas()
 
@@ -688,7 +685,10 @@ func _flicker_all_candles_creepy() -> void:
 		if light:
 			all_lights.append(light)
 
-	_start_creepy_flicker(all_lights, 100, 0.1)
+	var flicker_count := 15  # total flickers
+	var interval := 3.0 / flicker_count  # 3 seconds total
+	_start_creepy_flicker(all_lights, flicker_count, interval)
+
 
 func _start_creepy_flicker(lights: Array, count: int, interval: float) -> void:
 	if count <= 0:
@@ -726,28 +726,17 @@ func _start_ghost_slow_approach() -> void:
 	if not npc_ghost or not player_danilo:
 		return
 
+	# Make ghost visible
 	npc_ghost.visible = true
 
-	if ghost_move_timer:
-		ghost_move_timer.stop()
-		ghost_move_timer.queue_free()
+	# Calculate target position (30 px offset from player)
+	var offset = (npc_ghost.global_position - player_danilo.global_position).normalized() * 200
+	var target_pos = player_danilo.global_position - offset
 
-	ghost_move_timer = Timer.new()
-	ghost_move_timer.wait_time = 2.0
-	ghost_move_timer.autostart = true
-	ghost_move_timer.one_shot = false
-	ghost_move_timer.timeout.connect(func():
-		var ghost_pos = npc_ghost.global_position
-		var player_pos = player_danilo.global_position
-		var distance = ghost_pos.distance_to(player_pos)
-		if distance > 30:
-			var dir = (player_pos - ghost_pos).normalized()
-			var move_step = 20  
-			npc_ghost.global_position += dir * move_step
-		else:
-			npc_ghost.global_position = player_pos - (player_pos - ghost_pos).normalized() * 30
-			ghost_move_timer.stop()
-	)
+	# Create tween to move ghost over 3 seconds
+	var tween = create_tween()
+	tween.tween_property(npc_ghost, "global_position", target_pos, 3.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
 	add_child(ghost_move_timer)
 	_enable_chapel_exit_area()
 

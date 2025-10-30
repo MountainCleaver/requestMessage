@@ -36,25 +36,60 @@ func clear_objectives() -> void:
 func new_objective(obj_ID: int, new_objective_text: String, color: Color = Color.BLACK) -> void:
 	_create_objective_node(obj_ID, new_objective_text, color)
 
-func done_objective(obj_ID: int, objective: String) -> void:
-	var objectives_nodes = v_box_container.get_children() as Array[RichTextLabel]
-	for obj in objectives_nodes:
-		if obj.get_meta("ID") == obj_ID:
-			obj.text = "[✔]" + objective
+func done_objective(obj_ID: int, objective: String, check_color: Color = Color.DARK_BLUE, panel_done_color: Color = Color.HONEYDEW) -> void:
+	for margin in v_box_container.get_children():
+		if margin is MarginContainer:
+			var panel = margin.get_child(0) 
+			if panel is PanelContainer:
+				var obj = panel.get_child(0)
+				if obj.get_meta("ID") == obj_ID:
+					var hex_color = "#" + check_color.to_html(false)
+					obj.bbcode_enabled = true
+					obj.text = "[color=%s][[b]✓[/b]] [/color]%s" % [hex_color, objective]
+
+					if panel.has_theme_stylebox_override("panel"):
+						var style: StyleBoxFlat = panel.get_theme_stylebox("panel").duplicate() as StyleBoxFlat
+						style.bg_color = panel_done_color
+						panel.add_theme_stylebox_override("panel", style)
+					return
+
 
 func _create_objective_node(objective_ID: int, objective_string: String, color: Color = Color.BLACK) -> void:
-	var objective_node = RichTextLabel.new()
-	objective_node.bbcode_enabled = true
-	objective_node.fit_content = true
-	objective_node.autowrap_mode = TextServer.AUTOWRAP_WORD
-	objective_node.add_theme_font_override("normal_font", BASIS_33)
-	objective_node.add_theme_font_size_override("normal_font_size", 24)
-	objective_node.add_theme_color_override("default_color", color)
-	objective_node.add_theme_color_override("font_strikethrough_color", Color.RED)
-	objective_node.add_theme_constant_override("font_strikethrough_width", 3)
-	objective_node.text = "[ ]" + str(objective_string)
-	objective_node.set_meta("ID", objective_ID)
-	v_box_container.add_child(objective_node)
+	var margin_container = MarginContainer.new()
+	margin_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	margin_container.custom_minimum_size = Vector2(300, 0)
+	margin_container.add_theme_constant_override("margin_left", 10)
+	margin_container.add_theme_constant_override("margin_right", 10)
+	margin_container.add_theme_constant_override("margin_top", 5)
+	margin_container.add_theme_constant_override("margin_bottom", 5)
+
+	var panel = PanelContainer.new()
+	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	
+	var panel_style = StyleBoxFlat.new()
+	panel_style.bg_color = Color(1, 1, 1, 1)
+	panel_style.set_corner_radius_all(15)
+	panel_style.content_margin_left = 15 
+	panel_style.content_margin_right = 15
+	panel_style.content_margin_top = 10
+	panel_style.content_margin_bottom = 10
+	panel.add_theme_stylebox_override("panel", panel_style)
+
+	var objective_label = RichTextLabel.new()
+	objective_label.bbcode_enabled = true
+	objective_label.fit_content = true
+	objective_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	objective_label.add_theme_font_override("normal_font", BASIS_33)
+	objective_label.add_theme_font_size_override("normal_font_size", 24)
+	objective_label.add_theme_color_override("default_color", color)
+	objective_label.add_theme_color_override("font_strikethrough_color", Color.RED)
+	objective_label.add_theme_constant_override("font_strikethrough_width", 3)
+	objective_label.text = "[ ] " + str(objective_string)
+	objective_label.set_meta("ID", objective_ID)
+
+	panel.add_child(objective_label)
+	margin_container.add_child(panel)
+	v_box_container.add_child(margin_container)
 
 func show_objectives() -> void:
 	objectives_panel.visible = true
@@ -65,11 +100,15 @@ func hide_objectives() -> void:
 	objective_outro_anim()
 
 func update_objective_text(obj_ID: int, new_text: String) -> void:
-	var objectives_nodes = v_box_container.get_children() as Array[RichTextLabel]
-	for obj in objectives_nodes:
-		if obj.get_meta("ID") == obj_ID:
-			obj.text = "[ ]" + new_text
-			return
+	for margin in v_box_container.get_children():
+		if margin is MarginContainer:
+			var panel = margin.get_child(0)
+			if panel is PanelContainer:
+				var obj = panel.get_child(0)
+				if obj.get_meta("ID") == obj_ID:
+					obj.text = "[ ] " + new_text
+					return
+
 
 
 func objective_intro_anim() -> void:

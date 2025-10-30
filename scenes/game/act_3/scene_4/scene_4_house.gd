@@ -23,6 +23,7 @@ var camera_2d : Camera2D
 
 var asked_neighbors : bool = true
 
+
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_3", "scene_4")
 	FlashlightManager.disable_flashlights()
@@ -32,6 +33,21 @@ func _ready() -> void:
 
 func _fade_to_black() -> void:
 	animation_player.play("fade_to_blackness")
+	await animation_player.animation_finished 
+	_show_texts_sequence() 
+
+func _show_texts_sequence() -> void:
+	var texts_container := $texts
+	var delay := 0.0
+
+	for child in texts_container.get_children():
+		if child is RichTextLabel:
+			child.modulate.a = 0.0 
+			var tween := create_tween()
+			tween.set_trans(Tween.TRANS_SINE)
+			tween.set_ease(Tween.EASE_OUT)
+			tween.tween_property(child, "modulate:a", 1.0, 1.0).set_delay(delay)
+			delay += 2.0
 
 func _set_image()->void:
 	if not SignalBus.asked_neighbors_done: 
@@ -71,7 +87,6 @@ func _on_door_area_body_entered(body: Node2D) -> void:
 func _on_door_area_body_exited(body: Node2D) -> void:
 	if body.name == "player_danilo":
 		SignalBus.out_npc.emit("")
-
 
 func _on_picture_area_body_entered(body: Node2D) -> void:
 	if body.name == "player_danilo":

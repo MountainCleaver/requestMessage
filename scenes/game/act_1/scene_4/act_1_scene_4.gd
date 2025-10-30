@@ -1,15 +1,15 @@
 extends Node2D
 
 # PRELOADS
-const A_1S_4 = preload("res://dialogues/act_1/scene_4/a1s4.dialogue")
+var A_1S_4: Resource
 const DANILO_NEIGHBORHOOD = preload("res://scenes/game/act_1/scene_4/danilo_neighborhood.tscn")
 const DANILO_ROOM = preload("res://scenes/game/act_1/scene_4/danilo_room.tscn")
 const DANILO_LOCK = preload("res://scenes/game/lock_screen.tscn")
 
 # NODES
 @onready var locations: Node2D = $locations
-@onready var ChatHistory = get_node("/root/ChatHistory")
 var player_danilo: CharacterBody2D = null
+var bgm_room: AudioStreamPlayer = null
 
 # OBJECTIVES
 var scene_objectives = [
@@ -20,7 +20,7 @@ var scene_objectives = [
 	{"ID": 5, "text": "Close/Lock phone"},
 	{"ID": 6, "text": "Go Home"},
 	{"ID": 7, "text": "Check the phone again"},
-	{"ID": 8, "text": "Check the unknown number and its request message"}
+	{"ID": 8, "text": "[shake]Check the unknown number and its request message[/shake]"}
 ]
 
 # FLAGS
@@ -41,10 +41,12 @@ var final_objectives_done: bool = false
 var current_location: Node = null
 var buzz_timer: Timer
 var lock_screen_instance: Control = null
+var _in_reflection := false
+var in_bahay_area: bool = false
 
 func _ready() -> void:
 	_game_state_flow()
-	
+	_load_dialogue()
 	switch_location(DANILO_NEIGHBORHOOD)
 
 	# Buzz Timer setup
@@ -58,16 +60,32 @@ func _ready() -> void:
 	SignalBus.sched_opened.connect(_on_sched_opened)
 	SignalBus.app_chat_opened.connect(_on_app_chat_opened)
 	SignalBus.chat_opened.connect(_on_chat_opened)
-	SignalBus.chat_message_sent.connect(_on_chat_message_sent)
 	SignalBus.chat_closed.connect(_on_chat_closed)
+	SignalBus.unknown_sender_label_visible = true
+
+	if DialogueManager:
+		DialogueManager.connect("dialogue_ended", Callable(self, "_on_dialogue_ended"))
 
 	_start_scene()
+
+# ===================
+# LOAD DIALOGUE
+# ===================
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_1/scene_4/a1s4_en.dialogue"
+	else:
+		path = "res://dialogues/act_1/scene_4/a1s4.dialogue"
+	A_1S_4 = load(path)
 
 # ===================
 # SCENE START
 # ===================
 func _start_scene() -> void:
 	DialogueManager.show_dialogue_balloon(A_1S_4, "start")
+	await DialogueManager.dialogue_ended
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	await get_tree().create_timer(1.0).timeout
 	show_initial_lock_screen()
@@ -75,21 +93,43 @@ func _start_scene() -> void:
 func _game_state_flow() -> void:
 	FlashlightManager.set_current_scene("act_1", "scene_4")
 	FlashlightManager.disable_flashlights()
-	# PUT THIS AT THE BEGINNING OF FUNC _READY
 	GameState.current_act = "act_1"
 	GameState.current_scene = "scene_4"
 	GameState.save_game()
 	GameState.overwrite_current_scene_keep_previous()
-	
+
 # ===================
 # LOCATION 
 # ===================
 func switch_location(scene: PackedScene) -> void:
 	if current_location and current_location.is_inside_tree():
 		current_location.queue_free()
+
 	current_location = scene.instantiate()
 	locations.add_child(current_location)
 	player_danilo = current_location.get_node("player_danilo")
+
+	var bahay_area = current_location.get_node_or_null("bahay")
+	if bahay_area:
+		if not bahay_area.is_connected("body_entered", Callable(self, "_on_bahay_body_entered")):
+			bahay_area.connect("body_entered", Callable(self, "_on_bahay_body_entered"))
+		if not bahay_area.is_connected("body_exited", Callable(self, "_on_bahay_body_exited")):
+			bahay_area.connect("body_exited", Callable(self, "_on_bahay_body_exited"))
+
+
+# ===================
+# REFLECTION CHOICE HANDLER
+# ===================
+func _on_dialogue_ended(resource = null) -> void:
+	if not _in_reflection:
+		_in_reflection = true
+		var choice = SaveManager.get_moral_choice("act_1_scene_3")
+		if choice == "relief":
+			DialogueManager.show_dialogue_balloon(A_1S_4, "option_relief")
+		elif choice == "restless":
+			DialogueManager.show_dialogue_balloon(A_1S_4, "option_restless")
+		else:
+			DialogueManager.show_dialogue_balloon(A_1S_4, "option_restless")
 
 # ===================
 # BUZZ AUDIO
@@ -139,35 +179,23 @@ func _on_chat_opened(chat_name: String) -> void:
 			open_chat_generic("group_chat", "reply_gc", scene_objectives[3]["ID"])
 		"unknown_sender":
 			open_chat_generic("unknown_sender", "chat_unknown_sender")
-
 			unknown_sender_opened = true
-			
 			if has_gone_home:
 				ObjectiveManager.complete_objective(scene_objectives[7]["ID"])
 				final_objectives_done = true
-			
 				if lock_screen_instance:
 					lock_screen_instance.objectives_done = true
-					
 				await get_tree().create_timer(5).timeout
 				Hud.hide_objectives()
 				Hud.phone_outro()
 				await get_tree().create_timer(0.8).timeout
+				bgm_room = current_location.get_node_or_null("BGMRoom")
+				if bgm_room:
+					bgm_room.stop()
 				scene_4_done()
 
 func _on_chat_closed(chat_name: String) -> void:
 	print("%s chat closed" % chat_name)
-
-func _on_chat_message_sent(chat_name: String) -> void:
-	match chat_name:
-		"wendy":
-			if not wendy_reply_shown:
-				wendy_reply_shown = true
-				DialogueManager.show_dialogue_balloon(A_1S_4, "reply")
-		"mira":
-			if not mira_reply_shown:
-				mira_reply_shown = true
-				DialogueManager.show_dialogue_balloon(A_1S_4, "reply_mira_answer")
 
 # ===================
 # CHAT HELPERS
@@ -205,10 +233,14 @@ func open_sched() -> void:
 	if not checked_sched:
 		checked_sched = true
 		ObjectiveManager.complete_objective(scene_objectives[0]["ID"])
+		Hud.hide_objectives()
+		Hud.clear_objectives()
 		DialogueManager.show_dialogue_balloon(A_1S_4, "checked_schedule")
-
+		await DialogueManager.dialogue_ended
+		Hud.show_objectives()
 	if not chat_objectives_added:
 		chat_objectives_added = true
+		Hud.clear_objectives()
 		ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
 		ObjectiveManager.add_objective(scene_objectives[2]["ID"], scene_objectives[2]["text"])
 		ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]["text"])
@@ -218,6 +250,8 @@ func all_chats_checked() -> bool:
 
 func check_add_lock_objective() -> void:
 	if all_chats_checked() and not set1_objective_done:
+		await DialogueManager.dialogue_ended
+		Hud.show_objectives()
 		ObjectiveManager.add_objective(scene_objectives[4]["ID"], scene_objectives[4]["text"])
 
 func _on_last_objective_lock_pressed() -> void:
@@ -256,17 +290,34 @@ func _switch_to_danilo_room() -> void:
 	TransitionFade.transition()
 	await SignalBus.on_transition_finished
 	switch_location(DANILO_ROOM)
-
+	bgm_room = current_location.get_node_or_null("BGMRoom")
+	if bgm_room:
+		bgm_room.play()
 	ObjectiveManager.complete_objective(scene_objectives[5]["ID"])
 	ObjectiveManager.add_objective(scene_objectives[6]["ID"], scene_objectives[6]["text"])
 	DialogueManager.show_dialogue_balloon(A_1S_4, "after_home")
-
 	SignalBus.unknown_sender_unlocked = true
 	has_gone_home = true
 
+# ===================
+# NEIGHBORHOOD TRIGGERS
+# ===================
+func _on_bahay_body_entered(body: Node2D) -> void:
+	if body.name == "player_danilo":
+		in_bahay_area = true 
+		SignalBus.in_npc.emit("bahay")
+
+func _on_bahay_body_exited(body: Node2D) -> void:
+	if body.name == "player_danilo":
+		in_bahay_area = false 
+		SignalBus.out_npc.emit("bahay")
+
+# ===================
+# INPUT
+# ===================
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and player_danilo:
-		if player_danilo.get_parent().in_bahay_area:
+		if in_bahay_area:
 			_switch_to_danilo_room()
 
 # ===================
@@ -277,6 +328,7 @@ func scene_4_done() -> void:
 	Hud.clear_objectives()
 	SaveManager.game_save.current_act = "act_1"
 	SaveManager.game_save.current_scene = "scene_4"
+	SaveManager.save_game()
 	GameState.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_1", "scene_4", "res://scenes/game/act_2_title_scene.tscn")
-	print("act 1 scene 4 is done. ACT 1 DONE !!!!!!!!!!!!!!!!!!")
+	print("ACT 1 SCENE 4 DONE. ACT 1 DONE!")

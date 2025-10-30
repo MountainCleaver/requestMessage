@@ -1,0 +1,17 @@
+~ start
+Manang Matet: [shake rate=20 level=10]You never care about anyone![/shake]
+Manang Matet: [shake rate=20 level=10]All you think about is yourself![/shake]
+Manang Matet: [shake rate=20 level=10]You don’t even consider what’s happening to our family![/shake]
+Mang Gino: [shake rate=20 level=10]This is your fault! You’re the reason why we’re always fighting![/shake]
+Mang Gino: [shake rate=20 level=10]Every single day, chaos! You never stop blaming and accusing me![/shake]
+=> mateo_mono
+=> END
+
+~ mateo_mono
+Mateo_child: [center]They don’t stop. The shouting... it’s suffocating.[/center]
+Mateo_child: [center]I can’t stay here.[/center]
+Mateo_child: [center]I want a place where the voices... vanish.[/center]
+Mateo_child: [center]A place where only silence exists...[/center]
+do ObjectiveManager.add_objective(1, "Escape the house")
+do Hud.show_objectives()
+=> END

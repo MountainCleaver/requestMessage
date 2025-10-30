@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b5gngeqkegqte"]
+[gd_scene load_steps=12 format=3 uid="uid://b5gngeqkegqte"]
 
 [ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="2_una6p"]
 [ext_resource type="Texture2D" uid="uid://k3fvhpun83o5" path="res://assets/tilesets/danilo_hometown_house_interior_decoration.png" id="3_4c20w"]
 [ext_resource type="Texture2D" uid="uid://tufc0rj0skyh" path="res://assets/tilesets/glass_ov_woa.png" id="4_4meo3"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="4_dlaq7"]
+[ext_resource type="AudioStream" uid="uid://cuds4olglvbgu" path="res://sound/enchanted-fear-mystery-219774.mp3" id="5_t0kl8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5i88b"]
 texture = ExtResource("3_4c20w")
@@ -107,6 +108,12 @@ limit_left = -270
 limit_top = -206
 limit_right = 253
 limit_bottom = 191
+
+[node name="BGM_MUSIC" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_t0kl8")
+volume_db = -21.561
+autoplay = true
+bus = &"music"
 
 [connection signal="body_entered" from="door_area" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="door_area" to="." method="_on_area_2d_body_exited"]

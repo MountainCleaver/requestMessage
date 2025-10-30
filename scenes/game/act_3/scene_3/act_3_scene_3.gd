@@ -52,7 +52,7 @@ var mini_game_completed: bool = false
 
 var already_triggered_paranoia := false
 
-const A_3S_3 = preload("uid://befctg2rwc1x7")
+var A_3S_3: Resource
 
 var maps = {
 	
@@ -114,6 +114,7 @@ var scene_objectives : Array[Dictionary] = [
 	{"ID": 3, "text" : "Ride a Tricycle to Bayan"},
 	{"ID": 4, "text": "Find a Drugstore"},
 	{"ID" : 5, "text" : "Go Back Home"},
+	{"ID" : 6, "text" : "Go to bed and try to calm yourself"},
 ]
 
 var moral_choice : String
@@ -121,6 +122,7 @@ var moral_choice : String
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_3", "scene_3")
 	FlashlightManager.disable_flashlights()
+	_load_dialogue()
 	Hud.reset_phone_dont_show()
 	_game_state_flow()
 	SignalBus.unknown_sender_unlocked = true
@@ -138,8 +140,18 @@ func _ready() -> void:
 	start_mini_game.connect(_start_mini_game)
 	intro_sequence_done.connect(_on_intro_sequence_done)
    
-	bgm_home.stop()    
-
+	bgm_home.stop()   
+	 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_3/scene_3/a3s3_en.dialogue"
+	else:
+		path = "res://dialogues/act_3/scene_3/a3s3.dialogue"
+	
+	A_3S_3 = load(path)
+	
 func _input(event: InputEvent) -> void:
 	if not event.is_action_pressed("interact"):
 		return
@@ -181,8 +193,8 @@ func _input(event: InputEvent) -> void:
 					)
 					ObjectiveManager.complete_objective(scene_objectives[4]["ID"])
 					await get_tree().create_timer(0.5).timeout
-					Hud.hide_objectives()
 					Hud.clear_objectives()
+					ObjectiveManager.add_objective(scene_objectives[5]["ID"], scene_objectives[5]["text"])
 		"tricycle_hometown":
 			can_interact = false
 			if not bought_meds:
@@ -280,6 +292,9 @@ func _input(event: InputEvent) -> void:
 
 				SignalBus.sat_on_bed.emit()
 				start_mini_game.emit()
+				ObjectiveManager.complete_objective(6)
+				Hud.hide_objectives()
+				Hud.clear_objectives()
 
 
 func _game_state_flow() -> void:
@@ -591,6 +606,7 @@ func _act_3_scene_3_done() -> void:
 	if Hud.phone_showing:
 		Hud.phone_outro()
 	SaveManager.game_save.current_act = "act_3"
-	SaveManager.game_save.current_scene = "scene_4"
+	SaveManager.game_save.current_scene = "scene_3"
+	SaveManager.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_3", "scene_3", "res://scenes/game/act_3/scene_4/act_3_scene_4.tscn")
 	ObjectiveManager.empty_objectives()

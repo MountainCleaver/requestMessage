@@ -3,7 +3,7 @@ extends Node2D
 # ===================
 # PRELOADS
 # ===================
-const A_2S_2 = preload("res://dialogues/act_2/scene_2/a2s2.dialogue")
+var A_2S_2: Resource
 const DANILO_ROOM = preload("res://scenes/game/act_2/scene_2/danilo_room.tscn")
 const DANILO_NEIGHBORHOOD = preload("res://scenes/game/act_2/scene_2/danilo_neighborhood.tscn")
 const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
@@ -53,6 +53,7 @@ var scene_objectives = [
 # ===================
 func _ready():
 	_game_state_flow()
+	_load_dialogue()
 	switch_location(NARRATION_PANEL)
 	_start_scene()
 	SignalBus.chat_message_sent.connect(_on_chat_message_sent)
@@ -67,7 +68,17 @@ func _game_state_flow() -> void:
 	GameState.current_scene = "scene_2"
 	GameState.overwrite_current_scene_keep_previous()
 	GameState.save_game()
-
+	
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_2/scene_2/a2s2_en.dialogue"
+	else:
+		path = "res://dialogues/act_2/scene_2/a2s2.dialogue"
+	
+	A_2S_2 = load(path)
+	
 # ===================
 # START SCENE
 # ===================
@@ -297,6 +308,7 @@ func scene_2_done() -> void:
 	Hud.clear_objectives()
 	SaveManager.game_save.current_act = "act_2"
 	SaveManager.game_save.current_scene = "scene_2"
+	SaveManager.save_game()
 	GameState.save_game()
 	print("ACT 2 SCENE 2 DONE")
 	SignalBus.act_num_scene_num_done.emit(

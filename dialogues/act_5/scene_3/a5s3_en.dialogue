@@ -1,0 +1,43 @@
+~ katok
+Mateo_child: Are you there, Danilo?
+do _to_danilo_house()
+do can_interact = true
+=> END
+
+~ inside_house
+Mateo_child: Danilo!
+Danilo_child: ...
+Mateo_child: Danilo?
+Danilo_child: ...
+Mateo_child: Hey, Danilo!
+do animated_sprite_2d.play("idle_down")
+Danilo_child: Hmm?
+Mateo_child: You still look sleepy.
+Mateo_child: Come on, let’s play.
+Danilo_child: Alright... I just need to ask Mama first.
+do can_interact = true
+do _paalam_kay_mama()
+=> END
+
+~ paalam
+Danilo_child: Ma, we’re just going to play outside.
+Mira: Who will you be playing with, and where exactly?
+Mira: Ah... Mateo, there you are.
+Mateo_child: Hello.
+Danilo_child: We're just going to play at the playground.
+Mira: Make sure that’s really where you go.
+Mira: If I catch you kids sneaking into the graveyard again... I don’t even know.
+Danilo_child: Okay, Ma, we’re leaving now.
+Mira: Wait up!
+Mira: This kid... never listens...  
+do can_interact = true
+do lalabas_ng_bahay()
+=> END
+
+~ wendy
+Wendy_child: Danilo! Mateo!
+Wendy_child: Wait for me!
+do make_wendy_follow_mateo_and_danilo()
+do player_mateo.force_cannot_move = false
+do wendy.show()
+=> END

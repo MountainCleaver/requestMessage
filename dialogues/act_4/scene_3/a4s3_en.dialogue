@@ -1,0 +1,112 @@
+~ start
+Danilo: [shake rate=20 level=10]Is this... [wait=0.8]the place Mateo wanted to show me?[/shake]
+Danilo: [shake rate=20 level=10]So dark...[/shake]
+=> END
+
+~ signage
+Danilo: This way... [wait=0.6]A chapel, they say?
+=> END
+
+~ exploration_chat
+do BuzzManager.start_buzz()
+Danilo: ...
+- Open the phone => chat_unknown_sender
+=> END
+
+~ chat_unknown_sender
+do BuzzManager.stop_buzz()
+do Hud.show_phone_with_unknown_sender()
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Danilo... narating mo na ang lugar na ito.")
+Unknown_sender: [wait=1.5]Danilo... you’ve reached this place.
+=> chat_unknown_sender_2
+
+~ chat_unknown_sender_2
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Lumapit ka... baka makita mo kung ano ang hinahanap mo.")
+Unknown_sender: [wait=1.5]Come closer... you might see what you’re looking for.
+=> END
+
+~ lighter_found
+Danilo: A lighter... maybe this will come in handy.
+=> END
+
+~ explore_cabinet
+Danilo: An old cabinet... locked? Seems like it hasn’t been opened in years.
+=> END
+
+~ explore_candle
+Danilo: Candles... all covered in dust. Haven’t been lit in a long time.
+=> END
+
+~ explore_mateo_things
+Danilo: Some belongings... but whose are these?
+Danilo: Slippers and clothes... looks like someone slept here.
+Danilo: On the wall... full of scribbles and letters.
+Danilo: [shake rate=20 level=10]???[/shake]
+Danilo: ...These drawings???
+Danilo: Are these the three of us?
+Danilo: Me, [wait=0.5]Wendy, [wait=0.5]and... Mateo.
+Danilo: So this old chapel... this is what he wanted to show me before...
+Danilo: Mateo, this place is full of your memories...
+Danilo: Where are you now... Mateo...?
+Danilo: I’ll find you... I promise.
+=> END
+
+~ after_explore_all
+Danilo: [shake rate=20 level=10]It’s so dark...[/shake] I should light the candles to see the whole place.
+do ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]["text"])
+=> END
+
+~ candle_ignited
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Sindihan mo lahat ng natitirang kandila sa tamang ayos...")
+Unknown_sender: [wait=1.5]Light all the remaining candles in the correct order...
+=> candle_ignited_2
+
+~ candle_ignited_2
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Huwag kang magkakamali.")
+Unknown_sender: [wait=1.5]Don't make a mistake.
+do Hud.phone_outro()
+=> END
+
+~ wrong_candle
+Danilo: This isn’t the right candle...
+=> END
+
+~ all_candles_lit_up
+Danilo: [shake rate=20 level=10]??????[/shake]
+Danilo: What was that?[wait=0.5] Did something just make a sound?
+Danilo: The... cabinet?[wait=0.5] Did it... just open on its own? [shake rate=20 level=10]
+=> END
+
+~ correct_old_cabinet
+Danilo: What’s this?
+Danilo: Paper? [wait=0.5]Wait...
+Danilo: Is this... one of Mateo’s missing diary pages?
+Danilo: I have to take it...
+=> END
+
+~ wrong_old_cabinet
+Danilo: I checked... but it’s empty.
+=> END
+
+~ after_cabinets_dialogue
+Danilo: Seems there’s nothing else here... Maybe I can leave now.
+=> END
+
+~ while_shadow_ghost_forward
+Danilo: !!!
+=> END
+
+~ after_shadow_ghost_forward
+Danilo: [speed=1][shake rate=100.0 level=10]????????????????????[/shake]
+Danilo: [shake rate=20 level=10]WHAT WAS THAT?![/shake]
+Danilo: [shake rate=20 level=10]WHAT... WHAT DID I JUST SEE?![/shake]
+Danilo: ... ... ...
+Danilo: Calm down, Danilo... just calm down...
+Danilo: I-I need to get out of here... before something happens to me.
+=> END
+
+~ back_to_dark_forest
+Danilo: I have to leave this place...
+Danilo: But where to go? Ah... the cliff.
+Danilo: I have to keep moving.
+=> END

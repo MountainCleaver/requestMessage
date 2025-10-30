@@ -4,8 +4,12 @@ extends Node2D
 @onready var animated_sprite_2d := $player_danilo/AnimatedSprite2D
 @onready var marker_2d := $Marker2D
 @onready var mira := $npc_mira
+var A_5S_7: Resource
 
 func _ready():
+	FlashlightManager.set_current_scene("act_5", "scene_7")
+	FlashlightManager.disable_flashlights() # force all flashlights OFF (fix for first-run leftovers)
+	_load_dialogue()
 	start_cutscene()
 
 func start_cutscene() -> void:
@@ -17,13 +21,23 @@ func start_cutscene() -> void:
 	animated_sprite_2d.play("hometown_sleep")
 	await get_tree().create_timer(1.5).timeout
 
-	var balloon = DialogueManager.show_dialogue_balloon(
-		load("res://dialogues/act_5/scene_7/a5s7.dialogue"),
-		"mira_wake_up", [self]
-	)
-	if balloon:
-		balloon.tree_exited.connect(_on_mira_wake_up_done)
+	var story_balloon = DialogueManager.show_dialogue_balloon(
+			A_5S_7,
+			"mira_wake_up", [self]
+		)
+	if story_balloon:
+		story_balloon.tree_exited.connect(_on_mira_wake_up_done)
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_5/scene_7/a5s7_en.dialogue"
+	else:
+		path = "res://dialogues/act_5/scene_7/a5s7.dialogue"
+	
+	A_5S_7 = load(path)
+	
 func _on_mira_wake_up_done():
 	animated_sprite_2d.play("hometown_wake")
 	await get_tree().create_timer(1.0).timeout
@@ -39,9 +53,10 @@ func _on_mira_wake_up_done():
 	playerNode.can_move = false
 
 	var story_balloon = DialogueManager.show_dialogue_balloon(
-		load("res://dialogues/act_5/scene_7/a5s7.dialogue"),
+		A_5S_7,
 		"start", [self]
 	)
+	
 	if story_balloon:
 		story_balloon.tree_exited.connect(_on_scene_7_dialogue_done)
 
@@ -51,12 +66,13 @@ func _on_scene_7_dialogue_done():
 func act_5_scene_7_done() -> void:
 	SaveManager.game_save.current_act = "act_5"
 	SaveManager.game_save.current_scene = "scene_7"
+	SaveManager.save_game()
 	GameState.save_game()
 
 	print("ACT 5 SCENE 7 DONE")
 
 	SignalBus.act_num_scene_num_done.emit(
 		"act_5",
-		"scene_8",
-        "res://scenes/game/act_5_scene_8.tscn"
+		"scene_7",
+        "res://scenes/game/act_5/scene_8/act_5_scene_8.tscn"
 	)

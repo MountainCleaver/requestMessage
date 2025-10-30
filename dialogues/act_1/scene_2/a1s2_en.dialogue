@@ -1,0 +1,79 @@
+~ start
+Danilo: [i]"Pasakay po, manong!"[/i]
+=>< Choices
+=> END
+
+~ Choices
+Danilo: ... [wait = 0.5]
+- Bus Terminal => Bus_Terminal
+- Rizal Park => Rizal_Park
+- Cancel => END
+=> END
+
+~ Bus_Terminal
+Danilo: This wasn’t in the plan... => Choices
+=> END
+
+~ Rizal_Park
+do Hud.hide_objectives()
+do to_rizal_park()
+=> END
+
+~ wendy_start
+Danilo: Wen! Have you been here long?
+Wendy: I just got here.
+Wendy: I thought you’d be late again.
+Danilo: I’m trying to live differently now. Let’s go find a seat.
+do wendy_follow()
+=> END
+
+~ pick_table_1
+Danilo: It’s dirty here, we can’t sit at this one.
+do set_table_used("table_1")
+=> END
+
+~ pick_table_2
+Danilo: This one’s taken. We can’t sit here.
+do set_table_used("table_2")
+=> END
+
+~ pick_table_3
+Danilo: The chair is broken, we can’t sit here.
+do set_table_used("table_3")
+=> END
+
+~ pick_table_4
+Danilo: Here, we can sit here.
+do ObjectiveManager.complete_objective(3)
+do set_table_used("table_4")
+do wendy_unfollow()
+=> END
+
+~ table_conversation
+Wendy: Wow,[wait=0.4] fifteen years already, huh?
+Wendy: How have you been?[wait=0.4] Especially now...
+Danilo: Ah,[wait=0.3] I’m okay...
+Danilo: [wave]I just didn’t sleep well earlier.[/wave]
+Danilo: Feels... heavy somehow.
+Wendy: Maybe because of today.
+Wendy: It’s heavy for me too.
+Wendy: It’s been years.
+Wendy: [speed=0.8]...
+Wendy: [center]I really should lighten the mood.[/center]
+Wendy: [center]I don’t want us remembering only the sad parts.[/center]
+Wendy: Dan, remember when we were kids...
+Wendy: How much we loved playing hide-and-seek.
+Wendy: [wave]And then you...[/wave]
+Wendy: You always made me hide with you even when you knew it was wrong.
+Wendy: Maybe you just wanted an ally,[wait=0.3] or maybe you just wanted to see him lose.
+Wendy: One time, you took forever to come out... Here I thought you went home.
+Wendy: Turns out, you were hiding near the grass by the tree.
+Wendy: I couldn’t find you because you were both lying there.
+Wendy: [color=#808080](sigh)[/color]
+Wendy: So many years... [wave]since we haven’t had [color=#8B0000][i]him[/i][/color] with us.[/wave]
+Danilo: ...
+Wendy: Danilo? [wait=1.0]
+Danilo: ... ...
+Wendy: Hey[fade], [wait=0.5]Danilo?[/fade]
+do scene_2_done()
+=> END

@@ -1,40 +1,40 @@
 ~ katok
-Mateo_Child: Nandyan ka ba Danilo ??
+Mateo_child: Nandiyan ka ba, Danilo?
 do _to_danilo_house()
 do can_interact = true
 => END
 
 ~ inside_house
-Mateo_Child: Danilo!
+Mateo_child: Danilo!
 Danilo_child: ...
-Mateo_Child: Danilo?
+Mateo_child: Danilo?
 Danilo_child: ...
-Mateo_Child: Hoy Danilo!!
+Mateo_child: Hoy, Danilo!
 do animated_sprite_2d.play("idle_down")
 Danilo_child: Hmm?
-Mateo_Child: Parang kilang pa ata sa tuloh ah?
-Mateo_Child: Tara laro tayo.
+Mateo_child: Parang kulang ka pa sa tulog ah.
+Mateo_child: Tara, laro tayo.
 Danilo_child: Sige, magpapaalam lang ako kay Mama.
 do can_interact = true
 do _paalam_kay_mama()
 => END
 
 ~ paalam
-Danilo_child: Ma, Maglalaro lang kami sa labas.
-Mira: Sinu-sino naman mga kalaro mo at san kayo banda maglalaro?
-Mira: Oh, andiyan ka pala Mateo
-Mateo_Child: Hello, po
-Danilo_child: Sa may laruan lang kami banda
-Mira: Talagang dun kayo maglalaro ah
-Mira: Kapag kayo nahuli ko na naman andun sa libingan, naku ewan ko na lang
-Danilo_child: Sige na ma, alis na 'ko
-Mira: Saglit lang, talaga 'tong batang 'to—
+Danilo_child: Ma, maglalaro lang kami sa labas.
+Mira: Sinu-sino naman ang kalaro mo, at saan kayo maglalaro?
+Mira: Oh, andiyan ka pala, Mateo.
+Mateo_child: Hello po.
+Danilo_child: Sa may laruan lang kami.
+Mira: Talagang dun kayo maglalaro ah.
+Mira: Kapag nahuli ko kayong muli doon sa libingan, nako, ewan ko na lang.
+Danilo_child: Sige na, ma, aalis na 'ko.
+Mira: Saglit lang... talaga 'tong batang 'to...
 do can_interact = true
 do lalabas_ng_bahay()
 => END
 
 ~ wendy
-Wendy_child: Ooooooooooy!
+Wendy_child: Danilo! Mateo!
 Wendy_child: Wait lang!
 do make_wendy_follow_mateo_and_danilo()
 do player_mateo.force_cannot_move = false

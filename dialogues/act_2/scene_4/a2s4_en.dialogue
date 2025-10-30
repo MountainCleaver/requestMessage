@@ -1,0 +1,32 @@
+~ start
+Wendy: He left... without a word.
+Wendy: Something’s... off. It's not like before.  
+do Hud.show_objectives()
+Wendy: ...
+- Check the phone => open_phone
+=> END
+
+~ open_phone
+do Hud.reset_phone_state() 
+=> END
+
+~ call_voicemail
+do ObjectiveManager.complete_objective(1)
+Wendy: I can’t reach him... it goes straight to voicemail.  
+Wendy: Maybe Tita Mira knows something.  
+=> END
+
+~ call_mira_convo
+do ObjectiveManager.complete_objective(2)
+Wendy: ... ...  
+Wendy: Hi, Tita.  
+Wendy: I just wanted to ask... is Danilo there?  
+Wendy: He’s not answering my calls or messages.  
+Mira: Ah, Wendy, Nak. He left early this morning.  
+Mira: Went back to the province. Needed some time alone.  
+Mira: I reminded him to buy his medicine before leaving, Nak.  
+Wendy: Thank you, tita... you know Dan... I’m worried about him.
+Wendy: Did he say why he left so suddenly?  
+Mira: Not really. He just... wanted some peace of mind.
+Mira: I let him be... for now.
+=> END

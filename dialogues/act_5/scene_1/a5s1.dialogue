@@ -1,11 +1,20 @@
 ~ start
+Danilo: Huh... umulan na.  
+Danilo: Alam ko nang uulan.
+Danilo: Kumulog pa nga, gaya ng inaasahan ko.
+Danilo: Wala akong masilungan sa ngayon.
+Danilo: Sa kapilya na lang muna ako.
 Danilo: Kailangan ko bumalik sa lumang kapilya.
+do Hud.show_objectives()
 => END
 
 ~ back_to_chapel_again
-Danilo: [shake rate=20 level=10]Babalik na naman ako dito...[/shake]
-Danilo: [shake rate=20 level=10]Sana... di na mauulit ‘yung nakita ko kanina...[/shake]
+Danilo: [shake rate=20 level=10]Babalik na naman ako dito.[/shake]  
+Danilo: [shake rate=20 level=10]Wala rin naman akong magagawa...[/shake]  
+Danilo: [shake rate=20 level=10]Mabasa lang ‘yung mga pahina kung iiwan ko...[/shake]  
+Danilo: [shake rate=20 level=10]Sana... ‘di ko na mauulit ‘yung nakita ko kanina...[/shake]  
 => END
+
 
 ~ light_candle
 Danilo: Kailangan ko uli sindihan lahat ng kandila.

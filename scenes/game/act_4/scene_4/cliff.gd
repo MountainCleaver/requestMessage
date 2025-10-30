@@ -1,9 +1,10 @@
 extends Node2D
 
-const A_4S_4 := preload("res://dialogues/act_4/scene_4/a4s4.dialogue")
+var A_4S_4: Resource
 
 @onready var phone_trigger: Area2D = $phone_trigger
 @onready var player_danilo: CharacterBody2D = $"y-sorted/player_danilo"
+@onready var sfx_notif: AudioStreamPlayer = $SFX_NOTIF
 
 var scene_objectives = [
 	{"ID": 2, "text": "Find the last paper under the rocks"}
@@ -18,6 +19,7 @@ var chat_open: bool = false
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_4")
 	FlashlightManager.enable_flashlight_by_cash()
+	_load_dialogue()
 	if get_tree().has_meta("last_portal_name"):
 		var last_portal_name = str(get_tree().get_meta("last_portal_name"))
 		var target_portal = get_node_or_null(NodePath(last_portal_name))
@@ -32,6 +34,16 @@ func _ready() -> void:
 	for objective in scene_objectives:
 		ObjectiveManager.add_objective(objective["ID"], objective["text"])
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_4/scene_4/a4s4_en.dialogue"
+	else:
+		path = "res://dialogues/act_4/scene_4/a4s4.dialogue"
+	
+	A_4S_4 = load(path)
+	
 func enable_phone_trigger() -> void:
 	phone_trigger.visible = true
 	phone_trigger.monitoring = true
@@ -43,6 +55,7 @@ func disable_phone_trigger() -> void:
 	phone_trigger.visible = false
 
 func _on_phone_trigger_body_entered(body: Node2D) -> void:
+	sfx_notif.play()
 	if body.name != "player_danilo":
 		return
 
@@ -79,7 +92,7 @@ func act_4_scene_4_done() -> void:
 	SaveManager.game_save.current_act = "act_4"
 	SaveManager.game_save.current_scene = "scene_4"
 	GameState.save_game()
-
+	SaveManager.save_game()
 	print("ACT 4 SCENE 4 DONE")
 
 	# Emit signal to transition to the next scene

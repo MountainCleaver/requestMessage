@@ -5,7 +5,7 @@ signal hut_entered
 signal grave_exit_triggered
 
 # === PRELOADS ===
-const A_4S_2 = preload("res://dialogues/act_4/scene_2/a4s2.dialogue")
+var A_4S_2: Resource
 
 # === NODES ===
 @onready var player_danilo: CharacterBody2D = $"y-sorted/player_danilo"
@@ -20,6 +20,12 @@ const A_4S_2 = preload("res://dialogues/act_4/scene_2/a4s2.dialogue")
 @onready var key_area: Area2D = $"Interactable/Key"
 @onready var house_exit: Marker2D = $House_exit
 
+# === SOUND ===
+@onready var sfx_digging: AudioStreamPlayer = $SFX_DIGGING
+@onready var sfx_lock: AudioStreamPlayer = $SFX_LOCK
+@onready var sfx_open: AudioStreamPlayer = $SFX_OPEN 
+@onready var sfx_notif: AudioStreamPlayer = $SFX_NOTIF
+   
 # === DIRT REFERENCES ===
 @onready var dirt_sprites = {
 	"dirt_1": $"y-sorted/DIRT1/dirt_1",
@@ -68,7 +74,8 @@ var hut_already_entered: bool = false
 func _ready():
 	FlashlightManager.set_current_scene("act_4", "scene_2")
 	FlashlightManager.enable_flashlight_by_cash()
-	player_danilo.last_direction = Vector2.RIGHT
+	_load_dialogue()
+	player_danilo.last_direction = Vector2.LEFT
 	tip.visible = false
 	mark.visible = false
 	setup_dirt_connections()
@@ -98,6 +105,16 @@ func _ready():
 	key_area.monitoring = false
 	key_area.set_deferred("monitorable", false)
 	key_available = false
+
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_4/scene_2/a4s2_en.dialogue"
+	else:
+		path = "res://dialogues/act_4/scene_2/a4s2.dialogue"
+	
+	A_4S_2 = load(path)
 	
 # === INPUT HANDLER ===
 func _input(event: InputEvent) -> void:
@@ -114,6 +131,7 @@ func _input(event: InputEvent) -> void:
 		if not house_interacted:
 			player_danilo.can_interact = false
 			await DialogueManager.show_dialogue_balloon(A_4S_2, "smallhut_lock")
+			sfx_lock.play()
 			house_interacted = true
 			enable_all_dirts()
 			enable_phone_trigger()
@@ -121,6 +139,7 @@ func _input(event: InputEvent) -> void:
 			return
 
 		if house_interacted and not key_collected:
+			sfx_lock.play()
 			player_danilo.can_interact = false
 			await DialogueManager.show_dialogue_balloon(A_4S_2, "no_key")
 			player_danilo.can_interact = true
@@ -137,6 +156,7 @@ func _input(event: InputEvent) -> void:
 				hut_already_entered = true
 				ProgressManager.save_dialogue_shown("hut_already_entered")
 				ProgressManager.set_house_enter_disabled(true)
+				sfx_lock.play()
 				emit_signal("hut_entered")
 				return
 
@@ -146,6 +166,7 @@ func _input(event: InputEvent) -> void:
 		tip.visible = false
 		await dig_anim(dirt_areas[target])
 		player_danilo.force_cannot_move = false		
+		sfx_digging.stop()
 		# hide and save
 		dirt_sprites[target].visible = false
 		ProgressManager.set_dirt_visible(target, false)
@@ -173,6 +194,7 @@ func _input(event: InputEvent) -> void:
 		key.visible = false
 		key_area.monitoring = false
 		key_area.set_deferred("monitorable", false)
+		sfx_open.play()
 		await DialogueManager.show_dialogue_balloon(A_4S_2, "dirt_5")
 		player_danilo.force_cannot_move = false
 		emit_signal("key_found")
@@ -225,6 +247,7 @@ func _on_house_enter_body_exited(body: Node2D):
 		tip.visible = false
 
 func _on_phone_trigger_body_entered(body: Node2D):
+	sfx_notif.play()
 	if body.name != "player_danilo":
 		return
 	SignalBus.unknown_sender_unlocked = true
@@ -259,6 +282,7 @@ func dig_anim(target_area: Area2D):
 	player_danilo.global_position = target_area.global_position
 	if animated_sprite_2d:
 		animated_sprite_2d.play("digging_up")
+		sfx_digging.play()
 		await animated_sprite_2d.animation_finished
 	else:
 		# fallback wait so timing remains consistent

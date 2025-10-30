@@ -1,6 +1,6 @@
 extends Node
 
-const A_6S_1 = preload("res://dialogues/act_6/scene_1/a6s1.dialogue")
+var A_6S_1: Resource
 const HOMETOWN = preload("res://scenes/game/act_6/scene_1/hometown.tscn")
 const WENDY_HOUSE = preload("res://scenes/game/act_6/scene_1/wendy_house.tscn")
 const LARUAN = preload("res://scenes/game/act_6/scene_1/laruan.tscn")
@@ -17,6 +17,12 @@ var current_location: Node
 var camera_2d: Camera2D
 var wendy_bother: Sprite2D
 var gino_shocked: Sprite2D
+
+#SOUNDS
+@onready var bgm_house: AudioStreamPlayer = $BGM_HOUSE
+@onready var bgm_town: AudioStreamPlayer = $BGM_TOWN
+@onready var bgm_find: AudioStreamPlayer = $BGM_FIND
+@onready var sfx_bus: AudioStreamPlayer = $SFX_BUS
 
 #NPC
 var npc_vanesa: CharacterBody2D
@@ -100,32 +106,33 @@ var current_npc: String
 func _ready():
 	switch_location(NARRATION_PANEL)
 	_start_scene()
+	_load_dialogue()
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_6/scene_1/a6s1_en.dialogue"
+	else:
+		path = "res://dialogues/act_6/scene_1/a6s1.dialogue"
+	
+	A_6S_1 = load(path)
+	
 # ===================
 # START SCENE
 # ===================
 func _start_scene() -> void:
-	await get_tree().process_frame
-	var lines = [
-		"Danilo was supposed to be home yesterday,",
-		"but he didn’t come back. Now Wendy is worried about him.",
-		"[shake rate=10 level=15][color=#ff5555] Where are you Danilo? [/color][/shake]"
-	]
-	await NarrationPanel.show_narration_typewriter(lines, 0.05)
-	await NarrationPanel.hide_narration()
-	TransitionFade.transition()
-	await SignalBus.on_transition_finished
-	_switch_to_wendy_house()
- 
-func _switch_to_wendy_house() -> void:
+	bgm_house.play()
 	await get_tree().process_frame
 	switch_location(WENDY_HOUSE)
+	Hud.clear_objectives()
 	DialogueManager.show_dialogue_balloon(A_6S_1, "start")
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 
 func _switch_to_danilo_hometown() -> void:
 	await get_tree().process_frame
 	switch_location(HOMETOWN)
+	sfx_bus.play()
 	_setup_hometown_signage()
 	_on_animation_player_animation_finished("intro")
 
@@ -174,6 +181,8 @@ func _on_dark_forest_exit_entered(body):
 	_switch_to_cliff()
 
 func _on_danilo_body_entered(body) -> void:
+	bgm_town.stop()
+	bgm_find.play()
 	if body.name not in ["player_wendy", "player_wendy2"]:
 		return
 	TransitionFade.transition()
@@ -562,9 +571,12 @@ func _door_interacted():
 
 	# Scene switch (assuming this is only for Wendy)
 	_switch_to_danilo_hometown()
+	
 
 
 func _lola_ising_interacted():
+	bgm_house.stop()
+	bgm_town.play()
 	if tip_interact:
 		tip_interact.visible = false
 
@@ -696,6 +708,7 @@ func _vanesa_interacted():
 # ANIMATION
 # ===================
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	sfx_bus.stop()
 	player_wendy.force_cannot_move = false;
 	intro_anim_done  = true;
 	ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
@@ -816,9 +829,20 @@ func set_wendy_idle_up() -> void:
 func act_6_scene_1_done() -> void:
 	SaveManager.game_save.current_act = "act_6"
 	SaveManager.game_save.current_scene = "scene_1"
+	SaveManager.save_game()
 	print("ACT 6 SCENE 1 DONE")
+	
+	# --- Karma-based scene branching ---
+	var total_karma = SaveManager.get_total_karma()
+	var next_scene_path: String
+	if total_karma >= 0:
+		next_scene_path = "res://scenes/game/act_6/scene_2.1/finally_at_rest.tscn"
+	else:
+		next_scene_path = "res://scenes/game/act_6/scene_2.2/unending_guilt.tscn"
+	print("Next scene based on karma:", next_scene_path)
+
 	SignalBus.act_num_scene_num_done.emit(
 		"act_6", 
 		"scene_1", 
-        "res://scenes/game/act_6/scene_2.tscn"
+		next_scene_path
 	)
