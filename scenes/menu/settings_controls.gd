@@ -21,15 +21,9 @@ var input_actions: Dictionary = {
 	"flashlight": "Flashlight"
 }
 
-
 func _ready() -> void:
 	confirmation_dialog.hide()
 	_create_action_list()
-
-
-# ==========================================================
-# 🔹 PERSISTENCE FUNCTIONS
-# ==========================================================
 
 
 func _save_keybind(action: String, event: InputEvent) -> void:
@@ -95,7 +89,7 @@ func _input(event: InputEvent) -> void:
 		KEY_SPACE, # can interfere with UI
 		KEY_ENTER, # can also interfere with UI
 		KEY_KP_ENTER, # can also also interfere with UI
-		KEY_E # for interact
+		KEY_E # for interact,
 	]
 	
 	if event.physical_keycode in ignored_keys:

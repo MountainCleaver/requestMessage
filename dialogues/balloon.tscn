@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://2i4i7d4jd8qg"]
+[gd_scene load_steps=23 format=3 uid="uid://2i4i7d4jd8qg"]
 
 [ext_resource type="Script" uid="uid://5wu2mtqucmsl" path="res://dialogues/balloon.gd" id="1_36de5"]
 [ext_resource type="Texture2D" uid="uid://dps3kuwfihl5i" path="res://assets/portraits/portrait_danilo.jpg" id="2_7c2jb"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_pa16h"]
 [ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="5_rvrp7"]
 [ext_resource type="AudioStream" uid="uid://cnnn0p3nx3e5t" path="res://sound/blip.wav" id="6_7c2jb"]
+[ext_resource type="Texture2D" uid="uid://bjo1hdg6e8f0w" path="res://assets/HUD/next_icon_dialogue.png" id="6_m00rr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 bg_color = Color(0, 0, 0, 1)
@@ -81,6 +82,19 @@ expand_margin_left = 2.0
 expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gb3oo"]
+bg_color = Color(0, 0, 0, 1)
+border_width_bottom = 5
+border_color = Color(0.230315, 0.23031494, 0.23031479, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_2x2yy"]
+font = ExtResource("3_pa16h")
+font_size = 32
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7c2jb"]
 bg_color = Color(1, 1, 1, 1)
@@ -233,6 +247,36 @@ theme_override_fonts/italics_font = ExtResource("5_rvrp7")
 theme_override_font_sizes/normal_font_size = 48
 theme_override_font_sizes/italics_font_size = 34
 text = "Dialogue..."
+
+[node name="next_indicators" type="MarginContainer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -149.0
+offset_top = -62.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel/next_indicators"]
+layout_mode = 2
+
+[node name="next_label" type="Label" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel/next_indicators/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_gb3oo")
+text = " z "
+label_settings = SubResource("LabelSettings_2x2yy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="next_icon" type="TextureRect" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel/next_indicators/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("6_m00rr")
 
 [node name="ResponsesMenu" type="VBoxContainer" parent="Balloon" node_paths=PackedStringArray("response_template")]
 unique_name_in_owner = true
