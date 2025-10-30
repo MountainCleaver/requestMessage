@@ -9,6 +9,7 @@ extends Control
 @onready var http: HTTPRequest = find_child("HTTP_request")
 @onready var menu_loading_screen: CanvasLayer = $"../menu_loading_screen"
 @onready var exit_confirmation_dialog: ConfirmationDialog = $"../ConfirmationDialog"
+@onready var toggle_password_visibility: TextureButton1 = $holder/line_edit_password/toggle_visibility
 var exit_is_showing : bool = false
 
 func _ready() -> void:
@@ -17,6 +18,8 @@ func _ready() -> void:
 	btn_login.pressed.connect(_on_btn_login_pressed)
 	menu_loading_screen.hide()
 	forgot_pass.pressed.connect(_on_forgot_pass_pressed)
+	toggle_password_visibility.connect("toggled", Callable(self, "_on_toggle_visibility_toggled"))
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action("escape"):
@@ -85,6 +88,8 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 	btn_login.disabled = false
 	login_link.disabled = false
 
+func _on_toggle_visibility_toggled(toggled_on: bool) -> void:
+	line_edit_password.secret = not toggled_on
 
 func _on_signup_link_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/privacy_policy.tscn")
