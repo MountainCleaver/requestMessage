@@ -15,5 +15,5 @@ func _input(event: InputEvent) -> void:
 
 
 func _exit_credits() -> void:
-	SignalBus.exit_overlay.emit();
-	queue_free();
+	SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
+	
