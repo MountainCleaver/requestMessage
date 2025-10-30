@@ -53,4 +53,3 @@ func _event_from_dict(data: Dictionary) -> InputEvent:
 	
 	# Apply global brightness
 	BrightnessManager.set_brightness(settings.brightness)
-
