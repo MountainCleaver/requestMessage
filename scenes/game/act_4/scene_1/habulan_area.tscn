@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://b526ha1fje6y2"]
+[gd_scene load_steps=21 format=4 uid="uid://b526ha1fje6y2"]
 
 [ext_resource type="PackedScene" uid="uid://c3glrajf2ba8i" path="res://scenes/game/act_1/scene_3/habulan_ground.tscn" id="2_n8td8"]
 [ext_resource type="Texture2D" uid="uid://dp4lljuakpb1d" path="res://assets/tilesets/habulan_area_entry_to_dark_forest_playground_assets.png" id="3_138e5"]
@@ -7,9 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cehrjw85vbr2x" path="res://scenes/characters/npc_shadowy_ghost.tscn" id="5_pts6c"]
 [ext_resource type="Texture2D" uid="uid://dy8w1ggvx51vf" path="res://assets/character_sprites/MATEO_BOTHERED.png" id="6_l75ou"]
 [ext_resource type="Texture2D" uid="uid://b26tbvt5h4mc8" path="res://assets/character_sprites/MATEO__SHOCKED.png" id="7_msp3e"]
-[ext_resource type="AudioStream" uid="uid://bark61xgh126b" path="res://sound/Come-Out-And-Play-Remixed-Royalty-Free(chosic.com).mp3" id="10_g1k3x"]
 [ext_resource type="Texture2D" uid="uid://umb5qi1ym8pw" path="res://assets/tilesets/diary.png" id="10_p1mi3"]
-[ext_resource type="AudioStream" uid="uid://cgl77xcrs43cw" path="res://sound/children-giggling-kids-laughing-hd-378111.mp3" id="11_je80a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nibkr"]
 texture = ExtResource("3_138e5")
@@ -5321,18 +5319,6 @@ position = Vector2(771, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area/hometown_way"]
 shape = SubResource("RectangleShape2D_pts6c")
-
-[node name="BGMHide-and-seek" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_g1k3x")
-volume_db = -13.608
-autoplay = true
-bus = &"music"
-
-[node name="SFXHide-and-seek" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_je80a")
-volume_db = -15.266
-autoplay = true
-bus = &"sfx"
 
 [node name="lighting" type="Node2D" parent="."]
 
