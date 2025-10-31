@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://djn4msvxh86o2"]
+[gd_scene load_steps=9 format=3 uid="uid://djn4msvxh86o2"]
 
 [ext_resource type="Script" uid="uid://b0xb6s5qlymsv" path="res://scenes/menu/scripts/privacy_policy.gd" id="1_0h3nn"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="1_5hq7x"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_18eaf"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_18eaf"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="5_axhqq"]
 [ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="5_f1lln"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1lln"]
@@ -161,13 +162,15 @@ safely and responsibly."
 layout_mode = 0
 offset_left = 684.0
 offset_top = 938.0
-offset_right = 792.0
+offset_right = 793.0
 offset_bottom = 987.0
 theme_override_colors/font_color = Color(0.86815435, 0.87741095, 0.8714555, 1)
 theme_override_fonts/font = ExtResource("3_18eaf")
 theme_override_font_sizes/font_size = 27
 theme_override_styles/normal = SubResource("StyleBoxFlat_18eaf")
 text = "I accept"
+script = ExtResource("5_axhqq")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="back_tips" parent="." instance=ExtResource("5_f1lln")]
 layout_mode = 1

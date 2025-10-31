@@ -91,6 +91,7 @@ do can_interact = true
 
 ~ theresa
 do ObjectiveManager.update_progress(1, 1)
+Danilo: [center][color=#808080]*(knock knock knock)*[/color][/center]
 Danilo: Magandang araw po, [wave]Aling Theresa.[/wave]
 Aling_Theresa: Oh Danilo! Umuwi ka pala. 
 Aling_Theresa: Bakasyon lang?

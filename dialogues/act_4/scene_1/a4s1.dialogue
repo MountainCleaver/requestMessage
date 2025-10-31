@@ -12,15 +12,15 @@ Danilo: Ang dilim na pala... tingin ko kailangan ko na buksan yung flashlight ko
 do Hud.reset_phone_state()
 => END
 
-~ Ising_call_danilo
+~ ising_call_danilo
 Lola Ising: Iho... saan ka pupunta? Gabi na... delikado sa labas.
 => END
 
-~ talk_to_Ising_first
+~ talk_to_ising_first
 Danilo: Kailangan ko muna kausapin si Lola Ising.
 => END
 
-~ Ising_give_flashlight
+~ ising_give_flashlight
 Danilo: May kailangan lang akong gawin, La... sandali lang po ‘to.
 Lola Ising: Iho, gabi na. Hindi ba puwedeng bukas na lang?
 Danilo: Hindi ko po kayang hintayin bukas... kailangan ko na pong pumunta.
@@ -56,7 +56,7 @@ Danilo: Sandali, ano ‘yung nasa lupa?
 Danilo: Mukhang punit punit naman mga pahina nito.
 Danilo: [shake rate=20 level=10]???[/shake]
 Danilo: [shake rate=20 level=10]Hindi 'to maaari...[/shake]
-Danilo: Hindi ba ito yung diary ni... [shake rate=20 level=10][color=#8B0000][i]Mateo[/i][/color][/wave]?[/shake]
+Danilo: Hindi ba ito yung diary ni... [shake rate=20 level=10][color=#8B0000][i]Mateo[/i][/color]?[/shake]
 Danilo: [shake rate=20 level=10]Hindi ko maintindihan...[/shake]
 Danilo: [shake rate=20 level=10]Paano 'to napunta dito?[/shake]
 do BuzzManager.start_buzz()

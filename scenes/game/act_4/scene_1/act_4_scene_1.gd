@@ -11,6 +11,11 @@ const DARK_FOREST = preload("res://scenes/game/act_4/scene_3/dark_forest.tscn")
 const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
 const SCHED_ICON = preload("uid://d1ye4ylli8nca")
 
+
+@onready var bgm_hide: AudioStreamPlayer =$"BGMHide-and-seek"
+@onready var sfx_laruan: AudioStreamPlayer =$SFX_HOMETOWN
+@onready var sfx_hide: AudioStreamPlayer =$"SFXHide-and-seek"
+
 # ===================
 # NODES
 # ===================
@@ -183,8 +188,11 @@ func _switch_to_habulan_area(from_where: String = "") -> void:
 	var spawn_marker: Node2D = null
 	match from_where:
 		"back_to_habulan_area":
+			sfx_laruan.play()
 			spawn_marker = current_location.get_node_or_null("danilo/y-sorted-objects/spawn_points/back_to_habulan_area")
 		"habulan_area_step_point":
+			bgm_hide.play()
+			sfx_hide.play()
 			spawn_marker = current_location.get_node_or_null("danilo/y-sorted-objects/spawn_points/habulan_area_step_point")
 		_:
 			spawn_marker = current_location.get_node_or_null("danilo/y-sorted-objects/spawn_points/habulan_area_step_point")
@@ -580,6 +588,8 @@ func _on_dark_forest_way_area_entered(body: Node2D) -> void:
 	scene_1_done()
 
 func _on_hometown_way_area_entered(body: Node2D) -> void:
+	bgm_hide.stop()
+	sfx_hide.stop()
 	if body != player_danilo:
 		return
 	await get_tree().process_frame
