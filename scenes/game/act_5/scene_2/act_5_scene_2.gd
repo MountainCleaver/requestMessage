@@ -22,7 +22,7 @@ func _load_dialogue() -> void:
 		path = "res://dialogues/act_5/scene_2/a5s2.dialogue"
 	
 	A_5S_2 = load(path)
-	
+
 func _input(event: InputEvent) -> void:
 	if event.is_action("interact"):
 		tip_interact.visible = false

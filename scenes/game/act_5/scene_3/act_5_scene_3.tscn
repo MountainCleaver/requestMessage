@@ -1,10 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://v5u0t8alofdh"]
+[gd_scene load_steps=10 format=3 uid="uid://v5u0t8alofdh"]
 
 [ext_resource type="Script" uid="uid://bhx7kbvd1tjxf" path="res://scenes/game/act_5/scene_3/act_5_scene_3.gd" id="1_c6yub"]
 [ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="2_lk0ij"]
 [ext_resource type="PackedScene" uid="uid://bslujs6mipwsy" path="res://scenes/characters/player_mateo.tscn" id="3_d8453"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="4_dy020"]
 [ext_resource type="AudioStream" uid="uid://famsm8h8jxxv" path="res://sound/neighborhood-noise-background-33025-320959.mp3" id="4_pqbaw"]
 [ext_resource type="AudioStream" uid="uid://cc64eeebu6wty" path="res://sound/fast-knocking-on-door-352704.mp3" id="5_lasbg"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="7_3w57v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3w57v"]
+shader = ExtResource("4_dy020")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/ca_strength = 2.5
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wucsd"]
 size = Vector2(16, 10)
@@ -25,6 +36,15 @@ limit_top = -680
 limit_right = 700
 limit_bottom = 600
 
+[node name="ColorRect" type="ColorRect" parent="danilo_hometown/y-sorted-objects/player_mateo/Camera2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_3w57v")
+offset_left = -1114.0
+offset_top = -1033.0
+offset_right = 907.0
+offset_bottom = 749.0
+mouse_filter = 2
+
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-88, 152)
 collision_layer = 4
@@ -42,6 +62,12 @@ bus = &"sfx"
 [node name="SFX_KNOCK" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_lasbg")
 bus = &"sfx"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("7_3w57v")]
+visible = false
 
 [editable path="danilo_hometown"]
 [editable path="danilo_hometown/y-sorted-objects/player_mateo"]

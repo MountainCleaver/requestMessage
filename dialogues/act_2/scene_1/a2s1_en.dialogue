@@ -75,9 +75,14 @@ Wendy: [wait=1.5]Did something happen?
 ~ reply_danilo_6
 do ChatManager.send_chat("wendy", "Player", "May nag chat kasi sakin.")
 Danilo: Someone messaged me.
+=> reply_danilo_6_1
 
-do ChatManager.send_chat("wendy", "Player", "*sent an image*")
+~ reply_danilo_6_1
+do ChatManager.send_chat("wendy", "Player", "res://assets/character_sprites/unknown_sender_screenshot.png")
+Danilo: [color=#808080](sent an image)[/color]
+=> reply_danilo_6_2
 
+~ reply_danilo_6_2
 do ChatManager.send_chat("wendy", "Player", "'Di ko alam pano niya nalaman number ko, nakakatakot kasi kilala niya ko?")
 Danilo: I don’t know how he got my number. It’s creepy—he knows me?
 => reply_wendy_3
