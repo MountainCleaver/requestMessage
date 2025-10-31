@@ -151,9 +151,6 @@ func _save_keybind(action: String, event: InputEvent) -> void:
 	if hud and hud.has_method("_update_guide_keys"):
 		hud._update_guide_keys()
 
-
-
-# Recursive search helper
 func _find_hud(node: Node) -> CanvasLayer:
 	if node.name == "explorer_hud" and node is CanvasLayer:
 		return node
@@ -163,7 +160,6 @@ func _find_hud(node: Node) -> CanvasLayer:
 			if result:
 				return result
 	return null
-
 
 # =========================
 # RESTORE DEFAULTS
