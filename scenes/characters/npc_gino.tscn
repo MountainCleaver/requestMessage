@@ -304,6 +304,5 @@ shape = SubResource("RectangleShape2D_1ibls")
 debug_color = Color(0.927067, 0.0816387, 0.631029, 0.42)
 
 [node name="gino_shocked" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -26)
+position = Vector2(0, -29)
 texture = ExtResource("3_6ejl8")
