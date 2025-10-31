@@ -33,7 +33,7 @@ do Hud.phone_outro()
 ~ reply_danilo_4
 do ChatManager.send_chat("unknown_sender", "Player", "...MATEO??")
 do Hud.phone_intro()
-Danilo: [shake rate=20 level=10]...MATEO???[/shake]
+Danilo: [shake rate=20 level=10]...[color=#8B0000][i]MATEO[/i][/color]???[/shake]
 Danilo: I don’t know... [wait=0.5]but why was he the first person that came to my mind?[wait=1]
 => thoughts_danilo_1
 
@@ -84,7 +84,7 @@ Danilo: [color=#808080](sent an image)[/color]
 
 ~ reply_danilo_6_2
 do ChatManager.send_chat("wendy", "Player", "'Di ko alam pano niya nalaman number ko, nakakatakot kasi kilala niya ko?")
-Danilo: I don’t know how he got my number. It’s creepy—he knows me?
+Danilo: I don’t know how he got my number. It’s creepy... [shake rate=20 level=10]he knows me[/shake]?
 => reply_wendy_3
 
 ~ reply_wendy_3
@@ -99,7 +99,7 @@ Wendy: [wait=1.5]So that’s why you thought I was pranking you.
 
 ~ reply_danilo_7
 do ChatManager.send_chat("wendy", "Player", "Yung number? Nakikilala mo kung kanino yan?")
-Danilo: The number—do you recognize it?
+Danilo: The number... do you recognize it?
 => reply_wendy_5
 
 ~ reply_wendy_5

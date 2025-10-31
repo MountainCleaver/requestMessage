@@ -62,9 +62,8 @@ func _check_current_scene() -> void:
 	if not current_scene:
 		return
 
-	var scene_name := current_scene.name  # use the node name instead of filename
+	var scene_name := current_scene.name 
 
-	# --- RAIN BGM for game scenes ---
 	if scene_name in RAIN_SCENES:
 		if bgm.stream != preload(RAIN_BGM_PATH):
 			bgm.stream = preload(RAIN_BGM_PATH)
@@ -74,9 +73,8 @@ func _check_current_scene() -> void:
 				bgm.stream.set_loop(true)
 		if not bgm.playing:
 			bgm.play()
-		return  # skip normal menu checks
+		return 
 
-	# --- Original menu music logic ---
 	if scene_name in MENU_SCENE_NAMES:
 		if not bgm.playing:
 			bgm.play()
