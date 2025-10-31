@@ -9,7 +9,13 @@ var A_5S_5: Resource
 @onready var count_down: AnimationPlayer = $CanvasLayer/time/count_down
 @onready var animation_player: AnimationPlayer = $tension/AnimationPlayer
 
+@onready var sfx_boi: AudioStreamPlayer2D = $decorations/npc_gino_with_stick/SFX_BOI
+@onready var bgm_tensed: AudioStreamPlayer2D = $decorations/npc_gino_with_stick/BGM_TENSED
+@onready var bgm_gameover: AudioStreamPlayer = $BGM_GAMEOVER
+@onready var bgm_chase: AudioStreamPlayer = $BGM_CHASE
+
 func _ready() -> void:
+	bgm_chase.play()
 	_load_dialogue()
 	player_mateo.force_cannot_move = true
 	game_over.hide()
@@ -26,6 +32,10 @@ func _load_dialogue() -> void:
 	A_5S_5 = load(path)
 	
 func _on_game_over_body_entered(body: Node2D) -> void:
+	bgm_gameover.play()
+	bgm_chase.stop()
+	sfx_boi.stop()
+	bgm_tensed.stop()
 	if body.name == "npc_gino_with_stick":
 		player_mateo.set_physics_process(false)
 		game_over.show()
@@ -39,6 +49,8 @@ func _on_game_over_body_entered(body: Node2D) -> void:
 		)
 
 func _start_chase() -> void:
+	sfx_boi.play()
+	bgm_tensed.play()
 	SignalBus.start_chase.emit()
 	player_mateo.force_cannot_move = false
 	animation_player.play("tension_animator")

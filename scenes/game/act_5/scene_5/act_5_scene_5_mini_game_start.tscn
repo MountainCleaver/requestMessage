@@ -226,5 +226,6 @@ shape = SubResource("RectangleShape2D_586vk")
 [node name="BGM_CHASE" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_mcovd")
 autoplay = true
+bus = &"music"
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

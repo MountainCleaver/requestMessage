@@ -121,7 +121,7 @@ anchor_bottom = 1.0
 offset_left = 400.0
 offset_top = 1046.0
 offset_right = -400.0
-offset_bottom = 1171.0
+offset_bottom = 2151.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -136,20 +136,61 @@ horizontal_alignment = 1
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Developed by:
-BSIT 4H Group 6"
+
+4th Year BSIT Students"
 label_settings = SubResource("LabelSettings_em1wr")
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Directed & Designed by:
-(names)"
+
+ Julius Romero
+Gerald Cancino
+Julia Mae Buenafe 
+Roselyn Claveria
+Joana Mae Emperoso"
 label_settings = SubResource("LabelSettings_a81g2")
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Programmers:
+text = "Lead Programmers:
+ 
+Julius Romero
+Gerald Cancino
+Julia Mae Buenafe 
+Roselyn Claveria
+Joana Mae Emperoso"
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Art & Animation:
+
+Julius Romero
+Gerald Cancino
+Julia Mae Buenafe 
+Roselyn Claveria
+Joana Mae Emperoso
+"
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Sound Design & Music:
+
+Julia Mae Buenafe 
+Roselyn Claveria"
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Writers
+
 Julia Mae Buenafe
 Gerald Cancino
 Roselyn Claveria
@@ -158,38 +199,25 @@ Julius Romero"
 label_settings = SubResource("LabelSettings_a81g2")
 horizontal_alignment = 1
 
-[node name="Label5" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Art & Animation:
-(names)"
-label_settings = SubResource("LabelSettings_a81g2")
-horizontal_alignment = 1
-
-[node name="Label6" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Sound Design & Music:
-(names)"
-label_settings = SubResource("LabelSettings_a81g2")
-horizontal_alignment = 1
-
-[node name="Label7" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Writers
-(names)"
-label_settings = SubResource("LabelSettings_a81g2")
-horizontal_alignment = 1
-
 [node name="Label8" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Special Thanks:
-(names)"
+
+Phoebe Naviamos - Guidance and Support 
+Mr. Mike Jansen Pacifico - Psychologist 
+Mr. Kim Ampo - Guidance Councilor
+Mr. Mike Noel Tolentino - Capstone Profesor
+"
 label_settings = SubResource("LabelSettings_a81g2")
 horizontal_alignment = 1
 
 [node name="Label9" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Made With:
-(names)"
+Godot 4.5
+Aseprite
+And love
+                    "
 label_settings = SubResource("LabelSettings_a81g2")
 horizontal_alignment = 1
 
