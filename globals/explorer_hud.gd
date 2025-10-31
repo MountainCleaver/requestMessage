@@ -8,6 +8,8 @@ extends CanvasLayer
 @onready var flashlight_button = $Flashlight
 @onready var map_guide = $Map/Panel/Label/Guide
 @onready var flashlight_guide = $Flashlight/Panel/Label/Guide
+@onready var map_label = $Map/Panel/Label
+@onready var flashlight_label = $Flashlight/Panel/Label
 
 # ===================
 # VARIABLES
@@ -45,8 +47,29 @@ func _ready():
 	flashlight_button.mouse_exited.connect(Callable(self, "_on_hover_exit"))
 
 	_update_flashlight_visibility()
-
+	_update_guide_keys()
 	_check_tutorial_guides()
+
+# ===================
+# GET CURRENT KEY TEXT
+# ===================
+func _get_key_text(action_name: String) -> String:
+	var events = InputMap.action_get_events(action_name)
+	if events.size() > 0:
+		return events[0].as_text().trim_suffix(" (Physical)")
+	return "(Unassigned)"
+
+# ===================
+# UPDATE ALL GUIDE & HUD LABELS
+# ===================
+func _update_guide_keys():
+	# Update guide texts
+	map_guide.get_node("Label").text = "A map… maybe it will help.\nPress [" + _get_key_text("map") + "] to toggle map."
+	flashlight_guide.get_node("Label").text = "The darkness seems thinner now.\nPress [" + _get_key_text("flashlight") + "] to toggle flashlight."
+
+	# Update small HUD labels
+	map_label.text = _get_key_text("map")
+	flashlight_label.text = _get_key_text("flashlight")
 
 # ===================
 # TUTORIAL GUIDE LOGIC
@@ -55,7 +78,6 @@ func _check_tutorial_guides():
 	var act = FlashlightManager.data.get("current_act", "")
 	var scene = FlashlightManager.data.get("current_scene", "")
 
-	# Only show tutorial in Act 4 Scene 1
 	if act == "act_4" and scene == "scene_1":
 		tutorial_active = true
 		_fade_in_guide(map_guide)
@@ -70,11 +92,9 @@ func _check_tutorial_guides():
 		add_child(timer)
 		timer.timeout.connect(Callable(self, "_end_tutorial_guides"))
 	else:
-		# Hide guides when not in Act 4 Scene 1
 		tutorial_active = false
 		_fade_out_guide(map_guide)
 		_fade_out_guide(flashlight_guide)
-
 
 func _end_tutorial_guides():
 	tutorial_active = false
@@ -140,6 +160,7 @@ func _on_scene_changed(act: String, scene: String):
 	_fade_out_guide(flashlight_guide)
 
 	_update_flashlight_visibility()
+	_update_guide_keys()
 	_check_tutorial_guides()
 
 # ===================
@@ -169,7 +190,6 @@ func _update_flashlight_visibility():
 	var act = FlashlightManager.data.get("current_act", "")
 	var scene = FlashlightManager.data.get("current_scene", "")
 
-	# Only show flashlight for act_4 or act_5
 	if act != "act_4" and act != "act_5":
 		flashlight_button.visible = false
 		_fade_out_guide(flashlight_guide)
@@ -195,14 +215,11 @@ func _update_flashlight_visibility():
 			flashlight_button.modulate.a = 0
 			var tween = create_tween()
 			tween.tween_property(flashlight_button, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		# Always fade in the guide in Act 5 if unlocked
 		if act == "act_5":
 			_fade_in_guide(flashlight_guide)
-	elif not should_show_button:
+	else:
 		flashlight_button.visible = false
 		_fade_out_guide(flashlight_guide)
-
-
 
 # ===================
 # MAP TOGGLE & FADE
