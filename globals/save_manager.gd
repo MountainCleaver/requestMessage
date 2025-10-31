@@ -11,23 +11,18 @@ var current_slot: int = 0
 var play_timer: Timer
 var play_start_time: int = 0
 
-
 func _ready() -> void:
 	SignalBus.act_num_scene_num_done.connect(_save_game_progress)
-
 	if not Session.is_connected("session_loaded", Callable(self, "_on_session_loaded")):
 		Session.connect("session_loaded", Callable(self, "_on_session_loaded"))
-
 	if Session.logged_in:
 		_on_session_loaded()
-		
 	play_timer = Timer.new()
 	play_timer.wait_time = 1.0
 	play_timer.autostart = true
 	play_timer.one_shot = false
 	play_timer.timeout.connect(_on_play_timer_tick)
 	add_child(play_timer)
-
 	play_start_time = Time.get_unix_time_from_system()
 
 func _on_session_loaded():
@@ -35,14 +30,12 @@ func _on_session_loaded():
 	current_username = Session.username
 	current_user_id = Session.user_ID
 	_set_save_paths()
-
 	if FileAccess.file_exists(SAVE_PATH):
 		print("[SaveManager] Existing save found for", current_username)
 		load_game()
 	else:
 		print("[SaveManager] No save found for", current_username, "— creating new save.")
 		reset_save_state()
-
 	if Session.user_ID != 0:
 		_sync_online_save()
 
@@ -53,27 +46,21 @@ func _on_play_timer_tick() -> void:
 func _set_save_paths():
 	if current_slot < 1 or current_slot > 3:
 		current_slot = 1 
-
 	var user_folder = "user://users/%s_%d/slot_%d" % [Session.username, Session.user_ID, current_slot]
-
 	var users_dir = DirAccess.open("user://users")
 	if not users_dir:
 		var root_dir = DirAccess.open("user://")
 		if root_dir:
 			root_dir.make_dir("users")
 			users_dir = DirAccess.open("user://users")
-
 	var user_dir = DirAccess.open("user://users/%s_%d" % [Session.username, Session.user_ID])
 	if not user_dir:
 		users_dir.make_dir("%s_%d" % [Session.username, Session.user_ID])
-
 	var slot_dir = DirAccess.open(user_folder)
 	if not slot_dir:
 		users_dir.make_dir("%s_%d/slot_%d" % [Session.username, Session.user_ID, current_slot])
-
 	SAVE_PATH = "%s/save.res" % user_folder
 	BACKUP_PATH = "%s/backup.res" % user_folder
-
 	print("[SaveManager] Save path set to:", SAVE_PATH)
 	print("[SaveManager] Backup path set to:", BACKUP_PATH)
 
@@ -83,10 +70,8 @@ func _save_game_progress(act: String, scene: String, next_scene: String) -> void
 	_set_current_scene_from_path(next_scene)
 	next_scene_path = next_scene
 	GameSceneManager._change_scene("res://scenes/game/saving_screen.tscn")
-	
 	if current_user_id != 0:
 		_push_online_save(act, scene)
-	
 	print("[SaveManager] Progress saved. Next scene:", next_scene_path)
 
 func load_game() -> void:
@@ -114,11 +99,12 @@ func save_game() -> void:
 	var error := ResourceSaver.save(game_save, SAVE_PATH)
 	if error != OK:
 		push_error("Failed to save game: %s" % error)
+	# --- ADDED: Track autosave here! ---
+	track_save()
 
 func reset_save_state():
 	print("[SaveManager] Resetting local save state (keeping username and paths).")
 	game_save = SaveGameResource.new()
-	
 	game_save.current_act = "act_1"
 	game_save.current_scene = "scene_1"
 	game_save.finished_scenes = {"act_1": ["scene_1"]}
@@ -133,13 +119,9 @@ func mark_scene_finished(act: String, scene: String) -> void:
 	if scene not in scenes:
 		scenes.append(scene)
 	game_save.finished_scenes[act] = scenes
-	
 	game_save.current_act = act
 	game_save.current_scene = scene
-	
 	save_game()
-	track_save()
-
 	if Session.user_ID != 0:
 		_push_online_save(act, scene) 
 	else:
@@ -156,36 +138,34 @@ func has_save() -> bool:
 		path = BACKUP_PATH
 	else:
 		return false
-
 	var test_save = load(path) as SaveGameResource
 	return test_save != null
 
 func _save_has_finished_scenes(save_data: SaveGameResource) -> bool :
 	if not save_data:
 		return false;
-		
 	if save_data.current_scene != "" or save_data.current_act != "":
 		return true;
-		
 	for act in save_data.finished_scenes:
 		var scene_array : Array = save_data.finished_scenes[act]
-		
 		if scene_array.size() > 0:
 			return true;
-			
 	if save_data.choices and save_data.choices.size() > 0:
 		return true;
-		
 	if save_data.karma != 0:
 		return true;
-	
 	return false;
-	
+
 func track_save() -> void:
 	var url = "https://requestmessage-admin.onrender.com/api/track_save.php"
 	var request = HTTPRequest.new()
 	add_child(request)
-	var data = { "save": true }  
+	var data = {
+		"save": true,
+		"user_id": current_user_id,
+		"username": current_username,
+		"timestamp": Time.get_datetime_string_from_system()
+	}
 	var json = JSON.stringify(data)
 	request.request(
 		url,
