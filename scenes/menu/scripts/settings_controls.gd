@@ -147,6 +147,12 @@ func _save_keybind(action: String, event: InputEvent) -> void:
 	Settings.settings.key_bindings[action] = ev_dict
 	Settings.save_settings()
 
+	if get_tree().current_scene.has_node("explorer_hud"):
+		var hud = get_tree().current_scene.get_node("explorer_hud")
+		if hud.has_method("_update_guide_keys"):
+			hud._update_guide_keys()
+
+
 # =========================
 # RESTORE DEFAULTS
 # =========================
