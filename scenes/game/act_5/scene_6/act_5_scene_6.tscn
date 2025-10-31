@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dyg46ntqi4atd"]
+[gd_scene load_steps=16 format=4 uid="uid://dyg46ntqi4atd"]
 
 [ext_resource type="PackedScene" uid="uid://c3glrajf2ba8i" path="res://scenes/game/act_1/scene_3/habulan_ground.tscn" id="1_c5jlg"]
 [ext_resource type="Script" uid="uid://vemioxe015tl" path="res://scenes/game/act_5/scene_6/act_5_scene_6.gd" id="1_o3wpp"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dwow3fbcvnre" path="res://sound/calming-rain-257596.mp3" id="7_umajo"]
 [ext_resource type="AudioStream" uid="uid://c0uhogg6bdub6" path="res://sound/the-sad-piano-5861.mp3" id="9_qoh04"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="10_tvhy7"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="11_12xek"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rnnuq"]
 particles_animation = true
@@ -24,6 +25,14 @@ colors = PackedColorArray(0, 0, 0, 1, 0.8217889, 0.82178867, 0.82178867, 1)
 [sub_resource type="Curve" id="Curve_o3wpp"]
 _data = [Vector2(0.383721, 0.1685394), 0.0, 0.0, 0, 0, Vector2(0.5813954, 0.42696637), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m620d"]
+shader = ExtResource("11_12xek")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
 
 [node name="act_5_scene_6" type="Node2D"]
 script = ExtResource("1_o3wpp")
@@ -96,3 +105,12 @@ layer = 101
 
 [node name="pause_screen" parent="CanvasLayer" instance=ExtResource("10_tvhy7")]
 visible = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_m620d")
+offset_left = -819.0
+offset_top = -354.0
+offset_right = 800.0
+offset_bottom = 335.0
+mouse_filter = 2
