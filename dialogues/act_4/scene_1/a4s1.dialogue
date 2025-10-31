@@ -12,15 +12,15 @@ Danilo: Ang dilim na pala... tingin ko kailangan ko na buksan yung flashlight ko
 do Hud.reset_phone_state()
 => END
 
-~ Ising_call_danilo
+~ ising_call_danilo
 Lola Ising: Iho... saan ka pupunta? Gabi na... delikado sa labas.
 => END
 
-~ talk_to_Ising_first
+~ talk_to_ising_first
 Danilo: Kailangan ko muna kausapin si Lola Ising.
 => END
 
-~ Ising_give_flashlight
+~ ising_give_flashlight
 Danilo: May kailangan lang akong gawin, La... sandali lang po ‘to.
 Lola Ising: Iho, gabi na. Hindi ba puwedeng bukas na lang?
 Danilo: Hindi ko po kayang hintayin bukas... kailangan ko na pong pumunta.

@@ -87,11 +87,13 @@ func add_message_to_chat(sender: String, text: String) -> void:
 		message_container.custom_minimum_size = Vector2(280, 0)
 
 		var texture_rect = TextureRect.new()
-		texture_rect.custom_minimum_size = Vector2(180, 0)
-
 		var texture = load(text)
 		if texture:
 			texture_rect.texture = texture
+			texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+			texture_rect.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+			texture_rect.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			texture_rect.custom_minimum_size = texture.get_size()
 		else:
 			var error_label = Label.new()
 			error_label.text = "[Image failed to load]"
@@ -100,11 +102,27 @@ func add_message_to_chat(sender: String, text: String) -> void:
 			chat_container.add_child(message_container)
 			return
 
+		# === Create background style (renamed to image_style) ===
+		var image_style = StyleBoxFlat.new()
+		image_style.border_width_top = 8
+		image_style.border_width_bottom = 25
+		image_style.border_width_left = 35 if sender == "Player" else 8
+		image_style.border_width_right = 8 if sender == "Player" else 35
+		image_style.border_color = Color(1,1,1,0)
+		image_style.set_corner_radius_all(15)
+		image_style.set_expand_margin_all(9)
+
+		message_container.add_theme_stylebox_override("panel", image_style)
+		message_container.add_child(texture_rect)
+		chat_container.add_child(message_container)
+
 		if sender == "Player":
 			style.border_width_left = 35
 			style.border_width_right = 8
 			if current_chat == "unknown_sender":
 				style.bg_color = Color(0.15, 0, 0, 1)
+			elif current_chat == "wendy":
+				style.bg_color = Color(0.469, 0.345, 0.782, 1.0)
 			else:
 				style.bg_color = Color(0.179, 0.337, 0.229, 1.0)
 		else:
