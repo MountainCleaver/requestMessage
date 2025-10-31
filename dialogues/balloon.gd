@@ -140,20 +140,26 @@ func apply_dialogue_line() -> void:
 	character_label.text = tr(display_name, "dialogue")
 
 	# === AUTO PORTRAIT HANDLER ===
-	var portrait_path: String = "res://assets/character_sprites/portrait_%s.png" % raw_character_name
+	# === USE GLOBAL CHARACTER PORTRAITS ===
+	var portrait_key = raw_character_name
 
-	if not ResourceLoader.exists(portrait_path):
-		# Try fallback removing underscores
-		var fallback_path = "res://assets/character_sprites/portrait_%s.png" % raw_character_name.replace("_", "")
-		if ResourceLoader.exists(fallback_path):
-			portrait_path = fallback_path
-		else:
-			portrait_path = ""
+	# Attempt fallback if exact name not found
+	if not CharacterPortrait.portraits.has(portrait_key):
+		portrait_key = portrait_key.capitalize()
+	if not CharacterPortrait.portraits.has(portrait_key):
+		portrait_key = portrait_key.to_lower()
+	if not CharacterPortrait.portraits.has(portrait_key):
+		portrait_key = portrait_key.replace("_", "")
+	if not CharacterPortrait.portraits.has(portrait_key):
+		portrait_key = portrait_key.capitalize().replace("_", "")
 
-	if portrait_path != "":
-		portrait.texture = load(portrait_path)
+	# Apply portrait if found
+	if CharacterPortrait.portraits.has(portrait_key):
+		portrait.texture = CharacterPortrait.portraits[portrait_key]
+		print("Loaded portrait for: ", portrait_key)
 	else:
 		portrait.texture = null
+		print("No portrait found for: ", raw_character_name)
 
 	dialogue_label.hide()
 	dialogue_label.dialogue_line = dialogue_line

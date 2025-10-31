@@ -3,6 +3,8 @@ extends Control
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var label_lines: Label = $lines
 @onready var game_title: Label = $game_title
+@onready var sfx_start: AudioStreamPlayer = $SFX_START
+#@onready var bgm_start: AudioStreamPlayer = $BGM_START
 
 var intro_lines = [
 	"Where am I…?",
@@ -32,6 +34,7 @@ var motion_seed_title: float
 var time_acc: float = 0.0
 
 func _ready() -> void:
+	#bgm_start.play()
 	label_lines.modulate.a = 0
 	game_title.modulate.a = 0
 
@@ -42,7 +45,6 @@ func _ready() -> void:
 
 	await get_tree().create_timer(3.0).timeout
 	show_next_line()
-
 
 
 func _process(delta: float) -> void:
@@ -73,10 +75,10 @@ func show_next_line() -> void:
 	else:
 		await get_tree().create_timer(3.0).timeout
 		game_title.text = "Request Message"
-
 		base_position_title = game_title.position
 		motion_seed_title = randf() * 10.0
-
+		#bgm_start.stop()
+		sfx_start.play()
 		fade_in_label(game_title, true)
 
 
