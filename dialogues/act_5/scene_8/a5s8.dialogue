@@ -33,9 +33,24 @@ do mateo_walk_down("relief")
 # transition outside / cliff
 Mateo: Danilo, andami ko pang gustong magawa na kasama kayo.
 Danilo: ...
-Mateo: Ang dami ko pang gustong gawin kasama kayo… 
+Mateo: Ang dami kong gustong sabihin, ang dami kong gustong maranasan ulit.
 Mateo: Pero salamat, Danilo. 
-Mateo: [wave]Dahil hinanap mo ako[/wave], kaya ko nang magpahinga.
+Mateo: [wave]Dahil hinanap mo ako[/wave]... kaya ko nang matahimik.Mateo: Hindi na masakit… hindi na nakakatakot.
+Mateo: Hindi na masakit, hindi na nakakatakot.
+Mateo: Ang gaan na.
+Mateo: Naalala mo ba yung pangako ko noon?
+Mateo: Yung sinabi ko, ipapakita ko sa’yo yung isang lugar kung manalo ako sa taguan?
+Danilo: Oo... yung kapilya, ‘di ba?
+Mateo: Heh... alam mo na pala, mukhang ikaw ang nanalo sa huli.
+Mateo: Gusto kitang dalhin noon...
+Mateo: Pero... pasensiya na, Danilo. Hindi ko natupad yung pangako ko.
+Mateo: Gusto ko sana... pero may nangyaring hindi inaasahan.
+Mateo: [shake rate=20 level=10]Natakot ako.[/shake]
+Mateo: [shake rate=20 level=10]At bago ko namalayan... napuno ng dilim ang lahat.[/shake]
+Mateo: [shake rate=20 level=10]Hindi ko sinasadya na iwan ka.[/shake]
+Danilo: Hindi mo kasalanan, Mateo.
+Mateo: ...Pwede ko pa bang sabihing... [wave amp=25 freq=5][i]salamat[/i][/wave]?
+Mateo: Kasi kahit lumipas ang mahabang panahon... hinanap mo pa rin ako.
 do _ghost_left("relief")
 # Mateo fading away
 # Fading pause until these line are done
@@ -44,11 +59,17 @@ Danilo: Saglit lang Mateo.
 Danilo: Ang dami ko pang gustong ikwento sayo. 
 Danilo: Lumipat na kami sa Maynila. 
 Danilo: May trabaho na ako. 
-Danilo: Si Wendy… psychiatrist na siya. 
-Danilo: Ang dami naming pinagdaanan na hindi ka kasama. 
-Danilo: Kahit saglit lang, dito ka muna.
+Danilo: Si Wendy... psychiatrist na siya ngayon. 
+Danilo: Ang dami naming pinagdaanan na hindi ka kasama.
+Danilo: Kaya kahit sandali lang... dito ka muna, ha?
 # Mateo fading away continues, and finishes
-Mateo: Salamat sa paghahanap sakin, mabuhay ka Danilo.
+Mateo: Salamat sa paghahanap mo sa akin.
+Mateo: Kahit hindi ko natupad yung pangako ko... hindi mo ako nakalimutan.
+Danilo: Hindi kita makakalimutan, Mateo.
+Mateo: Ipangako mo sa'kin... mamuhay ka ng maayos, Danilo.
+Mateo: Kahit wala ako...
+Danilo: Pangako... aalalahanin kita, palagi.
+Mateo: Paalam... Danilo.  
 do whitey_vanish_full()
 do act_5_scene_8_done()
 => END
@@ -91,11 +112,11 @@ Entity: ...
 # look down
 do _ghost_down("restless")
 Entity: ...
-Danilo: saglit lang... 
+Danilo: Saglit lang... 
 Entity: ...
 # look left
 do _ghost_left("restless")
-Danilo: wag mo muna ako iwan...
+Danilo: 'Wag mo muna ako iwan...
 Entity: [fade]...[/fade]
 do _ghost_vanish("restless")
 Danilo: Mateo...

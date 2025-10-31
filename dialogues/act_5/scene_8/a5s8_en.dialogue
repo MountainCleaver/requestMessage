@@ -11,7 +11,6 @@ do ghost_appears.emit("relief")
 ~ relief_mateo_appeared
 Danilo: Mateo?
 Mateo: [wave]Exactly![/wave]
-Mateo: You finally found the place I never showed you back then.
 Danilo: ... ...
 Mateo: Aren’t you happy to see me?
 Danilo: I can’t believe I’m actually talking to you.
@@ -30,10 +29,26 @@ do mateo_walk_down("relief")
 
 ~ relief_cliff
 # transition outside / cliff
-Mateo: Danilo, there’s still so much I wanted to do with you all.
+Mateo: Danilo... there’s still so many things I wanted to do with you all.
 Danilo: ...
-Mateo: So much I wanted to do... But thank you, Danilo.
-Mateo: [wave]Because you searched for me[/wave], I can finally rest.
+Mateo: So many things I wanted to say... so many moments I wanted to feel again.
+Mateo: But thank you, Danilo.
+Mateo: [wave]Because you found me[/wave]... I can finally rest.
+Mateo: It doesn’t hurt anymore. It’s not scary anymore.
+Mateo: Everything feels... light. Like the wind is just carrying me somewhere peaceful.
+Mateo: Do you remember that promise I made before?
+Mateo: The one where I said I’d show you something if I won at hide-and-seek?
+Danilo: Yeah... I remember, it's the chapel, right?
+Mateo: Heh... you found it first. Guess you won after all.
+Mateo: I wanted to bring you there back then... so you could see how peaceful it was.
+Mateo: But... I’m sorry, Danilo. I couldn’t keep my promise.
+Mateo: I wanted to... but unexpected things happened.
+Mateo: [shake rate=20 level=10]I got scared. [/shake]
+Mateo: [shake rate=20 level=10]And before I knew it... everything turned dark.[/shake]
+Mateo: [shake rate=20 level=10]I didn’t mean to leave you.[/shake]
+Danilo: It’s not your fault, Mateo. None of it was.
+Mateo: ...Then, can I still say... [wave amp=25 freq=5][i]thank you[/i][/wave]?
+Mateo: Because even after all this time... you still found me.
 do _ghost_left("relief")
 # Mateo fading away
 do _ghost_vanish("relief")
@@ -42,11 +57,18 @@ Danilo: There’s so much I still want to tell you.
 Danilo: We moved to Manila.
 Danilo: I have a job now.
 Danilo: Wendy... she’s a psychiatrist.
-Danilo: So much happened without you here.
+Danilo: So much happened without you here...
+Danilo: So many little moments I wish you could’ve seen.
 Danilo: Just for a moment, stay here with me.
 # Mateo fading away continues, and finishes
 Mateo: Thank you for finding me.
-Mateo: Live well, Danilo.
+Mateo: Even if I couldn’t keep my promises, you... you never forgot. 
+Danilo: I won’t forget, Mateo.
+Mateo: Just... promise me... you’ll live well, Danilo. 
+Mateo: Even without me...
+Danilo: I promise... I’ll remember you, always.  
+Danilo: Until then... rest. Please, rest. 
+Mateo: Farewell... Danilo.  
 do whitey_vanish_full()
 do act_5_scene_8_done()
 => END

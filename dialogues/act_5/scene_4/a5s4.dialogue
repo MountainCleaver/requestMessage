@@ -1,12 +1,13 @@
 ~ start
-Wendy_child: Taguan kaya? Ang dali nyo naman kapag habulan.
-Danilo_child: Eh di ikaw na maging taya, tutal ikaw nakaisip.
-Wendy_child: Grabe oh, parang bawal na ata mag-suggest dito...
-Wendy_child: Next time mananahimik nalang ako!
-Mateo_child: Tara, kung sino unang mahahanap siyang manglilibre.
-Danilo_child: Manlilibre? Ikaw lang naman lagi kong nililibre, at tsaka pano if ako naman nanalo ngayon?
-Mateo_child: Akong bahala, siyempre may ipapakita ako sayo. Something na mas worth it pa sa libre mo.
-Danilo_child: Talaga lang hah, sige.
+Wendy_child: Taguan tayo! Ang dali n’yo kasi sa habulan eh!
+Danilo_child: Eh ‘di ikaw na lang taya, ikaw naman nagsabi!
+Wendy_child: Hala siya! Bawal na pala mag-suggest ngayon!
+Wendy_child: Next time ‘di na ‘ko magsasabi, hmph!
+Mateo_child: Sige na, tara! Kung sino unang mahahanap, siya manlilibre!
+Danilo_child: Libre? Eh ako nga laging naglilibre sa’yo!
+Danilo_child: Pano kung ako naman manalo, ha?
+Mateo_child: Ako bahala! May ipapakita ako sa’yo, mas astig pa ‘yon!
+Danilo_child: Weh, totoo ba 'yan? Sige nga!
 do _start_hiding()
 => END
 
