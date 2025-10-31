@@ -1,6 +1,8 @@
 ~ start
-Danilo: The rain... it feels heavier tonight.  
-Danilo: Like it’s pressing down on me.  
+Danilo: What was that dream?
+Danilo: ...
+Danilo: Oh, it's raining... after all.
+Danilo: It feels... heavier than it should.  
 do Hud.show_objectives()
 #do Player.looked_window = true
 => END
