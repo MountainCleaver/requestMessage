@@ -10,8 +10,10 @@ const CHAPEL_INTERIOR = preload("res://scenes/game/act_4/scene_3/chapel_interior
 const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
 
 @onready var sfx_light : AudioStreamPlayer = $SFX_LIGHTER
-@onready var sfx_blow : AudioStreamPlayer = $SFX_BLOW
-@onready var sfx_wind: AudioStreamPlayer = $SFX_WIND
+@onready var bgm_chapel: AudioStreamPlayer = $BGMChapel
+@onready var bgm_appear: AudioStreamPlayer = $BGM_appear
+@onready var sfx_creepy: AudioStreamPlayer = $SFX_Creepywind
+@onready var sfx_appear: AudioStreamPlayer = $SFX_appear
 
 # ===================
 # NODES
@@ -182,6 +184,7 @@ func _switch_to_chapel_exterior(from_chapel: bool) -> void:
 		ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
 
 func _switch_to_chapel_interior() -> void:
+	bgm_chapel.play()
 	Hud.clear_objectives()
 	Hud.hide_objectives()
 	switch_location(CHAPEL_INTERIOR)
@@ -567,7 +570,6 @@ func _set_first_candle(index: int) -> void:
 	ObjectiveManager.update_progress(scene_objectives[4]["ID"])
 
 func _handle_wrong_candle_progress() -> void:
-	sfx_blow.play()
 	print("Wrong candle! Progress reset, same sequence remains.")
 	DialogueManager.show_dialogue_balloon(A_4S_3, "wrong_candle")
 	await DialogueManager.dialogue_ended
@@ -659,7 +661,6 @@ func _on_leave_chapel_interior() -> void:
 		npc_ghost.z_index = 9999
 
 func _on_candle_off_area_entered(body):
-	sfx_wind.play()
 	if body != player_danilo or candle_off_area_triggered:
 		return
 	candle_off_area_triggered = true
@@ -703,7 +704,9 @@ func _start_creepy_flicker(lights: Array, count: int, interval: float) -> void:
 		for light in lights:
 			light.visible = false
 			light.texture_scale = 1.0
-		sfx_wind.stop()
+		bgm_chapel.stop()
+		sfx_creepy.play()
+		bgm_appear.play()
 		DialogueManager.show_dialogue_balloon(A_4S_3, "after_shadow_ghost_forward")
 		if tip_shocked:
 			tip_shocked.visible = false
@@ -732,6 +735,7 @@ func _start_creepy_flicker(lights: Array, count: int, interval: float) -> void:
 	add_child(t)
 
 func _start_ghost_slow_approach() -> void:
+	sfx_appear.play()
 	if not npc_ghost or not player_danilo:
 		return
 
@@ -757,6 +761,8 @@ func _enable_chapel_exit_area() -> void:
 	can_exit_chapel = true
 
 func _on_exit_area_entered(body: Node) -> void:
+	sfx_creepy.stop()
+	bgm_appear.stop()
 	if body != player_danilo or not can_exit_chapel:
 		return
 
