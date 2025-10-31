@@ -142,7 +142,7 @@ offset_right = 105.5
 offset_bottom = 6.871
 grow_horizontal = 2
 grow_vertical = 0
-text = "Please check your email. "
+text = "Please check your email,including SPAM."
 label_settings = SubResource("LabelSettings_tas5x")
 
 [node name="btn_ok" type="Button" parent="holder"]
@@ -170,9 +170,9 @@ text = "OK"
 [node name="holder2" parent="." instance=ExtResource("1_3n5t2")]
 modulate = Color(0, 0, 0, 0.580392)
 layout_mode = 0
-offset_left = -385.0
-offset_top = -380.0
-offset_right = 1804.0
-offset_bottom = 1260.0
+offset_left = -370.0
+offset_top = -416.0
+offset_right = 1819.0
+offset_bottom = 1224.0
 
 [connection signal="pressed" from="holder/btn_ok" to="." method="_on_btn_create_pressed"]
