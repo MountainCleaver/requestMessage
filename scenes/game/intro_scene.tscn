@@ -1,0 +1,172 @@
+[gd_scene load_steps=15 format=3 uid="uid://b4bun3nktjkn4"]
+
+[ext_resource type="Script" uid="uid://dvxs7y4le7ku7" path="res://scenes/game/intro_scene.gd" id="1_cvxvr"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_8viqp"]
+[ext_resource type="Shader" uid="uid://b3lvkrry8eaot" path="res://scenes/game/act_3/scene_4/glitch.gdshader" id="2_cvxvr"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="3_8viqp"]
+[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="4_6jsj4"]
+[ext_resource type="AudioStream" uid="uid://dwow3fbcvnre" path="res://sound/calming-rain-257596.mp3" id="5_nebln"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ku4u"]
+bg_color = Color(0.0509804, 0.0509804, 0.0823529, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nebln"]
+shader = ExtResource("2_cvxvr")
+shader_parameter/intensity = 0.5
+shader_parameter/glitch_frequency = 2.0
+shader_parameter/glitch_duration = 0.1
+shader_parameter/red_displacement = 0.02
+shader_parameter/green_displacement = 0.02
+shader_parameter/blue_displacement = 0.02
+shader_parameter/scanline_intensity = 0.3
+shader_parameter/noise_intensity = 0.2
+shader_parameter/slice_intensity = 0.4
+shader_parameter/ghost_intensity = 0.1
+shader_parameter/negative_intensity = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_y6b2h"]
+font = ExtResource("2_8viqp")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_uwf8f"]
+font_size = 25
+
+[sub_resource type="Animation" id="Animation_hhrsm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("game_title:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lines:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tymat"]
+resource_name = "in_animation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("game_title:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.98, 3.01655, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lines:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.98, 3.01655, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yr52n"]
+_data = {
+&"RESET": SubResource("Animation_hhrsm"),
+&"in_animation": SubResource("Animation_tymat")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cvxvr"]
+shader = ExtResource("3_8viqp")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
+
+[node name="intro_scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cvxvr")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ku4u")
+
+[node name="game_title" type="Label" parent="."]
+material = SubResource("ShaderMaterial_nebln")
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.1667
+offset_bottom = 11.1667
+grow_horizontal = 2
+grow_vertical = 2
+text = "REQUEST MESSAGE"
+label_settings = SubResource("LabelSettings_y6b2h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lines" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -346.0
+offset_top = -17.5
+offset_right = 346.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_6jsj4")
+theme_override_font_sizes/font_size = 24
+label_settings = SubResource("LabelSettings_uwf8f")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yr52n")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_cvxvr")
+layout_mode = 0
+offset_right = 1441.0
+offset_bottom = 1025.0
+mouse_filter = 2
+
+[node name="RAINSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_nebln")
+volume_db = -17.634
+autoplay = true
+bus = &"sfx"
