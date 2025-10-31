@@ -12,6 +12,7 @@ extends Control
 @onready var toggle_password_visibility: TextureButton1 = $holder/line_edit_password/toggle_visibility
 var exit_is_showing : bool = false
 
+
 func _ready() -> void:
 	line_edit_password.secret = true
 	http.request_completed.connect(_on_HTTP_request_request_completed)

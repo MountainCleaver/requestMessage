@@ -52,7 +52,7 @@ texture = ExtResource("2_wr00p")
 sources/0 = SubResource("TileSetAtlasSource_jwm2n")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kbsfy"]
-size = Vector2(17, 12)
+size = Vector2(18, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gekbc"]
 size = Vector2(31, 23.375)
@@ -117,20 +117,20 @@ position = Vector2(4, 6)
 tile_map_data = PackedByteArray("AAAAAAcAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_lqjie")
 
-[node name="y-sorted" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="Danilo" type="StaticBody2D" parent="y-sorted"]
+[node name="Danilo" type="StaticBody2D" parent="."]
 collision_layer = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="y-sorted/Danilo"]
+[node name="Sprite2D" type="Sprite2D" parent="Danilo"]
 position = Vector2(-289, -280)
 texture = ExtResource("4_oi3qs")
 hframes = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="y-sorted/Danilo"]
-position = Vector2(-289.5, -275)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Danilo"]
+position = Vector2(-287, -280.5)
 shape = SubResource("RectangleShape2D_kbsfy")
+
+[node name="y-sorted" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="rocks" type="Node2D" parent="y-sorted"]
 position = Vector2(-24, -22)

@@ -23,6 +23,7 @@ extends Node2D
 # BGM NODES
 @onready var bgm_danilo: AudioStreamPlayer = $BGMDanilo
 @onready var bgm_tension: AudioStreamPlayer = $BGMTension
+@onready var sfx_close: AudioStreamPlayer = $SFX_CLOSE
 
 var A_3S_2: Resource
 const CHAT_ICON = preload("uid://vdiek8gwmqdx")
@@ -60,7 +61,6 @@ func _ready() -> void:
 	_load_dialogue()
 	# BGM: Play calm at the start, make sure tension is stopped
 	bgm_danilo.play()
-	bgm_tension.stop()
 
 	reply_finish.connect(_on_reply_finished)
 	wendy_calling.connect(_on_wendy_calling)
@@ -127,18 +127,21 @@ func _input(event: InputEvent) -> void:
 		match player_danilo.current_npc:
 			"window_1":
 				if not window_1_closed:
+					sfx_close.play()
 					window_1.region_rect = Rect2(0,0,32,34)
 					window_area_1.queue_free()
 					window_1_closed = true;
 					window_closed.emit()
 			"window_2":
 				if not window_2_closed:
+					sfx_close.play()
 					window_2.region_rect = Rect2(0,0,32,34)
 					window_area_2.queue_free()
 					window_2_closed = true;
 					window_closed.emit()
 			"window_3":
 				if not window_3_closed:
+					sfx_close.play()
 					window_3.region_rect = Rect2(0,0,32,34)
 					window_area_3.queue_free()
 					window_3_closed = true;

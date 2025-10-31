@@ -35,7 +35,7 @@ shape = SubResource("RectangleShape2D_wucsd")
 
 [node name="SFXNeighborhood" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_pqbaw")
-volume_db = -13.358
+volume_db = -6.679
 autoplay = true
 bus = &"sfx"
 

@@ -346,7 +346,7 @@ texture = ExtResource("5_vvfp4")
 
 [node name="SFX_HOMETOWN" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ibm7l")
-volume_db = -20.293
+volume_db = -10.752
 autoplay = true
 bus = &"sfx"
 

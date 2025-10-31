@@ -3028,7 +3028,6 @@ bus = &"sfx"
 
 [node name="BGM_HUT" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_tcnoc")
-volume_db = -5.073
 autoplay = true
 bus = &"music"
 

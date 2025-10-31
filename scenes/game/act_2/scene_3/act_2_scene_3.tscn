@@ -656,13 +656,13 @@ visible = false
 
 [node name="SFX_CAR" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_2ds7q")
-volume_db = -28.548
+volume_db = -19.007
 pitch_scale = 1.39
 bus = &"sfx"
 
 [node name="BGM_BUS" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_vnh1l")
-volume_db = -19.372
+volume_db = -9.541
 autoplay = true
 bus = &"music"
 

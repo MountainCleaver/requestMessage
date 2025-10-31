@@ -296,7 +296,7 @@ visible = false
 
 [node name="SFXThunder" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_sag8k")
-volume_db = -18.128
+volume_db = -14.311
 autoplay = true
 bus = &"sfx"
 

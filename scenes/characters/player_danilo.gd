@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 @onready var real_flashlight: PointLight2D = $real_flashlight
 @onready var phone_flashlight: PointLight2D = $phone_flashlight
+@onready var sfx_flashlight: AudioStreamPlayer = $sfx_flashlight
 
 @export var SPEED: float = 80.0
 @export var RUNNING_SPEED: float = 200.0
@@ -116,6 +117,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	# Flashlight toggle
 	if event.is_action_pressed("flashlight"):
+		sfx_flashlight.play()
 		FlashlightManager.toggle_real_flashlight()
 
 

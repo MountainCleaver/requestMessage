@@ -44,7 +44,7 @@ visible = false
 
 [node name="BGM_MATEO_HOUSE" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_0i30q")
-volume_db = -9.494
+volume_db = -1.908
 autoplay = true
 bus = &"music"
 

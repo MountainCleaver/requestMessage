@@ -20,6 +20,8 @@ var tutorial_active := false
 var map_guide_tween: Tween
 var flashlight_guide_tween: Tween
 
+@onready var sfx_map : AudioStreamPlayer = $SFX_MAP
+
 # ===================
 # READY
 # ===================
@@ -207,6 +209,7 @@ func _update_flashlight_visibility():
 # ===================
 func _input(event):
 	if event.is_action_pressed("map"):
+		sfx_map.play()
 		_toggle_map()
 
 func _toggle_map():

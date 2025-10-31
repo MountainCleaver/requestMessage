@@ -100,7 +100,7 @@ var maps = {
 			}
 	}
 }
-
+@onready var sfx_meds: AudioStreamPlayer = $SFX_MEDS
 signal objective_one_done
 
 var done_objective_one : bool = false
@@ -443,6 +443,7 @@ func _on_intro_sequence_done() -> void:
 		Hud.show_objectives()
 	
 func play_taking_meds()->void:
+	sfx_meds.play()
 	danilo_animated_sprite_2d.play("taking_meds_sit_right")
 	await danilo_animated_sprite_2d.animation_finished
 	danilo_animated_sprite_2d.play("sitting")

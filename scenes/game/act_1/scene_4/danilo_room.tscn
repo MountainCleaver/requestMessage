@@ -1974,7 +1974,6 @@ bus = &"sfx"
 
 [node name="BGMRoom" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_qg3ye")
-volume_db = -6.679
 bus = &"music"
 
 [connection signal="body_entered" from="water_glass/water_area" to="." method="_on_water_area_body_entered"]

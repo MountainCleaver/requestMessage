@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=4 uid="uid://bg8f8ohpgk5tk"]
+[gd_scene load_steps=11 format=4 uid="uid://bg8f8ohpgk5tk"]
 
-[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="1_buub1"]
 [ext_resource type="PackedScene" uid="uid://c3glrajf2ba8i" path="res://scenes/game/act_1/scene_3/habulan_ground.tscn" id="2_51xq3"]
 [ext_resource type="Texture2D" uid="uid://dp4lljuakpb1d" path="res://assets/tilesets/habulan_area_entry_to_dark_forest_playground_assets.png" id="3_vr006"]
 [ext_resource type="PackedScene" uid="uid://dguktkmdv5cec" path="res://scenes/characters/wendy_and_npcs.tscn" id="4_347nt"]
@@ -2707,12 +2706,6 @@ size = Vector2(13, 93)
 
 [node name="laruan_area" type="Node2D"]
 script = SubResource("GDScript_buub1")
-
-[node name="pause_overlay" type="CanvasLayer" parent="."]
-layer = 101
-visible = false
-
-[node name="pause_screen" parent="pause_overlay" instance=ExtResource("1_buub1")]
 
 [node name="map" type="Node2D" parent="."]
 
