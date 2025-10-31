@@ -62,7 +62,7 @@ func _on_newsave_confirmed() -> void:
 	if BgmManager:
 		BgmManager.stop_music()
 	
-	SignalBus.next_scene.emit("res://scenes/game/act_1_title_scene.tscn")
+	SignalBus.next_scene.emit("res://scenes/game/intro_scene.tscn")
 
 
 
@@ -81,7 +81,7 @@ func _on_overwrite_confirmed() -> void:
 	if BgmManager:
 		BgmManager.stop_music()
 	
-	SignalBus.next_scene.emit("res://scenes/game/act_1_title_scene.tscn")
+	SignalBus.next_scene.emit("res://scenes/game/intro_scene.tscn")
 
 
 
