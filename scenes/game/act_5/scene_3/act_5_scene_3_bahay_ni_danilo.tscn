@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bq5bs6y7w7kfs"]
+[gd_scene load_steps=15 format=4 uid="uid://bq5bs6y7w7kfs"]
 
 [ext_resource type="Script" uid="uid://cgeieobiwpusw" path="res://scenes/game/act_5/scene_3/act_5_scene_3_bahay_ni_danilo.gd" id="1_23lmq"]
 [ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="1_bg5q8"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://dwm8ct5kn32i0" path="res://scenes/game/act_5/scene_3/npc_mira.tscn" id="3_o50h8"]
 [ext_resource type="PackedScene" uid="uid://bslujs6mipwsy" path="res://scenes/characters/player_mateo.tscn" id="5_ncb6e"]
 [ext_resource type="AudioStream" uid="uid://lydd5um5muys" path="res://sound/826622__xkeril__memories-of-a-sweet-summer-music-loop.mp3" id="7_mjarc"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="7_u33bc"]
 [ext_resource type="AudioStream" uid="uid://bvbffy8dlvm36" path="res://sound/washing-dishes-56153.mp3" id="8_flvwc"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="10_e2dgk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjarc"]
 texture = ExtResource("3_ncb6e")
@@ -276,6 +278,15 @@ sources/1 = SubResource("TileSetAtlasSource_mjarc")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncb6e"]
 size = Vector2(28, 35)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e2dgk"]
+shader = ExtResource("7_u33bc")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/ca_strength = 2.5
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
+
 [node name="act_5_scene_3_bahay_ni_danilo" type="Node2D"]
 script = ExtResource("1_23lmq")
 
@@ -313,6 +324,16 @@ position = Vector2(24, 23)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+top_level = true
+z_index = 1
+material = SubResource("ShaderMaterial_e2dgk")
+offset_left = -439.0
+offset_top = -309.0
+offset_right = 475.0
+offset_bottom = 218.0
+mouse_filter = 2
+
 [node name="BGM_DANILO_HOUSE" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_mjarc")
 volume_db = -1.908
@@ -324,6 +345,12 @@ stream = ExtResource("8_flvwc")
 volume_db = -5.725
 autoplay = true
 bus = &"sfx"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("10_e2dgk")]
+visible = false
 
 [editable path="danilo_hometown_house"]
 [editable path="danilo_hometown_house/y-sorted/npc_danilo"]

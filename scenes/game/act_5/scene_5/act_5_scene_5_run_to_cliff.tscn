@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://bdx5gkodqm75x"]
+[gd_scene load_steps=56 format=4 uid="uid://bdx5gkodqm75x"]
 
 [ext_resource type="Script" uid="uid://5je4budalo0h" path="res://scenes/game/act_5/scene_5/act_5_scene_5_run_to_cliff.gd" id="1_rfuin"]
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="2_rfuin"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://xpqxbhlnip36" path="res://assets/character_sprites/end_end1.png" id="14_ykqdw"]
 [ext_resource type="Texture2D" uid="uid://cva30cjg2d7fj" path="res://assets/character_sprites/end_end2.png" id="15_mlywb"]
 [ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="15_s8kx2"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="16_hosj5"]
 [ext_resource type="Texture2D" uid="uid://d33bgp4autpjp" path="res://assets/character_sprites/end_end3.png" id="16_s8kx2"]
 [ext_resource type="AudioStream" uid="uid://bwitanjnmskqg" path="res://sound/heartbeat-sfx-320981.mp3" id="17_s8kx2"]
 [ext_resource type="AudioStream" uid="uid://clg772l8q2vgs" path="res://sound/shadows-and-echoes-dramatic-serious-background-free-music-425909.mp3" id="18_rct2k"]
@@ -329,6 +330,14 @@ _data = {
 &"end": SubResource("Animation_s8kx2")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xhjdo"]
+shader = ExtResource("16_hosj5")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
+
 [node name="act_5_scene_5_run_to_cliff" type="Node2D"]
 script = ExtResource("1_rfuin")
 
@@ -547,6 +556,7 @@ texture = ExtResource("14_ykqdw")
 
 [node name="DialogueLabel2" parent="end/TextureRect" instance=ExtResource("14_mlywb")]
 unique_name_in_owner = true
+z_index = 4096
 layout_mode = 1
 offset_left = 56.0
 offset_top = 881.0
@@ -565,6 +575,14 @@ horizontal_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_rct2k")
 }
+
+[node name="ColorRect" type="ColorRect" parent="end"]
+material = SubResource("ShaderMaterial_xhjdo")
+offset_left = -2264.0
+offset_top = -1983.0
+offset_right = 2363.0
+offset_bottom = 1535.0
+mouse_filter = 2
 
 [node name="SFX_heartbeat" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_s8kx2")
@@ -589,5 +607,13 @@ stream = ExtResource("19_rct2k")
 volume_db = -14.312
 pitch_scale = 1.33
 bus = &"sfx"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_xhjdo")
+offset_left = -2264.0
+offset_top = -1983.0
+offset_right = 2363.0
+offset_bottom = 1535.0
+mouse_filter = 2
 
 [editable path="mateo"]

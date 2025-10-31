@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://b3hko7qrauj"]
+[gd_scene load_steps=38 format=4 uid="uid://b3hko7qrauj"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_8mc3o"]
 [ext_resource type="Script" uid="uid://dhpvll73fhr4s" path="res://scenes/game/act_5/scene_5/act_5_scene_5_mini_game.gd" id="1_r1qjl"]
@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="9_b3656"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="10_48vxw"]
 [ext_resource type="AudioStream" uid="uid://t52adkog1sgl" path="res://sound/creepy-suspense-horror-background-music-251989.mp3" id="11_noc0u"]
+[ext_resource type="Shader" uid="uid://crlcypsljmsi4" path="res://scenes/game/act_5/mini_game.gdshader" id="12_vgnvl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0gnlf"]
 texture = ExtResource("1_8mc3o")
@@ -235,6 +236,11 @@ normal = Vector2(0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48vxw"]
 size = Vector2(31, 27)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t3a0x"]
+shader = ExtResource("12_vgnvl")
+shader_parameter/vignette_strength = 1.2
+shader_parameter/vignette_softness = 0.6
+
 [node name="act_5_scene_5" type="Node2D"]
 script = ExtResource("1_r1qjl")
 
@@ -402,6 +408,14 @@ text = "[shake]Huwag kang lilingon[/shake]"
 stream = ExtResource("11_noc0u")
 autoplay = true
 bus = &"music"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_t3a0x")
+offset_left = -2264.0
+offset_top = -1983.0
+offset_right = 2363.0
+offset_bottom = 1535.0
+mouse_filter = 2
 
 [connection signal="body_entered" from="decorations/player_mateo/game_over" to="." method="_on_game_over_body_entered"]
 [connection signal="body_entered" from="chase_done_area" to="." method="_on_chase_done_area_body_entered"]

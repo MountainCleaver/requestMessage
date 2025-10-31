@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://lohc24hpe4iq"]
+[gd_scene load_steps=12 format=3 uid="uid://lohc24hpe4iq"]
 
 [ext_resource type="Script" uid="uid://xckegvk58ogq" path="res://scenes/game/act_5/scene_2/act_5_scene_2.gd" id="1_4w01n"]
 [ext_resource type="PackedScene" uid="uid://cgsw7s7nsjjno" path="res://scenes/game/act_5/scene_2/mateo_home.tscn" id="1_jskr0"]
@@ -7,6 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://csl2srhadkcgx" path="res://scenes/characters/npc_matet.tscn" id="5_fu8t6"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="6_fu8t6"]
 [ext_resource type="AudioStream" uid="uid://cfeusndv578x5" path="res://sound/cinematic-dramatic-sad-piano-drama-259052.mp3" id="7_0i30q"]
+[ext_resource type="Texture2D" uid="uid://b26tbvt5h4mc8" path="res://assets/character_sprites/MATEO__SHOCKED.png" id="7_ohuxi"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="8_rmpy8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohuxi"]
+shader = ExtResource("8_rmpy8")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/ca_strength = 2.5
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iggte"]
 size = Vector2(40, 19)
@@ -17,6 +28,15 @@ script = ExtResource("1_4w01n")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+z_index = 2
+material = SubResource("ShaderMaterial_ohuxi")
+offset_left = -439.0
+offset_top = -309.0
+offset_right = 475.0
+offset_bottom = 218.0
+mouse_filter = 2
+
 [node name="mateo_home" parent="." instance=ExtResource("1_jskr0")]
 
 [node name="player_mateo" parent="mateo_home/ysort" index="2" instance=ExtResource("2_17ooe")]
@@ -26,8 +46,16 @@ RUNNING_SPEED = 120.0
 [node name="npc_gino" parent="mateo_home/ysort" index="3" instance=ExtResource("4_iggte")]
 position = Vector2(53, -3)
 
+[node name="gino_shocked" parent="mateo_home/ysort/npc_gino" index="3"]
+z_index = 1
+
 [node name="npc_matet" parent="mateo_home/ysort" index="4" instance=ExtResource("5_fu8t6")]
 position = Vector2(-47, -6)
+
+[node name="gino_shocked" type="Sprite2D" parent="mateo_home/ysort/npc_matet"]
+z_index = 1
+position = Vector2(0, -26)
+texture = ExtResource("7_ohuxi")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-1, 60)

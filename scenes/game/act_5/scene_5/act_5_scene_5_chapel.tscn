@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=4 uid="uid://c876uuuu2ntoy"]
+[gd_scene load_steps=79 format=4 uid="uid://c876uuuu2ntoy"]
 
 [ext_resource type="Script" uid="uid://bdoiwmkg2ichc" path="res://scenes/game/act_5/scene_5/act_5_scene_5_chapel.gd" id="1_ya5vr"]
 [ext_resource type="Texture2D" uid="uid://dnyktsb36uad" path="res://assets/tilesets/chapel_tile.png" id="2_hwmf7"]
@@ -14,6 +14,8 @@
 [ext_resource type="AudioStream" uid="uid://w4m8g8ca5m0g" path="res://sound/crying-male-103153.mp3" id="12_5disu"]
 [ext_resource type="AudioStream" uid="uid://bqeg5vvn5fxky" path="res://sound/whack02-87839.mp3" id="13_5disu"]
 [ext_resource type="AudioStream" uid="uid://bqq4bsxrwfc3l" path="res://sound/rummaging-in-a-drawer-81308.mp3" id="14_feyip"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="15_feyip"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="16_klybr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h46de"]
 texture = ExtResource("2_rdikl")
@@ -1265,6 +1267,15 @@ _data = {
 &"yeet_stuff": SubResource("Animation_2p3qx")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12xr0"]
+shader = ExtResource("16_klybr")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/ca_strength = 2.5
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
+
 [node name="act_5_scene_5_chapel" type="Node2D"]
 script = ExtResource("1_ya5vr")
 
@@ -1449,6 +1460,20 @@ bus = &"sfx"
 stream = ExtResource("13_5disu")
 pitch_scale = 0.7
 bus = &"sfx"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("15_feyip")]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_12xr0")
+offset_left = -2264.0
+offset_top = -1983.0
+offset_right = 2363.0
+offset_bottom = 1535.0
+mouse_filter = 2
 
 [connection signal="body_entered" from="areas/mateo_turn" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="areas/gino_turn" to="." method="_on_gino_turn_body_entered"]
