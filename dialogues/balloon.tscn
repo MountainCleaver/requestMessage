@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://2i4i7d4jd8qg"]
+[gd_scene load_steps=24 format=3 uid="uid://2i4i7d4jd8qg"]
 
 [ext_resource type="Script" uid="uid://5wu2mtqucmsl" path="res://dialogues/balloon.gd" id="1_36de5"]
 [ext_resource type="Texture2D" uid="uid://dps3kuwfihl5i" path="res://assets/portraits/portrait_danilo.jpg" id="2_7c2jb"]
@@ -98,14 +98,30 @@ font_size = 32
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7c2jb"]
 bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2x2yy"]
+bg_color = Color(0.3254902, 0.06666667, 0.101960786, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m00rr"]
 bg_color = Color(1, 1, 1, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.32650882, 0.06502308, 0.10284584, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+corner_detail = 9
 
 [sub_resource type="Animation" id="Animation_7c2jb"]
 length = 0.001
@@ -300,14 +316,20 @@ response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="Balloon/ResponsesMenu"]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0.1254902, 1)
 theme_override_fonts/font = ExtResource("3_pa16h")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_7c2jb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2x2yy")
 theme_override_styles/focus = SubResource("StyleBoxFlat_m00rr")
 text = "Response example"
+autowrap_mode = 3
 
 [node name="main_animation" type="AnimationPlayer" parent="."]
 libraries = {
