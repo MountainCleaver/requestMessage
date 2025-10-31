@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://c0gjjrngklxbo" path="res://assets/tilesets/buncha_trees.png" id="8_uoc36"]
 [ext_resource type="PackedScene" uid="uid://iw5y556roeg2" path="res://scenes/game/act_3/scene_4/fog.tscn" id="10_e6s0d"]
 [ext_resource type="Shader" uid="uid://camsxt5pcqikg" path="res://scenes/game/act_3/scene_4/god_ray.gdshader" id="11_1assj"]
-[ext_resource type="AudioStream" uid="uid://k2jnd5v34cm3" path="res://sound/742147__looplicator__137-bpm-industrial-drum-loop-1661-wav.mp3" id="12_redhc"]
 [ext_resource type="AudioStream" uid="uid://uevksc2cdqrb" path="res://sound/heavy-breathing-sound-effect-type-02-294195.mp3" id="13_ecspc"]
+[ext_resource type="AudioStream" uid="uid://coum7fyikgymm" path="res://sound/white-noise-static-loop-4-183932.mp3" id="13_g6gbo"]
 [ext_resource type="AudioStream" uid="uid://c5wnnm38lmfgg" path="res://sound/sad-piano-second-172841.mp3" id="14_gxteu"]
 [ext_resource type="AudioStream" uid="uid://bl8je7gq38yu2" path="res://sound/loud-thunder-192165.mp3" id="14_u648a"]
 
@@ -5539,8 +5539,9 @@ visible = false
 color = Color(0.61394, 0.5307038, 0.47831511, 1)
 
 [node name="BGM_FOREST" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_redhc")
+stream = ExtResource("13_g6gbo")
 volume_db = -6.118
+autoplay = true
 bus = &"music"
 
 [node name="SFX_BREATHING" type="AudioStreamPlayer" parent="."]
