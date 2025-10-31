@@ -367,7 +367,6 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Made with:
 
-Blood, Sweat and Tears
 Godot 4.5
 Aseprite"
 label_settings = SubResource("LabelSettings_a81g2")
