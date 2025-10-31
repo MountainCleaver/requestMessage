@@ -147,10 +147,22 @@ func _save_keybind(action: String, event: InputEvent) -> void:
 	Settings.settings.key_bindings[action] = ev_dict
 	Settings.save_settings()
 
-	if get_tree().current_scene.has_node("explorer_hud"):
-		var hud = get_tree().current_scene.get_node("explorer_hud")
-		if hud.has_method("_update_guide_keys"):
-			hud._update_guide_keys()
+	var hud := _find_hud(get_tree().current_scene)
+	if hud and hud.has_method("_update_guide_keys"):
+		hud._update_guide_keys()
+
+
+
+# Recursive search helper
+func _find_hud(node: Node) -> CanvasLayer:
+	if node.name == "explorer_hud" and node is CanvasLayer:
+		return node
+	for child in node.get_children():
+		if child is Node:
+			var result := _find_hud(child)
+			if result:
+				return result
+	return null
 
 
 # =========================
