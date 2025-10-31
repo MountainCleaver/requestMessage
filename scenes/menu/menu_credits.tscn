@@ -49,7 +49,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_i52uf"]
 resource_name = "scrolling"
-length = 35.0
+length = 60.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,10 +57,10 @@ tracks/0/path = NodePath("VBoxContainer:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 30),
+"times": PackedFloat32Array(0, 47.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(400, 1046), Vector2(400, -1146)]
+"values": [Vector2(400, 1046), Vector2(400, -4554)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -69,7 +69,7 @@ tracks/1/path = NodePath("Label:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 30),
+"times": PackedFloat32Array(0, 45.466667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -120,8 +120,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 400.0
 offset_top = 1046.0
-offset_right = -400.0
-offset_bottom = 2151.0
+offset_right = -400.00256
+offset_bottom = 4554.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -169,10 +169,10 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Art & Animation:
 
+Roselyn Claveria
 Julius Romero
 Gerald Cancino
 Julia Mae Buenafe 
-Roselyn Claveria
 Joana Mae Emperoso
 "
 label_settings = SubResource("LabelSettings_a81g2")
@@ -206,18 +206,169 @@ text = "Special Thanks:
 Phoebe Naviamos - Guidance and Support 
 Mr. Mike Jansen Pacifico - Psychologist 
 Mr. Kim Ampo - Guidance Councilor
-Mr. Mike Noel Tolentino - Capstone Profesor
+Mr. Mike Noel Tolentino - Capstone Profesor"
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label11" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Assets
+
+---Sounds---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 "
 label_settings = SubResource("LabelSettings_a81g2")
 horizontal_alignment = 1
 
-[node name="Label9" type="Label" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Label11"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 89.0
+offset_right = 640.0
+offset_bottom = 1206.0
+alignment = 1
+
+[node name="Label10" type="Label" parent="VBoxContainer/Label11/HBoxContainer"]
 layout_mode = 2
-text = "Made With:
+text = "BBC Sound Effects
+freesound_community
+Universfield
+Clavier-Music
+SoundReality
+kakaist
+Virtual_Vibes
+u_5noytr6hc4
+SUBMORITY
+Retro_Timmy
+SigmaMusicArt
+DziiTen
+ECO-ART
+Rockot
+DRAGON-STUDIO
+WanderingArc
+Universe_Bella
+kamranbashirb
+storegraphic
+RomanSenykMusic
+Lecio
+u_u5w7jl2icv
+CoffeeBagAudioLab
+DRAGON-STUDIO
+RibhavAgrawal
+PaftDrunk
+Alban_Gogh
+Limonadiac
+Sound Effects"
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label12" type="Label" parent="VBoxContainer/Label11/HBoxContainer"]
+layout_mode = 2
+text = "      "
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label11" type="Label" parent="VBoxContainer/Label11/HBoxContainer"]
+layout_mode = 2
+text = "Ncone
+TheoJT
+MusicInMedia
+brolefilmer
+Eryliaa
+LudoSoundX
+castmate
+TanwerAman
+Cyberwave-Orchestra
+DELOSound
+PoorKidMusic
+Sakartvelo
+Emilianodleon
+Homemade_SFX
+floraphonic
+ALCATRAZ_101
+Lightyeartraxx
+floraphonic
+xkeril 
+abyeditsound 
+lennyboy 
+kjartan_abel
+Deadsillyrabbit
+Quick Sounds
+Darren Curtis
+Alexander Nakarada
+Kevin Macleod
+Scott Buckley
+Loyalty Freak Music "
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label10" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "---Sprites and Tilemaps ---
+
+aveontrainer 
+Penzilla 
+Otterisk
+S Frisk
+Tato
+Bakadri
+Phyromatical
+CaptainSkolot
+Shimochi
+ChaoticCherryCake
+0_mem0ry
+NYKNCK
+bitglow
+Alexti_dev
+Graduation Cat
+phscardona
+antarcticbees
+angrysnail
+skatefilter5
+
+---Plugins and Shaders ---
+
+NathanHoad
+Joseph SmithBerger
+Philip Parente
+Hexagon Nico"
+label_settings = SubResource("LabelSettings_a81g2")
+horizontal_alignment = 1
+
+[node name="Label12" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Made with:
+
 Godot 4.5
-Aseprite
-And love
-                    "
+Aseprite"
 label_settings = SubResource("LabelSettings_a81g2")
 horizontal_alignment = 1
 
