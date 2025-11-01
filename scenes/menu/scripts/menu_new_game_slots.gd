@@ -177,6 +177,8 @@ func _on_slot_hovered(slot_node: Node, slot_num: int) -> void:
 	
 	var summary_text = slot_node.get_meta("summary_text", "No progress yet.")
 	summary_label.text = summary_text
+	
+	_trigger_glitch_effect(slot_node)
 
 
 func _on_slot_unhovered(slot_node: Node, slot_num: int) -> void:
@@ -193,6 +195,19 @@ func _on_slot_unhovered(slot_node: Node, slot_num: int) -> void:
 	playtime_label.visible = true
 	summary_label.visible = false
 
+func _trigger_glitch_effect(slot_node: Node) -> void:
+	var color_rect := slot_node.get_node("ColorRect")
+	if not color_rect:
+		return
+
+	color_rect.visible = true
+	for i in range(3):
+		color_rect.visible = not color_rect.visible
+		await get_tree().create_timer(0.1).timeout
+	color_rect.visible = true
+
+	await get_tree().create_timer(0.1).timeout
+	color_rect.visible = false
 
 # --- Generate narrative summary ---
 func _generate_narrative_summary(save_data) -> String:

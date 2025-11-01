@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1aq4smg1y13r"]
+[gd_scene load_steps=9 format=3 uid="uid://c1aq4smg1y13r"]
 
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_7r2u7"]
 [ext_resource type="Script" uid="uid://cp1ojl3hq2n3l" path="res://scenes/menu/scripts/menu_new_game_slots.gd" id="1_mjo55"]
@@ -6,6 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="3_mjo55"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_tkyxw"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_jawnl"]
+[ext_resource type="Shader" uid="uid://ddml6l3vebf34" path="res://scenes/game/act_3/scene_4/glitch_2.gdshader" id="7_t4t4r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_07kmj"]
+shader = ExtResource("7_t4t4r")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
 
 [node name="menu_new_game_slots" type="Control"]
 layout_mode = 3
@@ -117,6 +126,14 @@ theme_override_font_sizes/font_size = 26
 text = "CREATED:"
 autowrap_mode = 3
 
+[node name="ColorRect" type="ColorRect" parent="slot_1"]
+visible = false
+material = SubResource("ShaderMaterial_07kmj")
+layout_mode = 0
+offset_right = 1319.0
+offset_bottom = 248.0
+mouse_filter = 2
+
 [node name="slot_2" type="Button" parent="."]
 layout_mode = 0
 offset_left = 80.0
@@ -192,6 +209,14 @@ theme_override_font_sizes/font_size = 26
 text = "CREATED:"
 autowrap_mode = 3
 
+[node name="ColorRect" type="ColorRect" parent="slot_2"]
+visible = false
+material = SubResource("ShaderMaterial_07kmj")
+layout_mode = 0
+offset_right = 1319.0
+offset_bottom = 248.0
+mouse_filter = 2
+
 [node name="slot_3" type="Button" parent="."]
 layout_mode = 0
 offset_left = 80.0
@@ -266,6 +291,14 @@ theme_override_fonts/font = ExtResource("3_tkyxw")
 theme_override_font_sizes/font_size = 26
 text = "CREATED:"
 autowrap_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="slot_3"]
+visible = false
+material = SubResource("ShaderMaterial_07kmj")
+layout_mode = 0
+offset_right = 1319.0
+offset_bottom = 248.0
+mouse_filter = 2
 
 [node name="overwriteConfirmationDialog" type="ConfirmationDialog" parent="."]
 oversampling_override = 1.0
