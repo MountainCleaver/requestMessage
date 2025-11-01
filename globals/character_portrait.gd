@@ -2,8 +2,8 @@ extends Node
 
 var portraits = {
 	"Danilo": preload("res://assets/character_sprites/portrait_danilo.png"),
-	"Danilo_child": preload("res://assets/character_sprites/portrait_danilo.png"),
-	"danilo_child": preload("res://assets/character_sprites/portrait_danilo.png"),
+	"Danilo_child": preload("res://assets/character_sprites/portrait_danilo_child.png"),
+	"danilo_child": preload("res://assets/character_sprites/portrait_danilo_child.png"),
 	"Aling_Theresa": preload("res://assets/character_sprites/portrait_aling_theresa.png"),
 	"Mang_Gino": preload("res://assets/character_sprites/portrait_mang gino.png"),
 	"Manang_Matet": preload("res://assets/character_sprites/portrait_manang matet.png"),
