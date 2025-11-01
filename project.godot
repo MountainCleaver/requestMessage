@@ -54,6 +54,7 @@ window/size/viewport_width=1440
 window/size/viewport_height=1024
 window/size/mode=3
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://be0uckks217k2"
 window/main_scene="uid://bro8lnbrtlvoc"
 window/minimum_display_time=8000
 window/image="uid://h36f1ipl8glj"

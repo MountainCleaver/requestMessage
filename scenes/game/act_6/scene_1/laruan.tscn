@@ -2766,6 +2766,9 @@ position = Vector2(-143, -10)
 [node name="npc_gino" parent="y-sorted/wendy_and_npcs" index="5"]
 position = Vector2(-105, -3)
 
+[node name="gino_shocked" parent="y-sorted/wendy_and_npcs/npc_gino" index="3"]
+visible = false
+
 [node name="npc_matet" parent="y-sorted/wendy_and_npcs" index="6"]
 position = Vector2(-124, -4)
 

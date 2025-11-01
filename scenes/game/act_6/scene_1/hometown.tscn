@@ -9822,6 +9822,9 @@ position = Vector2(305, 93)
 [node name="npc_gino" parent="y-sorted" instance=ExtResource("9_72cvi")]
 position = Vector2(223, 403)
 
+[node name="gino_shocked" parent="y-sorted/npc_gino" index="3"]
+visible = false
+
 [node name="npc_vanesa" parent="y-sorted" instance=ExtResource("10_5ckr2")]
 position = Vector2(-28, 40)
 
