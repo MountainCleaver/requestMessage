@@ -63,7 +63,7 @@ func _set_ghost_position(choice: String)->void:
 		var coll = npc_shadowy_ghost.get_node_or_null("CollisionShape2D")
 		if coll:
 			coll.disabled = true
-		canvas_modulate.color = Color("2b356c")
+		canvas_modulate.color = Color("212957ff")
 		
 		var tween = create_tween()
 		tween.tween_property(npc_whitey_ghost, "global_position", ghost_location.global_position, 2.0)

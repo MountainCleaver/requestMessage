@@ -1448,8 +1448,9 @@ shape = SubResource("RectangleShape2D_54kyq")
 
 [node name="Rain" type="CPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_olrw1")
-position = Vector2(-196.00002, -186.00002)
+position = Vector2(-33.000015, -521)
 rotation = -0.06737219
+scale = Vector2(2, 2)
 amount = 250
 texture = ExtResource("7_w7b4n")
 lifetime = 2.0
@@ -1464,9 +1465,10 @@ color_ramp = SubResource("Gradient_7t5wa")
 anim_speed_max = 1.0
 
 [node name="Rain_splash" type="CPUParticles2D" parent="."]
-position = Vector2(-139, -18.999998)
+position = Vector2(96.99997, -3.0000029)
 rotation = 0.009001806
-amount = 25
+scale = Vector2(3, 3)
+amount = 100
 texture = ExtResource("8_8qw42")
 lifetime = 0.3
 emission_shape = 3
