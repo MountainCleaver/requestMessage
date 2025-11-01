@@ -3,6 +3,7 @@ extends Node
 var portraits = {
 	"Danilo": preload("res://assets/character_sprites/portrait_danilo.png"),
 	"Danilo_child": preload("res://assets/character_sprites/portrait_danilo.png"),
+	"danilo_child": preload("res://assets/character_sprites/portrait_danilo.png"),
 	"Aling_Theresa": preload("res://assets/character_sprites/portrait_aling_theresa.png"),
 	"Mang_Gino": preload("res://assets/character_sprites/portrait_mang gino.png"),
 	"Manang_Matet": preload("res://assets/character_sprites/portrait_manang matet.png"),
@@ -12,6 +13,10 @@ var portraits = {
 	"Wendy": preload("res://assets/character_sprites/portrait_wendy.png"),
 	"Wendy_child": preload("res://assets/character_sprites/portrait_wendy_child.png"),
 	"Mateo_child": preload("res://assets/character_sprites/portrait_mateo_child.png"),
+	"wendy_child": preload("res://assets/character_sprites/portrait_wendy_child.png"),
+	"mateo_child": preload("res://assets/character_sprites/portrait_mateo_child.png"),
+	"Wendy_Child": preload("res://assets/character_sprites/portrait_wendy_child.png"),
+	"Mateo_Child": preload("res://assets/character_sprites/portrait_mateo_child.png"),
 	"Mateo_child_crying": preload("res://assets/character_sprites/portrait_mateo_child_crying.png"),
 	"Mateo": preload("res://assets/character_sprites/portrait_mateo.png"),
 	"Entity": preload("res://assets/character_sprites/portrait_entity.png"),
@@ -19,7 +24,9 @@ var portraits = {
 	"Jonathan": preload("res://assets/character_sprites/portrait_jonathan.png"),
 	"Mira": preload("res://assets/character_sprites/portrait_mira.png"),
 	"Lola_Ising": preload("res://assets/character_sprites/portrait_lola ising.png"),
+	"Lola_ising": preload("res://assets/character_sprites/portrait_lola ising.png"),
 	"Lola Ising": preload("res://assets/character_sprites/portrait_lola ising.png"),
+	"Lola ising": preload("res://assets/character_sprites/portrait_lola ising.png"),
 	
 	"Unknown_sender": preload("res://assets/character_sprites/portrait_unknown_sender.png"),
 	"TL": preload("res://assets/character_sprites/portrait_tl.png"),
