@@ -27,6 +27,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0.023529412)
 script = ExtResource("1_637dv")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -102,8 +103,8 @@ expand_icon = true
 stream = ExtResource("5_tp6ej")
 bus = &"music"
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-layer = 101
-
-[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("6_pv1lf")]
-visible = false
+[node name="pause_screen" parent="." instance=ExtResource("6_pv1lf")]
+offset_left = -8.0
+offset_top = -2.0
+offset_right = 18.0
+offset_bottom = 16.0
