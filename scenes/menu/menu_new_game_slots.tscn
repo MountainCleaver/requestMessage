@@ -6,12 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="3_mjo55"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_tkyxw"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_jawnl"]
-[ext_resource type="Shader" uid="uid://ddml6l3vebf34" path="res://scenes/game/act_3/scene_4/glitch_2.gdshader" id="7_t4t4r"]
+[ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="7_t4t4r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_07kmj"]
 shader = ExtResource("7_t4t4r")
 shader_parameter/shake_power = 0.03
-shader_parameter/shake_rate = 0.2
 shader_parameter/shake_speed = 5.0
 shader_parameter/shake_block_size = 30.5
 shader_parameter/shake_color_rate = 0.01
