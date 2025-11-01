@@ -179,49 +179,30 @@ func clear_popup_image() -> void:
 func show_phone_with_unknown_sender() -> void:
 	# --- Show phone if hidden ---
 	if not phone_showing:
-		phone_intro()
+		phone_intro()  # plays "phone_in"
 		phone_showing = true
 
-	# Wait for phone animation to finish (use timer or animation signal)
-	await get_tree().create_timer(0.8).timeout
-
-	# --- Hide lock screen if active ---
-	if lock_screen_active and phone_container.has_node("lock_screen"):
-		phone_container.get_node("lock_screen").visible = false
-		lock_screen_active = false
-
-	# --- Ensure phone_main exists ---
-	var phone_main: Node
-	if not phone_container.has_node("phone_main"):
-		phone_main = PHONE_MAIN.instantiate()
-		phone_main.name = "phone_main"
-		phone_container.add_child(phone_main)
-		phone_main_active = true
-	else:
-		phone_main = phone_container.get_node("phone_main")
-		phone_main.visible = true  # just in case it was hidden
-
-	# --- Ensure APP_CHAT exists ---
+	# --- Ensure APP_CHAT exists but keep it hidden initially ---
 	var app_chat: Node
 	if not phone_container.has_node("app_chat"):
 		app_chat = APP_CHAT.instantiate()
 		app_chat.name = "app_chat"
+		app_chat.visible = false
 		phone_container.add_child(app_chat)
-		app_chat.previous_scene = phone_main
 		chat_open = true
 	else:
 		app_chat = phone_container.get_node("app_chat")
+		app_chat.visible = false
 		chat_open = true
 
-	# --- Show APP_CHAT and hide phone_main ---
-	phone_main.visible = false
 	app_chat.visible = true
 
-	# --- Trigger unknown sender chat ---
+	# --- Trigger unknown sender chat safely ---
 	if "unlock_unknown_sender" in app_chat:
 		app_chat.unlock_unknown_sender()
 	if "_on_unknown_sender_pressed" in app_chat:
 		app_chat._on_unknown_sender_pressed()
+
 
 
 # ===========================
