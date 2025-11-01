@@ -32,6 +32,8 @@ func _show_intro_narration() -> void:
 	]
 	await NarrationPanel.show_narration_typewriter(lines, 0.05)
 	await NarrationPanel.hide_narration()
+	TransitionFade.transition()
+	await SignalBus.on_transition_finished
 	await _run_cutscene()
 
 func _run_cutscene() -> void:
