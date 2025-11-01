@@ -1,5 +1,9 @@
 ~ start
 do Hud.show_phone_with_unknown_sender()
+Danilo: [shake]???[/shake]
+=> phone_intro
+
+~ phone_intro
 do ChatManager.send_chat("unknown_sender", "Player", "Hah, sino ka? Bakit alam mo pangalan ko?")
 Danilo: Hah, who are you? How do you know my name?  => reply_danilo_1
 => END
