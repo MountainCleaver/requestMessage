@@ -82,5 +82,3 @@ metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 stream = ExtResource("3_wickx")
 volume_db = -13.358
 bus = &"sfx"
-
-[node name="Node2D" type="Node2D" parent="."]

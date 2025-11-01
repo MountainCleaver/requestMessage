@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://b3hko7qrauj"]
+[gd_scene load_steps=41 format=4 uid="uid://b3hko7qrauj"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_8mc3o"]
 [ext_resource type="Script" uid="uid://dhpvll73fhr4s" path="res://scenes/game/act_5/scene_5/act_5_scene_5_mini_game.gd" id="1_r1qjl"]
@@ -13,7 +13,8 @@
 [ext_resource type="AudioStream" uid="uid://ixhl1kpdrq4h" path="res://sound/430a1c_mk3_scorpion_come_here_sound_effect.mp3" id="9_t3a0x"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="10_48vxw"]
 [ext_resource type="AudioStream" uid="uid://t52adkog1sgl" path="res://sound/creepy-suspense-horror-background-music-251989.mp3" id="11_noc0u"]
-[ext_resource type="Shader" uid="uid://crlcypsljmsi4" path="res://scenes/game/act_5/mini_game.gdshader" id="12_vgnvl"]
+[ext_resource type="Shader" path="res://scenes/game/act_5/mini_game.gdshader" id="12_vgnvl"]
+[ext_resource type="AudioStream" uid="uid://bdeqkciufpyat" path="res://sound/kl-music-box-game-over-ii-152200.mp3" id="14_idubm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0gnlf"]
 texture = ExtResource("1_8mc3o")
@@ -421,7 +422,11 @@ text = "[shake]Huwag kang lilingon[/shake]"
 [node name="BGM_CHASE" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_noc0u")
 volume_db = -10.174
-autoplay = true
+bus = &"music"
+
+[node name="BGM_GAMEOVER" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_idubm")
+volume_db = -10.174
 bus = &"music"
 
 [node name="ColorRect" type="ColorRect" parent="."]
