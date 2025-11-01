@@ -123,6 +123,11 @@ func objective_outro_anim() -> void:
 # === PHONE HANDLING (local only) ===
 # ==================================
 func phone_intro() -> void:
+	if has_node("Control/phone"):
+		var phone_node = get_node("Control/phone")
+		if not phone_node.visible:
+			phone_node.visible = true
+			
 	phone_showing = true
 	hud_animations.play("phone_in")
 	SignalBus.phone_in.emit()
@@ -224,6 +229,11 @@ func show_phone_with_unknown_sender() -> void:
 # ===========================
 
 func reset_phone_state() -> void:
+	if has_node("Control/phone"):
+		var phone_node = get_node("Control/phone")
+		if not phone_node.visible:
+			phone_node.visible = true
+			
 	for child in phone_container.get_children():
 		child.queue_free()
 

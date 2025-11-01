@@ -33,7 +33,7 @@ var inside_water : bool = false;
 var inside_bed : bool = false;
 var can_interact : bool = false;
 
-func _ready() -> void:
+func _ready() -> void:	
 	FlashlightManager.set_current_scene("act_1", "scene_1")
 	FlashlightManager.disable_flashlights() # force all flashlights OFF (fix for first-run leftovers)
 	_load_dialogue()

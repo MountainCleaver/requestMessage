@@ -134,7 +134,11 @@ func _on_overwrite_confirmed() -> void:
 
 	slot_save.current_act = pending_act
 	slot_save.current_scene = pending_scene
-
+	
+	if Hud:
+		await get_tree().process_frame
+		Hud.reset_phone_dont_show()
+		
 	SaveManager.game_save = slot_save
 	SaveManager.save_game()
 
