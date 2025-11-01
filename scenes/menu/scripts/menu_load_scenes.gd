@@ -154,7 +154,11 @@ func _load_scene(act: String, scene: String) -> void:
 
 	# Track save
 	SaveManager.track_save()
-
+	
+	if Hud:
+		await get_tree().process_frame
+		Hud.reset_phone_dont_show()
+		
 	SignalBus.next_scene.emit(path)
 
 func _input(event: InputEvent) -> void:

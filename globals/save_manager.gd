@@ -68,11 +68,20 @@ func _save_game_progress(act: String, scene: String, next_scene: String) -> void
 	print("Saving progress for user:", current_username, "ID:", current_user_id, "Finished Act:", act, "Scene:", scene)
 	mark_scene_finished(act, scene)
 	_set_current_scene_from_path(next_scene)
+	
+	var next_act = game_save.current_act
+	var next_scene_name = game_save.current_scene
+	if not game_save.finished_scenes.has(next_act):
+		game_save.finished_scenes[next_act] = []
+	if next_scene_name not in game_save.finished_scenes[next_act]:
+		game_save.finished_scenes[next_act].append(next_scene_name)
+
 	next_scene_path = next_scene
 	GameSceneManager._change_scene("res://scenes/game/saving_screen.tscn")
 	if current_user_id != 0:
 		_push_online_save(act, scene)
 	print("[SaveManager] Progress saved. Next scene:", next_scene_path)
+
 
 func load_game() -> void:
 	if FileAccess.file_exists(SAVE_PATH):

@@ -61,7 +61,11 @@ func _on_newsave_confirmed() -> void:
 	
 	if BgmManager:
 		BgmManager.stop_music()
-	
+		
+	if Hud:
+		await get_tree().process_frame
+		Hud.reset_phone_dont_show()
+
 	SignalBus.next_scene.emit("res://scenes/game/intro_scene.tscn")
 
 
@@ -80,7 +84,11 @@ func _on_overwrite_confirmed() -> void:
 	
 	if BgmManager:
 		BgmManager.stop_music()
-	
+		
+	if Hud:
+		await get_tree().process_frame
+		Hud.reset_phone_dont_show()
+
 	SignalBus.next_scene.emit("res://scenes/game/intro_scene.tscn")
 
 
