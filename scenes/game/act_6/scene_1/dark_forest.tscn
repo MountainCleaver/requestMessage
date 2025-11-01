@@ -134,6 +134,9 @@ limit_top = -275
 limit_right = 555
 limit_bottom = 266
 
+[node name="gino_shocked" parent="y-sorted/wendy_and_npcs/npc_gino" index="3"]
+visible = false
+
 [node name="signage2" type="Area2D" parent="."]
 position = Vector2(40, -12)
 
