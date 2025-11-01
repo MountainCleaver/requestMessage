@@ -262,16 +262,6 @@ func _on_back_button_pressed():
 		
 		act_6_scene_2_done()
 
-func _input(event):
-	if event.is_action_pressed("ui_accept") and not has_shown_end:
-		_on_play_pause_button_pressed()
-	
-	if event.is_action_pressed("ui_accept") and has_shown_end:
-		_on_back_button_pressed()
-	
-	if event.is_action_pressed("ui_cancel"):
-		_on_back_button_pressed()
-		
 # ===================
 # COMPLETE SCENE
 # ===================
