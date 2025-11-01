@@ -52,7 +52,6 @@ Pharmacist: Good day, sir. What do you need?
 Danilo: I need this.
 Danilo: Should last about a week.
 Pharmacist: Sorry, there's only three left.
-- Buy it all => drugstore_clerk_2
 - Buy everything => drugstore_clerk_2
 => END
 
