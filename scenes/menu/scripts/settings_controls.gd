@@ -172,3 +172,7 @@ func _on_confirmation_dialog_confirmed() -> void:
 	Settings.settings.key_bindings.clear()
 	Settings.save_settings()
 	_create_action_list()
+
+	var hud := _find_hud(get_tree().current_scene)
+	if hud and hud.has_method("_update_guide_keys"):
+		hud._update_guide_keys()
