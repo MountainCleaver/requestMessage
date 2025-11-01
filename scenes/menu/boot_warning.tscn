@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://h36f1ipl8glj"]
+[gd_scene load_steps=11 format=3 uid="uid://h36f1ipl8glj"]
 
 [ext_resource type="Script" uid="uid://bjgba84tfg2i" path="res://scenes/menu/scripts/boot_warning.gd" id="1_lmbvh"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_bfe6o"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_lmbvh"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_bfe6o"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="5_wvjlt"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="6_qiyby"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmbvh"]
 bg_color = Color(0.294118, 0.309804, 0.380392, 0.541176)
@@ -26,6 +27,14 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dnn63"]
+shader = ExtResource("6_qiyby")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
 
 [node name="boot_warning" type="Control"]
 layout_mode = 3
@@ -55,6 +64,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="warning_holder" type="Panel" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -132,6 +142,7 @@ text = "This game is intended for players AGE 18 AND ABOVE. Viewer/player discre
 autowrap_mode = 2
 
 [node name="proceed" type="Panel" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -191,3 +202,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
+
+[node name="splash_title" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 526.0
+offset_top = 421.0
+offset_right = -515.0
+offset_bottom = 623.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 0.192157, 0.192157, 1)
+theme_override_fonts/normal_font = ExtResource("2_lmbvh")
+theme_override_font_sizes/normal_font_size = 100
+text = " REQUEST 
+MESSAGE"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_dnn63")
+layout_mode = 0
+offset_right = 1441.0
+offset_bottom = 1025.0
+mouse_filter = 2
