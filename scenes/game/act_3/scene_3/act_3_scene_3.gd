@@ -252,6 +252,7 @@ func _input(event: InputEvent) -> void:
 					maps["town_center"]["spawn_points"]["drug_store"]
 				)
 				await SignalBus.on_transition_finished
+				Hud.clear_objectives()
 				ObjectiveManager.add_objective(scene_objectives[4]["ID"], scene_objectives[4]["text"])
 
 		"pharmacist":
