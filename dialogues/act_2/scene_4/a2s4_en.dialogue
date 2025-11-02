@@ -1,5 +1,5 @@
 ~ start
-Wendy: He left... without a word.
+Wendy: Did he left... without a word?
 Wendy: Something’s... off. It's not like before.  
 do Hud.show_objectives()
 Wendy: ...
