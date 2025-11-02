@@ -63,7 +63,6 @@ func _ready() -> void:
 	SignalBus.app_chat_opened.connect(_on_app_chat_opened)
 	SignalBus.chat_opened.connect(_on_chat_opened)
 	SignalBus.chat_closed.connect(_on_chat_closed)
-	SignalBus.unknown_sender_label_visible = true
 
 	if DialogueManager:
 		DialogueManager.connect("dialogue_ended", Callable(self, "_on_dialogue_ended"))
@@ -191,7 +190,7 @@ func _on_chat_opened(chat_name: String) -> void:
 				final_objectives_done = true
 				if lock_screen_instance:
 					lock_screen_instance.objectives_done = true
-				await get_tree().create_timer(5).timeout
+				await get_tree().create_timer(3).timeout
 				Hud.hide_objectives()
 				Hud.phone_outro()
 				await get_tree().create_timer(0.8).timeout
@@ -303,6 +302,7 @@ func _switch_to_danilo_room() -> void:
 	ObjectiveManager.complete_objective(scene_objectives[5]["ID"])
 	ObjectiveManager.add_objective(scene_objectives[6]["ID"], scene_objectives[6]["text"])
 	DialogueManager.show_dialogue_balloon(A_1S_4, "after_home")
+	SignalBus.unknown_sender_label_visible = true
 	SignalBus.unknown_sender_unlocked = true
 	has_gone_home = true
 
