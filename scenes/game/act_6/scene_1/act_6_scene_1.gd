@@ -50,7 +50,7 @@ var scene_objectives = [
 	{"ID": 2, "text": "Enter town"},
 	{"ID": 3, "text": "Find Lola Ising"},
 	{"ID": 4, "text": "Talk to neighbors"},
-	{"ID": 5, "text": "Go back to Lola ising"},
+	{"ID": 5, "text": "Go back to Lola Ising"},
 	{"ID": 6, "text": "Go to laruan"}
 ]
 
@@ -579,7 +579,6 @@ func _lola_ising_interacted():
 	bgm_town.play()
 	if tip_interact:
 		tip_interact.visible = false
-
 	var neighbor_obj = ObjectiveManager.objectives.get(scene_objectives[3]["ID"])
 	
 	var current_npc = player_wendy.current_npc
@@ -613,6 +612,7 @@ func _lola_ising_interacted():
 		ObjectiveManager.complete_objective(scene_objectives[2]["ID"])
 		await DialogueManager.show_dialogue_balloon(A_6S_1, "talk_to_lola_ising")
 		await DialogueManager.dialogue_ended
+		Hud.clear_objectives()
 		ObjectiveManager.add_progress_objective(
 			scene_objectives[3]["ID"],
 			scene_objectives[3]["text"],
