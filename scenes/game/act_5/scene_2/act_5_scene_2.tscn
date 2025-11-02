@@ -15,7 +15,6 @@ shader = ExtResource("8_rmpy8")
 shader_parameter/curvature = 6.0
 shader_parameter/vignette_softness = 0.6
 shader_parameter/vignette_strength = 1.2
-shader_parameter/ca_strength = 2.5
 shader_parameter/blur_strength = 0.5
 shader_parameter/scanline_speed = 1.5
 
@@ -72,7 +71,7 @@ visible = false
 
 [node name="BGM_MATEO_HOUSE" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_0i30q")
-volume_db = -1.908
+volume_db = -13.464
 autoplay = true
 bus = &"music"
 
