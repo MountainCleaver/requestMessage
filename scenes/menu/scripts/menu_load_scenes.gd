@@ -51,6 +51,12 @@ func _create_button(act: String, scene: String) -> void:
 	button.custom_minimum_size = Vector2(400, 225)
 	button.expand_icon = true
 
+	# === FIX START: special display for Act 6 endings ===
+	var display_scene = scene
+	if act == "act_6" and (scene == "scene_2.1" or scene == "scene_2.2"):
+		display_scene = "The End"
+	# === FIX END ===
+
 	var texture_path = "res://assets/scenes_thumbnails/%s_%s.png" % [act, scene]
 	if ResourceLoader.exists(texture_path):
 		button.icon = load(texture_path)
