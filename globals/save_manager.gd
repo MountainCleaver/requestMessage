@@ -567,11 +567,13 @@ func _set_current_scene_from_path(scene_path: String) -> void:
 	if act_folder == "":
 		act_folder = "act_1"
 
-	# --- CASE 3: Special endings
-	if act_folder == "act_2" and (scene_name == "scene_2.1" or scene_name == "scene_2.2"):
-		scene_name = "The End"
+	# --- CASE 3: Special endings (Act 6)
+	if act_folder == "act_6" and (scene_name == "scene_2.1" or scene_name == "scene_2.2"):
+		scene_name = "scene_2"
+
 
 	game_save.current_act = act_folder
 	game_save.current_scene = scene_name
 	save_game()
-	print("[SaveManager] ✅ Current scene updated to:", act_folder, "-", scene_name)
+	print("[SaveManager] Current scene updated to:", act_folder, "-", scene_name)
+	
