@@ -543,32 +543,35 @@ func _merge_online_save(online_data: Dictionary) -> void:
 		game_save.current_scene = latest_scene
 
 func _set_current_scene_from_path(scene_path: String) -> void:
-	var file_name = scene_path.get_file().get_basename()
-	var parts = scene_path.get_base_dir().split("/") 
+	var file_name = scene_path.get_file().get_basename()  # e.g. act_4_title_scene or danilo_room
+	var parts = scene_path.get_base_dir().split("/")      # e.g. [res://, scenes, game, act_4, scene_2]
 
 	var act_folder = ""
-	for part in parts:
-		if part.begins_with("act_"):
-			act_folder = part
-			break
-
-	if act_folder == "":
-		return
-
 	var scene_name = "scene_1"
 
-	for part in parts:
-		if part.begins_with("scene_"):
-			scene_name = part
-			break
+	# --- CASE 1: Title scenes (e.g. res://scenes/game/act_4_title_scene.tscn)
+	if file_name.begins_with("act_") and file_name.contains("_title_scene"):
+		var act_num = file_name.split("_")[1]  # get "4" from "act_4_title_scene"
+		act_folder = "act_" + act_num
+		scene_name = "scene_1"
 
-	if act_folder == "act_4" and scene_name == "scene_4":
-		scene_name = "scene_4"
-		
+	else:
+		# --- CASE 2: Normal folder-based structure (e.g. act_4/scene_2/danilo_room.tscn)
+		for part in parts:
+			if part.begins_with("act_"):
+				act_folder = part
+			elif part.begins_with("scene_"):
+				scene_name = part
+
+	# --- fallback
+	if act_folder == "":
+		act_folder = "act_1"
+
+	# --- CASE 3: Special endings
 	if act_folder == "act_2" and (scene_name == "scene_2.1" or scene_name == "scene_2.2"):
 		scene_name = "The End"
-	
+
 	game_save.current_act = act_folder
 	game_save.current_scene = scene_name
 	save_game()
-	print("[SaveManager] Current scene updated to:", act_folder, "-", scene_name)
+	print("[SaveManager] ✅ Current scene updated to:", act_folder, "-", scene_name)
