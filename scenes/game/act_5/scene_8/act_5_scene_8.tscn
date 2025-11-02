@@ -139,9 +139,6 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="locations/chapel_interior/y-sorted/mateo_stap"]
 shape = SubResource("RectangleShape2D_k4njg")
 
-[node name="BGMChapel" parent="locations/chapel_interior" index="8"]
-autoplay = false
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 101
 
