@@ -315,7 +315,6 @@ func _on_call_done() -> void:
 
 func _on_answered_call() -> void:
 	DialogueManager.show_dialogue_balloon(A_2S_1, "answer_call")
-	await get_tree().create_timer(2).timeout
 	await DialogueManager.dialogue_ended
 	_on_answered_call_narration_panel()
 
@@ -337,7 +336,7 @@ func _on_answered_call_narration_panel() -> void:
 
 func _on_rejected_call() -> void:
 	DialogueManager.show_dialogue_balloon(A_2S_1, "reject_call")
-	await get_tree().create_timer(2).timeout
+	await DialogueManager.dialogue_ended
 	_on_rejected_call_narration_panel()
 
 func _on_rejected_call_narration_panel() -> void:
