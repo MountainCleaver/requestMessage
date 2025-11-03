@@ -132,7 +132,7 @@ Entity: [fade]...[/fade]
 Entity: [shake rate=30 level=20][color=#ff5555]Sumama ka sa akin.[/color][/shake]
 Danilo: [wave freq=5 amp=10][i]Patawad... patawad talaga...[/i][/wave]
 do _ghost_vanish("restless")
-do act_5_scene_8_done()
+do _go_to_next_scene()
 # Shadow fades to nothing
 # Danilo collapses at the edge. The voices scream louder, swallowing him in darkness.
 => END

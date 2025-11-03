@@ -133,8 +133,7 @@ Entity: [shake rate=30 level=20][color=#ff5555]Join me.[/color][/shake]
 Danilo: [wave freq=5 amp=10][i]I’m sorry... I’m so sorry...[/i][/wave]
 do _ghost_vanish("restless")
 Danilo: [shake rate=10 level=8]My body... it’s so cold... I... can’t...[/shake]
-Danilo: [wave amp=10 freq=3][i]Mateo... I’m... so tired...[/i][/wave]
-do act_5_scene_8_done()
+do _go_to_next_scene()
 # Shadow fades to nothing
 # Danilo collapses at the edge. The voices scream louder, swallowing him in darkness.
 => END
