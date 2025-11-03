@@ -74,7 +74,7 @@ Danilo: This isn’t the right candle...
 ~ all_candles_lit_up
 Danilo: [shake rate=20 level=10]??????[/shake]
 Danilo: What was that?[wait=0.5] Did something just make a sound?
-Danilo: The... cabinet?[wait=0.5] Did it... just open on its own? [shake rate=20 level=10]
+Danilo: The... cabinet?[wait=0.5] Did it... just [shake rate=20 level=10]open on its own?[/shake]
 => END
 
 ~ correct_old_cabinet
