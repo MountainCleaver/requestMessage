@@ -79,3 +79,6 @@ signal last_words
 
 
 signal start_chase
+
+
+signal contact_attempted(contact_name)
