@@ -63,6 +63,8 @@ func _ready() -> void:
 	SignalBus.app_chat_opened.connect(_on_app_chat_opened)
 	SignalBus.chat_opened.connect(_on_chat_opened)
 	SignalBus.chat_closed.connect(_on_chat_closed)
+	SignalBus.last_appointment_selected = "appointment_1"
+	SignalBus.emit_signal("appointment_selected", "appointment_1")
 
 	if DialogueManager:
 		DialogueManager.connect("dialogue_ended", Callable(self, "_on_dialogue_ended"))

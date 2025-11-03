@@ -59,6 +59,9 @@ func _ready():
 	SignalBus.chat_message_sent.connect(_on_chat_message_sent)
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.unknown_sender_label_visible = false
+	
+	SignalBus.last_appointment_selected = "appointment_2"
+	SignalBus.emit_signal("appointment_selected", "appointment_2")
 
 func _game_state_flow() -> void:
 	FlashlightManager.disable_flashlights()

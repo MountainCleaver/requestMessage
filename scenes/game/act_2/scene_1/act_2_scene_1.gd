@@ -80,6 +80,9 @@ func _ready():
 	if not SignalBus.chat_message_sent.is_connected(_on_chat_message_sent):
 		SignalBus.chat_message_sent.connect(_on_chat_message_sent)
 
+	SignalBus.last_appointment_selected = "appointment_1"
+	SignalBus.emit_signal("appointment_selected", "appointment_1")
+	
 	# Buzz Timer setup
 	buzz_timer = Timer.new()
 	add_child(buzz_timer)
