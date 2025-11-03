@@ -96,8 +96,8 @@ Danilo: Mateo... is that you?
 Danilo: [shake]No... this isn’t right...[/shake]
 Entity: You promised you’d never leave...
 Danilo: [shake]I didn’t... I searched everywhere for you![/shake]
-Entity: Lies... [wave freq=10 amp=20]You forgot me...[/wave]
 do show_distortion()
+Entity: Lies... [wave freq=10 amp=20]You forgot me...[/wave]
 Danilo: [shake]No! I never forgot![/shake]
 Entity: [shake rate=25 level=15]Then why did I die alone?![/shake]
 #=> END
@@ -121,6 +121,7 @@ Danilo: Just a moment...
 Entity: ...
 Danilo: [shake]I don’t want to lose you again.[/shake]
 Entity: You already did...
+[shake rate=30 level=20][color=#ff5555]YOU LEAVE ME![/color][/shake]
 # Look left
 do _ghost_left("restless")
 Entity: The wind is waiting, Danilo.
