@@ -84,6 +84,11 @@ layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
 text = "OPTIONS"
 
+[node name="feedback" parent="options_holder" instance=ExtResource("4_d2s0i")]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+text = "FEEDBACK"
+
 [node name="exit" parent="options_holder" instance=ExtResource("4_d2s0i")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
@@ -157,6 +162,7 @@ ok_button_text = "Yes"
 [connection signal="pressed" from="options_holder/report_bug" to="." method="_on_report_bug_pressed"]
 [connection signal="pressed" from="options_holder/credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="options_holder/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="options_holder/feedback" to="." method="_on_feedback_pressed"]
 [connection signal="pressed" from="options_holder/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="logoutButton" to="." method="_on_logout_button_pressed"]
 [connection signal="canceled" from="exitConfirmationDialog" to="." method="_on_exit_confirmation_dialog_canceled"]

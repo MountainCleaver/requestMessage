@@ -97,6 +97,7 @@ func _on_options_pressed() -> void:
 	_option_overlayer("res://scenes/menu/menu_game_settings.tscn")
 	current_choice = options.get_children().find(o_options)
 
+
 func _on_exit_pressed() -> void:
 	print("exit")
 	exit_confirmation_dialog.show();
@@ -113,7 +114,8 @@ func _exit_overlay() -> void:
 	overlayer.visible = false
 	options.get_children()[current_choice].grab_focus()
 
-
+func _on_feedback_pressed() -> void:
+	OS.shell_open("https://forms.gle/i6TE17FkpqA7mywk8")
 
 func _on_exit_confirmation_dialog_confirmed() -> void:
 	get_tree().quit()
