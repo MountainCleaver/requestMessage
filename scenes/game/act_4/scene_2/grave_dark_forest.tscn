@@ -160,7 +160,6 @@ debug_color = Color(0.8901961, 0.19607843, 0.6431373, 0.56078434)
 
 [node name="player_danilo" parent="y-sorted" instance=ExtResource("2_qjqsf")]
 position = Vector2(594, 0)
-RUNNING_SPEED = 400.0
 
 [node name="PointLight2D2" type="PointLight2D" parent="y-sorted/player_danilo"]
 visible = false
