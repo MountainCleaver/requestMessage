@@ -71,7 +71,7 @@ Mateo: Kahit wala ako...
 Danilo: Pangako... aalalahanin kita, palagi.
 Mateo: Paalam... Danilo.  
 do whitey_vanish_full()
-do act_5_scene_8_done()
+do _go_to_next_scene()
 => END
 
 ##################################################################

@@ -70,7 +70,7 @@ Danilo: I promise... I’ll remember you, always.
 Danilo: Until then... rest. Please, rest. 
 Mateo: Farewell... Danilo.  
 do whitey_vanish_full()
-do act_5_scene_8_done()
+do _go_to_next_scene()
 => END
 
 ##################################################################
