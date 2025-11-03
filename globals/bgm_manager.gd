@@ -40,7 +40,7 @@ func _ready() -> void:
 	if music and music is AudioStream:
 		bgm.stream = music
 		bgm.bus = "music"
-		bgm.volume_db = -20
+		bgm.volume_db = -10
 		bgm.autoplay = false
 		bgm.stream.loop = true  # Better way to set loop
 
