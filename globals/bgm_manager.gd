@@ -21,8 +21,7 @@ const MENU_SCENE_PATHS := [
 
 const RAIN_SCENE_PATHS := [
 	"res://scenes/game/intro_scene.tscn",
-	"res://scenes/game/act_1_title_scene.tscn",
-	"res://scenes/game/act_1/scene_1/act_1_scene_1.tscn"
+	"res://scenes/game/act_1_title_scene.tscn"
 ]
 
 func _ready() -> void:
