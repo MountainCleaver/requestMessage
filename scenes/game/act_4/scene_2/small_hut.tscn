@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://di37kargq3x1t"]
+[gd_scene load_steps=51 format=4 uid="uid://di37kargq3x1t"]
 
 [ext_resource type="Script" uid="uid://dusqln0xf3b37" path="res://scenes/game/act_4/scene_2/small_hut.gd" id="1_gu5j6"]
 [ext_resource type="Texture2D" uid="uid://b0tn0w1inmrqo" path="res://assets/tilesets/ACT4_S2_HUT _INTERIOR_ground.png" id="1_mc4yw"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="17_xrk4s"]
 [ext_resource type="AudioStream" uid="uid://tcwf3ci0qbdv" path="res://sound/new-notification-09-352705.wav" id="18_r17y3"]
 [ext_resource type="AudioStream" uid="uid://b1y2yb345umfi" path="res://sound/dramatic-piano-and-strings-177000.mp3" id="19_tcnoc"]
+[ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="20_hqtvc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i8dfo"]
 texture = ExtResource("2_i8dfo")
@@ -2791,6 +2792,13 @@ size = Vector2(20, 39)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pqmn"]
 size = Vector2(33.5, 22)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nkki5"]
+shader = ExtResource("20_hqtvc")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
 [node name="small_hut" type="Node2D"]
 script = ExtResource("1_gu5j6")
 
@@ -3030,6 +3038,15 @@ bus = &"sfx"
 stream = ExtResource("19_tcnoc")
 autoplay = true
 bus = &"music"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_nkki5")
+offset_left = -754.0
+offset_top = -542.0
+offset_right = 1437.0
+offset_bottom = 551.0
+mouse_filter = 2
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="Interactable/P5" to="." method="_on_p_5_body_entered"]

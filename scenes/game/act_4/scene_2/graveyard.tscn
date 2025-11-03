@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://b81pheiysdhv7"]
+[gd_scene load_steps=34 format=4 uid="uid://b81pheiysdhv7"]
 
 [ext_resource type="Script" uid="uid://cqt73nqcoiosu" path="res://scenes/game/act_4/scene_2/graveyard.gd" id="1_avryt"]
 [ext_resource type="Texture2D" uid="uid://cvyn0215nw1hb" path="res://assets/tilesets/graveyard_floor.png" id="1_qq610"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://qx6u4xfeym4y" path="res://sound/Door House Lock 4 - QuickSounds.com.mp3" id="16_66hfa"]
 [ext_resource type="AudioStream" uid="uid://cjvp8k3gmi6kx" path="res://sound/opening-door-411632.mp3" id="17_bs4r0"]
 [ext_resource type="AudioStream" uid="uid://tcwf3ci0qbdv" path="res://sound/new-notification-09-352705.wav" id="18_66hfa"]
+[ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="18_bs4r0"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v2uog"]
 load_path = "res://.godot/imported/dirt_key.png-f89916853116860d075e2fb51bf1bb7f.ctex"
@@ -1126,6 +1127,13 @@ size = Vector2(44, 36)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my1an"]
 size = Vector2(24, 20)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8q0fn"]
+shader = ExtResource("18_bs4r0")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
 [node name="graveyard" type="Node2D"]
 script = ExtResource("1_avryt")
 
@@ -1439,6 +1447,15 @@ bus = &"sfx"
 stream = ExtResource("18_66hfa")
 volume_db = -5.073
 bus = &"sfx"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_8q0fn")
+offset_left = -754.0
+offset_top = -542.0
+offset_right = 1437.0
+offset_bottom = 551.0
+mouse_filter = 2
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="Interactable/house_enter" to="." method="_on_house_enter_body_entered"]
