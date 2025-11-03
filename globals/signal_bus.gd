@@ -26,11 +26,13 @@ signal show_locked_label()
 signal type_message_clicked(chat_name)
 signal call_done
 signal player_answered_call
-signal player_rejected_call  
+signal player_rejected_call 
+signal appointment_selected(name: String)
 
 var unknown_sender_unlocked: bool = false
 var optional_chats_locked: bool = false
 var unknown_sender_label_visible: bool = false #yung may nakalagay na "message request" sa top niya
+var last_appointment_selected: String = ""
 
 # game state
 signal save_game_state
