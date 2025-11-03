@@ -92,35 +92,47 @@ do ghost_appears.emit("restless")
 => END
 
 ~ resltess_ghost_appeared
-Entity: ...Danilo... bakit... iniwan mo ako...?
-Danilo: Mateo... Ikaw ba 'yan?
+Entity: ...Danilo... bakit... mo ako iniwan...?
+Danilo: Mateo... ikaw ba ‘yan?
+Danilo: [shake]Hindi... mali ‘to...[/shake]
+Entity: Nangako ka... na hindi mo ako iiwan...
+Danilo: [shake]Hindi ko ginawa ‘yon... hinanap kita kahit saan![/shake]
+Entity: Kasinungalingan... [wave freq=10 amp=20]Nakalimutan mo ako...[/wave]
 do show_distortion()
+Danilo: [shake]Hindi! Hinding-hindi kita nakalimutan![/shake]
+Entity: [shake rate=25 level=15]Kung ganon... bakit ako namatay mag-isa?![/shake]
 #=> END
 #
 #~ restless_ghost_turn_and_walk_a_bit
-do mateo_turn("restless")
-Entity: Halika... dito tayo... Danilo... dito...
 do _candle_dimmer()
+do mateo_turn("restless")
+Entity: Halika... dito... Danilo... dito ka...
 do mateo_walk_down("restless")
 => END
 
 ~ restless_cliff
-# transition outside/cliff
-# shadow stand near edge of cliff
-Danilo: Mateo... 
+# transition outside / cliff
+# Shadow stands near edge
+Danilo: Mateo... tama na, please...
 Entity: ...
-# look down
+# Look down
 do _ghost_down("restless")
 Entity: ...
-Danilo: Saglit lang... 
+Danilo: Sandali lang...
 Entity: ...
-# look left
+Danilo: [shake]Ayokong mawala ka ulit.[/shake]
+Entity: [shake rate=30 level=20][color=#ff5555]INIWAN MO AKO![/color][/shake]
+# Look left
 do _ghost_left("restless")
-Danilo: 'Wag mo muna ako iwan...
+Entity: Hinihintay ka ng hangin, Danilo.
+Danilo: Sandali lang... pakiusap...
+Entity: Panahon mo nang mahulog.
+Danilo: Huwag mo akong iwan... Mateo!
 Entity: [fade]...[/fade]
+Entity: [shake rate=30 level=20][color=#ff5555]Sumama ka sa akin.[/color][/shake]
+Danilo: [wave freq=5 amp=10][i]Patawad... patawad talaga...[/i][/wave]
 do _ghost_vanish("restless")
-Danilo: Mateo...
-# shadow fades to nothing
-# Danilo collapsed at the edge. The voices screamed louder, swallowing him in darkness.
 do act_5_scene_8_done()
+# Shadow fades to nothing
+# Danilo collapses at the edge. The voices scream louder, swallowing him in darkness.
 => END

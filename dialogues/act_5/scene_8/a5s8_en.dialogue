@@ -93,30 +93,43 @@ do ghost_appears.emit("restless")
 ~ resltess_ghost_appeared
 Entity: ...Danilo... why... did you leave me...?
 Danilo: Mateo... is that you?
+Danilo: [shake]No... this isn’t right...[/shake]
+Entity: You promised you’d never leave...
+Danilo: [shake]I didn’t... I searched everywhere for you![/shake]
+Entity: Lies... [wave freq=10 amp=20]You forgot me...[/wave]
 do show_distortion()
+Danilo: [shake]No! I never forgot![/shake]
+Entity: [shake rate=25 level=15]Then why did I die alone?![/shake]
 #=> END
 #
 #~ restless_ghost_turn_and_walk_a_bit
+do _candle_dimmer()
 do mateo_turn("restless")
 Entity: Come... this way... Danilo... here...
-do _candle_dimmer()
 do mateo_walk_down("restless")
 => END
 
 ~ restless_cliff
 # transition outside / cliff
 # Shadow stands near edge
-Danilo: Mateo...
+Danilo: Mateo... please... stop...
 Entity: ...
 # Look down
 do _ghost_down("restless")
 Entity: ...
 Danilo: Just a moment...
 Entity: ...
+Danilo: [shake]I don’t want to lose you again.[/shake]
+Entity: You already did...
 # Look left
 do _ghost_left("restless")
-Danilo: Don’t leave me yet...
+Entity: The wind is waiting, Danilo.
+Danilo: Just a moment... please...
+Entity: It’s your turn to fall.
+Danilo: Don’t leave me yet... Mateo!
 Entity: [fade]...[/fade]
+Entity: [shake rate=30 level=20][color=#ff5555]Join me.[/color][/shake]
+Danilo: [wave freq=5 amp=10][i]I’m sorry... I’m so sorry...[/i][/wave]
 do _ghost_vanish("restless")
 do act_5_scene_8_done()
 # Shadow fades to nothing
