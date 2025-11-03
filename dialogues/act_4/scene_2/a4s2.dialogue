@@ -1,5 +1,17 @@
+~ dizzy_state_0
+Danilo: [shake rate=20 level=10]Nahihilo ako... baka epekto ng hindi pag-inom ng gamot.[/shake]
+Danilo: [shake rate=20 level=10][color=#8B0000][i]Wala[/i][/color] pa pala akong na-inom...[/shake]
+=> END
+
+~ dizzy_state_1
+Danilo: [shake rate=20 level=10]Nahihilo ako... baka epekto ng hindi pag-inom ng gamot.[/shake]
+Danilo: [shake rate=20 level=10][color=#8B0000][i]Isa[/i][/color] lang pala ang na-inom ko...[/shake]
+=> END
+
+
 ~ start
-Danilo: [center]Tambayan na lang yung uunahin kong pupuntahan.[/center]
+Danilo: ...
+Danilo: [center]Sa ngayon, sa tambayan na lang muna uunahin kong pupuntahan.[/center]
 Danilo: [center]Kaso, kailangan ko munang dumaan sa may semeteryo papunta do'n.[/center]
 do ObjectiveManager.add_objective(1, "Enter graveyard")
 do Hud.show_objectives()

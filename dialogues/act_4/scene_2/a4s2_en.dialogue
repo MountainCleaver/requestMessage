@@ -1,5 +1,17 @@
+~ dizzy_state_0
+Danilo: [shake rate=20 level=10]I'm getting dizzy... is it the side effects of not taking medicines.[/shake]
+Danilo: [shake rate=20 level=10]Come to think about it, I [color=#8B0000][i]haven't taken[/i][/color] any of them.[/shake]
+=> END
+
+~ dizzy_state_1
+Danilo: [shake rate=20 level=10]I'm getting dizzy... is it the side effects of not taking medicines.[/shake]
+Danilo: [shake rate=20 level=10]Come to think about it, I've only taken [color=#8B0000][i]one[/i][/color].[/shake]
+=> END
+
+
 ~ start
-Danilo: [center]I’ll just head to the hangout first.[/center]
+Danilo: ...
+Danilo: [center]For now, I’ll just head to the hangout first.[/center]
 Danilo: [center]But... I have to pass through the graveyard on the way.[/center]
 do ObjectiveManager.add_objective(1, "Enter graveyard")
 do Hud.show_objectives()
