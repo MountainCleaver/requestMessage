@@ -10,7 +10,7 @@ do Hud.phone_outro()
 
 ~ after_phone
 Danilo: The wind... it’s strong. I have to move, now.
-=> END
+=> exited_lee
 
 ~ exited_lee
 Danilo: I need to find the last page... before it’s too late.
