@@ -1794,7 +1794,7 @@ sources/0 = SubResource("TileSetAtlasSource_kjx23")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7vjx"]
 atlas = ExtResource("4_47xa5")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(17.315475, 0.3080635, 14.225189, 15.533257)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxgv6"]
 size = Vector2(13, 9)
