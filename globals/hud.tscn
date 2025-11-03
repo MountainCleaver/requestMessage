@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bnxh1dj8mix3m"]
+[gd_scene load_steps=17 format=3 uid="uid://bnxh1dj8mix3m"]
 
 [ext_resource type="Script" uid="uid://bmro6rutbtbxd" path="res://globals/hud.gd" id="1_77e6q"]
 [ext_resource type="PackedScene" uid="uid://bqagsj7ps731j" path="res://scenes/game/lock_screen.tscn" id="3_esk0b"]
 [ext_resource type="Texture2D" uid="uid://dp4h52fpsd7vt" path="res://assets/HUD/karatula.png" id="3_vm2el"]
+[ext_resource type="Texture2D" uid="uid://be6h5vldaqlfi" path="res://assets/character_sprites/tip_interact.png" id="4_vm2el"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5lr3"]
 bg_color = Color(1, 1, 1, 0)
@@ -216,10 +217,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1468.15
-offset_top = 10.0
-offset_right = 1682.15
-offset_bottom = 310.0
+offset_left = 1428.15
+offset_top = 89.0
+offset_right = 1642.15
+offset_bottom = 389.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_n5lr3")
 
@@ -317,6 +318,11 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 texture = ExtResource("3_vm2el")
 stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="Control/photo_popup_holder/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_vm2el")
+stretch_mode = 2
 
 [node name="hud_animations" type="AnimationPlayer" parent="."]
 libraries = {
