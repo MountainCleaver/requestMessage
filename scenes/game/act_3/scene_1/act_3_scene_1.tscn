@@ -257,7 +257,6 @@ scale = Vector2(1.2, 1.2)
 
 [node name="player_danilo" parent="locations/danilo_hometown/y-sorted-objects" index="3" instance=ExtResource("2_2ovt3")]
 position = Vector2(456, -539)
-RUNNING_SPEED = 400.0
 
 [node name="npc_lola_ising" parent="locations/danilo_hometown/y-sorted-objects" index="4" instance=ExtResource("3_m0kpt")]
 modulate = Color(0.3328807, 0.33288068, 0.33288068, 1)
