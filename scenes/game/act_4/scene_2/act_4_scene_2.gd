@@ -11,6 +11,7 @@ const SMALL_HUT   = preload("res://scenes/game/act_4/scene_2/small_hut.tscn")
 # === VARIABLES ===
 var current_scene: Node = null
 var returning_from_hut := false
+var dizzy_timer: Timer
 
 # === READY ===
 func _ready() -> void:
@@ -18,6 +19,15 @@ func _ready() -> void:
 	FlashlightManager.enable_flashlight_by_cash()
 	print("✅ Act 4 Controller Ready")
 	_game_state_flow()
+
+	# Setup dizzy timer
+	dizzy_timer = Timer.new()
+	dizzy_timer.wait_time = 30.0  # every 30 seconds
+	dizzy_timer.one_shot = false   # repeat
+	dizzy_timer.autostart = true
+	add_child(dizzy_timer)
+	dizzy_timer.timeout.connect(_on_dizzy_timer_timeout)
+
 
 	if has_node("/root/ProgressManager"):
 		ProgressManager.reset()
@@ -31,6 +41,17 @@ func _game_state_flow() -> void:
 	GameState.current_scene = "scene_2"
 	GameState.overwrite_current_scene_keep_previous()
 	GameState.save_game()
+	
+func _on_dizzy_timer_timeout() -> void:
+	if current_scene and current_scene.has_node("ColorRect"):
+		var overlay = current_scene.get_node("ColorRect") as ColorRect
+		overlay.visible = true
+		# optionally play dialogue
+		if current_scene.has_method("_trigger_dizzy_state"):
+			current_scene._trigger_dizzy_state()
+		# hide overlay after 2 seconds
+		await get_tree().create_timer(2.0).timeout
+		overlay.visible = false
 
 # === SCENE LOADERS ===
 func load_dark_forest() -> void:
@@ -53,11 +74,26 @@ func load_graveyard() -> void:
 	# Restore scene progress if returning from hut or saved state
 	if returning_from_hut or ProgressManager.scenes_completed.get("grave_visited", false):
 		print("🔁 Returning to Graveyard — restoring state from ProgressManager.")
+		var player = _get_scene_player()
+		if player:
+			player.last_direction = Vector2.DOWN
 		_restore_graveyard_from_progress()
+
+	
+	if current_scene.has_method("_trigger_dizzy_state"):
+		current_scene._trigger_dizzy_state()
 	else:
 		print("🆕 First time in Graveyard — fresh start.")
+		
+		var player = _get_scene_player()
+		if player:
+			player.last_direction = Vector2.LEFT
 		ProgressManager.scenes_completed["grave_visited"] = true
 		ProgressManager.save_state()
+
+	if current_scene.has_method("_trigger_dizzy_state"):
+		current_scene._trigger_dizzy_state()
+
 
 func load_small_hut() -> void:
 	_change_scene(SMALL_HUT)
@@ -65,6 +101,9 @@ func load_small_hut() -> void:
 		current_scene.connect("hut_exit", Callable(self, "_on_hut_exit"))
 	print("🏠 Small Hut loaded.")
 
+	if current_scene.has_method("_trigger_dizzy_state"):
+		current_scene._trigger_dizzy_state()
+		
 # === INTERNAL SCENE SWITCHER ===
 func _change_scene(scene_res: PackedScene) -> void:
 	if current_scene:
@@ -83,8 +122,21 @@ func _on_forest_done() -> void:
 	await TransitionFade.transition()
 	await SignalBus.on_transition_finished
 	await get_tree().process_frame
+
+	# Load graveyard
 	load_graveyard()
+
+	returning_from_hut = true 
+	if current_scene.has_method("enable_grave_exit"):
+		current_scene.enable_grave_exit()
+
+	var grave_player = _get_scene_player()
+	if grave_player:
+		grave_player.can_move = true
+		grave_player.current_npc = ""
+	
 	Hud.hide_objectives()
+
 
 func _on_key_found() -> void:
 	ProgressManager.set_key_collected(true)

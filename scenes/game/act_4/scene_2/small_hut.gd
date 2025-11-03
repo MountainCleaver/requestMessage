@@ -20,6 +20,7 @@ const GRAVEYARD = preload("res://scenes/game/act_4/scene_2/graveyard.tscn")
 @onready var sala: Area2D = $Interactable/Sala
 @onready var paper5_collsion: CollisionShape2D = $"y-sorted/PAPER5/CollisionShape2D"
 @onready var sfx_notif: AudioStreamPlayer = $SFX_NOTIF
+@onready var dizzy_overlay: ColorRect = $ColorRect
 
 @onready var paper_sprites= {
 	"paper_1": $"y-sorted/PAPER1/paper_1",
@@ -65,6 +66,7 @@ func _ready() -> void:
 	_load_dialogue()
 	tip.visible = false
 	mark.visible = false
+	player_danilo.last_direction = Vector2.UP
 	paper5_collsion.disabled = false
 	player_danilo.can_move = false
 	DialogueManager.show_dialogue_balloon(A_4S_2, "house_entry")
@@ -92,7 +94,18 @@ func _load_dialogue() -> void:
 		path = "res://dialogues/act_4/scene_2/a4s2.dialogue"
 	
 	A_4S_2 = load(path)
+
+
+func _trigger_dizzy_state(duration: float = 1.0):
+	var meds_count = SaveManager.get_count_meds_taken()
+	if meds_count > 1:
+		return
 	
+	dizzy_overlay.visible = true
+	await get_tree().create_timer(duration).timeout
+	dizzy_overlay.visible = false
+
+
 func _input(event: InputEvent) -> void:
 	if not event.is_action_pressed("interact"):
 		return

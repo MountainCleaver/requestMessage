@@ -19,6 +19,7 @@ var A_4S_2: Resource
 @onready var mark: Sprite2D = $"y-sorted/player_danilo/question"
 @onready var key_area: Area2D = $"Interactable/Key"
 @onready var house_exit: Marker2D = $House_exit
+@onready var dizzy_overlay: ColorRect = $ColorRect
 
 # === SOUND ===
 @onready var sfx_digging: AudioStreamPlayer = $SFX_DIGGING
@@ -105,7 +106,17 @@ func _ready():
 	key_area.monitoring = false
 	key_area.set_deferred("monitorable", false)
 	key_available = false
+	
+func _trigger_dizzy_state(duration: float = 1.0):
+	var meds_count = SaveManager.get_count_meds_taken()
+	if meds_count > 1:
+		return
+	
+	dizzy_overlay.visible = true
+	await get_tree().create_timer(duration).timeout
+	dizzy_overlay.visible = false
 
+	
 func _load_dialogue() -> void:
 	var lang = Settings.settings.dialogue_language
 	var path: String

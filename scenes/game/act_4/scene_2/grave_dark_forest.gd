@@ -11,6 +11,7 @@ var A_4S_2: Resource
 @onready var tip: Sprite2D = $"y-sorted/player_danilo/tip_interact"
 @onready var flashlight: PointLight2D = $"y-sorted/player_danilo/PointLight2D2"
 @onready var grave_exit: Marker2D = $Grave_exit  # For spawn position after grave exit
+@onready var dizzy_overlay: ColorRect = $ColorRect  # the one with the glitch shader
 
 var dialogue_shown: bool = false
 
@@ -24,10 +25,30 @@ func _ready() -> void:
 	player_danilo.last_direction = Vector2.LEFT
 	player_danilo.can_move = false
 
-	# Optional: If controller just placed player, he's already at grave_exit
 	await get_tree().create_timer(1.0).timeout
 	DialogueManager.show_dialogue_balloon(A_4S_2, "start")
 	player_danilo.can_move = true
+
+	var meds_count = SaveManager.get_count_meds_taken()
+	if meds_count <= 1:
+		await _trigger_dizzy_state()
+		
+func _trigger_dizzy_state() -> void:
+	dizzy_overlay.visible = true
+	
+	var meds_taken = SaveManager.get_count_meds_taken()
+	
+	if meds_taken > 1:
+		meds_taken = 1
+	
+	var dizzy_label = "dizzy_state_%d" % meds_taken
+	
+	DialogueManager.show_dialogue_balloon(A_4S_2, dizzy_label)
+	
+	await get_tree().create_timer(3.0).timeout
+	
+	dizzy_overlay.visible = false
+
 
 func _load_dialogue() -> void:
 	var lang = Settings.settings.dialogue_language
