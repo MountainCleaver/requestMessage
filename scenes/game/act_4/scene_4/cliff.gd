@@ -8,6 +8,7 @@ var A_4S_4: Resource
 @onready var cliff_portal: Area2D = $portal
 @onready var diary_note: Area2D = $map/paper
 @onready var dizzy_overlay: ColorRect = $ColorRect
+@onready var wind_area: Area2D = $windarea
 var dizzy_timer: Timer
 
 var scene_objectives = [
@@ -25,6 +26,7 @@ var portal_unlocked := false
 var portal_ready := false
 var note_collected := false
 var player_in_range := false
+var exited_lee_done := false
 
 func _ready() -> void:
 	print("A4S4: Scene ready")
@@ -33,14 +35,16 @@ func _ready() -> void:
 	_game_state_flow()
 	_load_dialogue()
 	_trigger_dizzy_state()
-	player_danilo.last_direction = Vector2.UP;
+	player_danilo.last_direction = Vector2.UP
+	
 	# Set up signals
 	cliff_portal.body_entered.connect(_on_cliff_portal_entered)
 	diary_note.body_entered.connect(_on_note_body_entered)
 	diary_note.body_exited.connect(_on_note_body_exited)
+	wind_area.body_exited.connect(_on_wind_area_body_exited)
 
 	enable_phone_trigger()
-	disable_portal_trigger() # 🔹 portal off muna
+	disable_portal_trigger()
 
 func _game_state_flow() -> void:
 	ObjectiveManager.complete_objective(1)
@@ -119,9 +123,10 @@ func _on_chat_opened(chat_name: String) -> void:
 	if chat_name == "unknown_sender" and not unknown_sender_opened:
 		unknown_sender_opened = true
 		print("Chat opened: unknown sender")
+		await get_tree().process_frame
 		DialogueManager.show_dialogue_balloon(A_4S_4, "unknown_message")
 
-# NOTE (merged from note.gd) ==========================
+# NOTE ==============================================
 
 func _on_note_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -142,11 +147,21 @@ func _process(_delta):
 		if Hud.has_method("mark_objective_done"):
 			Hud.mark_objective_done()
 		print("Note collected! Showing dialogue...")
+		await get_tree().process_frame
 		DialogueManager.show_dialogue_balloon(A_4S_4, "after_found_paper")
 		ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
 		note_collected = true
 		on_note_collected()
 		diary_note.queue_free()
+
+# WIND EXIT ==========================================
+
+func _on_wind_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player") and not exited_lee_done:
+		print("Player exited wind area — showing exited_lee dialogue")
+		exited_lee_done = true
+		await get_tree().process_frame
+		DialogueManager.show_dialogue_balloon(A_4S_4, "exited_lee")
 
 # PORTAL =============================================
 
