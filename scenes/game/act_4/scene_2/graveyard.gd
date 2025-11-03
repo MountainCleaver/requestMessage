@@ -230,20 +230,27 @@ func _on_grave_entry_body_entered(body: Node2D):
 func _on_grave_exit_body_entered(body: Node2D):
 	if body.name != "player_danilo":
 		return
+	
+	# Prevent exiting before hut is entered
+	if not hut_already_entered:
+		print("❌ Grave exit blocked: hut not entered yet")
+		return
+
+	grave_exit.monitoring = false
+	grave_exit.set_deferred("monitorable", false)
 
 	print("➡️ Grave exit triggered — ending scene (local handler)")
+
 	# Inform controller (preferred) to handle transition/save
 	if get_tree().root.has_node("Controller"):
 		var ctrl = get_tree().root.get_node("Controller")
-		# call controller handler safely
 		if ctrl.has_method("_on_grave_exit_triggered"):
 			ctrl._on_grave_exit_triggered()
 		else:
-			# as a fallback, emit local signal so controller can connect if needed
 			emit_signal("grave_exit_triggered")
 	else:
-		# If no controller present, still emit the local signal for other listeners
 		emit_signal("grave_exit_triggered")
+
 
 func _on_house_enter_body_entered(body: Node2D):
 	if body.name == "player_danilo":
@@ -405,3 +412,7 @@ func interact_house_after_key():
 func enable_grave_exit():
 	grave_exit.monitoring = true
 	grave_exit.set_deferred("monitorable", true)
+
+
+func _on_grave_exit_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
