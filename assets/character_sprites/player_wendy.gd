@@ -106,12 +106,16 @@ func _play_animation(direction: Vector2) -> void:
 func _on_dialogue_start(_resource):
 	can_move = false
 	can_interact = false
+	is_running = false 
 
 
 func _on_dialogue_finish(_resource):
 	can_move = true
 	can_interact = true
-
+	if Input.is_action_pressed("run"):
+		is_running = true
+	else:
+		is_running = false
 
 func show_tip(npc_name: String) -> void:
 	tip_interact.visible = true
