@@ -169,7 +169,7 @@ Unknown_sender: [wait=1.5]Andoon ka. Nakita mo lahat ang nangyari. Hindi mo lang
 
 ~ reply_danilo_11
 do ChatManager.send_chat("unknown_sender", "Player", "Kasalanan ko ba? Ikaw ba talaga si Mateo? O ginagawa mo lang ‘to para guluhin ako?")
-Danilo: Kasalanan ko ba? Ikaw ba talaga si [color=#8B0000][i]Mateo[/i][/color][/wave]? O ginagawa mo lang ‘to para guluhin ako?
+Danilo: Kasalanan ko ba? Ikaw ba talaga si [color=#8B0000][i]Mateo[/i][/color]? O ginagawa mo lang ‘to para guluhin ako?
 => choices_danilo_3
 
 ~ choices_danilo_3
