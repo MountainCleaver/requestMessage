@@ -320,6 +320,25 @@ func _switch_location(scene: PackedScene,map_name: String, spawn_point: String) 
 	# Instance and add new map 
 	current_location = scene.instantiate()
 	locations.add_child(current_location)
+	
+	# === ADJUST PLAYER SPEED BASED ON MAP ===
+	if map_name == maps["house"]["name"]:
+		player_danilo.SPEED = 80.0
+		player_danilo.RUNNING_SPEED = 200.0
+	elif map_name == maps["hometown"]["name"]:
+		if already_triggered_paranoia:
+			player_danilo.SPEED = 340.0
+			player_danilo.RUNNING_SPEED = 340.0
+		else:
+			player_danilo.SPEED = 80.0
+			player_danilo.RUNNING_SPEED = 200.0
+	elif map_name == maps["town_center"]["name"]:
+		player_danilo.SPEED = 80.0
+		player_danilo.RUNNING_SPEED = 200.0
+	elif map_name == maps["drugstore"]["name"]:
+		player_danilo.SPEED = 80.0
+		player_danilo.RUNNING_SPEED = 200.0
+	# ========================================
 
 	# Get y-sorted node
 	var y_sorted_node
