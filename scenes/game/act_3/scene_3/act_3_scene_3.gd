@@ -195,6 +195,7 @@ func _input(event: InputEvent) -> void:
 					await get_tree().create_timer(0.5).timeout
 					Hud.clear_objectives()
 					ObjectiveManager.add_objective(scene_objectives[5]["ID"], scene_objectives[5]["text"])
+					player_danilo.SPEED = 80.0
 		"tricycle_hometown":
 			can_interact = false
 			if not bought_meds:
@@ -349,6 +350,7 @@ func _switch_location(scene: PackedScene,map_name: String, spawn_point: String) 
 
 	player_danilo.global_position = spawn_location.global_position
 	_set_camera(map_name)
+	
 	#print(spawn_location)
 	await get_tree().process_frame
 	can_interact = true
@@ -534,7 +536,9 @@ func _on_area_one_entered() -> void:
 	await get_tree().create_timer(0.2).timeout
 	animation_player.play("tensioning")
 	can_interact = false
+	
 	DialogueManager.show_dialogue_balloon(A_3S_3, "paranoia")
+	player_danilo.SPEED = 280.0
 	sfx_paranoia.play()
 	bgm_home.stop()
 	
