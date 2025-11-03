@@ -163,6 +163,9 @@ func _input(event: InputEvent) -> void:
 			print("All bus interactions disabled after Santa Claridad.")
 
 		player_danilo.force_cannot_move = false
+		player_danilo.can_move = true
+		player_danilo.animation_locked = false
+		player_danilo.is_running = false
 
 	# === 2️⃣ NPC INTERACTION ===
 	elif target == "ticket_npc":

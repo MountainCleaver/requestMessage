@@ -44,13 +44,16 @@ func _physics_process(delta: float) -> void:
 	if not can_player_move():
 		velocity = Vector2.ZERO
 		move_and_slide()
-		is_running = false  # reset running state
+		is_running = Input.is_action_pressed("run")
 		if not animation_locked:
 			_play_animation(Vector2.ZERO)
 		return
 
-	var direction = _get_direction()
 
+	var direction = _get_direction()
+	if can_player_move():
+		is_running = Input.is_action_pressed("run")
+		
 	# Apply speed based on run state
 	var current_speed = SPEED
 	if is_running:
@@ -174,7 +177,11 @@ func _on_dialogue_start(_resource):
 func _on_dialogue_finish(_resource):
 	can_move = true
 	can_interact = true
-	is_running = false 
+	if Input.is_action_pressed("run"):
+		is_running = true
+	else:
+		is_running = false
+
 
 func show_tip(npc_name: String) -> void:
 	tip_interact.visible = true
