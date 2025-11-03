@@ -95,7 +95,7 @@ func _on_scene_button_pressed(act: String, scene: String) -> void:
 				if a > act or (a == act and s > scene):
 					erased_scenes.append("%s %s" % [a.capitalize(), s.capitalize()])
 
-		var warning_text = "Scene %s %s has already been completed.\n" % [act.capitalize(), scene.capitalize()]
+		var warning_text = "%s %s has already been completed.\n" % [act.capitalize(), scene.capitalize()]
 		if erased_scenes.size() > 0:
 			warning_text += "WARNING: Selecting this scene will ERASE progress in later scenes:\n"
 
