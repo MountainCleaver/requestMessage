@@ -108,7 +108,7 @@ func _on_call_completed(call_target: String) -> void:
 func _start_outro_narration() -> void:
 	await get_tree().process_frame
 	var lines = [
-		"Phone in hand, Wendy understands the truth.",
+		"Phone in hand, Wendy feels a troubling hunch.",
 		"[shake rate=10 level=15][color=#ff5555]Danilo isn't resting.[/color][/shake]", 
 		"He's returning to face what he buried long ago.",
 		"[tornado radius=3 freq=15][color=#ff5555]And she fears what he will discover.[/color][/tornado]"
