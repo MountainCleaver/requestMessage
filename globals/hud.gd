@@ -122,15 +122,25 @@ func objective_outro_anim() -> void:
 # ==================================
 # === PHONE HANDLING (local only) ===
 # ==================================
-func phone_intro() -> void:
+func phone_intro(time_string: String = "12:00", meridiem_string: String = "AM") -> void:
 	if has_node("Control/phone"):
 		var phone_node = get_node("Control/phone")
 		if not phone_node.visible:
 			phone_node.visible = true
-			
+
+	# Update lock screen labels
+	var time_label = phone_container.get_node("lock_screen/Panel/time") as Label
+	if time_label:
+		time_label.text = time_string
+
+	var meridiem_label = phone_container.get_node("lock_screen/Panel/meridiem") as Label
+	if meridiem_label:
+		meridiem_label.text = meridiem_string
+
 	phone_showing = true
 	hud_animations.play("phone_in")
 	SignalBus.phone_in.emit()
+
 
 func phone_outro() -> void:
 	phone_showing = false
@@ -142,8 +152,7 @@ func toggle_phone() -> void:
 		phone_outro()
 	else:
 		phone_intro()
-
-
+	
 # ==================================
 # === POPUP HANDLING ===
 # ==================================
@@ -208,8 +217,7 @@ func show_phone_with_unknown_sender() -> void:
 # ===========================
 # ===  RESET PHONE STATE  ===
 # ===========================
-
-func reset_phone_state() -> void:
+func reset_phone_state(time_string: String = "12:00", meridiem_string: String = "AM") -> void:
 	if has_node("Control/phone"):
 		var phone_node = get_node("Control/phone")
 		if not phone_node.visible:
@@ -218,7 +226,7 @@ func reset_phone_state() -> void:
 	for child in phone_container.get_children():
 		child.queue_free()
 
-	await get_tree().process_frame  # ensure old ones are actually gone
+	await get_tree().process_frame 
 
 	lock_screen_active = true
 	phone_main_active = false
@@ -226,11 +234,12 @@ func reset_phone_state() -> void:
 	phone_showing = false
 
 	var lock_screen_scene = preload("res://scenes/game/lock_screen.tscn").instantiate()
-	lock_screen_scene.name = "lock_screen" # <--- fix name
+	lock_screen_scene.name = "lock_screen"
 	phone_container.add_child(lock_screen_scene)
 	lock_screen_scene.visible = true
 
-	phone_intro()
+	phone_intro(time_string, meridiem_string)
+
 
 # ==================================
 # === RESTORE PHONE STATE (local) ===
