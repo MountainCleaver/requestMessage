@@ -12,7 +12,7 @@ Danilo: ...
 
 ~ chat_with_mira
 Danilo: I guess I should tell my mother first.
-do Hud.reset_phone_state() 
+do Hud.reset_phone_state("06:39", "AM")
 => END
 
 ~ choice_danilo_1

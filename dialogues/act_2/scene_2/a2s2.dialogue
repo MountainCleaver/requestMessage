@@ -13,7 +13,7 @@ Danilo: ...
 
 ~ chat_with_mira
 Danilo: Kailangan ko muna siguro magpaalam kay Mama.
-do Hud.reset_phone_state() 
+do Hud.reset_phone_state("06:39", "AM")
 => END
 
 ~ choice_danilo_1

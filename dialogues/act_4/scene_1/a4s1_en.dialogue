@@ -9,7 +9,7 @@ Danilo: It’s so dark... I think I need to turn on my phone’s flashlight.
 => END
 
 ~ show_phone
-do Hud.reset_phone_state()
+do Hud.reset_phone_state("07:50", "PM")
 => END
 
 ~ ising_call_danilo

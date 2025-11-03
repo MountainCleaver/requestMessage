@@ -432,7 +432,7 @@ func _on_mini_game_done()->void:
 		_remove_tension_effect()
 		add_notification(SCHED_ICON, "Reminder", "Take Medication")
 		await get_tree().create_timer(0.5).timeout
-		Hud.phone_intro()
+		Hud.phone_intro("03:00", "PM")
 		DialogueManager.show_dialogue_balloon(A_3S_3, "reminder")
 		mini_game_done.emit()
 		mini_game_completed = true 
@@ -521,7 +521,7 @@ func _on_chat_opened(chat_name: String) ->void:
 		DialogueManager.show_dialogue_balloon(A_3S_3, "start_restless_2")
 
 func _on_restless_diag_one_done () -> void:
-	Hud.reset_phone_state()
+	Hud.reset_phone_state("02:03", "PM")
 
 func _on_went_outside_find_tricycle () -> void:
 	ObjectiveManager.add_objective(scene_objectives[2]["ID"], scene_objectives[2]["text"])

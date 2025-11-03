@@ -36,7 +36,7 @@ do Hud.phone_outro()
 
 ~ reply_danilo_4
 do ChatManager.send_chat("unknown_sender", "Player", "...MATEO??")
-do Hud.phone_intro()
+do Hud.phone_intro("07:27", "PM")
 Danilo: [shake rate=20 level=10]...[color=#8B0000][i]MATEO[/i][/color]???[/shake]
 Danilo: Hindi ko alam... [wait=0.5]pero bakit yun agad pumasok sa isip ko?[wait=1]
 => thoughts_danilo_1

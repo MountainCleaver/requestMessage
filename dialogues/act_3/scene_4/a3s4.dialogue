@@ -35,7 +35,7 @@ do _get_out_of_bed_take_meds()
 => END
 
 ~ check_phone
-do Hud.phone_intro()
+do Hud.phone_intro("05:03", "PM")
 do _get_out_of_bed_check_phone()
 => END
 
