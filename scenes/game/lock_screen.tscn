@@ -48,13 +48,25 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_fn1hs")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_left = 2.0
 offset_top = 112.0
+offset_right = -25.0
 offset_bottom = 208.0
 grow_horizontal = 2
 text = "00:00"
 label_settings = SubResource("LabelSettings_ebc0p")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="meridiem" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 166.0
+offset_right = 280.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("1_ph3dx")
+theme_override_font_sizes/font_size = 33
+text = "AM"
 
 [node name="Panel" type="Panel" parent="Panel"]
 layout_mode = 1
