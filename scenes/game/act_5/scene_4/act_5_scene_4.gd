@@ -141,7 +141,7 @@ func act_5_scene_4_done() -> void:
 	SignalBus.act_num_scene_num_done.emit(
 		"act_5",
 		"scene_4",
-		"res://scenes/game/act_5/scene_5/act_5_scene_5_mini_game_start.tscn"
+		"res://scenes/game/act_5/scene_5/act_5_scene_5.tscn"
 	)
 
 
