@@ -1,16 +1,16 @@
 [gd_scene load_steps=29 format=4 uid="uid://cqlyn65cwpflk"]
 
-[ext_resource type="Texture2D" uid="uid://c52llg0na7jwd" path="res://assets/character_sprites/MATEO.png" id="1_0lam3"]
-[ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_6hk6l"]
-[ext_resource type="Script" uid="uid://c5apr6d0hyymv" path="res://scenes/game/act_5/scene_5/act_5_scene_5_mini_game_start.gd" id="1_586vk"]
-[ext_resource type="Texture2D" uid="uid://b0vj3gd5e17gq" path="res://assets/character_sprites/MANG_GINO_with_STICK.png" id="2_6hk6l"]
-[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="4_1tmfk"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_f2day"]
-[ext_resource type="AudioStream" uid="uid://t52adkog1sgl" path="res://sound/creepy-suspense-horror-background-music-251989.mp3" id="7_mcovd"]
-[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="8_0l5j0"]
+[ext_resource type="Script" uid="uid://c5apr6d0hyymv" path="res://scenes/game/act_5/scene_5/act_5_scene_5_mini_game_start.gd" id="1_glyoy"]
+[ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="2_khm7j"]
+[ext_resource type="Texture2D" uid="uid://c52llg0na7jwd" path="res://assets/character_sprites/MATEO.png" id="3_ceole"]
+[ext_resource type="Texture2D" uid="uid://b0vj3gd5e17gq" path="res://assets/character_sprites/MANG_GINO_with_STICK.png" id="4_kcc32"]
+[ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="5_rc17l"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="6_7nx24"]
+[ext_resource type="AudioStream" uid="uid://t52adkog1sgl" path="res://sound/creepy-suspense-horror-background-music-251989.mp3" id="7_d80hl"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="8_gy71r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1tmfk"]
-texture = ExtResource("1_6hk6l")
+texture = ExtResource("2_khm7j")
 4:3/0 = 0
 0:0/size_in_atlas = Vector2i(3, 9)
 0:0/0 = 0
@@ -19,7 +19,7 @@ texture = ExtResource("1_6hk6l")
 sources/0 = SubResource("TileSetAtlasSource_1tmfk")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hk6l"]
-texture = ExtResource("1_6hk6l")
+texture = ExtResource("2_khm7j")
 0:0/size_in_atlas = Vector2i(3, 9)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(-16, 64)
@@ -28,19 +28,19 @@ texture = ExtResource("1_6hk6l")
 sources/0 = SubResource("TileSetAtlasSource_6hk6l")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1tmfk"]
-atlas = ExtResource("1_0lam3")
+atlas = ExtResource("3_ceole")
 region = Rect2(16, 144, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f2day"]
-atlas = ExtResource("1_0lam3")
+atlas = ExtResource("3_ceole")
 region = Rect2(0, 144, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_586vk"]
-atlas = ExtResource("1_0lam3")
+atlas = ExtResource("3_ceole")
 region = Rect2(48, 144, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mcovd"]
-atlas = ExtResource("1_0lam3")
+atlas = ExtResource("3_ceole")
 region = Rect2(32, 144, 16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0l5j0"]
@@ -64,19 +64,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xjrp6"]
-atlas = ExtResource("2_6hk6l")
+atlas = ExtResource("4_kcc32")
 region = Rect2(0, 144, 19, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fah1h"]
-atlas = ExtResource("2_6hk6l")
+atlas = ExtResource("4_kcc32")
 region = Rect2(19, 144, 19, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f888k"]
-atlas = ExtResource("2_6hk6l")
+atlas = ExtResource("4_kcc32")
 region = Rect2(38, 144, 19, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3xsd"]
-atlas = ExtResource("2_6hk6l")
+atlas = ExtResource("4_kcc32")
 region = Rect2(57, 144, 19, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j0u5r"]
@@ -152,7 +152,7 @@ corner_radius_bottom_left = 5
 size = Vector2(80, 24)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xjrp6"]
-shader = ExtResource("8_0l5j0")
+shader = ExtResource("8_gy71r")
 shader_parameter/curvature = 6.0
 shader_parameter/vignette_softness = 0.6
 shader_parameter/vignette_strength = 1.2
@@ -161,7 +161,7 @@ shader_parameter/scanline_speed = 1.5
 
 [node name="act_5_scene_5_mini_game_start" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_586vk")
+script = ExtResource("1_glyoy")
 
 [node name="settingg" type="Node2D" parent="."]
 
@@ -208,7 +208,7 @@ autoplay = "new_animation"
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("4_1tmfk")]
+[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("5_rc17l")]
 visible = false
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -222,7 +222,7 @@ offset_left = -63.0
 offset_top = -16.0
 offset_right = 65.0
 offset_bottom = 16.0
-theme_override_fonts/font = ExtResource("4_f2day")
+theme_override_fonts/font = ExtResource("6_7nx24")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_586vk")
 text = "START"
@@ -234,7 +234,7 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_586vk")
 
 [node name="BGM_CHASE" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_mcovd")
+stream = ExtResource("7_d80hl")
 autoplay = true
 bus = &"music"
 
