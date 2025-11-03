@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://ciwb07kh3ghdu"]
+[gd_scene load_steps=20 format=4 uid="uid://ciwb07kh3ghdu"]
 
 [ext_resource type="Script" uid="uid://d0bttnfk35w0f" path="res://scenes/game/act_4/scene_4/dark_forest.gd" id="1_hfvsf"]
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_xhb44"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="7_dfldy"]
 [ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="8_3b33a"]
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="8_4m1m1"]
+[ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="10_xx0ro"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
 texture = ExtResource("1_xhb44")
@@ -55,6 +56,13 @@ fill_to = Vector2(0.8403756, 0.12206573)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hy5cb"]
 size = Vector2(70, 17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rj4lg"]
+shader = ExtResource("10_xx0ro")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
 
 [node name="dark_forest" type="Node2D"]
 script = ExtResource("1_hfvsf")
@@ -132,5 +140,14 @@ stream = ExtResource("5_puqq2")
 volume_db = -8.878
 autoplay = true
 bus = &"music"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_rj4lg")
+offset_left = -754.0
+offset_top = -542.0
+offset_right = 1437.0
+offset_bottom = 551.0
+mouse_filter = 2
 
 [editable path="meds_lighting_handler"]

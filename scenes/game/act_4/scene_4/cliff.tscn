@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://bvr6jnqrdpdgd"]
+[gd_scene load_steps=45 format=4 uid="uid://bvr6jnqrdpdgd"]
 
 [ext_resource type="Script" uid="uid://epp6clbotfbk" path="res://scenes/game/act_4/scene_4/cliff.gd" id="1_60q0d"]
 [ext_resource type="Texture2D" uid="uid://cqlemxpf5ymis" path="res://assets/tilesets/cliff_tileset.png" id="1_oqg1l"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bleocupbn07tb" path="res://sound/strong-howling-wind-132281.mp3" id="11_dk38r"]
 [ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="14_rjira"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="15_huid5"]
+[ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="16_gwrd3"]
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="16_n52yo"]
 [ext_resource type="AudioStream" uid="uid://tcwf3ci0qbdv" path="res://sound/new-notification-09-352705.wav" id="17_gwrd3"]
 [ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="17_rjdrm"]
@@ -147,6 +148,13 @@ size = Vector2(162, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dk38r"]
 size = Vector2(171, 206)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rjdrm"]
+shader = ExtResource("16_gwrd3")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
 
 [node name="cliff" type="Node2D"]
 script = ExtResource("1_60q0d")
@@ -349,6 +357,15 @@ stream = ExtResource("17_rjdrm")
 volume_db = -8.878
 autoplay = true
 bus = &"sfx"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_rjdrm")
+offset_left = -754.0
+offset_top = -542.0
+offset_right = 1437.0
+offset_bottom = 551.0
+mouse_filter = 2
 
 [connection signal="body_entered" from="windarea" to="windarea" method="_on_body_entered"]
 [connection signal="body_entered" from="phone_trigger" to="." method="_on_phone_trigger_body_entered"]

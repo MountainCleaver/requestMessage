@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://c5niwv58t5pew"]
+[gd_scene load_steps=22 format=4 uid="uid://c5niwv58t5pew"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_qnmuh"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_8m82d"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dp72bvfqjfgw2" path="res://assets/character_sprites/rain-drop.png" id="6_n8ass"]
 [ext_resource type="Texture2D" uid="uid://bbau41x8o02bb" path="res://assets/character_sprites/rain splash.png" id="7_rpser"]
 [ext_resource type="AudioStream" uid="uid://dwow3fbcvnre" path="res://sound/calming-rain-257596.mp3" id="8_eba0v"]
+[ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="10_eba0v"]
 [ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="10_qrhn8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
@@ -103,6 +104,13 @@ colors = PackedColorArray(0, 0, 0, 1, 0.8217889, 0.82178867, 0.82178867, 1)
 [sub_resource type="Curve" id="Curve_3tqfb"]
 _data = [Vector2(0.383721, 0.1685394), 0.0, 0.0, 0, 0, Vector2(0.5813954, 0.42696637), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qrhn8"]
+shader = ExtResource("10_eba0v")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
 
 [node name="dark_forest" type="Node2D"]
 
@@ -205,6 +213,15 @@ stream = ExtResource("10_qrhn8")
 volume_db = -8.878
 autoplay = true
 bus = &"sfx"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_qrhn8")
+offset_left = -754.0
+offset_top = -542.0
+offset_right = 1437.0
+offset_bottom = 551.0
+mouse_filter = 2
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="y-sorted/decorations/signage" to="." method="_on_signage_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://b2dcgt5q5ne7f"]
+[gd_scene load_steps=17 format=4 uid="uid://b2dcgt5q5ne7f"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_wy3md"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="2_qjqsf"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="5_mswv5"]
 [ext_resource type="AudioStream" uid="uid://u2835b7rt2l8" path="res://sound/horror-atmosphere-background(chosic.com).mp3" id="6_xgtwr"]
 [ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="7_2tr3q"]
+[ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="8_07o75"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
 texture = ExtResource("1_wy3md")
@@ -88,6 +89,13 @@ size = Vector2(28, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymqp3"]
 size = Vector2(74, 52.25)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tj8er"]
+shader = ExtResource("8_07o75")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
 [node name="dark_forest" type="Node2D"]
 
 [node name="map" type="Node2D" parent="."]
@@ -159,6 +167,15 @@ stream = ExtResource("7_2tr3q")
 volume_db = -8.878
 autoplay = true
 bus = &"sfx"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_tj8er")
+offset_left = -754.0
+offset_top = -542.0
+offset_right = 1437.0
+offset_bottom = 551.0
+mouse_filter = 2
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="y-sorted/decorations/signage" to="." method="_on_signage_body_entered"]

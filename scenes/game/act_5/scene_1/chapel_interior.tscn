@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://c4d0ibusf1g3t"]
+[gd_scene load_steps=50 format=4 uid="uid://c4d0ibusf1g3t"]
 
 [ext_resource type="Texture2D" uid="uid://dva0k2uey6rgk" path="res://assets/tilesets/chapel_decorations.png" id="1_35h23"]
 [ext_resource type="Texture2D" uid="uid://gk78kt1brxun" path="res://assets/tilesets/chapel_tiles.png" id="2_sjeyo"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cbaqwksgv6wix" path="res://assets/character_sprites/light1.png" id="14_ic45s"]
 [ext_resource type="AudioStream" uid="uid://dwow3fbcvnre" path="res://sound/calming-rain-257596.mp3" id="15_sjeyo"]
 [ext_resource type="AudioStream" uid="uid://cve0puc5a58rj" path="res://sound/shadow-pulse-mysterious-atmosphere-preview-376834.mp3" id="16_casby"]
+[ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="17_vmlcj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h46de"]
 texture = ExtResource("1_35h23")
@@ -1909,6 +1910,13 @@ _data = {
 &"zoom_in": SubResource("Animation_ualbp")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0k0ol"]
+shader = ExtResource("17_vmlcj")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
 [node name="chapel_interior" type="Node2D"]
 
 [node name="map" type="Node2D" parent="."]
@@ -2189,6 +2197,15 @@ bus = &"sfx"
 stream = ExtResource("16_casby")
 autoplay = true
 bus = &"music"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_0k0ol")
+offset_left = -754.0
+offset_top = -542.0
+offset_right = 1437.0
+offset_bottom = 551.0
+mouse_filter = 2
 
 [editable path="map/candle/candle_1"]
 [editable path="map/candle/candle_2"]

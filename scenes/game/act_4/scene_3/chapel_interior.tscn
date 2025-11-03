@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://dinpfs4j50eb"]
+[gd_scene load_steps=47 format=4 uid="uid://dinpfs4j50eb"]
 
 [ext_resource type="Texture2D" uid="uid://dva0k2uey6rgk" path="res://assets/tilesets/chapel_decorations.png" id="1_su0q4"]
 [ext_resource type="Texture2D" uid="uid://gk78kt1brxun" path="res://assets/tilesets/chapel_tiles.png" id="2_su717"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://b26tbvt5h4mc8" path="res://assets/character_sprites/MATEO__SHOCKED.png" id="12_as7bp"]
 [ext_resource type="PackedScene" uid="uid://cehrjw85vbr2x" path="res://scenes/characters/npc_shadowy_ghost.tscn" id="14_3vo37"]
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="16_sk22o"]
+[ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="16_unk1a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h46de"]
 texture = ExtResource("1_su0q4")
@@ -1850,6 +1851,13 @@ size = Vector2(297, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_as7bp"]
 size = Vector2(32, 15)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eo3jy"]
+shader = ExtResource("16_unk1a")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
 [node name="chapel_interior" type="Node2D"]
 
 [node name="map" type="Node2D" parent="."]
@@ -2097,6 +2105,15 @@ position = Vector2(0, 168.5)
 shape = SubResource("RectangleShape2D_as7bp")
 
 [node name="meds_lighting_handler" parent="." instance=ExtResource("16_sk22o")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_eo3jy")
+offset_left = -754.0
+offset_top = -542.0
+offset_right = 1437.0
+offset_bottom = 551.0
+mouse_filter = 2
 
 [editable path="map/candle/candle_1"]
 [editable path="map/candle/candle_2"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://8uhxy3l7xhw7"]
+[gd_scene load_steps=29 format=4 uid="uid://8uhxy3l7xhw7"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_2viex"]
 [ext_resource type="Texture2D" uid="uid://b0j4r1o73s7f5" path="res://assets/tilesets/GRAVEYARD.png" id="2_6j7in"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bbau41x8o02bb" path="res://assets/character_sprites/rain splash.png" id="8_8qw42"]
 [ext_resource type="AudioStream" uid="uid://dwow3fbcvnre" path="res://sound/calming-rain-257596.mp3" id="9_kb3rk"]
 [ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="10_kb3rk"]
+[ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="11_kb3rk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xxtgj"]
 texture = ExtResource("1_2viex")
@@ -1374,6 +1375,13 @@ colors = PackedColorArray(0, 0, 0, 1, 0.8217889, 0.82178867, 0.82178867, 1)
 _data = [Vector2(0.383721, 0.1685394), 0.0, 0.0, 0, 0, Vector2(0.5813954, 0.42696637), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_olrw1"]
+shader = ExtResource("11_kb3rk")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
 [node name="chapel_exterior" type="Node2D"]
 
 [node name="map" type="Node2D" parent="."]
@@ -1489,6 +1497,15 @@ stream = ExtResource("10_kb3rk")
 volume_db = -8.878
 autoplay = true
 bus = &"sfx"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_olrw1")
+offset_left = -754.0
+offset_top = -542.0
+offset_right = 1437.0
+offset_bottom = 551.0
+mouse_filter = 2
 
 [editable path="y-sorted/player_danilo"]
 [editable path="meds_lighting_handler"]
