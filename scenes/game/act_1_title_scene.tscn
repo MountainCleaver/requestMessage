@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw3d46kmtpe64"]
+[gd_scene load_steps=12 format=3 uid="uid://bw3d46kmtpe64"]
 
 [ext_resource type="Script" uid="uid://b6cdfyb4wkjde" path="res://scenes/game/title_scenes.gd" id="1_tymat"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_hhrsm"]
+[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="3_yr52n"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="4_r0aif"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ku4u"]
 bg_color = Color(0.0509804, 0.0509804, 0.0823529, 1)
@@ -74,6 +76,14 @@ _data = {
 &"in_animation": SubResource("Animation_tymat")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5twxx"]
+shader = ExtResource("4_r0aif")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
+
 [node name="title_scenes" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -120,6 +130,7 @@ offset_right = 42.0
 offset_bottom = 39.8334
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_yr52n")
 text = "We Still Remember"
 label_settings = SubResource("LabelSettings_uwf8f")
 
@@ -127,3 +138,11 @@ label_settings = SubResource("LabelSettings_uwf8f")
 libraries = {
 &"": SubResource("AnimationLibrary_yr52n")
 }
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_5twxx")
+layout_mode = 0
+offset_right = 1441.0
+offset_bottom = 1025.0
+mouse_filter = 2

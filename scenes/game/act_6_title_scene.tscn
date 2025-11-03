@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c68fv6sx76605"]
+[gd_scene load_steps=12 format=3 uid="uid://c68fv6sx76605"]
 
 [ext_resource type="Script" uid="uid://d3sn84r0ptude" path="res://scenes/game/act_6_title_scene.gd" id="1_rabrg"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_u4cu4"]
+[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="3_glk1s"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="4_ee0n0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ku4u"]
 bg_color = Color(0.0509804, 0.0509804, 0.0823529, 1)
@@ -74,6 +76,14 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_uwf8f"]
 font_size = 25
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gsukk"]
+shader = ExtResource("4_ee0n0")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
+
 [node name="title_scenes" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -125,4 +135,13 @@ offset_right = 42.0
 offset_bottom = -431.66663
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_glk1s")
 label_settings = SubResource("LabelSettings_uwf8f")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_gsukk")
+layout_mode = 0
+offset_right = 1441.0
+offset_bottom = 1025.0
+mouse_filter = 2
