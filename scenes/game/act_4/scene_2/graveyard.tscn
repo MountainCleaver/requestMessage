@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://b81pheiysdhv7"]
+[gd_scene load_steps=36 format=4 uid="uid://b81pheiysdhv7"]
 
 [ext_resource type="Script" uid="uid://cqt73nqcoiosu" path="res://scenes/game/act_4/scene_2/graveyard.gd" id="1_avryt"]
 [ext_resource type="Texture2D" uid="uid://cvyn0215nw1hb" path="res://assets/tilesets/graveyard_floor.png" id="1_qq610"]
@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://bom20qdtgk2cs" path="res://assets/tilesets/dirt.png" id="7_my1an"]
 [ext_resource type="Texture2D" uid="uid://cbaqwksgv6wix" path="res://assets/character_sprites/light1.png" id="8_gmiot"]
 [ext_resource type="Texture2D" uid="uid://cow5dh6yexjcx" path="res://assets/character_sprites/question.png" id="9_cwevg"]
+[ext_resource type="AudioStream" uid="uid://b05yfeypkb4io" path="res://sound/midnight-lake-387720.mp3" id="10_8q0fn"]
 [ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="10_u5qgj"]
+[ext_resource type="AudioStream" uid="uid://c7ke4aoqboudb" path="res://sound/soft-dramatic-piano-music-409068.mp3" id="11_uqenm"]
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="12_7yelt"]
 [ext_resource type="AudioStream" uid="uid://dsdh5ru4jekqg" path="res://sound/dark-woods-underscore-by-brolefilmer-16433.mp3" id="13_nvkko"]
 [ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="14_j6x08"]
@@ -1327,6 +1329,22 @@ position = Vector2(591.5, -2)
 shape = SubResource("RectangleShape2D_j6x08")
 debug_color = Color(0.6356806, 0.40239242, 0.872195, 0.41960785)
 
+[node name="BGM_GOOD" type="AudioStreamPlayer" parent="Interactable/grave_exit"]
+stream = ExtResource("10_8q0fn")
+bus = &"music"
+
+[node name="BGM_BAD" type="AudioStreamPlayer" parent="Interactable/grave_exit"]
+stream = ExtResource("11_uqenm")
+bus = &"music"
+
+[node name="BGM_GOOD" type="AudioStreamPlayer" parent="Interactable/grave_exit/BGM_BAD"]
+stream = ExtResource("10_8q0fn")
+bus = &"music"
+
+[node name="BGM_BAD" type="AudioStreamPlayer" parent="Interactable/grave_exit/BGM_BAD"]
+stream = ExtResource("11_uqenm")
+bus = &"music"
+
 [node name="grave_entry" type="Area2D" parent="Interactable"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/grave_entry"]
@@ -1460,6 +1478,7 @@ mouse_filter = 2
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="Interactable/house_enter" to="." method="_on_house_enter_body_entered"]
 [connection signal="body_exited" from="Interactable/house_enter" to="." method="_on_house_enter_body_exited"]
+[connection signal="area_entered" from="Interactable/grave_exit" to="." method="_on_grave_exit_area_entered"]
 [connection signal="body_entered" from="Interactable/grave_entry" to="." method="_on_grave_entry_body_entered"]
 [connection signal="body_entered" from="Interactable/phone_trigger" to="." method="_on_phone_trigger_body_entered"]
 [connection signal="body_entered" from="Interactable/Key" to="." method="_on_key_body_entered"]

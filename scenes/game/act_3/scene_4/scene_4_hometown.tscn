@@ -250,6 +250,13 @@ energy = 1.09
 blend_mode = 2
 texture = SubResource("GradientTexture2D_2jcuc")
 
+[node name="PointLight2D32" type="PointLight2D" parent="danilo_hometown/lights"]
+position = Vector2(620, 8.285157)
+scale = Vector2(0.124999456, 0.11608885)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_2jcuc")
+
 [node name="PointLight2D24" type="PointLight2D" parent="danilo_hometown/lights"]
 position = Vector2(389, 146)
 scale = Vector2(0.4687496, 0.13842769)
@@ -258,8 +265,36 @@ blend_mode = 2
 texture = SubResource("GradientTexture2D_2jcuc")
 
 [node name="PointLight2D25" type="PointLight2D" parent="danilo_hometown/lights"]
-position = Vector2(388, 167.28516)
-scale = Vector2(0.4687496, 0.2098388)
+position = Vector2(389.5, 169.28516)
+scale = Vector2(0.26562497, 0.2723388)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_2jcuc")
+
+[node name="PointLight2D33" type="PointLight2D" parent="danilo_hometown/lights"]
+position = Vector2(359.75, 159.14258)
+scale = Vector2(0.101562455, 0.18304412)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_2jcuc")
+
+[node name="PointLight2D34" type="PointLight2D" parent="danilo_hometown/lights"]
+position = Vector2(336, 159)
+scale = Vector2(0.101562455, 0.18304412)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_2jcuc")
+
+[node name="PointLight2D35" type="PointLight2D" parent="danilo_hometown/lights"]
+position = Vector2(419, 159.00002)
+scale = Vector2(0.101562455, 0.18304412)
+energy = 1.09
+blend_mode = 2
+texture = SubResource("GradientTexture2D_2jcuc")
+
+[node name="PointLight2D36" type="PointLight2D" parent="danilo_hometown/lights"]
+position = Vector2(442.99997, 159)
+scale = Vector2(0.101562455, 0.18304412)
 energy = 1.09
 blend_mode = 2
 texture = SubResource("GradientTexture2D_2jcuc")

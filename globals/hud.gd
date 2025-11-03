@@ -191,14 +191,6 @@ func show_phone_with_unknown_sender() -> void:
 		phone_intro()  # plays "phone_in"
 		phone_showing = true
 
-	# --- Ensure PHONE_MAIN exists ---
-	if not phone_container.has_node("phone_main"):
-		var phone_main = PHONE_MAIN.instantiate()
-		phone_main.name = "phone_main"
-		phone_container.add_child(phone_main)
-	phone_main_active = true
-	lock_screen_active = false
-
 	# --- Ensure APP_CHAT exists ---
 	var app_chat: Node
 	if not phone_container.has_node("app_chat"):

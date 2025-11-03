@@ -45,7 +45,7 @@ func _on_game_over_body_entered(body: Node2D) -> void:
 		
 		await get_tree().create_timer(2.0).timeout
 		SignalBus.next_scene.emit(
-			"res://scenes/game/act_5/scene_5/act_5_scene_5_mini_game_start.tscn"
+			"res://scenes/game/act_5/scene_5/act_5_scene_5.tscn"
 		)
 
 func _start_chase() -> void:
