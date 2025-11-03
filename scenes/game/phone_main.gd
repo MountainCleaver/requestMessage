@@ -86,7 +86,19 @@ func _on_sched_pressed() -> void:
 	var parent = get_parent()
 	var schedule_app = preload("res://scenes/game/app_schedule.tscn").instantiate()
 	parent.add_child(schedule_app)
+	
+	# Wait one frame to ensure schedule_app is ready
+	await get_tree().process_frame
+
 	SignalBus.sched_opened.emit()
+
+	# Emit signal only after schedule_app is ready
+	if SignalBus.last_appointment_selected != "":
+		SignalBus.emit_signal("appointment_selected", SignalBus.last_appointment_selected)
+	else:
+		SignalBus.emit_signal("appointment_selected", "appointment_3")
+
+
 
 func _on_gallery_pressed() -> void:
 	pass
