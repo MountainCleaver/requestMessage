@@ -14,6 +14,7 @@ var A_4S_2: Resource
 @onready var dizzy_overlay: ColorRect = $ColorRect  # the one with the glitch shader
 
 var dialogue_shown: bool = false
+var dizzy_dialogue_shown: bool = false
 
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_2")
@@ -27,6 +28,7 @@ func _ready() -> void:
 
 	await get_tree().create_timer(1.0).timeout
 	DialogueManager.show_dialogue_balloon(A_4S_2, "start")
+	await DialogueManager.dialogue_ended
 	player_danilo.can_move = true
 
 	var meds_count = SaveManager.get_count_meds_taken()
@@ -34,20 +36,24 @@ func _ready() -> void:
 		await _trigger_dizzy_state()
 		
 func _trigger_dizzy_state() -> void:
+	player_danilo.can_move = false
+	if dizzy_dialogue_shown:
+		return 
+	
+	dizzy_dialogue_shown = true 
 	dizzy_overlay.visible = true
 	
 	var meds_taken = SaveManager.get_count_meds_taken()
-	
 	if meds_taken > 1:
 		meds_taken = 1
 	
 	var dizzy_label = "dizzy_state_%d" % meds_taken
 	
-	DialogueManager.show_dialogue_balloon(A_4S_2, dizzy_label)
-	
+	await DialogueManager.show_dialogue_balloon(A_4S_2, dizzy_label)
 	await get_tree().create_timer(3.0).timeout
 	
 	dizzy_overlay.visible = false
+
 
 
 func _load_dialogue() -> void:
