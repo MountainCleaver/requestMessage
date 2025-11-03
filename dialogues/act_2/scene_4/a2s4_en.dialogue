@@ -1,13 +1,15 @@
 ~ start
-Wendy: Did he left... without a word?
+Wendy: Where's Danilo?
+Wendy: Now's his scheduled appointment but he's late.
 Wendy: Something’s... off. It's not like before.  
+Wendy: I can’t explain it... I just feel it.
 do Hud.show_objectives()
 Wendy: ...
 - Check the phone => open_phone
 => END
 
 ~ open_phone
-do Hud.reset_phone_state() 
+do Hud.reset_phone_state("08:32", "AM")
 => END
 
 ~ call_voicemail

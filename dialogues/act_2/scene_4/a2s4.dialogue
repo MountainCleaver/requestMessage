@@ -1,13 +1,15 @@
 ~ start
-Wendy: Hindi siya nagpaalam. 
+Wendy: Nasa'n si Danilo?
+Wendy: Ngayon na yung schedule niya sa appointment and he's late.
 Wendy: Iba 'to. Hindi 'to gaya ng dati.
+Wendy: Hindi ko ma-explain... pero may kutob ako.
 do Hud.show_objectives()
 Wendy: ...
 - Check the phone => open_phone
 => END
 
 ~ open_phone
-do Hud.reset_phone_state() 
+do Hud.reset_phone_state("08:32", "AM")
 => END
 
 ~ call_voicemail
