@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://jd2yum8hdwy4"]
+[gd_scene load_steps=43 format=4 uid="uid://jd2yum8hdwy4"]
 
 [ext_resource type="Texture2D" uid="uid://bsi3qrmawmrso" path="res://assets/tilesets/act1_s2_tilemap.png" id="2_onmre"]
 [ext_resource type="Texture2D" uid="uid://c0gjjrngklxbo" path="res://assets/tilesets/buncha_trees.png" id="3_hh7qm"]
@@ -9645,6 +9645,22 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onmre"]
 size = Vector2(17, 11.333347)
 
+[sub_resource type="Gradient" id="Gradient_hh7qm"]
+colors = PackedColorArray(1, 1, 0.79607844, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vx0hi"]
+gradient = SubResource("Gradient_hh7qm")
+
+[sub_resource type="Gradient" id="Gradient_hcya2"]
+offsets = PackedFloat32Array(0.0093896715, 1)
+colors = PackedColorArray(1, 1, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mbc7v"]
+gradient = SubResource("Gradient_hcya2")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8418803, 0.14102565)
+
 [node name="danilo_neighborhood" type="Node2D"]
 
 [node name="road" type="TileMapLayer" parent="."]
@@ -9755,6 +9771,248 @@ stream = ExtResource("11_hcya2")
 volume_db = -11.949
 autoplay = true
 bus = &"sfx"
+
+[node name="lights" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="lights"]
+position = Vector2(-3, 76.5)
+scale = Vector2(0.40625, 0.23437499)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D2" type="PointLight2D" parent="lights"]
+position = Vector2(-3.5000002, 105.49999)
+scale = Vector2(0.140625, 0.17187491)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D3" type="PointLight2D" parent="lights"]
+position = Vector2(6, 105.49999)
+scale = Vector2(0.125, 0.17187501)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D35" type="PointLight2D" parent="lights"]
+position = Vector2(157.5, -69.50001)
+scale = Vector2(0.140625, 0.17187491)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D36" type="PointLight2D" parent="lights"]
+position = Vector2(167, -69.50001)
+scale = Vector2(0.125, 0.17187501)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D29" type="PointLight2D" parent="lights"]
+position = Vector2(-353, 12.499992)
+scale = Vector2(0.40625, 0.23437499)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D30" type="PointLight2D" parent="lights"]
+position = Vector2(-353.5, 41.499992)
+scale = Vector2(0.140625, 0.17187491)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D31" type="PointLight2D" parent="lights"]
+position = Vector2(-344, 41.499992)
+scale = Vector2(0.125, 0.17187501)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D32" type="PointLight2D" parent="lights"]
+position = Vector2(-193, -242.50003)
+scale = Vector2(0.40625, 0.23437499)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D33" type="PointLight2D" parent="lights"]
+position = Vector2(-193.5, -213.5)
+scale = Vector2(0.140625, 0.17187491)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D34" type="PointLight2D" parent="lights"]
+position = Vector2(-184, -213.5)
+scale = Vector2(0.125, 0.17187501)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D4" type="PointLight2D" parent="lights"]
+position = Vector2(44, 107.25001)
+scale = Vector2(0.34375, 0.14843746)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D5" type="PointLight2D" parent="lights"]
+position = Vector2(54, 76.62499)
+scale = Vector2(0.65625, 0.16796876)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D37" type="PointLight2D" parent="lights"]
+position = Vector2(-195.99998, -65.999985)
+scale = Vector2(0.34375, 0.14843746)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D38" type="PointLight2D" parent="lights"]
+position = Vector2(-186.00002, -98.99999)
+scale = Vector2(0.65625, 0.16796876)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D39" type="PointLight2D" parent="lights"]
+position = Vector2(101.999985, -243)
+scale = Vector2(0.65625, 0.16796876)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D40" type="PointLight2D" parent="lights"]
+position = Vector2(194.5, -214)
+scale = Vector2(0.20312485, 0.16796876)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D41" type="PointLight2D" parent="lights"]
+position = Vector2(-64.25, -212.6875)
+scale = Vector2(0.101562425, 0.11523472)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D42" type="PointLight2D" parent="lights"]
+position = Vector2(-36, -213)
+scale = Vector2(0.101562425, 0.11523472)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D43" type="PointLight2D" parent="lights"]
+position = Vector2(-50.125, -212.84375)
+scale = Vector2(0.1289062, 0.08886749)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D44" type="PointLight2D" parent="lights"]
+position = Vector2(-366.5625, -116)
+scale = Vector2(0.142578, 0.08886749)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D45" type="PointLight2D" parent="lights"]
+position = Vector2(-366.78125, -54.42188)
+scale = Vector2(0.21191335, 0.13818373)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D46" type="PointLight2D" parent="lights"]
+position = Vector2(-94.39061, -68.71094)
+scale = Vector2(0.13720673, 0.11596682)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D47" type="PointLight2D" parent="lights"]
+position = Vector2(-76, -68.85547)
+scale = Vector2(0.13720673, 0.08923335)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D6" type="PointLight2D" parent="lights"]
+position = Vector2(166.5, 65.8125)
+scale = Vector2(0.48437494, 0.13085933)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D7" type="PointLight2D" parent="lights"]
+position = Vector2(158, -99.09375)
+scale = Vector2(0.3750002, 0.22167961)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D8" type="PointLight2D" parent="lights"]
+position = Vector2(166.5, 87.5)
+scale = Vector2(0.29687503, 0.2343751)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D9" type="PointLight2D" parent="lights"]
+position = Vector2(-352.25, 97.25)
+scale = Vector2(0.13281257, 0.11718755)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D10" type="PointLight2D" parent="lights"]
+position = Vector2(-339, 97.00001)
+scale = Vector2(0.13281257, 0.11718755)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D11" type="PointLight2D" parent="lights"]
+position = Vector2(-356.125, 126)
+scale = Vector2(0.16015643, 0.18750013)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D12" type="PointLight2D" parent="lights"]
+position = Vector2(-340.0625, 123.49999)
+scale = Vector2(0.12695323, 0.07812512)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D13" type="PointLight2D" parent="lights"]
+position = Vector2(-400, 96.99999)
+scale = Vector2(0.13281257, 0.11718755)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D14" type="PointLight2D" parent="lights"]
+position = Vector2(-386.75, 96.75)
+scale = Vector2(0.13281257, 0.11718755)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D15" type="PointLight2D" parent="lights"]
+position = Vector2(-403.875, 125.74999)
+scale = Vector2(0.16015643, 0.18750013)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D16" type="PointLight2D" parent="lights"]
+position = Vector2(-387.8125, 123.249985)
+scale = Vector2(0.12695323, 0.07812512)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D17" type="PointLight2D" parent="lights"]
+position = Vector2(-448, 97.99999)
+scale = Vector2(0.13281257, 0.11718755)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D18" type="PointLight2D" parent="lights"]
+position = Vector2(-434.75, 97.75)
+scale = Vector2(0.13281257, 0.11718755)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D19" type="PointLight2D" parent="lights"]
+position = Vector2(-451.875, 126.74999)
+scale = Vector2(0.16015643, 0.18750013)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D20" type="PointLight2D" parent="lights"]
+position = Vector2(-435.8125, 124.249985)
+scale = Vector2(0.12695323, 0.07812512)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D21" type="PointLight2D" parent="lights"]
+position = Vector2(-40.99997, -94.00001)
+scale = Vector2(0.13281257, 0.11718755)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D22" type="PointLight2D" parent="lights"]
+position = Vector2(-27.74997, -94.25)
+scale = Vector2(0.13281257, 0.11718755)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D23" type="PointLight2D" parent="lights"]
+position = Vector2(-45, -66.00001)
+scale = Vector2(0.16015643, 0.18750013)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D24" type="PointLight2D" parent="lights"]
+position = Vector2(-28.81247, -68.5)
+scale = Vector2(0.12695323, 0.078124985)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D25" type="PointLight2D" parent="lights"]
+position = Vector2(-127.87496, -238)
+scale = Vector2(0.13281257, 0.11718755)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D26" type="PointLight2D" parent="lights"]
+position = Vector2(-114.62496, -238.25)
+scale = Vector2(0.13281257, 0.11718755)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D27" type="PointLight2D" parent="lights"]
+position = Vector2(-131.87498, -210)
+scale = Vector2(0.16015643, 0.18750013)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="PointLight2D28" type="PointLight2D" parent="lights"]
+position = Vector2(-115.68746, -212.5)
+scale = Vector2(0.12695323, 0.078124985)
+texture = SubResource("GradientTexture2D_vx0hi")
+
+[node name="xmaslight" type="PointLight2D" parent="lights"]
+position = Vector2(-320.00003, 18.999998)
+scale = Vector2(0.28124964, 0.28125003)
+texture = SubResource("GradientTexture2D_mbc7v")
 
 [connection signal="body_entered" from="bahay" to="." method="_on_bahay_body_entered"]
 [connection signal="body_exited" from="bahay" to="." method="_on_bahay_body_exited"]
