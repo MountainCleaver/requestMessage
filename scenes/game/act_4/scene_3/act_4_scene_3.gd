@@ -33,6 +33,7 @@ var big_candle_area: Area2D
 var exit_area: Area2D
 var exit_chapel_exterior_area: Area2D
 var signage: Area2D
+var dizzy_overlay: ColorRect
 
 # Explore triggers
 var cabinet_1_trigger: Area2D
@@ -80,6 +81,8 @@ var cabinet_2_area: Area2D
 var can_interact_cabinet := false
 var current_cabinet := ""
 var cabinets_opened := {"cabinet_1": false, "cabinet_2": false}
+var dizzy_duration := 1.5
+var dizzy_timer: Timer = null
 
 # ===================
 # OBJECTIVES
@@ -105,7 +108,8 @@ func _ready():
 	_start_scene()
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.unknown_sender_label_visible = false
-
+	_start_dizzy_timer() 
+	
 func _load_dialogue() -> void:
 	var lang = Settings.settings.dialogue_language
 	var path: String
@@ -143,6 +147,7 @@ func _start_scene() -> void:
 func _switch_to_dark_forest() -> void:
 	await get_tree().process_frame
 	switch_location(DARK_FOREST)
+	_trigger_dizzy_effect()
 	player_danilo.last_direction = Vector2.RIGHT
 	Hud.show_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
@@ -169,6 +174,7 @@ func _switch_to_chapel_exterior(from_chapel: bool) -> void:
 		player_danilo.global_position = spawn_node.global_position
 
 	if from_chapel:
+		_trigger_dizzy_effect()
 		ObjectiveManager.complete_objective(7)
 		DialogueManager.show_dialogue_balloon(A_4S_3, "back_to_dark_forest")
 		await DialogueManager.dialogue_ended
@@ -181,6 +187,7 @@ func _switch_to_chapel_exterior(from_chapel: bool) -> void:
 			exit_chapel_exterior_area.body_entered.connect(_on_exit_chapel_exterior_entered)
 
 	else:
+		_trigger_dizzy_effect()
 		ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
 
 func _switch_to_chapel_interior() -> void:
@@ -188,6 +195,7 @@ func _switch_to_chapel_interior() -> void:
 	Hud.clear_objectives()
 	Hud.hide_objectives()
 	switch_location(CHAPEL_INTERIOR)
+	_trigger_dizzy_effect()
 	player_danilo.last_direction = Vector2.UP
 	await get_tree().process_frame
 	DialogueManager.show_dialogue_balloon(A_4S_3, "exploration_chat")
@@ -231,7 +239,11 @@ func switch_location(scene: PackedScene) -> void:
 	
 	cabinet_1_area = current_location.get_node_or_null("y-sorted/cabinet_1/cabinet_1_area")
 	cabinet_2_area = current_location.get_node_or_null("y-sorted/cabinet_2/cabinet_2_area")
+
+	dizzy_overlay = current_location.get_node_or_null("ColorRect")
 	
+	if dizzy_overlay:
+		dizzy_overlay.visible = false
 	if scene == DARK_FOREST:
 		dark_forest_entrance_area = current_location.get_node_or_null("entrance")
 		_setup_dark_forest_signage()
@@ -787,7 +799,36 @@ func _on_exit_chapel_exterior_entered(body: Node) -> void:
 		exit_chapel_exterior_area.monitoring = false
 
 	scene_3_done()
+	
+func _trigger_dizzy_effect():
+	var meds_taken := SaveManager.get_count_meds_taken()  # or your function
+	if meds_taken > 1:
+		return  # Skip if player took 2+ meds
 
+	if not dizzy_overlay:
+		return
+
+	dizzy_overlay.visible = true
+	var t := Timer.new()
+	t.wait_time = dizzy_duration
+	t.one_shot = true
+	t.autostart = true
+	t.timeout.connect(func():
+		dizzy_overlay.visible = false
+		t.queue_free()
+	)
+	add_child(t)
+	
+func _start_dizzy_timer():
+	if dizzy_timer:
+		dizzy_timer.queue_free()
+
+	dizzy_timer = Timer.new()
+	dizzy_timer.wait_time = 30.0 
+	dizzy_timer.one_shot = false
+	dizzy_timer.autostart = true
+	dizzy_timer.timeout.connect(_trigger_dizzy_effect)
+	add_child(dizzy_timer)
 # ===================
 # COMPLETE SCENE
 # ===================

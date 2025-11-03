@@ -7,6 +7,8 @@ var A_4S_4: Resource
 @onready var sfx_notif: AudioStreamPlayer = $SFX_NOTIF
 @onready var cliff_portal: Area2D = $portal
 @onready var diary_note: Area2D = $map/paper
+@onready var dizzy_overlay: ColorRect = $ColorRect
+var dizzy_timer: Timer
 
 var scene_objectives = [
 	{"ID": 2, "text": "Find the last paper under the rocks"},
@@ -30,7 +32,8 @@ func _ready() -> void:
 	FlashlightManager.enable_flashlight_by_cash()
 	_game_state_flow()
 	_load_dialogue()
-
+	_trigger_dizzy_state()
+	player_danilo.last_direction = Vector2.UP;
 	# Set up signals
 	cliff_portal.body_entered.connect(_on_cliff_portal_entered)
 	diary_note.body_entered.connect(_on_note_body_entered)
@@ -57,6 +60,27 @@ func _load_dialogue() -> void:
 		path = "res://dialogues/act_4/scene_4/a4s4_en.dialogue"
 	A_4S_4 = load(path)
 	print("Dialogue loaded:", path)
+
+func _start_dizzy_timer():
+	if dizzy_timer:
+		dizzy_timer.queue_free()
+	
+	dizzy_timer = Timer.new()
+	dizzy_timer.wait_time = 30.0  # every 30 seconds
+	dizzy_timer.one_shot = false
+	dizzy_timer.autostart = true
+	dizzy_timer.timeout.connect(_trigger_dizzy_state)
+	add_child(dizzy_timer)
+	
+func _trigger_dizzy_state(duration: float = 1.0):
+	var meds_count = SaveManager.get_count_meds_taken()
+	if meds_count > 1:
+		return
+	
+	dizzy_overlay.visible = true
+	await get_tree().create_timer(duration).timeout
+	dizzy_overlay.visible = false
+	_start_dizzy_timer()
 
 # PHONE =============================================
 

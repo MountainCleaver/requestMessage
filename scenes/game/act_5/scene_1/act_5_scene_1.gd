@@ -20,6 +20,7 @@ var tip_interact: Sprite2D
 var animated_sprite_2d: AnimatedSprite2D
 var current_location: Node
 var anim_player: AnimationPlayer
+var dizzy_overlay: ColorRect
 # Areas
 var dark_forest_entrance_area: Area2D
 var door_area: Area2D
@@ -28,6 +29,8 @@ var altar_area_1: Area2D
 var altar_area_2: Area2D
 var can_sit_altar_1 := false
 var can_sit_altar_2 := false
+var dizzy_duration := 1.5
+var dizzy_timer: Timer = null
 
 # ===================
 # OBJECTIVES
@@ -85,6 +88,7 @@ func _game_state_flow() -> void:
 # ===================
 func _start_scene() -> void:
 	await get_tree().process_frame
+	_trigger_dizzy_effect()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	DialogueManager.show_dialogue_balloon(A_5S_1, "start")
 
@@ -118,6 +122,7 @@ func _switch_to_chapel_interior(from_where: String = "default") -> void:
 
 	match from_where:
 		"first_entry":
+			_trigger_dizzy_effect()
 			player_danilo.last_direction = Vector2.UP
 			DialogueManager.show_dialogue_balloon(A_5S_1, "light_candle")
 			await DialogueManager.dialogue_ended
@@ -165,7 +170,10 @@ func switch_location(scene: PackedScene) -> void:
 
 	door_area = current_location.get_node_or_null("door_area")
 	before_door_area = current_location.get_node_or_null("before_door_area")
+	dizzy_overlay = current_location.get_node_or_null("ColorRect")
 	
+	if dizzy_overlay:
+		dizzy_overlay.visible = false
 	if scene == DARK_FOREST:
 		dark_forest_entrance_area = current_location.get_node_or_null("entrance")
 	if dark_forest_entrance_area:
@@ -195,6 +203,7 @@ func _on_before_door_area_body_entered(body):
 	if body == player_danilo and not dialogue_triggered:
 		dialogue_triggered = true
 		player_danilo.set_physics_process(false)
+		_trigger_dizzy_effect()
 		DialogueManager.show_dialogue_balloon(A_5S_1, "back_to_chapel_again")
 		player_danilo.set_physics_process(true)
 
@@ -430,6 +439,35 @@ func _sit_at_marker_2():
 		scene_3_done()
 		
 
+func _trigger_dizzy_effect():
+	var meds_taken := SaveManager.get_count_meds_taken()  # or your function
+	if meds_taken > 1:
+		return  # Skip if player took 2+ meds
+
+	if not dizzy_overlay:
+		return
+
+	dizzy_overlay.visible = true
+	var t := Timer.new()
+	t.wait_time = dizzy_duration
+	t.one_shot = true
+	t.autostart = true
+	t.timeout.connect(func():
+		dizzy_overlay.visible = false
+		t.queue_free()
+	)
+	add_child(t)
+	
+func _start_dizzy_timer():
+	if dizzy_timer:
+		dizzy_timer.queue_free()
+
+	dizzy_timer = Timer.new()
+	dizzy_timer.wait_time = 30.0 
+	dizzy_timer.one_shot = false
+	dizzy_timer.autostart = true
+	dizzy_timer.timeout.connect(_trigger_dizzy_effect)
+	add_child(dizzy_timer)
 # ===================
 # COMPLETE SCENE
 # ===================
