@@ -61,13 +61,11 @@ func _start_intro_narration() -> void:
 	await SignalBus.on_transition_finished
 	_on_narration_finished()
 
-
 # === AFTER NARRATION FINISHES ===
 func _on_narration_finished() -> void:
 	print("Narration finished — starting dialogue.")
 	if not DialogueManager.show_dialogue_balloon(A_2S_4, "start"):
 		push_warning("Failed to start dialogue after narration.")
-
 
 # === OPEN PHONE ===
 func _open_wendy_phone() -> void:
@@ -80,7 +78,6 @@ func _open_wendy_phone() -> void:
 	add_child(lock_screen)
 	print("Wendy's lock screen loaded.")
 
-
 # === CALL COMPLETED HANDLER ===
 func _on_call_completed(call_target: String) -> void:
 	_load_dialogue()
@@ -91,9 +88,15 @@ func _on_call_completed(call_target: String) -> void:
 			ObjectiveManager.complete_objective(1)
 			print("Danilo call objective completed")
 			
+			# REMOVED: Don't trigger dialogue here - let the dialogue file handle it
+			# The dialogue file will automatically show "call_voicemail" after Danilo call
+			
 		"mira":
 			ObjectiveManager.complete_objective(2)
 			print("Mira call objective completed")
+			
+			# REMOVED: Don't trigger dialogue here - let the dialogue file handle it
+			# The dialogue file will automatically show "call_mira_convo" after Mira call
 			
 			Hud.hide_objectives()
 			Hud.clear_objectives()
@@ -102,7 +105,6 @@ func _on_call_completed(call_target: String) -> void:
 			TransitionFade.transition()
 			await SignalBus.on_transition_finished
 			_start_outro_narration()
-
 
 # === OUTRO NARRATION ===
 func _start_outro_narration() -> void:
@@ -117,11 +119,9 @@ func _start_outro_narration() -> void:
 	await NarrationPanel.hide_narration()
 	_on_outro_narration_finished()
 
-
 # === OUTRO DONE ===
 func _on_outro_narration_finished() -> void:
 	scene_4_done()
-
 
 # === SCENE COMPLETION FUNCTION ===
 func scene_4_done() -> void:
@@ -138,7 +138,6 @@ func scene_4_done() -> void:
 	
 	Hud.clear_objectives()
 	print("Act 2 Scene 4 is done")
-
 
 # === CLEANUP ===
 func _exit_tree() -> void:
