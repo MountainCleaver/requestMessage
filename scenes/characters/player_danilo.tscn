@@ -1663,7 +1663,7 @@ visible = false
 texture = ExtResource("14_ntlsp")
 
 [node name="phone_flashlight" type="PointLight2D" parent="."]
-visible = false
+position = Vector2(0, -8)
 texture = ExtResource("14_ntlsp")
 texture_scale = 0.4
 
