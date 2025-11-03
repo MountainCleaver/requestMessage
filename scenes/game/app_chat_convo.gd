@@ -232,6 +232,7 @@ func _on_type_message_clicked(chat_name: String) -> void:
 func set_current_chat(chat_name: String) -> void:
 	if chat_name != current_chat:
 		chat_loaded[current_chat] = false
+	SignalBus.optional_chats_locked = false  
 
 	current_chat = chat_name
 	panel_name.text = chat_name.capitalize()
