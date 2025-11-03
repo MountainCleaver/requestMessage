@@ -92,8 +92,8 @@ size_flags_vertical = 0
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_r8a1g")
-theme_override_font_sizes/font_size = 27
-text = "Danilo Lopez"
+theme_override_font_sizes/font_size = 26
+text = "Danilo Trinidad"
 vertical_alignment = 1
 
 [node name="EXIT" type="Button" parent="screen/MarginContainer/HBoxContainer"]
@@ -150,7 +150,7 @@ offset_top = 6.0
 offset_right = 211.0
 offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
+theme_override_fonts/font = ExtResource("2_r8a1g")
 theme_override_font_sizes/font_size = 22
 text = "Today"
 horizontal_alignment = 1
@@ -179,12 +179,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jxxu6")
 
 [node name="Label" type="Label" parent="appointment_1/Panel3"]
 layout_mode = 0
-offset_left = 69.0
+offset_left = 63.0
 offset_top = 6.0
-offset_right = 211.0
+offset_right = 205.0
 offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
+theme_override_fonts/font = ExtResource("2_r8a1g")
 theme_override_font_sizes/font_size = 22
 text = "Tomorrow"
 horizontal_alignment = 1
@@ -261,7 +261,7 @@ offset_top = 6.0
 offset_right = 211.0
 offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
+theme_override_fonts/font = ExtResource("2_r8a1g")
 theme_override_font_sizes/font_size = 22
 text = "Today"
 horizontal_alignment = 1
@@ -290,12 +290,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jxxu6")
 
 [node name="Label" type="Label" parent="appointment_2/Panel3"]
 layout_mode = 0
-offset_left = 69.0
+offset_left = 60.0
 offset_top = 6.0
-offset_right = 211.0
+offset_right = 202.0
 offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
+theme_override_fonts/font = ExtResource("2_r8a1g")
 theme_override_font_sizes/font_size = 22
 text = "Tomorrow"
 horizontal_alignment = 1
@@ -371,7 +371,7 @@ offset_top = 6.0
 offset_right = 211.0
 offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
+theme_override_fonts/font = ExtResource("2_r8a1g")
 theme_override_font_sizes/font_size = 22
 text = "Today"
 horizontal_alignment = 1
@@ -387,12 +387,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jxxu6")
 
 [node name="Label" type="Label" parent="appointment_3/Panel3"]
 layout_mode = 0
-offset_left = 69.0
+offset_left = 62.0
 offset_top = 6.0
-offset_right = 211.0
+offset_right = 204.0
 offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
+theme_override_fonts/font = ExtResource("2_r8a1g")
 theme_override_font_sizes/font_size = 22
 text = "Tomorrow"
 horizontal_alignment = 1
