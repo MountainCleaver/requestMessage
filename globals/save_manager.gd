@@ -81,7 +81,8 @@ func _save_game_progress(act: String, scene: String, next_scene: String) -> void
 	if current_user_id != 0:
 		_push_online_save(act, scene)
 	print("[SaveManager] Progress saved. Next scene:", next_scene_path)
-
+	# --- ADDED: Track autosave here! ---
+	track_save()
 
 func load_game() -> void:
 	if FileAccess.file_exists(SAVE_PATH):
@@ -108,8 +109,6 @@ func save_game() -> void:
 	var error := ResourceSaver.save(game_save, SAVE_PATH)
 	if error != OK:
 		push_error("Failed to save game: %s" % error)
-	# --- ADDED: Track autosave here! ---
-	track_save()
 
 func reset_save_state():
 	print("[SaveManager] Resetting local save state (keeping username and paths).")
