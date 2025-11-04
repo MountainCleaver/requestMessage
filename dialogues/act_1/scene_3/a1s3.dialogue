@@ -5,11 +5,7 @@ Danilo: [center]Sasabihin ko ba kay Wendy... yung naalala ko?[/center]
 Wendy: Dan?
 - Tell her about the figure in the memory =>< tell
 - Keep it to yourself =>< keep
-<<<<<<< HEAD
-do leave_the_park
-=======
 do leave_the_park()
->>>>>>> ff113ca40ec1d17a4568f0feb424d5e2a2cf65be
 => END
 
 ~ tell
