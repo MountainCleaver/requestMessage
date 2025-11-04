@@ -20,14 +20,18 @@ func _ready() -> void:
 	print("✅ Act 4 Controller Ready")
 	_game_state_flow()
 
-	# Setup dizzy timer
-	dizzy_timer = Timer.new()
-	dizzy_timer.wait_time = 30.0  # every 30 seconds
-	dizzy_timer.one_shot = false   # repeat
-	dizzy_timer.autostart = true
-	add_child(dizzy_timer)
-	dizzy_timer.timeout.connect(_on_dizzy_timer_timeout)
+	var meds_taken = 0
+	if has_node("/root/SaveManager"):
+		var sm = get_node("/root/SaveManager")
+		meds_taken = sm.get_count_meds_taken()
 
+	if meds_taken <= 1:
+		dizzy_timer = Timer.new()
+		dizzy_timer.wait_time = 30.0  # every 30 seconds
+		dizzy_timer.one_shot = false
+		dizzy_timer.autostart = true
+		add_child(dizzy_timer)
+		dizzy_timer.timeout.connect(_on_dizzy_timer_timeout)
 
 	if has_node("/root/ProgressManager"):
 		ProgressManager.reset()
@@ -43,13 +47,16 @@ func _game_state_flow() -> void:
 	GameState.save_game()
 	
 func _on_dizzy_timer_timeout() -> void:
+	if has_node("/root/SaveManager"):
+		var sm = get_node("/root/SaveManager")
+		if sm.get_count_meds_taken() > 1:
+			return
+
 	if current_scene and current_scene.has_node("ColorRect"):
 		var overlay = current_scene.get_node("ColorRect") as ColorRect
 		overlay.visible = true
-		# optionally play dialogue
 		if current_scene.has_method("_trigger_dizzy_state"):
 			current_scene._trigger_dizzy_state()
-		# hide overlay after 2 seconds
 		await get_tree().create_timer(2.0).timeout
 		overlay.visible = false
 
