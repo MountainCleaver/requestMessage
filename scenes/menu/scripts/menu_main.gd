@@ -22,7 +22,6 @@ func _ready() -> void:
 	
 	_update_continue_visibility()
 	_update_welcome_label()
-	_welcome_label_glitch()
 	
 	if SaveManager.game_save:
 		print("finished scenes: " + str(SaveManager.game_save.finished_scenes))
@@ -60,12 +59,6 @@ func _update_welcome_label() -> void:
 
 	welcome_label.bbcode_enabled = true
 	welcome_label.text = "[center]WELCOME,\n%s![/center]" % name_text
-
-func _welcome_label_glitch() -> void:
-	var color_rect = $TextureRect/welcome/ColorRect
-	color_rect.visible = true
-	await get_tree().create_timer(1.0).timeout
-	color_rect.visible = false
 	
 	
 func _option_hover(option: Button) -> void:
