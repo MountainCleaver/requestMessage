@@ -201,8 +201,6 @@ text = "Enter"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
-
 [node name="splash_title" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 10
@@ -227,3 +225,16 @@ layout_mode = 0
 offset_right = 1441.0
 offset_bottom = 1025.0
 mouse_filter = 2
+
+[node name="ConnectionLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 492.0
+offset_right = 1013.0
+offset_bottom = 537.0
+theme_override_colors/font_color = Color(0.88235295, 0.25882354, 0.21568628, 0.76862746)
+theme_override_fonts/font = ExtResource("3_bfe6o")
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
