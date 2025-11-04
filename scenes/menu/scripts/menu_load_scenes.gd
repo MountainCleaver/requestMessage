@@ -177,10 +177,7 @@ func _load_scene(act: String, scene: String) -> void:
 	var alt_path = "res://scenes/game/%s/%s/%s_%s_mini_game_start.tscn" % [act, scene, act, scene]
 	if not ResourceLoader.exists(path) and ResourceLoader.exists(alt_path):
 		path = alt_path
-
-	# Track save
-	SaveManager.track_save()
-
+		
 	if Hud:
 		await get_tree().process_frame
 		Hud.reset_phone_dont_show()
