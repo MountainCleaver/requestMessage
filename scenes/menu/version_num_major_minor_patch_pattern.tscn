@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6dp8vnyir66p"]
+
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_682dg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_syoi4"]
+font = ExtResource("1_682dg")
+font_size = 24
+
+[node name="Version_Num_Major_Minor_Patch_pattern" type="Label"]
+z_index = 1
+offset_right = 225.0
+offset_bottom = 51.0
+text = "Version 1.0.1"
+label_settings = SubResource("LabelSettings_syoi4")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcooimxjkpmd1"]
+[gd_scene load_steps=3 format=3 uid="uid://bcooimxjkpmd1"]
 
 [ext_resource type="Texture2D" uid="uid://bitxjdnpfih1a" path="res://assets/main menu/menu_background.png" id="1_m27td"]
+[ext_resource type="PackedScene" uid="uid://c6dp8vnyir66p" path="res://scenes/menu/version_num_major_minor_patch_pattern.tscn" id="2_ayhcs"]
 
 [node name="menu_background" type="Control"]
 layout_mode = 3
@@ -20,3 +21,6 @@ grow_vertical = 2
 texture = ExtResource("1_m27td")
 stretch_mode = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="Version_Num_Major_Minor_Patch_pattern" parent="." instance=ExtResource("2_ayhcs")]
+layout_mode = 0
