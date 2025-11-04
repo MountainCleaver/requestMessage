@@ -11,6 +11,7 @@ extends Control
 @onready var options: VBoxContainer = $options_holder
 @onready var logout_button: Button = $logoutButton
 @onready var welcome_label: RichTextLabel = $TextureRect/welcome
+@onready var welcome_bg: ColorRect = $TextureRect/ColorRect
 @onready var exit_confirmation_dialog: ConfirmationDialog = $exitConfirmationDialog
 @onready var logout_confirmation_dialog: ConfirmationDialog = $logoutConfirmationDialog
 @onready var continue_confirmation_dialog: ConfirmationDialog = $continueConfirmationDialog
@@ -18,11 +19,13 @@ extends Control
 var current_choice = 0
 
 func _ready() -> void:
+	# Show welcome background only if this is the current scene
+	welcome_bg.visible = get_tree().current_scene == self
+
 	SignalBus.online_save_merged.connect(_on_online_save_ready)
-	
 	_update_continue_visibility()
 	_update_welcome_label()
-	
+
 	if SaveManager.game_save:
 		print("finished scenes: " + str(SaveManager.game_save.finished_scenes))
 		print("scene choices: " + str(SaveManager.game_save.choices))
@@ -31,7 +34,7 @@ func _ready() -> void:
 		print("Scene to continue: " + str(SaveManager.game_save.current_scene))
 	else:
 		print("No local save yet.")
-	
+
 	if SaveManager.has_save():
 		continue_game.visible = true
 		current_choice = 0
@@ -59,13 +62,10 @@ func _update_welcome_label() -> void:
 
 	welcome_label.bbcode_enabled = true
 	welcome_label.text = "[center]WELCOME,\n%s![/center]" % name_text
-	
-	
-func _option_hover(option: Button) -> void:
 
+func _option_hover(option: Button) -> void:
 	current_choice = options.get_children().find(option)
 	option.grab_focus()
-
 
 func _on_continue_game_pressed() -> void:
 	if not SaveManager.has_save():
@@ -86,7 +86,6 @@ func _start_continue_game() -> void:
 
 func _on_new_game_pressed() -> void:
 	_option_overlayer("res://scenes/menu/menu_new_game_slots.tscn")
-
 
 func _on_load_game_pressed() -> void:
 	_option_overlayer("res://scenes/menu/menu_load_game_slots.tscn")
@@ -114,6 +113,8 @@ func _on_exit_pressed() -> void:
 	exit_confirmation_dialog.show();
 
 func _option_overlayer(path: String) -> void:
+	# Hide welcome background whenever an overlay is open
+	welcome_bg.visible = false
 	for child in overlayer.get_children():
 		child.queue_free()
 	var settings = load(path)
@@ -125,12 +126,15 @@ func _exit_overlay() -> void:
 	overlayer.visible = false
 	options.get_children()[current_choice].grab_focus()
 
+	# Show welcome background again if still on MenuMain scene
+	if get_tree().current_scene == self:
+		welcome_bg.visible = true
+
 func _on_feedback_pressed() -> void:
 	OS.shell_open("https://forms.gle/i6TE17FkpqA7mywk8")
 
 func _on_exit_confirmation_dialog_confirmed() -> void:
 	get_tree().quit()
-
 
 func _on_exit_confirmation_dialog_canceled() -> void:
 	# do nothing
