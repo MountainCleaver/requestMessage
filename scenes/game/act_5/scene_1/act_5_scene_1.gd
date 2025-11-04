@@ -402,11 +402,7 @@ func _sit_at_marker_1():
 	if sit_marker and player_danilo:
 		player_danilo.global_position = sit_marker.global_position
 		player_danilo.can_move = false
-		if animated_sprite_2d:
-			animated_sprite_2d.z_index = 1000
-			animated_sprite_2d.play("read_notebook")
-		else:
-			push_warning("AnimatedSprite2D not found!")
+		read_notebook(sit_marker)
 		
 		ObjectiveManager.complete_objective(3)
 		Hud.hide_objectives()
@@ -426,9 +422,7 @@ func _sit_at_marker_2():
 	if sit_marker and player_danilo:
 		player_danilo.global_position = sit_marker.global_position
 		player_danilo.can_move = false
-		if sprite:
-			sprite.z_index = 1000
-			sprite.play("read_notebook")
+		read_notebook(sit_marker)
 			
 		ObjectiveManager.complete_objective(3)
 		Hud.hide_objectives()
@@ -483,3 +477,29 @@ func scene_3_done() -> void:
 		"scene_1", 
         "res://scenes/game/act_5/scene_2/act_5_scene_2.tscn"
 	)
+
+func read_notebook(sit_marker: Node2D) -> void:
+	if not player_danilo:
+		push_warning("Player node not found!")
+		return
+	
+	var original_position = player_danilo.global_position
+	player_danilo.animation_locked = true
+	player_danilo.can_move = false
+	
+	# Move player to the sit marker position
+	if sit_marker:
+		player_danilo.global_position = sit_marker.global_position
+	
+	var sprite: AnimatedSprite2D = player_danilo.get_node_or_null("AnimatedSprite2D")
+	if sprite:
+		sprite.flip_h = false  # fix facing direction if needed
+		sprite.z_index = 1000
+		sprite.play("read_notebook")
+		await sprite.animation_finished
+	else:
+		# fallback wait duration if animation missing
+		await get_tree().create_timer(1.0).timeout
+	
+	player_danilo.animation_locked = false
+	player_danilo.can_move = true
