@@ -10,20 +10,33 @@ var current_user_id: int = 0
 var current_slot: int = 0
 var play_timer: Timer
 var play_start_time: int = 0
+var save_call_count := 0 
+var has_saved_this_session: bool = false
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+
+	if SignalBus.act_num_scene_num_done.is_connected(_save_game_progress):
+		SignalBus.act_num_scene_num_done.disconnect(_save_game_progress)
 	SignalBus.act_num_scene_num_done.connect(_save_game_progress)
+
 	if not Session.is_connected("session_loaded", Callable(self, "_on_session_loaded")):
 		Session.connect("session_loaded", Callable(self, "_on_session_loaded"))
+
 	if Session.logged_in:
 		_on_session_loaded()
-	play_timer = Timer.new()
-	play_timer.wait_time = 1.0
-	play_timer.autostart = true
-	play_timer.one_shot = false
-	play_timer.timeout.connect(_on_play_timer_tick)
-	add_child(play_timer)
+
+	if play_timer == null:
+		play_timer = Timer.new()
+		play_timer.wait_time = 1.0
+		play_timer.autostart = true
+		play_timer.one_shot = false
+		play_timer.timeout.connect(_on_play_timer_tick)
+		add_child(play_timer)
+
 	play_start_time = Time.get_unix_time_from_system()
+
 
 func _on_session_loaded():
 	print("[SaveManager] _on_session_loaded() triggered for user:", Session.username)
@@ -65,24 +78,29 @@ func _set_save_paths():
 	print("[SaveManager] Backup path set to:", BACKUP_PATH)
 
 func _save_game_progress(act: String, scene: String, next_scene: String) -> void:
-	print("Saving progress for user:", current_username, "ID:", current_user_id, "Finished Act:", act, "Scene:", scene)
-	mark_scene_finished(act, scene)
-	_set_current_scene_from_path(next_scene)
-	
-	var next_act = game_save.current_act
-	var next_scene_name = game_save.current_scene
-	if not game_save.finished_scenes.has(next_act):
-		game_save.finished_scenes[next_act] = []
-	if next_scene_name not in game_save.finished_scenes[next_act]:
-		game_save.finished_scenes[next_act].append(next_scene_name)
+	save_call_count += 1
+	if has_saved_this_session:
+		print("[TrackSave] skipping data record cuz already saved once this session.")
+	else:
+		has_saved_this_session = true
+		mark_scene_finished(act, scene)
+		_set_current_scene_from_path(next_scene)
+		print("[TrackSave] first and only save for this session (Save Count:", save_call_count, ")")
+
+		var next_act = game_save.current_act
+		var next_scene_name = game_save.current_scene
+		if not game_save.finished_scenes.has(next_act):
+			game_save.finished_scenes[next_act] = []
+		if next_scene_name not in game_save.finished_scenes[next_act]:
+			game_save.finished_scenes[next_act].append(next_scene_name)
+
+		if current_user_id != 0:
+			_push_online_save(act, scene)
+		track_save()
 
 	next_scene_path = next_scene
 	GameSceneManager._change_scene("res://scenes/game/saving_screen.tscn")
-	if current_user_id != 0:
-		_push_online_save(act, scene)
 	print("[SaveManager] Progress saved. Next scene:", next_scene_path)
-	# --- ADDED: Track autosave here! ---
-	track_save()
 
 func load_game() -> void:
 	if FileAccess.file_exists(SAVE_PATH):
