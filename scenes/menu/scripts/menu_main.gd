@@ -10,7 +10,7 @@ extends Control
 @onready var overlayer: Control = $overlayer
 @onready var options: VBoxContainer = $options_holder
 @onready var logout_button: Button = $logoutButton
-
+@onready var welcome_label: RichTextLabel = $TextureRect/welcome
 @onready var exit_confirmation_dialog: ConfirmationDialog = $exitConfirmationDialog
 @onready var logout_confirmation_dialog: ConfirmationDialog = $logoutConfirmationDialog
 @onready var continue_confirmation_dialog: ConfirmationDialog = $continueConfirmationDialog
@@ -21,6 +21,8 @@ func _ready() -> void:
 	SignalBus.online_save_merged.connect(_on_online_save_ready)
 	
 	_update_continue_visibility()
+	_update_welcome_label()
+	_welcome_label_glitch()
 	
 	if SaveManager.game_save:
 		print("finished scenes: " + str(SaveManager.game_save.finished_scenes))
@@ -49,6 +51,22 @@ func _ready() -> void:
 	if not continue_confirmation_dialog.confirmed.is_connected(_start_continue_game):
 		continue_confirmation_dialog.confirmed.connect(_start_continue_game)
 
+func _update_welcome_label() -> void:
+	var name_text = ""
+	if Session.logged_in:
+		name_text = Session.username.to_upper()
+	else:
+		name_text = "GUEST"
+
+	welcome_label.bbcode_enabled = true
+	welcome_label.text = "[center]WELCOME,\n%s![/center]" % name_text
+
+func _welcome_label_glitch() -> void:
+	var color_rect = $TextureRect/welcome/ColorRect
+	color_rect.visible = true
+	await get_tree().create_timer(1.0).timeout
+	color_rect.visible = false
+	
 	
 func _option_hover(option: Button) -> void:
 
