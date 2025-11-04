@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cs1jpw8ukb17c"]
+[gd_scene load_steps=7 format=3 uid="uid://cs1jpw8ukb17c"]
 
 [ext_resource type="Texture2D" uid="uid://du0i3pkn1es8y" path="res://assets/main menu/Pause.png" id="1_04k7x"]
 [ext_resource type="Script" uid="uid://bx0k65orw5hkk" path="res://scenes/menu/scripts/pause_screen.gd" id="1_x8jkt"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_wx27k"]
 [ext_resource type="PackedScene" uid="uid://c7yw1h7fpco1e" path="res://scenes/menu/option_main_menu.tscn" id="3_wx27k"]
+[ext_resource type="PackedScene" uid="uid://c6dp8vnyir66p" path="res://scenes/menu/version_num_major_minor_patch_pattern.tscn" id="5_x8jkt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ruv5c"]
 font = ExtResource("2_wx27k")
@@ -86,6 +87,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Version_Num_Major_Minor_Patch_pattern" parent="." instance=ExtResource("5_x8jkt")]
+layout_mode = 0
 
 [connection signal="pressed" from="VBoxContainer/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]
