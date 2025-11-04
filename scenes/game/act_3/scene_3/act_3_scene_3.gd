@@ -618,6 +618,8 @@ func _on_second_house_exit() -> void:
 	can_interact = true
 
 func _play_look_around_sequence() -> void:
+	player_danilo.force_cannot_move = true
+	danilo_collision_shape_2d.disabled = true
 	var directions = ["idle_up", "idle_left", "idle_right", "idle_down"]
 
 	for dir in directions:
