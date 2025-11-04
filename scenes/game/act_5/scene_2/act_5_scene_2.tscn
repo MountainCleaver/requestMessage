@@ -48,6 +48,11 @@ position = Vector2(53, -3)
 [node name="gino_shocked" parent="mateo_home/ysort/npc_gino" index="3"]
 z_index = 1
 
+[node name="gino_shocked2" type="Sprite2D" parent="mateo_home/ysort/npc_gino"]
+z_index = 1
+position = Vector2(0, -29)
+texture = ExtResource("7_ohuxi")
+
 [node name="npc_matet" parent="mateo_home/ysort" index="4" instance=ExtResource("5_fu8t6")]
 position = Vector2(-47, -6)
 
