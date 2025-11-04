@@ -51,20 +51,22 @@ func _create_button(act: String, scene: String) -> void:
 	button.custom_minimum_size = Vector2(400, 225)
 	button.expand_icon = true
 
-	# === FIX START: special display for Act 6 endings ===
+	# === Act 6 endings: use same thumbnail ===
 	var display_scene = scene
-	if act == "act_6" and (scene == "scene_2.1" or scene == "scene_2.2"):
-		display_scene = "The End"
-	# === FIX END ===
-
 	var texture_path = "res://assets/scenes_thumbnails/%s_%s.png" % [act, scene]
+
+	if act == "act_6" and (scene == "scene_2.1" or scene == "scene_2.2"):
+		display_scene = "scene_2"  # for button text
+		texture_path = "res://assets/scenes_thumbnails/act_6_scene_2.png" # same thumbnail
+
 	if ResourceLoader.exists(texture_path):
 		button.icon = load(texture_path)
 
 	button.text = "%s %s" % [act.capitalize(), display_scene.capitalize()]
-	button.connect("pressed", Callable(self, "_on_scene_button_pressed").bind(act, scene))
+	button.connect("pressed", Callable(self, "_on_scene_button_pressed").bind(act, scene)) # pass real scene
 
 	gridcontainer.add_child(button)
+
 
 
 func _on_scene_button_pressed(act: String, scene: String) -> void:
@@ -161,9 +163,17 @@ func _load_scene(act: String, scene: String) -> void:
 	if BgmManager:
 		BgmManager.stop_music()
 
-	var path = "res://scenes/game/%s/%s/%s_%s.tscn" % [act, scene, act, scene]
+	var path: String
 
-	# --- Add special case for act_5 scene_5 mini game ---
+	# Special Act 6 endings
+	if act == "act_6" and scene == "scene_2.1":
+		path = "res://scenes/game/act_6/scene_2.1/finally_at_rest.tscn"
+	elif act == "act_6" and scene == "scene_2.2":
+		path = "res://scenes/game/act_6/scene_2.2/unending_guilt.tscn"
+	else:
+		path = "res://scenes/game/%s/%s/%s_%s.tscn" % [act, scene, act, scene]
+
+	# Special mini-game fallback
 	var alt_path = "res://scenes/game/%s/%s/%s_%s_mini_game_start.tscn" % [act, scene, act, scene]
 	if not ResourceLoader.exists(path) and ResourceLoader.exists(alt_path):
 		path = alt_path
@@ -176,6 +186,7 @@ func _load_scene(act: String, scene: String) -> void:
 		Hud.reset_phone_dont_show()
 
 	SignalBus.next_scene.emit(path)
+
 
 
 func _input(event: InputEvent) -> void:

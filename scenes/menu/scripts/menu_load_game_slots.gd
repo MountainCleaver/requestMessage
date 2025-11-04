@@ -82,11 +82,18 @@ func _update_slot_ui(slot_num: int) -> void:
 						scene_text = scenes[-1]
 						break
 
-			current_progress.text = "%s - %s" % [act_text.capitalize(), scene_text.capitalize()] if act_text != "" else "No progress"
+			# --- NEW: Override for Act 6 endings ---
+			if act_text.to_lower() == "act_6" and (scene_text.to_lower() == "scene_2.1" or scene_text.to_lower() == "scene_2.2"):
+				current_progress.text = "The End"
+			else:
+				current_progress.text = "%s - %s" % [act_text.capitalize(), scene_text.capitalize()] if act_text != "" else "No progress"
+
 
 			# --- Thumbnail ---
 			if act_text != "" and scene_text != "":
 				var thumb_path = "res://assets/scenes_thumbnails/%s_%s.png" % [act_text.to_lower(), scene_text.to_lower()]
+				if act_text.to_lower() == "act_6" and (scene_text.to_lower() == "scene_2.1" or scene_text.to_lower() == "scene_2.2"):
+					thumb_path = "res://assets/scenes_thumbnails/act_6_scene_2.png"
 				if ResourceLoader.exists(thumb_path):
 					texture_rect.texture = load(thumb_path)
 
@@ -212,5 +219,6 @@ var scene_summaries := {
 	"act_5_scene_7": "Fragments of Mateo’s diary reveal his fears and secrets, what will Danilo uncover?",
 	"act_5_scene_8": "Through Mateo’s diary, Danilo uncovers his memories, will he find peace, or be haunted by what was lost?",
 	"act_6_scene_1": "Wendy returns home to search for Danilo, will she find him before it’s too late?",
-	"act_6_scene_2": "The End."
+	"act_6_scene_2.1": "Finally... at rest.",
+	"act_6_scene_2.2": "It never ends..."
 }
