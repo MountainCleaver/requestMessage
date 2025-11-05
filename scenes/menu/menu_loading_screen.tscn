@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcjqekq6wtjgs"]
+[gd_scene load_steps=10 format=3 uid="uid://dcjqekq6wtjgs"]
 
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_wv6qd"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_q7s8q"]
+[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="3_d1fk2"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_6y5sl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d1fk2"]
 font = ExtResource("1_wv6qd")
@@ -92,6 +94,16 @@ _data = {
 &"loading_animation": SubResource("Animation_6y5sl")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awcjb"]
+bg_color = Color(1, 1, 1, 0.6509804)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.18431373)
+shadow_size = 1
+shadow_offset = Vector2(5, 5)
+
 [node name="menu_loading_screen" type="CanvasLayer"]
 layer = 2
 
@@ -126,3 +138,43 @@ libraries = {
 &"": SubResource("AnimationLibrary_1yeh2")
 }
 autoplay = "loading_animation"
+
+[node name="ConnectionLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -286.5
+offset_top = -36.5
+offset_right = 286.5
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_d1fk2")
+theme_override_font_sizes/font_size = 29
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Reconnect" type="Button" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = 98.0
+offset_right = 141.0
+offset_bottom = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_d1fk2")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_awcjb")
+text = "Reconnect"
+script = ExtResource("4_6y5sl")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
