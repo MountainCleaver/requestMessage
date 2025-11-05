@@ -64,12 +64,15 @@ func _on_http_request_completed(result: int, response_code: int, _headers: Packe
 	checking = false
 
 	if result == HTTPRequest.RESULT_SUCCESS and (response_code >= 200 and response_code < 400 or response_code == 204):
-		if not has_internet:
+		if waiting_for_reconnect or loading_screen.visible:
 			print("[NetworkStatus] Internet restored")
-			_show_reconnected_label()
-		has_internet = true
-		waiting_for_reconnect = false
-		_notify_current_scene()
+			has_internet = true
+			waiting_for_reconnect = false
+			_show_reconnected_label() 
+		else:
+			has_internet = true
+			waiting_for_reconnect = false
+			_hide_loading_ui()  
 	else:
 		if has_internet:
 			print("[NetworkStatus] Internet lost")
@@ -77,6 +80,7 @@ func _on_http_request_completed(result: int, response_code: int, _headers: Packe
 		_on_connection_timeout()
 		
 	emit_signal("internet_status_changed", has_internet)
+
 
 
 # === No internet / timeout ===
