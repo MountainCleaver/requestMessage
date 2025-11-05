@@ -79,28 +79,33 @@ func _set_save_paths():
 
 func _save_game_progress(act: String, scene: String, next_scene: String) -> void:
 	save_call_count += 1
-	if has_saved_this_session:
-		print("[TrackSave] skipping data record cuz already saved once this session.")
-	else:
+
+	if not has_saved_this_session:
 		has_saved_this_session = true
-		mark_scene_finished(act, scene)
-		_set_current_scene_from_path(next_scene)
-		print("[TrackSave] first and only save for this session (Save Count:", save_call_count, ")")
-
-		var next_act = game_save.current_act
-		var next_scene_name = game_save.current_scene
-		if not game_save.finished_scenes.has(next_act):
-			game_save.finished_scenes[next_act] = []
-		if next_scene_name not in game_save.finished_scenes[next_act]:
-			game_save.finished_scenes[next_act].append(next_scene_name)
-
-		if current_user_id != 0:
-			_push_online_save(act, scene)
 		track_save()
+		print("[TrackSave] FIRST SAVE this session (Call: ", save_call_count, ")")
+	else:
+		print("[SaveManager] Subsequent save but not tracked (Call: ", save_call_count, ")")
+
+	mark_scene_finished(act, scene)
+	_set_current_scene_from_path(next_scene)
+
+	var next_act = game_save.current_act
+	var next_scene_name = game_save.current_scene
+	if not game_save.finished_scenes.has(next_act):
+		game_save.finished_scenes[next_act] = []
+	if next_scene_name not in game_save.finished_scenes[next_act]:
+		game_save.finished_scenes[next_act].append(next_scene_name)
+
+	if current_user_id != 0:
+		_push_online_save(act, scene)
+
+	save_game()
 
 	next_scene_path = next_scene
 	GameSceneManager._change_scene("res://scenes/game/saving_screen.tscn")
-	print("[SaveManager] Progress saved. Next scene:", next_scene_path)
+	print("[SaveManager] Progress saved successfully → Next Scene:", next_scene_path)
+
 
 func load_game() -> void:
 	if FileAccess.file_exists(SAVE_PATH):
