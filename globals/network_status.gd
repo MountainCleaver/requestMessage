@@ -165,10 +165,6 @@ func _hide_loading_ui() -> void:
 	reconnect_button.visible = false
 	color_rect.visible = false
 
-func _input(event: InputEvent) -> void:
-	if waiting_for_reconnect:
-		get_tree().set_input_as_handled()
-
 func _notify_current_scene() -> void:
 	var current_scene = get_tree().current_scene
 	if current_scene and current_scene.has_method("on_internet_status_changed"):
