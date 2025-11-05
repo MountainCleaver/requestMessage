@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b13yslmxecmqa"]
+
+[ext_resource type="Script" uid="uid://bcpphpr7cocos" path="res://globals/network_status.gd" id="1_eq5l8"]
+[ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="2_1dg44"]
+
+[node name="network_status" type="Control"]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eq5l8")
+
+[node name="menu_loading_screen" parent="." instance=ExtResource("2_1dg44")]
+layer = 9999
+
+[editable path="menu_loading_screen"]
