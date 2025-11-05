@@ -17,6 +17,7 @@ var glitch_timer := 0.0
 var glitch_interval := 2.5
 
 func _ready():
+	start_animation() 
 	FlashlightManager.set_current_scene("act_6", "scene_2")
 	FlashlightManager.disable_flashlights()
 	_load_dialogue()
@@ -45,6 +46,7 @@ func _show_intro_narration() -> void:
 	await NarrationPanel.hide_narration()
 	TransitionFade.transition()
 	await SignalBus.on_transition_finished
+	await start_animation()
 	await start_cutscene()
 
 func create_blink_overlay():
@@ -157,9 +159,10 @@ func glitch_static():
 
 	glitch_overlay.color = Color(1.0, 1.0, 1.0, 0.0)
 
-func start_cutscene() -> void:
+func start_animation() -> void:
 	player_danilo.animation_locked = true
 	player_danilo.can_move = false
+	player_danilo.force_cannot_move = true
 	collision_shape_danilo.disabled = true
 
 	animated_sprite_2d_danilo.play("sleep_hospital")
@@ -171,6 +174,8 @@ func start_cutscene() -> void:
 
 	animated_sprite_2d_danilo.play("idle_bed")
 
+
+func start_cutscene() -> void:
 	var balloon = DialogueManager.show_dialogue_balloon(
 		A_6S_2_2,
 		"start",

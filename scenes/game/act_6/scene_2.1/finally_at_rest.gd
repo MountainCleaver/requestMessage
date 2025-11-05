@@ -9,6 +9,7 @@ var A_6S_2_1: Resource
 @onready var animated_sprite_2d_wendy: AnimatedSprite2D = $hospital/wendy/AnimatedSprite2D
 
 func _ready():
+	_start_animation()
 	FlashlightManager.set_current_scene("act_6", "scene_2")
 	FlashlightManager.disable_flashlights()
 	_load_dialogue()
@@ -36,9 +37,10 @@ func _show_intro_narration() -> void:
 	await SignalBus.on_transition_finished
 	await _run_cutscene()
 
-func _run_cutscene() -> void:
+func _start_animation() -> void:
 	player_danilo.animation_locked = true
 	player_danilo.can_move = false
+	player_danilo.force_cannot_move = true
 	collision_shape_danilo.disabled = true
 
 	animated_sprite_2d_danilo.play("sleep_hospital")
@@ -49,7 +51,8 @@ func _run_cutscene() -> void:
 	await get_tree().create_timer(2.5).timeout
 
 	animated_sprite_2d_danilo.play("idle_bed")
-
+	
+func _run_cutscene() -> void:
 	var balloon = DialogueManager.show_dialogue_balloon(
 		A_6S_2_1,
 		"start",
@@ -60,6 +63,11 @@ func _run_cutscene() -> void:
 
 func _on_dialogue_done():
 	await _danilo_breathe_animation()
+	player_danilo.animation_locked = true
+	player_danilo.can_move = false
+	player_danilo.force_cannot_move = true
+	collision_shape_danilo.disabled = true
+
 	await _end_scene()
 
 func _danilo_breathe_animation() -> void:
