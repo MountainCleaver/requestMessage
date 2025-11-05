@@ -18,4 +18,12 @@ layer = 9999
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
+[node name="fade_timer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="internet_check_timer" type="Timer" parent="."]
+
+[node name="connection_label_timer" type="Timer" parent="."]
+wait_time = 5.0
+
 [editable path="menu_loading_screen"]

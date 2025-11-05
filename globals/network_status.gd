@@ -2,7 +2,7 @@ extends Control
 
 signal internet_status_changed(has_internet: bool)
 
-# === UI Nodes ===
+# UI Nodes
 @onready var loading_screen: CanvasLayer = $menu_loading_screen
 @onready var loading_label: Label = $menu_loading_screen/Label
 @onready var color_rect: ColorRect = $menu_loading_screen/ColorRect
@@ -10,42 +10,50 @@ signal internet_status_changed(has_internet: bool)
 @onready var reconnect_button: Button = $menu_loading_screen/Reconnect
 @onready var http_request: HTTPRequest = $HTTPRequest
 
-# === Variables ===
+# Timers (must exist in scene tree!)
+@onready var internet_check_timer: Timer = $internet_check_timer
+@onready var connection_label_timer: Timer = $connection_label_timer
+@onready var fade_timer: Timer = $fade_timer
+
+# Variables
 var has_internet: bool = false
 var checking: bool = false
 var waiting_for_reconnect: bool = false
-var internet_check_timer: Timer
-var connection_label_timer: Timer
-var fade_timer: Timer
 
 func _ready() -> void:
-	reconnect_button.pressed.connect(_on_reconnect_pressed)
+	# Connect button
+	reconnect_button.pressed.connect(Callable(self, "_on_reconnect_pressed"))
 	_hide_loading_ui()
 	color_rect.mouse_filter = Control.MOUSE_FILTER_STOP
 
-	internet_check_timer = Timer.new()
+	# Connect timers using Callable
+	if not internet_check_timer.is_connected("timeout", Callable(self, "check_internet_connection")):
+		internet_check_timer.connect("timeout", Callable(self, "check_internet_connection"))
+		internet_check_timer.start()
+
+	if not connection_label_timer.is_connected("timeout", Callable(self, "_show_connection_label")):
+		connection_label_timer.connect("timeout", Callable(self, "_show_connection_label"))
+
+	if not fade_timer.is_connected("timeout", Callable(self, "_hide_loading_ui")):
+		fade_timer.connect("timeout", Callable(self, "_hide_loading_ui"))
+
+	# Timer properties (optional if already set in editor)
 	internet_check_timer.wait_time = 1.0
 	internet_check_timer.one_shot = false
 	internet_check_timer.autostart = true
-	internet_check_timer.timeout.connect(check_internet_connection)
-	add_child(internet_check_timer)
+	internet_check_timer.process_mode = Node.PROCESS_MODE_ALWAYS  # keep checking even if game paused
 
-	connection_label_timer = Timer.new()
 	connection_label_timer.wait_time = 5.0
 	connection_label_timer.one_shot = true
-	connection_label_timer.timeout.connect(_show_connection_label)
-	add_child(connection_label_timer)
+	connection_label_timer.process_mode = Node.PROCESS_MODE_ALWAYS  # show label even if paused
 
-	# Timer for fading out "Reconnected successfully"
-	fade_timer = Timer.new()
-	fade_timer.wait_time = 1.5 # how long the success label shows
+	fade_timer.wait_time = 1.5
 	fade_timer.one_shot = true
-	fade_timer.timeout.connect(_hide_loading_ui)
-	add_child(fade_timer)
+	fade_timer.process_mode = Node.PROCESS_MODE_ALWAYS  # fade out UI even if paused
 
 	http_request.timeout = 3.0
 	http_request.request_completed.connect(_on_http_request_completed)
-
+	http_request.process_mode = Node.PROCESS_MODE_ALWAYS
 	check_internet_connection()
 
 
@@ -65,7 +73,6 @@ func _on_http_request_completed(result: int, response_code: int, _headers: Packe
 
 	if result == HTTPRequest.RESULT_SUCCESS and (response_code >= 200 and response_code < 400 or response_code == 204):
 		if waiting_for_reconnect or loading_screen.visible:
-			print("[NetworkStatus] Internet restored")
 			has_internet = true
 			waiting_for_reconnect = false
 			_show_reconnected_label() 
@@ -74,13 +81,10 @@ func _on_http_request_completed(result: int, response_code: int, _headers: Packe
 			waiting_for_reconnect = false
 			_hide_loading_ui()  
 	else:
-		if has_internet:
-			print("[NetworkStatus] Internet lost")
 		has_internet = false
 		_on_connection_timeout()
 		
 	emit_signal("internet_status_changed", has_internet)
-
 
 
 # === No internet / timeout ===
@@ -95,11 +99,22 @@ func _on_connection_timeout() -> void:
 	_notify_current_scene()
 	emit_signal("internet_status_changed", has_internet)
 
+	# Show loading UI
 	loading_screen.visible = true
 	color_rect.visible = true
 	loading_label.visible = true
 	connection_label.visible = false
 	reconnect_button.visible = false
+
+	# PAUSE GAME
+	get_tree().paused = true
+
+	# Ensure UI nodes still process input
+	loading_screen.process_mode = Node.PROCESS_MODE_ALWAYS
+	color_rect.process_mode = Node.PROCESS_MODE_ALWAYS
+	loading_label.process_mode = Node.PROCESS_MODE_ALWAYS
+	connection_label.process_mode = Node.PROCESS_MODE_ALWAYS
+	reconnect_button.process_mode = Node.PROCESS_MODE_ALWAYS
 
 	if connection_label_timer.is_stopped():
 		connection_label_timer.start()
@@ -125,6 +140,9 @@ func _show_reconnected_label() -> void:
 	if fade_timer.is_stopped():
 		fade_timer.start()
 
+	# UNPAUSE GAME so gameplay resumes
+	get_tree().paused = false
+
 
 # === Reconnect button pressed ===
 func _on_reconnect_pressed() -> void:
@@ -139,7 +157,6 @@ func _on_reconnect_pressed() -> void:
 		connection_label_timer.stop()
 
 	check_internet_connection()
-
 
 func _hide_loading_ui() -> void:
 	loading_screen.visible = false
