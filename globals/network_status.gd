@@ -131,7 +131,8 @@ func _show_connection_label() -> void:
 
 # === Show Reconnected successfully before fade ===
 func _show_reconnected_label() -> void:
-	is_network_blocked = false 
+	is_network_blocked = true
+
 	loading_screen.visible = true
 	color_rect.visible = true
 	loading_label.visible = false
@@ -139,12 +140,16 @@ func _show_reconnected_label() -> void:
 	connection_label.visible = true
 	reconnect_button.visible = false
 
-	# Start fade timer
+	# Start fade timer (for UI fade-out)
 	if fade_timer.is_stopped():
 		fade_timer.start()
 
 	# UNPAUSE GAME so gameplay resumes
 	get_tree().paused = false
+
+	# Wait 1 second bago ibalik sa normal (allow ESC again)
+	await get_tree().create_timer(3.0).timeout
+	is_network_blocked = false
 
 
 # === Reconnect button pressed ===
