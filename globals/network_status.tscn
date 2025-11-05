@@ -16,4 +16,6 @@ script = ExtResource("1_eq5l8")
 [node name="menu_loading_screen" parent="." instance=ExtResource("2_1dg44")]
 layer = 9999
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [editable path="menu_loading_screen"]
