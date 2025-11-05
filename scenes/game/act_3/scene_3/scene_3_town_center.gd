@@ -15,3 +15,9 @@ func _on_tricycle_area_body_entered(body: Node2D) -> void:
 func _on_tricycle_area_body_exited(body: Node2D) -> void:
 	if body.name == "player_danilo":
 		SignalBus.out_npc.emit("tricycle_town_center")
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

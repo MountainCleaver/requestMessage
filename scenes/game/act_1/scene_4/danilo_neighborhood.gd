@@ -48,3 +48,9 @@ func _on_bahay_body_exited(body: Node2D) -> void:
 	if body.name == "player_danilo":
 		in_bahay_area = false 
 		SignalBus.out_npc.emit("bahay")
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

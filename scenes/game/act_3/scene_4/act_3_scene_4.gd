@@ -367,3 +367,9 @@ func _act_3_scene_4_done() -> void:
 	GameState.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_3", "scene_4", "res://scenes/game/act_4_title_scene.tscn") # caught in save manager
 	Hud.clear_objectives();
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

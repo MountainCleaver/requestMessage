@@ -166,3 +166,9 @@ func show_distortion(duration: float = 1.5, target_opacity: float = 1.0) -> void
 
 func _go_outside()->void:
 	SignalBus.next_scene.emit("res://scenes/game/act_5/scene_8/act_5_scene_8_outside_scene.tscn")
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

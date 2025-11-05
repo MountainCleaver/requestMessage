@@ -63,3 +63,9 @@ func _on_chase_done_area_body_entered(body: Node2D) -> void:
 			"res://scenes/game/act_5/scene_5/act_5_scene_5_chapel.tscn"
 		)
 		print("Chase done")
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

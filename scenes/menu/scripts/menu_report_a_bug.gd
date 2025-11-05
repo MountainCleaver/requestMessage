@@ -198,3 +198,9 @@ func _report_feedback_success_or_not(res_code: int)->void:
 		accept_dialog.dialog_text = "Your report was successfully submitted."
 	accept_dialog.show()
 	menu_loading_screen.hide()
+
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

@@ -116,3 +116,9 @@ func _danilo_face()->void:
 	player_danilo.last_direction = Vector2.DOWN
 	await get_tree().create_timer(5.0).timeout
 	SignalBus.last_words.emit()
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

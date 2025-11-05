@@ -341,3 +341,9 @@ func scene_4_done() -> void:
 	GameState.save_game()
 	SignalBus.act_num_scene_num_done.emit("act_1", "scene_4", "res://scenes/game/act_2_title_scene.tscn")
 	print("ACT 1 SCENE 4 DONE. ACT 1 DONE!")
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

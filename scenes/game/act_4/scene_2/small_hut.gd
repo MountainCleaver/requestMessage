@@ -332,3 +332,9 @@ func _on_house_exit_entered(body: Node2D) -> void:
 	player_danilo.current_npc = "house_exit"
 	player_danilo.can_interact = true
 	tip.visible = true
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

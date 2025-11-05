@@ -286,3 +286,9 @@ func _act_3_scene_2_done() -> void:
 	SignalBus.act_num_scene_num_done.emit("act_3", "scene_2", "res://scenes/game/act_3/scene_3/act_3_scene_3.tscn")
 	Hud.clear_objectives();
 	Hud.hide_objectives()
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

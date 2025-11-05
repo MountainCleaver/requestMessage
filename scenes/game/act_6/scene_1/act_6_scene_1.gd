@@ -846,3 +846,9 @@ func act_6_scene_1_done() -> void:
 		"scene_1", 
 		next_scene_path
 	)
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

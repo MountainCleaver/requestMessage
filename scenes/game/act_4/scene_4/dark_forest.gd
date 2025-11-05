@@ -42,3 +42,9 @@ func _trigger_dizzy_state(duration: float = 1.0):
 	await get_tree().create_timer(duration).timeout
 	dizzy_overlay.visible = false
 	_start_dizzy_timer()
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

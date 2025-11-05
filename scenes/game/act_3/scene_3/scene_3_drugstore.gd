@@ -19,3 +19,9 @@ func _on_npc_area_body_entered(body: Node2D) -> void:
 
 func _on_npc_area_body_exited(body: Node2D) -> void:
 	SignalBus.out_npc.emit("pharmacist")
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

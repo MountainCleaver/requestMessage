@@ -192,3 +192,9 @@ func _input(event: InputEvent) -> void:
 
 func _on_exit_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_load_game_slots.tscn")
+
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

@@ -116,3 +116,9 @@ func _on_jonathan_chase_3_body_exited(body: Node2D) -> void:
 
 func _on_check_outside_body_entered(body: Node2D) -> void:
 	pass # Replace with function body.
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

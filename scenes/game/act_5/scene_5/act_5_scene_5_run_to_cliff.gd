@@ -83,3 +83,9 @@ func act_5_scene_5_done() -> void:
 	SignalBus.act_num_scene_num_done.emit(
 		"act_5", "scene_5", "res://scenes/game/act_5/scene_6/act_5_scene_6.tscn"
 	)
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

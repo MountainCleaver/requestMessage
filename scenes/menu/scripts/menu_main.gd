@@ -163,3 +163,9 @@ func _update_continue_visibility() -> void:
 func _on_online_save_ready() -> void:
 	print("[MenuMain] Online save merged — refreshing Continue button visibility")
 	_update_continue_visibility()
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

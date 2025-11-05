@@ -19,3 +19,9 @@ func _ready() -> void:
 	
 	# Fade transition after click
 	SignalBus.next_scene.emit("res://scenes/game/act_3/scene_1/act_3_scene_1.tscn")
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

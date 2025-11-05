@@ -160,3 +160,9 @@ func _on_bahay_body_entered(body: Node2D) -> void:
 func _on_bahay_body_exited(body: Node2D) -> void:
 	if body.name == "player_danilo":
 		SignalBus.out_npc.emit("bahay"); # Replace with function body.
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

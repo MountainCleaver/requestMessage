@@ -75,3 +75,9 @@ func _on_shadow_stop_body_entered(body: Node2D) -> void:
 	if body.name == "npc_shadowy_chaser":
 		npc_shadowy_chaser.direction = Vector2.ZERO
 		SignalBus.habulan_done.emit();
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

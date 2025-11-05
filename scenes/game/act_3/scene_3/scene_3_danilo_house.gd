@@ -30,3 +30,9 @@ func _on_bed_area_body_exited(body: Node2D) -> void:
 func _on_sat_on_bed()->void:
 	sprite_2d.visible = true
 	bed_area.queue_free()
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

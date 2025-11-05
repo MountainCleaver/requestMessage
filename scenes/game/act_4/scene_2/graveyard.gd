@@ -416,3 +416,9 @@ func enable_grave_exit():
 
 func _on_grave_exit_area_entered(area: Area2D) -> void:
 	pass # Replace with function body.
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

@@ -239,3 +239,9 @@ func wendy_unfollow() -> void:
 	camera_2d.make_current()
 
 	DialogueManager.show_dialogue_balloon(A_1S_2, "table_conversation");
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")

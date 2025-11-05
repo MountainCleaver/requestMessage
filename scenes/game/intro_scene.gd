@@ -119,3 +119,9 @@ func fade_out_label_title() -> void:
 
 func _go_to_next_scene() -> void:
 	SignalBus.next_scene.emit("res://scenes/game/act_1_title_scene.tscn")
+		
+func on_internet_status_changed(has_internet: bool) -> void:
+	if has_internet:
+		pass
+	else:
+		print("No internet here, show warning or disable buttons.")
