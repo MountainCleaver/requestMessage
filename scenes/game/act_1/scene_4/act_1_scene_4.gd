@@ -66,6 +66,9 @@ func _ready() -> void:
 	SignalBus.last_appointment_selected = "appointment_1"
 	SignalBus.emit_signal("appointment_selected", "appointment_1")
 
+	SignalBus.unknown_sender_label_visible = false
+	SignalBus.unknown_sender_unlocked = false
+	
 	if DialogueManager:
 		DialogueManager.connect("dialogue_ended", Callable(self, "_on_dialogue_ended"))
 
