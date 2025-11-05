@@ -19,6 +19,10 @@ func _ready() -> void:
 	hide()
 
 func _input(event: InputEvent) -> void:
+	var network = get_node_or_null("/root/NetworkStatus")
+	if network and network.is_network_blocked:
+		return
+
 	if event.is_action_pressed("escape") and not get_tree().paused:
 		show_pause_screen()
 	elif event.is_action_pressed("escape") and get_tree().paused and not in_overlay:

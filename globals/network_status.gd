@@ -19,6 +19,7 @@ signal internet_status_changed(has_internet: bool)
 var has_internet: bool = false
 var checking: bool = false
 var waiting_for_reconnect: bool = false
+var is_network_blocked: bool = false
 
 func _ready() -> void:
 	# Connect button
@@ -95,7 +96,8 @@ func _on_connection_timeout() -> void:
 	checking = false
 	has_internet = false
 	waiting_for_reconnect = true
-
+	is_network_blocked = true
+	
 	_notify_current_scene()
 	emit_signal("internet_status_changed", has_internet)
 
@@ -129,6 +131,7 @@ func _show_connection_label() -> void:
 
 # === Show Reconnected successfully before fade ===
 func _show_reconnected_label() -> void:
+	is_network_blocked = false 
 	loading_screen.visible = true
 	color_rect.visible = true
 	loading_label.visible = false
