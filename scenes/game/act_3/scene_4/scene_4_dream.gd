@@ -128,6 +128,8 @@ func _on_ghost_flee_body_entered(body: Node2D) -> void:
 func _ghost_flee_1 () ->void:
 	npc_shadowy_ghost.direction = Vector2.UP
 	$"y-sorted/player_danilo/AnimationPlayer".play("appear")
+	ghost_flee.queue_free()
+	
 func _ghot_turn_left () -> void:
 	npc_shadowy_ghost.direction = Vector2.LEFT
 	await get_tree().create_timer(1.0).timeout
