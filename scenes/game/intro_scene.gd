@@ -6,23 +6,9 @@ extends Control
 @onready var sfx_start: AudioStreamPlayer = $SFX_START
 #@onready var bgm_start: AudioStreamPlayer = $BGM_START
 
-var intro_lines = [
-	"Where am I…?",
-	"Dark… everything is dark…",
-	"I can barely breathe.",
-	"I try to move, but my body won’t obey.",
-	"Is it raining?",
-	"I can hear… tapping against the window.",
-	"Am I awake? Or still dreaming?",
-	"Something… flashes in my mind…",
-	"A fleeting figure… was it someone from before?",
-	"A voice… soft… distant… am I hearing my name?",
-	"“Danilo…“",
-	"Oh, I know that voice…",
-	"You are…"
-]
+var intro_lines: Array = []
+var line_index: int = 0
 
-var line_index = 0
 var fade_time = 1.0
 var display_time = 2.0
 
@@ -33,8 +19,33 @@ var motion_seed_lines: float
 var motion_seed_title: float
 var time_acc: float = 0.0
 
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+
+	if lang == "en":
+		path = "res://dialogues/intro_outro/a1s1_intro_en.json"
+	else:
+		path = "res://dialogues/intro_outro/a1s1_intro.json"
+
+	if not FileAccess.file_exists(path):
+		push_error("Dialogue JSON file not found: %s" % path)
+		intro_lines = []
+		line_index = 0
+		return
+
+	var file = FileAccess.open(path, FileAccess.READ)
+	var text = file.get_as_text()
+	file.close()
+
+	intro_lines = JSON.parse_string(text)
+	line_index = 0
+
+	if intro_lines.size() == 0:
+		push_error("Dialogue JSON is empty or failed to parse: %s" % path)
+
+
 func _ready() -> void:
-	#bgm_start.play()
 	label_lines.modulate.a = 0
 	game_title.modulate.a = 0
 
@@ -42,6 +53,8 @@ func _ready() -> void:
 	base_position_title = game_title.position
 	motion_seed_lines = randf() * 10.0
 	motion_seed_title = randf() * 10.0
+
+	_load_dialogue()
 
 	await get_tree().create_timer(3.0).timeout
 	show_next_line()
