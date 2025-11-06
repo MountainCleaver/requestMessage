@@ -4,6 +4,7 @@ extends Control
 @onready var label_lines: Label = $lines
 @onready var game_title: Label = $game_title
 @onready var sfx_start: AudioStreamPlayer = $SFX_START
+@onready var sfx_breathing: AudioStreamPlayer = $SFX_breathing
 #@onready var bgm_start: AudioStreamPlayer = $BGM_START
 
 var intro_lines: Array = []
@@ -58,6 +59,7 @@ func _ready() -> void:
 
 	await get_tree().create_timer(3.0).timeout
 	show_next_line()
+	sfx_breathing.play()
 
 
 func _process(delta: float) -> void:
@@ -91,6 +93,7 @@ func show_next_line() -> void:
 		base_position_title = game_title.position
 		motion_seed_title = randf() * 10.0
 		#bgm_start.stop()
+		sfx_breathing.stop()
 		sfx_start.play()
 		fade_in_label(game_title, true)
 

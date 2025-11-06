@@ -1,13 +1,13 @@
 ~ first_chat_wendy
 do _prevent_chat_exit_while_dialoging()
-do ChatManager.send_chat("wendy", "Wendy", "Dan, you didn’t even inform me you were going home. ")
+do ChatManager.send_chat("wendy", "Wendy", "Dan, you didn’t even inform me you were going home. We were worried, hindi ka sumasagot sa chats ko. Akala ko may nangyari na sayo.")
 Wendy: Dan, you didn’t even inform me you were going home.
 
-do ChatManager.send_chat("wendy", "Wendy", "We were worried, hindi ka sumasagot sa chats ko.") 
-Wendy: [wait=1.5]We were worried, you weren’t answering my messages.
+Wendy: We were worried, you weren’t answering my messages.
+#do ChatManager.send_chat("wendy", "Wendy", "We were worried, hindi ka sumasagot sa chats ko.") 
 
-do ChatManager.send_chat("wendy", "Wendy", "Akala ko may nangyari na sayo.") 
-Wendy: [wait=1.5][shake rate=20 level=10]I thought something happened to you.[/shake]
+#do ChatManager.send_chat("wendy", "Wendy", "Akala ko may nangyari na sayo.") 
+Wendy: [shake rate=20 level=10]I thought something happened to you.[/shake]
 do _prevent_chat_exit_while_dialoging()
 => END
 
