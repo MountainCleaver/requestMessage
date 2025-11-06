@@ -8,7 +8,7 @@ Mang Gino: [shake rate=20 level=10]Araw-araw na lang gulo, wala kang tigil sa pa
 => END
 ~ mateo_mono
 Mateo_child: [color=#808080](Hindi na sila natapos, sigawan ulit.)[/color]
-Mateo_child: [color=#808080](Ayoko na dito.)[/color]
+Mateo_child: [color=#808080](Ayoko na rito.)[/color]
 Mateo_child: [color=#808080](Gusto ko nalang pumunta sa lugar kung saan walang sigawan...)[/color]
 Mateo_child: [color=#808080](Tahimik...)[/color]
 do ObjectiveManager.add_objective(1, "Leave the house")
