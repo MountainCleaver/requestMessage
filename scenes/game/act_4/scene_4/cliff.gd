@@ -33,6 +33,8 @@ func _ready() -> void:
 	print("A4S4: Scene ready")
 	FlashlightManager.set_current_scene("act_4", "scene_4")
 	FlashlightManager.enable_flashlight_by_cash()
+	player_danilo.SPEED = 80.0
+	player_danilo.RUNNING_SPEED = 200.0
 	_game_state_flow()
 	_load_dialogue()
 	_trigger_dizzy_state()
@@ -118,6 +120,8 @@ func _on_phone_trigger_body_entered(body: Node2D) -> void:
 	player_danilo.can_interact = true
 
 func _on_chat_opened(chat_name: String) -> void:
+	player_danilo.SPEED = 80.0
+	player_danilo.RUNNING_SPEED = 100.0
 	if chat_name == "unknown_sender" and not unknown_sender_opened:
 		unknown_sender_opened = true
 		print("Chat opened: unknown sender")
