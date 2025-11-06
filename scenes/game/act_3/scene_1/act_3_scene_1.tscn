@@ -236,7 +236,7 @@ size = Vector2(13, 16)
 size = Vector2(20, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ed84k"]
-size = Vector2(12, 10)
+size = Vector2(13, 27)
 
 [node name="act_3_scene_1" type="Node2D"]
 script = ExtResource("1_pfe4b")
@@ -359,7 +359,7 @@ position = Vector2(-108, 153)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_areas/bahay"]
-position = Vector2(20, 5)
+position = Vector2(20.5, 13.5)
 shape = SubResource("RectangleShape2D_ed84k")
 debug_color = Color(0.8599433, 0.27004254, 0.62508035, 0.41960785)
 
