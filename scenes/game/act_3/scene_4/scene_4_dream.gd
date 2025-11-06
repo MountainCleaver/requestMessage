@@ -43,6 +43,15 @@ func _ready() -> void:
 	bgm_forest.play()
 	sfx_breathing.play()
 	
+func _process(delta: float) -> void:
+	if player_danilo.last_direction == Vector2.RIGHT:
+		if void_appeance_done and not fog_and_void_gone:
+			if in_dialogue:
+				return
+		
+			in_dialogue = true
+			DialogueManager.show_dialogue_balloon(A_3S_4, "facing_void")
+	
 func _load_dialogue() -> void:
 	var lang = Settings.settings.dialogue_language
 	var path: String
@@ -80,7 +89,7 @@ func _on_see_light_body_entered(body: Node2D) -> void:
 func _on_vanish_body_entered(body: Node2D) -> void:
 	if body.name != "player_danilo":
 		return
-
+	vanish.queue_free()
 	fog_and_void_gone = true
 	
 	_remove_dream_elements()
@@ -138,7 +147,7 @@ func _ghot_turn_left () -> void:
 func _remove_dream_elements() -> void:
 	animation_player.play("dream_elements_vanish")
 	await animation_player.animation_finished
-	vanish.queue_free()
+	
 	fog.queue_free()
 	fog_ambience.queue_free()
 	glimmering_light.queue_free()
