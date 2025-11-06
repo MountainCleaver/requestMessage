@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dt3yd4s5nakyt"]
+[gd_scene load_steps=25 format=3 uid="uid://dt3yd4s5nakyt"]
 
 [ext_resource type="Script" uid="uid://b7hmkmiq81axl" path="res://scenes/game/act_1/scene_1/act_1_scene_1.gd" id="1_1hull"]
 [ext_resource type="PackedScene" uid="uid://d3u5m1cllxkbu" path="res://scenes/game/act_1/scene_1/danilo_room.tscn" id="2_wxgv6"]
@@ -210,9 +210,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7vjx"]
 size = Vector2(29, 20)
 
-[sub_resource type="LabelSettings" id="LabelSettings_winef"]
-font_size = 6
-
 [node name="act_scene_1" type="Node2D"]
 script = ExtResource("1_1hull")
 
@@ -321,8 +318,8 @@ offset_right = 98.0
 offset_bottom = 45.375
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 4
 text = "User Arrow keys to move"
-label_settings = SubResource("LabelSettings_winef")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

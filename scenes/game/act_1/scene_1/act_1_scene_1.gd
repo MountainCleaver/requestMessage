@@ -201,7 +201,7 @@ func _set_tutorial_text () -> void:
 	var string_3 : String = "to move."
 	
 	for control in movement_controls:
-		string_2 += control + " ,"
+		string_2 += control + ", "
 	
 	tutorial.text = string_1 + string_2 + string_3
 	
