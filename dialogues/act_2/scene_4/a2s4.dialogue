@@ -14,8 +14,16 @@ do Hud.reset_phone_state("08:32", "AM")
 
 ~ call_voicemail
 do ObjectiveManager.complete_objective(1)
-Wendy: Hindi ko siya matawagan... diretso sa voicemail pumupunta. 
+Wendy: Hindi ko siya matawagan... hindi siya sumasagot.
 Wendy: Try ko tawagan si Tita Mira.
+=> END
+
+~ already_call_danilo
+Wendy: Hindi ko siya matawagan... hindi siya sumasagot.
+=> END
+
+~ call_danilo
+Wendy: ... ...
 => END
 
 ~ call_mira_convo
