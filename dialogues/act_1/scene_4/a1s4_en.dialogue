@@ -24,6 +24,7 @@ Danilo: ... [wait = 0.5]
 ~ open_phone
 do stop_buzz()
 do Hud.reset_phone_state("06:58", "PM")
+do notification_popup()
 => after_open_phone
 
 ~ ignore_phone
@@ -99,6 +100,7 @@ Danilo: Another notification? [wait=0.5]
 ~ open_phone_again
 do stop_buzz()
 do Hud.reset_phone_state("07:13", "PM")
+do notification_popup_2()
 do ObjectiveManager.complete_objective(7)
 => END
 

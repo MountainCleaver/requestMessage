@@ -46,6 +46,9 @@ var lock_screen_instance: Control = null
 var _in_reflection := false
 var in_bahay_area: bool = false
 
+const CHAT_ICON = preload("uid://vdiek8gwmqdx")
+const SCHED_ICON = preload("res://assets/HUD/sched_icon.png")
+
 func _ready() -> void:
 	_game_state_flow()
 	_load_dialogue()
@@ -301,7 +304,30 @@ func _on_phone_locked() -> void:
 
 func show_initial_lock_screen() -> void:
 	_show_lock_screen()
+	
+func add_notification(image: Texture2D, app_name: String, notif_content: String) -> void:
+	Hud.get_node("Control/phone/MarginContainer/lock_screen").add_notification(image, app_name, notif_content)
 
+func notification_popup() -> void:
+	var lock_screen = Hud.get_node("Control/phone/MarginContainer/lock_screen")
+	lock_screen.clear_notifications()
+	
+	add_notification(SCHED_ICON, "Schedule", "You have an appointment schedule tomorrow")
+	await get_tree().create_timer(1.0).timeout
+	add_notification(CHAT_ICON, "Chat", "1 message from Wendy")
+	await get_tree().create_timer(1.0).timeout
+	add_notification(CHAT_ICON, "Chat", "1 message from Mira")
+	await get_tree().create_timer(1.0).timeout
+	add_notification(CHAT_ICON, "Chat", "8 messages from Group Chat")
+	await get_tree().create_timer(1.0).timeout
+	
+func notification_popup_2() -> void:
+	var lock_screen = Hud.get_node("Control/phone/MarginContainer/lock_screen")
+	lock_screen.clear_notifications()
+	if has_gone_home and SignalBus.unknown_sender_unlocked:
+		add_notification(CHAT_ICON, "Chat", "1 message from ???")
+
+	
 # ===================
 # ROOM SWITCH
 # ===================
@@ -316,6 +342,8 @@ func _switch_to_danilo_room() -> void:
 	ObjectiveManager.complete_objective(scene_objectives[5]["ID"])
 	ObjectiveManager.add_objective(scene_objectives[6]["ID"], scene_objectives[6]["text"])
 	DialogueManager.show_dialogue_balloon(A_1S_4, "after_home")
+	
+	Hud.get_node("Control/phone/MarginContainer/lock_screen").clear_notifications()
 	SignalBus.unknown_sender_label_visible = true
 	SignalBus.unknown_sender_unlocked = true
 	has_gone_home = true
@@ -345,6 +373,7 @@ func _input(event: InputEvent) -> void:
 # SCENE COMPLETE
 # ===================
 func scene_4_done() -> void:
+	Hud.get_node("Control/phone/MarginContainer/lock_screen").clear_notifications()
 	Hud.hide_objectives()
 	Hud.clear_objectives()
 	SaveManager.game_save.current_act = "act_1"
