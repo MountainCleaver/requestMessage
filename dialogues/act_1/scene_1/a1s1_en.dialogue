@@ -4,6 +4,7 @@ Danilo: ...
 Danilo: Oh, it's raining... after all.
 Danilo: It feels... heavier than it should.  
 do Hud.show_objectives()
+do tutorial.show()
 #do Player.looked_window = true
 => END
 
@@ -40,7 +41,7 @@ do activate_bed()
 ~ water
 Danilo: Maybe water... might help... maybe not...  
 do drink_water_anim()
-do ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
+#do ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
 #do Player.drank_water = true
 do get_tree().create_timer(2).timeout
 do Hud.phone_intro()
