@@ -237,11 +237,11 @@ func _on_metal_pressed() -> void:
 
 
 func _on_confirmation_dialog_confirmed() -> void:
-	confirmation_dialog.visible = false;
-
+	get_tree().quit();
+	
 
 func _on_confirmation_dialog_canceled() -> void:
-	get_tree().quit();
+	confirmation_dialog.visible = false;
 
 
 func _on_button_pressed() -> void:
