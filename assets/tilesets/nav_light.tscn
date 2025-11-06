@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq8foq8gsnua0"]
+
+[sub_resource type="Gradient" id="Gradient_oesbw"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l0yl3"]
+gradient = SubResource("Gradient_oesbw")
+width = 1
+height = 1
+fill = 1
+fill_from = Vector2(0.51552796, 0.4689441)
+fill_to = Vector2(0.50931674, 0.5)
+
+[node name="navigation_glow" type="PointLight2D"]
+position = Vector2(2, 0)
+energy = 5.72
+texture = SubResource("GradientTexture2D_l0yl3")
+texture_scale = 1.5

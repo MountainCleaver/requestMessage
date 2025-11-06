@@ -20,6 +20,14 @@ var A_3S_1: Resource
 
 @onready var sfx_bus: AudioStreamPlayer = $SFX_BUS
 @onready var sfx_wind: AudioStreamPlayer = $SFX_WIND
+@onready var navigation_home: Marker2D = $navigation_home
+@onready var navigation_lights: Node2D = $navigation_lights
+
+var lights: Array = []  
+var show_navigation := false
+var max_lights := 100
+var base_distance := 200.0
+var light_scene := preload("res://assets/tilesets/nav_light.tscn") 
 
 var intro_anim_done : bool = false;
 var lola_ising_reavealed : bool = false;
@@ -63,7 +71,9 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 func _process(_delta: float) -> void:
 	if intro_anim_done:
 		camera_2d.position = player_danilo.global_position;
-	
+
+	if show_navigation:
+		_update_navigation_trail()
 	#if Hud.popup_showing:
 		#player_danilo.force_cannot_move = true;
 	#else:
@@ -86,7 +96,9 @@ func _ising_warning_talk() -> void:
 	player_danilo.last_direction = Vector2.UP;
 	DialogueManager.show_dialogue_balloon(A_3S_1, "lola_warning")
 	player_danilo.force_cannot_move = false;
-
+	await DialogueManager.dialogue_ended
+	show_navigation = true
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		if player_danilo.current_npc == "karatula":
@@ -166,3 +178,31 @@ func on_internet_status_changed(has_internet: bool) -> void:
 		pass
 	else:
 		print("No internet here, show warning or disable buttons.")
+
+func _update_navigation_trail() -> void:
+	var player_pos = player_danilo.global_position
+	var target_pos = navigation_home.global_position
+	var distance = player_pos.distance_to(target_pos)
+
+	var desired_num = clamp(int(distance / base_distance), 20, max_lights)
+
+	while lights.size() < desired_num:
+		var l = light_scene.instantiate()
+		navigation_lights.add_child(l)
+		lights.append(l)
+
+	while lights.size() > desired_num:
+		lights.pop_back().queue_free()
+
+	for i in range(lights.size()):
+		var t = float(i + 1) / (lights.size() + 1)
+		var pos = player_pos.lerp(target_pos, t)
+		var l = lights[i]
+		l.global_position = pos
+
+		if l is PointLight2D:
+			l.energy = lerp(2.0, 0.8, t)
+			l.energy += sin(Time.get_ticks_msec() / 300.0 + i) * 0.1
+		else:
+			l.modulate.a = lerp(1.0, 0.3, t)
+			l.scale = Vector2.ONE * lerp(1.0, 0.6, t)
