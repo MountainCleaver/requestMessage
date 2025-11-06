@@ -33,6 +33,10 @@ Danilo: Alright.
 Danilo: I’ll go buy my medication now.
 => END
 
+~ go_home
+Danilo: I need to go home now.
+=> END
+
 ~ tricycle_start
 Danilo: ...
 - Go to Town 

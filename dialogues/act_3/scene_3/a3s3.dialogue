@@ -38,6 +38,10 @@ Danilo: Okay.
 Danilo: Bibili na'ko ng gamot.
 => END
 
+~ go_home
+Danilo: Kailangan ko ng umuwi.
+=> END
+
 ~ tricycle_start
 Danilo: ...
 - Go to Bayan 

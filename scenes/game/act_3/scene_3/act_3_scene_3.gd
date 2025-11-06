@@ -105,7 +105,7 @@ signal objective_one_done
 
 var done_objective_one : bool = false
 var done_objective_three: bool = false
-
+var disable_nav_for_next_switch: bool = false
 enum player_where {INSIDE, OUTSIDE}
 
 var scene_objectives : Array[Dictionary] = [
@@ -227,6 +227,7 @@ func _input(event: InputEvent) -> void:
 				DialogueManager.show_dialogue_balloon(A_3S_3, "not_yet_bought_meds")
 			else:
 				#ObjectiveManager.complete_objective(scene_objectives[4]["ID"])
+				_clear_navigation_trail()
 				_switch_location(
 					SCENE_3_DANILO_HOMETOWN,
 					maps["hometown"]["name"],
@@ -243,6 +244,7 @@ func _input(event: InputEvent) -> void:
 					maps["drugstore"]["spawn_points"]["door"]
 				)
 			else:
+				_clear_navigation_trail()
 				DialogueManager.show_dialogue_balloon(A_3S_3, "alreay_bought_meds")
 
 		"karatula":
@@ -255,12 +257,64 @@ func _input(event: InputEvent) -> void:
 			if not bought_meds:
 				SignalBus.out_npc.emit("drugstore_door_inside")
 				DialogueManager.show_dialogue_balloon(A_3S_3, "not_yet_bought_meds")
+				_clear_navigation_trail()
 			else:
+				disable_nav_for_next_switch = true
 				_switch_location(
 					SCENE_3_TOWN_CENTER,
 					maps["town_center"]["name"],
 					maps["town_center"]["spawn_points"]["drug_store"]
 				)
+				
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				show_navigation = false
+				_clear_navigation_trail()
+				DialogueManager.show_dialogue_balloon(A_3S_3, "go_home")
 				await SignalBus.on_transition_finished
 				Hud.clear_objectives()
 				ObjectiveManager.add_objective(scene_objectives[4]["ID"], scene_objectives[4]["text"])
@@ -268,6 +322,7 @@ func _input(event: InputEvent) -> void:
 		"pharmacist":
 			can_interact = false
 			SignalBus.out_npc.emit("pharmacist")
+			_clear_navigation_trail()
 			if not bought_meds:
 				DialogueManager.show_dialogue_balloon(A_3S_3, "drugstore_clerk")
 				#ObjectiveManager.complete_objective(scene_objectives[3]["ID"])
@@ -317,6 +372,7 @@ func _game_state_flow() -> void:
 	GameState.save_game()
 
 func _switch_location(scene: PackedScene,map_name: String, spawn_point: String) -> void:
+	_clear_navigation_trail()
 	if first_switch:
 		first_switch = false
 	else:
@@ -348,7 +404,11 @@ func _switch_location(scene: PackedScene,map_name: String, spawn_point: String) 
 		player_danilo.SPEED = 80.0
 		player_danilo.RUNNING_SPEED = 200.0
 	# ========================================
-
+	if map_name == maps["drugstore"]["name"]:
+		show_navigation = false
+		_clear_navigation_trail()
+		
+		
 	# Get y-sorted node
 	var y_sorted_node
 	if map_name == "danilo_hometown":
@@ -518,9 +578,11 @@ func _set_camera(map_name: String) -> void:
 		navigation_lights = current_location.get_node_or_null("navigation_lights")
 		if navigation_lights:
 			navigation_home = navigation_lights.get_node_or_null("navigation_home")
-			if navigation_home:
+			if navigation_home and not disable_nav_for_next_switch:
 				lights.clear()
 				show_navigation = true
+		disable_nav_for_next_switch = false
+
 				
 		if camera_2d.get_parent() != player_danilo:
 			camera_2d.get_parent().remove_child(camera_2d)
@@ -648,7 +710,7 @@ func _play_look_around_sequence() -> void:
 func _process(delta: float) -> void:
 	if show_navigation and player_danilo and navigation_home:
 		_update_navigation_trail()
-		
+	
 func _update_navigation_trail() -> void:
 	var player_pos = player_danilo.global_position
 	var target_pos = navigation_home.global_position
@@ -679,7 +741,14 @@ func _update_navigation_trail() -> void:
 		else:
 			l.modulate.a = lerp(1.0, 0.3, t)
 			l.scale = Vector2.ONE * lerp(1.0, 0.6, t)
-			
+
+func _clear_navigation_trail() -> void:
+	show_navigation = false
+	if navigation_lights and navigation_lights.is_inside_tree():
+		for l in navigation_lights.get_children():
+			l.queue_free()
+	lights.clear()
+	
 func _act_3_scene_3_done() -> void:
 	if Hud.phone_showing:
 		Hud.phone_outro()
