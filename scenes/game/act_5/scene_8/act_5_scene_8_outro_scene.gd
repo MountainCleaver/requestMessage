@@ -17,33 +17,6 @@ var motion_seed_lines: float
 var time_acc: float = 0.0
 
 # ================================
-# OUTRO LINES (Fallback if JSON fails)
-# ================================
-var outro_lines_relief = [
-	"My vision’s fading…",
-	"I can still feel the wind against my skin.",
-	"I did it… I finally found him.",
-	"Mateo’s smile… it felt so peaceful.",
-	"Maybe… this time… he’s really at rest.",
-	"My body’s weak… but my heart feels light.",
-	"I can’t tell if I’m still dreaming or if this is goodbye…",
-	"Mateo… you’re finally at rest.",
-    "I think… I can rest too."
-]
-
-var outro_lines_restless = [
-	"[shake rate=10 level=10]My vision’s fading…[/shake]",
-	"[shake rate=10 level=12]I tried… I really tried to reach you…[/shake]",
-	"[shake rate=10 level=14]Everything’s spinning… I can’t breathe…[/shake]",
-	"[shake rate=10 level=15]Mateo… please… don’t go…[/shake]",
-	"[shake rate=10 level=10]The voices… they won’t stop…[/shake]",
-	"[shake rate=10 level=18]It’s dark… so dark…[/shake]",
-	"[shake rate=10 level=12]I’m sorry… I couldn’t save you…[/shake]",
-	"[shake rate=10 level=14]My strength… it’s fading…[/shake]",
-    "[shake rate=10 level=18][color=#ff3333]I can’t feel anything anymore…[/color][/shake]"
-]
-
-# ================================
 # Load outro dialogue from JSON
 # ================================
 func _load_dialogue() -> void:
@@ -97,9 +70,16 @@ func _ready() -> void:
 	base_position_lines = label_lines.position
 	motion_seed_lines = randf() * 10.0
 
-	if is_good_ending:
+	# ===============================
+	# CHOOSE OUTRO BASED ON KARMA
+	# ===============================
+	if total_karma > 0:
+		is_good_ending = true
+		print("🎵 Good ending: Finally at Rest")
 		_play_bgm_good()
 	else:
+		is_good_ending = false
+		print("🎵 Bad ending: Unending Guilt")
 		_play_bgm_bad()
 
 	await get_tree().create_timer(2.5).timeout
@@ -169,5 +149,7 @@ func _act_5_scene_8_done() -> void:
 
 
 func on_internet_status_changed(has_internet: bool) -> void:
-	if not has_internet:
+	if has_internet:
+		pass
+	else:
 		print("No internet here, show warning or disable buttons.")

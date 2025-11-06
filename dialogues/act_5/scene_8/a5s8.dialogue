@@ -17,14 +17,14 @@ Danilo: ... ...
 Mateo: Hindi ka ba masayang makita ako?
 Danilo: Hindi ako makapaniwalang nakakausap pa kita.
 Mateo: ...
-Danilo: Pinag antay kita nang matagal-tagal, at ngayon [wave]nahanap na kita[/wave]
+Danilo: Pinag-antay kita nang matagal-tagal, at ngayon [wave]nahanap na kita.[/wave]
 do mateo_turn("relief")
 => END
 
 ~ relief_mateo_turned
 # Mateo, tumalikod
-Mateo: ... [wave]halika[/wave]
-Danilo: San tayo pupunta? Hintayin moko.
+Mateo: ... [wave]Halika.[/wave]
+Danilo: Sa'n tayo pupunta? Hintayin mo 'ko.
 # Mateo walks
 do mateo_walk_down("relief")
 => END
