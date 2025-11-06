@@ -17,13 +17,12 @@ func _ready() -> void:
 	menu_loading_screen.hide()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action("escape"):
-		if not exit_is_showing:
-			exit_confirmation_dialog.show()
-			exit_is_showing = true
-		else:
-			exit_confirmation_dialog.hide()
-			exit_is_showing = false
+	if event.is_action_pressed("escape"):
+		_exit_login();
+
+func _exit_login() -> void:
+	SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn")
+
 
 func _on_btn_send_pressed() -> void:
 	var email = line_edit_email.text.strip_edges()
