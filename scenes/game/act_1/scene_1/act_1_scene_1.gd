@@ -15,6 +15,7 @@ var A_1S_1: Resource;
 @onready var tension_animation: AnimationPlayer = $tension_animation
 @onready var bed_area: Area2D = $bed_area
 @onready var sleep_marker: Marker2D = $sleep_marker
+@onready var tutorial: Label = $tutorial
 
 # OBJECTIVES
 var scene_objectives = [
@@ -39,6 +40,8 @@ func _ready() -> void:
 	_load_dialogue()
 	DialogueManager.dialogue_started.connect(_on_dialogue_start);
 	DialogueManager.dialogue_ended.connect(_on_dialogue_finish);
+	tutorial.hide()
+	_set_tutorial_text()
 	
 	camera_animation.play("intro_pan");
 	_intro_anim();
@@ -87,8 +90,13 @@ func _intro_anim() -> void:
 	
 	DialogueManager.show_dialogue_balloon(A_1S_1, "start");
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"]);
+	
+	
 
 func drink_water_anim() -> void:
+	var tween = create_tween()
+	tween.tween_property(tutorial, "modulate:a", 0.0, 2.0)
+	
 	player_danilo.animation_locked = true;
 	player_danilo.can_move = false;
 	water_glass.visible = false;
@@ -179,3 +187,36 @@ func on_internet_status_changed(has_internet: bool) -> void:
 		pass
 	else:
 		print("No internet here, show warning or disable buttons.")
+
+
+func _set_tutorial_text () -> void:
+	var movement_controls : Array[String] = []
+	movement_controls.append(_get_key("arrow_up")) 
+	movement_controls.append(_get_key("arrow_left")) 
+	movement_controls.append(_get_key("arrow_down")) 
+	movement_controls.append(_get_key("arrow_right")) 
+	
+	var string_1 : String = "Use "
+	var string_2 : String = ""
+	var string_3 : String = "to move."
+	
+	for control in movement_controls:
+		string_2 += control + " ,"
+	
+	tutorial.text = string_1 + string_2 + string_3
+	
+
+func _get_key(action: String) -> String:
+	var events = InputMap.action_get_events(action)
+	if events.is_empty():
+		return ""
+
+	for event in events:
+		if event is InputEventKey:
+			
+			if OS.get_keycode_string(event.physical_keycode) == "Down" || OS.get_keycode_string(event.physical_keycode) == "down" || OS.get_keycode_string(event.physical_keycode) == "Up" || OS.get_keycode_string(event.physical_keycode) == "up" || OS.get_keycode_string(event.physical_keycode) == "Left" || OS.get_keycode_string(event.physical_keycode) == "left" || OS.get_keycode_string(event.physical_keycode) == "Right" || OS.get_keycode_string(event.physical_keycode) == "right":
+				return "%s" % OS.get_keycode_string(event.physical_keycode)
+			else:
+				return " %s " % OS.get_keycode_string(event.physical_keycode)
+			
+	return ""
