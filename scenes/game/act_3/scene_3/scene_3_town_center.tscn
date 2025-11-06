@@ -57,6 +57,12 @@ debug_color = Color(0, 0.63105893, 0.46943766, 0.41960785)
 color = Color(1, 1, 0.8862745, 1)
 energy = 0.4
 
+[node name="navigation_lights" type="Node2D" parent="."]
+position = Vector2(423, 214)
+
+[node name="navigation_home" type="Marker2D" parent="navigation_lights"]
+position = Vector2(2, -2)
+
 [connection signal="body_entered" from="hometown_town_center/y-sorted/tricycle/tricycle_area" to="." method="_on_tricycle_area_body_entered"]
 [connection signal="body_exited" from="hometown_town_center/y-sorted/tricycle/tricycle_area" to="." method="_on_tricycle_area_body_exited"]
 [connection signal="body_entered" from="hometown_town_center/y-sorted/areas/drugstore_door" to="." method="_on_drugstore_door_body_entered"]

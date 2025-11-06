@@ -12,6 +12,7 @@ fill_from = Vector2(0.51552796, 0.4689441)
 fill_to = Vector2(0.50931674, 0.5)
 
 [node name="navigation_glow" type="PointLight2D"]
+z_index = 10
 position = Vector2(2, 0)
 energy = 5.72
 texture = SubResource("GradientTexture2D_l0yl3")
