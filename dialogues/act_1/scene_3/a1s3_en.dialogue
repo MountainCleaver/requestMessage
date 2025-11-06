@@ -49,7 +49,7 @@ Danilo: You too, Wen. Thanks.
 do re_enable_collisions()
 do wendy_walk_away()
 do Hud.show_objectives()
-do ObjectiveManager.add_objective(1, "Get home")
+do ObjectiveManager.add_objective(1, "Go back home")
 => END
 
 ~ jeep
