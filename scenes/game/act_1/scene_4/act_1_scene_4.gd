@@ -132,8 +132,14 @@ func _on_dialogue_ended(resource = null) -> void:
 		var choice = SaveManager.get_moral_choice("act_1_scene_3")
 		if choice == "relief":
 			DialogueManager.show_dialogue_balloon(A_1S_4, "option_relief")
+			player_danilo.animation_locked = true
+			player_danilo.can_move = false
+			player_danilo.force_cannot_move = true
 		elif choice == "restless":
 			DialogueManager.show_dialogue_balloon(A_1S_4, "option_restless")
+			player_danilo.animation_locked = true
+			player_danilo.can_move = false
+			player_danilo.force_cannot_move = true
 		else:
 			DialogueManager.show_dialogue_balloon(A_1S_4, "option_restless")
 
@@ -271,6 +277,9 @@ func _on_last_objective_lock_pressed() -> void:
 		Hud.phone_outro()
 		Hud.clear_objectives()
 		ObjectiveManager.add_objective(scene_objectives[5]["ID"], scene_objectives[5]["text"])
+		player_danilo.animation_locked = false
+		player_danilo.can_move = true
+		player_danilo.force_cannot_move = false
 
 # ===================
 # LOCK SCREEN
