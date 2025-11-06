@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://di37kargq3x1t"]
+[gd_scene load_steps=52 format=4 uid="uid://di37kargq3x1t"]
 
 [ext_resource type="Script" uid="uid://dusqln0xf3b37" path="res://scenes/game/act_4/scene_2/small_hut.gd" id="1_gu5j6"]
 [ext_resource type="Texture2D" uid="uid://b0tn0w1inmrqo" path="res://assets/tilesets/ACT4_S2_HUT _INTERIOR_ground.png" id="1_mc4yw"]
@@ -2792,6 +2792,9 @@ size = Vector2(20, 39)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pqmn"]
 size = Vector2(33.5, 22)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0osk"]
+size = Vector2(20, 72.5)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nkki5"]
 shader = ExtResource("20_hqtvc")
 shader_parameter/shake_power = 0.03
@@ -3015,6 +3018,16 @@ debug_color = Color(0.39215687, 0.49803922, 0.9254902, 0.41960785)
 position = Vector2(-6.75, 100)
 shape = SubResource("RectangleShape2D_5pqmn")
 debug_color = Color(0.26734608, 0.52466196, 0.92949784, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Interactable/phone_trigger"]
+position = Vector2(-46, 115.25)
+shape = SubResource("RectangleShape2D_u0osk")
+debug_color = Color(0.26666668, 0.5254902, 0.92941177, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Interactable/phone_trigger"]
+position = Vector2(37, 116)
+shape = SubResource("RectangleShape2D_u0osk")
+debug_color = Color(0.26666668, 0.5254902, 0.92941177, 0.41960785)
 
 [node name="House_entered" type="Marker2D" parent="."]
 position = Vector2(-7, 145)

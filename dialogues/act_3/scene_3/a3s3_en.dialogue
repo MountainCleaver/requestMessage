@@ -91,7 +91,7 @@ do can_interact = true
 => END
 
 ~ paranoia
-Danilo: [center]Why... do I feel like someone’s following me? Just ignore it, Danilo. Just keep moving.[/center]
+Danilo: [color=#808080]Why... do I feel like someone’s following me? Just ignore it, Danilo. Just keep moving.[/color]
 - Walk faster
 	do player_danilo.SPEED = 150
 	do player_danilo.RUNNING_SPEED = 200

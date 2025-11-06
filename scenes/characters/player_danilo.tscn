@@ -1464,7 +1464,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s6ep8")
 }],
-"loop": true,
+"loop": false,
 "name": &"sleeping_hometown",
 "speed": 5.0
 }, {

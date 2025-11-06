@@ -46,7 +46,6 @@ Wendy: Danilo, have you heard that?
 do ChatManager.send_chat("wendy", "Wendy", "Ang lakas ng kulog dito.")
 Wendy: [wait=1.5]Ang lakas ng kulog dito.
 - Diyan rin pala sa city. => reply_danilo_1
-- Akala ko dito lang sa province. => reply_danilo_1
 => END
 
 ~ reply_danilo_1
@@ -77,7 +76,7 @@ do can_interact = true
 ~ gino_knock
 do ObjectiveManager.update_progress(1, 1)
 Danilo: [center][color=#808080]*(knock knock knock)*[/color][/center]
-Danilo: [color=#808080](Wala yatang tao...)[/color]
+Danilo: [color=#808080]Wala yatang tao...[/color]
 do gino_knocked = true
 do can_interact = true
 do _check_objectives()
@@ -85,7 +84,7 @@ do SignalBus.asked_a_neighbor.emit()
 => END
 
 ~ gino_knock_again
-Danilo: [color=#808080](Walang tao dito.)[/color]
+Danilo: [color=#808080]Walang tao dito.[/color]
 do can_interact = true
 => END
 
@@ -136,13 +135,13 @@ do can_interact = true
 
 ~ jonathan_knock
 Danilo: [center][color=#808080]*(knock knock knock)*[/color][/center]
-Danilo: [center]Wala yatang tao...)[/color]
+Danilo: [color=#808080]Wala yatang tao...[/color]
 do jonthan_knocked = true
 do can_interact = true
 => END
 
 ~ jonathan_knock_again
-Danilo: [color=#808080](Wala yatang tao dito...)[/color]
+Danilo: [color=#808080]Wala yatang tao dito...[/color]
 do can_interact = true
 => END
 

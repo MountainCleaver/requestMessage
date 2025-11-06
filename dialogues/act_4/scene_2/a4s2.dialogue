@@ -32,7 +32,7 @@ do Hud.show_objectives()
 ~ smallhut_lock
 do ObjectiveManager.complete_objective(2)
 Danilo: Naka-lock? ...Hindi naman to kinakandado noon.
-Danilo: Nasaan kaya susi nito?[/center]
+Danilo: Nasaan kaya susi nito?
 do ObjectiveManager.add_objective(3, "Look around to get clues")
 => END
 
