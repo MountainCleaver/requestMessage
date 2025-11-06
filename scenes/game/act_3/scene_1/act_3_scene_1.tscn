@@ -379,11 +379,11 @@ stream = ExtResource("11_3xr38")
 volume_db = 1.019
 bus = &"sfx"
 
-[node name="navigation_home" type="Marker2D" parent="."]
-position = Vector2(-87, 156)
-
 [node name="navigation_lights" type="Node2D" parent="."]
 position = Vector2(-89, 158)
+
+[node name="navigation_home" type="Marker2D" parent="navigation_lights"]
+position = Vector2(2, -2)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="ising_detectors/ising_detector" to="." method="_on_ising_detector_body_entered"]
