@@ -8,6 +8,7 @@ func _ready() -> void:
 	load_settings()
 	apply_display_settings()
 	apply_keybind_settings()
+	#dito dapat ina apply yung audio settings
 	
 func load_settings() -> void:
 	if FileAccess.file_exists(SAVE_PATH):
