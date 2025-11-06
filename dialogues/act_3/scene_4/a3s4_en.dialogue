@@ -46,7 +46,6 @@ Wendy: Danilo, have you heard that?
 do ChatManager.send_chat("wendy", "Wendy", "Ang lakas ng kulog dito.")
 Wendy: [wait=1.5]The thunder is so loud here.
 - In the city too? => reply_danilo_1
-- I thought it was just here... => reply_danilo_1
 => END
 
 ~ reply_danilo_1
@@ -77,7 +76,7 @@ do can_interact = true
 ~ gino_knock
 do ObjectiveManager.update_progress(1, 1)
 Danilo: [center][color=#808080]*(knock knock knock)*[/color][/center]
-Danilo: [color=#808080](Doesn’t seem like anyone’s home...)[/color]
+Danilo: [color=#808080]Doesn’t seem like anyone’s home...[/color]
 do gino_knocked = true
 do can_interact = true
 do _check_objectives()
@@ -85,7 +84,7 @@ do SignalBus.asked_a_neighbor.emit()
 => END
 
 ~ gino_knock_again
-Danilo: [color=#808080](No one seems to be here...)[/color]
+Danilo: [color=#808080]No one seems to be here...[/color]
 do can_interact = true
 => END
 
@@ -135,13 +134,13 @@ do can_interact = true
 
 ~ jonathan_knock
 Danilo: [center][color=#808080]*(knock knock knock)*[/color][/center]
-Danilo: [color=#808080](Doesn’t seem like anyone’s home...)[/color]
+Danilo: [color=#808080]Doesn’t seem like anyone’s home...[/color]
 do jonthan_knocked = true
 do can_interact = true
 => END
 
 ~ jonathan_knock_again
-Danilo: [color=#808080](No one seems to be here...)[/color]
+Danilo: [color=#808080]No one seems to be here...[/color]
 do can_interact = true
 => END
 

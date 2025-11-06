@@ -55,7 +55,7 @@ Danilo: ...
 do ObjectiveManager.complete_objective(3)
 do ChatManager.send_chat("group_chat", "Player", "Good morning, TL.")
 Danilo: Good morning, TL.
-- Gagamitin ko yung 3 kong unplanned leave.
+- Gagamitin ko yung 3 kong planned leave.
 => reply_danilo_5
 
 ~ reply_danilo_5

@@ -76,7 +76,7 @@ do can_interact = true
 => END
 
 ~ not_yet_bought_meds
-Danilo: [center]Kailangan ko pang bumili ng gamot.[/center]
+Danilo: [color=#808080]Kailangan ko pang bumili ng gamot.[/color]
 do can_interact = true
 => END
 
@@ -91,7 +91,7 @@ do can_interact = true
 => END
 
 ~ paranoia
-Danilo: [center]Bakit parang... may nakasunod? Huwag mo lang pansinin, Danilo. Bilisan mo na lang.[/color]
+Danilo: [color=#808080]Bakit parang... may nakasunod? Huwag mo lang pansinin, Danilo. Bilisan mo na lang.[/color]
 - Walk faster
 	do player_danilo.SPEED = 150
 	do player_danilo.RUNNING_SPEED = 200

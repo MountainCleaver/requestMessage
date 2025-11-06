@@ -166,7 +166,6 @@ func _on_wind_area_body_exited(body: Node2D) -> void:
 		exited_lee_done = true
 		await get_tree().process_frame
 		ObjectiveManager.complete_objective(2)
-		DialogueManager.show_dialogue_balloon(A_4S_4, "exited_lee")
 		ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
 
 # PORTAL =============================================
