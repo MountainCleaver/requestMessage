@@ -77,7 +77,7 @@ do can_interact = true
 ~ gino_knock
 do ObjectiveManager.update_progress(1, 1)
 Danilo: [center][color=#808080]*(knock knock knock)*[/color][/center]
-Danilo: [center]Wala yatang tao...[/center]
+Danilo: [color=#808080](Wala yatang tao...)[/color]
 do gino_knocked = true
 do can_interact = true
 do _check_objectives()
@@ -85,7 +85,7 @@ do SignalBus.asked_a_neighbor.emit()
 => END
 
 ~ gino_knock_again
-Danilo: [center]Walang tao dito.[/center]
+Danilo: [color=#808080](Walang tao dito.)[/color]
 do can_interact = true
 => END
 
@@ -136,13 +136,13 @@ do can_interact = true
 
 ~ jonathan_knock
 Danilo: [center][color=#808080]*(knock knock knock)*[/color][/center]
-Danilo: [center]Wala yatang tao...[/center]
+Danilo: [center]Wala yatang tao...)[/color]
 do jonthan_knocked = true
 do can_interact = true
 => END
 
 ~ jonathan_knock_again
-Danilo: [center]Wala yatang tao dito...[/center]
+Danilo: [color=#808080](Wala yatang tao dito...)[/color]
 do can_interact = true
 => END
 

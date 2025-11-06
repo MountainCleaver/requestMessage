@@ -54,7 +54,6 @@ do Hud.show_objectives()
 ~ choices_danilo_1
 Danilo: ...
 - Wen, was it you texting me? => reply_danilo_5
-- Are you pranking me or what? => reply_danilo_5
 => END
 
 ~ reply_danilo_5
@@ -162,8 +161,6 @@ Unknown_sender: [wait=1.5]You were there. You saw everything that happened. You 
 
 ~ reply_danilo_10
 - Was it my fault?
-- Are you really Mateo?
-- Or are you just doing this to mess with me?
 => reply_danilo_11
 
 ~ reply_danilo_11

@@ -60,7 +60,7 @@ Danilo: Good morning, TL.
 
 ~ reply_danilo_5
 do ChatManager.send_chat("group_chat", "Player", "Gagamitin ko yung 3 kong unplanned leave.")
-Danilo: Gagamitin ko yung 3 kong unplanned leave.
+Danilo: Gagamitin ko yung 3 kong planned leave.
 - Uuwi lang muna ako sa probinsya.
 => reply_danilo_6
 

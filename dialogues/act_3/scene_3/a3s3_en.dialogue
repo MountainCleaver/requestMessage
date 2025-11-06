@@ -56,7 +56,7 @@ Pharmacist: Sorry, there's only three left.
 => END
 
 ~ drugstore_clerk_2
-Danilo: [center]Not enough... but I guess it’ll do.[/center]
+Danilo: [color=#808080](Not enough... but I guess it’ll do.[/color]
 Danilo: Alright, I’ll take everything then.
 Pharmacist: Here you go, sir. Thank you.
 Danilo: Thanks.
@@ -72,7 +72,7 @@ do can_interact = true
 => END
 
 ~ not_yet_bought_meds
-Danilo: [center]I still need to get my medication.[/center]
+Danilo: [color=#808080](I still need to get my medication.[/color]
 do can_interact = true
 => END
 

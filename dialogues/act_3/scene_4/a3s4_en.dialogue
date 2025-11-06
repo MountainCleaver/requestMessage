@@ -77,7 +77,7 @@ do can_interact = true
 ~ gino_knock
 do ObjectiveManager.update_progress(1, 1)
 Danilo: [center][color=#808080]*(knock knock knock)*[/color][/center]
-Danilo: [center]Doesn’t seem like anyone’s home...[/center]
+Danilo: [color=#808080](Doesn’t seem like anyone’s home...)[/color]
 do gino_knocked = true
 do can_interact = true
 do _check_objectives()
@@ -85,7 +85,7 @@ do SignalBus.asked_a_neighbor.emit()
 => END
 
 ~ gino_knock_again
-Danilo: [center]No one here.[/center]
+Danilo: [color=#808080](No one seems to be here...)[/color]
 do can_interact = true
 => END
 
@@ -135,13 +135,13 @@ do can_interact = true
 
 ~ jonathan_knock
 Danilo: [center][color=#808080]*(knock knock knock)*[/color][/center]
-Danilo: [center]Doesn’t seem like anyone’s home...[/center]
+Danilo: [color=#808080](Doesn’t seem like anyone’s home...)[/color]
 do jonthan_knocked = true
 do can_interact = true
 => END
 
 ~ jonathan_knock_again
-Danilo: [center]No one seems to be here...[/center]
+Danilo: [color=#808080](No one seems to be here...)[/color]
 do can_interact = true
 => END
 
