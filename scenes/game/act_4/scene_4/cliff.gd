@@ -12,8 +12,9 @@ var A_4S_4: Resource
 var dizzy_timer: Timer
 
 var scene_objectives = [
-	{"ID": 2, "text": "Find the last paper under the rocks"},
-	{"ID": 3, "text": "Leave the cliff"}
+	{"ID": 2, "text": "Reach the edge of the cliff"},
+	{"ID": 3, "text": "Push the small rocks to find the paper"},
+	{"ID": 4, "text": "Leave the cliff"}
 ]
 
 # State flags
@@ -53,9 +54,6 @@ func _game_state_flow() -> void:
 	GameState.current_scene = "scene_4"
 	GameState.overwrite_current_scene_keep_previous()
 	GameState.save_game()
-
-	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
-	print("Scene objectives initialized")
 
 func _load_dialogue() -> void:
 	var lang = Settings.settings.dialogue_language
@@ -125,6 +123,8 @@ func _on_chat_opened(chat_name: String) -> void:
 		print("Chat opened: unknown sender")
 		await get_tree().process_frame
 		DialogueManager.show_dialogue_balloon(A_4S_4, "unknown_message")
+		await DialogueManager.dialogue_ended
+		ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 
 # NOTE ==============================================
 
@@ -149,7 +149,7 @@ func _process(_delta):
 		print("Note collected! Showing dialogue...")
 		await get_tree().process_frame
 		DialogueManager.show_dialogue_balloon(A_4S_4, "after_found_paper")
-		ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
+		ObjectiveManager.add_objective(scene_objectives[2]["ID"], scene_objectives[2]["text"])
 		note_collected = true
 		on_note_collected()
 		diary_note.queue_free()
@@ -161,7 +161,9 @@ func _on_wind_area_body_exited(body: Node2D) -> void:
 		print("Player exited wind area — showing exited_lee dialogue")
 		exited_lee_done = true
 		await get_tree().process_frame
+		ObjectiveManager.complete_objective(2)
 		DialogueManager.show_dialogue_balloon(A_4S_4, "exited_lee")
+		ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
 
 # PORTAL =============================================
 
@@ -182,6 +184,9 @@ func enable_portal_trigger() -> void:
 	print("Portal ready = true ✅")
 
 func on_note_collected() -> void:
+	player_danilo.SPEED = 80.0
+	player_danilo.RUNNING_SPEED = 200.0
+	ObjectiveManager.complete_objective(3)
 	print("NOTE COLLECTED — enabling portal...")
 	portal_unlocked = true
 	enable_portal_trigger()
