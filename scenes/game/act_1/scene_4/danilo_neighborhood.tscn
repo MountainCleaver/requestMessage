@@ -10014,5 +10014,13 @@ position = Vector2(-320.00003, 18.999998)
 scale = Vector2(0.28124964, 0.28125003)
 texture = SubResource("GradientTexture2D_mbc7v")
 
+[node name="navigation_lights" type="Node2D" parent="."]
+position = Vector2(53, -198)
+
+[node name="navigation_home" type="Marker2D" parent="navigation_lights"]
+position = Vector2(2, -2)
+
 [connection signal="body_entered" from="bahay" to="." method="_on_bahay_body_entered"]
 [connection signal="body_exited" from="bahay" to="." method="_on_bahay_body_exited"]
+
+[editable path="player_danilo"]

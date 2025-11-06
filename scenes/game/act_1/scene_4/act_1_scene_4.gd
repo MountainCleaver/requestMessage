@@ -49,6 +49,15 @@ var in_bahay_area: bool = false
 const CHAT_ICON = preload("uid://vdiek8gwmqdx")
 const SCHED_ICON = preload("res://assets/HUD/sched_icon.png")
 
+# NAVIGATION TRAIL
+var navigation_home: Node2D = null
+var navigation_lights: Node2D = null
+var lights: Array = []
+var show_navigation: bool = false
+var max_lights := 100
+var base_distance := 200.0
+var light_scene := preload("res://assets/tilesets/nav_light.tscn") 
+
 func _ready() -> void:
 	_game_state_flow()
 	_load_dialogue()
@@ -283,7 +292,12 @@ func _on_last_objective_lock_pressed() -> void:
 		player_danilo.animation_locked = false
 		player_danilo.can_move = true
 		player_danilo.force_cannot_move = false
-
+		navigation_lights = current_location.get_node_or_null("navigation_lights")
+		if navigation_lights:
+			navigation_home = navigation_lights.get_node_or_null("navigation_home")
+			if navigation_home:
+				lights.clear()
+				show_navigation = true
 # ===================
 # LOCK SCREEN
 # ===================
@@ -368,6 +382,41 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and player_danilo:
 		if in_bahay_area:
 			_switch_to_danilo_room()
+			
+func _process(delta: float) -> void:
+	if show_navigation and player_danilo and navigation_home:
+		_update_navigation_trail()
+		
+func _update_navigation_trail() -> void:
+	var player_pos = player_danilo.global_position
+	var target_pos = navigation_home.global_position
+	var distance = player_pos.distance_to(target_pos)
+
+	var desired_num = clamp(int(distance / base_distance), 30, max_lights)
+
+	# Add lights
+	while lights.size() < desired_num:
+		var l = light_scene.instantiate()
+		navigation_lights.add_child(l)
+		lights.append(l)
+
+	# Remove excess lights
+	while lights.size() > desired_num:
+		lights.pop_back().queue_free()
+
+	# Update positions
+	for i in range(lights.size()):
+		var t = float(i + 1) / (lights.size() + 1)
+		var pos = player_pos.lerp(target_pos, t)
+		var l = lights[i]
+		l.global_position = pos
+
+		if l is PointLight2D:
+			l.energy = lerp(2.0, 0.8, t)
+			l.energy += sin(Time.get_ticks_msec() / 300.0 + i) * 0.1
+		else:
+			l.modulate.a = lerp(1.0, 0.3, t)
+			l.scale = Vector2.ONE * lerp(1.0, 0.6, t)
 
 # ===================
 # SCENE COMPLETE
