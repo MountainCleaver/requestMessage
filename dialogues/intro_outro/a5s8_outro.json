@@ -1,0 +1,23 @@
+{
+  "good": [
+	"Parang lumalabo paningin ko…",
+	"Nararamdaman ko pa rin ang simoy ng hangin.",
+	"Nahanap na kita sa wakas… Mateo…",
+	"Nanghihina na ako… pero ba't ang gaan sa pakiramdam?",
+	"'Di ko alam kung nananaginip ako",
+	"O ito na yung huling sandali…",
+	"Mateo… tahimik ka na sa wakas.",
+    "Siguro… pwede na rin akong magpahinga."
+  ],
+  "bad": [
+	"[shake rate=10 level=10]Parang lumalabo paningin ko…[/shake]",
+	"[shake rate=10 level=12]Sinubukan ko… ginawa ko ang lahat…[/shake]",
+	"[shake rate=10 level=14]Umiikot ang paningin ko… di ako makahinga…[/shake]",
+	"[shake rate=10 level=15]Mateo… please… wag kang aalis…[/shake]",
+	"[shake rate=10 level=16]Bakit hindi tumitigil ang mga boses sa ulo ko?[/shake]",
+	"[shake rate=10 level=18]Ang dilim… sobrang dilim…[/shake]",
+	"[shake rate=10 level=12]Patawad… hindi kita nasagip…[/shake]",
+	"[shake rate=10 level=14]Unti-unti na akong nanghihina…[/shake]",
+    "[shake rate=10 level=18][color=#ff3333]Parang wala na akong nararamdaman…[/color][/shake]"
+  ]
+}

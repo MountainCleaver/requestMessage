@@ -1,0 +1,24 @@
+{
+  "good": [
+	"My vision’s fading…",
+	"I can still feel the wind against my skin.",
+	"I did it… I finally found him… Mateo.",
+	"Mateo’s smile… it felt so peaceful.",
+	"Maybe… this time… he’s really at rest.",
+	"My body’s weak… but my heart feels light.",
+	"I can’t tell if I’m still dreaming or if this is goodbye…",
+	"Mateo… you’re finally at rest.",
+    "I think… I can rest too."
+  ],
+  "bad": [
+	"[shake rate=10 level=10]My vision’s fading…[/shake]",
+	"[shake rate=10 level=12]I tried… I really tried to reach you…[/shake]",
+	"[shake rate=10 level=14]Everything’s spinning… I can’t breathe…[/shake]",
+	"[shake rate=10 level=15]Mateo… please… don’t go…[/shake]",
+	"[shake rate=10 level=16]The voices… they won’t stop…[/shake]",
+	"[shake rate=10 level=18]It’s dark… so dark…[/shake]",
+	"[shake rate=10 level=12]I’m sorry… I couldn’t save you…[/shake]",
+	"[shake rate=10 level=14]My strength… it’s fading…[/shake]",
+    "[shake rate=10 level=18][color=#ff3333]I can’t feel anything anymore…[/color][/shake]"
+  ]
+}
