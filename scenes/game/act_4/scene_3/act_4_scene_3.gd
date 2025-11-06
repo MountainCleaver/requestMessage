@@ -378,6 +378,7 @@ func _process(_delta):
 	
 	# Candle interaction
 	if can_interact_candle and Input.is_action_just_pressed("interact"):
+		can_interact_candle = false
 		var current_candle = current_location.get_meta("current_candle")
 		if current_candle != null:
 			_light_small_candle(current_candle)
@@ -525,6 +526,7 @@ func _light_small_candle(index: int) -> void:
 		return
 
 	if index != candle_sequence[current_step]:
+		tip_interact.visible = false
 		_handle_wrong_candle_progress()
 		return
 
