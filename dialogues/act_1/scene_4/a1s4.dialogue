@@ -106,5 +106,5 @@ Danilo: Huh... Sino ‘to? [wait=1.5]
 
 ~ chat_unknown_sender
 do ChatManager.send_chat("unknown_sender", "Unknown Number", "Hello, Danilo.")
-Unknown_sender: [wait=1.5]Hello, Danilo.
+Unknown_sender: [shake rate=20 level=10]Hello, Danilo.[/shake]
 => END

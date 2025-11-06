@@ -204,7 +204,7 @@ func _on_chat_opened(chat_name: String) -> void:
 				final_objectives_done = true
 				if lock_screen_instance:
 					lock_screen_instance.objectives_done = true
-				await get_tree().create_timer(3).timeout
+				await get_tree().create_timer(2).timeout
 				Hud.hide_objectives()
 				Hud.phone_outro()
 				await get_tree().create_timer(0.8).timeout

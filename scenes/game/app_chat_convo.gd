@@ -52,7 +52,7 @@ func _on_chat_message_received(chat_name: String, sender: String, text: String) 
 
 	var show_typing = true
 	if first_message_shown.has(chat_name):
-		if chat_name in ["wendy", "mira"] and first_message_shown[chat_name]:
+		if chat_name in ["wendy", "mira", "unknown_sender"] and first_message_shown[chat_name]:
 			show_typing = false
 
 	if show_typing and sender != "Player" and chat_name != "group_chat":
