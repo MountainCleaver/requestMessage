@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_lmbvh"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_bfe6o"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="5_wvjlt"]
-[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="6_qiyby"]
+[ext_resource type="Shader" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="6_qiyby"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmbvh"]
 bg_color = Color(0.294118, 0.309804, 0.380392, 0.541176)

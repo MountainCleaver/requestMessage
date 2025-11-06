@@ -1,17 +1,17 @@
 ~ start
 Danilo: ...
-Danilo: [center]Maybe it’s just exhaustion... that’s why I started remembering those things.[/center]
+Danilo: [color=#808080](Maybe it’s just exhaustion... that’s why I started remembering those things.)[/color]
 => END
 
 ~ option_relief
-Danilo: [center]Maybe it’s good that I told Wendy what I remembered...[/center]
-Danilo: [center]Somehow... it feels a little lighter.[/center]
+Danilo: [color=#808080](Maybe it’s good that I told Wendy what I remembered...)[/color]
+Danilo: [color=#808080](Somehow... it feels a little lighter.)[/color]
 => choices
 
 ~ option_restless
-Danilo: [center]I know I should tell her...[/center]
-Danilo: [center]...but what if she doesn’t believe me...[/center]
-Danilo: [center]what if she gets angry... [wait=0.5]what if...[/center]
+Danilo: [color=#808080](I know I should tell her...)[/color]
+Danilo: [color=#808080](...but what if she doesn’t believe me...)[/color]
+Danilo: [color=#808080](what if she gets angry... [wait=0.5]what if...)[/color]
 => choices
 
 ~ choices
@@ -43,13 +43,8 @@ Danilo: Looks like I have an appointment tomorrow.
 ~ reply_wendy
 do ChatManager.send_chat("wendy", "Wendy", "Chat me pag nakauwi ka na.")
 Wendy: Chat me when you get home.
-- I’m right outside the house. => reply_answer1
 - Just got off the jeep.       => reply_answer2
 => END
-
-~ reply_answer1
-do ChatManager.send_chat("wendy", "Player", "Nasa tapat pa lang ako ng bahay.")
-Danilo: I’m right outside the house.
 
 do ChatManager.send_chat("wendy", "Wendy", "Bilis mo namang nakauwi.")
 Wendy: [wait=1.5]You got home fast.

@@ -121,10 +121,10 @@ Aling Theresa: Walang anuman, iha.
 => END
 
 ~ wendy_contemplate
-Wendy: [center]Ayon sa mga napagtanungan ko...[/center]
-Wendy: [center]I think Danilo's bothered by something, pero...[/center]
-Wendy: [center]During our calls, parang wala namang mali.[/center]
-Wendy: [center]Kailangan ko siyang mahanap agad. He needs to take his meds already.[/center]
+Wendy: [color=#808080](Ayon sa mga napagtanungan ko...)[/color]
+Wendy: [color=#808080](I think Danilo's bothered by something, pero...)[/color]
+Wendy: [color=#808080](During our calls, parang wala namang mali.)[/color]
+Wendy: [color=#808080](Kailangan ko siyang mahanap agad. He needs to take his meds already.)[/color]
 => END
 
 ~ signage1
@@ -177,7 +177,7 @@ Wendy: 'Yun na lang po ang unahin nating puntahan.
 => END
 
 ~ enter_dark_forest
-Wendy: [center]Hintayin mo, Danilo... Hindi kami susukong hanapin ka.[/center]
+Wendy: [color=#808080](Hintayin mo, Danilo... Hindi kami susukong hanapin ka.)[/color]
 => END
 
 ~ signage_darkforest
@@ -187,8 +187,8 @@ Mang Gino: Oo... ayan nga ang dadaanan natin.
 
 ~ cliff_entry
 Mang Gino: Mag-ingat kayong lahat. Tandaan, bangin ang dinadaanan natin.
-Wendy: [center]...[/center]
-Wendy: [center]Please... Danilo, sana nandito ka.[/center]
+Wendy: [color=#808080](...)[/color]
+Wendy: [color=#808080](Please... Danilo, sana nandito ka.)[/color]
 => END
 
 ~ seen_danilo

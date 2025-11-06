@@ -1,17 +1,17 @@
 ~ start
 Danilo: ...
-Danilo: [center]Dala lang siguro ng pagod kaya naalala ko yung mga yun.[/center]
+Danilo: [color=#808080](Dala lang siguro ng pagod kaya naalala ko yung mga yun.)[/color]
 => END
 
 ~ option_relief
-Danilo: [center]Maganda rin siguro na nasabi ko rin kay Wendy yung mga naalala ko...[/center]
-Danilo: [center]Kahit papaano gumaan pakiramdam ko.[/center]
+Danilo: [color=#808080](Maganda rin siguro na nasabi ko rin kay Wendy yung mga naalala ko...)[/color]
+Danilo: [color=#808080](Kahit papaano gumaan pakiramdam ko.)[/color]
 => choices
 
 ~ option_restless
-Danilo: [center]Alam kong dapat ko na itong sabihin sa kanya...[/center]
-Danilo: [center]...pero paano ‘pag hindi niya ako pinaniwalaan...[/center]
-Danilo: [center]paano kung magalit siya sakin... [wait=0.5]paano kung...[/center]
+Danilo: [color=#808080](Alam kong dapat ko na itong sabihin sa kanya...)[/color]
+Danilo: [color=#808080](...pero paano ‘pag hindi niya ako pinaniwalaan...)[/color]
+Danilo: [color=#808080](paano kung magalit siya sakin... [wait=0.5]paano kung...)[/color]
 => choices
 
 ~ choices
@@ -43,13 +43,9 @@ Danilo: May appointment pala ako bukas.
 ~ reply_wendy
 do ChatManager.send_chat("wendy", "Wendy", "Chat me pag nakauwi ka na.")
 Wendy: Chat me pag nakauwi ka na.
-- Nasa tapat pa lang ako ng bahay. => reply_answer1
 - Kakababa ko pa lang ng jeep.    => reply_answer2
 => END
 
-~ reply_answer1
-do ChatManager.send_chat("wendy", "Player", "Nasa tapat pa lang ako ng bahay.")
-Danilo: Nasa tapat pa lang ako ng bahay.
 
 do ChatManager.send_chat("wendy", "Wendy", "Bilis mo namang nakauwi.")
 Wendy: [wait=1.5]Bilis mo namang nakauwi.

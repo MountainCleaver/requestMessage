@@ -32,7 +32,7 @@ do is_hit = true
 => END
 
 ~ mateo_monologue
-Mateo_child_crying: [center][shake]Ayoko na. . . ayoko na. . . bakit ba nangyayari lahat ‘to sa akin?[/shake][/center]
+Mateo_child_crying: [color=#808080]([shake]Ayoko na. . . ayoko na. . . bakit ba nangyayari lahat ‘to sa akin?[/shake])[/color]
 do _mateo_run_again()
 => END
 
