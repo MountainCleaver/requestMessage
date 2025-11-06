@@ -1,13 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://cnqu7ac1h3puq"]
+[gd_scene load_steps=18 format=3 uid="uid://cnqu7ac1h3puq"]
 
 [ext_resource type="Script" uid="uid://dvxs7y4le7ku7" path="res://scenes/game/intro_scene.gd" id="1_cvxvr"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_8viqp"]
 [ext_resource type="Shader" uid="uid://b3lvkrry8eaot" path="res://scenes/game/act_3/scene_4/glitch.gdshader" id="2_cvxvr"]
-[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="3_8viqp"]
+[ext_resource type="Shader" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="3_8viqp"]
 [ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="4_6jsj4"]
 [ext_resource type="AudioStream" uid="uid://dwow3fbcvnre" path="res://sound/calming-rain-257596.mp3" id="6_6jsj4"]
 [ext_resource type="AudioStream" uid="uid://c4kssiv27i1q4" path="res://sound/scary-sound-effect-359877.mp3" id="7_1vvww"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="7_vfigc"]
+[ext_resource type="AudioStream" uid="uid://ctvvhakd8waq3" path="res://sound/(2)heavy-breathing-sound-effect-type-02-294195.mp3" id="8_8kvt0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ku4u"]
 bg_color = Color(0.0509804, 0.0509804, 0.0823529, 1)
@@ -175,6 +176,11 @@ bus = &"music"
 
 [node name="SFX_START" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_1vvww")
+bus = &"sfx"
+
+[node name="SFX_breathing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_8kvt0")
+volume_db = -5.073
 bus = &"sfx"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
