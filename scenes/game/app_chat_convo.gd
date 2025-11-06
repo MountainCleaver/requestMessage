@@ -51,9 +51,16 @@ func _on_chat_message_received(chat_name: String, sender: String, text: String) 
 		return
 
 	var show_typing = true
+
 	if first_message_shown.has(chat_name):
-		if chat_name in ["wendy", "mira", "unknown_sender"] and first_message_shown[chat_name]:
+		# Original behavior for Wendy & Mira
+		if chat_name in ["wendy", "mira"] and first_message_shown[chat_name]:
 			show_typing = false
+
+		# Special case: unknown_sender sa Act 1 Scene 4
+		if chat_name == "unknown_sender" and first_message_shown[chat_name]:
+			if GameState.current_act == "act_1" and GameState.current_scene == "scene_4":
+				show_typing = false
 
 	if show_typing and sender != "Player" and chat_name != "group_chat":
 		show_typing_indicator(sender)
