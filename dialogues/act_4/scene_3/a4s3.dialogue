@@ -57,8 +57,13 @@ do ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]
 => END
 
 ~ candle_ignited
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Iba-iba ang pagkakaayos ng mga kandila. Pumili ka ng unang kandila ayon sa gusto mo.")
+Unknown_sender: [wait=1.5]Iba-iba ang pagkakaayos ng mga kandila. Pumili ka ng unang kandila ayon sa gusto mo.
+=> candle_ignited_1
+
+~ candle_ignited_1
 do ChatManager.send_chat("unknown_sender", "Unknown Number", "Sindihan mo lahat ng natitirang kandila sa tamang ayos...")
-Unknown_sender: [wait=1.5]Sindihan mo lahat ng natitirang kandila sa tamang ayos...
+Unknown_sender: [wait=1.5]Light all the remaining candles in the correct order...
 => candle_ignited_2
 
 ~ candle_ignited_2
