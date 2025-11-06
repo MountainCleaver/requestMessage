@@ -8,7 +8,10 @@ var previous_scene: Control = null
 var active_call: Control = null
 var danilo_called: bool = false  # Track if Danilo has been called
 
+var A_2S_4: Resource
+
 func _ready() -> void:
+	_load_dialogue()
 	danilo_btn.pressed.connect(_on_danilo_pressed)
 	mira_btn.pressed.connect(_on_mira_pressed)
 	exit.pressed.connect(_on_exit_pressed)
@@ -18,9 +21,29 @@ func _ready() -> void:
 	
 	# Initialize Mira button state
 	_update_mira_button_state()
-
+	
+func _load_dialogue() -> void:
+	var lang = Settings.settings.dialogue_language
+	var path: String
+	if lang == "en":
+		path = "res://dialogues/act_2/scene_4/a2s4_en.dialogue"
+	else:
+		path = "res://dialogues/act_2/scene_4/a2s4.dialogue"
+	
+	A_2S_4 = load(path)
+	
 func _on_danilo_pressed() -> void:
-	_start_call("danilo")
+	if danilo_called:
+		# Always show "already called" dialogue
+		_show_already_called_danilo_dialogue()
+	else:
+		# First time call
+		DialogueManager.show_dialogue_balloon(A_2S_4, "call_danilo")
+		_start_call("danilo")
+
+func _show_already_called_danilo_dialogue() -> void:
+	print("Already called Danilo! Showing dialogue.")
+	DialogueManager.show_dialogue_balloon(A_2S_4, "already_call_danilo")
 
 func _on_mira_pressed() -> void:
 	# Check if Danilo has been called first

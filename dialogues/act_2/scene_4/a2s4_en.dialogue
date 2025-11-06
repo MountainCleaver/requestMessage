@@ -14,8 +14,16 @@ do Hud.reset_phone_state("08:32", "AM")
 
 ~ call_voicemail
 do ObjectiveManager.complete_objective(1)
-Wendy: I can’t reach him... it goes straight to voicemail.  
+Wendy: I can’t reach him... He's not answering.
 Wendy: Maybe Tita Mira knows something.  
+=> END
+
+~ already_call_danilo
+Wendy: I can’t reach him... He's not answering.
+=> END
+
+~ call_danilo
+Wendy: ... ...
 => END
 
 ~ call_mira_convo
