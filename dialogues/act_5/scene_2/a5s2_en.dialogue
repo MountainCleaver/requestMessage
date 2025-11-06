@@ -8,10 +8,10 @@ Mang Gino: [shake rate=20 level=10]Every single day, chaos! You never stop blami
 => END
 
 ~ mateo_mono
-Mateo_child: [center]They don’t stop. The shouting... it’s suffocating.[/center]
-Mateo_child: [center]I can’t stay here.[/center]
-Mateo_child: [center]I want a place where the voices... vanish.[/center]
-Mateo_child: [center]A place where only silence exists...[/center]
+Mateo_child: [color=#808080](They don’t stop. The shouting... it’s suffocating.)[/color]
+Mateo_child: [color=#808080](I can’t stay here.)[/color]
+Mateo_child: [color=#808080](I want a place where the voices... vanish.)[/color]
+Mateo_child: [color=#808080](A place where only silence exists...)[/color]
 do ObjectiveManager.add_objective(1, "Escape the house")
 do Hud.show_objectives()
 => END

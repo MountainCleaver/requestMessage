@@ -120,10 +120,10 @@ Aling Theresa: No worries, iha.
 => END
 
 ~ wendy_contemplate
-Wendy: [center]From everyone I asked...[/center]
-Wendy: [center]I think Danilo is troubled by something, but...[/center]
-Wendy: [center]During our calls, he seemed normal.[/center]
-Wendy: [center]I need to find him quickly. He needs his meds already.[/center]
+Wendy: [color=#808080](From everyone I asked...)[/color]
+Wendy: [color=#808080](I think Danilo is troubled by something, but...)[/color]
+Wendy: [color=#808080](During our calls, he seemed normal.)[/color]
+Wendy: [color=#808080](I need to find him quickly. He needs his meds already.)[/color]
 => END
 
 ~ signage1
@@ -176,7 +176,7 @@ Wendy: Let’s go there first.
 => END
 
 ~ enter_dark_forest
-Wendy: [center]Wait for me, Danilo... We won’t give up finding you.[/center]
+Wendy: [color=#808080](Wait for me, Danilo... We won’t give up finding you.)[/color]
 => END
 
 ~ signage_darkforest
@@ -186,8 +186,8 @@ Mang Gino: Yes... that’s the one we’ll take.
 
 ~ cliff_entry
 Mang Gino: Be careful, everyone. Remember, we’re walking along a cliff.
-Wendy: [center]...[/center]
-Wendy: [center]Please... Danilo, I hope you’re here.[/center]
+Wendy: [color=#808080](...)[/color]
+Wendy: [color=#808080](Please... Danilo, I hope you’re here.)[/color]
 => END
 
 ~ seen_danilo

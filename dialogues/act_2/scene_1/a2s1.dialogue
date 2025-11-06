@@ -54,7 +54,6 @@ do Hud.show_objectives()
 ~ choices_danilo_1
 Danilo: ...
 - Wen, ikaw ba yung nagchachat sakin? => reply_danilo_5
-- Prinaprank mo ata ako ah! => reply_danilo_5
 => END
 
 ~ reply_danilo_5
@@ -65,7 +64,6 @@ Danilo: Wen, ikaw ba yung nagchachat sakin?
 do ChatManager.send_chat("wendy", "Player", "Prinaprank mo ata ako ah!")
 Danilo: Prinaprank mo ata ako ah!
 => reply_wendy_1
-
 
 ~ reply_wendy_1
 do ChatManager.send_chat("wendy", "Wendy", "Huh? What message? Wala akong chinat na kung sino recently?")
@@ -163,8 +161,6 @@ Unknown_sender: [wait=1.5]Andoon ka. Nakita mo lahat ang nangyari. Hindi mo lang
 
 ~ reply_danilo_10
 - Kasalanan ko ba?
-- Ikaw ba talaga si Mateo?
-- O ginagawa mo lang ‘to para guluhin ako?
 => reply_danilo_11
 
 ~ reply_danilo_11

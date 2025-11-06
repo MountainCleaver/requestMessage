@@ -60,7 +60,7 @@ Pharmacist: Sorry sir, tatlong piraso nalang po ang available.
 - Buy everything => drugstore_clerk_2
 => END
 ~ drugstore_clerk_2
-Danilo: [center]Kulang, pero okay na siguro 'to...[/center]
+Danilo: [color=#808080](Kulang, pero okay na siguro 'to...[/color]
 Danilo: Sige, kunin ko na po lahat yan.
 Pharmacist: Ito po sir, salamat po.
 Danilo: Salamat po.
@@ -91,7 +91,7 @@ do can_interact = true
 => END
 
 ~ paranoia
-Danilo: [center]Bakit parang... may nakasunod? Huwag mo lang pansinin, Danilo. Bilisan mo na lang.[/center]
+Danilo: [center]Bakit parang... may nakasunod? Huwag mo lang pansinin, Danilo. Bilisan mo na lang.[/color]
 - Walk faster
 	do player_danilo.SPEED = 150
 	do player_danilo.RUNNING_SPEED = 200
