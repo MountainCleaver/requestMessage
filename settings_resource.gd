@@ -12,7 +12,7 @@ class_name SettingsResource
 @export var brightness: float = 90.0
 
 #dialogue language
-@export var dialogue_language: String = "fil" 
+@export var dialogue_language: String = "en" 
 
 # user key bindings
 @export var key_bindings: Dictionary = {}
