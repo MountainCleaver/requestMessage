@@ -36,7 +36,6 @@ func _ready() -> void:
 		await _trigger_dizzy_state()
 		
 func _trigger_dizzy_state() -> void:
-	player_danilo.can_move = false
 	if dizzy_dialogue_shown:
 		return 
 	
@@ -53,6 +52,7 @@ func _trigger_dizzy_state() -> void:
 	await get_tree().create_timer(3.0).timeout
 	
 	dizzy_overlay.visible = false
+	player_danilo.force_cannot_move = false 
 	player_danilo.can_move = true 
 
 
