@@ -53,7 +53,7 @@ func _trigger_dizzy_state() -> void:
 	await get_tree().create_timer(3.0).timeout
 	
 	dizzy_overlay.visible = false
-
+	player_danilo.can_move = true 
 
 
 func _load_dialogue() -> void:
