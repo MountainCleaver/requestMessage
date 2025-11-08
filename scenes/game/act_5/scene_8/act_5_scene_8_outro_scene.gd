@@ -5,6 +5,8 @@ extends Control
 @onready var sfx_start: AudioStreamPlayer = $SFX_START
 @onready var BGM_GOOD: AudioStreamPlayer = $BGM_GOOD
 @onready var BGM_BAD: AudioStreamPlayer = $BGM_BAD
+@onready var fast_forward_btn: TextureButton1 = $fast_forward
+@onready var fast_label: Label = $fast_forward/Label
 
 var outro_lines: Array = []
 var is_good_ending: bool = false
@@ -15,6 +17,9 @@ var display_time: float = 2.0
 var base_position_lines: Vector2
 var motion_seed_lines: float
 var time_acc: float = 0.0
+
+var speed_levels = [1.0, 2.0, 4.0, 8.0]
+var current_speed_index = 0
 
 # ================================
 # Load outro dialogue from JSON
@@ -61,6 +66,10 @@ func _ready() -> void:
 	else:
 		print("⚠️ SaveManager not initialized, defaulting to bad ending.")
 
+	fast_label.visible = false
+	fast_forward_btn.visible = true
+	fast_forward_btn.connect("pressed", Callable(self, "_on_fast_forward_pressed"))
+	
 	is_good_ending = total_karma > 0
 
 	_load_dialogue()
@@ -110,6 +119,19 @@ func _process(delta: float) -> void:
 		label_lines.position = base_position_lines + Vector2(cos(angle) * radius_x, sin(angle) * radius_y)
 
 
+func _on_fast_forward_pressed() -> void:
+	current_speed_index = (current_speed_index + 1) % speed_levels.size()
+	var speed = speed_levels[current_speed_index]
+	
+	if speed == 1.0:
+		fast_label.visible = false
+	else:
+		fast_label.visible = true
+		fast_label.text = "%dx" % int(speed)
+	
+	display_time = 2.0 / speed
+	fade_time = 1.0 / speed
+	
 func show_next_line() -> void:
 	if line_index < outro_lines.size():
 		label_lines.clear()

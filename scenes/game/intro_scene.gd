@@ -6,6 +6,8 @@ extends Control
 @onready var sfx_start: AudioStreamPlayer = $SFX_START
 @onready var sfx_breathing: AudioStreamPlayer = $SFX_breathing
 #@onready var bgm_start: AudioStreamPlayer = $BGM_START
+@onready var fast_forward_btn: TextureButton1 = $fast_forward
+@onready var fast_label: Label = $fast_forward/Label
 
 var intro_lines: Array = []
 var line_index: int = 0
@@ -19,6 +21,9 @@ var base_position_title: Vector2
 var motion_seed_lines: float
 var motion_seed_title: float
 var time_acc: float = 0.0
+
+var speed_levels = [1.0, 2.0, 4.0, 8.0]
+var current_speed_index = 0
 
 func _load_dialogue() -> void:
 	var lang = Settings.settings.dialogue_language
@@ -49,18 +54,19 @@ func _load_dialogue() -> void:
 func _ready() -> void:
 	label_lines.modulate.a = 0
 	game_title.modulate.a = 0
-
+	fast_label.visible = false
+	fast_forward_btn.visible = true
+	fast_forward_btn.connect("pressed", Callable(self, "_on_fast_forward_pressed"))
+	
 	base_position_lines = label_lines.position
 	base_position_title = game_title.position
 	motion_seed_lines = randf() * 10.0
 	motion_seed_title = randf() * 10.0
-
+	
 	_load_dialogue()
-
 	await get_tree().create_timer(3.0).timeout
 	show_next_line()
 	sfx_breathing.play()
-
 
 func _process(delta: float) -> void:
 	time_acc += delta
@@ -78,21 +84,33 @@ func _process(delta: float) -> void:
 		game_title.position = base_position_title + Vector2(cos(angle) * radius_x, sin(angle) * radius_y)
 
 
+func _on_fast_forward_pressed() -> void:
+	current_speed_index = (current_speed_index + 1) % speed_levels.size()
+	var speed = speed_levels[current_speed_index]
+	
+	if speed == 1.0:
+		fast_label.visible = false
+	else:
+		fast_label.visible = true
+		fast_label.text = "%dx" % int(speed)
+	
+	display_time = 2.0 / speed
+	fade_time = 1.0 / speed
+
 func show_next_line() -> void:
 	if line_index < intro_lines.size():
 		label_lines.text = intro_lines[line_index]
 		line_index += 1
-
 		base_position_lines = label_lines.position
 		motion_seed_lines = randf() * 10.0
-
 		fade_in_label(label_lines, false)
 	else:
+		fast_forward_btn.visible = false
+		fast_label.visible = false
 		await get_tree().create_timer(3.0).timeout
 		game_title.text = "Request Message"
 		base_position_title = game_title.position
 		motion_seed_title = randf() * 10.0
-		#bgm_start.stop()
 		sfx_breathing.stop()
 		sfx_start.play()
 		fade_in_label(game_title, true)
@@ -135,7 +153,8 @@ func fade_out_label_title() -> void:
 
 func _go_to_next_scene() -> void:
 	SignalBus.next_scene.emit("res://scenes/game/act_1_title_scene.tscn")
-		
+
+
 func on_internet_status_changed(has_internet: bool) -> void:
 	if has_internet:
 		pass
