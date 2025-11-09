@@ -82,3 +82,7 @@ signal start_chase
 
 
 signal contact_attempted(contact_name)
+
+
+
+signal map_toggled(is_open: bool)
