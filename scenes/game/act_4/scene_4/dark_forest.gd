@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var player_danilo: CharacterBody2D = $"y-sorted/player_danilo"
 @onready var dizzy_overlay: ColorRect = $ColorRect
+@onready var explorer_hud: CanvasLayer = $explorer_hud
 var dizzy_timer: Timer
 
 var scene_objectives = [
@@ -13,6 +14,7 @@ func _ready() -> void:
 	FlashlightManager.enable_flashlight_by_cash()
 	_trigger_dizzy_state()
 	player_danilo.last_direction = Vector2.UP
+	explorer_hud.show_current_location(3)
 	Hud.show_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	if get_tree().has_meta("last_portal_name"):

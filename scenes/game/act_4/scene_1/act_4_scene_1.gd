@@ -11,7 +11,6 @@ const DARK_FOREST = preload("res://scenes/game/act_4/scene_3/dark_forest.tscn")
 const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
 const SCHED_ICON = preload("uid://d1ye4ylli8nca")
 
-
 @onready var bgm_hide: AudioStreamPlayer =$"BGMHide-and-seek"
 @onready var sfx_laruan: AudioStreamPlayer =$SFX_HOMETOWN
 @onready var sfx_hide: AudioStreamPlayer =$"SFXHide-and-seek"
@@ -20,12 +19,13 @@ const SCHED_ICON = preload("uid://d1ye4ylli8nca")
 # NODES
 # ===================
 @onready var locations: Node2D = $locations
+@onready var explorer_hud: CanvasLayer = $explorer_hud
 var player_danilo: CharacterBody2D
 var tip_interact: Sprite2D
 var current_location: Node
 var npc_lola_ising: CharacterBody2D
 var anim_sprite: AnimatedSprite2D
-var flashlight_node: Node2D
+var flashlight_node: Node
 var tip_shocked: Sprite2D
 var shadowy_ghost: CharacterBody2D
 
@@ -124,6 +124,7 @@ func _game_state_flow() -> void:
 func _start_scene() -> void:
 	await get_tree().process_frame
 	switch_location(DANILO_HOUSE)
+	explorer_hud.show_current_location(1)
 	Hud.show_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	FlashlightManager.phone_flashlight_enabled_signal.connect(_on_phone_flashlight_enabled)
@@ -134,7 +135,7 @@ func _start_scene() -> void:
 func _switch_to_danilo_hometown(from_where: String = "") -> void:
 	await get_tree().process_frame
 	switch_location(DANILO_HOMETOWN)
-	
+	explorer_hud.show_current_location(1)
 	if from_where == "house_door_step_2":
 		print("✅ Resetting triggers after narration...")
 		_reset_hometown_triggers(true)
@@ -181,6 +182,7 @@ func _switch_to_habulan_area(from_where: String = "") -> void:
 	TransitionFade.transition()
 	await SignalBus.on_transition_finished
 	switch_location(HABULAN_AREA)
+	explorer_hud.show_current_location(2)
 	player_danilo.last_direction = Vector2.LEFT
 	if from_where == "habulan_area_step_point":
 		_trigger_shadowy_ghost_event()
@@ -262,7 +264,7 @@ func switch_location(scene: PackedScene) -> void:
 	npc_lola_ising = current_location.get_node_or_null("danilo/y-sorted-objects/npc_lola_ising")
 	anim_sprite = npc_lola_ising.get_node_or_null("AnimatedSprite2D") if npc_lola_ising else null
 	flashlight_node = current_location.get_node_or_null("explorer_hud/Flashlight")
-
+	
 	door_area = current_location.get_node_or_null("door_area")
 	karatula_area = current_location.get_node_or_null("danilo/y-sorted-objects/areas/karatula_area")
 	to_habulan_area = current_location.get_node_or_null("danilo/y-sorted-objects/areas/to_habulan_area")

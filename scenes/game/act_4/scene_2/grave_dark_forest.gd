@@ -12,6 +12,7 @@ var A_4S_2: Resource
 @onready var flashlight: PointLight2D = $"y-sorted/player_danilo/PointLight2D2"
 @onready var grave_exit: Marker2D = $Grave_exit  # For spawn position after grave exit
 @onready var dizzy_overlay: ColorRect = $ColorRect  # the one with the glitch shader
+@onready var explorer_hud: CanvasLayer = $explorer_hud
 
 var dialogue_shown: bool = false
 var dizzy_dialogue_shown: bool = false
@@ -20,6 +21,7 @@ func _ready() -> void:
 	FlashlightManager.set_current_scene("act_4", "scene_2")
 	FlashlightManager.enable_flashlight_by_cash()
 	_load_dialogue()
+	explorer_hud.show_current_location(3)
 	tip.visible = false
 	signage.body_entered.connect(_on_signage_body_entered)
 	signage.body_exited.connect(_on_signage_body_exited)

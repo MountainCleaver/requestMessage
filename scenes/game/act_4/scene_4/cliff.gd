@@ -9,6 +9,7 @@ var A_4S_4: Resource
 @onready var diary_note: Area2D = $map/paper
 @onready var dizzy_overlay: ColorRect = $ColorRect
 @onready var wind_area: Area2D = $windarea
+@onready var explorer_hud: CanvasLayer = $explorer_hud
 var dizzy_timer: Timer
 
 var scene_objectives = [
@@ -39,6 +40,7 @@ func _ready() -> void:
 	_load_dialogue()
 	_trigger_dizzy_state()
 	player_danilo.last_direction = Vector2.UP
+	explorer_hud.show_current_location(6)
 	
 	# Set up signals
 	cliff_portal.body_entered.connect(_on_cliff_portal_entered)

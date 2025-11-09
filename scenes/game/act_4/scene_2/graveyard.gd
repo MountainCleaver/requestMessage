@@ -20,6 +20,7 @@ var A_4S_2: Resource
 @onready var key_area: Area2D = $"Interactable/Key"
 @onready var house_exit: Marker2D = $House_exit
 @onready var dizzy_overlay: ColorRect = $ColorRect
+@onready var explorer_hud: CanvasLayer = $explorer_hud
 
 # === SOUND ===
 @onready var sfx_digging: AudioStreamPlayer = $SFX_DIGGING
@@ -76,6 +77,7 @@ func _ready():
 	FlashlightManager.set_current_scene("act_4", "scene_2")
 	FlashlightManager.enable_flashlight_by_cash()
 	_load_dialogue()
+	explorer_hud.show_current_location(4)
 	player_danilo.last_direction = Vector2.LEFT
 	tip.visible = false
 	mark.visible = false

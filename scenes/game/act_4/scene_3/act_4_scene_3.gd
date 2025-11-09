@@ -14,6 +14,7 @@ const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
 @onready var bgm_appear: AudioStreamPlayer = $BGM_appear
 @onready var sfx_creepy: AudioStreamPlayer = $SFX_Creepywind
 @onready var sfx_appear: AudioStreamPlayer = $SFX_appear
+@onready var explorer_hud: CanvasLayer = $explorer_hud
 
 # ===================
 # NODES
@@ -147,6 +148,7 @@ func _start_scene() -> void:
 func _switch_to_dark_forest() -> void:
 	await get_tree().process_frame
 	switch_location(DARK_FOREST)
+	explorer_hud.show_current_location(3)
 	_trigger_dizzy_effect()
 	player_danilo.last_direction = Vector2.RIGHT
 	Hud.show_objectives()
@@ -163,6 +165,7 @@ func _on_dark_forest_entrance_entered(body: Node) -> void:
 func _switch_to_chapel_exterior(from_chapel: bool) -> void:
 	await get_tree().process_frame
 	switch_location(CHAPEL_EXTERIOR)
+	explorer_hud.show_current_location(5)
 
 	var spawn_node: Node2D = null
 	if from_chapel:
@@ -195,6 +198,7 @@ func _switch_to_chapel_interior() -> void:
 	Hud.clear_objectives()
 	Hud.hide_objectives()
 	switch_location(CHAPEL_INTERIOR)
+	explorer_hud.show_current_location(5)
 	_trigger_dizzy_effect()
 	player_danilo.last_direction = Vector2.UP
 	await get_tree().process_frame

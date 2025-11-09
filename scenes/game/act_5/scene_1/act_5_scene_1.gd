@@ -15,6 +15,7 @@ const NARRATION_PANEL = preload("res://helpers/narration_panel.tscn")
 # NODES
 # ===================
 @onready var locations: Node2D = $locations
+@onready var explorer_hud: CanvasLayer = $explorer_hud
 var player_danilo: CharacterBody2D
 var tip_interact: Sprite2D
 var animated_sprite_2d: AnimatedSprite2D
@@ -89,6 +90,7 @@ func _game_state_flow() -> void:
 func _start_scene() -> void:
 	await get_tree().process_frame
 	_trigger_dizzy_effect()
+	explorer_hud.show_current_location(3)
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	DialogueManager.show_dialogue_balloon(A_5S_1, "start")
 
@@ -105,10 +107,12 @@ func _on_dark_forest_entrance_entered(body: Node) -> void:
 func _switch_to_chapel_exterior() -> void:
 	await get_tree().process_frame
 	switch_location(CHAPEL_EXTERIOR)
+	explorer_hud.show_current_location(5)
 
 func _switch_to_chapel_interior(from_where: String = "default") -> void:
 	await get_tree().process_frame
 	switch_location(CHAPEL_INTERIOR)
+	explorer_hud.show_current_location(5)
 
 	# Spawn player depending on which path triggered
 	var spawn_marker: Node2D = null
