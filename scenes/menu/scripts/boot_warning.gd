@@ -58,7 +58,11 @@ func _show_main_warning() -> void:
 	tween.tween_property(title_game, "modulate:a", 1, fade_time)
 	tween.tween_property(warning_holder, "modulate:a", 1, fade_time)
 	tween.tween_property(proceed, "modulate:a", 1, fade_time)
-
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("accept"):
+		_on_proceed_pressed()
+		
 func _on_proceed_pressed() -> void:
 	_go_next_scene()
 
