@@ -1666,7 +1666,7 @@ texture = ExtResource("14_ntlsp")
 visible = false
 position = Vector2(0, -8)
 texture = ExtResource("14_ntlsp")
-texture_scale = 0.4
+texture_scale = 0.5
 
 [node name="sfx_flashlight" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_7rf3l")
