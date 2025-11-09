@@ -320,6 +320,6 @@ Do you want to create a new save file here?"
 
 [node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
 
-[connection signal="pressed" from="back_tips/Panel/Button" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="back_tips/Panel/Button" to="." method="_on_back_pressed"]
 
 [editable path="back_tips"]

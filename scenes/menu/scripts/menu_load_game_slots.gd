@@ -188,6 +188,10 @@ func _generate_narrative_summary(save_data) -> String:
 	return scene_summaries.get(key, "A brief moment in Danilo's day unfolds.")
 
 # --- Back button ---
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("escape"):
+		_on_back_pressed()
+		
 func _on_back_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
 

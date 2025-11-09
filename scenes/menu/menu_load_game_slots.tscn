@@ -320,6 +320,6 @@ offset_right = 1319.0
 offset_bottom = 248.0
 mouse_filter = 2
 
-[connection signal="pressed" from="back_tips/Panel/Button" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="back_tips/Panel/Button" to="." method="_on_back_pressed"]
 
 [editable path="back_tips"]
