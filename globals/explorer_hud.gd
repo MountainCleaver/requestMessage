@@ -11,6 +11,17 @@ extends CanvasLayer
 @onready var map_label = $Map/Panel/Label
 @onready var flashlight_label = $Flashlight/Panel/Label
 
+@onready var sfx_map : AudioStreamPlayer = $SFX_MAP
+
+@onready var location_nodes = [
+	$FullMapPanel/current_map/location_1, # DANILO'S HOUSE / HOMETOWN
+	$FullMapPanel/current_map/location_2, # HABULAN AREA
+	$FullMapPanel/current_map/location_3, # DARK FOREST (DEFAULT LOCATION)
+	$FullMapPanel/current_map/location_4, # GRAVEYARD / SMALL HUT
+	$FullMapPanel/current_map/location_5, # CHAPEL EXTERIOR / INTERIOR
+	$FullMapPanel/current_map/location_6 # CLIFF
+]
+
 # ===================
 # VARIABLES
 # ===================
@@ -21,8 +32,6 @@ var tutorial_active := false
 
 var map_guide_tween: Tween
 var flashlight_guide_tween: Tween
-
-@onready var sfx_map : AudioStreamPlayer = $SFX_MAP
 
 # ===================
 # READY
@@ -58,6 +67,13 @@ func _get_key_text(action_name: String) -> String:
 	if events.size() > 0:
 		return events[0].as_text().trim_suffix(" (Physical)")
 	return "(Unassigned)"
+
+# ===================
+# SHOW CURRENT LOCATION
+# ===================
+func show_current_location(index):
+	for i in range(location_nodes.size()):
+		location_nodes[i].visible = (i + 1 == index)
 
 # ===================
 # UPDATE ALL GUIDE & HUD LABELS
@@ -237,6 +253,10 @@ func _toggle_map():
 		full_map.visible = true
 		is_open = true
 		await _fade_in()
+	
+	# Emit map toggle signal
+	SignalBus.map_toggled.emit(is_open)
+
 
 func _fade_in() -> void:
 	full_map.modulate.a = 0

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://isy10eb7hc4"]
+[gd_scene load_steps=11 format=3 uid="uid://isy10eb7hc4"]
 
 [ext_resource type="Script" uid="uid://d01x0j4mgcai0" path="res://globals/explorer_hud.gd" id="1_c7aqf"]
 [ext_resource type="Texture2D" uid="uid://dlp43e7qb0pcy" path="res://assets/HUD/map_icon.png" id="2_eab4r"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_5m4lj"]
 [ext_resource type="Texture2D" uid="uid://bomesxx5thlmp" path="res://assets/HUD/map.png" id="3_a2k0k"]
 [ext_resource type="Texture2D" uid="uid://32bi4awlmmeq" path="res://assets/HUD/flashlight_icon.png" id="4_eab4r"]
+[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="6_4rjjm"]
 [ext_resource type="AudioStream" uid="uid://d106mspqnwy2x" path="res://sound/house-paper-newspaper-open-01-40882.mp3" id="6_r3hb7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1i4pf"]
@@ -20,6 +21,14 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pvubn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 
 [node name="explorer_hud" type="CanvasLayer"]
 script = ExtResource("1_c7aqf")
@@ -132,6 +141,159 @@ offset_bottom = 425.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_a2k0k")
+
+[node name="current_map" type="Control" parent="FullMapPanel"]
+anchors_preset = 0
+offset_left = -70.0
+offset_top = -87.0
+offset_right = -30.0
+offset_bottom = -47.0
+
+[node name="location_1" type="Panel" parent="FullMapPanel/current_map"]
+visible = false
+layout_mode = 0
+offset_left = 920.0
+offset_top = 604.0
+offset_right = 1107.0
+offset_bottom = 676.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pvubn")
+
+[node name="Label" type="Label" parent="FullMapPanel/current_map/location_1"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = -22.0
+offset_right = 166.0
+offset_bottom = 1.0
+theme_override_fonts/font = ExtResource("6_4rjjm")
+text = "Current Location"
+
+[node name="location_2" type="Panel" parent="FullMapPanel/current_map"]
+visible = false
+layout_mode = 0
+offset_left = 658.0
+offset_top = 620.0
+offset_right = 918.0
+offset_bottom = 702.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pvubn")
+
+[node name="Label" type="Label" parent="FullMapPanel/current_map/location_2"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -22.0
+offset_right = 204.0
+offset_bottom = 1.0
+theme_override_fonts/font = ExtResource("6_4rjjm")
+text = "Current Location"
+
+[node name="location_3" type="Panel" parent="FullMapPanel/current_map"]
+visible = false
+layout_mode = 0
+offset_left = 458.0
+offset_top = 568.0
+offset_right = 652.0
+offset_bottom = 749.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pvubn")
+
+[node name="Label" type="Label" parent="FullMapPanel/current_map/location_3"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 26.0
+offset_right = 183.0
+offset_bottom = 161.0
+theme_override_fonts/font = ExtResource("6_4rjjm")
+text = "Current   
+
+
+
+
+           Location"
+
+[node name="Label2" type="Label" parent="FullMapPanel/current_map/location_3"]
+layout_mode = 0
+offset_left = -94.0
+offset_top = 83.0
+offset_right = -13.0
+offset_bottom = 103.0
+theme_override_fonts/font = ExtResource("6_4rjjm")
+theme_override_font_sizes/font_size = 13
+text = "Graveyard"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="FullMapPanel/current_map/location_3"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 191.0
+offset_right = 131.0
+offset_bottom = 211.0
+theme_override_fonts/font = ExtResource("6_4rjjm")
+theme_override_font_sizes/font_size = 13
+text = "Chapel"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="FullMapPanel/current_map/location_3"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -26.0
+offset_right = 129.0
+offset_bottom = -6.0
+theme_override_fonts/font = ExtResource("6_4rjjm")
+theme_override_font_sizes/font_size = 13
+text = "Cliff"
+horizontal_alignment = 1
+
+[node name="location_4" type="Panel" parent="FullMapPanel/current_map"]
+visible = false
+layout_mode = 0
+offset_left = 261.0
+offset_top = 609.0
+offset_right = 455.0
+offset_bottom = 704.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pvubn")
+
+[node name="Label" type="Label" parent="FullMapPanel/current_map/location_4"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = -22.0
+offset_right = 170.0
+offset_bottom = 1.0
+theme_override_fonts/font = ExtResource("6_4rjjm")
+text = "Current Location"
+
+[node name="location_5" type="Panel" parent="FullMapPanel/current_map"]
+visible = false
+layout_mode = 0
+offset_left = 534.0
+offset_top = 753.0
+offset_right = 728.0
+offset_bottom = 848.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pvubn")
+
+[node name="Label" type="Label" parent="FullMapPanel/current_map/location_5"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = -22.0
+offset_right = 166.0
+offset_bottom = 1.0
+theme_override_fonts/font = ExtResource("6_4rjjm")
+text = "Current Location"
+
+[node name="location_6" type="Panel" parent="FullMapPanel/current_map"]
+visible = false
+layout_mode = 0
+offset_left = 156.0
+offset_top = 183.0
+offset_right = 596.0
+offset_bottom = 560.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pvubn")
+
+[node name="Label" type="Label" parent="FullMapPanel/current_map/location_6"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 200.0
+offset_right = 294.0
+offset_bottom = 223.0
+theme_override_fonts/font = ExtResource("6_4rjjm")
+text = "Current Location"
 
 [node name="SFX_MAP" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_r3hb7")
