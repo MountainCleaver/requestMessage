@@ -8,7 +8,7 @@ script = ExtResource("1_uiptd")
 [node name="good_lighting" type="DirectionalLight2D" parent="."]
 visible = false
 color = Color(0.017732391, 0.017732391, 0.01773239, 1)
-energy = 1.01
+energy = 0.98
 blend_mode = 2
 
 [node name="bad_lighting" type="DirectionalLight2D" parent="."]
