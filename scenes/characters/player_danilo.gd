@@ -35,7 +35,8 @@ func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_finish)
 	SignalBus.in_npc.connect(show_tip)
 	SignalBus.out_npc.connect(hide_tip)
-
+	SignalBus.map_toggled.connect(_on_map_toggled)
+	
 	# Initialize FlashlightManager
 	FlashlightManager.init(real_flashlight, phone_flashlight)
 
@@ -90,7 +91,10 @@ func _physics_process(delta: float) -> void:
 			# Trigger the pushing animation
 			animated_sprite_2d.play("push_left")
 			result.collider.push_left()
-
+			
+func _on_map_toggled(is_open: bool) -> void:
+	force_cannot_move = is_open
+	
 func _apply_wind_effects() -> void:
 	if is_in_wind and wind_source:
 		if not _is_wind_blocked():
