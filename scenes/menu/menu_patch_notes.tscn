@@ -62,6 +62,7 @@ grow_vertical = 2
 color = Color(0.0924945, 0.0775084, 0.185383, 1)
 
 [node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
+bus = &"music"
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
