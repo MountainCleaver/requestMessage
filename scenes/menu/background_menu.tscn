@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcooimxjkpmd1"]
+[gd_scene load_steps=6 format=3 uid="uid://bcooimxjkpmd1"]
 
 [ext_resource type="Texture2D" uid="uid://bitxjdnpfih1a" path="res://assets/main menu/menu_background.png" id="1_m27td"]
 [ext_resource type="PackedScene" uid="uid://c6dp8vnyir66p" path="res://scenes/menu/version_num_major_minor_patch_pattern.tscn" id="2_ayhcs"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_6lfwj"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_hjxqk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee1k6"]
+bg_color = Color(0.27265528, 0.27265534, 0.27265522, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="menu_background" type="Control"]
 layout_mode = 3
@@ -24,3 +33,17 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Version_Num_Major_Minor_Patch_pattern" parent="." instance=ExtResource("2_ayhcs")]
 layout_mode = 0
+
+[node name="patch_notes" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 40.0
+offset_top = 44.0
+offset_right = 191.0
+offset_bottom = 89.0
+theme_override_fonts/font = ExtResource("3_6lfwj")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_ee1k6")
+text = "Patch Notes"
+script = ExtResource("4_hjxqk")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
