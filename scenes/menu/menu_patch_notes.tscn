@@ -1,0 +1,300 @@
+[gd_scene load_steps=10 format=3 uid="uid://domkty7g88d1p"]
+
+[ext_resource type="Script" uid="uid://bkhwwq7jo812n" path="res://scenes/menu/scripts/menu_patch_notes.gd" id="1_d8yal"]
+[ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_82dpb"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_d6xu4"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_vwy2y"]
+[ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="5_vwy2y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2ryi"]
+bg_color = Color(0.14902, 0.156863, 0.184314, 0.396078)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_gegmv"]
+font = ExtResource("3_d6xu4")
+font_size = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5k0cw"]
+bg_color = Color(0.294, 0.31, 0.38, 0.442)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwy2y"]
+bg_color = Color(0.41725737, 0.41725743, 0.41725728, 0.41960785)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="menu_patch_notes" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d8yal")
+
+[node name="menu_background" parent="." instance=ExtResource("2_82dpb")]
+layout_mode = 1
+
+[node name="Version_Num_Major_Minor_Patch_pattern" parent="menu_background" index="1"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="menu_background"]
+modulate = Color(1, 1, 1, 0.835294)
+self_modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0924945, 0.0775084, 0.185383, 1)
+
+[node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1113.0
+offset_top = 926.0
+offset_right = 1413.0
+offset_bottom = 1001.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v2ryi")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+label_settings = SubResource("LabelSettings_gegmv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 142.0
+offset_top = -26.5
+offset_right = -8.0
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("3_d6xu4")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_5k0cw")
+text = "ESC"
+script = ExtResource("4_vwy2y")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 90.0
+offset_top = 112.0
+offset_right = 1373.0
+offset_bottom = 900.0
+vertical_scroll_mode = 2
+
+[node name="Panel" type="Panel" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="version" type="Label" parent="ScrollContainer/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 287.5
+offset_top = 29.0
+offset_right = 990.5
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_d6xu4")
+theme_override_font_sizes/font_size = 36
+text = "VERSION 1.0.2"
+horizontal_alignment = 1
+
+[node name="date_created" type="Label" parent="ScrollContainer/Panel"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 128.0
+offset_right = 801.0
+offset_bottom = 157.0
+theme_override_fonts/font = ExtResource("3_d6xu4")
+theme_override_font_sizes/font_size = 26
+text = "CREATED:"
+
+[node name="playtime" type="Label" parent="ScrollContainer/Panel"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 221.0
+offset_right = 1249.0
+offset_bottom = 1328.0
+theme_override_fonts/font = ExtResource("3_d6xu4")
+theme_override_font_sizes/font_size = 26
+text = "PLAYTIME:Improvements & Fixes:
+
+Bug Fixes
+
+Fixed a crash that occurred when exploring the old church in Act 4.
+
+Resolved an issue where diary pages sometimes did not appear in the inventory.
+
+Corrected NPC dialogue timing to prevent overlapping speech in flashback sequences.
+
+Gameplay Improvements
+
+Adjusted lighting and shadows in the forest scene to enhance psychological horror effect.
+
+Improved responsiveness of Danilo’s movement in narrow corridors.
+
+Optimized save/load system to prevent corrupted save files.
+
+UI/UX Enhancements
+
+Patch notes now accessible directly from the in-game menu.
+
+Updated character portraits in flashback sequences for consistency.
+
+Improved visual feedback when picking up diary pages and items.
+
+Minor Changes
+
+Background music adjusted for better immersion in suspenseful areas.
+
+Fixed typos in journal entries and NPC dialogues.
+
+Reduced unnecessary load times when switching scenes.
+
+Developer Notes:
+This patch ensures smoother gameplay and fixes critical bugs that were affecting the storytelling experience. Players are encouraged to explore all previously inaccessible areas to uncover hidden clues."
+autowrap_mode = 3
+
+[node name="summary_label" type="Label" parent="ScrollContainer/Panel"]
+visible = false
+layout_mode = 0
+offset_left = 499.0
+offset_top = 126.0
+offset_right = 1249.0
+offset_bottom = 155.0
+theme_override_fonts/font = ExtResource("3_d6xu4")
+theme_override_font_sizes/font_size = 26
+text = "CREATED:"
+autowrap_mode = 3
+
+[node name="patch_holder" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 121.0
+offset_right = 1369.0
+offset_bottom = 890.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vwy2y")
+
+[node name="MarginContainer" type="MarginContainer" parent="patch_holder"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 12.0
+offset_right = 1280.0
+offset_bottom = 752.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="patch_holder/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="patch_holder/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="empty" type="Label" parent="patch_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.13333334, 0, 1)
+theme_override_fonts/font = ExtResource("3_d6xu4")
+theme_override_font_sizes/font_size = 19
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="version" type="Label" parent="patch_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.894028, 0.8205445, 0.0015967858, 1)
+theme_override_fonts/font = ExtResource("3_d6xu4")
+theme_override_font_sizes/font_size = 45
+text = "VERSION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="date" type="Label" parent="patch_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_d6xu4")
+theme_override_font_sizes/font_size = 31
+text = "Date"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="empty2" type="Label" parent="patch_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.13333334, 0, 1)
+theme_override_fonts/font = ExtResource("3_d6xu4")
+theme_override_font_sizes/font_size = 19
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="notes" type="Label" parent="patch_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_d6xu4")
+theme_override_font_sizes/font_size = 27
+vertical_alignment = 1
+autowrap_mode = 3
+justification_flags = 171
+
+[node name="empty3" type="Label" parent="patch_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.13333334, 0, 1)
+theme_override_fonts/font = ExtResource("3_d6xu4")
+theme_override_font_sizes/font_size = 19
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="patch_notes" type="Label" parent="patch_holder"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -351.0
+offset_top = -63.0
+offset_right = 352.0
+offset_bottom = 9.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_d6xu4")
+theme_override_font_sizes/font_size = 46
+text = "PATCH NOTES"
+horizontal_alignment = 1
+
+[node name="menu_loading_screen" parent="." instance=ExtResource("5_vwy2y")]
+
+[node name="ColorRect" parent="menu_loading_screen" index="0"]
+visible = false
+
+[node name="HTTP_request" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_back_pressed"]
+
+[editable path="menu_background"]
+[editable path="menu_loading_screen"]
