@@ -169,3 +169,7 @@ func on_internet_status_changed(has_internet: bool) -> void:
 		pass
 	else:
 		print("No internet here, show warning or disable buttons.")
+
+
+func _on_patch_notes_pressed() -> void:
+	SignalBus.next_scene.emit("res://scenes/menu/menu_patch_notes.tscn")
