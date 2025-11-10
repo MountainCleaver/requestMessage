@@ -30,6 +30,9 @@ script = ExtResource("1_blywf")
 [node name="menu_background" parent="." instance=ExtResource("1_wyeju")]
 layout_mode = 1
 
+[node name="patch_notes" parent="menu_background" index="2"]
+visible = true
+
 [node name="title_game" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 10
@@ -191,6 +194,7 @@ initial_position = 2
 size = Vector2i(251, 100)
 ok_button_text = "Yes"
 
+[connection signal="pressed" from="menu_background/patch_notes" to="." method="_on_patch_notes_pressed"]
 [connection signal="pressed" from="options_holder/continue_game" to="." method="_on_continue_game_pressed"]
 [connection signal="pressed" from="options_holder/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="options_holder/load_game" to="." method="_on_load_game_pressed"]
@@ -204,3 +208,5 @@ ok_button_text = "Yes"
 [connection signal="confirmed" from="exitConfirmationDialog" to="." method="_on_exit_confirmation_dialog_confirmed"]
 [connection signal="canceled" from="logoutConfirmationDialog" to="." method="_on_logout_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="logoutConfirmationDialog" to="." method="_on_logout_confirmation_dialog_confirmed"]
+
+[editable path="menu_background"]
