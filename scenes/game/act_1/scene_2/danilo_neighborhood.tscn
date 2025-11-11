@@ -9643,7 +9643,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6xou"]
-size = Vector2(18, 26.6667)
+size = Vector2(40.666656, 26.6667)
 
 [node name="danilo_neighborhood" type="Node2D"]
 script = ExtResource("1_re8u2")
@@ -9739,7 +9739,7 @@ autoplay = "default"
 [node name="Area2D" type="Area2D" parent="jeep"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="jeep/Area2D"]
-position = Vector2(-3.66666, -3.33333)
+position = Vector2(7.666664, -3.3333282)
 shape = SubResource("RectangleShape2D_s6xou")
 
 [node name="BGMNeighborhood" type="AudioStreamPlayer" parent="."]
@@ -9752,6 +9752,12 @@ stream = ExtResource("10_w67b0")
 volume_db = -3.817
 autoplay = true
 bus = &"sfx"
+
+[node name="navigation_lights" type="Node2D" parent="."]
+position = Vector2(-162, 174)
+
+[node name="navigation_home" type="Marker2D" parent="navigation_lights"]
+position = Vector2(2, -2)
 
 [connection signal="body_entered" from="jeep/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="jeep/Area2D" to="." method="_on_area_2d_body_exited"]
