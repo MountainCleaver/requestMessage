@@ -186,6 +186,7 @@ func _input(event: InputEvent) -> void:
 				if not done_objective_three:
 					went_outside_find_tricycle.emit()
 			else:
+				can_interact = false
 				if not second_mini_game or not mini_game_completed:
 					DialogueManager.show_dialogue_balloon(A_3S_3, "rushed_home")
 
