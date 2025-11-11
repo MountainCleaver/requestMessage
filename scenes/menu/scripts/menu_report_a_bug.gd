@@ -11,6 +11,7 @@ extends Control
 @onready var confirmation_dialog: ConfirmationDialog = $ConfirmationDialog
 @onready var menu_loading_screen: CanvasLayer = $menu_loading_screen
 @onready var accept_dialog: AcceptDialog = $AcceptDialog
+@onready var empty_dialog: AcceptDialog = $EmptyDialog
 
 const BASIS_33 = preload("res://assets/fonts/basis33.ttf")
 @onready var bug_type_popup = bug_type.get_popup()
@@ -20,6 +21,7 @@ var pending_action: String = ""
 func _ready() -> void:
 	accept_dialog.hide()
 	menu_loading_screen.hide()
+	empty_dialog.hide()
 	file_dialog.filters = ["*.png ; PNG Images", "*.jpg ; JPEG Images"]
 	file_dialog.file_selected.connect(Callable(self, "_on_file_selected"))
 	_style_popup(bug_type_popup)
@@ -71,6 +73,11 @@ func _on_clear_pressed() -> void:
 func _show_confirm_dialog(action: String):
 	pending_action = action
 	if action == "submit":
+		
+		if text_edit.text == "" || text_edit.text.is_empty():
+			empty_dialog.show()
+			return
+		
 		_dialog_config("submit", "Are you sure you want to submit this report?")
 	elif action == "clear":
 		_dialog_config("clear", "Are you sure you want to clear this report?")
