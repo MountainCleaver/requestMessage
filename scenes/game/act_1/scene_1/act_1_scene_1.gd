@@ -94,9 +94,6 @@ func _intro_anim() -> void:
 	
 
 func drink_water_anim() -> void:
-	var tween = create_tween()
-	tween.tween_property(tutorial, "modulate:a", 0.0, 2.0)
-	
 	player_danilo.animation_locked = true;
 	player_danilo.can_move = false;
 	water_glass.visible = false;
@@ -125,6 +122,11 @@ func tension_out_anim() -> void:
 	tension_animation.play("tension_out");
 
 func _go_to_sleep() -> void: 
+	var tween = create_tween()
+	tween.tween_property(tutorial, "modulate:a", 1.0, 0.5)
+	_set_tutorial_text("Remember, you can always adjust the controls in the settings.")
+	tween.tween_interval(2.0)
+	tween.tween_property(tutorial, "modulate:a", 0.0, 2.0)
 	player_danilo.animation_locked = true;
 	$player_danilo/CollisionShape2D.disabled = true;
 	player_danilo.position  = sleep_marker.position; 
@@ -144,6 +146,10 @@ func _go_to_sleep() -> void:
 # interactions
 func _on_water_area_body_entered(body: Node2D) -> void:
 	if body.name == "player_danilo":
+		
+		var tween = create_tween()
+		tween.tween_property(tutorial, "modulate:a", 0.0, 2.0)
+		
 		tip_interact.visible = true;
 		inside_water = true;
 
@@ -189,21 +195,27 @@ func on_internet_status_changed(has_internet: bool) -> void:
 		print("No internet here, show warning or disable buttons.")
 
 
-func _set_tutorial_text () -> void:
-	var movement_controls : Array[String] = []
-	movement_controls.append(_get_key("arrow_up")) 
-	movement_controls.append(_get_key("arrow_left")) 
-	movement_controls.append(_get_key("arrow_down")) 
-	movement_controls.append(_get_key("arrow_right")) 
-	
-	var string_1 : String = "Use "
-	var string_2 : String = ""
-	var string_3 : String = "to move."
-	
-	for control in movement_controls:
-		string_2 += control + ", "
-	
-	tutorial.text = string_1 + string_2 + string_3
+func _set_tutorial_text (text: String = "") -> void:
+	if text == "":
+		var movement_controls : Array[String] = []
+		movement_controls.append(_get_key("arrow_up")) 
+		movement_controls.append(_get_key("arrow_left")) 
+		movement_controls.append(_get_key("arrow_down")) 
+		movement_controls.append(_get_key("arrow_right"))
+		
+		var string_1 : String = "Use "
+		var string_2 : String = ""
+		var string_3 : String = "to move. "
+		var string_4 : String = "Hold "
+		var string_5 : String = _get_key("run")
+		var string_6 : String = "to run."
+		
+		for control in movement_controls:
+			string_2 += control + ", "
+		
+		tutorial.text = string_1 + string_2 + string_3 + string_4 + string_5 + string_6
+	else:
+		tutorial.text = text
 	
 
 func _get_key(action: String) -> String:
