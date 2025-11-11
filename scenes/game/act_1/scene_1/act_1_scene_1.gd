@@ -124,8 +124,8 @@ func tension_out_anim() -> void:
 func _go_to_sleep() -> void: 
 	var tween = create_tween()
 	tween.tween_property(tutorial, "modulate:a", 1.0, 0.5)
-	_set_tutorial_text("Remember, you can always adjust the controls in the settings.")
-	tween.tween_interval(2.0)
+	_set_tutorial_text("Remember, you can always adjust the controls in the settings.\nPress ESC to open the pause menu.")
+	tween.tween_interval(4.0)
 	tween.tween_property(tutorial, "modulate:a", 0.0, 2.0)
 	player_danilo.animation_locked = true;
 	$player_danilo/CollisionShape2D.disabled = true;
@@ -195,27 +195,27 @@ func on_internet_status_changed(has_internet: bool) -> void:
 		print("No internet here, show warning or disable buttons.")
 
 
-func _set_tutorial_text (text: String = "") -> void:
+func _set_tutorial_text(text: String = "") -> void:
 	if text == "":
 		var movement_controls : Array[String] = []
 		movement_controls.append(_get_key("arrow_up")) 
 		movement_controls.append(_get_key("arrow_left")) 
 		movement_controls.append(_get_key("arrow_down")) 
 		movement_controls.append(_get_key("arrow_right"))
-		
-		var string_1 : String = "Use "
-		var string_2 : String = ""
-		var string_3 : String = "to move. "
-		var string_4 : String = "Hold "
-		var string_5 : String = _get_key("run")
-		var string_6 : String = "to run."
-		
-		for control in movement_controls:
-			string_2 += control + ", "
-		
-		tutorial.text = string_1 + string_2 + string_3 + string_4 + string_5 + string_6
+
+		var movement_string : String = ""
+		for i in range(movement_controls.size()):
+			movement_string += movement_controls[i].strip_edges()
+			if i < movement_controls.size() - 1:
+				movement_string += ", "
+		movement_string = '"' + movement_string + '"'
+
+		var run_key : String = '"' + _get_key("run").strip_edges() + '"'
+
+		tutorial.text = "Use " + movement_string + " to move. Hold " + run_key + " to run."
 	else:
 		tutorial.text = text
+
 	
 
 func _get_key(action: String) -> String:
