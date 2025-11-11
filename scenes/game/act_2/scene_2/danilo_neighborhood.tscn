@@ -9750,3 +9750,9 @@ stream = ExtResource("10_tqgjd")
 volume_db = -9.541
 autoplay = true
 bus = &"sfx"
+
+[node name="navigation_lights" type="Node2D" parent="."]
+position = Vector2(-162, 174)
+
+[node name="navigation_home" type="Marker2D" parent="navigation_lights"]
+position = Vector2(2, -2)

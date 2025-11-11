@@ -23,6 +23,15 @@ var door_area: Area2D = null
 var jeep_area: Area2D = null
 var current_location: Node = null
 
+# NAVIGATION TRAIL
+var navigation_home: Node2D = null
+var navigation_lights: Node2D = null
+var lights: Array = []
+var show_navigation: bool = false
+var max_lights := 100
+var base_distance := 200.0
+var light_scene := preload("res://assets/tilesets/nav_light.tscn") 
+
 # ===================
 # STATES & FLAGS
 # ===================
@@ -153,7 +162,9 @@ func switch_location(scene: PackedScene) -> void:
 	sleep_marker = current_location.get_node_or_null("sleep_marker")
 	cabinet_area = current_location.get_node_or_null("cabinet_area")
 	door_area = current_location.get_node_or_null("door_area")
-
+	navigation_home = current_location.get_node_or_null("navigation_lights/navigation_home")
+	navigation_lights = current_location.get_node_or_null("navigation_lights")
+	
 	# === Jeep Area (child of AnimatedSprite2D jeep) ===
 	var jeep_sprite = current_location.get_node_or_null("jeep") # AnimatedSprite2D node
 	if jeep_sprite:
@@ -212,6 +223,7 @@ func _on_jeep_area_body_entered(body):
 		can_use_jeep = true
 		if tip_interact:
 			tip_interact.visible = true
+		_clear_navigation_trail()
 		if player_danilo.has_method("show_tip"):
 			player_danilo.show_tip("jeep")
 		SignalBus.in_jeep_area.emit()
@@ -236,6 +248,9 @@ func _process(_delta):
 	elif can_use_jeep and Input.is_action_just_pressed("interact"):
 		_jeep_interacted()  # no jeep_interacted check here
 
+	if show_navigation:
+		_update_navigation_trail()
+		
 # ===================
 # INTERACTION
 # ===================
@@ -266,6 +281,7 @@ func _jeep_interacted():
 # ===================
 func _switch_to_danilo_neighborhood() -> void:
 	switch_location(DANILO_NEIGHBORHOOD)
+	show_navigation = true
 	ObjectiveManager.complete_objective(4)
 	ObjectiveManager.add_objective(scene_objectives[4]["ID"], scene_objectives[4]["text"])
 
@@ -303,6 +319,45 @@ func _on_chat_message_sent(chat_name: String) -> void:
 		if door_area:
 			door_area.monitoring = true
 
+func _update_navigation_trail() -> void:
+	if not player_danilo or not navigation_home or not navigation_lights:
+		return  
+
+	var player_pos = player_danilo.global_position
+	var target_pos = navigation_home.global_position
+	var distance = player_pos.distance_to(target_pos)
+
+	var desired_num = clamp(int(distance / base_distance), 20, max_lights)
+
+	while lights.size() < desired_num:
+		var l = light_scene.instantiate()
+		navigation_lights.add_child(l)
+		lights.append(l)
+
+	while lights.size() > desired_num:
+		lights.pop_back().queue_free()
+
+	for i in range(lights.size()):
+		var t = float(i + 1) / (lights.size() + 1)
+		var pos = player_pos.lerp(target_pos, t)
+		var l = lights[i]
+		l.global_position = pos
+
+		if l is PointLight2D:
+			l.energy = lerp(2.0, 0.8, t)
+			l.energy += sin(Time.get_ticks_msec() / 300.0 + i) * 0.1
+		else:
+			l.modulate.a = lerp(1.0, 0.3, t)
+			l.scale = Vector2.ONE * lerp(1.0, 0.6, t)
+
+
+func _clear_navigation_trail() -> void:
+	show_navigation = false
+	if navigation_lights and navigation_lights.is_inside_tree():
+		for l in navigation_lights.get_children():
+			l.queue_free()
+	lights.clear()
+	
 # ===================
 # COMPLETE SCENE
 # ===================
