@@ -59,6 +59,15 @@ var hometown_way_area:Area2D
 var danilo_house_area: Area2D
 var back_to_dark_forest_area: Area2D
 
+# NAVIGATION TRAIL
+var navigation_home: Node2D = null
+var navigation_lights: Node2D = null
+var lights: Array = []
+var show_navigation: bool = false
+var max_lights := 100
+var base_distance := 200.0
+var light_scene := preload("res://assets/tilesets/nav_light.tscn") 
+
 # ===================
 # STATES & FLAGS
 # ===================
@@ -161,6 +170,7 @@ func _switch_to_danilo_hometown(from_where: String = "") -> void:
 
 	if from_where == "house_door_step":
 		_reset_danilo_house_area()
+		show_navigation = true
 		ObjectiveManager.complete_objective(1)
 		ObjectiveManager.add_objective(scene_objectives[1]["ID"], scene_objectives[1]["text"])
 	elif from_where == "house_door_step_2":
@@ -281,6 +291,8 @@ func switch_location(scene: PackedScene) -> void:
 	dark_forest_way_area = current_location.get_node_or_null("area/dark_forest_way")
 	hometown_way_area = current_location.get_node_or_null("area/hometown_way")
 	danilo_house_area = current_location.get_node_or_null("danilo/y-sorted-objects/areas/danilo_house_area")
+	navigation_home = current_location.get_node_or_null("navigation_lights/navigation_home")
+	navigation_lights = current_location.get_node_or_null("navigation_lights")
 	
 	if door_area:
 		door_area.body_entered.connect(_on_door_area_body_entered)
@@ -396,7 +408,8 @@ func _on_flashlight_determinant_body_entered(body: Node2D) -> void:
 		return
 	if flashlight_dialogue_triggered:
 		return
-
+	_clear_navigation_trail()
+	
 	if SaveManager.has_given_lola_ising_cash():
 		player_danilo.force_cannot_move = true
 		if npc_lola_ising and ising_walk_target:
@@ -628,6 +641,9 @@ func _process(delta):
 	elif can_enter_danilo_house_area and Input.is_action_just_pressed("interact"):
 		_danilo_house_area_interacted()
 
+	if show_navigation:
+		_update_navigation_trail()
+		
 	# Handle Ising movement
 	if ising_moving and npc_lola_ising:
 		var dir = (ising_target_position - npc_lola_ising.global_position).normalized()
@@ -908,6 +924,45 @@ func _reset_habulan_triggers() -> void:
 			if c is CollisionShape2D:
 				c.disabled = true
 
+func _update_navigation_trail() -> void:
+	if not player_danilo or not navigation_home or not navigation_lights:
+		return  
+
+	var player_pos = player_danilo.global_position
+	var target_pos = navigation_home.global_position
+	var distance = player_pos.distance_to(target_pos)
+
+	var desired_num = clamp(int(distance / base_distance), 20, max_lights)
+
+	while lights.size() < desired_num:
+		var l = light_scene.instantiate()
+		navigation_lights.add_child(l)
+		lights.append(l)
+
+	while lights.size() > desired_num:
+		lights.pop_back().queue_free()
+
+	for i in range(lights.size()):
+		var t = float(i + 1) / (lights.size() + 1)
+		var pos = player_pos.lerp(target_pos, t)
+		var l = lights[i]
+		l.global_position = pos
+
+		if l is PointLight2D:
+			l.energy = lerp(2.0, 0.8, t)
+			l.energy += sin(Time.get_ticks_msec() / 300.0 + i) * 0.1
+		else:
+			l.modulate.a = lerp(1.0, 0.3, t)
+			l.scale = Vector2.ONE * lerp(1.0, 0.6, t)
+
+
+func _clear_navigation_trail() -> void:
+	show_navigation = false
+	if navigation_lights and navigation_lights.is_inside_tree():
+		for l in navigation_lights.get_children():
+			l.queue_free()
+	lights.clear()
+	
 # ===================
 # COMPLETE SCENE
 # ===================

@@ -385,6 +385,12 @@ volume_db = -10.752
 autoplay = true
 bus = &"sfx"
 
+[node name="navigation_lights" type="Node2D" parent="."]
+position = Vector2(-703, 236)
+
+[node name="navigation_home" type="Marker2D" parent="navigation_lights"]
+position = Vector2(2, -2)
+
 [connection signal="body_entered" from="danilo/y-sorted-objects/areas/house_door_outside" to="." method="_on_house_door_outside_body_entered"]
 [connection signal="body_exited" from="danilo/y-sorted-objects/areas/house_door_outside" to="." method="_on_house_door_outside_body_exited"]
 
