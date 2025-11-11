@@ -21,8 +21,6 @@ var A_3S_1: Resource
 @onready var sfx_bus: AudioStreamPlayer = $SFX_BUS
 @onready var sfx_wind: AudioStreamPlayer = $SFX_WIND
 @onready var navigation_home: Marker2D = $navigation_lights/navigation_home
-@onready var navigation_home_1: Marker2D = $navigation_lights/navigation_home_1
-@onready var navigation_home_2: Marker2D = $navigation_lights/navigation_home_2
 @onready var navigation_lights: Node2D = $navigation_lights
 
 var lights: Array = []  

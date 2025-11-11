@@ -3176,6 +3176,12 @@ volume_db = -1.908
 autoplay = true
 bus = &"sfx"
 
+[node name="navigation_lights" type="Node2D" parent="."]
+position = Vector2(-777, 146)
+
+[node name="navigation_home" type="Marker2D" parent="navigation_lights"]
+position = Vector2(2, -2)
+
 [connection signal="body_entered" from="wendy_pan_area" to="." method="_on_area_2d_body_entered"]
 
 [editable path="NPC Y-SORT/wendy_and_danilo_holder/player_danilo"]

@@ -32,6 +32,15 @@ var looked_tables = {
 	"table_4": $table_areas/area_table_4
 }
 
+# Navigation lights
+@onready var navigation_home: Marker2D = $navigation_lights/navigation_home
+@onready var navigation_lights: Node2D = $navigation_lights
+var lights: Array = []
+var show_navigation := false
+var max_lights := 100
+var base_distance := 200.0
+var light_scene := preload("res://assets/tilesets/nav_light.tscn") 
+
 # OBJECTIVES
 var scene_objectives = [
 	{"ID": 2, "text": "Look around for Wendy."},
@@ -73,6 +82,13 @@ func _process(delta: float) -> void:
 
 	if not camera_panned_to_wendy:
 		camera_2d.position = player_danilo.global_position
+
+	if show_navigation:
+		_update_navigation_trail()
+
+		var distance = player_danilo.global_position.distance_to(navigation_home.global_position)
+		if distance <= 0.01 * base_distance * max_lights: 
+			_clear_navigation_trail()
 
 func _input(event: InputEvent) -> void:
 	if not event.is_action_pressed("interact"):
@@ -162,6 +178,8 @@ func play_dialog(npc_name: String) -> void:
 	match npc_name:
 		"wendy":
 			DialogueManager.show_dialogue_balloon(A_1S_2, "wendy_start")
+			await DialogueManager.dialogue_ended
+			show_navigation = true
 		"table_1":
 			print("dialoging table 1")
 			DialogueManager.show_dialogue_balloon(A_1S_2, "pick_table_1")
@@ -239,7 +257,44 @@ func wendy_unfollow() -> void:
 	camera_2d.make_current()
 
 	DialogueManager.show_dialogue_balloon(A_1S_2, "table_conversation");
-		
+
+
+func _update_navigation_trail() -> void:
+	var player_pos = player_danilo.global_position
+	var target_pos = navigation_home.global_position
+	var distance = player_pos.distance_to(target_pos)
+
+	var desired_num = clamp(int(distance / base_distance), 30, max_lights)
+
+	while lights.size() < desired_num:
+		var l = light_scene.instantiate()
+		navigation_lights.add_child(l)
+		lights.append(l)
+
+	while lights.size() > desired_num:
+		lights.pop_back().queue_free()
+
+	for i in range(lights.size()):
+		var t = float(i + 1) / (lights.size() + 1)
+		var pos = player_pos.lerp(target_pos, t)
+		var l = lights[i]
+		l.global_position = pos
+
+		if l is PointLight2D:
+			l.energy = lerp(2.0, 0.8, t)
+			l.energy += sin(Time.get_ticks_msec() / 300.0 + i) * 0.1
+		else:
+			l.modulate.a = lerp(1.0, 0.3, t)
+			l.scale = Vector2.ONE * lerp(1.0, 0.6, t)
+
+
+func _clear_navigation_trail() -> void:
+	show_navigation = false
+	for l in lights:
+		if l and l.is_inside_tree():
+			l.queue_free()
+	lights.clear()
+
 func on_internet_status_changed(has_internet: bool) -> void:
 	if has_internet:
 		pass
