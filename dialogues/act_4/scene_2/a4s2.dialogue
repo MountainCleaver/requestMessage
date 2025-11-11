@@ -13,7 +13,7 @@ Danilo: [shake rate=20 level=10][color=#8B0000][i]Isa[/i][/color] lang pala ang 
 Danilo: ...
 Danilo: Sa ngayon, sa tambayan na lang muna uunahin kong pupuntahan.
 Danilo: Kaso, kailangan ko munang dumaan sa may semeteryo papunta do'n.
-do ObjectiveManager.add_objective(1, "Enter graveyard")
+do ObjectiveManager.add_objective(1, "Check the map and go to the graveyard")
 do Hud.show_objectives()
 => END
 
@@ -25,7 +25,7 @@ Danilo: Dire-diretso lang pala ang dadaanan ko papuntang sementeryo.
 Danilo: [shake]Hanggang ngayon natatakot pa rin akong dumaan dito mag-isa.[/shake]
 Danilo: [shake]Pero... wala akong magagawa. Kailangan kong dumaan dito.[/shake]
 do Hud.clear_objectives()
-do ObjectiveManager.add_objective(2, "Find small hut")
+do ObjectiveManager.add_objective(2, "Find the small hut")
 do Hud.show_objectives()
 => END
 

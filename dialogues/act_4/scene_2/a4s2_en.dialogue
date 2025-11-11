@@ -13,7 +13,7 @@ Danilo: [shake rate=20 level=10]Come to think about it, I've only taken [color=#
 Danilo: ...
 Danilo: For now, I’ll just head to the hangout first.
 Danilo: But... I have to pass through the graveyard on the way.
-do ObjectiveManager.add_objective(1, "Enter graveyard")
+do ObjectiveManager.add_objective(1, "Check the map and go to the graveyard")
 do Hud.show_objectives()
 => END
 
@@ -25,7 +25,7 @@ Danilo: So, I'll just have to go straight to the graveyard...
 Danilo: [shake]I’m still scared to walk through here alone.[/shake]
 Danilo: [shake]But... I have no choice. I need to go through.[/shake]
 do Hud.clear_objectives()
-do ObjectiveManager.add_objective(2, "Find small hut")
+do ObjectiveManager.add_objective(2, "Find the small hut")
 do Hud.show_objectives()
 => END
 
