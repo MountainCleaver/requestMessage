@@ -28,7 +28,7 @@ do notification_popup()
 => after_open_phone
 
 ~ ignore_phone
-Danilo: Ang ingay ng phone... kailangan ko siguro tignan.=> choices
+Danilo: Ang ingay ng phone... kailangan ko siguro tignan. => choices
 => END
 
 ~ after_open_phone

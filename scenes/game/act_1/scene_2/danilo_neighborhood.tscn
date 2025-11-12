@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://cxe2s35rj34ui"]
+[gd_scene load_steps=41 format=4 uid="uid://cxe2s35rj34ui"]
 
 [ext_resource type="Texture2D" uid="uid://qk4wxfvkg00v" path="res://assets/tilesets/rizal_asset.png" id="1_7ygng"]
 [ext_resource type="Script" uid="uid://8dnth21u0fxk" path="res://scenes/game/act_1/scene_2/danilo_neighborhood.gd" id="1_re8u2"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://2trbatq6low4" path="res://assets/character_sprites/jeep2.png" id="7_s6xou"]
 [ext_resource type="AudioStream" uid="uid://1klbt5qklnji" path="res://sound/Lightless-Dawn(chosic.com).mp3" id="9_phyl4"]
 [ext_resource type="AudioStream" uid="uid://dtadjgnuk3yg4" path="res://sound/city-sounds-296780.mp3" id="10_w67b0"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="11_jcy0l"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="12_b1qs0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5c7ju"]
 texture = ExtResource("1_shcly")
@@ -9718,7 +9720,7 @@ shape = SubResource("WorldBoundaryShape2D_re8u2")
 position = Vector2(55, -193)
 
 [node name="Camera2D" type="Camera2D" parent="player_danilo"]
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 limit_left = -420
 limit_top = -470
 limit_right = 420
@@ -9759,5 +9761,15 @@ position = Vector2(-162, 174)
 [node name="navigation_home" type="Marker2D" parent="navigation_lights"]
 position = Vector2(2, -2)
 
+[node name="CanvasLayer" parent="." instance=ExtResource("11_jcy0l")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+pivot_offset = Vector2(101, 101)
+
+[node name="CanvasLayer2" parent="." instance=ExtResource("12_b1qs0")]
+
 [connection signal="body_entered" from="jeep/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="jeep/Area2D" to="." method="_on_area_2d_body_exited"]
+
+[editable path="CanvasLayer"]
+[editable path="CanvasLayer2"]
