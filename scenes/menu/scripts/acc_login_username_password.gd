@@ -8,9 +8,7 @@ extends Control
 @onready var forgot_pass: Button = $holder/forgot_pass
 @onready var http: HTTPRequest = find_child("HTTP_request")
 @onready var menu_loading_screen: CanvasLayer = $"../menu_loading_screen"
-@onready var exit_confirmation_dialog: ConfirmationDialog = $"../ConfirmationDialog"
 @onready var toggle_password_visibility: TextureButton1 = $holder/line_edit_password/toggle_visibility
-var exit_is_showing : bool = false
 
 
 func _ready() -> void:
@@ -20,16 +18,6 @@ func _ready() -> void:
 	menu_loading_screen.hide()
 	forgot_pass.pressed.connect(_on_forgot_pass_pressed)
 	toggle_password_visibility.connect("toggled", Callable(self, "_on_toggle_visibility_toggled"))
-
-
-func _input(event: InputEvent) -> void:
-	if event.is_action("escape"):
-		if not exit_is_showing:
-			exit_confirmation_dialog.show()
-			exit_is_showing = true
-		else:
-			exit_confirmation_dialog.hide()
-			exit_is_showing = false
 
 func _on_btn_login_pressed() -> void:
 	var user_input = line_edit_user.text.strip_edges()
@@ -97,12 +85,6 @@ func _on_signup_link_pressed() -> void:
 
 func _on_forgot_pass_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_reset_password.tscn")
-
-func _on_confirmation_dialog_confirmed() -> void:
-	get_tree().quit()
-
-func _on_confirmation_dialog_canceled() -> void:
-	pass
 
 func on_internet_status_changed(has_internet: bool) -> void:
 	if has_internet:

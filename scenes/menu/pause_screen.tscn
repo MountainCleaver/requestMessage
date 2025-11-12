@@ -5,10 +5,7 @@
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_wx27k"]
 [ext_resource type="PackedScene" uid="uid://c7yw1h7fpco1e" path="res://scenes/menu/option_main_menu.tscn" id="3_wx27k"]
 [ext_resource type="PackedScene" uid="uid://c6dp8vnyir66p" path="res://scenes/menu/version_num_major_minor_patch_pattern.tscn" id="5_x8jkt"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ruv5c"]
-font = ExtResource("2_wx27k")
-font_size = 72
+[ext_resource type="PackedScene" uid="uid://bj37l5ku5n76a" path="res://globals/exitT0Menu_confirmation.tscn" id="6_pp2s5"]
 
 [node name="pause_screen" type="Control"]
 process_mode = 3
@@ -31,18 +28,20 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_04k7x")
 
-[node name="Label" type="Label" parent="."]
+[node name="title_game" type="RichTextLabel" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.256
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 0.309
-offset_top = -18.644
-offset_bottom = 0.0839844
+offset_left = 4.0
+offset_top = 220.0
+offset_right = -2.0
+offset_bottom = 346.0
 grow_horizontal = 2
-grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_wx27k")
+theme_override_font_sizes/normal_font_size = 100
 text = "GAME PAUSED"
-label_settings = SubResource("LabelSettings_ruv5c")
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -63,21 +62,18 @@ alignment = 1
 
 [node name="continue" parent="VBoxContainer" instance=ExtResource("3_wx27k")]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "CONTINUE"
 
 [node name="settings" parent="VBoxContainer" instance=ExtResource("3_wx27k")]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "SETTINGS"
 
 [node name="exit_to_main_menu" parent="VBoxContainer" instance=ExtResource("3_wx27k")]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "EXIT TO MAIN MENU"
-
-[node name="exit_main_menu_dialog" type="ConfirmationDialog" parent="."]
-title = "Confirm Exit"
-initial_position = 2
-ok_button_text = "Yes"
-dialog_text = "Exit to main menu?"
 
 [node name="overlayer" type="Control" parent="."]
 visible = false
@@ -88,11 +84,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ExitToMenuConfirmation" parent="." instance=ExtResource("6_pp2s5")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="ExitToMenuConfirmation" index="0"]
+visible = false
+
 [node name="Version_Num_Major_Minor_Patch_pattern" parent="." instance=ExtResource("5_x8jkt")]
 layout_mode = 0
 
 [connection signal="pressed" from="VBoxContainer/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/exit_to_main_menu" to="." method="_on_exit_to_main_menu_pressed"]
-[connection signal="canceled" from="exit_main_menu_dialog" to="." method="_on_exit_main_menu_dialog_canceled"]
-[connection signal="confirmed" from="exit_main_menu_dialog" to="." method="_on_exit_main_menu_dialog_confirmed"]
+
+[editable path="ExitToMenuConfirmation"]

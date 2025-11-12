@@ -50,6 +50,12 @@ offset_bottom = -107.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="Panel" parent="back_tips" index="0"]
+offset_left = -23.0
+offset_top = -29.0
+offset_right = 277.0
+offset_bottom = 46.0
+
 [node name="slot_1" type="Button" parent="."]
 layout_mode = 0
 offset_left = 462.0

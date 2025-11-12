@@ -3,10 +3,10 @@ extends Control
 @onready var continue_option: Button = $VBoxContainer/continue
 @onready var settings: Button = $VBoxContainer/settings
 @onready var exit_to_main_menu: Button = $VBoxContainer/exit_to_main_menu
-
-@onready var exit_main_menu_dialog: ConfirmationDialog = $exit_main_menu_dialog
-
 @onready var overlayer: Control = $overlayer
+@onready var exitToMenu_confirmation: Control = $ExitToMenuConfirmation
+@onready var window: Window = $ExitToMenuConfirmation/Window
+
 
 var dialog_showing : bool = false
 var in_overlay : bool = false
@@ -54,12 +54,13 @@ func _on_settings_pressed() -> void:
 	_option_overlayer("res://scenes/menu/pause_screen_settings.tscn")
 
 func _on_exit_to_main_menu_pressed() -> void:
-	if not dialog_showing:
-		exit_main_menu_dialog.show()
-		dialog_showing = true
-	else:
-		dialog_showing = false
-		exit_main_menu_dialog.hide()
+	if exitToMenu_confirmation.visible:
+		return  # Already showing, ignore extra clicks
+
+	exitToMenu_confirmation.show()
+	window.show()
+	dialog_showing = true
+
 
 func _on_exit_main_menu_dialog_confirmed() -> void:
 	# Clean phone screens

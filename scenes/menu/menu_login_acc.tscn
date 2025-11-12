@@ -1,10 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://khwdatbhelgd"]
+[gd_scene load_steps=10 format=3 uid="uid://khwdatbhelgd"]
 
+[ext_resource type="Script" uid="uid://dvwv07p3fbxt3" path="res://scenes/menu/menu_login_acc.gd" id="1_61dk0"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_nx25a"]
 [ext_resource type="Texture2D" uid="uid://d37rg5an1q1b2" path="res://assets/main menu/menu_phone.png" id="2_ulwyg"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="3_tpmv3"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="3_ulwyg"]
 [ext_resource type="PackedScene" uid="uid://cth2r78w0vqn3" path="res://scenes/menu/acc_login_username_password.tscn" id="4_4f6le"]
 [ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="5_iatr4"]
+[ext_resource type="PackedScene" uid="uid://cxb4qn63t1pld" path="res://globals/exit_confirmation.tscn" id="6_5s8b4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6pvv0"]
+shader = ExtResource("3_tpmv3")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
 
 [node name="menu_login_acc" type="Control"]
 layout_mode = 3
@@ -13,9 +24,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_61dk0")
 
 [node name="menu_background" parent="." instance=ExtResource("1_nx25a")]
 layout_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6pvv0")
+layout_mode = 0
+offset_right = 2271.0
+offset_bottom = 1025.0
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -51,16 +70,14 @@ offset_top = 252.0
 offset_right = -466.0
 offset_bottom = -232.0
 
-[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
-oversampling_override = 1.0
-title = "Confirm Exit"
-initial_position = 2
-size = Vector2i(251, 100)
-ok_button_text = "Yes"
-dialog_text = "Do you want to exit the game?"
-
 [node name="menu_loading_screen" parent="." instance=ExtResource("5_iatr4")]
 visible = false
 
-[connection signal="canceled" from="ConfirmationDialog" to="acc_login_username_password" method="_on_confirmation_dialog_canceled"]
-[connection signal="confirmed" from="ConfirmationDialog" to="acc_login_username_password" method="_on_confirmation_dialog_confirmed"]
+[node name="ExitConfirmation" parent="." instance=ExtResource("6_5s8b4")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="ExitConfirmation" index="0"]
+visible = false
+
+[editable path="ExitConfirmation"]

@@ -7,9 +7,12 @@ font = ExtResource("1_682dg")
 font_size = 24
 
 [node name="Version_Num_Major_Minor_Patch_pattern" type="Label"]
-z_index = 1
-offset_right = 225.0
-offset_bottom = 51.0
+z_index = 3
+offset_left = 80.0
+offset_top = 66.0
+offset_right = 305.0
+offset_bottom = 117.0
+theme_override_font_sizes/font_size = 50
 text = "Version 1.0.2"
 label_settings = SubResource("LabelSettings_syoi4")
 horizontal_alignment = 1
