@@ -180,10 +180,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="exitConfirmationDialog" type="ConfirmationDialog" parent="."]
+sdf_oversize = 0
+sdf_scale = 2
 oversampling_override = 1.0
 title = "Confirm Exit"
 initial_position = 2
-size = Vector2i(251, 100)
+size = Vector2i(400, 100)
+visible = true
 ok_button_text = "Yes"
 dialog_text = "Do you want to exit the game?"
 
