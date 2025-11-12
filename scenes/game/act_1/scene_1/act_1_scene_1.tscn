@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dt3yd4s5nakyt"]
+[gd_scene load_steps=26 format=3 uid="uid://dt3yd4s5nakyt"]
 
 [ext_resource type="Script" uid="uid://b7hmkmiq81axl" path="res://scenes/game/act_1/scene_1/act_1_scene_1.gd" id="1_1hull"]
 [ext_resource type="PackedScene" uid="uid://d3u5m1cllxkbu" path="res://scenes/game/act_1/scene_1/danilo_room.tscn" id="2_wxgv6"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bcgenq0ipmuwq" path="res://scenes/game/act_1/scene_1/sprite_2d.gd" id="6_v7vjx"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="7_sag8k"]
 [ext_resource type="AudioStream" uid="uid://dwow3fbcvnre" path="res://sound/calming-rain-257596.mp3" id="8_m44dp"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="9_d88lo"]
 
 [sub_resource type="Gradient" id="Gradient_1hull"]
 interpolation_mode = 2
@@ -324,9 +325,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="CanvasLayer" parent="." instance=ExtResource("9_d88lo")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+pivot_offset = Vector2(101, 101)
+
 [connection signal="body_entered" from="water_glass/water_area" to="." method="_on_water_area_body_entered"]
 [connection signal="body_exited" from="water_glass/water_area" to="." method="_on_water_area_body_exited"]
 [connection signal="body_entered" from="bed_area" to="." method="_on_bed_area_body_entered"]
 [connection signal="body_exited" from="bed_area" to="." method="_on_bed_area_body_exited"]
 
 [editable path="player_danilo"]
+[editable path="CanvasLayer"]
