@@ -52,10 +52,10 @@ grow_vertical = 0
 
 [node name="slot_1" type="Button" parent="."]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 52.0
-offset_right = 1396.0
-offset_bottom = 301.0
+offset_left = 462.0
+offset_top = 76.0
+offset_right = 1778.0
+offset_bottom = 325.0
 script = ExtResource("4_jawnl")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 metadata/_edit_group_ = true
@@ -135,10 +135,10 @@ mouse_filter = 2
 
 [node name="slot_2" type="Button" parent="."]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 344.0
-offset_right = 1396.0
-offset_bottom = 593.0
+offset_left = 462.0
+offset_top = 368.0
+offset_right = 1778.0
+offset_bottom = 617.0
 script = ExtResource("4_jawnl")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 metadata/_edit_group_ = true
@@ -218,10 +218,10 @@ mouse_filter = 2
 
 [node name="slot_3" type="Button" parent="."]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 632.0
-offset_right = 1396.0
-offset_bottom = 881.0
+offset_left = 462.0
+offset_top = 656.0
+offset_right = 1778.0
+offset_bottom = 905.0
 script = ExtResource("4_jawnl")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 metadata/_edit_group_ = true

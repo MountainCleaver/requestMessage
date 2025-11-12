@@ -39,7 +39,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1468.15, 89)]
+"values": [Vector2(2326, 89)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -51,7 +51,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-333, 89)]
+"values": [Vector2(-414, 89)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -90,7 +90,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.112656, 0.112656),
 "update": 0,
-"values": [Vector2(1518.15, 10), Vector2(1150, 10)]
+"values": [Vector2(2326, 10), Vector2(1925, 10)]
 }
 
 [sub_resource type="Animation" id="Animation_esk0b"]
@@ -105,7 +105,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(10.9283, 10.9283),
 "update": 0,
-"values": [Vector2(1150, 10), Vector2(1479, 10)]
+"values": [Vector2(2326, 10), Vector2(1925, 10)]
 }
 
 [sub_resource type="Animation" id="Animation_vm2el"]
@@ -120,7 +120,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.196146, 0.196146),
 "update": 0,
-"values": [Vector2(-333, 89), Vector2(43, 89)]
+"values": [Vector2(-414, 89), Vector2(43, 89)]
 }
 
 [sub_resource type="Animation" id="Animation_d7y7k"]
@@ -135,7 +135,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.333333, 1),
 "transitions": PackedFloat32Array(1, 0.176777, 0.176777),
 "update": 0,
-"values": [Vector2(43, 89), Vector2(50, 89), Vector2(-337, 89)]
+"values": [Vector2(43, 89), Vector2(50, 89), Vector2(-414, 89)]
 }
 
 [sub_resource type="Animation" id="Animation_uxckp"]
@@ -217,10 +217,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1478.15
-offset_top = 10.0
-offset_right = 1692.15
-offset_bottom = 310.0
+offset_left = 2286.0
+offset_top = 89.0
+offset_right = 2500.0
+offset_bottom = 389.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_n5lr3")
 
@@ -241,10 +241,11 @@ layout_mode = 2
 
 [node name="phone" type="Panel" parent="Control"]
 layout_mode = 0
-offset_left = -333.0
+offset_left = -414.0
 offset_top = 89.0
-offset_right = -18.0
+offset_right = -99.0
 offset_bottom = 649.0
+scale = Vector2(1.1629589, 1.1396514)
 theme_override_styles/panel = SubResource("StyleBoxFlat_v5pfq")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/phone"]
@@ -330,4 +331,4 @@ libraries = {
 }
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(1111, 89)
+position = Vector2(2073, 111)

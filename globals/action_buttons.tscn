@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqm4gh850yrus"]
+
+[ext_resource type="Script" uid="uid://c2wc74uxd22vq" path="res://globals/action_buttons.gd" id="1_s1gxd"]
+[ext_resource type="Texture2D" uid="uid://bdnywh4hasnbr" path="res://assets/character_sprites/run1.png" id="2_qh868"]
+[ext_resource type="Texture2D" uid="uid://77e7bl3fch81" path="res://assets/character_sprites/interact1.png" id="3_4v616"]
+[ext_resource type="Texture2D" uid="uid://dfyg6gy4sha3x" path="res://assets/character_sprites/map.png" id="4_3u1y8"]
+[ext_resource type="Texture2D" uid="uid://caomphdx0iyky" path="res://assets/character_sprites/run.png" id="5_lmxx8"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ActionButtons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_s1gxd")
+
+[node name="RunButton" type="TouchScreenButton" parent="ActionButtons"]
+position = Vector2(1833, 768)
+scale = Vector2(9, 8.828)
+texture_normal = ExtResource("2_qh868")
+action = "run"
+
+[node name="InteractButton" type="TouchScreenButton" parent="ActionButtons"]
+position = Vector2(1988, 824)
+scale = Vector2(10, 9.861499)
+texture_normal = ExtResource("3_4v616")
+action = "interact"
+
+[node name="MapButton" type="TouchScreenButton" parent="ActionButtons"]
+position = Vector2(2113, 714)
+scale = Vector2(9, 8.905)
+texture_normal = ExtResource("4_3u1y8")
+action = "map"
+
+[node name="FlashlightButton" type="TouchScreenButton" parent="ActionButtons"]
+position = Vector2(1960.0001, 644)
+scale = Vector2(9, 8.855)
+texture_normal = ExtResource("5_lmxx8")
+action = "flashlight"
