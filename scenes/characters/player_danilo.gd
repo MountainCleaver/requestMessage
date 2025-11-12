@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var RUNNING_SPEED: float = 200.0
 
 @onready var joystick := get_node_or_null("../CanvasLayer/VirtualJoystick")
+@onready var action_buttons: Node = get_node("../CanvasLayer/ActionButtons")
 
 var last_direction: Vector2 = Vector2.DOWN
 var can_move: bool = true
@@ -45,7 +46,13 @@ func _ready() -> void:
 
 	if joystick:
 		joystick.analogic_changed.connect(_on_joystick_moved)
+	if action_buttons:
+		action_buttons.connect("run_pressed", Callable(self, "_on_run_button"))
+		action_buttons.connect("flashlight_pressed", Callable(self, "_on_flashlight_button"))
+		action_buttons.connect("map_pressed", Callable(self, "_on_map_button"))
+		action_buttons.connect("interact_pressed", Callable(self, "_on_interact_button"))
 
+		
 func _physics_process(delta: float) -> void:
 	# Block movement if the player can't move
 	if not can_player_move():
@@ -237,3 +244,19 @@ func _joystick_to_cardinal(dir: Vector2) -> Vector2:
 		return Vector2(sign(dir.x), 0)  # Horizontal
 	else:
 		return Vector2(0, sign(dir.y))  # Vertical
+
+func _on_run_button(is_pressed: bool) -> void:
+	is_running = is_pressed
+
+func _on_flashlight_button() -> void:
+	sfx_flashlight.play()
+	FlashlightManager.toggle_real_flashlight()
+
+func _on_map_button() -> void:
+	force_cannot_move = not force_cannot_move
+	SignalBus.map_toggled.emit(force_cannot_move)
+
+func _on_interact_button() -> void:
+	if can_interact and current_npc != "":
+		# Trigger your NPC interaction logic here
+		print("Interacting with ", current_npc)
