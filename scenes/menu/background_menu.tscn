@@ -33,6 +33,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Version_Num_Major_Minor_Patch_pattern" parent="." instance=ExtResource("2_ayhcs")]
 layout_mode = 0
+offset_left = 79.0
+offset_top = 64.0
+offset_right = 304.0
+offset_bottom = 115.0
 
 [node name="patch_notes" type="Button" parent="."]
 visible = false

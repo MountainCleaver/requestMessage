@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://briurx4rtggto"]
+
+[ext_resource type="Script" uid="uid://bfrm0hu3kpn5n" path="res://globals/continue_confirmation.gd" id="1_f2mqw"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="2_f2mqw"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="3_i7co5"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="3_q018h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qx2hx"]
+shader = ExtResource("2_f2mqw")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
+
+[sub_resource type="FontVariation" id="FontVariation_f2mqw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qx2hx"]
+bg_color = Color(0, 0, 0, 0.72156864)
+
+[node name="ContinueConfirmation" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 750.0
+offset_bottom = 500.0
+script = ExtResource("1_f2mqw")
+
+[node name="Window" type="Window" parent="."]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(750, 500)
+wrap_controls = true
+exclusive = true
+unresizable = true
+popup_window = true
+minimize_disabled = true
+maximize_disabled = true
+
+[node name="ColorRect" type="ColorRect" parent="Window"]
+material = SubResource("ShaderMaterial_qx2hx")
+offset_right = 750.0
+offset_bottom = 500.0
+mouse_filter = 2
+
+[node name="title_game" type="RichTextLabel" parent="Window"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 131.0
+offset_top = -187.0
+offset_right = -116.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_q018h")
+theme_override_font_sizes/normal_font_size = 50
+text = "Do you want to continue?"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ok" type="Button" parent="Window"]
+offset_left = 136.0
+offset_top = 354.0
+offset_right = 281.0
+offset_bottom = 428.0
+theme_override_font_sizes/font_size = 25
+text = "Yes"
+script = ExtResource("3_i7co5")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
+
+[node name="Cancel" type="Button" parent="Window"]
+offset_left = 483.0
+offset_top = 356.0
+offset_right = 628.0
+offset_bottom = 430.0
+theme_override_font_sizes/font_size = 25
+text = "Cancel"
+script = ExtResource("3_i7co5")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
+
+[node name="Label" type="Label" parent="Window"]
+offset_left = 121.0
+offset_top = 213.0
+offset_right = 643.0
+offset_bottom = 324.0
+theme_override_fonts/font = SubResource("FontVariation_f2mqw")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = -5.0
+offset_top = -2.0
+offset_right = 2281.0
+offset_bottom = 1029.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qx2hx")
+
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
+[connection signal="pressed" from="Window/ok" to="." method="_on_ok_pressed"]
+[connection signal="pressed" from="Window/Cancel" to="." method="_on_cancel_pressed"]

@@ -50,6 +50,12 @@ offset_bottom = -107.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="Panel" parent="back_tips" index="0"]
+offset_left = -32.0
+offset_top = -36.0
+offset_right = 268.0
+offset_bottom = 39.0
+
 [node name="overwriteConfirmationDialog" type="ConfirmationDialog" parent="."]
 oversampling_override = 1.0
 title = "Confirm Overwrite"
