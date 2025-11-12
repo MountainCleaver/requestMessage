@@ -135,7 +135,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 1059)]
+"values": [Vector2(335, 1059)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -147,7 +147,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1440, 240)]
+"values": [Vector2(1667, 240)]
 }
 
 [sub_resource type="Animation" id="Animation_ooonl"]
@@ -163,7 +163,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(0.482969, 0.482969),
 "update": 0,
-"values": [Vector2(0, 1059), Vector2(0, 765)]
+"values": [Vector2(335, 1059), Vector2(335, 765)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -175,7 +175,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1440, 240), Vector2(1440, 240)]
+"values": [Vector2(1667, 240), Vector2(1667, 240)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7c2jb"]
@@ -205,7 +205,9 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 335.0
 offset_top = 35.0
+offset_right = -273.0
 offset_bottom = 275.0
 grow_horizontal = 2
 grow_vertical = 0

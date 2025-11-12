@@ -28,7 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_m27td")
-stretch_mode = 2
+stretch_mode = 6
 metadata/_edit_use_anchors_ = true
 
 [node name="Version_Num_Major_Minor_Patch_pattern" parent="." instance=ExtResource("2_ayhcs")]
