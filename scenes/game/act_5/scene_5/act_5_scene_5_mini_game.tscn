@@ -298,7 +298,7 @@ debug_color = Color(0.65882355, 0.5137255, 0, 0.75686276)
 [node name="npc_gino_with_stick" parent="decorations" node_paths=PackedStringArray("target") instance=ExtResource("4_rb2ls")]
 position = Vector2(1741, -89)
 scale = Vector2(1.2, 1.2)
-speed = 90.0
+speed = 85.0
 target = NodePath("../player_mateo")
 
 [node name="BGM_TENSED" type="AudioStreamPlayer2D" parent="decorations/npc_gino_with_stick"]
