@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://5ohqovupog1p"]
+[gd_scene load_steps=7 format=3 uid="uid://5ohqovupog1p"]
 
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_xvp0h"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="2_7vvl2"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_kxpq5"]
 [ext_resource type="PackedScene" uid="uid://kvi1gwn1mkx2" path="res://scenes/menu/bday_and_gender.tscn" id="3_7vvl2"]
 [ext_resource type="Texture2D" uid="uid://d37rg5an1q1b2" path="res://assets/main menu/menu_phone.png" id="4_s3vkt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s3vkt"]
+shader = ExtResource("2_7vvl2")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
 
 [node name="menu_create_acc_1" type="Control"]
 layout_mode = 3
@@ -16,37 +25,19 @@ grow_vertical = 2
 [node name="menu_background" parent="." instance=ExtResource("1_xvp0h")]
 layout_mode = 1
 
-[node name="title_game" type="RichTextLabel" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 101.0
-offset_bottom = 227.0
-grow_horizontal = 2
-theme_override_colors/default_color = Color(1, 0.192157, 0.192157, 1)
-theme_override_fonts/normal_font = ExtResource("2_kxpq5")
-theme_override_font_sizes/normal_font_size = 72
-text = "REQUEST MESSAGE"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_s3vkt")
+layout_mode = 0
+offset_right = 2271.0
+offset_bottom = 1025.0
+mouse_filter = 2
 
 [node name="bday_and_gender" parent="." instance=ExtResource("3_7vvl2")]
 layout_mode = 1
-offset_left = 720.0
-offset_top = 250.0
-offset_right = 719.52
-offset_bottom = 250.352
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 288.0
-offset_top = 248.0
-offset_right = 614.0
-offset_bottom = 858.0
-texture = ExtResource("4_s3vkt")
-expand_mode = 1
-stretch_mode = 4
+offset_left = 1233.0
+offset_top = 294.0
+offset_right = 1232.52
+offset_bottom = 294.352
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 oversampling_override = 1.0
@@ -61,6 +52,33 @@ initial_position = 2
 size = Vector2i(251, 100)
 ok_button_text = "Yes"
 dialog_text = "Do you want to exit the game?"
+
+[node name="title_game" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 347.0
+offset_top = 108.0
+offset_right = 347.0
+offset_bottom = 234.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 0.192157, 0.192157, 1)
+theme_override_fonts/normal_font = ExtResource("2_kxpq5")
+theme_override_font_sizes/normal_font_size = 72
+text = "REQUEST MESSAGE"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 484.0
+offset_top = 134.0
+offset_right = 969.0
+offset_bottom = 892.0
+texture = ExtResource("4_s3vkt")
+expand_mode = 1
+stretch_mode = 4
 
 [connection signal="canceled" from="ConfirmationDialog" to="bday_and_gender" method="_on_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="ConfirmationDialog" to="bday_and_gender" method="_on_confirmation_dialog_confirmed"]

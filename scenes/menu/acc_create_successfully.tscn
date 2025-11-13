@@ -1,19 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6ufomjjkwkbw"]
+[gd_scene load_steps=9 format=3 uid="uid://b6ufomjjkwkbw"]
 
 [ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="2_t4h72"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="3_pxq1l"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_7wfba"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_x5bll"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_t2p8q"]
-font = ExtResource("3_pxq1l")
-font_size = 40
-font_color = Color(0.329412, 0.329412, 0.329412, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_tas5x"]
-font = ExtResource("4_7wfba")
-font_size = 24
-font_color = Color(0.29954728, 0.2995475, 0.29954743, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wabu4"]
 content_margin_left = 5.0
@@ -105,46 +95,38 @@ offset_bottom = -1024.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="holder2" parent="." instance=ExtResource("2_t4h72")]
+modulate = Color(0, 0, 0, 0.580392)
+layout_mode = 0
+offset_left = -232.0
+offset_top = -15.0
+offset_right = 2530.0
+offset_bottom = 1625.0
+
 [node name="holder" parent="." instance=ExtResource("2_t4h72")]
 top_level = true
 layout_mode = 0
-offset_left = 471.0
-offset_top = 408.0
-offset_right = 962.0
-offset_bottom = 671.0
+offset_left = 815.0
+offset_top = 372.0
+offset_right = 1456.0
+offset_bottom = 720.0
 
-[node name="title" type="Label" parent="holder"]
+[node name="title_game" type="RichTextLabel" parent="holder"]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.127
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 0.127
-offset_left = 80.0
-offset_top = 2.599
-offset_right = -80.0
-offset_bottom = 87.599
+offset_left = 124.0
+offset_top = 3.0
+offset_right = -116.0
+offset_bottom = 155.0
 grow_horizontal = 2
-grow_vertical = 2
+theme_override_colors/default_color = Color(0.32941177, 0.32941177, 0.32941177, 1)
+theme_override_fonts/normal_font = ExtResource("3_pxq1l")
+theme_override_font_sizes/normal_font_size = 75
 text = "SUCCESS!"
-label_settings = SubResource("LabelSettings_t2p8q")
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="subtitle" type="Label" parent="holder/title"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -105.5
-offset_top = -18.129
-offset_right = 105.5
-offset_bottom = 6.871
-grow_horizontal = 2
-grow_vertical = 0
-text = "Account created successfully!"
-label_settings = SubResource("LabelSettings_tas5x")
 
 [node name="btn_ok" type="Button" parent="holder"]
 layout_mode = 1
@@ -152,10 +134,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 128.0
-offset_top = 29.5
-offset_right = -128.0
-offset_bottom = 75.5
+offset_left = 141.0
+offset_top = 58.0
+offset_right = -123.0
+offset_bottom = 121.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -170,12 +152,17 @@ text = "OK"
 script = ExtResource("4_x5bll")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
-[node name="holder2" parent="." instance=ExtResource("2_t4h72")]
-modulate = Color(0, 0, 0, 0.580392)
+[node name="subtitle" type="Label" parent="holder"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
-offset_left = -387.0
-offset_top = -365.0
-offset_right = 1802.0
-offset_bottom = 1275.0
+offset_left = 106.0
+offset_top = 140.0
+offset_right = 606.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(0.32941177, 0.32941177, 0.32941177, 1)
+theme_override_fonts/font = ExtResource("4_7wfba")
+theme_override_font_sizes/font_size = 35
+text = "Account created successfully!"
+autowrap_mode = 2
 
 [connection signal="pressed" from="holder/btn_ok" to="." method="_on_btn_create_pressed"]

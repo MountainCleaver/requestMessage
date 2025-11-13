@@ -33,7 +33,7 @@ script = ExtResource("1_0h3nn")
 
 [node name="menu_background" parent="." instance=ExtResource("2_18eaf")]
 layout_mode = 1
-offset_right = 1440.0
+offset_right = 2275.0
 offset_bottom = 1024.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]

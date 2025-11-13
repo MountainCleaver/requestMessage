@@ -12,9 +12,13 @@ extends Control
 @onready var logout_button: Button = $logoutButton
 @onready var welcome_label: RichTextLabel = $TextureRect/welcome
 @onready var welcome_bg: ColorRect = $TextureRect/ColorRect
-@onready var exit_confirmation_dialog: ConfirmationDialog = $exitConfirmationDialog
-@onready var logout_confirmation_dialog: ConfirmationDialog = $logoutConfirmationDialog
-@onready var continue_confirmation_dialog: ConfirmationDialog = $continueConfirmationDialog
+@onready var exit_confirmation: Control = $ExitConfirmation
+@onready var window: Window = $ExitConfirmation/Window
+@onready var logout_confirmation: Control = $LogoutConfirmation
+@onready var window1: Window = $LogoutConfirmation/Window
+@onready var continue_confirmation: Control = $ContinueConfirmation
+@onready var window2: Window = $ContinueConfirmation/Window
+@onready var label: Label = $ContinueConfirmation/Window/Label
 
 var current_choice = 0
 
@@ -50,9 +54,6 @@ func _ready() -> void:
 	for option in options_menu:
 		option.mouse_entered.connect(_option_hover.bind(option))
 
-	if not continue_confirmation_dialog.confirmed.is_connected(_start_continue_game):
-		continue_confirmation_dialog.confirmed.connect(_start_continue_game)
-
 func _update_welcome_label() -> void:
 	var name_text = ""
 	if Session.logged_in:
@@ -70,11 +71,16 @@ func _option_hover(option: Button) -> void:
 func _on_continue_game_pressed() -> void:
 	if not SaveManager.has_save():
 		return
-	
+
 	var act = SaveManager.game_save.current_act
 	var scene = SaveManager.game_save.current_scene
-	continue_confirmation_dialog.dialog_text = "You have previous progress in %s - %s.\nDo you want to continue?" % [act.capitalize(), scene.capitalize()]
-	continue_confirmation_dialog.popup_centered()
+
+	# Show the custom ContinueConfirmation screen
+	continue_confirmation.show()
+	window2.show()
+
+	label.text = "You have previous progress in:\n%s - %s" % [act.capitalize(), scene.capitalize()]
+
 
 func _start_continue_game() -> void:
 	if BgmManager:
@@ -110,8 +116,9 @@ func _on_options_pressed() -> void:
 
 func _on_exit_pressed() -> void:
 	print("exit")
-	exit_confirmation_dialog.show();
-
+	exit_confirmation.show();
+	window.show();
+	
 func _option_overlayer(path: String) -> void:
 	# Hide welcome background whenever an overlay is open
 	welcome_bg.visible = false
@@ -133,26 +140,10 @@ func _exit_overlay() -> void:
 func _on_feedback_pressed() -> void:
 	OS.shell_open("https://forms.gle/i6TE17FkpqA7mywk8")
 
-func _on_exit_confirmation_dialog_confirmed() -> void:
-	get_tree().quit()
-
-func _on_exit_confirmation_dialog_canceled() -> void:
-	# do nothing
-	pass # Replace with function body.
 
 func _on_logout_button_pressed() -> void:
-	logout_confirmation_dialog.show()
-
-
-func _on_logout_confirmation_dialog_confirmed() -> void:
-	queue_free()
-	SignalBus.next_scene.emit("res://scenes/menu/boot_warning.tscn")
-	Session.logout_session()
-
-
-func _on_logout_confirmation_dialog_canceled() -> void:
-	# do nothing
-	pass # Replace with function body.
+	logout_confirmation.show()
+	window1.show();
 
 func _update_continue_visibility() -> void:
 	if SaveManager.has_save():
