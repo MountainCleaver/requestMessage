@@ -196,29 +196,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="exitConfirmationDialog" type="ConfirmationDialog" parent="."]
-sdf_oversize = 0
-sdf_scale = 2
-oversampling_override = 1.0
-title = "Confirm Exit"
-initial_position = 2
-size = Vector2i(400, 100)
-ok_button_text = "Yes"
-dialog_text = "Do you want to exit the game?"
+[node name="ExitConfirmation" parent="." instance=ExtResource("10_0iqcp")]
+visible = false
+layout_mode = 0
 
-[node name="logoutConfirmationDialog" type="ConfirmationDialog" parent="."]
-oversampling_override = 1.0
-title = "Logging out"
-initial_position = 2
-size = Vector2i(271, 100)
-dialog_text = "Are you sure you want to logout?"
+[node name="Window" parent="ExitConfirmation" index="0"]
+visible = false
 
-[node name="continueConfirmationDialog" type="ConfirmationDialog" parent="."]
-oversampling_override = 1.0
-title = "Confirm Exit"
-initial_position = 2
-size = Vector2i(251, 100)
-ok_button_text = "Yes"
+[node name="LogoutConfirmation" parent="." instance=ExtResource("11_gomlb")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="LogoutConfirmation" index="0"]
+visible = false
+
+[node name="ContinueConfirmation" parent="." instance=ExtResource("12_htk28")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="ContinueConfirmation" index="0"]
+visible = false
 
 [connection signal="pressed" from="menu_background/patch_notes" to="." method="_on_patch_notes_pressed"]
 [connection signal="pressed" from="options_holder/continue_game" to="." method="_on_continue_game_pressed"]
