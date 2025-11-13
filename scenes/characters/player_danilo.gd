@@ -12,7 +12,7 @@ extends CharacterBody2D
 @export var RUNNING_SPEED: float = 200.0
 
 @onready var joystick := get_node_or_null("../CanvasLayer/VirtualJoystick")
-@onready var action_buttons: Node = get_node("../CanvasLayer/ActionButtons")
+@onready var action_buttons: Node = get_node("../CanvasLayer/ActionButtons") 
 
 var last_direction: Vector2 = Vector2.DOWN
 var can_move: bool = true
