@@ -13,7 +13,7 @@ font = ExtResource("2_hhrsm")
 font_size = 80
 
 [sub_resource type="LabelSettings" id="LabelSettings_uwf8f"]
-font_size = 25
+font_size = 30
 
 [sub_resource type="Animation" id="Animation_hhrsm"]
 length = 0.001
@@ -76,7 +76,7 @@ _data = {
 &"in_animation": SubResource("Animation_tymat")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5twxx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yr52n"]
 shader = ExtResource("4_r0aif")
 shader_parameter/curvature = 6.0
 shader_parameter/vignette_softness = 0.6
@@ -124,10 +124,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -33.0
-offset_top = 17.5
-offset_right = 42.0
-offset_bottom = 39.8334
+offset_left = -138.5
+offset_top = 14.833405
+offset_right = 147.5
+offset_bottom = 50.833405
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_yr52n")
@@ -141,8 +141,11 @@ libraries = {
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = 2
-material = SubResource("ShaderMaterial_5twxx")
-layout_mode = 0
-offset_right = 1441.0
-offset_bottom = 1025.0
+material = SubResource("ShaderMaterial_yr52n")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2

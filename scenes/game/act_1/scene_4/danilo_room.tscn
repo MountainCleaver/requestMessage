@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://bxm3fagyj1640"]
+[gd_scene load_steps=36 format=4 uid="uid://bxm3fagyj1640"]
 
 [ext_resource type="Texture2D" uid="uid://bbcnf12eroxh8" path="res://assets/tilesets/INDOOR-TILE.png" id="1_jwl4k"]
 [ext_resource type="Texture2D" uid="uid://dtah50ir54grt" path="res://assets/tilesets/INDOOR.png" id="2_ambtd"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bcgenq0ipmuwq" path="res://scenes/game/act_1/scene_1/sprite_2d.gd" id="5_ifv6x"]
 [ext_resource type="AudioStream" uid="uid://c8h20eekm6dv4" path="res://sound/mobile-vibrate-sfx-323777.mp3" id="7_hil60"]
 [ext_resource type="AudioStream" uid="uid://cuctv0bea2fou" path="res://sound/suspense-piano-theme-131357.mp3" id="7_qg3ye"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="8_qg3ye"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hil60"]
 texture = ExtResource("1_jwl4k")
@@ -1976,9 +1977,12 @@ bus = &"sfx"
 stream = ExtResource("7_qg3ye")
 bus = &"music"
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("8_qg3ye")]
+
 [connection signal="body_entered" from="water_glass/water_area" to="." method="_on_water_area_body_entered"]
 [connection signal="body_exited" from="water_glass/water_area" to="." method="_on_water_area_body_exited"]
 [connection signal="body_entered" from="bed_area" to="." method="_on_bed_area_body_entered"]
 [connection signal="body_exited" from="bed_area" to="." method="_on_bed_area_body_exited"]
 
 [editable path="player_danilo"]
+[editable path="CanvasLayer2"]

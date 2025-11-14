@@ -74,9 +74,9 @@ _data = {
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_uwf8f"]
-font_size = 25
+font_size = 30
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gsukk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_glk1s"]
 shader = ExtResource("4_ee0n0")
 shader_parameter/curvature = 6.0
 shader_parameter/vignette_softness = 0.6
@@ -130,9 +130,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -33.0
-offset_top = -466.66663
+offset_top = -460.66663
 offset_right = 42.0
-offset_bottom = -431.66663
+offset_bottom = -425.66663
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_glk1s")
@@ -140,8 +140,11 @@ label_settings = SubResource("LabelSettings_uwf8f")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = 2
-material = SubResource("ShaderMaterial_gsukk")
-layout_mode = 0
-offset_right = 1441.0
-offset_bottom = 1025.0
+material = SubResource("ShaderMaterial_glk1s")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
