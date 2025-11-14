@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://dfwbp3b1101vg"]
+[gd_scene load_steps=41 format=4 uid="uid://dfwbp3b1101vg"]
 
 [ext_resource type="Script" uid="uid://dcpcot3w8tvuc" path="res://scenes/game/act_3/scene_1/act_3_scene_1.gd" id="1_pfe4b"]
 [ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="1_ruko3"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bk3bh65n8crex" path="res://sound/lost-in-the-wet-hillside-reverie-03-relaxing-ambient-music-230244.mp3" id="9_vupt4"]
 [ext_resource type="AudioStream" uid="uid://bltrp5qh23t6v" path="res://sound/bus-turns-26734.mp3" id="10_oesbw"]
 [ext_resource type="AudioStream" uid="uid://dt0l06rj6ujdd" path="res://sound/wind-blowing-sfx-06-423674.mp3" id="11_3xr38"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="12_3xr38"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vupt4"]
 texture = ExtResource("3_p5l8m")
@@ -385,6 +386,12 @@ position = Vector2(-89, 158)
 [node name="navigation_home" type="Marker2D" parent="navigation_lights"]
 position = Vector2(2, -2)
 
+[node name="CanvasLayer" parent="." instance=ExtResource("12_3xr38")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+pivot_offset = Vector2(101, 101)
+metadata/_edit_use_anchors_ = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="ising_detectors/ising_detector" to="." method="_on_ising_detector_body_entered"]
 [connection signal="body_entered" from="ising_detectors/ising_turn" to="." method="_on_ising_turn_body_entered"]
@@ -400,3 +407,5 @@ position = Vector2(2, -2)
 [editable path="locations/danilo_hometown"]
 [editable path="locations/danilo_hometown/y-sorted-objects/bus"]
 [editable path="locations/danilo_hometown/y-sorted-objects/npc_lola_ising"]
+[editable path="locations/danilo_hometown/CanvasLayer2"]
+[editable path="CanvasLayer"]

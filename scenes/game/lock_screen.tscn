@@ -1,17 +1,17 @@
 [gd_scene load_steps=11 format=3 uid="uid://bqagsj7ps731j"]
 
 [ext_resource type="Script" uid="uid://danm7o662nkg3" path="res://scenes/game/lock_screen.gd" id="1_hukn4"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_ph3dx"]
 [ext_resource type="PackedScene" uid="uid://dg0oqq148wh62" path="res://scenes/game/phone_main.tscn" id="2_epe7q"]
 [ext_resource type="Texture2D" uid="uid://cwgna8jrsskbc" path="res://assets/HUD/LOCK_ICON.png" id="2_hukn4"]
 [ext_resource type="PackedScene" uid="uid://cy0y0g83u3mfm" path="res://scenes/game/wendy_phone.tscn" id="3_uxtme"]
+[ext_resource type="FontFile" uid="uid://bmnq86iuf43dc" path="res://assets/fonts/CossetteTexte-Regular.ttf" id="4_epe7q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn1hs"]
 bg_color = Color(0, 0.137255, 0.215686, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ebc0p"]
-font = ExtResource("1_ph3dx")
-font_size = 96
+font = ExtResource("4_epe7q")
+font_size = 78
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebc0p"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -64,8 +64,8 @@ offset_left = 240.0
 offset_top = 166.0
 offset_right = 280.0
 offset_bottom = 200.0
-theme_override_fonts/font = ExtResource("1_ph3dx")
-theme_override_font_sizes/font_size = 33
+theme_override_fonts/font = ExtResource("4_epe7q")
+theme_override_font_sizes/font_size = 22
 text = "AM"
 
 [node name="Panel" type="Panel" parent="Panel"]
