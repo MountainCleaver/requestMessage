@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c22u478jgpm6r"]
+[gd_scene load_steps=8 format=3 uid="uid://c22u478jgpm6r"]
 
-[ext_resource type="FontFile" uid="uid://8xjnftrk37dc" path="res://assets/fonts/NationalPark-Regular.ttf" id="1_dqq2d"]
-[ext_resource type="FontFile" uid="uid://c0mm6g0burola" path="res://assets/fonts/NationalPark-Bold.ttf" id="2_sr2f5"]
+[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="1_dqq2d"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="3_8ms4m"]
 [ext_resource type="AudioStream" uid="uid://cl8h4yngn3c0t" path="res://sound/keyboard-typing-one-short-1-2925901.wav" id="3_wickx"]
 [ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="4_8ms4m"]
@@ -81,7 +80,7 @@ offset_right = 246.75
 offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_sr2f5")
+theme_override_fonts/font = ExtResource("1_dqq2d")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_8ms4m")
 text = "Click to Continue"
