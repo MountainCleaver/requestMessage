@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dnfxf0i1m8o7g"]
+[gd_scene load_steps=11 format=3 uid="uid://dnfxf0i1m8o7g"]
 
 [ext_resource type="Texture2D" uid="uid://cv3xcgs6tbd0b" path="res://assets/character_sprites/portrait_wendy.png" id="1_8xope"]
 [ext_resource type="Script" uid="uid://dqbutx8hqrd23" path="res://scenes/game/phone_incoming_call.gd" id="1_mdfhy"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_wqfo8"]
+[ext_resource type="FontFile" uid="uid://c0mm6g0burola" path="res://assets/fonts/NationalPark-Bold.ttf" id="3_1ahv2"]
+[ext_resource type="FontFile" uid="uid://8xjnftrk37dc" path="res://assets/fonts/NationalPark-Regular.ttf" id="3_dqmi4"]
 [ext_resource type="Texture2D" uid="uid://ds2admbktts3l" path="res://assets/HUD/accept_call.png" id="3_tb0m6"]
 [ext_resource type="Texture2D" uid="uid://ccpvqvb5u8euu" path="res://assets/HUD/reject_call.png" id="5_dqmi4"]
 
@@ -16,10 +17,10 @@ corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 
 [sub_resource type="LabelSettings" id="LabelSettings_tb0m6"]
-font = ExtResource("2_wqfo8")
+font = ExtResource("3_1ahv2")
 
 [sub_resource type="LabelSettings" id="LabelSettings_mdfhy"]
-font = ExtResource("2_wqfo8")
+font = ExtResource("3_dqmi4")
 font_size = 32
 
 [node name="incoming_call" type="Control"]
@@ -108,8 +109,8 @@ alignment = 1
 
 [node name="Button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wqfo8")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("3_dqmi4")
+theme_override_font_sizes/font_size = 26
 text = "Accept"
 icon = ExtResource("3_tb0m6")
 
@@ -142,8 +143,8 @@ alignment = 1
 
 [node name="Button" type="Button" parent="HBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wqfo8")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("3_dqmi4")
+theme_override_font_sizes/font_size = 26
 text = "Reject"
 icon = ExtResource("5_dqmi4")
 

@@ -1,15 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://div61axhc3bwa"]
+[gd_scene load_steps=4 format=3 uid="uid://div61axhc3bwa"]
 
 [ext_resource type="Script" uid="uid://deuxrwfjvu6uc" path="res://scenes/game/act_2/scene_2/act_2_scene_2.gd" id="1_cjaq6"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="2_cjaq6"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="3_7y5v2"]
 
 [node name="act_2_scene_2" type="Node2D"]
 script = ExtResource("1_cjaq6")
 
 [node name="locations" type="Node2D" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("2_cjaq6")]
+[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("2_cjaq6")]
 visible = false
+
+[node name="CanvasLayer" parent="." instance=ExtResource("3_7y5v2")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+pivot_offset = Vector2(101, 101)
+metadata/_edit_use_anchors_ = true
+
+[editable path="CanvasLayer"]

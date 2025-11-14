@@ -1,19 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://de2dr1cjpwin1"]
+[gd_scene load_steps=12 format=3 uid="uid://de2dr1cjpwin1"]
 
 [ext_resource type="Texture2D" uid="uid://pkan4cmofqkg" path="res://assets/HUD/APP_ICONS.png" id="1_s6ybd"]
 [ext_resource type="Script" uid="uid://cut648r0q7jxy" path="res://scenes/game/notification.gd" id="1_uwrdo"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_ob7k2"]
+[ext_resource type="FontFile" uid="uid://c0mm6g0burola" path="res://assets/fonts/NationalPark-Bold.ttf" id="3_07yic"]
 [ext_resource type="AudioStream" uid="uid://tcwf3ci0qbdv" path="res://sound/new-notification-09-352705.wav" id="4_07yic"]
+[ext_resource type="FontFile" uid="uid://8xjnftrk37dc" path="res://assets/fonts/NationalPark-Regular.ttf" id="4_eld60"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ob7k2"]
 atlas = ExtResource("1_s6ybd")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="LabelSettings" id="LabelSettings_uwrdo"]
-font_size = 7
+font = ExtResource("3_07yic")
+font_size = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_07yic"]
-font = ExtResource("2_ob7k2")
+font = ExtResource("4_eld60")
+font_size = 12
 
 [sub_resource type="Animation" id="Animation_07yic"]
 length = 0.001
@@ -133,7 +136,8 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Day of Mateo's disapearnce"
 label_settings = SubResource("LabelSettings_07yic")
-autowrap_mode = 2
+autowrap_mode = 3
+justification_flags = 3
 text_overrun_behavior = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

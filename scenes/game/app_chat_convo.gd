@@ -83,7 +83,8 @@ func add_message_to_chat(sender: String, text: String) -> void:
 		chat_container.get_node("typing_indicator").queue_free()
 
 	var chat_font = FontFile.new()
-	chat_font.font_data = load("res://assets/fonts/basis33.ttf")
+	chat_font.font_data = load("res://assets/fonts/NationalPark-Regular.ttf")
+	chat_font.oversampling = 3.0  
 	var style = StyleBoxFlat.new()
 
 	var is_image = text.begins_with("res://") and (text.ends_with(".png") or text.ends_with(".jpg") or text.ends_with(".jpeg") or text.ends_with(".webp"))
@@ -160,7 +161,7 @@ func add_message_to_chat(sender: String, text: String) -> void:
 			label.text = text
 			label.add_theme_color_override("font_color", Color(1,1,1,1))
 			label.add_theme_font_override("font", chat_font)
-			label.add_theme_font_size_override("font_size", 25)
+			label.add_theme_font_size_override("font_size", 19)
 			style.border_width_left = 35
 			style.border_width_right = 8
 
@@ -177,7 +178,7 @@ func add_message_to_chat(sender: String, text: String) -> void:
 			label.text = text
 			label.add_theme_color_override("font_color", Color(0.006, 0.006, 0.006, 1.0))
 			label.add_theme_font_override("font", chat_font)
-			label.add_theme_font_size_override("font_size", 25)
+			label.add_theme_font_size_override("font_size", 19)
 			style.border_width_left = 8
 			style.border_width_right = 35
 
@@ -207,14 +208,15 @@ func show_typing_indicator(sender: String) -> void:
 		chat_container.get_node("typing_indicator").queue_free()
 
 	var chat_font = FontFile.new()
-	chat_font.font_data = load("res://assets/fonts/basis33.ttf")
+	chat_font.font_data = load("res://assets/fonts/NationalPark-Regular.ttf")
+	chat_font.oversampling = 3.0  
 
 	var typing_label = Label.new()
 	typing_label.name = "typing_indicator"
 	typing_label.text = sender + " is typing..."
 	typing_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5, 1))
 	typing_label.add_theme_font_override("font", chat_font)
-	typing_label.add_theme_font_size_override("font_size", 25)
+	typing_label.add_theme_font_size_override("font_size", 19)
 	typing_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	typing_label.custom_minimum_size = Vector2(200, 0)
 
@@ -297,13 +299,14 @@ func load_chat_history(chat_name: String, force_reload: bool = false) -> void:
 
 func show_reply_locked_label() -> void:
 	var chat_font = FontFile.new()
-	chat_font.font_data = load("res://assets/fonts/basis33.ttf")
+	chat_font.font_data = load("res://assets/fonts/NationalPark-Regular.ttf")
+	chat_font.oversampling = 3.0  
 	
 	var locked_label = Label.new()
 	locked_label.text = "You can't reply to this conversation."
 	locked_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5, 1))
 	locked_label.add_theme_font_override("font", chat_font)
-	locked_label.add_theme_font_size_override("font_size", 25)
+	locked_label.add_theme_font_size_override("font_size", 19)
 	locked_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	locked_label.custom_minimum_size = Vector2(200, 0)
 

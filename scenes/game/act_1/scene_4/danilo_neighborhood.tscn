@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://jd2yum8hdwy4"]
+[gd_scene load_steps=45 format=4 uid="uid://jd2yum8hdwy4"]
 
 [ext_resource type="Texture2D" uid="uid://bsi3qrmawmrso" path="res://assets/tilesets/act1_s2_tilemap.png" id="2_onmre"]
 [ext_resource type="Texture2D" uid="uid://c0gjjrngklxbo" path="res://assets/tilesets/buncha_trees.png" id="3_hh7qm"]
@@ -10,6 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://c8h20eekm6dv4" path="res://sound/mobile-vibrate-sfx-323777.mp3" id="9_onmre"]
 [ext_resource type="AudioStream" uid="uid://1klbt5qklnji" path="res://sound/Lightless-Dawn(chosic.com).mp3" id="10_vx0hi"]
 [ext_resource type="AudioStream" uid="uid://cecv2nsdf0egc" path="res://sound/night-sounds-august-54695.mp3" id="11_hcya2"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="11_mbc7v"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="12_tt4ib"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5c7ju"]
 texture = ExtResource("2_onmre")
@@ -9733,8 +9735,8 @@ shape = SubResource("WorldBoundaryShape2D_re8u2")
 position = Vector2(-173, 146)
 
 [node name="Camera2D" type="Camera2D" parent="player_danilo"]
-zoom = Vector2(3, 3)
-limit_left = -420
+zoom = Vector2(4, 4)
+limit_left = -414
 limit_top = -470
 limit_right = 420
 limit_bottom = 300
@@ -10020,7 +10022,16 @@ position = Vector2(53, -198)
 [node name="navigation_home" type="Marker2D" parent="navigation_lights"]
 position = Vector2(2, -2)
 
+[node name="CanvasLayer" parent="." instance=ExtResource("11_mbc7v")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+pivot_offset = Vector2(101, 101)
+
+[node name="CanvasLayer2" parent="." instance=ExtResource("12_tt4ib")]
+
 [connection signal="body_entered" from="bahay" to="." method="_on_bahay_body_entered"]
 [connection signal="body_exited" from="bahay" to="." method="_on_bahay_body_exited"]
 
 [editable path="player_danilo"]
+[editable path="CanvasLayer"]
+[editable path="CanvasLayer2"]

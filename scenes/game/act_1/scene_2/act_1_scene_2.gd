@@ -13,6 +13,7 @@ var met_wendy : bool = false;
 func _ready() -> void:
 	FlashlightManager.set_current_scene("act_1", "scene_2")
 	FlashlightManager.disable_flashlights()
+	GraphicsManager.optimize_scene(self)
 	# Load the starting location
 	switch_location(DANILO_NEIGHBORHOOD)
 

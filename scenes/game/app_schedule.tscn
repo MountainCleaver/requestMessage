@@ -1,12 +1,14 @@
 [gd_scene load_steps=15 format=3 uid="uid://bgqom8k4kfkyi"]
 
 [ext_resource type="Script" uid="uid://cmxfn7y4wsgio" path="res://scenes/game/app_schedule.gd" id="1_r8a1g"]
-[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="2_r8a1g"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_kxv87"]
+[ext_resource type="FontFile" uid="uid://c0mm6g0burola" path="res://assets/fonts/NationalPark-Bold.ttf" id="2_r8a1g"]
 [ext_resource type="Texture2D" uid="uid://csdswcrvdmlo6" path="res://assets/HUD/EXIT_ICON.png" id="4_b26ky"]
+[ext_resource type="FontFile" uid="uid://8xjnftrk37dc" path="res://assets/fonts/NationalPark-Regular.ttf" id="4_jxxu6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2b05g"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ultiw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67qqk"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -16,8 +18,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvdbo"]
 bg_color = Color(0, 0, 0, 0)
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_ultiw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxxu6"]
 bg_color = Color(1.1070073e-06, 0.31863466, 0.4710608, 1)
@@ -96,18 +96,6 @@ theme_override_font_sizes/font_size = 26
 text = "Danilo Trinidad"
 vertical_alignment = 1
 
-[node name="EXIT" type="Button" parent="screen/MarginContainer/HBoxContainer"]
-z_index = 7
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 0
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_67qqk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_t17l3")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xvdbo")
-icon = ExtResource("4_b26ky")
-icon_alignment = 1
-
 [node name="HSeparator" type="HSeparator" parent="screen"]
 layout_mode = 0
 offset_left = 12.0
@@ -123,14 +111,29 @@ offset_top = 13.0
 offset_right = 263.0
 offset_bottom = 41.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
-theme_override_font_sizes/font_size = 22
+theme_override_fonts/font = ExtResource("2_r8a1g")
+theme_override_font_sizes/font_size = 18
 text = "Appointment Schedule"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="EXIT" type="Button" parent="screen"]
+z_index = 7
+layout_mode = 0
+offset_left = 199.0
+offset_top = 4.0
+offset_right = 309.0
+offset_bottom = 93.0
+size_flags_horizontal = 10
+size_flags_vertical = 0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_67qqk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t17l3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xvdbo")
+icon = ExtResource("4_b26ky")
+icon_alignment = 1
+
 [node name="appointment_1" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 294.0
 offset_bottom = 509.0
@@ -151,19 +154,19 @@ offset_right = 211.0
 offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_r8a1g")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 20
 text = "Today"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="appointment_1/Panel2/Label"]
+[node name="Label2" type="Label" parent="appointment_1/Panel2"]
 layout_mode = 0
-offset_left = -57.0
-offset_top = 44.0
-offset_right = 203.0
-offset_bottom = 72.0
+offset_left = 5.0
+offset_top = 47.0
+offset_right = 265.0
+offset_bottom = 75.0
 theme_override_colors/font_color = Color(0.7162962, 0.7162962, 0.7162962, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
+theme_override_fonts/font = ExtResource("4_jxxu6")
 theme_override_font_sizes/font_size = 18
 text = "No schedule for today."
 horizontal_alignment = 1
@@ -179,13 +182,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jxxu6")
 
 [node name="Label" type="Label" parent="appointment_1/Panel3"]
 layout_mode = 0
-offset_left = 63.0
+offset_left = 69.0
 offset_top = 6.0
-offset_right = 205.0
+offset_right = 211.0
 offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_r8a1g")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 20
 text = "Tomorrow"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -193,17 +196,17 @@ vertical_alignment = 1
 [node name="Panel5" type="Panel" parent="appointment_1"]
 layout_mode = 0
 offset_left = 13.0
-offset_top = 293.0
+offset_top = 288.0
 offset_right = 283.0
-offset_bottom = 393.0
+offset_bottom = 388.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kxv87")
 
 [node name="Panel4" type="Panel" parent="appointment_1"]
 layout_mode = 0
 offset_left = 15.0
-offset_top = 293.0
+offset_top = 288.0
 offset_right = 25.0
-offset_bottom = 393.0
+offset_bottom = 388.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_b26ky")
 
 [node name="Label" type="Label" parent="appointment_1/Panel4"]
@@ -213,31 +216,31 @@ offset_top = 5.0
 offset_right = 282.0
 offset_bottom = 33.0
 theme_override_colors/font_color = Color(0, 0.31764707, 0.47058824, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
-theme_override_font_sizes/font_size = 18
+theme_override_fonts/font = ExtResource("4_jxxu6")
+theme_override_font_sizes/font_size = 16
 text = "Psych Check-Up Appointment"
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="appointment_1/Panel4"]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 36.0
+offset_top = 41.0
 offset_right = 282.0
-offset_bottom = 64.0
+offset_bottom = 87.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 10
-theme_override_fonts/font = ExtResource("3_kxv87")
-theme_override_font_sizes/font_size = 15
-text = "📅 Tomorrow – 8:00 AM
+theme_override_fonts/font = ExtResource("4_jxxu6")
+theme_override_font_sizes/font_size = 13
+text = "📅 Today – 8:00 AM
 📝 Bring prescription slip & ID"
 vertical_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="appointment_1"]
 layout_mode = 0
 offset_left = 36.0
-offset_top = 323.0
+offset_top = 321.0
 offset_right = 271.0
-offset_bottom = 327.0
+offset_bottom = 325.0
 theme_override_styles/separator = SubResource("StyleBoxLine_1acru")
 
 [node name="appointment_2" type="Control" parent="."]
@@ -262,21 +265,8 @@ offset_right = 211.0
 offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_r8a1g")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 20
 text = "Today"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label" type="Label" parent="appointment_2/Panel2/Label"]
-layout_mode = 0
-offset_left = -56.0
-offset_top = 209.0
-offset_right = 204.0
-offset_bottom = 237.0
-theme_override_colors/font_color = Color(0.7162962, 0.7162962, 0.7162962, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
-theme_override_font_sizes/font_size = 18
-text = "No schedule for tomorrow."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -290,31 +280,44 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jxxu6")
 
 [node name="Label" type="Label" parent="appointment_2/Panel3"]
 layout_mode = 0
-offset_left = 60.0
+offset_left = 69.0
 offset_top = 6.0
-offset_right = 202.0
+offset_right = 211.0
 offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_r8a1g")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 20
 text = "Tomorrow"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="appointment_2/Panel3"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 48.0
+offset_right = 269.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(0.7162962, 0.7162962, 0.7162962, 1)
+theme_override_fonts/font = ExtResource("4_jxxu6")
+theme_override_font_sizes/font_size = 18
+text = "No schedule for tomorrow."
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Panel5" type="Panel" parent="appointment_2"]
 layout_mode = 0
 offset_left = 13.0
-offset_top = 192.0
+offset_top = 193.0
 offset_right = 283.0
-offset_bottom = 292.0
+offset_bottom = 293.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kxv87")
 
 [node name="Panel4" type="Panel" parent="appointment_2"]
 layout_mode = 0
 offset_left = 15.0
-offset_top = 192.0
+offset_top = 193.0
 offset_right = 25.0
-offset_bottom = 292.0
+offset_bottom = 293.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_b26ky")
 
 [node name="Label" type="Label" parent="appointment_2/Panel4"]
@@ -324,21 +327,21 @@ offset_top = 5.0
 offset_right = 282.0
 offset_bottom = 33.0
 theme_override_colors/font_color = Color(0, 0.31764707, 0.47058824, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
-theme_override_font_sizes/font_size = 18
+theme_override_fonts/font = ExtResource("4_jxxu6")
+theme_override_font_sizes/font_size = 16
 text = "Psych Check-Up Appointment"
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="appointment_2/Panel4"]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 36.0
+offset_top = 41.0
 offset_right = 282.0
-offset_bottom = 64.0
+offset_bottom = 87.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 10
-theme_override_fonts/font = ExtResource("3_kxv87")
-theme_override_font_sizes/font_size = 15
+theme_override_fonts/font = ExtResource("4_jxxu6")
+theme_override_font_sizes/font_size = 13
 text = "📅 Today – 8:00 AM
 📝 Bring prescription slip & ID"
 vertical_alignment = 1
@@ -352,6 +355,7 @@ offset_bottom = 226.0
 theme_override_styles/separator = SubResource("StyleBoxLine_1acru")
 
 [node name="appointment_3" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 294.0
 offset_bottom = 509.0
@@ -372,7 +376,7 @@ offset_right = 211.0
 offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_r8a1g")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 20
 text = "Today"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -385,19 +389,6 @@ offset_right = 281.0
 offset_bottom = 397.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_jxxu6")
 
-[node name="Label" type="Label" parent="appointment_3/Panel3"]
-layout_mode = 0
-offset_left = 62.0
-offset_top = 6.0
-offset_right = 204.0
-offset_bottom = 34.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_r8a1g")
-theme_override_font_sizes/font_size = 22
-text = "Tomorrow"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Label2" type="Label" parent="appointment_3/Panel3"]
 layout_mode = 0
 offset_left = 9.0
@@ -405,9 +396,22 @@ offset_top = 48.0
 offset_right = 269.0
 offset_bottom = 76.0
 theme_override_colors/font_color = Color(0.7162962, 0.7162962, 0.7162962, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
+theme_override_fonts/font = ExtResource("4_jxxu6")
 theme_override_font_sizes/font_size = 18
 text = "No schedule for tomorrow."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="appointment_3/Panel3"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 6.0
+offset_right = 211.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_r8a1g")
+theme_override_font_sizes/font_size = 20
+text = "Tomorrow"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -434,21 +438,21 @@ offset_top = 5.0
 offset_right = 282.0
 offset_bottom = 33.0
 theme_override_colors/font_color = Color(0, 0.31764707, 0.47058824, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
-theme_override_font_sizes/font_size = 18
+theme_override_fonts/font = ExtResource("4_jxxu6")
+theme_override_font_sizes/font_size = 16
 text = "Psych Check-Up Appointment"
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="appointment_3/Panel4"]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 36.0
+offset_top = 41.0
 offset_right = 282.0
-offset_bottom = 64.0
+offset_bottom = 87.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 10
-theme_override_fonts/font = ExtResource("3_kxv87")
-theme_override_font_sizes/font_size = 15
+theme_override_fonts/font = ExtResource("4_jxxu6")
+theme_override_font_sizes/font_size = 13
 text = "📅 Today – 8:00 AM
 📝 Bring prescription slip & ID"
 vertical_alignment = 1
@@ -476,10 +480,10 @@ offset_top = 6.0
 offset_right = 236.0
 offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_kxv87")
-theme_override_font_sizes/font_size = 22
+theme_override_fonts/font = ExtResource("2_r8a1g")
+theme_override_font_sizes/font_size = 18
 text = "Appointment Cancelled"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="screen/MarginContainer/HBoxContainer/EXIT" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="screen/EXIT" to="." method="_on_exit_pressed"]

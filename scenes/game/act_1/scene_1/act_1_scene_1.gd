@@ -45,7 +45,7 @@ func _ready() -> void:
 	
 	camera_animation.play("intro_pan");
 	_intro_anim();
-
+	GraphicsManager.optimize_scene(self)
 func _load_dialogue() -> void:
 	var lang = Settings.settings.dialogue_language
 	var path: String
