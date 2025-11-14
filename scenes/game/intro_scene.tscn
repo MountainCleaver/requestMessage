@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cnqu7ac1h3puq"]
+[gd_scene load_steps=21 format=3 uid="uid://cnqu7ac1h3puq"]
 
 [ext_resource type="Script" uid="uid://dvxs7y4le7ku7" path="res://scenes/game/intro_scene.gd" id="1_cvxvr"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_8viqp"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://ctvvhakd8waq3" path="res://sound/(2)heavy-breathing-sound-effect-type-02-294195.mp3" id="8_8kvt0"]
 [ext_resource type="Texture2D" uid="uid://boxpb62srnrtj" path="res://assets/HUD/fast_forward.png" id="10_ryqyc"]
 [ext_resource type="Script" uid="uid://nt2yn5ttf076" path="res://texture_btn_1.gd" id="11_mol2c"]
+[ext_resource type="FontFile" uid="uid://c0mm6g0burola" path="res://assets/fonts/NationalPark-Bold.ttf" id="12_xwbdk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ku4u"]
 bg_color = Color(0.0509804, 0.0509804, 0.0823529, 1)
@@ -34,7 +35,7 @@ font = ExtResource("2_8viqp")
 font_size = 80
 
 [sub_resource type="LabelSettings" id="LabelSettings_uwf8f"]
-font_size = 25
+font_size = 30
 
 [sub_resource type="Animation" id="Animation_hhrsm"]
 length = 0.001
@@ -119,6 +120,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5ku4u")
@@ -153,7 +155,7 @@ offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_6jsj4")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 30
 label_settings = SubResource("LabelSettings_uwf8f")
 horizontal_alignment = 1
 
@@ -166,7 +168,7 @@ libraries = {
 z_index = 2
 material = SubResource("ShaderMaterial_cvxvr")
 layout_mode = 0
-offset_right = 1441.0
+offset_right = 2289.0
 offset_bottom = 1025.0
 mouse_filter = 2
 
@@ -194,10 +196,11 @@ visible = false
 [node name="fast_forward" type="TextureButton" parent="."]
 z_index = 2
 layout_mode = 0
-offset_left = 1378.0
-offset_top = 19.0
-offset_right = 1428.0
-offset_bottom = 69.0
+offset_left = 2126.0
+offset_top = 42.0
+offset_right = 2215.826
+offset_bottom = 160.09943
+scale = Vector2(1.6253635, 1.5918789)
 texture_normal = ExtResource("10_ryqyc")
 script = ExtResource("11_mol2c")
 metadata/_custom_type_script = "uid://nt2yn5ttf076"
@@ -205,12 +208,12 @@ metadata/_custom_type_script = "uid://nt2yn5ttf076"
 [node name="Label" type="Label" parent="fast_forward"]
 visible = false
 layout_mode = 0
-offset_left = -8.0
-offset_top = 27.0
-offset_right = 32.0
-offset_bottom = 51.0
-theme_override_fonts/font = ExtResource("4_6jsj4")
-theme_override_font_sizes/font_size = 20
+offset_left = -13.53541
+offset_top = 25.127537
+offset_right = 38.609856
+offset_bottom = 68.12753
+theme_override_fonts/font = ExtResource("12_xwbdk")
+theme_override_font_sizes/font_size = 22
 text = "2x"
 horizontal_alignment = 1
 vertical_alignment = 1

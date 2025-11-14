@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c22u478jgpm6r"]
+[gd_scene load_steps=9 format=3 uid="uid://c22u478jgpm6r"]
 
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_wickx"]
+[ext_resource type="FontFile" uid="uid://8xjnftrk37dc" path="res://assets/fonts/NationalPark-Regular.ttf" id="1_dqq2d"]
+[ext_resource type="FontFile" uid="uid://c0mm6g0burola" path="res://assets/fonts/NationalPark-Bold.ttf" id="2_sr2f5"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="3_8ms4m"]
 [ext_resource type="AudioStream" uid="uid://cl8h4yngn3c0t" path="res://sound/keyboard-typing-one-short-1-2925901.wav" id="3_wickx"]
 [ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="4_8ms4m"]
@@ -24,7 +25,7 @@ shader_parameter/scanline_speed = 1.5
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1448.0
+offset_right = 2273.0
 offset_bottom = 1032.0
 
 [node name="Panel" type="Panel" parent="Control"]
@@ -32,13 +33,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gsucg")
 
 [node name="TextureRect" type="TextureRect" parent="Control/Panel"]
 layout_mode = 0
-offset_right = 1440.0
+offset_right = 2278.0
 offset_bottom = 1024.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/Panel/TextureRect"]
@@ -55,7 +57,7 @@ offset_bottom = 210.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("2_wickx")
+theme_override_fonts/normal_font = ExtResource("1_dqq2d")
 theme_override_font_sizes/normal_font_size = 28
 theme_override_font_sizes/bold_font_size = 28
 theme_override_font_sizes/bold_italics_font_size = 28
@@ -79,7 +81,7 @@ offset_right = 246.75
 offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_wickx")
+theme_override_fonts/font = ExtResource("2_sr2f5")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_8ms4m")
 text = "Click to Continue"
@@ -96,6 +98,6 @@ bus = &"sfx"
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = 2
 material = SubResource("ShaderMaterial_dqq2d")
-offset_right = 1441.0
+offset_right = 2273.0
 offset_bottom = 1025.0
 mouse_filter = 2
