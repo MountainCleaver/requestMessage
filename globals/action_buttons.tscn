@@ -16,7 +16,7 @@ offset_bottom = 40.0
 script = ExtResource("1_s1gxd")
 
 [node name="RunButton" type="TouchScreenButton" parent="ActionButtons"]
-position = Vector2(1898.0001, 766)
+position = Vector2(1999.0001, 681)
 scale = Vector2(1.8281226, 1.9218742)
 texture_normal = ExtResource("2_qh868")
 action = "run"
@@ -28,12 +28,14 @@ texture_normal = ExtResource("3_qh868")
 action = "interact"
 
 [node name="MapButton" type="TouchScreenButton" parent="ActionButtons"]
+visible = false
 position = Vector2(2129, 687.99994)
 scale = Vector2(2, 1.979)
 texture_normal = ExtResource("4_4v616")
 action = "map"
 
 [node name="FlashlightButton" type="TouchScreenButton" parent="ActionButtons"]
+visible = false
 position = Vector2(1994, 657)
 scale = Vector2(2, 1.968)
 texture_normal = ExtResource("5_3u1y8")
