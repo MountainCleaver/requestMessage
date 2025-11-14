@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdc53kwxax3q4"]
+[gd_scene load_steps=5 format=3 uid="uid://bdc53kwxax3q4"]
 
 [ext_resource type="Script" uid="uid://ds66vuhsq75x6" path="res://scenes/game/act_2/scene_4/act_2_scene_4.gd" id="1_bbo7x"]
 [ext_resource type="PackedScene" uid="uid://5vqiljcaj1yn" path="res://scenes/game/act_2/scene_4/wendy_house.tscn" id="2_l4163"]
 [ext_resource type="AudioStream" uid="uid://bstqqmjfwmxt8" path="res://sound/wendybgm (1).mp3" id="3_3vded"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="4_bwsg8"]
-[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="5_jlvxl"]
 
 [node name="act_2_scene_4" type="Node2D"]
 script = ExtResource("1_bbo7x")
@@ -23,11 +22,3 @@ layer = 101
 
 [node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("4_bwsg8")]
 visible = false
-
-[node name="CanvasLayer" parent="." instance=ExtResource("5_jlvxl")]
-
-[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
-pivot_offset = Vector2(101, 101)
-metadata/_edit_use_anchors_ = true
-
-[editable path="CanvasLayer"]
