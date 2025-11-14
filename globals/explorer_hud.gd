@@ -3,92 +3,166 @@ extends CanvasLayer
 # ===================
 # NODES
 # ===================
-@onready var map_icon = $Map
+@onready var map_icon: TouchScreenButton = $Map
+@onready var flashlight_button: TouchScreenButton = $Flashlight
 @onready var full_map = $FullMapPanel
-@onready var flashlight_button = $Flashlight
-@onready var map_guide = $Map/Panel/Label/Guide
-@onready var flashlight_guide = $Flashlight/Panel/Label/Guide
-@onready var map_label = $Map/Panel/Label
-@onready var flashlight_label = $Flashlight/Panel/Label
 
-@onready var sfx_map : AudioStreamPlayer = $SFX_MAP
+@onready var map_guide = $Map/Guide
+@onready var flashlight_guide = $Flashlight/Guide
+
+
+@onready var sfx_map: AudioStreamPlayer = $SFX_MAP
 
 @onready var location_nodes = [
-	$FullMapPanel/current_map/location_1, # DANILO'S HOUSE / HOMETOWN
-	$FullMapPanel/current_map/location_2, # HABULAN AREA
-	$FullMapPanel/current_map/location_3, # DARK FOREST (DEFAULT LOCATION)
-	$FullMapPanel/current_map/location_4, # GRAVEYARD / SMALL HUT
-	$FullMapPanel/current_map/location_5, # CHAPEL EXTERIOR / INTERIOR
-	$FullMapPanel/current_map/location_6 # CLIFF
+	$FullMapPanel/current_map/location_1,
+	$FullMapPanel/current_map/location_2,
+	$FullMapPanel/current_map/location_3,
+	$FullMapPanel/current_map/location_4,
+	$FullMapPanel/current_map/location_5,
+	$FullMapPanel/current_map/location_6
 ]
 
 # ===================
 # VARIABLES
 # ===================
-var is_open = false
+var is_open := false
 var fade_duration := 0.2
-var guide_fade_time := 0.5  
-var tutorial_active := false 
+var guide_fade_time := 0.5
+var tutorial_active := false
 
 var map_guide_tween: Tween
 var flashlight_guide_tween: Tween
 
+var flashlight_on: bool = false
+var can_use_real: bool = true
+var can_use_phone: bool = true
 # ===================
 # READY
 # ===================
 func _ready():
 	flashlight_button.visible = false
-	map_guide.visible = false
-	map_guide.modulate.a = 0
-	flashlight_guide.visible = false
-	flashlight_guide.modulate.a = 0
+
+	# Hide guides initially
+	_init_guide(map_guide)
+	_init_guide(flashlight_guide)
+
 	full_map.visible = false
 	full_map.modulate.a = 0
 
-	map_icon.pressed.connect(_toggle_map)
+	# ===================
+	# TOUCH INPUT
+	# ===================
+	map_icon.pressed.connect(Callable(self, "_on_map_pressed"))
+	flashlight_button.pressed.connect(Callable(self, "_on_flashlight_pressed"))
 
+	# ===================
+	# MANAGER SIGNALS
+	# ===================
 	FlashlightManager.connect("real_flashlight_unlocked_signal", Callable(self, "_on_flashlight_unlocked"))
 	FlashlightManager.connect("current_scene_changed", Callable(self, "_on_scene_changed"))
-
-	map_icon.mouse_entered.connect(Callable(self, "_on_map_hover"))
-	map_icon.mouse_exited.connect(Callable(self, "_on_hover_exit"))
-	flashlight_button.mouse_entered.connect(Callable(self, "_on_flashlight_hover"))
-	flashlight_button.mouse_exited.connect(Callable(self, "_on_hover_exit"))
 
 	_update_flashlight_visibility()
 	_update_guide_keys()
 	_check_tutorial_guides()
 
 # ===================
-# GET CURRENT KEY TEXT
+# GUIDE INIT
+# ===================
+func _init_guide(guide: Control):
+	guide.visible = false
+	guide.modulate.a = 0
+
+# ===================
+# UPDATE KEY LABELS
 # ===================
 func _get_key_text(action_name: String) -> String:
 	var events = InputMap.action_get_events(action_name)
 	if events.size() > 0:
 		return events[0].as_text().trim_suffix(" (Physical)")
-	return "(Unassigned)"
+	return "(None)"
+
+func _update_guide_keys():
+	map_guide.get_node("Label").text = "A map… maybe it will help."
+	flashlight_guide.get_node("Label").text = "The darkness seems thinner now."
 
 # ===================
-# SHOW CURRENT LOCATION
+# LOCATION HIGHLIGHT
 # ===================
 func show_current_location(index):
 	for i in range(location_nodes.size()):
 		location_nodes[i].visible = (i + 1 == index)
 
 # ===================
-# UPDATE ALL GUIDE & HUD LABELS
+# TOUCH ACTION HANDLERS
 # ===================
-func _update_guide_keys():
-	# Update guide texts
-	map_guide.get_node("Label").text = "A map… maybe it will help.\nPress [" + _get_key_text("map") + "] to toggle map."
-	flashlight_guide.get_node("Label").text = "The darkness seems thinner now.\nPress [" + _get_key_text("flashlight") + "] to toggle flashlight."
+func _on_map_pressed():
+	sfx_map.play()
+	_toggle_map()
 
-	# Update small HUD labels
-	map_label.text = _get_key_text("map")
-	flashlight_label.text = _get_key_text("flashlight")
+
+
+func _on_flashlight_pressed():
+	if FlashlightManager.can_use_real_flashlight():
+		flashlight_on = !flashlight_on
+		FlashlightManager.real_flashlight_enabled = flashlight_on
+		FlashlightManager._update_lights()
 
 # ===================
-# TUTORIAL GUIDE LOGIC
+# SCENE CHANGE
+# ===================
+func _on_scene_changed(act: String, scene: String):
+	_fade_out_guide(map_guide)
+	_fade_out_guide(flashlight_guide)
+
+	_update_flashlight_visibility()
+	_update_guide_keys()
+	_check_tutorial_guides()
+
+# ===================
+# FLASHLIGHT UNLOCKED
+# ===================
+func _on_flashlight_unlocked():
+	if not flashlight_button.visible:
+		flashlight_button.visible = true
+		flashlight_button.modulate.a = 0
+		create_tween().tween_property(flashlight_button, "modulate:a", 1.0, 0.3)
+
+	_fade_in_guide(flashlight_guide)
+
+	var timer := Timer.new()
+	timer.wait_time = 5.0
+	timer.one_shot = true
+	timer.autostart = true
+	add_child(timer)
+	timer.timeout.connect(func(): _fade_out_guide(flashlight_guide))
+
+# ===================
+# FLASHLIGHT VISIBILITY RULES
+# ===================
+func _update_flashlight_visibility():
+	var act = FlashlightManager.data.get("current_act", "")
+	var scene = FlashlightManager.data.get("current_scene", "")
+
+	flashlight_button.visible = false
+	_fade_out_guide(flashlight_guide)
+
+	var scene_number = int(scene.replace("scene_", "0"))
+	var show := false
+
+	if act == "act_4":
+		if scene_number == 1:
+			show = FlashlightManager.real_flashlight_unlocked
+		else:
+			show = FlashlightManager.real_flashlight_unlocked or SaveManager.has_given_lola_ising_cash()
+	elif act == "act_5":
+		show = FlashlightManager.real_flashlight_unlocked or SaveManager.has_given_lola_ising_cash()
+
+	if show:
+		flashlight_button.visible = true
+		flashlight_button.modulate.a = 1.0
+
+# ===================
+# TUTORIAL GUIDES
 # ===================
 func _check_tutorial_guides():
 	var act = FlashlightManager.data.get("current_act", "")
@@ -101,7 +175,7 @@ func _check_tutorial_guides():
 		if FlashlightManager.real_flashlight_unlocked:
 			_fade_in_guide(flashlight_guide)
 
-		var timer = Timer.new()
+		var timer := Timer.new()
 		timer.wait_time = 5.0
 		timer.one_shot = true
 		timer.autostart = true
@@ -121,16 +195,14 @@ func _end_tutorial_guides():
 # GUIDE FADE HELPERS
 # ===================
 func _fade_in_guide(guide: Control):
-	if guide == map_guide and map_guide_tween:
-		map_guide_tween.kill()
-	elif guide == flashlight_guide and flashlight_guide_tween:
-		flashlight_guide_tween.kill()
+	if guide == map_guide and map_guide_tween: map_guide_tween.kill()
+	if guide == flashlight_guide and flashlight_guide_tween: flashlight_guide_tween.kill()
 
 	guide.visible = true
 	guide.modulate.a = max(guide.modulate.a, 0)
 
 	var tween = create_tween()
-	tween.tween_property(guide, "modulate:a", 1.0, guide_fade_time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(guide, "modulate:a", 1.0, guide_fade_time)
 
 	if guide == map_guide:
 		map_guide_tween = tween
@@ -138,13 +210,11 @@ func _fade_in_guide(guide: Control):
 		flashlight_guide_tween = tween
 
 func _fade_out_guide(guide: Control):
-	if guide == map_guide and map_guide_tween:
-		map_guide_tween.kill()
-	elif guide == flashlight_guide and flashlight_guide_tween:
-		flashlight_guide_tween.kill()
+	if guide == map_guide and map_guide_tween: map_guide_tween.kill()
+	if guide == flashlight_guide and flashlight_guide_tween: flashlight_guide_tween.kill()
 
 	var tween = create_tween()
-	tween.tween_property(guide, "modulate:a", 0.0, guide_fade_time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(guide, "modulate:a", 0.0, guide_fade_time)
 	tween.finished.connect(Callable(guide, "hide"))
 
 	if guide == map_guide:
@@ -153,98 +223,8 @@ func _fade_out_guide(guide: Control):
 		flashlight_guide_tween = tween
 
 # ===================
-# HOVER HANDLERS
+# MAP FADE ANIM
 # ===================
-func _on_map_hover():
-	if not tutorial_active:
-		_fade_in_guide(map_guide)
-
-func _on_flashlight_hover():
-	if not tutorial_active and flashlight_button.visible:
-		_fade_in_guide(flashlight_guide)
-
-func _on_hover_exit():
-	if not tutorial_active:
-		_fade_out_guide(map_guide)
-		_fade_out_guide(flashlight_guide)
-
-# ===================
-# SCENE CHANGED
-# ===================
-func _on_scene_changed(act: String, scene: String):
-	_fade_out_guide(map_guide)
-	_fade_out_guide(flashlight_guide)
-
-	_update_flashlight_visibility()
-	_update_guide_keys()
-	_check_tutorial_guides()
-
-# ===================
-# FLASHLIGHT SIGNAL
-# ===================
-func _on_flashlight_unlocked():
-	if not flashlight_button.visible:
-		flashlight_button.visible = true
-		flashlight_button.modulate.a = 0
-		var tween = create_tween()
-		tween.tween_property(flashlight_button, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		print("[ExplorerHUD] Flashlight button visible")
-
-	_fade_in_guide(flashlight_guide)
-
-	var timer = Timer.new()
-	timer.wait_time = 5.0
-	timer.one_shot = true
-	timer.autostart = true
-	add_child(timer)
-	timer.timeout.connect(Callable(self, "_fade_out_guide").bind(flashlight_guide))
-
-# ===================
-# UPDATE FLASHLIGHT VISIBILITY
-# ===================
-func _update_flashlight_visibility():
-	var act = FlashlightManager.data.get("current_act", "")
-	var scene = FlashlightManager.data.get("current_scene", "")
-
-	if act != "act_4" and act != "act_5":
-		flashlight_button.visible = false
-		_fade_out_guide(flashlight_guide)
-		return
-
-	var scene_number = int(scene.replace("scene_", "0"))
-	var should_show_button = false
-
-	if act == "act_4":
-		if scene_number == 1:
-			if FlashlightManager.real_flashlight_unlocked:
-				should_show_button = true
-		else:
-			if FlashlightManager.real_flashlight_unlocked or SaveManager.has_given_lola_ising_cash():
-				should_show_button = true
-	elif act == "act_5":
-		if FlashlightManager.real_flashlight_unlocked or SaveManager.has_given_lola_ising_cash():
-			should_show_button = true
-
-	if should_show_button:
-		if not flashlight_button.visible:
-			flashlight_button.visible = true
-			flashlight_button.modulate.a = 0
-			var tween = create_tween()
-			tween.tween_property(flashlight_button, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		if act == "act_5":
-			_fade_in_guide(flashlight_guide)
-	else:
-		flashlight_button.visible = false
-		_fade_out_guide(flashlight_guide)
-
-# ===================
-# MAP TOGGLE & FADE
-# ===================
-func _input(event):
-	if event.is_action_pressed("map"):
-		sfx_map.play()
-		_toggle_map()
-
 func _toggle_map():
 	if is_open:
 		is_open = false
@@ -253,25 +233,23 @@ func _toggle_map():
 		full_map.visible = true
 		is_open = true
 		await _fade_in()
-	
-	# Emit map toggle signal
-	SignalBus.map_toggled.emit(is_open)
 
+	SignalBus.map_toggled.emit(is_open)
 
 func _fade_in() -> void:
 	full_map.modulate.a = 0
-	var timer := 0.0
-	while timer < fade_duration:
-		timer += get_process_delta_time()
-		full_map.modulate.a = clamp(timer / fade_duration, 0, 1)
+	var t := 0.0
+	while t < fade_duration:
+		t += get_process_delta_time()
+		full_map.modulate.a = clamp(t / fade_duration, 0, 1)
 		await get_tree().process_frame
 	full_map.modulate.a = 1
 
 func _fade_out() -> void:
-	var timer := 0.0
-	while timer < fade_duration:
-		timer += get_process_delta_time()
-		full_map.modulate.a = clamp(1 - (timer / fade_duration), 0, 1)
+	var t := 0.0
+	while t < fade_duration:
+		t += get_process_delta_time()
+		full_map.modulate.a = clamp(1 - (t / fade_duration), 0, 1)
 		await get_tree().process_frame
 	full_map.modulate.a = 0
 	full_map.visible = false
