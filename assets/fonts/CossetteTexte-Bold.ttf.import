@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://clfvl1t3w67w1"
-path="res://.godot/imported/basis33.ttf-e5bb23697f0cf9d1454360195f34b4b6.fontdata"
+uid="uid://t03x50025yl"
+path="res://.godot/imported/CossetteTexte-Bold.ttf-4e1af4407bf493ffec4d413c431c61f3.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/basis33.ttf"
-dest_files=["res://.godot/imported/basis33.ttf-e5bb23697f0cf9d1454360195f34b4b6.fontdata"]
+source_file="res://assets/fonts/CossetteTexte-Bold.ttf"
+dest_files=["res://.godot/imported/CossetteTexte-Bold.ttf-4e1af4407bf493ffec4d413c431c61f3.fontdata"]
 
 [params]
 
@@ -25,17 +25,12 @@ modulate_color_glyphs=false
 hinting=1
 subpixel_positioning=4
 keep_rounding_remainders=true
-oversampling=4.0
+oversampling=0.0
 Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[{
-"chars": [],
-"glyphs": [],
-"name": "New Configuration",
-"size": Vector2i(16, 0)
-}]
+preload=[]
 language_support={}
 script_support={}
 opentype_features={}

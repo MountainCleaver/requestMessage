@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://clfvl1t3w67w1"
-path="res://.godot/imported/basis33.ttf-e5bb23697f0cf9d1454360195f34b4b6.fontdata"
+uid="uid://c0mm6g0burola"
+path="res://.godot/imported/NationalPark-Bold.ttf-b89c4100ef6dee85a9550ac4e6c75134.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/basis33.ttf"
-dest_files=["res://.godot/imported/basis33.ttf-e5bb23697f0cf9d1454360195f34b4b6.fontdata"]
+source_file="res://assets/fonts/NationalPark-Bold.ttf"
+dest_files=["res://.godot/imported/NationalPark-Bold.ttf-b89c4100ef6dee85a9550ac4e6c75134.fontdata"]
 
 [params]
 
@@ -23,19 +23,14 @@ allow_system_fallback=true
 force_autohinter=false
 modulate_color_glyphs=false
 hinting=1
-subpixel_positioning=4
+subpixel_positioning=0
 keep_rounding_remainders=true
-oversampling=4.0
+oversampling=2.3
 Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[{
-"chars": [],
-"glyphs": [],
-"name": "New Configuration",
-"size": Vector2i(16, 0)
-}]
+preload=[]
 language_support={}
 script_support={}
 opentype_features={}
