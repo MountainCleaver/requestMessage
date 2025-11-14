@@ -11,7 +11,7 @@ extends CharacterBody2D
 @export var SPEED: float = 80.0
 @export var RUNNING_SPEED: float = 200.0
 
-@onready var joystick := get_node_or_null("../CanvasLayer/VirtualJoystick")
+var joystick: VirtualJoystick = null
 @onready var action_buttons: Node = get_node("../CanvasLayer/ActionButtons") 
 
 var last_direction: Vector2 = Vector2.DOWN
@@ -44,6 +44,7 @@ func _ready() -> void:
 	# Initialize FlashlightManager
 	FlashlightManager.init(real_flashlight, phone_flashlight)
 
+	joystick = find_node_recursive(get_tree().get_current_scene(), "VirtualJoystick") as VirtualJoystick
 	if joystick:
 		joystick.analogic_changed.connect(_on_joystick_moved)
 	if action_buttons:
@@ -260,3 +261,17 @@ func _on_interact_button() -> void:
 	if can_interact and current_npc != "":
 		# Trigger your NPC interaction logic here
 		print("Interacting with ", current_npc)
+		
+func _init_joystick() -> void:
+	joystick = find_node_recursive(get_tree().get_current_scene(), "VirtualJoystick") as VirtualJoystick
+	if joystick:
+		joystick.analogic_changed.connect(_on_joystick_moved)
+		
+func find_node_recursive(root: Node, name: String) -> Node:
+	if root.name == name:
+		return root
+	for child in root.get_children():
+		var found = find_node_recursive(child, name)
+		if found:
+			return found
+	return null

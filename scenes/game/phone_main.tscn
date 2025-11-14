@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://pkan4cmofqkg" path="res://assets/HUD/APP_ICONS.png" id="1_gakt2"]
 [ext_resource type="Script" uid="uid://bpuk0qmuhh5na" path="res://scenes/game/phone_main.gd" id="1_wkl3j"]
 [ext_resource type="Texture2D" uid="uid://ddwv10ugwcxw6" path="res://assets/HUD/PHONE_WALLPAPER.png" id="2_kvkgu"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_tmcis"]
 [ext_resource type="Texture2D" uid="uid://cwgna8jrsskbc" path="res://assets/HUD/LOCK_ICON.png" id="3_tmcis"]
+[ext_resource type="FontFile" uid="uid://c0mm6g0burola" path="res://assets/fonts/NationalPark-Bold.ttf" id="4_kvkgu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8rha"]
 bg_color = Color(0, 0.137328, 0.217636, 1)
@@ -21,7 +21,8 @@ atlas = ExtResource("1_gakt2")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="LabelSettings" id="LabelSettings_tk37l"]
-font = ExtResource("2_tmcis")
+font = ExtResource("4_kvkgu")
+font_size = 14
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jxsbj"]
 atlas = ExtResource("1_gakt2")
@@ -105,9 +106,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = 2.0
+offset_top = -3.0
 offset_right = 20.0
-offset_bottom = 18.0
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Chat"
@@ -128,10 +129,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -35.0
-offset_top = 1.66666
-offset_right = 35.0
-offset_bottom = 24.0
+offset_left = -37.5
+offset_top = -2.3333435
+offset_right = 37.5
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Flashlight"
@@ -152,10 +153,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -28.0
-offset_top = 1.66666
-offset_right = 28.0
-offset_bottom = 24.0
+offset_left = -34.5
+offset_top = -3.3333435
+offset_right = 34.5
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Schedule"
@@ -176,10 +177,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -24.5
-offset_top = 2.66666
-offset_right = 24.5
-offset_bottom = 25.0
+offset_left = -26.5
+offset_top = -1.3333435
+offset_right = 26.5
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Gallery"

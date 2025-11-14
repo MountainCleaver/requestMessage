@@ -1,6 +1,6 @@
 extends Control
 
-@onready var exit: Button = $screen/MarginContainer/HBoxContainer/EXIT
+@onready var exit: Button = $screen/EXIT
 @onready var appointment_1 = $appointment_1
 @onready var appointment_2 = $appointment_2
 @onready var appointment_3 = $appointment_3

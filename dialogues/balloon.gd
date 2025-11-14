@@ -156,10 +156,8 @@ func apply_dialogue_line() -> void:
 	# Apply portrait if found
 	if CharacterPortrait.portraits.has(portrait_key):
 		portrait.texture = CharacterPortrait.portraits[portrait_key]
-		print("Loaded portrait for: ", portrait_key)
 	else:
 		portrait.texture = null
-		print("No portrait found for: ", raw_character_name)
 
 	dialogue_label.hide()
 	dialogue_label.dialogue_line = dialogue_line

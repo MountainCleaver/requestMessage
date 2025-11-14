@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://cufo6e4mgj2jy"]
+[gd_scene load_steps=47 format=4 uid="uid://cufo6e4mgj2jy"]
 
 [ext_resource type="PackedScene" uid="uid://dg5rdj5dftbue" path="res://scenes/game/act_2/scene_3/bus_terminal.tscn" id="1_4qgvt"]
 [ext_resource type="Script" uid="uid://bfae3i24nnice" path="res://scenes/game/act_2/scene_3/act_2_scene_3.gd" id="1_wp4ah"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://qndbrccsbkrj" path="res://sound/thar-jeep-on-offroad-185664.mp3" id="13_2ds7q"]
 [ext_resource type="AudioStream" uid="uid://fvjnxtxps0a2" path="res://sound/emotional-paino-238158.mp3" id="14_vnh1l"]
 [ext_resource type="AudioStream" uid="uid://tcwf3ci0qbdv" path="res://sound/new-notification-09-352705.wav" id="15_njkv1"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="16_i580u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sf27w"]
 texture = ExtResource("2_wp4ah")
@@ -648,10 +649,10 @@ libraries = {
 }
 autoplay = "RESET"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("9_saaa3")]
+[node name="pause_screen" parent="CanvasLayer3" instance=ExtResource("9_saaa3")]
 visible = false
 
 [node name="SFX_CAR" type="AudioStreamPlayer" parent="."]
@@ -670,6 +671,12 @@ bus = &"music"
 stream = ExtResource("15_njkv1")
 volume_db = -5.073
 bus = &"sfx"
+
+[node name="CanvasLayer" parent="." instance=ExtResource("16_i580u")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+pivot_offset = Vector2(101, 101)
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact" to="." method="_on_bus_interact_body_entered"]
 [connection signal="body_exited" from="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact" to="." method="_on_bus_interact_body_exited"]
@@ -691,3 +698,5 @@ bus = &"sfx"
 [connection signal="body_entered" from="bus_areas/granada_del_sur" to="." method="_on_granada_del_sur_body_entered"]
 [connection signal="body_exited" from="bus_areas/granada_del_sur" to="." method="_on_granada_del_sur_body_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="CanvasLayer"]

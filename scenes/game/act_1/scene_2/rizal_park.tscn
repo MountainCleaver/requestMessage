@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://chc4pcwey76qp"]
+[gd_scene load_steps=24 format=4 uid="uid://chc4pcwey76qp"]
 
 [ext_resource type="Texture2D" uid="uid://c2u7xoa3m61f6" path="res://assets/tilesets/rizal_tile.png" id="1_8l3sx"]
 [ext_resource type="Script" uid="uid://cqxw4getwelv6" path="res://scenes/game/act_1/scene_2/rizal_park.gd" id="1_ejkqa"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://ft8njc17bcan" path="res://assets/character_sprites/STUDENTS.png" id="9_36hqa"]
 [ext_resource type="AudioStream" uid="uid://64q5ndfqndki" path="res://sound/ForestWalk-320bit(chosic.com).mp3" id="10_cnwla"]
 [ext_resource type="AudioStream" uid="uid://b7mn2ecowjo1q" path="res://sound/park-6026.mp3" id="11_6b607"]
-[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="12_mobm4"]
 [ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="13_0pkgb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nt4t3"]
@@ -3184,16 +3183,10 @@ position = Vector2(-777, 146)
 [node name="navigation_home" type="Marker2D" parent="navigation_lights"]
 position = Vector2(2, -2)
 
-[node name="CanvasLayer" parent="." instance=ExtResource("12_mobm4")]
-
-[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
-pivot_offset = Vector2(101, 101)
-
 [node name="CanvasLayer2" parent="." instance=ExtResource("13_0pkgb")]
 
 [connection signal="body_entered" from="wendy_pan_area" to="." method="_on_area_2d_body_entered"]
 
 [editable path="NPC Y-SORT/wendy_and_danilo_holder/player_danilo"]
 [editable path="NPC Y-SORT/wendy_and_danilo_holder/wendy"]
-[editable path="CanvasLayer"]
 [editable path="CanvasLayer2"]

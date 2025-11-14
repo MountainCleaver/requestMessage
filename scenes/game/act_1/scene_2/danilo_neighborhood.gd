@@ -16,6 +16,7 @@ func _ready() -> void:
 	FlashlightManager.set_current_scene("act_1", "scene_2")
 	FlashlightManager.disable_flashlights()
 	_load_dialogue()
+	GraphicsManager.optimize_scene(self)
 	show_navigation = true
 	ObjectiveManager.add_objective(1, "Ride a Jeepney to Rizal Park")
 	Hud.show_objectives()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://hlrmhd2q52no"]
+[gd_scene load_steps=21 format=4 uid="uid://hlrmhd2q52no"]
 
 [ext_resource type="Script" uid="uid://dmap15whcwu84" path="res://scenes/game/act_1/scene_3/rizal_park_after_habulan.gd" id="1_ufr88"]
 [ext_resource type="PackedScene" uid="uid://cdatfkhvxugbj" path="res://scenes/game/act_1/riza_ground.tscn" id="1_un8gu"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://ft8njc17bcan" path="res://assets/character_sprites/STUDENTS.png" id="8_rny5l"]
 [ext_resource type="AudioStream" uid="uid://bt88btfo82wjt" path="res://sound/Come-Play-with-Me(chosic.com).mp3" id="10_c048n"]
 [ext_resource type="AudioStream" uid="uid://b7mn2ecowjo1q" path="res://sound/park-6026.mp3" id="11_tk8ek"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="12_7by6d"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="13_ajdgl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ajdgl"]
 size = Vector2(49.3333, 36.6667)
@@ -222,6 +224,13 @@ volume_db = -4.771
 autoplay = true
 bus = &"sfx"
 
+[node name="CanvasLayer" parent="." instance=ExtResource("12_7by6d")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+pivot_offset = Vector2(101, 101)
+
+[node name="CanvasLayer2" parent="." instance=ExtResource("13_ajdgl")]
+
 [connection signal="body_entered" from="AnimatedSprite2D/jeep_area" to="." method="_on_jeep_area_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/jeep_area" to="." method="_on_jeep_area_body_exited"]
 [connection signal="body_entered" from="wendy_turn_right" to="." method="_on_wendy_turn_right_body_entered"]
@@ -229,3 +238,5 @@ bus = &"sfx"
 
 [editable path="NPC Y-SORT/wendy_and_danilo_holder/player_danilo"]
 [editable path="NPC Y-SORT/wendy_and_danilo_holder/wendy"]
+[editable path="CanvasLayer"]
+[editable path="CanvasLayer2"]

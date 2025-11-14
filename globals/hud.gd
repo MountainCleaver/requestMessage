@@ -3,7 +3,7 @@ signal phone_outro_finished
 
 @onready var v_box_container: VBoxContainer = $Control/objectives/MarginContainer/VBoxContainer
 @onready var objectives_panel: Panel = $Control/objectives
-const BASIS_33 = preload("res://assets/fonts/basis33.ttf")
+const BASIS_33 = preload("res://assets/fonts/CossetteTexte-Regular.ttf")
 @onready var hud_animations: AnimationPlayer = $hud_animations
 
 @onready var photo_popup_holder: Panel = $Control/photo_popup_holder
@@ -57,7 +57,7 @@ func done_objective(obj_ID: int, objective: String, check_color: Color = Color.D
 func _create_objective_node(objective_ID: int, objective_string: String, color: Color = Color.BLACK) -> void:
 	var margin_container = MarginContainer.new()
 	margin_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	margin_container.custom_minimum_size = Vector2(300, 0)
+	margin_container.custom_minimum_size = Vector2(370, 0)
 	margin_container.add_theme_constant_override("margin_left", 10)
 	margin_container.add_theme_constant_override("margin_right", 10)
 	margin_container.add_theme_constant_override("margin_top", 5)
@@ -80,11 +80,11 @@ func _create_objective_node(objective_ID: int, objective_string: String, color: 
 	objective_label.fit_content = true
 	objective_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	objective_label.add_theme_font_override("normal_font", BASIS_33)
-	objective_label.add_theme_font_size_override("normal_font_size", 24)
+	objective_label.add_theme_font_size_override("normal_font_size", 21)
 	objective_label.add_theme_color_override("default_color", color)
 	objective_label.add_theme_color_override("font_strikethrough_color", Color.RED)
 	objective_label.add_theme_constant_override("font_strikethrough_width", 3)
-	objective_label.text = "[ ] " + str(objective_string)
+	objective_label.text = "[  ] " + str(objective_string)
 	objective_label.set_meta("ID", objective_ID)
 
 	panel.add_child(objective_label)
@@ -106,7 +106,7 @@ func update_objective_text(obj_ID: int, new_text: String) -> void:
 			if panel is PanelContainer:
 				var obj = panel.get_child(0)
 				if obj.get_meta("ID") == obj_ID:
-					obj.text = "[ ] " + new_text
+					obj.text = "[  ] " + new_text
 					return
 
 

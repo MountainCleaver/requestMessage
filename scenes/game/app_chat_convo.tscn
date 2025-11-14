@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://b8xfs62jmrihe" path="res://assets/HUD/EXIT_ICON_2.png" id="2_hspbe"]
 [ext_resource type="Texture2D" uid="uid://csdswcrvdmlo6" path="res://assets/HUD/EXIT_ICON.png" id="2_m6o7m"]
 [ext_resource type="Texture2D" uid="uid://cv3xcgs6tbd0b" path="res://assets/character_sprites/portrait_wendy.png" id="3_gwu5h"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_y0ifq"]
-[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="5_gwu5h"]
+[ext_resource type="FontFile" uid="uid://c0mm6g0burola" path="res://assets/fonts/NationalPark-Bold.ttf" id="5_gwu5h"]
+[ext_resource type="FontFile" uid="uid://8xjnftrk37dc" path="res://assets/fonts/NationalPark-Regular.ttf" id="6_y0ifq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ct0er"]
 bg_color = Color(0.6981428, 0.90020514, 0.99670774, 1)
@@ -58,10 +58,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ct0er")
 
 [node name="EXIT" type="Button" parent="screen/Panel"]
 layout_mode = 0
-offset_left = 232.0
-offset_top = -3.0
-offset_right = 264.0
-offset_bottom = 29.0
+offset_left = 206.0
+offset_top = -25.0
+offset_right = 280.0
+offset_bottom = 53.0
 size_flags_horizontal = 10
 size_flags_vertical = 0
 focus_mode = 0
@@ -76,10 +76,10 @@ icon_alignment = 1
 [node name="EXIT_2" type="Button" parent="screen/Panel"]
 visible = false
 layout_mode = 0
-offset_left = 232.0
-offset_top = -3.0
-offset_right = 264.0
-offset_bottom = 29.0
+offset_left = 207.0
+offset_top = -30.0
+offset_right = 279.0
+offset_bottom = 58.0
 size_flags_horizontal = 10
 size_flags_vertical = 0
 focus_mode = 0
@@ -105,7 +105,7 @@ layout_mode = 0
 offset_left = 49.0
 offset_top = 5.0
 offset_right = 191.0
-offset_bottom = 33.0
+offset_bottom = 35.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_gwu5h")
 theme_override_font_sizes/font_size = 22
@@ -129,12 +129,12 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_1hyfr")
 
 [node name="Label" type="Label" parent="screen/type_message"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 7.0
-offset_right = 211.0
-offset_bottom = 25.0
+offset_left = 13.0
+offset_top = 3.0
+offset_right = 214.0
+offset_bottom = 30.0
 theme_override_colors/font_color = Color(0.63375676, 0.6337568, 0.63375676, 1)
-theme_override_fonts/font = ExtResource("4_y0ifq")
+theme_override_fonts/font = ExtResource("6_y0ifq")
 theme_override_font_sizes/font_size = 20
 text = "Type a message..."
 

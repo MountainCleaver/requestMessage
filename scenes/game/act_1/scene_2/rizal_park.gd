@@ -54,6 +54,8 @@ func _ready() -> void:
 	FlashlightManager.set_current_scene("act_1", "scene_2")
 	FlashlightManager.disable_flashlights()
 	_load_dialogue()
+	
+	GraphicsManager.optimize_scene(self)
 	Hud.show_objectives()
 	ObjectiveManager.add_objective(scene_objectives[0]["ID"], scene_objectives[0]["text"])
 	camera_2d.position = player_danilo.global_position

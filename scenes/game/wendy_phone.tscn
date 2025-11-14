@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://coax5haeqfdbl" path="res://scenes/game/wendy_phone.gd" id="1_gs7x5"]
 [ext_resource type="Texture2D" uid="uid://bl3vntxg4dg4i" path="res://assets/HUD/wendywallpaper.png" id="1_vcahv"]
 [ext_resource type="Texture2D" uid="uid://pkan4cmofqkg" path="res://assets/HUD/APP_ICONS.png" id="2_00cnu"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_0f56h"]
 [ext_resource type="Texture2D" uid="uid://v1gub4ywfpm6" path="res://assets/HUD/call.png" id="4_0f56h"]
+[ext_resource type="FontFile" uid="uid://c0mm6g0burola" path="res://assets/fonts/NationalPark-Bold.ttf" id="4_gs7x5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmvcn"]
 bg_color = Color(0.7514713, 0.5458843, 0.6766657, 1)
@@ -21,7 +21,8 @@ atlas = ExtResource("2_00cnu")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="LabelSettings" id="LabelSettings_kkslt"]
-font = ExtResource("3_0f56h")
+font = ExtResource("4_gs7x5")
+font_size = 14
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_malco"]
 atlas = ExtResource("2_00cnu")
@@ -111,9 +112,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -35.0
-offset_top = 1.66666
+offset_top = -1.3333435
 offset_right = 35.0
-offset_bottom = 24.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Call"
@@ -134,10 +135,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -28.0
-offset_top = 1.66666
-offset_right = 28.0
-offset_bottom = 24.0
+offset_left = -30.5
+offset_top = -2.3333435
+offset_right = 30.5
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Schedule"
@@ -159,9 +160,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -24.5
-offset_top = 2.66666
+offset_top = -3.3333435
 offset_right = 24.5
-offset_bottom = 25.0
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Gallery"

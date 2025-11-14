@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cykh0p8r2kduc"]
+[gd_scene load_steps=11 format=3 uid="uid://cykh0p8r2kduc"]
 
 [ext_resource type="Script" uid="uid://ucehjejjclhf" path="res://scenes/menu/scripts/menu_main.gd" id="1_blywf"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_wyeju"]
@@ -9,9 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://b8xfs62jmrihe" path="res://assets/HUD/EXIT_ICON_2.png" id="7_o44s4"]
 [ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="8_0iqcp"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="8_o44s4"]
-[ext_resource type="PackedScene" uid="uid://cxb4qn63t1pld" path="res://globals/exit_confirmation.tscn" id="10_0iqcp"]
-[ext_resource type="PackedScene" uid="uid://bnks7n0omy0w4" path="res://globals/logout_confirmation.tscn" id="11_gomlb"]
-[ext_resource type="PackedScene" uid="uid://briurx4rtggto" path="res://globals/continue_confirmation.tscn" id="12_htk28"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gomlb"]
 shader = ExtResource("8_0iqcp")
@@ -35,6 +32,12 @@ layout_mode = 1
 
 [node name="TextureRect" parent="menu_background" index="0"]
 anchors_preset = -1
+anchor_top = 0.14355469
+anchor_right = 0.70373625
+anchor_bottom = 0.85546875
+offset_top = -152.0
+offset_right = 675.0
+offset_bottom = 152.0
 
 [node name="Version_Num_Major_Minor_Patch_pattern" parent="menu_background" index="1"]
 offset_left = 87.0
@@ -232,6 +235,3 @@ ok_button_text = "Yes"
 [connection signal="pressed" from="logoutButton" to="." method="_on_logout_button_pressed"]
 
 [editable path="menu_background"]
-[editable path="ExitConfirmation"]
-[editable path="LogoutConfirmation"]
-[editable path="ContinueConfirmation"]
