@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://cic4mooq5xw0c"]
+[gd_scene load_steps=57 format=4 uid="uid://cic4mooq5xw0c"]
 
 [ext_resource type="Script" uid="uid://b2nonu3b6u60m" path="res://scenes/game/act_3/scene_4/scene_4_dream.gd" id="1_y8ox5"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="2_kmrv0"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://c5wnnm38lmfgg" path="res://sound/sad-piano-second-172841.mp3" id="14_gxteu"]
 [ext_resource type="AudioStream" uid="uid://bl8je7gq38yu2" path="res://sound/loud-thunder-192165.mp3" id="14_u648a"]
 [ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="17_uoc36"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="18_e6s0d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wwyx5"]
 texture = ExtResource("2_redhc")
@@ -5420,7 +5421,7 @@ position = Vector2(1983, -8)
 material = SubResource("ShaderMaterial_1assj")
 
 [node name="Camera2D" type="Camera2D" parent="y-sorted/player_danilo"]
-zoom = Vector2(3, 3)
+zoom = Vector2(5, 5)
 limit_left = -2136
 limit_right = 2315
 position_smoothing_enabled = true
@@ -5457,13 +5458,16 @@ material = SubResource("ShaderMaterial_0ocjb")
 tile_map_data = PackedByteArray("AACRAAEAAAAJABkAAACPAAEAAAAJABkAAACPAP//AAAJABkAAACNAAEAAAAJABkAAACNAP7/AAAJABkAAACLAAEAAAAJABkAAAB1//7/AAAJABkAAABz/wAAAAAJABkAAAB0/wEAAAAJABkAAAA=")
 tile_set = SubResource("TileSet_psv7k")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="CanvasLayer4" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("2_kmrv0")]
+[node name="pause_screen" parent="CanvasLayer4" instance=ExtResource("2_kmrv0")]
 visible = false
 
 [node name="fog" parent="." instance=ExtResource("10_e6s0d")]
+
+[node name="ParallaxLayer" parent="fog" index="0"]
+position = Vector2(355, -166)
 
 [node name="ColorRect" parent="fog/ParallaxLayer" index="0"]
 color = Color(0.62947845, 0.6025846, 0.6424586, 1)
@@ -5565,6 +5569,8 @@ bus = &"music"
 [node name="VirtualJoystick" parent="CanvasLayer" index="0"]
 metadata/_edit_use_anchors_ = true
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("18_e6s0d")]
+
 [connection signal="body_entered" from="areas/see_light" to="." method="_on_see_light_body_entered"]
 [connection signal="body_entered" from="areas/vanish" to="." method="_on_vanish_body_entered"]
 [connection signal="body_entered" from="areas/ghost_flee" to="." method="_on_ghost_flee_body_entered"]
@@ -5574,3 +5580,4 @@ metadata/_edit_use_anchors_ = true
 [editable path="y-sorted/player_danilo"]
 [editable path="fog"]
 [editable path="CanvasLayer"]
+[editable path="CanvasLayer2"]

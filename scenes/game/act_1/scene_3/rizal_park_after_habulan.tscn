@@ -198,7 +198,7 @@ debug_color = Color(0.418428, 0.603783, 3.85046e-07, 0.980392)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-753, 168)
-zoom = Vector2(4, 4)
+zoom = Vector2(5, 5)
 limit_left = -1260
 limit_top = -330
 limit_right = 790
@@ -225,9 +225,6 @@ autoplay = true
 bus = &"sfx"
 
 [node name="CanvasLayer" parent="." instance=ExtResource("12_7by6d")]
-
-[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
-pivot_offset = Vector2(101, 101)
 
 [node name="CanvasLayer2" parent="." instance=ExtResource("13_ajdgl")]
 

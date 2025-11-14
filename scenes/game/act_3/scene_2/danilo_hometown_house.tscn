@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=4 uid="uid://bb3u6uwnl0gnd"]
+[gd_scene load_steps=16 format=4 uid="uid://bb3u6uwnl0gnd"]
 
 [ext_resource type="Texture2D" uid="uid://baihiyu18ee5o" path="res://assets/tilesets/danilo_hometown_house_tiles.png" id="1_0q6f0"]
 [ext_resource type="Texture2D" uid="uid://dpxclb43v72sn" path="res://assets/tilesets/act3_s3_BAYAN_HOUSES.png" id="2_0q6f0"]
 [ext_resource type="Texture2D" uid="uid://k3fvhpun83o5" path="res://assets/tilesets/danilo_hometown_house_interior_decoration.png" id="2_ocl8c"]
 [ext_resource type="Texture2D" uid="uid://budf8g4gll7ij" path="res://assets/tilesets/window_open_shut.png" id="4_ocl8c"]
 [ext_resource type="Texture2D" uid="uid://d006une7isp8l" path="res://assets/tilesets/picture_frame_.png" id="5_330vi"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="6_00uqd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ocl8c"]
 texture = ExtResource("2_ocl8c")
@@ -603,3 +604,7 @@ y_sort_enabled = true
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAEAAIAAAAMAAsAAAAIAAMAAAASAAwAAAABAAMAAAASAAwAAAD+/wMAAAASAAwAAAAFAP//AAAFAA4AAAD4/wEAAAAAAA8AAAD9/wAAAAAHAAMAAAABAP//AAAEABEAAAAHAP//AAAHAA0AAAA=")
 tile_set = SubResource("TileSet_ocl8c")
+
+[node name="CanvasLayer2" parent="." instance=ExtResource("6_00uqd")]
+
+[editable path="CanvasLayer2"]

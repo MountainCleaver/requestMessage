@@ -28,9 +28,6 @@ visible = true
 [node name="PointLight2D" parent="chapel_interior/map/candle/big_candle" index="2"]
 visible = true
 
-[node name="BGMChapel" parent="chapel_interior" index="8"]
-autoplay = false
-
 [node name="BGMChapel2" type="AudioStreamPlayer" parent="chapel_interior"]
 stream = ExtResource("2_ijs62")
 bus = &"music"
@@ -47,3 +44,4 @@ bus = &"music"
 [editable path="chapel_interior/y-sorted/cabinet_2"]
 [editable path="chapel_interior/y-sorted/player_danilo"]
 [editable path="chapel_interior/meds_lighting_handler"]
+[editable path="chapel_interior/CanvasLayer2"]

@@ -168,8 +168,8 @@ func reply_to_chat(chat_name: String) -> void:
 
 func _on_reply_finished() -> void:
 	if replied_to_mira and replied_to_wendy:
-		camera_2d.zoom.x = 3.0
-		camera_2d.zoom.y = 3.0
+		camera_2d.zoom.x = 4.0
+		camera_2d.zoom.y = 4.0
 		ObjectiveManager.complete_objective(scene_objectives[0]["ID"])
 		Hud.phone_outro()
 		# also clear current children of the margin container

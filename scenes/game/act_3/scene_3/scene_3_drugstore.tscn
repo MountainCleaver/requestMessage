@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://7wtc2deofp0e"]
+[gd_scene load_steps=9 format=4 uid="uid://7wtc2deofp0e"]
 
 [ext_resource type="PackedScene" uid="uid://br3x1sybvvdrp" path="res://drugstore.tscn" id="1_1gu5s"]
 [ext_resource type="Script" uid="uid://q5ed0b2np2dd" path="res://scenes/game/act_3/scene_3/scene_3_drugstore.gd" id="1_8eqnp"]
 [ext_resource type="Texture2D" uid="uid://cj2bpt3elm4p5" path="res://assets/tilesets/hospital_interior.png" id="2_vywam"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="4_myaiv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8eqnp"]
 texture = ExtResource("2_vywam")
@@ -50,9 +51,12 @@ position = Vector2(2.5, 0)
 shape = SubResource("RectangleShape2D_8eqnp")
 debug_color = Color(0, 0.64257616, 0.3206864, 0.41960785)
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("4_myaiv")]
+
 [connection signal="body_entered" from="drugstore/areas/door_area" to="." method="_on_door_area_body_entered"]
 [connection signal="body_exited" from="drugstore/areas/door_area" to="." method="_on_door_area_body_exited"]
 [connection signal="body_entered" from="drugstore/areas/npc_area" to="." method="_on_npc_area_body_entered"]
 [connection signal="body_exited" from="drugstore/areas/npc_area" to="." method="_on_npc_area_body_exited"]
 
 [editable path="drugstore"]
+[editable path="CanvasLayer2"]

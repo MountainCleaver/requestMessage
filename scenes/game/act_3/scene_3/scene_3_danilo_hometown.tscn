@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=4 uid="uid://fgxe57bsbw2l"]
+[gd_scene load_steps=15 format=4 uid="uid://fgxe57bsbw2l"]
 
 [ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="1_85dup"]
 [ext_resource type="Script" uid="uid://dtn2n5kxkaorp" path="res://scenes/game/act_3/scene_3/scene_3_danilo_hometown.gd" id="1_ixdqi"]
 [ext_resource type="Texture2D" uid="uid://bnwgscwxng3ne" path="res://assets/tilesets/Sprite-0005.png" id="2_5og0n"]
 [ext_resource type="PackedScene" uid="uid://byxc4ejvsxd7k" path="res://scenes/characters/tricycle.tscn" id="2_6ha70"]
 [ext_resource type="PackedScene" uid="uid://dw7yle2rdkcn2" path="res://scenes/characters/npc_jonathan.tscn" id="5_fs3wg"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="6_pbfas"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixdqi"]
 texture = ExtResource("2_5og0n")
@@ -123,6 +124,8 @@ position = Vector2(37, -5)
 color = Color(1, 1, 0.76862746, 1)
 energy = 0.4
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("6_pbfas")]
+
 [connection signal="body_entered" from="danilo_hometown/y-sorted-objects/tricycle/tricycle_area" to="." method="_on_tricycle_area_body_entered"]
 [connection signal="body_exited" from="danilo_hometown/y-sorted-objects/tricycle/tricycle_area" to="." method="_on_tricycle_area_body_exited"]
 [connection signal="body_entered" from="danilo_hometown/y-sorted-objects/areas/karatula_area" to="." method="_on_karatula_area_body_entered"]
@@ -139,3 +142,5 @@ energy = 0.4
 
 [editable path="danilo_hometown"]
 [editable path="danilo_hometown/y-sorted-objects/tricycle"]
+[editable path="danilo_hometown/CanvasLayer2"]
+[editable path="CanvasLayer2"]

@@ -102,7 +102,7 @@ region_rect = Rect2(0, 0, 16, 16)
 color = Color(0.1704902, 0.19745782, 0.48475146, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 limit_enabled = false
 limit_left = -270
 limit_top = -206
@@ -122,3 +122,4 @@ bus = &"music"
 
 [editable path="danilo"]
 [editable path="danilo/y-sorted/player_danilo"]
+[editable path="danilo/CanvasLayer2"]

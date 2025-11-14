@@ -100,7 +100,7 @@ position = Vector2(-87, 164)
 y_sort_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="danilo/y-sorted-objects/player_danilo"]
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 limit_left = -744
 limit_top = -689
 limit_right = 723
@@ -397,3 +397,4 @@ position = Vector2(2, -2)
 [editable path="danilo"]
 [editable path="danilo/y-sorted-objects/player_danilo"]
 [editable path="danilo/y-sorted-objects/npc_lola_ising"]
+[editable path="danilo/CanvasLayer2"]

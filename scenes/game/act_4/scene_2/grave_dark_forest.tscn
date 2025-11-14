@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://cojksxhkmxtcr"]
+[gd_scene load_steps=24 format=4 uid="uid://cojksxhkmxtcr"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_wy3md"]
 [ext_resource type="Script" uid="uid://dstfluwnkraup" path="res://scenes/game/act_4/scene_2/grave_dark_forest.gd" id="1_ymqp3"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://u2835b7rt2l8" path="res://sound/horror-atmosphere-background(chosic.com).mp3" id="9_ioldk"]
 [ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="10_5eihl"]
 [ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="10_6757p"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="11_6757p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
 texture = ExtResource("1_wy3md")
@@ -170,7 +171,7 @@ texture = ExtResource("3_pu0bd")
 
 [node name="Camera2D" type="Camera2D" parent="y-sorted/player_danilo"]
 position = Vector2(2, -4)
-zoom = Vector2(3, 3)
+zoom = Vector2(5, 5)
 limit_left = -659
 limit_top = -273
 limit_right = 658
@@ -219,9 +220,12 @@ offset_right = 1437.0
 offset_bottom = 551.0
 mouse_filter = 2
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("11_6757p")]
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="y-sorted/decorations/signage" to="." method="_on_signage_body_entered"]
 [connection signal="body_exited" from="y-sorted/decorations/signage" to="." method="_on_signage_body_exited"]
 [connection signal="body_entered" from="entrance" to="." method="_on_entrance_body_entered"]
 
 [editable path="meds_lighting_handler"]
+[editable path="CanvasLayer2"]

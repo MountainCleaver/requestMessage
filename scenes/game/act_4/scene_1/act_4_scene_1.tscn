@@ -15,7 +15,7 @@ script = ExtResource("1_qqtb8")
 
 [node name="explorer_hud" parent="." instance=ExtResource("2_g7wly")]
 
-[node name="FullMapPanel" parent="explorer_hud" index="2"]
+[node name="FullMapPanel" parent="explorer_hud" index="0"]
 visible = true
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]

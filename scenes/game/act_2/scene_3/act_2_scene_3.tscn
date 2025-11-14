@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://cufo6e4mgj2jy"]
+[gd_scene load_steps=48 format=4 uid="uid://cufo6e4mgj2jy"]
 
 [ext_resource type="PackedScene" uid="uid://dg5rdj5dftbue" path="res://scenes/game/act_2/scene_3/bus_terminal.tscn" id="1_4qgvt"]
 [ext_resource type="Script" uid="uid://bfae3i24nnice" path="res://scenes/game/act_2/scene_3/act_2_scene_3.gd" id="1_wp4ah"]
@@ -17,10 +17,6 @@
 [ext_resource type="AudioStream" uid="uid://tcwf3ci0qbdv" path="res://sound/new-notification-09-352705.wav" id="15_njkv1"]
 [ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="16_i580u"]
 [ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="17_n3twm"]
-[ext_resource type="Texture2D" uid="uid://bdnywh4hasnbr" path="res://assets/character_sprites/run1.png" id="18_7se6n"]
-[ext_resource type="Texture2D" uid="uid://77e7bl3fch81" path="res://assets/character_sprites/interact1.png" id="19_t48h4"]
-[ext_resource type="Texture2D" uid="uid://dfyg6gy4sha3x" path="res://assets/character_sprites/map.png" id="20_at8rb"]
-[ext_resource type="Texture2D" uid="uid://caomphdx0iyky" path="res://assets/character_sprites/run.png" id="21_rpw0k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sf27w"]
 texture = ExtResource("2_wp4ah")
@@ -546,7 +542,7 @@ tile_set = SubResource("TileSet_6m70n")
 position = Vector2(447, 41)
 
 [node name="Camera2D" type="Camera2D" parent="bus_terminal/y-sorted2/player_danilo"]
-zoom = Vector2(3, 3)
+zoom = Vector2(5, 5)
 limit_left = -466
 limit_top = -542
 limit_right = 480
@@ -683,22 +679,6 @@ bus = &"sfx"
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer2" parent="." instance=ExtResource("17_n3twm")]
-
-[node name="RunButton" parent="CanvasLayer2/ActionButtons" index="0"]
-scale = Vector2(9, 8.828)
-texture_normal = ExtResource("18_7se6n")
-
-[node name="InteractButton" parent="CanvasLayer2/ActionButtons" index="1"]
-scale = Vector2(10, 9.861499)
-texture_normal = ExtResource("19_t48h4")
-
-[node name="MapButton" parent="CanvasLayer2/ActionButtons" index="2"]
-scale = Vector2(9, 8.905)
-texture_normal = ExtResource("20_at8rb")
-
-[node name="FlashlightButton" parent="CanvasLayer2/ActionButtons" index="3"]
-scale = Vector2(9, 8.855)
-texture_normal = ExtResource("21_rpw0k")
 
 [connection signal="body_entered" from="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact" to="." method="_on_bus_interact_body_entered"]
 [connection signal="body_exited" from="bus_terminal/y-sorted2/StaticBody2D/bus/bus_interact" to="." method="_on_bus_interact_body_exited"]

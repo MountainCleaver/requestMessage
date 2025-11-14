@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://di37kargq3x1t"]
+[gd_scene load_steps=53 format=4 uid="uid://di37kargq3x1t"]
 
 [ext_resource type="Script" uid="uid://dusqln0xf3b37" path="res://scenes/game/act_4/scene_2/small_hut.gd" id="1_gu5j6"]
 [ext_resource type="Texture2D" uid="uid://b0tn0w1inmrqo" path="res://assets/tilesets/ACT4_S2_HUT _INTERIOR_ground.png" id="1_mc4yw"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://tcwf3ci0qbdv" path="res://sound/new-notification-09-352705.wav" id="18_r17y3"]
 [ext_resource type="AudioStream" uid="uid://b1y2yb345umfi" path="res://sound/dramatic-piano-and-strings-177000.mp3" id="19_tcnoc"]
 [ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="20_hqtvc"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="21_nkki5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i8dfo"]
 texture = ExtResource("2_i8dfo")
@@ -2908,7 +2909,7 @@ position = Vector2(-7, 152)
 
 [node name="Camera2D" type="Camera2D" parent="y-sorted/player_danilo"]
 position = Vector2(19, -29)
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 limit_left = -271
 limit_top = -193
 limit_right = 286
@@ -3061,6 +3062,8 @@ offset_right = 1437.0
 offset_bottom = 551.0
 mouse_filter = 2
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("21_nkki5")]
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="Interactable/P5" to="." method="_on_p_5_body_entered"]
 [connection signal="body_entered" from="Interactable/Sala" to="." method="_on_sala_body_entered"]
@@ -3070,3 +3073,4 @@ mouse_filter = 2
 [connection signal="body_entered" from="Interactable/Cr" to="." method="_on_cr_body_entered"]
 
 [editable path="meds_lighting_handler"]
+[editable path="CanvasLayer2"]

@@ -50,7 +50,7 @@ var maps = {
 		},
 		"camera": {
 			"type": "fixed",
-			"zoom": Vector2(3, 3),
+			"zoom": Vector2(4, 4),
 			"position": Vector2(0, 0)
 		}
 	},
@@ -63,7 +63,7 @@ var maps = {
 		},
 		"camera": {
 			"type": "follow",
-			"zoom": Vector2(3, 3),
+			"zoom": Vector2(4, 4),
 			"limits": { "top": -700, "right": 700, "bottom": 600, "left": -720 }
 		}
 	}

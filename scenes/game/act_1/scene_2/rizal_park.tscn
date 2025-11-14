@@ -3096,7 +3096,7 @@ shape = SubResource("RectangleShape2D_mysyl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(693, 272)
-zoom = Vector2(4, 4)
+zoom = Vector2(5, 5)
 limit_left = -1260
 limit_top = -330
 limit_right = 790

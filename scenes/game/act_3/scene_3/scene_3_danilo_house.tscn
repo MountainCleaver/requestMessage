@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7ufelds3m81i"]
+[gd_scene load_steps=10 format=3 uid="uid://c7ufelds3m81i"]
 
 [ext_resource type="Script" uid="uid://dwl7pjg3yydfy" path="res://scenes/game/act_3/scene_3/scene_3_danilo_house.gd" id="1_5i88b"]
 [ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="1_nbn68"]
 [ext_resource type="Texture2D" uid="uid://k3fvhpun83o5" path="res://assets/tilesets/danilo_hometown_house_interior_decoration.png" id="2_us8ib"]
 [ext_resource type="Texture2D" uid="uid://tufc0rj0skyh" path="res://assets/tilesets/glass_ov_woa.png" id="4_bkqbu"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="5_8sir8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5i88b"]
 texture = ExtResource("2_us8ib")
@@ -79,9 +80,20 @@ texture = ExtResource("4_bkqbu")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 19)
+zoom = Vector2(4, 4)
+limit_left = -288
+limit_top = -111
+limit_right = 285
+limit_bottom = 141
+
+[node name="CanvasLayer2" parent="." instance=ExtResource("5_8sir8")]
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="bed_area" to="." method="_on_bed_area_body_entered"]
 [connection signal="body_exited" from="bed_area" to="." method="_on_bed_area_body_exited"]
 
 [editable path="danilo_hometown_house"]
+[editable path="CanvasLayer2"]

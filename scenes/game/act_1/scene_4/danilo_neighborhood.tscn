@@ -9735,7 +9735,7 @@ shape = SubResource("WorldBoundaryShape2D_re8u2")
 position = Vector2(-173, 146)
 
 [node name="Camera2D" type="Camera2D" parent="player_danilo"]
-zoom = Vector2(4, 4)
+zoom = Vector2(5, 5)
 limit_left = -414
 limit_top = -470
 limit_right = 420
@@ -10023,9 +10023,6 @@ position = Vector2(53, -198)
 position = Vector2(2, -2)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("11_mbc7v")]
-
-[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
-pivot_offset = Vector2(101, 101)
 
 [node name="CanvasLayer2" parent="." instance=ExtResource("12_tt4ib")]
 

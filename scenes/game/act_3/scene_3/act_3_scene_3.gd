@@ -554,7 +554,7 @@ func _set_camera(map_name: String) -> void:
 			camera_2d.get_parent().remove_child(camera_2d)
 			add_child(camera_2d)
 		camera_2d.position = Vector2(0, 0)
-		camera_2d.zoom = Vector2(3.0, 3.0)
+		camera_2d.zoom = Vector2(4.0, 4.0)
 		camera_2d.make_current()
 
 	elif map_name == maps["hometown"]["name"]:
@@ -562,7 +562,7 @@ func _set_camera(map_name: String) -> void:
 			camera_2d.get_parent().remove_child(camera_2d)
 			player_danilo.add_child(camera_2d)
 			camera_2d.position = Vector2.ZERO
-		camera_2d.zoom = Vector2(3.0, 3.0)
+		camera_2d.zoom = Vector2(4.0, 4.0)
 
 		var cam_limits = maps["hometown"].get("camera_limits", null)
 		if cam_limits:
@@ -589,7 +589,7 @@ func _set_camera(map_name: String) -> void:
 			camera_2d.get_parent().remove_child(camera_2d)
 			player_danilo.add_child(camera_2d)
 			camera_2d.position = Vector2.ZERO
-		camera_2d.zoom = Vector2(3.0, 3.0)
+		camera_2d.zoom = Vector2(4.0, 4.0)
 
 		var cam_limits = maps["town_center"].get("camera_limits", null)
 		if cam_limits:

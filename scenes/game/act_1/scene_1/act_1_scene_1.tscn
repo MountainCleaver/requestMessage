@@ -60,7 +60,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 5, 10),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(17, 17), Vector2(17, 17), Vector2(3.5, 3.5)]
+"values": [Vector2(17, 17), Vector2(17, 17), Vector2(4, 4)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -327,9 +327,6 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="CanvasLayer" parent="." instance=ExtResource("9_d88lo")]
-
-[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
-pivot_offset = Vector2(101, 101)
 
 [node name="CanvasLayer2" parent="." instance=ExtResource("10_winef")]
 

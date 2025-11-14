@@ -23,4 +23,5 @@ visible = false
 [node name="VirtualJoystick" parent="CanvasLayer" index="0"]
 metadata/_edit_use_anchors_ = true
 
+[editable path="explorer_hud"]
 [editable path="CanvasLayer"]

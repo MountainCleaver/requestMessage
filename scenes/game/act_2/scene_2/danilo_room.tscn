@@ -1886,7 +1886,8 @@ tile_map_data = PackedByteArray("AAD8/wQAAAABAAoAAAD9/wQAAAACAAoAAAD+/wQAAAADAAo
 tile_set = SubResource("TileSet_eerp4")
 
 [node name="Camera2D" type="Camera2D" parent="Node2D"]
-zoom = Vector2(3, 3)
+position = Vector2(0, 19)
+zoom = Vector2(4, 4)
 limit_enabled = false
 limit_left = -270
 limit_top = -206

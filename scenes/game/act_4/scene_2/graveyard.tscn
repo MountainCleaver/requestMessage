@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://b81pheiysdhv7"]
+[gd_scene load_steps=37 format=4 uid="uid://b81pheiysdhv7"]
 
 [ext_resource type="Script" uid="uid://cqt73nqcoiosu" path="res://scenes/game/act_4/scene_2/graveyard.gd" id="1_avryt"]
 [ext_resource type="Texture2D" uid="uid://cvyn0215nw1hb" path="res://assets/tilesets/graveyard_floor.png" id="1_qq610"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://cjvp8k3gmi6kx" path="res://sound/opening-door-411632.mp3" id="17_bs4r0"]
 [ext_resource type="AudioStream" uid="uid://tcwf3ci0qbdv" path="res://sound/new-notification-09-352705.wav" id="18_66hfa"]
 [ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="18_bs4r0"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="21_uqenm"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v2uog"]
 load_path = "res://.godot/imported/dirt_key.png-f89916853116860d075e2fb51bf1bb7f.ctex"
@@ -1288,7 +1289,7 @@ position = Vector2(559, 6)
 
 [node name="Camera2D" type="Camera2D" parent="y-sorted/player_danilo"]
 position = Vector2(0, -6)
-zoom = Vector2(3, 3)
+zoom = Vector2(5, 5)
 limit_left = -453
 limit_top = -241
 limit_right = 610
@@ -1475,6 +1476,8 @@ offset_right = 1437.0
 offset_bottom = 551.0
 mouse_filter = 2
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("21_uqenm")]
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="Interactable/house_enter" to="." method="_on_house_enter_body_entered"]
 [connection signal="body_exited" from="Interactable/house_enter" to="." method="_on_house_enter_body_exited"]
@@ -1485,3 +1488,4 @@ mouse_filter = 2
 [connection signal="body_exited" from="Interactable/Key" to="." method="_on_key_body_exited"]
 
 [editable path="meds_lighting_handler"]
+[editable path="CanvasLayer2"]
