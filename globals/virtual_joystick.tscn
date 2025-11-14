@@ -9,10 +9,11 @@
 [node name="VirtualJoystick" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 122.0
-offset_top = 719.0
-offset_right = 324.0
-offset_bottom = 921.0
+offset_left = 120.0
+offset_top = 745.0
+offset_right = 322.0
+offset_bottom = 947.0
+pivot_offset = Vector2(101, 101)
 script = ExtResource("1_kfxns")
 joystick_texture = ExtResource("2_kfxns")
 stick_texture = ExtResource("3_2m46p")
