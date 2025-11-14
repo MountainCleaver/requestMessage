@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b210y7hkos7oi"]
+[gd_scene load_steps=8 format=3 uid="uid://b210y7hkos7oi"]
 
 [ext_resource type="Script" uid="uid://0k5us13xs42t" path="res://scenes/game/act_4/scene_1/act_4_scene_1.gd" id="1_qqtb8"]
 [ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="2_g7wly"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bark61xgh126b" path="res://sound/Come-Out-And-Play-Remixed-Royalty-Free(chosic.com).mp3" id="4_1tr1i"]
 [ext_resource type="AudioStream" uid="uid://cgl77xcrs43cw" path="res://sound/children-giggling-kids-laughing-hd-378111.mp3" id="5_rfuxr"]
 [ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="6_rfuxr"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="7_ttlx2"]
 
 [node name="act_4_scene_1" type="Node2D"]
 script = ExtResource("1_qqtb8")
@@ -17,10 +18,10 @@ script = ExtResource("1_qqtb8")
 [node name="FullMapPanel" parent="explorer_hud" index="2"]
 visible = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("3_gea2f")]
+[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("3_gea2f")]
 visible = false
 
 [node name="BGMHide-and-seek" type="AudioStreamPlayer" parent="."]
@@ -38,4 +39,10 @@ stream = ExtResource("6_rfuxr")
 volume_db = -10.752
 bus = &"sfx"
 
+[node name="CanvasLayer" parent="." instance=ExtResource("7_ttlx2")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+metadata/_edit_use_anchors_ = true
+
 [editable path="explorer_hud"]
+[editable path="CanvasLayer"]

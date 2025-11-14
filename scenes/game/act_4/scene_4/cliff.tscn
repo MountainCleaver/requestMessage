@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://bvr6jnqrdpdgd"]
+[gd_scene load_steps=46 format=4 uid="uid://bvr6jnqrdpdgd"]
 
 [ext_resource type="Script" uid="uid://epp6clbotfbk" path="res://scenes/game/act_4/scene_4/cliff.gd" id="1_60q0d"]
 [ext_resource type="Texture2D" uid="uid://cqlemxpf5ymis" path="res://assets/tilesets/cliff_tileset.png" id="1_oqg1l"]
@@ -15,6 +15,7 @@
 [ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="16_gwrd3"]
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="16_n52yo"]
 [ext_resource type="AudioStream" uid="uid://tcwf3ci0qbdv" path="res://sound/new-notification-09-352705.wav" id="17_gwrd3"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="17_pttnu"]
 [ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="17_rjdrm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fpllf"]
@@ -339,10 +340,10 @@ shape = SubResource("RectangleShape2D_dk38r")
 
 [node name="explorer_hud" parent="." instance=ExtResource("14_rjira")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("15_huid5")]
+[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("15_huid5")]
 visible = false
 
 [node name="meds_lighting_handler" parent="." instance=ExtResource("16_n52yo")]
@@ -367,7 +368,13 @@ offset_right = 1437.0
 offset_bottom = 551.0
 mouse_filter = 2
 
+[node name="CanvasLayer" parent="." instance=ExtResource("17_pttnu")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+metadata/_edit_use_anchors_ = true
+
 [connection signal="body_entered" from="windarea" to="windarea" method="_on_body_entered"]
 [connection signal="body_entered" from="phone_trigger" to="." method="_on_phone_trigger_body_entered"]
 
 [editable path="meds_lighting_handler"]
+[editable path="CanvasLayer"]

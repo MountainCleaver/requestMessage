@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1dnbb26r31po"]
+[gd_scene load_steps=9 format=3 uid="uid://c1dnbb26r31po"]
 
 [ext_resource type="Script" uid="uid://n5mkxya1b0h0" path="res://scenes/game/act_3/scene_4/act_3_scene_4.gd" id="1_e7nlm"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="2_w4vpu"]
@@ -7,16 +7,17 @@
 [ext_resource type="AudioStream" uid="uid://dg14oo06ysvls" path="res://sound/012453_atmospheric-piano-amp-violin-music-01-58431.mp3" id="5_ebbrp"]
 [ext_resource type="AudioStream" uid="uid://cc64eeebu6wty" path="res://sound/fast-knocking-on-door-352704.mp3" id="6_r43fg"]
 [ext_resource type="AudioStream" uid="uid://cnv2ycfwcl8li" path="res://sound/drink-swallow-272665.mp3" id="7_rbvpt"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="8_e7dxw"]
 
 [node name="act_3_scene_4_part_2" type="Node2D"]
 script = ExtResource("1_e7nlm")
 
 [node name="locations" type="Node2D" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("2_w4vpu")]
+[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("2_w4vpu")]
 visible = false
 
 [node name="player_danilo" parent="." instance=ExtResource("3_ebbrp")]
@@ -41,4 +42,10 @@ stream = ExtResource("7_rbvpt")
 volume_db = 9.541
 bus = &"sfx"
 
+[node name="CanvasLayer" parent="." instance=ExtResource("8_e7dxw")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+metadata/_edit_use_anchors_ = true
+
 [editable path="player_danilo"]
+[editable path="CanvasLayer"]

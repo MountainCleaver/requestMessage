@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://ciwb07kh3ghdu"]
+[gd_scene load_steps=21 format=4 uid="uid://ciwb07kh3ghdu"]
 
 [ext_resource type="Script" uid="uid://d0bttnfk35w0f" path="res://scenes/game/act_4/scene_4/dark_forest.gd" id="1_hfvsf"]
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_xhb44"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dbcdrsw8ejjd6" path="res://sound/forest-wind-with-crickets-and-cuckoo-355613.mp3" id="8_3b33a"]
 [ext_resource type="PackedScene" uid="uid://buwijkji1636f" path="res://scenes/game/meds_lighting_handler.tscn" id="8_4m1m1"]
 [ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="10_xx0ro"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="11_rj4lg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8tya"]
 texture = ExtResource("1_xhb44")
@@ -121,10 +122,10 @@ debug_color = Color(0.88233536, 0.32717732, 0.20909005, 0.41960785)
 
 [node name="explorer_hud" parent="." instance=ExtResource("6_vypgd")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("7_dfldy")]
+[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("7_dfldy")]
 visible = false
 
 [node name="meds_lighting_handler" parent="." instance=ExtResource("8_4m1m1")]
@@ -150,4 +151,10 @@ offset_right = 1437.0
 offset_bottom = 551.0
 mouse_filter = 2
 
+[node name="CanvasLayer" parent="." instance=ExtResource("11_rj4lg")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+metadata/_edit_use_anchors_ = true
+
 [editable path="meds_lighting_handler"]
+[editable path="CanvasLayer"]

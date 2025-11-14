@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://tnda2d107s7p"]
+[gd_scene load_steps=25 format=3 uid="uid://tnda2d107s7p"]
 
 [ext_resource type="PackedScene" uid="uid://bb3u6uwnl0gnd" path="res://scenes/game/act_3/scene_2/danilo_hometown_house.tscn" id="1_5u0wn"]
 [ext_resource type="Script" uid="uid://ctc7chiqllyi" path="res://scenes/game/act_3/scene_2/act_3_scene_2.gd" id="1_f0so1"]
@@ -9,6 +9,12 @@
 [ext_resource type="AudioStream" uid="uid://bc2ctok01tbi5" path="res://sound/soft-piano-music-272453.mp3" id="7_460kb"]
 [ext_resource type="AudioStream" uid="uid://yv8qv4mnth5u" path="res://sound/horror-music-box-preview-421551.mp3" id="8_oe54g"]
 [ext_resource type="AudioStream" uid="uid://ctv4m7abxary4" path="res://sound/window-opening-100430.mp3" id="9_3daj4"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="10_xeobw"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="11_qp16a"]
+[ext_resource type="Texture2D" uid="uid://bdnywh4hasnbr" path="res://assets/character_sprites/run1.png" id="12_5uohg"]
+[ext_resource type="Texture2D" uid="uid://77e7bl3fch81" path="res://assets/character_sprites/interact1.png" id="13_id5t5"]
+[ext_resource type="Texture2D" uid="uid://dfyg6gy4sha3x" path="res://assets/character_sprites/map.png" id="14_ovkrt"]
+[ext_resource type="Texture2D" uid="uid://caomphdx0iyky" path="res://assets/character_sprites/run.png" id="15_7luri"]
 
 [sub_resource type="Animation" id="Animation_rc8oa"]
 length = 0.001
@@ -279,10 +285,10 @@ texture = ExtResource("5_rc8oa")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3.5, 3.5)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("3_f0so1")]
+[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("3_f0so1")]
 visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -348,6 +354,29 @@ stream = ExtResource("9_3daj4")
 volume_db = -2.862
 bus = &"sfx"
 
+[node name="CanvasLayer" parent="." instance=ExtResource("10_xeobw")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer3" parent="." instance=ExtResource("11_qp16a")]
+
+[node name="RunButton" parent="CanvasLayer3/ActionButtons" index="0"]
+scale = Vector2(9, 8.828)
+texture_normal = ExtResource("12_5uohg")
+
+[node name="InteractButton" parent="CanvasLayer3/ActionButtons" index="1"]
+scale = Vector2(10, 9.861499)
+texture_normal = ExtResource("13_id5t5")
+
+[node name="MapButton" parent="CanvasLayer3/ActionButtons" index="2"]
+scale = Vector2(9, 8.905)
+texture_normal = ExtResource("14_ovkrt")
+
+[node name="FlashlightButton" parent="CanvasLayer3/ActionButtons" index="3"]
+scale = Vector2(9, 8.855)
+texture_normal = ExtResource("15_7luri")
+
 [connection signal="body_entered" from="window_areas/window_area_1" to="." method="_on_window_area_1_body_entered"]
 [connection signal="body_exited" from="window_areas/window_area_1" to="." method="_on_window_area_1_body_exited"]
 [connection signal="body_entered" from="window_areas/window_area_2" to="." method="_on_window_area_2_body_entered"]
@@ -358,3 +387,5 @@ bus = &"sfx"
 [editable path="danilo_hometown_house"]
 [editable path="danilo_hometown_house/map/npc_shadowy_chaser"]
 [editable path="danilo_hometown_house/y-sorted/player_danilo"]
+[editable path="CanvasLayer"]
+[editable path="CanvasLayer3"]

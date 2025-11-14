@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drt2p5qt0efmx"]
+[gd_scene load_steps=10 format=3 uid="uid://drt2p5qt0efmx"]
 
 [ext_resource type="Script" uid="uid://bw1xyaihempeh" path="res://scenes/game/act_4/scene_3/act_4_scene_3.gd" id="1_qchjr"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="2_la1k7"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://civcjmlna721w" path="res://sound/creepy-wind-410541.mp3" id="5_xvo8i"]
 [ext_resource type="AudioStream" uid="uid://dq6ssn6dyrpa0" path="res://sound/music-box-horror-369338.mp3" id="7_xvo8i"]
 [ext_resource type="AudioStream" uid="uid://be3fjogtfynhh" path="res://sound/dark-drone-intrigue-suspence-horror-drone-245048.mp3" id="8_kmq1r"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="9_kmq1r"]
 [ext_resource type="AudioStream" uid="uid://dcghf46023ee0" path="res://sound/scary-sound-410559.mp3" id="9_s6kgn"]
 
 [node name="act_4_scene_3" type="Node2D"]
@@ -16,10 +17,10 @@ script = ExtResource("1_qchjr")
 
 [node name="explorer_hud" parent="." instance=ExtResource("3_wo5up")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("2_la1k7")]
+[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("2_la1k7")]
 visible = false
 
 [node name="SFX_LIGHTER" type="AudioStreamPlayer" parent="."]
@@ -46,3 +47,10 @@ stream = ExtResource("5_xvo8i")
 volume_db = -15.266
 pitch_scale = 0.85
 bus = &"sfx"
+
+[node name="CanvasLayer" parent="." instance=ExtResource("9_kmq1r")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[editable path="CanvasLayer"]

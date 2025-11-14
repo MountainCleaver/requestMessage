@@ -390,7 +390,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2fiaa"]
-size = Vector2(24, 12)
+size = Vector2(46, 17)
 
 [node name="square_breathing_mini_game" type="Node2D"]
 top_level = true
@@ -455,7 +455,7 @@ texture = ExtResource("4_sssnd")
 [node name="skip_area" type="Area2D" parent="skip_sprite"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skip_sprite/skip_area"]
-position = Vector2(2, 0)
+position = Vector2(2, -0.5)
 shape = SubResource("RectangleShape2D_2fiaa")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

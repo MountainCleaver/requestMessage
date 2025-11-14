@@ -1,20 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://cde3awyuodkdu"]
+[gd_scene load_steps=7 format=3 uid="uid://cde3awyuodkdu"]
 
 [ext_resource type="Script" uid="uid://chdex8gxj1b5i" path="res://scenes/game/act_5/scene_1/act_5_scene_1.gd" id="1_0uce2"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="2_lt4bd"]
 [ext_resource type="PackedScene" uid="uid://isy10eb7hc4" path="res://globals/explorer_hud.tscn" id="3_lihvk"]
 [ext_resource type="AudioStream" uid="uid://dnlhfhbgic2ue" path="res://sound/lighter-4-411636.mp3" id="4_6bdgs"]
 [ext_resource type="AudioStream" uid="uid://bsgfri08xm6nr" path="res://sound/bbc_weather--r_07027053.mp3" id="5_w6hop"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="6_14krn"]
 
 [node name="act_5_scene_1" type="Node2D"]
 script = ExtResource("1_0uce2")
 
 [node name="locations" type="Node2D" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("2_lt4bd")]
+[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("2_lt4bd")]
 visible = false
 
 [node name="explorer_hud" parent="." instance=ExtResource("3_lihvk")]
@@ -31,4 +32,10 @@ volume_db = -14.311
 autoplay = true
 bus = &"sfx"
 
+[node name="CanvasLayer" parent="." instance=ExtResource("6_14krn")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+metadata/_edit_use_anchors_ = true
+
 [editable path="explorer_hud"]
+[editable path="CanvasLayer"]
