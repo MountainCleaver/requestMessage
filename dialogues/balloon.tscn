@@ -250,7 +250,7 @@ layout_mode = 2
 mouse_filter = 1
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_gb3oo")
-theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "Character"
 fit_content = true
@@ -285,6 +285,7 @@ size_flags_vertical = 8
 layout_mode = 2
 
 [node name="next_label" type="Label" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel/next_indicators/HBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_gb3oo")
 text = " z "
@@ -293,6 +294,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="next_icon" type="TextureRect" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel/next_indicators/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("6_m00rr")

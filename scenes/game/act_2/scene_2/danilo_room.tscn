@@ -1,10 +1,11 @@
-[gd_scene load_steps=39 format=4 uid="uid://c2mbofjjynmwc"]
+[gd_scene load_steps=40 format=4 uid="uid://c2mbofjjynmwc"]
 
 [ext_resource type="Texture2D" uid="uid://bbcnf12eroxh8" path="res://assets/tilesets/INDOOR-TILE.png" id="1_cqyfd"]
 [ext_resource type="Texture2D" uid="uid://dtah50ir54grt" path="res://assets/tilesets/INDOOR.png" id="2_xhr1t"]
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="3_gvjtm"]
 [ext_resource type="Texture2D" uid="uid://tufc0rj0skyh" path="res://assets/tilesets/glass_ov_woa.png" id="4_xyaay"]
 [ext_resource type="Script" uid="uid://bcgenq0ipmuwq" path="res://scenes/game/act_1/scene_1/sprite_2d.gd" id="5_0wi6k"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="7_gvjtm"]
 [ext_resource type="AudioStream" uid="uid://cqsui1gvug3c4" path="res://sound/morning-breeze-speed-up-calm-piano-music-341045.mp3" id="7_xhr1t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hil60"]
@@ -1993,6 +1994,8 @@ stream = ExtResource("7_xhr1t")
 autoplay = true
 bus = &"music"
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("7_gvjtm")]
+
 [connection signal="body_entered" from="water_glass/water_area" to="." method="_on_water_area_body_entered"]
 [connection signal="body_exited" from="water_glass/water_area" to="." method="_on_water_area_body_exited"]
 [connection signal="body_entered" from="bed_area" to="." method="_on_bed_area_body_entered"]
@@ -2000,3 +2003,4 @@ bus = &"music"
 
 [editable path="player_danilo"]
 [editable path="player_danilo2"]
+[editable path="CanvasLayer2"]
