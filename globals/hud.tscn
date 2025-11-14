@@ -1,9 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnxh1dj8mix3m"]
+[gd_scene load_steps=16 format=3 uid="uid://bnxh1dj8mix3m"]
 
 [ext_resource type="Script" uid="uid://bmro6rutbtbxd" path="res://globals/hud.gd" id="1_77e6q"]
 [ext_resource type="PackedScene" uid="uid://bqagsj7ps731j" path="res://scenes/game/lock_screen.tscn" id="3_esk0b"]
 [ext_resource type="Texture2D" uid="uid://dp4h52fpsd7vt" path="res://assets/HUD/karatula.png" id="3_vm2el"]
-[ext_resource type="Texture2D" uid="uid://be6h5vldaqlfi" path="res://assets/character_sprites/tip_interact.png" id="4_vm2el"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5lr3"]
 bg_color = Color(1, 1, 1, 0)
@@ -63,7 +62,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(553, 290)]
+"values": [Vector2(995, 252)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -150,7 +149,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.10511207, 0.10511207),
 "update": 0,
-"values": [Vector2(553, 1064), Vector2(553, 290)]
+"values": [Vector2(900, 1064), Vector2(900, 252)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -177,7 +176,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 1),
 "transitions": PackedFloat32Array(1, 0.2871745, 0.2871745),
 "update": 0,
-"values": [Vector2(553, 290), Vector2(553, 272), Vector2(553, 1056)]
+"values": [Vector2(900, 252), Vector2(900, 272), Vector2(900, 1056)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -298,10 +297,13 @@ anchor_left = 18.512001
 anchor_top = 12.400001
 anchor_right = 18.512001
 anchor_bottom = 12.400001
-offset_left = -187.48004
-offset_top = -206.00003
-offset_right = 187.51996
-offset_bottom = 200.00058
+offset_left = 254.51996
+offset_top = -244.00003
+offset_right = 629.5197
+offset_bottom = 162.00229
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3818585, 1.3598607)
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/photo_popup_holder"]
 layout_mode = 1
@@ -319,11 +321,6 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 texture = ExtResource("3_vm2el")
 stretch_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="Control/photo_popup_holder/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("4_vm2el")
-stretch_mode = 2
 
 [node name="hud_animations" type="AnimationPlayer" parent="."]
 libraries = {
