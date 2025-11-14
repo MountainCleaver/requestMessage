@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://dolep8ior0t11"]
+[gd_scene load_steps=39 format=4 uid="uid://dolep8ior0t11"]
 
 [ext_resource type="Texture2D" uid="uid://bsi3qrmawmrso" path="res://assets/tilesets/act1_s2_tilemap.png" id="2_y5hqf"]
 [ext_resource type="Texture2D" uid="uid://c0gjjrngklxbo" path="res://assets/tilesets/buncha_trees.png" id="3_hjqqs"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dblxd5gduaar6" path="res://scenes/characters/player_danilo.tscn" id="7_2n46p"]
 [ext_resource type="Texture2D" uid="uid://2trbatq6low4" path="res://assets/character_sprites/jeep2.png" id="8_y82si"]
 [ext_resource type="AudioStream" uid="uid://1klbt5qklnji" path="res://sound/Lightless-Dawn(chosic.com).mp3" id="9_cs12w"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="10_j6sef"]
 [ext_resource type="AudioStream" uid="uid://dtadjgnuk3yg4" path="res://sound/city-sounds-296780.mp3" id="10_tqgjd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5c7ju"]
@@ -9756,3 +9757,7 @@ position = Vector2(-162, 174)
 
 [node name="navigation_home" type="Marker2D" parent="navigation_lights"]
 position = Vector2(2, -2)
+
+[node name="CanvasLayer2" parent="." instance=ExtResource("10_j6sef")]
+
+[editable path="CanvasLayer2"]
