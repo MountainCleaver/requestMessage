@@ -62,8 +62,8 @@ Unknown_sender: [wait=1.5]Iba-iba ang pagkakaayos ng mga kandila. Pumili ka ng u
 => candle_ignited_1
 
 ~ candle_ignited_1
-do ChatManager.send_chat("unknown_sender", "Unknown Number", "Sindihan mo lahat ng natitirang kandila sa tamang ayos...")
-Unknown_sender: [wait=1.5]Light all the remaining candles in the correct order...
+do ChatManager.send_chat("unknown_sender", "Unknown Number", "Tapos, sindihan mo lahat ng natitirang kandila sa tamang ayos...")
+Unknown_sender: [wait=1.5]Tapos, sindihan mo lahat ng natitirang kandila sa tamang ayos...
 => candle_ignited_2
 
 ~ candle_ignited_2
