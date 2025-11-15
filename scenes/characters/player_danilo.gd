@@ -98,7 +98,7 @@ func _physics_process(delta: float) -> void:
 
 
 	# --- Pushable rock detection
-	if Input.is_action_pressed("arrow_left"):
+	if direction == Vector2.LEFT:
 		var space_state = get_world_2d().direct_space_state
 		var cast_from = global_position
 		var cast_to = global_position + Vector2.LEFT * 10
