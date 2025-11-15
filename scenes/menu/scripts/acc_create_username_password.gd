@@ -79,11 +79,17 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 
 	if response_code != 200:
 		some_nice_words.text = "Server error: " + str(response_code)
+		menu_loading_screen.hide()
+		login_link.disabled = false;
+		btn_create.disabled = false;
 		return
 
 	var json = JSON.parse_string(response_text)
 	if typeof(json) != TYPE_DICTIONARY:
 		some_nice_words.text = "Invalid server response"
+		menu_loading_screen.hide()
+		login_link.disabled = false;
+		btn_create.disabled = false;
 		return
 
 	if json.get("status") == "success":
