@@ -8,10 +8,13 @@ const PATCH_API_URL := "http://requestmessage-admin.onrender.com/api/get_live_pa
 @onready var notes_label = $patch_holder/MarginContainer/ScrollContainer/VBoxContainer/notes
 @onready var http_request = $HTTP_request
 @onready var loading_label = $menu_loading_screen/Label
+@onready var button: Button = $back_tips/back
+
 
 func _ready():
 	patch_holder.visible = false
 	loading_label.visible = true
+	button.pressed.connect(_on_back_pressed)
 	
 	http_request.connect("request_completed", Callable(self, "_on_patch_response"))
 	fetch_live_patch()

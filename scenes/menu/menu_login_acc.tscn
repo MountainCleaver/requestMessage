@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://khwdatbhelgd"]
+[gd_scene load_steps=11 format=3 uid="uid://khwdatbhelgd"]
 
 [ext_resource type="Script" uid="uid://dvwv07p3fbxt3" path="res://scenes/menu/menu_login_acc.gd" id="1_61dk0"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_nx25a"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cth2r78w0vqn3" path="res://scenes/menu/acc_login_username_password.tscn" id="4_4f6le"]
 [ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="5_iatr4"]
 [ext_resource type="PackedScene" uid="uid://cxb4qn63t1pld" path="res://globals/exit_confirmation.tscn" id="6_5s8b4"]
+[ext_resource type="PackedScene" uid="uid://c6dp8vnyir66p" path="res://scenes/menu/version_num_major_minor_patch_pattern.tscn" id="9_6pvv0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6pvv0"]
 shader = ExtResource("3_tpmv3")
@@ -36,17 +37,8 @@ offset_right = 2271.0
 offset_bottom = 1025.0
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 484.0
-offset_top = 134.0
-offset_right = 969.0
-offset_bottom = 892.0
-texture = ExtResource("2_ulwyg")
-expand_mode = 1
-stretch_mode = 4
-
 [node name="title_game" type="RichTextLabel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -65,10 +57,10 @@ vertical_alignment = 1
 
 [node name="acc_login_username_password" parent="." instance=ExtResource("4_4f6le")]
 layout_mode = 1
-offset_left = 1196.0
-offset_top = 252.0
-offset_right = -466.0
-offset_bottom = -232.0
+offset_left = 1031.0
+offset_top = 124.0
+offset_right = -329.0
+offset_bottom = -167.0
 
 [node name="menu_loading_screen" parent="." instance=ExtResource("5_iatr4")]
 visible = false
@@ -79,5 +71,19 @@ layout_mode = 0
 
 [node name="Window" parent="ExitConfirmation" index="0"]
 visible = false
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 390.0
+offset_top = 136.0
+offset_right = 801.0
+offset_bottom = 899.0
+texture = ExtResource("2_ulwyg")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Version_Num_Major_Minor_Patch_pattern" parent="." instance=ExtResource("9_6pvv0")]
+layout_mode = 0
 
 [editable path="ExitConfirmation"]

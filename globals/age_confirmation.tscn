@@ -1,15 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxb4qn63t1pld"]
+[gd_scene load_steps=10 format=3 uid="uid://g6nvop71k0ew"]
 
-[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="1_e15bj"]
-[ext_resource type="Script" uid="uid://3crtno5xwaxt" path="res://globals/exit_confirmation.gd" id="1_qx2hx"]
-[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="2_nsh38"]
-[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_0y85t"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_8qbie"]
+[ext_resource type="Script" uid="uid://bc68sm82jqxk7" path="res://globals/age_confirmation.gd" id="1_426r6"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="2_426r6"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="3_2d5j6"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_jy6g0"]
+[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="5_5x5c7"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="5_neyia"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8qbie"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qx2hx"]
-shader = ExtResource("2_nsh38")
+shader = ExtResource("2_426r6")
 shader_parameter/curvature = 6.0
 shader_parameter/vignette_softness = 0.6
 shader_parameter/vignette_strength = 1.2
@@ -19,18 +20,18 @@ shader_parameter/scanline_speed = 1.5
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qx2hx"]
 bg_color = Color(0, 0, 0, 0.72156864)
 
-[node name="ExitConfirmation" type="Control"]
+[node name="AgeConfirmation" type="Control"]
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 615.0
 offset_bottom = 251.0
-script = ExtResource("1_qx2hx")
+script = ExtResource("1_426r6")
 
 [node name="Window" type="Window" parent="."]
 oversampling_override = 1.0
 initial_position = 2
-size = Vector2i(1300, 700)
+size = Vector2i(1358, 700)
 wrap_controls = true
 exclusive = true
 unresizable = true
@@ -42,7 +43,7 @@ theme_override_styles/embedded_border = SubResource("StyleBoxTexture_8qbie")
 
 [node name="ColorRect" type="ColorRect" parent="Window"]
 material = SubResource("ShaderMaterial_qx2hx")
-offset_right = 1306.0
+offset_right = 1358.0
 offset_bottom = 702.0
 mouse_filter = 2
 
@@ -52,51 +53,62 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -27.0
-offset_top = -289.0
+offset_top = -330.0
 offset_right = 9.0
-offset_bottom = -47.0
+offset_bottom = -88.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("1_e15bj")
+theme_override_fonts/normal_font = ExtResource("3_2d5j6")
 theme_override_font_sizes/normal_font_size = 120
-text = "Do you want to exit
-the game?"
+text = "AGE RESTRICTED"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Yes" type="Button" parent="Window"]
-offset_left = 161.0
+[node name="Exit" type="Button" parent="Window"]
+offset_left = 187.0
 offset_top = 439.0
-offset_right = 496.0
+offset_right = 567.0
 offset_bottom = 602.0
-theme_override_fonts/font = ExtResource("4_8qbie")
+theme_override_fonts/font = ExtResource("4_jy6g0")
 theme_override_font_sizes/font_size = 75
-text = "Yes"
-script = ExtResource("4_0y85t")
+text = "Exit Game"
+script = ExtResource("5_neyia")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="Cancel" type="Button" parent="Window"]
-offset_left = 782.0
+offset_left = 808.0
 offset_top = 440.0
-offset_right = 1118.0
+offset_right = 1185.0
 offset_bottom = 604.0
-theme_override_fonts/font = ExtResource("4_8qbie")
+theme_override_fonts/font = ExtResource("4_jy6g0")
 theme_override_font_sizes/font_size = 75
-text = "Cancel"
-script = ExtResource("4_0y85t")
+text = "Enter Age"
+script = ExtResource("5_neyia")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
+
+[node name="Label" type="Label" parent="Window"]
+offset_left = 74.0
+offset_top = 246.0
+offset_right = 1260.0
+offset_bottom = 361.0
+theme_override_fonts/font = ExtResource("5_5x5c7")
+theme_override_font_sizes/font_size = 40
+text = "This game is restricted to players 18 years or older.
+ If you are under 18, you must exit the game."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="."]
 z_index = 1
 layout_mode = 0
-offset_left = -9.0
-offset_top = -36.0
-offset_right = 2303.0
-offset_bottom = 1075.0
+offset_left = -7.0
+offset_top = -46.0
+offset_right = 2305.0
+offset_bottom = 1065.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_qx2hx")
 
 [connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
-[connection signal="pressed" from="Window/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="Window/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Window/Cancel" to="." method="_on_cancel_pressed"]

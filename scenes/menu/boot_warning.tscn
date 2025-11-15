@@ -16,6 +16,10 @@ corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kmcc"]
 bg_color = Color(0.14902, 0.156863, 0.184314, 0.396078)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41tmx"]
 bg_color = Color(0.294, 0.31, 0.38, 0.442)
@@ -49,13 +53,15 @@ script = ExtResource("1_lmbvh")
 layout_mode = 1
 
 [node name="title_game" type="RichTextLabel" parent="."]
+visible = false
+z_index = 1
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 2.0
-offset_top = 113.0
+offset_top = 93.0
 offset_right = 2.0
-offset_bottom = 239.0
+offset_bottom = 219.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(1, 0.192157, 0.192157, 1)
 theme_override_fonts/normal_font = ExtResource("2_lmbvh")
@@ -72,10 +78,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 272.0
-offset_top = -234.0
-offset_right = -228.0
-offset_bottom = 349.0
+offset_left = 143.0
+offset_top = -354.0
+offset_right = -147.0
+offset_bottom = 292.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lmbvh")
@@ -86,61 +92,73 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 46.0
+offset_top = 24.0
 offset_right = -62.0
+offset_bottom = -53.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="warning_holder/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="warning_holder/MarginContainer"]
 layout_mode = 2
 
-[node name="warning_title" type="Label" parent="warning_holder/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="warning_holder/MarginContainer/ScrollContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.133333, 0, 1)
-theme_override_fonts/font = ExtResource("3_bfe6o")
-theme_override_font_sizes/font_size = 60
-text = "⚠CONTENT WARNING"
-horizontal_alignment = 1
-vertical_alignment = 1
+size_flags_horizontal = 3
 
-[node name="content_1" type="Label" parent="warning_holder/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_bfe6o")
-theme_override_font_sizes/font_size = 35
-text = "
-Request Message contains content that may be disturbing or emotionally triggering for some players, including:"
-autowrap_mode = 2
-
-[node name="line_break_1" type="Label" parent="warning_holder/MarginContainer/VBoxContainer"]
+[node name="line_break_6" type="Label" parent="warning_holder/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_bfe6o")
 theme_override_font_sizes/font_size = 29
 
-[node name="content_2" type="Label" parent="warning_holder/MarginContainer/VBoxContainer"]
+[node name="warning_title" type="Label" parent="warning_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.133333, 0, 1)
+theme_override_fonts/font = ExtResource("3_bfe6o")
+theme_override_font_sizes/font_size = 70
+text = "⚠ CONTENT WARNING"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="content_1" type="Label" parent="warning_holder/MarginContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_bfe6o")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 40
+text = "
+Request Message contains content that may be disturbing or emotionally triggering for some players, including:"
+autowrap_mode = 2
+
+[node name="line_break_1" type="Label" parent="warning_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bfe6o")
+theme_override_font_sizes/font_size = 29
+
+[node name="content_2" type="Label" parent="warning_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bfe6o")
+theme_override_font_sizes/font_size = 40
 text = "- Psychological horror and eerie soundscapes
 - Themes of grief, trauma, regret, and unresolved emotional conflict
 - Mentions or representations of mental health struggles
 - Sudden visual or audio effects that may cause discomfort"
 autowrap_mode = 2
 
-[node name="line_break_2" type="Label" parent="warning_holder/MarginContainer/VBoxContainer"]
+[node name="line_break_2" type="Label" parent="warning_holder/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_bfe6o")
 theme_override_font_sizes/font_size = 29
 
-[node name="content_3" type="Label" parent="warning_holder/MarginContainer/VBoxContainer"]
+[node name="content_3" type="Label" parent="warning_holder/MarginContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_bfe6o")
-theme_override_font_sizes/font_size = 35
-text = "This game is intended for players AGE 18 AND ABOVE. Viewer/player discretion is strongly advised. If you are currently struggling with your mental health or find any part of the game emotionally overwhelming, we encourage you to pause and seek support. Your well-being matters more than finishing the game."
+theme_override_font_sizes/font_size = 40
+text = "This game is intended for players AGE 18 AND ABOVE. Viewer/player discretion is strongly advised. If you are currently struggling with your mental health or find any part of the game emotionally overwhelming, we encourage you to pause and seek support. Your well-being matters more than finishing the game.
+"
 autowrap_mode = 2
 
 [node name="proceed" type="Panel" parent="."]
@@ -151,23 +169,26 @@ anchor_left = 1.0
 anchor_top = 0.872
 anchor_right = 1.0
 anchor_bottom = 0.944
-offset_left = -483.0
-offset_top = 5.0720215
-offset_right = -153.0
-offset_bottom = 9.343994
+offset_left = -1299.0
+offset_top = -42.92798
+offset_right = -897.0
+offset_bottom = 31.343994
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1kmcc")
 
 [node name="Label" type="Label" parent="proceed"]
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 12.0
-offset_right = 147.0
+offset_left = 61.0
+offset_top = 12.0
+offset_right = 196.0
+offset_bottom = -10.0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_bfe6o")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "Proceed"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -178,44 +199,32 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -164.0
-offset_top = 14.0
-offset_right = -21.0
-offset_bottom = -12.0
+offset_left = -375.0
+offset_top = 23.0
+offset_right = -24.0
+offset_bottom = -17.0
 grow_horizontal = 0
 grow_vertical = 2
 focus_mode = 0
+theme_override_fonts/font = ExtResource("3_bfe6o")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_41tmx")
+text = "Enter"
 script = ExtResource("5_wvjlt")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
-
-[node name="Label" type="Label" parent="proceed/Button"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 2.000061
-offset_bottom = 2.000061
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_bfe6o")
-theme_override_font_sizes/font_size = 35
-text = "Enter"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="splash_title" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 514.0
-offset_top = 379.0
+offset_top = 314.0
 offset_right = -527.0
-offset_bottom = 681.0
+offset_bottom = 714.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(1, 0.192157, 0.192157, 1)
 theme_override_fonts/normal_font = ExtResource("2_lmbvh")
-theme_override_font_sizes/normal_font_size = 150
+theme_override_font_sizes/normal_font_size = 200
 text = " REQUEST 
 MESSAGE"
 fit_content = true
@@ -223,6 +232,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_dnn63")
 layout_mode = 0
 offset_right = 2276.0

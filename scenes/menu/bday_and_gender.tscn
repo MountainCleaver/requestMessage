@@ -1,29 +1,14 @@
-[gd_scene load_steps=39 format=3 uid="uid://kvi1gwn1mkx2"]
+[gd_scene load_steps=37 format=3 uid="uid://kvi1gwn1mkx2"]
 
 [ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="1_6sufa"]
 [ext_resource type="Script" uid="uid://ddc3dvxy5cq0o" path="res://scenes/menu/scripts/bday_and_gender.gd" id="1_aj270"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_03f48"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_aj270"]
 [ext_resource type="Script" uid="uid://jwbe8042a3fo" path="res://option_1.gd" id="5_fix5w"]
-[ext_resource type="Texture2D" uid="uid://03chnjfghkoo" path="res://assets/main menu/icons/gender-male.svg" id="5_sbdg1"]
-[ext_resource type="Texture2D" uid="uid://cdtdlv3v65020" path="res://assets/main menu/icons/gender-ambiguous.svg" id="6_ri523"]
-[ext_resource type="Texture2D" uid="uid://cgwb5nimqjfxg" path="res://assets/main menu/icons/gender-female.svg" id="6_t7sn6"]
+[ext_resource type="Texture2D" uid="uid://2jb4cakjqg4b" path="res://assets/main menu/icons/icons8-male-30.png" id="6_fix5w"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="6_x4e0t"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_sbdg1"]
-font = ExtResource("2_03f48")
-font_size = 40
-font_color = Color(0.329412, 0.329412, 0.329412, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_ri523"]
-font = ExtResource("3_aj270")
-font_size = 24
-font_color = Color(1, 0.192157, 0.192157, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_03f48"]
-font = ExtResource("3_aj270")
-font_size = 24
-font_color = Color(0.329412, 0.329412, 0.329412, 1)
+[ext_resource type="Texture2D" uid="uid://betw1qibpgqjb" path="res://assets/main menu/icons/icons8-female-30.png" id="8_owdxj"]
+[ext_resource type="Texture2D" uid="uid://8bl60108tvvb" path="res://assets/main menu/icons/icons8-female-male-30.png" id="9_twshb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7sn6"]
 content_margin_left = 5.0
@@ -250,6 +235,16 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_t7sn6"]
+font = ExtResource("3_aj270")
+font_size = 24
+font_color = Color(0.862745, 0.207843, 0.270588, 0.596078)
+
+[sub_resource type="LabelSettings" id="LabelSettings_03f48"]
+font = ExtResource("3_aj270")
+font_size = 24
+font_color = Color(0.329412, 0.329412, 0.329412, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjrkx"]
 content_margin_left = 5.0
 content_margin_top = 5.0
@@ -337,11 +332,6 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_t7sn6"]
-font = ExtResource("3_aj270")
-font_size = 24
-font_color = Color(0.862745, 0.207843, 0.270588, 0.596078)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkjcq"]
 bg_color = Color(0, 0, 0, 0)
 border_width_bottom = 2
@@ -356,14 +346,16 @@ border_color = Color(0.162066, 0.162066, 0.162065, 1)
 layout_mode = 3
 anchor_right = 0.367
 anchor_bottom = 0.527
-offset_right = -0.480042
-offset_bottom = 0.35199
+offset_right = -310.92505
+offset_bottom = 118.35199
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aj270")
 
 [node name="Panel" parent="." instance=ExtResource("1_6sufa")]
 layout_mode = 0
+offset_right = 750.0
+offset_bottom = 772.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
@@ -384,9 +376,11 @@ layout_mode = 2
 
 [node name="title" type="Label" parent="Panel/MarginContainer/vbox_all"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.32941177, 0.32941177, 0.32941177, 1)
+theme_override_fonts/font = ExtResource("2_03f48")
+theme_override_font_sizes/font_size = 70
 text = "CREATE AN ACCOUNT
 "
-label_settings = SubResource("LabelSettings_sbdg1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -403,8 +397,10 @@ offset_right = 105.5
 offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.5686275, 0.07450981, 0.14509805, 1)
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
 text = "For players 18+ only"
-label_settings = SubResource("LabelSettings_ri523")
 
 [node name="vbox_date" type="VBoxContainer" parent="Panel/MarginContainer/vbox_all"]
 layout_mode = 2
@@ -412,10 +408,13 @@ theme_override_constants/separation = 9
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/vbox_all/vbox_date"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6431373, 0.6431373, 0.6431373, 1)
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
 text = "Birthday"
-label_settings = SubResource("LabelSettings_03f48")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/vbox_all/vbox_date"]
+custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 alignment = 1
 
@@ -426,7 +425,7 @@ focus_mode = 0
 theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_aj270")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_t7sn6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mqt58")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fix5w")
@@ -442,7 +441,7 @@ focus_mode = 0
 theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_aj270")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_sbdg1")
 theme_override_styles/hover = SubResource("StyleBoxFlat_twshb")
 theme_override_styles/focus = SubResource("StyleBoxFlat_owdxj")
@@ -457,7 +456,7 @@ focus_mode = 0
 theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_aj270")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_x4e0t")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ogk07")
 theme_override_styles/focus = SubResource("StyleBoxFlat_owdxj")
@@ -473,8 +472,10 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/vbox_all/vbox_gender"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6431373, 0.6431373, 0.6431373, 1)
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
 text = "Gender"
-label_settings = SubResource("LabelSettings_03f48")
 
 [node name="genders_container" type="HBoxContainer" parent="Panel/MarginContainer/vbox_all/vbox_gender"]
 layout_mode = 2
@@ -490,7 +491,11 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_l7kat")
 theme_override_styles/focus = SubResource("StyleBoxFlat_evfps")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_t7sn6")
-icon = ExtResource("5_sbdg1")
+text = "
+
+
+"
+icon = ExtResource("6_fix5w")
 icon_alignment = 1
 script = ExtResource("6_x4e0t")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
@@ -505,7 +510,11 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_sgssv")
 theme_override_styles/focus = SubResource("StyleBoxFlat_eud7q")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_t7sn6")
-icon = ExtResource("6_t7sn6")
+text = "
+
+
+"
+icon = ExtResource("8_owdxj")
 icon_alignment = 1
 script = ExtResource("6_x4e0t")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
@@ -522,7 +531,11 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_qusxm")
 theme_override_styles/focus = SubResource("StyleBoxFlat_dlt3j")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_t7sn6")
-icon = ExtResource("6_ri523")
+text = "
+
+
+"
+icon = ExtResource("9_twshb")
 icon_alignment = 1
 script = ExtResource("6_x4e0t")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
@@ -530,15 +543,22 @@ metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 [node name="line_break2" type="Label" parent="Panel/MarginContainer/vbox_all"]
 layout_mode = 2
 
+[node name="line_break3" type="Label" parent="Panel/MarginContainer/vbox_all"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_t7sn6")
+horizontal_alignment = 1
+
 [node name="vbox_enter" type="VBoxContainer" parent="Panel/MarginContainer/vbox_all"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/vbox_all/vbox_enter"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.5686275, 0.07450981, 0.14509805, 1)
 label_settings = SubResource("LabelSettings_03f48")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/vbox_all/vbox_enter"]
 layout_mode = 2
+size_flags_vertical = 3
 alignment = 1
 
 [node name="btn_accept" type="Button" parent="Panel/MarginContainer/vbox_all/vbox_enter/HBoxContainer"]
@@ -549,25 +569,31 @@ theme_override_colors/font_focus_color = Color(0.0941176, 0.0941176, 0.0941176, 
 theme_override_colors/font_pressed_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 theme_override_colors/font_hover_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 theme_override_fonts/font = ExtResource("3_aj270")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_jjrkx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_74a5o")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3u6i2")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_8kfaq")
 theme_override_styles/focus = SubResource("StyleBoxFlat_e21up")
-text = "Enter"
+text = "     ENTER     "
 script = ExtResource("6_x4e0t")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
-[node name="line_break3" type="Label" parent="Panel/MarginContainer/vbox_all"]
+[node name="Label2" type="Label" parent="Panel/MarginContainer/vbox_all/vbox_enter"]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_t7sn6")
-horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.5686275, 0.07450981, 0.14509805, 1)
+label_settings = SubResource("LabelSettings_03f48")
 
-[node name="Label2" type="Label" parent="Panel/MarginContainer/vbox_all"]
-layout_mode = 2
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 628.0
+offset_right = 710.0
+offset_bottom = 669.0
+theme_override_colors/font_color = Color(0.5686275, 0.07450981, 0.14509805, 1)
+theme_override_fonts/font = ExtResource("3_aj270")
+theme_override_font_sizes/font_size = 35
 text = "Innocence won't survive"
-label_settings = SubResource("LabelSettings_t7sn6")
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
@@ -577,19 +603,19 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -30.5
-offset_top = -55.0
-offset_right = 30.5
-offset_bottom = -24.0
+offset_left = -59.0
+offset_top = 35.0
+offset_right = 291.0
+offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_aj270")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_nkjcq")
 theme_override_styles/focus = SubResource("StyleBoxFlat_aeego")
-text = "Login"
+text = "Login an Account"
 script = ExtResource("6_x4e0t")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 

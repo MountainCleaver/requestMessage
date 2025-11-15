@@ -1,10 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://5ohqovupog1p"]
+[gd_scene load_steps=11 format=3 uid="uid://5ohqovupog1p"]
 
+[ext_resource type="Script" uid="uid://qcfk2jvckn2y" path="res://scenes/menu/menu_create_acc_bday_gender.gd" id="1_s3vkt"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_xvp0h"]
 [ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="2_7vvl2"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_kxpq5"]
 [ext_resource type="PackedScene" uid="uid://kvi1gwn1mkx2" path="res://scenes/menu/bday_and_gender.tscn" id="3_7vvl2"]
 [ext_resource type="Texture2D" uid="uid://d37rg5an1q1b2" path="res://assets/main menu/menu_phone.png" id="4_s3vkt"]
+[ext_resource type="PackedScene" uid="uid://cxb4qn63t1pld" path="res://globals/exit_confirmation.tscn" id="7_kpjs7"]
+[ext_resource type="PackedScene" uid="uid://g6nvop71k0ew" path="res://globals/age_confirmation.tscn" id="8_kpjs7"]
+[ext_resource type="PackedScene" uid="uid://c6dp8vnyir66p" path="res://scenes/menu/version_num_major_minor_patch_pattern.tscn" id="9_nvos4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3vkt"]
 shader = ExtResource("2_7vvl2")
@@ -21,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_s3vkt")
 
 [node name="menu_background" parent="." instance=ExtResource("1_xvp0h")]
 layout_mode = 1
@@ -32,28 +37,8 @@ offset_right = 2271.0
 offset_bottom = 1025.0
 mouse_filter = 2
 
-[node name="bday_and_gender" parent="." instance=ExtResource("3_7vvl2")]
-layout_mode = 1
-offset_left = 1233.0
-offset_top = 294.0
-offset_right = 1232.52
-offset_bottom = 294.352
-
-[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
-oversampling_override = 1.0
-size = Vector2i(201, 100)
-ok_button_text = "Exit game"
-cancel_button_text = "Enter age"
-
-[node name="exitConfirmDialog" type="ConfirmationDialog" parent="."]
-oversampling_override = 1.0
-title = "Confirm Exit"
-initial_position = 2
-size = Vector2i(251, 100)
-ok_button_text = "Yes"
-dialog_text = "Do you want to exit the game?"
-
 [node name="title_game" type="RichTextLabel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -71,16 +56,39 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
+z_index = 1
 layout_mode = 0
-offset_left = 484.0
-offset_top = 134.0
-offset_right = 969.0
-offset_bottom = 892.0
+offset_left = 390.0
+offset_top = 136.0
+offset_right = 801.0
+offset_bottom = 899.0
 texture = ExtResource("4_s3vkt")
 expand_mode = 1
 stretch_mode = 4
 
-[connection signal="canceled" from="ConfirmationDialog" to="bday_and_gender" method="_on_confirmation_dialog_canceled"]
-[connection signal="confirmed" from="ConfirmationDialog" to="bday_and_gender" method="_on_confirmation_dialog_confirmed"]
-[connection signal="canceled" from="exitConfirmDialog" to="bday_and_gender" method="_on_exit_confirm_dialog_canceled"]
-[connection signal="confirmed" from="exitConfirmDialog" to="bday_and_gender" method="_on_exit_confirm_dialog_confirmed"]
+[node name="bday_and_gender" parent="." instance=ExtResource("3_7vvl2")]
+layout_mode = 1
+offset_left = 1055.0
+offset_top = 140.0
+offset_right = 744.07495
+offset_bottom = 258.352
+
+[node name="ExitConfirmation" parent="." instance=ExtResource("7_kpjs7")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="ExitConfirmation" index="0"]
+visible = false
+
+[node name="AgeConfirmation" parent="." instance=ExtResource("8_kpjs7")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="AgeConfirmation" index="0"]
+visible = false
+
+[node name="Version_Num_Major_Minor_Patch_pattern" parent="." instance=ExtResource("9_nvos4")]
+layout_mode = 0
+
+[editable path="ExitConfirmation"]
+[editable path="AgeConfirmation"]
