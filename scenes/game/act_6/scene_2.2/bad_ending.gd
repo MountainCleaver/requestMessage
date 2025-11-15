@@ -204,7 +204,7 @@ func show_the_end():
 	
 	texture_rect.add_child(end_label)
 	
-	end_label.size = Vector2(600, 150)
+	end_label.size = Vector2(885, 150)
 	end_label.position = Vector2(
 		(texture_rect.size.x - end_label.size.x) / 2,
 		(texture_rect.size.y - end_label.size.y) / 2

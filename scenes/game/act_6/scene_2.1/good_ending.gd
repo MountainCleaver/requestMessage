@@ -88,7 +88,7 @@ func show_the_end():
 	
 	$CanvasLayer/Control/Panel/TextureRect.add_child(end_label)
 	
-	end_label.size = Vector2(600, 150)
+	end_label.size = Vector2(885, 150)
 	end_label.position = Vector2(
 		($CanvasLayer/Control/Panel/TextureRect.size.x - end_label.size.x) / 2,
 		($CanvasLayer/Control/Panel/TextureRect.size.y - end_label.size.y) / 2
