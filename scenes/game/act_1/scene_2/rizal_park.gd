@@ -43,8 +43,8 @@ var light_scene := preload("res://assets/tilesets/nav_light.tscn")
 
 # OBJECTIVES
 var scene_objectives = [
-	{"ID": 2, "text": "Look around for Wendy."},
-	{"ID": 3, "text": "Find an empty table."}
+	{"ID": 2, "text": "Look around for Wendy"},
+	{"ID": 3, "text": "Find an empty table"}
 ]
 
 func _ready() -> void:
