@@ -18,7 +18,7 @@ do _gino_thrashing_stuff()
 Mang gino: [font_size=60.0][shake level=20 connected=0]THEN GO! LEAVE! YOU’RE USELESS ANYWAY![/shake]
 Mateo_child_crying: [shake level=20 connected=0]Please, stop, [i]‘tay[/i]! I’ll go home! [/shake] [font_size=45.0][shake]Please don’t break my things![/shake]
 do _gino_respawn()
-Mang gino: [font_size=60.0][shake level=20 connected=0]YOUR THINGS? WORTHLESS. YOU DON'T A OWN A SINGLE THING!![/shake]
+Mang gino: [font_size=55.0][shake level=20 connected=0]YOUR THINGS? WORTHLESS. YOU DON'T A OWN A SINGLE THING!![/shake]
 do _hit_mateo("idle_right")
 Mang gino: [font_size=45.0][shake level=20 connected=0]Everything you have, you stole it from the house![/shake]
 Mang gino: [font_size=45.0][shake level=20 connected=0]You really think me and your mother would even bother looking for you?[/shake]
@@ -26,7 +26,7 @@ do _hit_mateo("idle_right")
 Mang gino: [font_size=90.0][shake level=20 connected=0]NO![/shake]
 Mang gino: [font_size=60.0][shake level=20 connected=0]YOU’RE ON YOUR OWN![/shake]
 do _hit_mateo("idle_right")
-Mang gino: [font_size=80.0][shake level=20 connected=0]YOU WERE NEVER NEEDED HERE![/shake]
+Mang gino: [font_size=65.0][shake level=20 connected=0]YOU WERE NEVER NEEDED HERE![/shake]
 do is_hit = true
 =>< mateo_monologue
 => END
