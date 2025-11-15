@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdtdlv3v65020"
-path="res://.godot/imported/gender-ambiguous.svg-0a0e33ab3b573219a887ba84b4f35f31.ctex"
+uid="uid://8bl60108tvvb"
+path="res://.godot/imported/icons8-female-male-30.png-126b6d0fa8cdf49521b6f6ba83a2cbe9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main menu/icons/gender-ambiguous.svg"
-dest_files=["res://.godot/imported/gender-ambiguous.svg-0a0e33ab3b573219a887ba84b4f35f31.ctex"]
+source_file="res://assets/main menu/icons/icons8-female-male-30.png"
+dest_files=["res://.godot/imported/icons8-female-male-30.png-126b6d0fa8cdf49521b6f6ba83a2cbe9.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

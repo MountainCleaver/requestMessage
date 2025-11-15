@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1aq4smg1y13r"]
+[gd_scene load_steps=11 format=3 uid="uid://c1aq4smg1y13r"]
 
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_7r2u7"]
 [ext_resource type="Script" uid="uid://cp1ojl3hq2n3l" path="res://scenes/menu/scripts/menu_new_game_slots.gd" id="1_mjo55"]
@@ -7,6 +7,8 @@
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_tkyxw"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_jawnl"]
 [ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="7_t4t4r"]
+[ext_resource type="PackedScene" uid="uid://dh7v2hxt2uij5" path="res://globals/newsave_confirmation.tscn" id="8_07kmj"]
+[ext_resource type="PackedScene" uid="uid://c422okc24xrxo" path="res://globals/overwrite_confirmation.tscn" id="9_3h3fk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_07kmj"]
 shader = ExtResource("7_t4t4r")
@@ -38,29 +40,11 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0924945, 0.0775084, 0.185383, 1)
 
-[node name="back_tips" parent="." instance=ExtResource("3_mjo55")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-offset_left = -343.0
-offset_top = -107.0
-offset_right = -343.0
-offset_bottom = -107.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="Panel" parent="back_tips" index="0"]
-offset_left = -23.0
-offset_top = -29.0
-offset_right = 277.0
-offset_bottom = 46.0
-
 [node name="slot_1" type="Button" parent="."]
 layout_mode = 0
-offset_left = 462.0
+offset_left = 384.0
 offset_top = 76.0
-offset_right = 1778.0
+offset_right = 1872.0
 offset_bottom = 325.0
 script = ExtResource("4_jawnl")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
@@ -69,11 +53,11 @@ metadata/_edit_group_ = true
 [node name="empty_slot" type="Label" parent="slot_1"]
 layout_mode = 0
 offset_left = 462.0
-offset_top = 99.0
+offset_top = 90.0
 offset_right = 1165.0
-offset_bottom = 171.0
+offset_bottom = 176.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 71
+theme_override_font_sizes/font_size = 85
 text = "EMPTY SLOT #1"
 horizontal_alignment = 1
 
@@ -85,30 +69,30 @@ offset_top = 49.0
 offset_right = 1245.0
 offset_bottom = 121.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 70
 text = "ACT 1 - SCENE 1"
 horizontal_alignment = 1
 
 [node name="date_created" type="Label" parent="slot_1"]
 visible = false
 layout_mode = 0
-offset_left = 509.0
+offset_left = 487.0
 offset_top = 130.0
-offset_right = 1259.0
-offset_bottom = 159.0
+offset_right = 1418.0
+offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 40
 text = "CREATED:"
 
 [node name="playtime" type="Label" parent="slot_1"]
 visible = false
 layout_mode = 0
-offset_left = 510.0
+offset_left = 488.0
 offset_top = 171.0
-offset_right = 1260.0
-offset_bottom = 200.0
+offset_right = 1445.0
+offset_bottom = 212.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 40
 text = "PLAYTIME:"
 
 [node name="TextureRect" type="TextureRect" parent="slot_1"]
@@ -122,12 +106,12 @@ texture = ExtResource("3_7r2u7")
 [node name="summary_label" type="Label" parent="slot_1"]
 visible = false
 layout_mode = 0
-offset_left = 509.0
+offset_left = 487.0
 offset_top = 130.0
-offset_right = 1259.0
-offset_bottom = 159.0
+offset_right = 1439.0
+offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 40
 text = "CREATED:"
 autowrap_mode = 3
 
@@ -141,9 +125,9 @@ mouse_filter = 2
 
 [node name="slot_2" type="Button" parent="."]
 layout_mode = 0
-offset_left = 462.0
+offset_left = 384.0
 offset_top = 368.0
-offset_right = 1778.0
+offset_right = 1869.0
 offset_bottom = 617.0
 script = ExtResource("4_jawnl")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
@@ -152,11 +136,11 @@ metadata/_edit_group_ = true
 [node name="empty_slot" type="Label" parent="slot_2"]
 layout_mode = 0
 offset_left = 462.0
-offset_top = 99.0
+offset_top = 90.0
 offset_right = 1165.0
-offset_bottom = 171.0
+offset_bottom = 176.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 71
+theme_override_font_sizes/font_size = 85
 text = "EMPTY SLOT #2"
 horizontal_alignment = 1
 
@@ -168,30 +152,30 @@ offset_top = 49.0
 offset_right = 1245.0
 offset_bottom = 121.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 70
 text = "ACT 1 - SCENE 1"
 horizontal_alignment = 1
 
 [node name="date_created" type="Label" parent="slot_2"]
 visible = false
 layout_mode = 0
-offset_left = 509.0
+offset_left = 488.0
 offset_top = 130.0
-offset_right = 1259.0
-offset_bottom = 159.0
+offset_right = 1439.0
+offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 40
 text = "CREATED:"
 
 [node name="playtime" type="Label" parent="slot_2"]
 visible = false
 layout_mode = 0
-offset_left = 510.0
+offset_left = 489.0
 offset_top = 171.0
-offset_right = 1260.0
-offset_bottom = 200.0
+offset_right = 1438.0
+offset_bottom = 212.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 40
 text = "PLAYTIME:"
 
 [node name="TextureRect" type="TextureRect" parent="slot_2"]
@@ -205,12 +189,12 @@ texture = ExtResource("3_7r2u7")
 [node name="summary_label" type="Label" parent="slot_2"]
 visible = false
 layout_mode = 0
-offset_left = 509.0
+offset_left = 488.0
 offset_top = 130.0
-offset_right = 1259.0
-offset_bottom = 159.0
+offset_right = 1441.0
+offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 40
 text = "CREATED:"
 autowrap_mode = 3
 
@@ -224,9 +208,9 @@ mouse_filter = 2
 
 [node name="slot_3" type="Button" parent="."]
 layout_mode = 0
-offset_left = 462.0
+offset_left = 384.0
 offset_top = 656.0
-offset_right = 1778.0
+offset_right = 1866.0
 offset_bottom = 905.0
 script = ExtResource("4_jawnl")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
@@ -235,11 +219,11 @@ metadata/_edit_group_ = true
 [node name="empty_slot" type="Label" parent="slot_3"]
 layout_mode = 0
 offset_left = 462.0
-offset_top = 99.0
+offset_top = 90.0
 offset_right = 1165.0
-offset_bottom = 171.0
+offset_bottom = 176.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 71
+theme_override_font_sizes/font_size = 85
 text = "EMPTY SLOT #3"
 horizontal_alignment = 1
 
@@ -251,30 +235,30 @@ offset_top = 49.0
 offset_right = 1245.0
 offset_bottom = 121.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 70
 text = "ACT 1 - SCENE 1"
 horizontal_alignment = 1
 
 [node name="date_created" type="Label" parent="slot_3"]
 visible = false
 layout_mode = 0
-offset_left = 509.0
+offset_left = 488.0
 offset_top = 130.0
-offset_right = 1259.0
-offset_bottom = 159.0
+offset_right = 1428.0
+offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 40
 text = "CREATED:"
 
 [node name="playtime" type="Label" parent="slot_3"]
 visible = false
 layout_mode = 0
-offset_left = 510.0
+offset_left = 489.0
 offset_top = 171.0
-offset_right = 1260.0
-offset_bottom = 200.0
+offset_right = 1432.0
+offset_bottom = 212.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 40
 text = "PLAYTIME:"
 
 [node name="TextureRect" type="TextureRect" parent="slot_3"]
@@ -288,12 +272,12 @@ texture = ExtResource("3_7r2u7")
 [node name="summary_label" type="Label" parent="slot_3"]
 visible = false
 layout_mode = 0
-offset_left = 509.0
+offset_left = 488.0
 offset_top = 130.0
-offset_right = 1259.0
-offset_bottom = 159.0
+offset_right = 1444.0
+offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 40
 text = "CREATED:"
 autowrap_mode = 3
 
@@ -305,15 +289,16 @@ offset_right = 1319.0
 offset_bottom = 248.0
 mouse_filter = 2
 
-[node name="overwriteConfirmationDialog" type="ConfirmationDialog" parent="."]
-oversampling_override = 1.0
-title = "Confirm Overwrite"
-initial_position = 2
-size = Vector2i(337, 130)
-ok_button_text = "Yes"
-dialog_text = "This slot already contains saved progress.
-Do you want to overwrite it?
-"
+[node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
+
+[node name="back_tips" parent="." instance=ExtResource("3_mjo55")]
+layout_mode = 1
+offset_left = -630.0
+offset_right = -630.0
+
+[node name="back" parent="back_tips" index="1"]
+offset_left = 315.0
+offset_right = 590.0
 
 [node name="newsaveConfirmationDialog" type="ConfirmationDialog" parent="."]
 oversampling_override = 1.0
@@ -324,8 +309,32 @@ ok_button_text = "Yes"
 dialog_text = "This slot is empty.
 Do you want to create a new save file here?"
 
-[node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
+[node name="overwriteConfirmationDialog" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
+title = "Confirm Overwrite"
+initial_position = 2
+size = Vector2i(337, 130)
+ok_button_text = "Yes"
+dialog_text = "This slot already contains saved progress.
+Do you want to overwrite it?
+"
 
-[connection signal="pressed" from="back_tips/Panel/Button" to="." method="_on_back_pressed"]
+[node name="NewSaveConfirmation" parent="." instance=ExtResource("8_07kmj")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="NewSaveConfirmation" index="0"]
+visible = false
+
+[node name="OverwriteSaveConfirmation" parent="." instance=ExtResource("9_3h3fk")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="OverwriteSaveConfirmation" index="0"]
+visible = false
+
+[connection signal="pressed" from="back_tips/back" to="." method="_on_back_pressed"]
 
 [editable path="back_tips"]
+[editable path="NewSaveConfirmation"]
+[editable path="OverwriteSaveConfirmation"]

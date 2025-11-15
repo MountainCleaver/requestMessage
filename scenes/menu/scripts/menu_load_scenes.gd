@@ -1,7 +1,7 @@
 extends Control
 
 @onready var gridcontainer: GridContainer = $ScrollContainer/MarginContainer/gridcontainer
-@onready var back_button: Button = $back_tips/Panel/Button
+@onready var back_button: Button = $back_tips/back
 @onready var overwrite_dialog: ConfirmationDialog = $overwriteConfirmationDialog
 
 var slot_save: SaveGameResource = null
@@ -9,7 +9,7 @@ var pending_act: String = ""
 var pending_scene: String = ""
 
 func _ready() -> void:
-	back_button.pressed.connect(_on_exit_pressed)
+	back_button.pressed.connect(_on_back_pressed)
 	overwrite_dialog.connect("confirmed", _on_overwrite_confirmed)
 
 func set_slot_save(save_resource: SaveGameResource) -> void:
@@ -188,9 +188,9 @@ func _load_scene(act: String, scene: String) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
-		_on_exit_pressed()
+		_on_back_pressed()
 
-func _on_exit_pressed() -> void:
+func _on_back_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_load_game_slots.tscn")
 
 func on_internet_status_changed(has_internet: bool) -> void:

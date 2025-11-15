@@ -1,32 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://domkty7g88d1p"]
+[gd_scene load_steps=8 format=3 uid="uid://domkty7g88d1p"]
 
 [ext_resource type="Script" uid="uid://bkhwwq7jo812n" path="res://scenes/menu/scripts/menu_patch_notes.gd" id="1_d8yal"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_82dpb"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_d6xu4"]
-[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_vwy2y"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="4_v2ryi"]
+[ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="5_v2ryi"]
 [ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="5_vwy2y"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2ryi"]
-bg_color = Color(0.14902, 0.156863, 0.184314, 0.396078)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
-[sub_resource type="LabelSettings" id="LabelSettings_gegmv"]
-font = ExtResource("3_d6xu4")
-font_size = 28
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5k0cw"]
-bg_color = Color(0.294, 0.31, 0.38, 0.442)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwy2y"]
 bg_color = Color(0.41725737, 0.41725743, 0.41725728, 0.41960785)
@@ -47,9 +26,6 @@ script = ExtResource("1_d8yal")
 [node name="menu_background" parent="." instance=ExtResource("2_82dpb")]
 layout_mode = 1
 
-[node name="Version_Num_Major_Minor_Patch_pattern" parent="menu_background" index="1"]
-visible = false
-
 [node name="ColorRect" type="ColorRect" parent="menu_background"]
 modulate = Color(1, 1, 1, 0.835294)
 self_modulate = Color(1, 1, 1, 0.784314)
@@ -64,46 +40,20 @@ color = Color(0.0924945, 0.0775084, 0.185383, 1)
 [node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
 bus = &"music"
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 1920.0
-offset_top = 918.0
-offset_right = 2220.0
-offset_bottom = 993.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_v2ryi")
-
-[node name="Label" type="Label" parent="Panel"]
+[node name="patch_notes" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -148.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -371.0
+offset_top = 74.0
+offset_right = 332.0
+offset_bottom = 175.0
 grow_horizontal = 2
-grow_vertical = 2
-text = "Back"
-label_settings = SubResource("LabelSettings_gegmv")
+theme_override_fonts/font = ExtResource("4_v2ryi")
+theme_override_font_sizes/font_size = 100
+text = "PATCH NOTES"
 horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Panel"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 142.0
-offset_top = -26.5
-offset_right = -8.0
-offset_bottom = 26.5
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-theme_override_fonts/font = ExtResource("3_d6xu4")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/normal = SubResource("StyleBoxFlat_5k0cw")
-text = "ESC"
-script = ExtResource("4_vwy2y")
-metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 visible = false
@@ -202,18 +152,18 @@ autowrap_mode = 3
 
 [node name="patch_holder" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 477.0
-offset_top = 137.0
-offset_right = 1758.0
+offset_left = 361.0
+offset_top = 207.0
+offset_right = 1900.0
 offset_bottom = 906.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vwy2y")
 
 [node name="MarginContainer" type="MarginContainer" parent="patch_holder"]
 layout_mode = 0
-offset_left = 31.0
-offset_top = 12.0
-offset_right = 1280.0
-offset_bottom = 752.0
+offset_left = 89.0
+offset_top = 35.0
+offset_right = 1469.0
+offset_bottom = 655.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="patch_holder/MarginContainer"]
 layout_mode = 2
@@ -234,7 +184,7 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.894028, 0.8205445, 0.0015967858, 1)
 theme_override_fonts/font = ExtResource("3_d6xu4")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 60
 text = "VERSION"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -243,7 +193,7 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_d6xu4")
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 45
 text = "Date"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -260,7 +210,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_d6xu4")
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/font_size = 40
 vertical_alignment = 1
 autowrap_mode = 3
 justification_flags = 171
@@ -273,21 +223,6 @@ theme_override_font_sizes/font_size = 19
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="patch_notes" type="Label" parent="patch_holder"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -351.0
-offset_top = -63.0
-offset_right = 352.0
-offset_bottom = 9.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("3_d6xu4")
-theme_override_font_sizes/font_size = 46
-text = "PATCH NOTES"
-horizontal_alignment = 1
-
 [node name="menu_loading_screen" parent="." instance=ExtResource("5_vwy2y")]
 
 [node name="ColorRect" parent="menu_loading_screen" index="0"]
@@ -295,7 +230,11 @@ visible = false
 
 [node name="HTTP_request" type="HTTPRequest" parent="."]
 
-[connection signal="pressed" from="Panel/Button" to="." method="_on_back_pressed"]
+[node name="back_tips" parent="." instance=ExtResource("5_v2ryi")]
+layout_mode = 1
+
+[connection signal="pressed" from="back_tips/back" to="." method="_on_back_pressed"]
 
 [editable path="menu_background"]
 [editable path="menu_loading_screen"]
+[editable path="back_tips"]

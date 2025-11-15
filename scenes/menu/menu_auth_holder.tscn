@@ -9,5 +9,5 @@ corner_radius_bottom_left = 25
 
 [node name="holder" type="Panel"]
 offset_right = 528.0
-offset_bottom = 540.0
+offset_bottom = 652.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_pfg4i")

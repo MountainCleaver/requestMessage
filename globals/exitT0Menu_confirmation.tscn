@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bj37l5ku5n76a"]
+[gd_scene load_steps=8 format=3 uid="uid://bj37l5ku5n76a"]
 
 [ext_resource type="Script" uid="uid://bx4xe5utmpsln" path="res://globals/exit_t0_menu_confirmation.gd" id="1_5dkkq"]
 [ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="2_w11pk"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="3_7l4s3"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_0rost"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_w11pk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qx2hx"]
 shader = ExtResource("2_w11pk")
@@ -27,18 +28,19 @@ script = ExtResource("1_5dkkq")
 [node name="Window" type="Window" parent="."]
 oversampling_override = 1.0
 initial_position = 2
-size = Vector2i(750, 500)
+size = Vector2i(1300, 700)
 wrap_controls = true
 exclusive = true
 unresizable = true
+borderless = true
 popup_window = true
 minimize_disabled = true
 maximize_disabled = true
 
 [node name="ColorRect" type="ColorRect" parent="Window"]
 material = SubResource("ShaderMaterial_qx2hx")
-offset_right = 750.0
-offset_bottom = 500.0
+offset_right = 1308.0
+offset_bottom = 711.0
 mouse_filter = 2
 
 [node name="title_game" type="RichTextLabel" parent="Window"]
@@ -46,15 +48,15 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 131.0
-offset_top = -113.0
-offset_right = -116.0
-offset_bottom = -11.0
+offset_left = 137.0
+offset_top = -278.0
+offset_right = -110.0
+offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("3_7l4s3")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 120
 text = "Do you want to exit
 to menu?"
 fit_content = true
@@ -62,21 +64,23 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Yes" type="Button" parent="Window"]
-offset_left = 136.0
-offset_top = 354.0
-offset_right = 281.0
-offset_bottom = 428.0
-theme_override_font_sizes/font_size = 25
+offset_left = 162.0
+offset_top = 462.0
+offset_right = 497.0
+offset_bottom = 623.0
+theme_override_fonts/font = ExtResource("4_w11pk")
+theme_override_font_sizes/font_size = 75
 text = "Yes"
 script = ExtResource("4_0rost")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="Cancel" type="Button" parent="Window"]
-offset_left = 483.0
-offset_top = 356.0
-offset_right = 628.0
-offset_bottom = 430.0
-theme_override_font_sizes/font_size = 25
+offset_left = 808.0
+offset_top = 465.0
+offset_right = 1146.0
+offset_bottom = 626.0
+theme_override_fonts/font = ExtResource("4_w11pk")
+theme_override_font_sizes/font_size = 75
 text = "Cancel"
 script = ExtResource("4_0rost")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
