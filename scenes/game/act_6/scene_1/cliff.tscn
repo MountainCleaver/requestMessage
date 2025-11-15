@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=4 uid="uid://cjfkbqhna51dg"]
+[gd_scene load_steps=27 format=4 uid="uid://cjfkbqhna51dg"]
 
 [ext_resource type="Texture2D" uid="uid://cqlemxpf5ymis" path="res://assets/tilesets/cliff_tileset.png" id="1_6ylqb"]
 [ext_resource type="Texture2D" uid="uid://cttaf3n6wm5sl" path="res://assets/tilesets/CLIFF_WAVE_EFFECT.png" id="2_wr00p"]
 [ext_resource type="Texture2D" uid="uid://dqdf3pp0l48kb" path="res://assets/character_sprites/danilo_nakadapa(end scene).png" id="4_oi3qs"]
 [ext_resource type="Texture2D" uid="uid://q2whql3ij4jj" path="res://assets/tilesets/act_1_s3.png" id="5_ixfqj"]
 [ext_resource type="PackedScene" uid="uid://dguktkmdv5cec" path="res://scenes/characters/wendy_and_npcs.tscn" id="6_ahhgm"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="7_oi3qs"]
 [ext_resource type="PackedScene" uid="uid://jq5u2gfvckxx" path="res://scenes/game/act_4/scene_4/rock.tscn" id="7_rraip"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fpllf"]
@@ -241,14 +242,11 @@ position = Vector2(391, -225)
 
 [node name="cliff_Camera2D" type="Camera2D" parent="y-sorted/wendy_and_npcs/player_wendy" index="4"]
 position = Vector2(1, 0)
-zoom = Vector2(3, 3)
+zoom = Vector2(4.5, 4.5)
 limit_left = -698
 limit_top = -508
 limit_right = 625
 limit_bottom = 205
-
-[node name="gino_shocked" parent="y-sorted/wendy_and_npcs/npc_gino" index="3"]
-visible = false
 
 [node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
 color = Color(0.5016424, 0.57640725, 0.82556915, 1)
@@ -262,6 +260,8 @@ position = Vector2(-289, -279)
 shape = SubResource("CapsuleShape2D_i1b31")
 debug_color = Color(0.87358665, 0.28930125, 0.49881518, 0.41960785)
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("7_oi3qs")]
+
 [editable path="y-sorted/wendy_and_npcs"]
 [editable path="y-sorted/wendy_and_npcs/player_wendy"]
 [editable path="y-sorted/wendy_and_npcs/npc_lola_ising"]
@@ -270,3 +270,4 @@ debug_color = Color(0.87358665, 0.28930125, 0.49881518, 0.41960785)
 [editable path="y-sorted/wendy_and_npcs/npc_aling_theresa"]
 [editable path="y-sorted/wendy_and_npcs/npc_gino"]
 [editable path="y-sorted/wendy_and_npcs/npc_matet"]
+[editable path="CanvasLayer2"]

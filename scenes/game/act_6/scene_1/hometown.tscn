@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dgvk80jaey8s3"]
+[gd_scene load_steps=33 format=4 uid="uid://dgvk80jaey8s3"]
 
 [ext_resource type="Texture2D" uid="uid://d1ejsolix3pnx" path="res://assets/tilesets/act3_s1_danilo_homwtown_tilemap.png" id="1_qh5l7"]
 [ext_resource type="Texture2D" uid="uid://q2whql3ij4jj" path="res://assets/tilesets/act_1_s3.png" id="2_r2fog"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dw2hx8ujxd23b" path="res://scenes/characters/npc_gino.tscn" id="9_72cvi"]
 [ext_resource type="PackedScene" uid="uid://cj5sqsl826j3g" path="res://scenes/characters/npc_vanesa.tscn" id="10_5ckr2"]
 [ext_resource type="PackedScene" uid="uid://di6l7loqc8thw" path="res://scenes/characters/npc_aling_theresa.tscn" id="11_sblq6"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="12_qh5l7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kxjnv"]
 texture = ExtResource("1_qh5l7")
@@ -9804,7 +9805,7 @@ position = Vector2(435, -562)
 
 [node name="hometown_Camera2D" type="Camera2D" parent="y-sorted/player_wendy"]
 position = Vector2(16, 14)
-zoom = Vector2(3, 3)
+zoom = Vector2(4.5, 4.5)
 limit_left = -741
 limit_top = -674
 limit_right = 709
@@ -9821,9 +9822,6 @@ position = Vector2(305, 93)
 
 [node name="npc_gino" parent="y-sorted" instance=ExtResource("9_72cvi")]
 position = Vector2(223, 403)
-
-[node name="gino_shocked" parent="y-sorted/npc_gino" index="3"]
-visible = false
 
 [node name="npc_vanesa" parent="y-sorted" instance=ExtResource("10_5ckr2")]
 position = Vector2(-28, 40)
@@ -9907,6 +9905,8 @@ color = Color(0.5016424, 0.57640725, 0.82556915, 1)
 energy = 0.4
 blend_mode = 2
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("12_qh5l7")]
+
 [editable path="y-sorted/bus"]
 [editable path="y-sorted/npc_lola_ising"]
 [editable path="y-sorted/npc_matet"]
@@ -9914,3 +9914,4 @@ blend_mode = 2
 [editable path="y-sorted/npc_gino"]
 [editable path="y-sorted/npc_vanesa"]
 [editable path="y-sorted/npc_aling_theresa"]
+[editable path="CanvasLayer2"]
