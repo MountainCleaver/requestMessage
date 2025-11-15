@@ -38,7 +38,7 @@ position = Vector2(-86, 177)
 
 [node name="Camera2D2" type="Camera2D" parent="danilo_hometown/y-sorted-objects/danilo_follow_mateo/player_mateo" index="3"]
 position = Vector2(-4, 10)
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 limit_left = -715
 limit_top = -659
 limit_right = 709
