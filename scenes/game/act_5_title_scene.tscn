@@ -100,15 +100,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -138.5
+offset_left = -146.5
 offset_top = 14.833405
-offset_right = 147.5
+offset_right = 139.5
 offset_bottom = 50.833405
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_3f01g")
 text = "Revelation"
 label_settings = SubResource("LabelSettings_3f01g")
+horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
