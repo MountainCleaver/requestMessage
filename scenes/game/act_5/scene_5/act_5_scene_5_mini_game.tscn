@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://b3hko7qrauj"]
+[gd_scene load_steps=43 format=4 uid="uid://b3hko7qrauj"]
 
 [ext_resource type="Texture2D" uid="uid://r6h2ngfbda7w" path="res://assets/tilesets/dark_forest.png" id="1_8mc3o"]
 [ext_resource type="Script" uid="uid://dhpvll73fhr4s" path="res://scenes/game/act_5/scene_5/act_5_scene_5_mini_game.gd" id="1_r1qjl"]
@@ -15,6 +15,8 @@
 [ext_resource type="AudioStream" uid="uid://t52adkog1sgl" path="res://sound/creepy-suspense-horror-background-music-251989.mp3" id="11_noc0u"]
 [ext_resource type="Shader" uid="uid://crlcypsljmsi4" path="res://scenes/game/act_5/mini_game.gdshader" id="12_vgnvl"]
 [ext_resource type="AudioStream" uid="uid://bdeqkciufpyat" path="res://sound/kl-music-box-game-over-ii-152200.mp3" id="14_idubm"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="16_x0vgp"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="17_55kcq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0gnlf"]
 texture = ExtResource("1_8mc3o")
@@ -95,7 +97,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/time:text")
+tracks/0/path = NodePath("CanvasLayer3/time:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -107,7 +109,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/time:visible")
+tracks/1/path = NodePath("CanvasLayer3/time:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -119,7 +121,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/time:position")
+tracks/2/path = NodePath("CanvasLayer3/time:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -135,7 +137,7 @@ length = 3.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/time:text")
+tracks/0/path = NodePath("CanvasLayer3/time:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -147,7 +149,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/time:visible")
+tracks/1/path = NodePath("CanvasLayer3/time:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -173,7 +175,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasLayer/time:position")
+tracks/3/path = NodePath("CanvasLayer3/time:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -280,7 +282,7 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_c7s15")
 
 [node name="Camera2D" type="Camera2D" parent="decorations/player_mateo"]
-zoom = Vector2(3, 3)
+zoom = Vector2(3.5, 3.5)
 limit_left = -1352
 limit_top = -662
 limit_right = 1925
@@ -313,25 +315,19 @@ volume_db = 3.442
 max_distance = 200.0
 bus = &"sfx"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
 
-[node name="game_over" type="TextureRect" parent="CanvasLayer"]
+[node name="game_over" type="TextureRect" parent="CanvasLayer3"]
 visible = false
 modulate = Color(1, 1, 1, 0)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -57.5
-offset_top = -20.0
-offset_right = 57.5
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_lpnvj")
 
-[node name="time" type="RichTextLabel" parent="CanvasLayer"]
+[node name="time" type="RichTextLabel" parent="CanvasLayer3"]
 offset_left = 605.0
 offset_top = 456.0
 offset_right = 951.0
@@ -344,7 +340,7 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="count_down" type="AnimationPlayer" parent="CanvasLayer/time"]
+[node name="count_down" type="AnimationPlayer" parent="CanvasLayer3/time"]
 root_node = NodePath("../../..")
 libraries = {
 &"": SubResource("AnimationLibrary_hu1n5")
@@ -384,10 +380,10 @@ collision_mask = 3
 position = Vector2(8, -645)
 shape = SubResource("WorldBoundaryShape2D_noc0u")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="CanvasLayer4" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("10_48vxw")]
+[node name="pause_screen" parent="CanvasLayer4" instance=ExtResource("10_48vxw")]
 visible = false
 
 [node name="chase_done_area" type="Area2D" parent="."]
@@ -437,7 +433,22 @@ offset_right = 2363.0
 offset_bottom = 1535.0
 mouse_filter = 2
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("16_x0vgp")]
+
+[node name="RunButton" parent="CanvasLayer2/ActionButtons" index="0"]
+position = Vector2(2033.0002, 807.99994)
+
+[node name="InteractButton" parent="CanvasLayer2/ActionButtons" index="1"]
+visible = false
+
+[node name="CanvasLayer" parent="." instance=ExtResource("17_55kcq")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+metadata/_edit_use_anchors_ = true
+
 [connection signal="body_entered" from="decorations/player_mateo/game_over" to="." method="_on_game_over_body_entered"]
 [connection signal="body_entered" from="chase_done_area" to="." method="_on_chase_done_area_body_entered"]
 
 [editable path="decorations/player_mateo"]
+[editable path="CanvasLayer2"]
+[editable path="CanvasLayer"]

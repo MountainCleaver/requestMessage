@@ -122,7 +122,7 @@ grow_vertical = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-380, -291)
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 
 [node name="BGM_GOOD" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_6kke7")

@@ -5,8 +5,8 @@ var A_5S_5: Resource
 @onready var npc_gino_with_stick: CharacterBody2D = $decorations/npc_gino_with_stick
 @onready var player_mateo: CharacterBody2D = $decorations/player_mateo
 @onready var game_over_area: Area2D = $decorations/player_mateo/game_over
-@onready var game_over: TextureRect = $CanvasLayer/game_over
-@onready var count_down: AnimationPlayer = $CanvasLayer/time/count_down
+@onready var game_over: TextureRect = $CanvasLayer3/game_over
+@onready var count_down: AnimationPlayer = $CanvasLayer3/time/count_down
 @onready var animation_player: AnimationPlayer = $tension/AnimationPlayer
 
 @onready var sfx_boi: AudioStreamPlayer2D = $decorations/npc_gino_with_stick/SFX_BOI

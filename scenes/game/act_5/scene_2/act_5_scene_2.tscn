@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://lohc24hpe4iq"]
+[gd_scene load_steps=13 format=3 uid="uid://lohc24hpe4iq"]
 
 [ext_resource type="Script" uid="uid://xckegvk58ogq" path="res://scenes/game/act_5/scene_2/act_5_scene_2.gd" id="1_4w01n"]
 [ext_resource type="PackedScene" uid="uid://cgsw7s7nsjjno" path="res://scenes/game/act_5/scene_2/mateo_home.tscn" id="1_jskr0"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://cfeusndv578x5" path="res://sound/cinematic-dramatic-sad-piano-drama-259052.mp3" id="7_0i30q"]
 [ext_resource type="Texture2D" uid="uid://b26tbvt5h4mc8" path="res://assets/character_sprites/MATEO__SHOCKED.png" id="7_ohuxi"]
 [ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="8_rmpy8"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="10_ko6fl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ohuxi"]
 shader = ExtResource("8_rmpy8")
@@ -25,7 +26,7 @@ size = Vector2(40, 19)
 script = ExtResource("1_4w01n")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D"]
 z_index = 2
@@ -68,10 +69,10 @@ position = Vector2(-1, 60)
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_iggte")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("6_fu8t6")]
+[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("6_fu8t6")]
 visible = false
 
 [node name="BGM_MATEO_HOUSE" type="AudioStreamPlayer" parent="."]
@@ -80,6 +81,11 @@ volume_db = -13.464
 autoplay = true
 bus = &"music"
 
+[node name="CanvasLayer" parent="." instance=ExtResource("10_ko6fl")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+metadata/_edit_use_anchors_ = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 
@@ -87,3 +93,4 @@ bus = &"music"
 [editable path="mateo_home/ysort/player_mateo"]
 [editable path="mateo_home/ysort/npc_gino"]
 [editable path="mateo_home/ysort/npc_matet"]
+[editable path="CanvasLayer"]
