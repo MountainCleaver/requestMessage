@@ -1411,7 +1411,7 @@ animation = &"idle_up"
 
 [node name="Camera2D" type="Camera2D" parent="y-sorted/player_danilo"]
 position = Vector2(1, -8)
-zoom = Vector2(3, 3)
+zoom = Vector2(5, 5)
 limit_left = -347
 limit_top = -230
 limit_right = 513
