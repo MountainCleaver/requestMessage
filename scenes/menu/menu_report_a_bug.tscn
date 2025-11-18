@@ -252,7 +252,7 @@ size_flags_vertical = 5
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer/SCREENSHOT"]
 layout_mode = 2
-text = "Upload a Screenshot"
+text = "Upload a Screenshot (Max. 5 MB)"
 label_settings = SubResource("LabelSettings_rtw4r")
 
 [node name="UPLOADER" type="Button" parent="Panel/HBoxContainer/SCREENSHOT"]
