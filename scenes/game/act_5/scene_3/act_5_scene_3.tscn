@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://v5u0t8alofdh"]
+[gd_scene load_steps=11 format=3 uid="uid://v5u0t8alofdh"]
 
 [ext_resource type="Script" uid="uid://bhx7kbvd1tjxf" path="res://scenes/game/act_5/scene_3/act_5_scene_3.gd" id="1_c6yub"]
 [ext_resource type="PackedScene" uid="uid://vp24wpurm680" path="res://scenes/game/act_3/scene_1/danilo_hometown.tscn" id="2_lk0ij"]
@@ -7,13 +7,13 @@
 [ext_resource type="AudioStream" uid="uid://famsm8h8jxxv" path="res://sound/neighborhood-noise-background-33025-320959.mp3" id="4_pqbaw"]
 [ext_resource type="AudioStream" uid="uid://cc64eeebu6wty" path="res://sound/fast-knocking-on-door-352704.mp3" id="5_lasbg"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="7_3w57v"]
+[ext_resource type="PackedScene" uid="uid://bgsahruyvt5st" path="res://globals/virtual_joystick.tscn" id="8_dhgbx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3w57v"]
 shader = ExtResource("4_dy020")
 shader_parameter/curvature = 6.0
 shader_parameter/vignette_softness = 0.6
 shader_parameter/vignette_strength = 1.2
-shader_parameter/ca_strength = 2.5
 shader_parameter/blur_strength = 0.5
 shader_parameter/scanline_speed = 1.5
 
@@ -30,7 +30,7 @@ position = Vector2(168, 196)
 RUNNING_SPEED = 120.0
 
 [node name="Camera2D" type="Camera2D" parent="danilo_hometown/y-sorted-objects/player_mateo"]
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 limit_left = -720
 limit_top = -680
 limit_right = 700
@@ -63,11 +63,18 @@ bus = &"sfx"
 stream = ExtResource("5_lasbg")
 bus = &"sfx"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("7_3w57v")]
+[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("7_3w57v")]
 visible = false
+
+[node name="CanvasLayer" parent="." instance=ExtResource("8_dhgbx")]
+
+[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
+metadata/_edit_use_anchors_ = true
 
 [editable path="danilo_hometown"]
 [editable path="danilo_hometown/y-sorted-objects/player_mateo"]
+[editable path="danilo_hometown/CanvasLayer2"]
+[editable path="CanvasLayer"]

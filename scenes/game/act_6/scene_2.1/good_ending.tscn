@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://bduaovbd80guj"]
+[gd_scene load_steps=13 format=3 uid="uid://bduaovbd80guj"]
 
 [ext_resource type="Script" uid="uid://xnl54w1ogusf" path="res://scenes/game/act_6/scene_2.1/good_ending.gd" id="1_orgmt"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_ukau7"]
 [ext_resource type="Texture2D" uid="uid://3girgjikjdkx" path="res://assets/character_sprites/note-paper.png" id="2_p0ewm"]
+[ext_resource type="FontFile" uid="uid://11yyx0j70dml" path="res://assets/fonts/Gaegu-Regular.ttf" id="3_gofdy"]
 [ext_resource type="Texture2D" uid="uid://bhg3o375xtwut" path="res://assets/character_sprites/pause.png" id="4_5ohg7"]
+[ext_resource type="FontFile" uid="uid://t03x50025yl" path="res://assets/fonts/CossetteTexte-Bold.ttf" id="4_gofdy"]
 [ext_resource type="AudioStream" uid="uid://bgmgrk1h78oyp" path="res://sound/old-broken-music-box-sound-effect-386717.mp3" id="5_c87e6"]
 [ext_resource type="PackedScene" uid="uid://cs1jpw8ukb17c" path="res://scenes/menu/pause_screen.tscn" id="6_loneg"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="8_nnafu"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ohg7"]
 texture = ExtResource("2_p0ewm")
@@ -31,8 +33,8 @@ script = ExtResource("1_orgmt")
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1448.0
-offset_bottom = 1032.0
+offset_right = 2273.0
+offset_bottom = 1123.0
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -45,18 +47,22 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_5ohg7")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Panel"]
 layout_mode = 0
-offset_right = 1440.0
-offset_bottom = 1024.0
+offset_right = 2280.0
+offset_bottom = 1036.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Panel/TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 269.0
+offset_top = -1.0
+offset_right = -274.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.033853278, 0.033853278, 0.033853274, 1)
-theme_override_fonts/normal_font = ExtResource("1_ukau7")
+theme_override_fonts/normal_font = ExtResource("3_gofdy")
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
 theme_override_font_sizes/bold_italics_font_size = 32
@@ -74,25 +80,25 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -247.0
-offset_top = -146.0
-offset_right = 246.5
-offset_bottom = -68.58325
+offset_left = -249.0
+offset_top = -178.0
+offset_right = 244.5
+offset_bottom = -100.58325
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.111196615, 0.11119693, 0.11119672, 1)
 theme_override_colors/font_hover_color = Color(0.27022162, 0.27022195, 0.27022254, 1)
-theme_override_fonts/font = ExtResource("1_ukau7")
+theme_override_fonts/font = ExtResource("4_gofdy")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_p0ewm")
 text = "Continue"
 
 [node name="play_pause_button" type="Button" parent="CanvasLayer/Control/Panel/TextureRect"]
 layout_mode = 1
-offset_left = 1285.0
-offset_top = 120.0
-offset_right = 1337.0
-offset_bottom = 174.6
+offset_left = 2030.0
+offset_top = 117.0
+offset_right = 2122.0
+offset_bottom = 212.0
 theme_override_styles/pressed = SubResource("StyleBoxFlat_c87e6")
 icon = ExtResource("4_5ohg7")
 flat = true
@@ -102,7 +108,17 @@ expand_icon = true
 stream = ExtResource("5_c87e6")
 bus = &"music"
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer2" instance=ExtResource("6_loneg")]
+[node name="pause_screen" parent="CanvasLayer3" instance=ExtResource("6_loneg")]
+
+[node name="CanvasLayer2" parent="." instance=ExtResource("8_nnafu")]
+
+[node name="RunButton" parent="CanvasLayer2/ActionButtons" index="0"]
+visible = false
+
+[node name="InteractButton" parent="CanvasLayer2/ActionButtons" index="1"]
+visible = false
+
+[editable path="CanvasLayer2"]

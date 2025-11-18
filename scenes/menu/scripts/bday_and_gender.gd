@@ -14,9 +14,6 @@ extends Control
 @onready var day_popup: PopupMenu = day.get_popup();
 @onready var year_popup: PopupMenu = year.get_popup();
 
-@onready var exit_confirm_dialog: ConfirmationDialog = $"../exitConfirmDialog"
-var exit_confirm_showing : bool = false;
-
 @onready var button: Button = $Button
 
 const BASIS_33 = preload("res://assets/fonts/basis33.ttf");
@@ -42,7 +39,8 @@ var month_days := {
 
 @onready var genders_container: HBoxContainer = $Panel/MarginContainer/vbox_all/vbox_gender/genders_container
 
-@onready var confirmation_dialog: ConfirmationDialog = $"../ConfirmationDialog"
+@onready var confirmation_dialog: Control = $"../AgeConfirmation"
+@onready var window: Window = $"../AgeConfirmation/Window"
 
 func _ready() -> void:
 	
@@ -130,12 +128,13 @@ func _style_popup(popup: PopupMenu) -> void:
 	
 	# Fonts
 	popup.add_theme_font_override("font", BASIS_33)
-	popup.add_theme_font_size_override("font_size", 28)
+	popup.add_theme_font_size_override("font_size", 75)
 	popup.add_theme_color_override("font_color", "#181818")
 	popup.add_theme_color_override("font_hover_color", Color.YELLOW)
 	
 	# Limit height
-	popup.max_size = Vector2(200, 200) # 200px tall max, width auto
+	# Height limit = 150px (scroll if too many items)
+	popup.max_size = Vector2(9999, 150)
 
 func _style_option_button(option_btn: OptionButton) -> void:
 	
@@ -184,7 +183,7 @@ func _style_option_button(option_btn: OptionButton) -> void:
 	
 	# Font styling if needed
 	option_btn.add_theme_font_override("font", BASIS_33)
-	option_btn.add_theme_font_size_override("font_size", 28)
+	option_btn.add_theme_font_size_override("font_size", 40)
 
 
 func _on_btn_accept_pressed() -> void:
@@ -203,7 +202,8 @@ func _on_btn_accept_pressed() -> void:
 
 	if age < 18:
 		print("is minor")
-		_confirm_dialog()
+		confirmation_dialog.show()
+		window.show()
 	elif age >= 18:
 		print("is adult")
 
@@ -221,11 +221,6 @@ func _on_btn_accept_pressed() -> void:
 	print("BirthDate: " + str(month_val) + " " + str(day_val) + " " + str(year_val))
 	print("Gender: " + selected_gender)
 
-
-func _confirm_dialog():
-	confirmation_dialog.dialog_text = "This game is restricted to players 18 years or older. If you are under 18, you must exit the game.";
-	confirmation_dialog.popup_centered();
-
 func _on_male_pressed() -> void:
 	selected_gender = genders[0]
 
@@ -235,31 +230,5 @@ func _on_female_pressed() -> void:
 func _on_metal_pressed() -> void:
 	selected_gender = genders[2]
 
-
-func _on_confirmation_dialog_confirmed() -> void:
-	get_tree().quit();
-	
-
-func _on_confirmation_dialog_canceled() -> void:
-	confirmation_dialog.visible = false;
-
-
 func _on_button_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn");
-
-func _input(event: InputEvent) -> void:
-	if event.is_action("escape"):
-		if not exit_confirm_showing:
-			exit_confirm_dialog.show();
-			exit_confirm_showing = true;
-		else:
-			exit_confirm_dialog.hide()
-			exit_confirm_showing = false;
-
-
-func _on_exit_confirm_dialog_confirmed() -> void:
-	get_tree().quit()
-
-
-func _on_exit_confirm_dialog_canceled() -> void:
-	pass # Replace with function body.

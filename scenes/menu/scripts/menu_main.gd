@@ -19,6 +19,8 @@ extends Control
 @onready var continue_confirmation: Control = $ContinueConfirmation
 @onready var window2: Window = $ContinueConfirmation/Window
 @onready var label: Label = $ContinueConfirmation/Window/Label
+@onready var continue_button: Button = $ContinueConfirmation/Window/ok 
+@onready var cancel_button: Button = $ContinueConfirmation/Window/Cancel
 
 var current_choice = 0
 
@@ -53,7 +55,12 @@ func _ready() -> void:
 
 	for option in options_menu:
 		option.mouse_entered.connect(_option_hover.bind(option))
+	
+	continue_button.pressed.connect(_start_continue_game)
+	cancel_button.pressed.connect(_on_cancel_pressed)
+	continue_game.pressed.connect(_on_continue_game_pressed)
 
+	
 func _update_welcome_label() -> void:
 	var name_text = ""
 	if Session.logged_in:
@@ -78,9 +85,7 @@ func _on_continue_game_pressed() -> void:
 	# Show the custom ContinueConfirmation screen
 	continue_confirmation.show()
 	window2.show()
-
 	label.text = "You have previous progress in:\n%s - %s" % [act.capitalize(), scene.capitalize()]
-
 
 func _start_continue_game() -> void:
 	if BgmManager:
@@ -100,19 +105,16 @@ func _on_report_bug_pressed() -> void:
 	_option_overlayer("res://scenes/menu/menu_report_a_bug.tscn")
 	current_choice = options.get_children().find(report_bug)
 
-
 func _on_credits_pressed() -> void:
 	print("credits")
 	_option_overlayer("res://scenes/menu/menu_credits.tscn")
 
 	current_choice = options.get_children().find(credits)
 
-
 func _on_options_pressed() -> void:
 	print("options")
 	_option_overlayer("res://scenes/menu/menu_game_settings.tscn")
 	current_choice = options.get_children().find(o_options)
-
 
 func _on_exit_pressed() -> void:
 	print("exit")
@@ -161,6 +163,11 @@ func on_internet_status_changed(has_internet: bool) -> void:
 	else:
 		print("No internet here, show warning or disable buttons.")
 
-
 func _on_patch_notes_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_patch_notes.tscn")
+
+
+func _on_cancel_pressed() -> void:
+	window2.hide()
+	continue_confirmation.hide()
+	

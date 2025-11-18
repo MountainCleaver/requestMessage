@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://cc4wnsvpn721c"]
+[gd_scene load_steps=11 format=4 uid="uid://cc4wnsvpn721c"]
 
 [ext_resource type="Texture2D" uid="uid://6spyve6qfpb7" path="res://assets/tilesets/wendy_house.png" id="1_3qoio"]
 [ext_resource type="PackedScene" uid="uid://blkwf5qawehnc" path="res://assets/character_sprites/player_wendy.tscn" id="2_v7m1y"]
+[ext_resource type="PackedScene" uid="uid://dqm4gh850yrus" path="res://globals/action_buttons.tscn" id="3_8wghp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fwi0l"]
 texture = ExtResource("1_3qoio")
@@ -373,7 +374,7 @@ position = Vector2(24, 26)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, 1)
-zoom = Vector2(3, 3)
+zoom = Vector2(4.5, 4.5)
 
 [node name="house_exit" type="Area2D" parent="."]
 position = Vector2(26, -172)
@@ -384,4 +385,7 @@ position = Vector2(-26, 242.5)
 shape = SubResource("RectangleShape2D_xn8qh")
 debug_color = Color(0.8662791, 0.32122794, 0.39150935, 0.41960785)
 
+[node name="CanvasLayer2" parent="." instance=ExtResource("3_8wghp")]
+
 [editable path="y-sorted/player_wendy"]
+[editable path="CanvasLayer2"]

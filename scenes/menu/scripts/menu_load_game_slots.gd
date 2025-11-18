@@ -3,7 +3,7 @@ extends Control
 @onready var slot_1: Button = $slot_1
 @onready var slot_2: Button = $slot_2
 @onready var slot_3: Button = $slot_3
-@onready var back_button: Button = $back_tips/Panel/Button
+@onready var back_button: Button = $back_tips/back
 
 var selected_slot: int = 0
 

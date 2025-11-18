@@ -171,7 +171,6 @@ shader = ExtResource("18_lv080")
 shader_parameter/curvature = 6.0
 shader_parameter/vignette_softness = 0.6
 shader_parameter/vignette_strength = 1.2
-shader_parameter/ca_strength = 2.5
 shader_parameter/blur_strength = 0.5
 shader_parameter/scanline_speed = 1.5
 
@@ -232,7 +231,7 @@ z_index = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-88, 1)
-zoom = Vector2(3, 3)
+zoom = Vector2(4.5, 4.5)
 limit_left = -1382
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
@@ -295,10 +294,10 @@ bus = &"music"
 stream = ExtResource("17_taeto")
 bus = &"music"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
 layer = 101
 
-[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("17_sxv3j")]
+[node name="pause_screen" parent="CanvasLayer3" instance=ExtResource("17_sxv3j")]
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]

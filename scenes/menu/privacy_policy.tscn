@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://djn4msvxh86o2"]
+[gd_scene load_steps=11 format=3 uid="uid://djn4msvxh86o2"]
 
 [ext_resource type="Script" uid="uid://b0xb6s5qlymsv" path="res://scenes/menu/scripts/privacy_policy.gd" id="1_0h3nn"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="1_5hq7x"]
@@ -6,13 +6,14 @@
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_18eaf"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="5_axhqq"]
 [ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="5_f1lln"]
+[ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="7_p4dxf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1lln"]
-bg_color = Color(0.41725737, 0.41725743, 0.41725728, 0.41960785)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axhqq"]
+bg_color = Color(0.294118, 0.309804, 0.380392, 0.541176)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18eaf"]
 content_margin_left = 7.0
@@ -26,6 +27,14 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aqcel"]
+shader = ExtResource("7_p4dxf")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_strength = 1.2
+shader_parameter/blur_strength = 0.5
+shader_parameter/scanline_speed = 1.5
+
 [node name="privacy_policy" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -36,152 +45,195 @@ layout_mode = 1
 offset_right = 2275.0
 offset_bottom = 1024.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="title_game" type="RichTextLabel" parent="."]
+visible = false
+z_index = 1
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 148.0
-offset_top = 24.0
-offset_right = 1288.0
-offset_bottom = 150.0
+offset_left = 1.5
+offset_top = 93.0
+offset_right = 2273.0
+offset_bottom = 219.0
 grow_horizontal = 2
-theme_override_colors/default_color = Color(1, 0.24851418, 0.28477854, 1)
+theme_override_colors/default_color = Color(1, 0.192157, 0.192157, 1)
 theme_override_fonts/normal_font = ExtResource("1_5hq7x")
-theme_override_font_sizes/normal_font_size = 70
+theme_override_font_sizes/normal_font_size = 100
 text = "REQUEST MESSAGE"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="privacy_holder" type="Panel" parent="."]
-layout_mode = 0
+z_index = 1
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
 offset_left = 152.0
-offset_top = 159.0
-offset_right = 1302.0
-offset_bottom = 884.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_f1lln")
+offset_top = 152.0
+offset_right = 2139.0
+offset_bottom = 796.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_axhqq")
 
 [node name="MarginContainer" type="MarginContainer" parent="privacy_holder"]
-layout_mode = 0
-offset_left = 31.0
-offset_top = 4.0
-offset_right = 1150.0
-offset_bottom = 710.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = 34.0
+offset_right = -62.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
 
 [node name="ScrollContainer" type="ScrollContainer" parent="privacy_holder/MarginContainer"]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="privacy_holder/MarginContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="policy" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="line_break_6" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.13333334, 0, 1)
 theme_override_fonts/font = ExtResource("3_18eaf")
-theme_override_font_sizes/font_size = 45
-text = "
-🔒PRIVACY POLICY"
+theme_override_font_sizes/font_size = 29
+
+[node name="warning_title" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.133333, 0, 1)
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 70
+text = "🔒 PRIVACY POLICY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="content_intro" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="content" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_18eaf")
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/font_size = 40
 text = "
-We value your privacy, your journey and secrets in this mystery remain yours. By signing up,
-you acknowledge andagree to the following:"
-vertical_alignment = 1
-justification_flags = 171
+We value your privacy, your journey and secrets in this mystery remain yours. By signing up, you acknowledge andagree to the following:"
+autowrap_mode = 2
 
-[node name="content_1" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="line_break_1" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_18eaf")
-theme_override_font_sizes/font_size = 27
-text = "
-1. Why We Collect Your Info
+theme_override_font_sizes/font_size = 29
+
+[node name="content_2" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 40
+text = "1. Why We Collect Your Info
 
 - To unlock the mysteries behind your story, we collect player data to:
 - Create and secure your account.
 - Provide personalized gameplay and age-appropriate experiences.
 - Restore your progress if you ever get lost."
+autowrap_mode = 2
 
-[node name="content_2" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="line_break_2" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_18eaf")
-theme_override_font_sizes/font_size = 27
-text = "
-2. What We Collect
+theme_override_font_sizes/font_size = 29
+
+[node name="content_3" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 40
+text = "2. What We Collect
 
 - Contact details (email address, for account access and recovery)
 - Age and birthday (to ensure content is suitable for you)"
+autowrap_mode = 2
 
-[node name="content_3" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="line_break_3" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_18eaf")
-theme_override_font_sizes/font_size = 27
-text = "
-3. Data Confidentiality
-
-Your information is kept locked away, never shared with outsiders, unless required by law 
-or with your explicit consent. Only the creators, working behind the shadows, may
-briefly access it to help you if you need support."
+theme_override_font_sizes/font_size = 29
 
 [node name="content_4" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_18eaf")
-theme_override_font_sizes/font_size = 27
-text = "
-4. Data Storage & Retention
+theme_override_font_sizes/font_size = 40
+text = "3. Data Confidentiality
 
-Your details are protected in secure server archives, in accordance with digital privacy
-laws.We only keep what’s needed for your adventure, and not a frame longer"
+Your information is kept locked away, never shared with outsiders, unless required by law or with your explicit consent. Only the creators, working behind the shadows, may briefly access it to help you if you need support."
+autowrap_mode = 2
+
+[node name="line_break_4" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 29
 
 [node name="content_5" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_18eaf")
-theme_override_font_sizes/font_size = 27
-text = "
-4. Data Storage & Retention
+theme_override_font_sizes/font_size = 40
+text = "4. Data Storage & Retention
 
-Your details are protected in secure server archives, in accordance with digital privacy
-laws.We only keep what’s needed for your adventure, and not a frame longer"
+Your details are protected in secure server archives, in accordance with digital privacy laws. We only keep what’s needed for your adventure, and not a frame longer"
+autowrap_mode = 2
 
-[node name="outro" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="line_break_5" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_18eaf")
-theme_override_font_sizes/font_size = 27
-text = "
-If you accept, your story continues. If you have questions or wish to act on your rights,
-contact us at our official email rm.requestmessage@gmail.com
+theme_override_font_sizes/font_size = 29
 
-By creating an account, you consent to this data notice and allow us to shape your experience 
-safely and responsibly."
+[node name="content_6" type="Label" parent="privacy_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_18eaf")
+theme_override_font_sizes/font_size = 40
+text = "If you accept, your story continues. If you have questions or wish to act on your rights, contact us at our official email rm.requestmessage@gmail.com
+
+By creating an account, you consent to this data notice and allow us to shape your experience safely and responsibly.
+"
+autowrap_mode = 2
 
 [node name="btn_accept" type="Button" parent="."]
-layout_mode = 0
-offset_left = 684.0
-offset_top = 938.0
-offset_right = 793.0
-offset_bottom = 987.0
+z_index = 1
+layout_mode = 1
+offset_left = 976.0
+offset_top = 853.0
+offset_right = 1376.0
+offset_bottom = 977.0
 theme_override_colors/font_color = Color(0.86815435, 0.87741095, 0.8714555, 1)
 theme_override_fonts/font = ExtResource("3_18eaf")
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_18eaf")
 text = "I accept"
 script = ExtResource("5_axhqq")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="back_tips" parent="." instance=ExtResource("5_f1lln")]
+visible = false
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-offset_left = 1087.0
-offset_top = 922.0
-offset_right = 1087.0
-offset_bottom = 922.0
-grow_horizontal = 0
-grow_vertical = 0
+offset_left = 1598.0
+offset_top = 847.0
+offset_right = 1598.0
+offset_bottom = 847.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_aqcel")
+layout_mode = 0
+offset_right = 2276.0
+offset_bottom = 1025.0
+mouse_filter = 2
+
+[connection signal="pressed" from="btn_accept" to="." method="_on_btn_accept_pressed"]
 
 [editable path="back_tips"]

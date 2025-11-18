@@ -124,7 +124,7 @@ func tension_out_anim() -> void:
 func _go_to_sleep() -> void: 
 	var tween = create_tween()
 	tween.tween_property(tutorial, "modulate:a", 1.0, 0.5)
-	_set_tutorial_text("Remember, you can always adjust the controls in the settings.\nPress ESC to open the pause menu.")
+	_set_tutorial_text("Press Menu button to open the pause menu.")
 	tween.tween_interval(4.0)
 	tween.tween_property(tutorial, "modulate:a", 0.0, 2.0)
 	player_danilo.animation_locked = true;
@@ -212,7 +212,7 @@ func _set_tutorial_text(text: String = "") -> void:
 
 		var run_key : String = '"' + _get_key("run").strip_edges() + '"'
 
-		tutorial.text = "Use " + movement_string + " to move. Hold " + run_key + " to run."
+		tutorial.text = "Use joystick to move."
 	else:
 		tutorial.text = text
 

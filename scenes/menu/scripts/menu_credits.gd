@@ -1,7 +1,7 @@
 extends Control
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var button: Button = $back_tips/Panel/Button
+@onready var button: Button = $back_tips/back
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -3,9 +3,21 @@ extends Control
 @onready var slot_1: Button = $slot_1
 @onready var slot_2: Button = $slot_2
 @onready var slot_3: Button = $slot_3
-@onready var button: Button = $back_tips/Panel/Button
-@onready var overwrite_dialog: ConfirmationDialog = $overwriteConfirmationDialog
-@onready var newsave_dialog: ConfirmationDialog = $newsaveConfirmationDialog
+@onready var button: Button = $back_tips/back
+#@onready var overwrite_dialog: ConfirmationDialog = $overwriteConfirmationDialog
+#@onready var newsave_dialog: ConfirmationDialog = $newsaveConfirmationDialog
+
+@onready var newsave: Control = $NewSaveConfirmation
+@onready var window1: Window = $NewSaveConfirmation/Window
+@onready var label1: Label = $NewSaveConfirmation/Window/Label
+@onready var button2: Button = $NewSaveConfirmation/Window/Yes
+@onready var cancel1: Button = $NewSaveConfirmation/Window/Cancel
+
+@onready var overwritesave: Control = $OverwriteSaveConfirmation
+@onready var window2: Window = $OverwriteSaveConfirmation/Window
+@onready var label2: Label = $OverwriteSaveConfirmation/Window/Label
+@onready var button3: Button = $OverwriteSaveConfirmation/Window/Yes
+@onready var cancel2: Button = $OverwriteSaveConfirmation/Window/Cancel
 
 var selected_slot: int = 0
 
@@ -26,9 +38,10 @@ func _ready() -> void:
 	slot_3.pressed.connect(_on_slot_pressed.bind(3))
 
 	button.pressed.connect(_on_back_pressed)
-	newsave_dialog.confirmed.connect(_on_newsave_confirmed)
-	overwrite_dialog.confirmed.connect(_on_overwrite_confirmed)
-
+	button2.pressed.connect(_on_newsave_confirmed)
+	button3.pressed.connect(_on_overwrite_confirmed)
+	cancel1.pressed.connect(_on_cancel1_pressed)
+	cancel2.pressed.connect(_on_cancel2_pressed)
 
 func _on_slot_pressed(slot_number: int) -> void:
 	selected_slot = slot_number
@@ -36,13 +49,13 @@ func _on_slot_pressed(slot_number: int) -> void:
 	SaveManager._set_save_paths()
 
 	if FileAccess.file_exists(SaveManager.SAVE_PATH):
-		overwrite_dialog.dialog_text = "WARNING: Slot %d already contains saved progress.\nOverwriting will ERASE all existing data in this slot.\n\nDo you want to continue?" % slot_number
-		overwrite_dialog.popup_centered()
+		overwritesave.show()
+		window2.show()
+		label2.text = "WARNING: Slot %d already contains saved progress.\nOverwriting will ERASE all existing data in this slot.\n\nDo you want to continue?" % slot_number
 	else:
-		newsave_dialog.dialog_text = "Slot %d is empty.\nDo you want to create a new save file here?" % slot_number
-		newsave_dialog.popup_centered()
-
-
+		newsave.show()
+		window1.show()
+		label1.text = "Slot %d is empty.\nDo you want to create a new save file here?" % slot_number
 
 func _on_newsave_confirmed() -> void:
 	SaveManager.current_slot = selected_slot
@@ -68,8 +81,6 @@ func _on_newsave_confirmed() -> void:
 
 	SignalBus.next_scene.emit("res://scenes/game/intro_scene.tscn")
 
-
-
 func _on_overwrite_confirmed() -> void:
 	SaveManager.current_slot = selected_slot
 	SaveManager.reset_save_state()
@@ -90,9 +101,6 @@ func _on_overwrite_confirmed() -> void:
 		Hud.reset_phone_dont_show()
 
 	SignalBus.next_scene.emit("res://scenes/game/intro_scene.tscn")
-
-
-
 
 func _update_slot_ui(slot_num: int) -> void:
 	var slot_path = "user://users/%s_%d/slot_%d/save.res" % [Session.username, Session.user_ID, slot_num]
@@ -197,7 +205,6 @@ func _on_slot_hovered(slot_node: Node, slot_num: int) -> void:
 	
 	_trigger_glitch_effect(slot_node)
 
-
 func _on_slot_unhovered(slot_node: Node, slot_num: int) -> void:
 	var summary_label = slot_node.get_node("summary_label")
 	var date_label = slot_node.get_node("date_created")
@@ -248,7 +255,6 @@ func _generate_narrative_summary(save_data) -> String:
 	var key = "%s_%s" % [act.to_lower(), scene.to_lower()]
 	return scene_summaries.get(key, "A brief moment in Danilo's day unfolds.")
 
-
 # --- Scene summaries dictionary ---
 var scene_summaries := {
 	"act_1_scene_1": "Rain falls as Danilo wakes, lost in thought, can he face what comes next?",
@@ -285,3 +291,11 @@ func on_internet_status_changed(has_internet: bool) -> void:
 		pass
 	else:
 		print("No internet here, show warning or disable buttons.")
+
+func _on_cancel1_pressed() -> void:
+	newsave.hide()
+	window1.hide()
+
+func _on_cancel2_pressed() -> void:
+	overwritesave.hide()
+	window2.hide()

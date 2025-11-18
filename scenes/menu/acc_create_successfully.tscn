@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6ufomjjkwkbw"]
+[gd_scene load_steps=10 format=3 uid="uid://b6ufomjjkwkbw"]
 
 [ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="2_t4h72"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="3_pxq1l"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_7wfba"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_x5bll"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5bll"]
+bg_color = Color(0, 0, 0, 0.72156864)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wabu4"]
 content_margin_left = 5.0
@@ -86,6 +89,7 @@ expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
 [node name="acc_create_successfully" type="Control"]
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,6 +100,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="holder2" parent="." instance=ExtResource("2_t4h72")]
+visible = false
 modulate = Color(0, 0, 0, 0.580392)
 layout_mode = 0
 offset_left = -232.0
@@ -103,13 +108,30 @@ offset_top = -15.0
 offset_right = 2530.0
 offset_bottom = 1625.0
 
+[node name="Panel" type="Panel" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = -1901.0
+offset_top = -36.0
+offset_right = 2303.0
+offset_bottom = 1075.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x5bll")
+
 [node name="holder" parent="." instance=ExtResource("2_t4h72")]
 top_level = true
-layout_mode = 0
-offset_left = 815.0
-offset_top = 372.0
-offset_right = 1456.0
-offset_bottom = 720.0
+z_index = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -437.5
+offset_top = -244.0
+offset_right = 571.5
+offset_bottom = 238.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="title_game" type="RichTextLabel" parent="holder"]
 layout_mode = 1
@@ -122,7 +144,7 @@ offset_bottom = 155.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.32941177, 0.32941177, 0.32941177, 1)
 theme_override_fonts/normal_font = ExtResource("3_pxq1l")
-theme_override_font_sizes/normal_font_size = 75
+theme_override_font_sizes/normal_font_size = 100
 text = "SUCCESS!"
 fit_content = true
 horizontal_alignment = 1
@@ -134,16 +156,16 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 141.0
-offset_top = 58.0
-offset_right = -123.0
-offset_bottom = 121.0
+offset_left = 155.0
+offset_top = 43.0
+offset_right = -134.0
+offset_bottom = 159.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 theme_override_fonts/font = ExtResource("4_7wfba")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_wabu4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_knne6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vrlwj")
@@ -155,13 +177,13 @@ metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 [node name="subtitle" type="Label" parent="holder"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
-offset_left = 106.0
-offset_top = 140.0
-offset_right = 606.0
-offset_bottom = 176.0
+offset_left = 172.0
+offset_top = 162.0
+offset_right = 832.0
+offset_bottom = 213.0
 theme_override_colors/font_color = Color(0.32941177, 0.32941177, 0.32941177, 1)
 theme_override_fonts/font = ExtResource("4_7wfba")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "Account created successfully!"
 autowrap_mode = 2
 
