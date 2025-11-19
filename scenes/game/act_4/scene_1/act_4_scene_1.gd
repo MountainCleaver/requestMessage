@@ -176,6 +176,13 @@ func _switch_to_danilo_hometown(from_where: String = "") -> void:
 	elif from_where == "house_door_step_2":
 		await get_tree().process_frame
 		_reset_danilo_house_area()
+		
+		# Check meds count from SaveManager
+		var meds_taken = SaveManager.get_count_meds_taken()
+		if meds_taken >= 3:
+			Achievements.unlock_achievement(6)
+
+
 		Hud.show_objectives()
 		ObjectiveManager.complete_objective(5)
 		DialogueManager.show_dialogue_balloon(A_4S_1, "back_to_adventure")
@@ -707,7 +714,9 @@ func _ising_interacted() -> void:
 
 	DialogueManager.show_dialogue_balloon(A_4S_1, "ising_give_flashlight")
 	await DialogueManager.dialogue_ended
+	Achievements.unlock_achievement(9)
 	ObjectiveManager.complete_objective(999)
+	
 
 	FlashlightManager.unlock_real_flashlight()
 	FlashlightManager.real_flashlight_enabled = true
@@ -721,6 +730,7 @@ func _on_phone_flashlight_enabled() -> void:
 	if phone_flashlight_complained:
 		return
 	phone_flashlight_complained = true
+	Achievements.unlock_achievement(10)
 	ObjectiveManager.complete_objective(666)
 	DialogueManager.show_dialogue_balloon(A_4S_1, "complain_phone_flashlight")
 
@@ -756,6 +766,9 @@ func _on_take_meds_chosen() -> void:
 		if player_danilo and hometown_way_area.get_overlapping_bodies().has(player_danilo):
 			_on_hometown_way_area_entered(player_danilo)
 			
+	if SaveManager.get_total_karma() >= 5:
+		Achievements.unlock_achievement(11)
+		
 	ObjectiveManager.add_objective(scene_objectives[4]["ID"], scene_objectives[4]["text"])
 
 func _on_continue_looking_chosen() -> void:
@@ -772,7 +785,10 @@ func _on_continue_looking_chosen() -> void:
 
 		if player_danilo and dark_forest_way_area.get_overlapping_bodies().has(player_danilo):
 			_on_dark_forest_way_area_entered(player_danilo)
-
+			
+	if SaveManager.get_total_karma() >= -5:
+		Achievements.unlock_achievement(10)
+		
 	ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]["text"])
 
 func _danilo_house_area_interacted() -> void:
