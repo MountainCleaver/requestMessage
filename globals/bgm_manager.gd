@@ -18,7 +18,8 @@ const MENU_SCENE_PATHS := [
 	"res://scenes/menu/privacy_policy.tscn",
 	"res://scenes/menu/menu_main.tscn" ,
 	"res://scenes/menu/menu_reset_password.tscn",
-	"res://scenes/menu/menu_patch_notes.tscn"
+	"res://scenes/menu/menu_patch_notes.tscn",
+	"res://scenes/menu/menu_achievements.tscn"
 	
 	
 ]
