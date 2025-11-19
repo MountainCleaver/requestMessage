@@ -1,0 +1,264 @@
+[gd_scene load_steps=15 format=3 uid="uid://r1rdra53fypf"]
+
+[ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="1_elv1p"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_uhm3e"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_5e87u"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_nftss"]
+[ext_resource type="Script" uid="uid://cmjjec1dsmpqf" path="res://line_1.gd" id="5_uhm3e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t2p8q"]
+font = ExtResource("2_uhm3e")
+font_size = 40
+font_color = Color(0.329412, 0.329412, 0.329412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tas5x"]
+font = ExtResource("3_5e87u")
+font_size = 24
+font_color = Color(0.29954728, 0.2995475, 0.29954743, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wabu4"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knne6"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.597898, 0.591822, 0.589213, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrlwj"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.77084, 0.770839, 0.770839, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxglm"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="Theme" id="Theme_5e87u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nftss"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 73.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.533333, 0.54902, 0.572549, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofabt"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.410672, 0.425173, 0.44692, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="verify_email" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1440.0
+offset_bottom = -1024.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="holder" parent="." instance=ExtResource("1_elv1p")]
+top_level = true
+layout_mode = 0
+offset_left = 370.0
+offset_top = 300.0
+offset_right = 1003.0
+offset_bottom = 650.0
+
+[node name="title" type="Label" parent="holder"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.034
+anchor_right = 1.0
+anchor_bottom = 0.034
+offset_left = 80.0
+offset_top = 2.599
+offset_right = -80.0
+offset_bottom = 87.599
+grow_horizontal = 2
+grow_vertical = 2
+text = "EMAIL VERIFICATION SENT!"
+label_settings = SubResource("LabelSettings_t2p8q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="subtitle" type="Label" parent="holder/title"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -205.0
+offset_right = 205.0
+offset_bottom = 33.501007
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 21
+text = "Please check your email including SPAM."
+label_settings = SubResource("LabelSettings_tas5x")
+
+[node name="btn_ok" type="Button" parent="holder"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 211.0
+offset_top = 75.0
+offset_right = -195.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("3_5e87u")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_wabu4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_knne6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vrlwj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_uxglm")
+text = "Verify"
+script = ExtResource("4_nftss")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
+
+[node name="code" type="LineEdit" parent="holder"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 91.0
+offset_top = -24.0
+offset_right = -84.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Enter your username here."
+theme = SubResource("Theme_5e87u")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.641934, 0.641934, 0.641934, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_5e87u")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_nftss")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ofabt")
+placeholder_text = "Enter your code here"
+emoji_menu_enabled = false
+caret_blink = true
+caret_blink_interval = 0.15
+script = ExtResource("5_uhm3e")
+metadata/_custom_type_script = "uid://cmjjec1dsmpqf"
+
+[node name="err_username" type="Label" parent="holder/code"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.66666
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="btn_close" type="Button" parent="holder"]
+layout_mode = 0
+offset_left = 583.0
+offset_top = 1.0
+offset_right = 629.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.08855977, 0.08855999, 0.088559784, 1)
+theme_override_font_sizes/font_size = 22
+text = "X"
+flat = true
+
+[node name="holder2" parent="." instance=ExtResource("1_elv1p")]
+modulate = Color(0, 0, 0, 0.580392)
+layout_mode = 0
+offset_left = -313.0
+offset_top = -350.0
+offset_right = 1876.0
+offset_bottom = 1290.0

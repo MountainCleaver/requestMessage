@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://m7brk02md3qo"]
+[gd_scene load_steps=8 format=3 uid="uid://m7brk02md3qo"]
 
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_7plwg"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_wmr1e"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://1pxj7253c1fm" path="res://scenes/menu/acc_create_username_password.tscn" id="4_wmr1e"]
 [ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="5_rktm2"]
 [ext_resource type="PackedScene" uid="uid://b6ufomjjkwkbw" path="res://scenes/menu/acc_create_successfully.tscn" id="6_o6ox5"]
+[ext_resource type="PackedScene" uid="uid://r1rdra53fypf" path="res://scenes/menu/verify_email.tscn" id="7_8q8wn"]
 
 [node name="menu_create_acc_creds" type="Control"]
 layout_mode = 3
@@ -54,5 +55,9 @@ stretch_mode = 4
 visible = false
 
 [node name="acc_create_successfully" parent="." instance=ExtResource("6_o6ox5")]
+visible = false
+layout_mode = 1
+
+[node name="verify_email" parent="." instance=ExtResource("7_8q8wn")]
 visible = false
 layout_mode = 1
