@@ -78,14 +78,14 @@ const ACHIEVEMENTS = [
 		#========= ACHIEVEMENT 11 =========#
 		"title": "Restless By Nature",
 		"caption": "“Did I choose the right decision... or am I lost?”",
-		"description": "Choose all “restless” choices.",
+		"description": "Choose all “restless” choices, or doubtful ones.",
 		"badge": "res://assets/achievements/achievement_11.png"
 	},
 	{
 		#========= ACHIEVEMENT 12 =========#
 		"title": "A Moment of Relief",
 		"caption": "“It feels lighter... the choices might have been right.”",
-		"description": "Choose all “relief” choices.",
+		"description": "Choose all “relief” choices, or calming ones.",
 		"badge": "res://assets/achievements/achievement_12.png"
 	},
 	{
