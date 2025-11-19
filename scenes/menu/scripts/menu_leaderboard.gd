@@ -173,7 +173,9 @@ func _on_leaderboard_fetched(result, response_code, headers, body):
 
 		completion_vbox.add_child(row_hbox)
 		completion_leaderboard_data = leaderboard_data
-
+		
+		if completion_panel.get_node("HBoxContainer").visible:
+			show_current_user_rank(completion_leaderboard_data, $HSeparator/current_rank, $HSeparator/no_data_label, "completion")
 
 func _on_achievements_leaderboard_fetched(result, response_code, headers, body):
 	loading_label.visible = false 
