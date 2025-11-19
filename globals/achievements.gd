@@ -36,10 +36,7 @@ func unlock_achievement(id: int):
 	# PUSH TO ONLINE SAVE 
 	# ===============================
 	if SaveManager.current_user_id != 0:
-		SaveManager._push_online_save(
-		SaveManager.game_save.current_act,
-		SaveManager.game_save.current_scene
-	)
+		SaveManager._push_achievement_online(id)
 		print("Achievement pushed online:", id)
 
 	# ===============================
