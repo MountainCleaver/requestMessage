@@ -227,7 +227,8 @@ func track_ending(user_id: int, current_scene_path: String) -> void:
 		var data := {
 			"user_id": user_id,
 			"ending_name": ending_name,
-			"achieved_at": Time.get_datetime_string_from_system()
+			"achieved_at": Time.get_datetime_string_from_system(),
+			"playtime_seconds": game_save.playtime_seconds
 		}
 
 		var json_data := JSON.stringify(data)
@@ -666,3 +667,43 @@ func _set_current_scene_from_path(scene_path: String) -> void:
 	save_game()
 	print("[SaveManager] Current scene updated to:", act_folder, "-", scene_name)
 	
+
+func unlock_achievement(achievement_id: int) -> void:
+	if not game_save:
+		game_save = SaveGameResource.new()
+
+	if not game_save.has("unlocked_achievements"):
+		game_save.unlocked_achievements = []
+
+	# Avoid duplicates
+	if achievement_id in game_save.unlocked_achievements:
+		print("[Achievements] Already unlocked:", achievement_id)
+		return
+
+	game_save.unlocked_achievements.append(achievement_id)
+	save_game()
+
+	print("[Achievements] Achievement unlocked:", achievement_id)
+
+	# Send to online API
+	if current_user_id != 0:
+		_push_achievement_online(achievement_id)
+
+func _push_achievement_online(achievement_id: int) -> void:
+	var url = "https://requestmessage-admin.onrender.com/api/track_achievements.php"
+	var request = HTTPRequest.new()
+	add_child(request)
+
+	var data = {
+		"user_id": current_user_id,
+		"unlocked_achievements": game_save.unlocked_achievements
+	}
+
+	var json_data = JSON.stringify(data)
+	request.request(
+		url,
+		["Content-Type: application/json"],
+		HTTPClient.METHOD_POST,
+		json_data
+	)
+	print("[Achievements] Sent achievements to server:", data)
