@@ -1,0 +1,548 @@
+[gd_scene load_steps=14 format=3 uid="uid://sp8g7sbtkxfl"]
+
+[ext_resource type="Script" uid="uid://cx85o8ol4e3bu" path="res://scenes/menu/scripts/menu_leaderboard.gd" id="1_ytm48"]
+[ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_4tthl"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_7iic2"]
+[ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="6_1kyds"]
+[ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="7_513ev"]
+[ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="7_nou7y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32d74"]
+bg_color = Color(0.22430411, 0.22430411, 0.22430399, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uv8n5"]
+font = ExtResource("3_7iic2")
+font_size = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytm48"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kyds"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nou7y"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgc4c"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_32d74"]
+color = Color(1, 1, 1, 1)
+
+[node name="menu_leaderboard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ytm48")
+
+[node name="menu_background" parent="." instance=ExtResource("2_4tthl")]
+layout_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="menu_background"]
+modulate = Color(1, 1, 1, 0.835294)
+self_modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0924945, 0.0775084, 0.185383, 1)
+
+[node name="achievements" type="Label" parent="."]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 37.0
+offset_right = 1065.0
+offset_bottom = 112.0
+theme_override_fonts/font = ExtResource("3_7iic2")
+theme_override_font_sizes/font_size = 54
+text = "LEADERBOARD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="back_tips" parent="." instance=ExtResource("7_513ev")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -359.0
+offset_top = -1000.0
+offset_right = -359.0
+offset_bottom = -1000.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 117.0
+offset_right = 1361.0
+offset_bottom = 189.0
+
+[node name="completion_button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_7iic2")
+theme_override_font_sizes/font_size = 35
+text = "FASTEST COMPLETION TIME"
+script = ExtResource("7_nou7y")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/completion_button"]
+visible = false
+layout_mode = 0
+offset_top = 83.0
+offset_right = 1274.0
+offset_bottom = 133.0
+
+[node name="Panel" type="Panel" parent="HBoxContainer/completion_button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.35
+theme_override_styles/panel = SubResource("StyleBoxFlat_32d74")
+
+[node name="Label" type="Label" parent="HBoxContainer/completion_button/HBoxContainer/Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 112.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "RANK"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="HBoxContainer/completion_button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.56
+theme_override_styles/panel = SubResource("StyleBoxFlat_ytm48")
+
+[node name="Label" type="Label" parent="HBoxContainer/completion_button/HBoxContainer/Panel2"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 502.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "USERNAME"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="HBoxContainer/completion_button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_1kyds")
+
+[node name="Label" type="Label" parent="HBoxContainer/completion_button/HBoxContainer/Panel3"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 322.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "TIME COMPLETED"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel4" type="Panel" parent="HBoxContainer/completion_button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_nou7y")
+
+[node name="Label" type="Label" parent="HBoxContainer/completion_button/HBoxContainer/Panel4"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 322.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "DATE COMPLETED"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="completion_holder" type="Panel" parent="HBoxContainer/completion_button"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 143.0
+offset_right = 1273.0
+offset_bottom = 764.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vgc4c")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/completion_button/completion_holder"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 12.0
+offset_right = 1270.0
+offset_bottom = 623.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/completion_button/completion_holder/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/completion_button/completion_holder/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/completion_button/completion_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/completion_button/completion_holder/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.35
+text = "1"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/completion_button/completion_holder/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.56
+text = "geraldesu"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="HBoxContainer/completion_button/completion_holder/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "2h 47m 38s"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="HBoxContainer/completion_button/completion_holder/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "2025-11-19"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="achievements_button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_7iic2")
+theme_override_font_sizes/font_size = 35
+text = "ACHIEVEMENTS"
+script = ExtResource("7_nou7y")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/achievements_button"]
+visible = false
+layout_mode = 0
+offset_left = -638.0
+offset_top = 83.0
+offset_right = 636.0
+offset_bottom = 133.0
+
+[node name="Panel" type="Panel" parent="HBoxContainer/achievements_button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.35
+theme_override_styles/panel = SubResource("StyleBoxFlat_32d74")
+
+[node name="Label" type="Label" parent="HBoxContainer/achievements_button/HBoxContainer/Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 112.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "RANK"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="HBoxContainer/achievements_button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.56
+theme_override_styles/panel = SubResource("StyleBoxFlat_ytm48")
+
+[node name="Label" type="Label" parent="HBoxContainer/achievements_button/HBoxContainer/Panel2"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 502.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "USERNAME"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="HBoxContainer/achievements_button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_1kyds")
+
+[node name="Label" type="Label" parent="HBoxContainer/achievements_button/HBoxContainer/Panel3"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 322.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "TOTAL ACHIEVEMENTS"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel4" type="Panel" parent="HBoxContainer/achievements_button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_nou7y")
+
+[node name="Label" type="Label" parent="HBoxContainer/achievements_button/HBoxContainer/Panel4"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 322.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "LAST ACHIEVED"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="achievements_holder" type="Panel" parent="HBoxContainer/achievements_button"]
+layout_mode = 0
+offset_left = -638.0
+offset_top = 143.0
+offset_right = 633.0
+offset_bottom = 764.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vgc4c")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/achievements_button/achievements_holder"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 12.0
+offset_right = 1270.0
+offset_bottom = 623.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/achievements_button/achievements_holder/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/achievements_button/achievements_holder/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/achievements_button/achievements_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/achievements_button/achievements_holder/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.35
+text = "1"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/achievements_button/achievements_holder/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.56
+text = "geraldesu"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="HBoxContainer/achievements_button/achievements_holder/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "14"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="HBoxContainer/achievements_button/achievements_holder/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "2025-11-19"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 900.0
+offset_right = 576.0
+offset_bottom = 936.0
+theme_override_styles/separator = SubResource("StyleBoxLine_32d74")
+
+[node name="Label" type="Label" parent="HSeparator"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -23.0
+offset_right = 1032.5
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "CURRENT PLACEMENT"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="current_rank" type="HBoxContainer" parent="HSeparator"]
+layout_mode = 0
+offset_top = 38.0
+offset_right = 1274.0
+offset_bottom = 88.0
+
+[node name="rank" type="Panel" parent="HSeparator/current_rank"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.35
+theme_override_styles/panel = SubResource("StyleBoxFlat_32d74")
+
+[node name="Label" type="Label" parent="HSeparator/current_rank/rank"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 112.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "RANK"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="username" type="Panel" parent="HSeparator/current_rank"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.56
+theme_override_styles/panel = SubResource("StyleBoxFlat_ytm48")
+
+[node name="Label" type="Label" parent="HSeparator/current_rank/username"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 502.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "USERNAME"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="time_completed" type="Panel" parent="HSeparator/current_rank"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_1kyds")
+
+[node name="Label" type="Label" parent="HSeparator/current_rank/time_completed"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 322.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "TIME COMPLETED"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="date_completed" type="Panel" parent="HSeparator/current_rank"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_nou7y")
+
+[node name="Label" type="Label" parent="HSeparator/current_rank/date_completed"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 322.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "DATE COMPLETED"
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="HSeparator"]
+layout_mode = 0
+offset_left = 748.0
+offset_right = 1273.0
+offset_bottom = 36.0
+theme_override_styles/separator = SubResource("StyleBoxLine_32d74")
+
+[node name="no_data_label" type="Label" parent="HSeparator"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = 20.0
+offset_right = 1032.5
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "No completion data. Finish the game to view your placement."
+label_settings = SubResource("LabelSettings_uv8n5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
+
+[node name="menu_loading_screen" parent="." instance=ExtResource("6_1kyds")]
+
+[node name="ColorRect" parent="menu_loading_screen" index="0"]
+visible = false
+
+[connection signal="pressed" from="back_tips/Panel/Button" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="HBoxContainer/completion_button" to="." method="_on_completion_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/achievements_button" to="." method="_on_achievements_button_pressed"]
+
+[editable path="back_tips"]
+[editable path="menu_loading_screen"]
