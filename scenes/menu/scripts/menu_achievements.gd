@@ -71,7 +71,7 @@ const ACHIEVEMENTS = [
 		#========= ACHIEVEMENT 10 =========#
 		"title": "Dim Guidance",
 		"caption": "“This light barely cuts through the darkness...”",
-		"description": "Open the phone flashlight.",
+		"description": "Unlock the phone flashlight.",
 		"badge": "res://assets/achievements/achievement_10.png"
 	},
 	{
