@@ -767,7 +767,7 @@ func _on_take_meds_chosen() -> void:
 			_on_hometown_way_area_entered(player_danilo)
 			
 	if SaveManager.get_total_karma() >= 5:
-		Achievements.unlock_achievement(11)
+		Achievements.unlock_achievement(12)
 		
 	ObjectiveManager.add_objective(scene_objectives[4]["ID"], scene_objectives[4]["text"])
 
@@ -787,7 +787,7 @@ func _on_continue_looking_chosen() -> void:
 			_on_dark_forest_way_area_entered(player_danilo)
 			
 	if SaveManager.get_total_karma() >= -5:
-		Achievements.unlock_achievement(10)
+		Achievements.unlock_achievement(11)
 		
 	ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]["text"])
 
