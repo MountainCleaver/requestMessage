@@ -245,7 +245,7 @@ func _on_achievement_pressed(id: int) -> void:
 	for a in SaveManager.game_save.unlocked_achievements:
 		unlocked_ids.append(int(a))
 
-	if id in [2, 3, 4, 5, 12, 13] and id not in unlocked_ids:
+	if id in [2, 3, 4, 5, 13, 14] and id not in unlocked_ids:
 		desc_label.text = "Unlock the achievement to view its description."
 	else:
 		desc_label.text = data["description"]
