@@ -180,4 +180,4 @@ func _on_achievements_pressed() -> void:
 
 
 func _on_leaderboard_pressed() -> void:
-	_option_overlayer("res://scenes/menu/menu_new_game_slots.tscn")
+	_option_overlayer("res://scenes/menu/menu_leaderboard.tscn")
