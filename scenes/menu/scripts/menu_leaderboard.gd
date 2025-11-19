@@ -2,7 +2,8 @@ extends Control
 
 @onready var completion_panel = $"HBoxContainer/completion_button"
 @onready var achievements_panel = $"HBoxContainer/achievements_button"
-@onready var leaderboard_vbox = $"HBoxContainer/completion_button/completion_holder/MarginContainer/ScrollContainer/VBoxContainer"
+@onready var completion_vbox = $"HBoxContainer/completion_button/completion_holder/MarginContainer/ScrollContainer/VBoxContainer"
+@onready var achievements_vbox = $"HBoxContainer/achievements_button/achievements_holder/MarginContainer/ScrollContainer/VBoxContainer"
 @onready var loading_label = $menu_loading_screen/Label
 @onready var h_separator = $HSeparator
 @onready var hbox_completion = $HBoxContainer/completion_button/HBoxContainer
@@ -105,7 +106,7 @@ func _on_leaderboard_fetched(result, response_code, headers, body):
 		return
 
 	# Clear existing rows
-	for child in leaderboard_vbox.get_children():
+	for child in completion_vbox.get_children():
 		child.queue_free()
 
 	# Display only top 10
@@ -170,14 +171,13 @@ func _on_leaderboard_fetched(result, response_code, headers, body):
 		date_label.label_settings = label_settings.duplicate(true)
 		row_hbox.add_child(date_label)
 
-		leaderboard_vbox.add_child(row_hbox)
+		completion_vbox.add_child(row_hbox)
 		completion_leaderboard_data = leaderboard_data
 
 
 func _on_achievements_leaderboard_fetched(result, response_code, headers, body):
 	loading_label.visible = false 
 	h_separator.visible = true 
-	hbox_achievements.visible = true
 
 	if response_code != 200:
 		print("Failed to fetch achievements leaderboard:", response_code)
