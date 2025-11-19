@@ -191,6 +191,7 @@ func enable_portal_trigger() -> void:
 func on_note_collected() -> void:
 	player_danilo.SPEED = 80.0
 	player_danilo.RUNNING_SPEED = 200.0
+	Achievements.unlock_achievement(5)
 	ObjectiveManager.complete_objective(3)
 	print("NOTE COLLECTED — enabling portal...")
 	portal_unlocked = true
