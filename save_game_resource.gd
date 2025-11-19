@@ -13,6 +13,7 @@ class_name SaveGameResource
 	"act_5": [],
 	"act_6": []
 }
+@export var unlocked_achievements: Array[int] = []
 # karma, if negative -> restless |||| if positve -> relief ||| pag zero? tanungin ko si lord. sana odd yung choices
 @export var karma : int = 0
 @export var given_lola_ising_cash : bool = false
@@ -33,6 +34,7 @@ func to_dict() -> Dictionary:
 		"playtime_seconds": playtime_seconds,
 		"date_created": date_created,
 		"finished_scenes": finished_scenes,
+		"unlocked_achievements": unlocked_achievements,
 		"karma": karma,
 		"given_lola_ising_cash": given_lola_ising_cash,
 		"choices": choices,
