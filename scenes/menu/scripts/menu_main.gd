@@ -173,3 +173,11 @@ func on_internet_status_changed(has_internet: bool) -> void:
 
 func _on_patch_notes_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_patch_notes.tscn")
+
+
+func _on_achievements_pressed() -> void:
+	_option_overlayer("res://scenes/menu/menu_achievements.tscn")
+
+
+func _on_leaderboard_pressed() -> void:
+	_option_overlayer("res://scenes/menu/menu_new_game_slots.tscn")
