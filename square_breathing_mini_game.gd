@@ -10,6 +10,7 @@ var started: bool = false
 var playing: bool = false
 
 var is_mouse_down: bool = false
+var skipped: bool = false
 
 var progress := {
 	"breathe_in": 0.0,
@@ -67,7 +68,7 @@ func _on_animation_finished(anim_name: String) -> void:
 	if count == 2:
 		skip_sprite.show()
 	elif count >= 6:
-		SignalBus.mini_game_done.emit()
+		SignalBus.mini_game_done.emit(self) 
 		print("mini game is done")
 		return
 
@@ -77,5 +78,6 @@ func _on_animation_finished(anim_name: String) -> void:
 
 func _on_skip_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		skipped = true
 		print("Skipped mini game")
-		SignalBus.mini_game_done.emit()
+		SignalBus.mini_game_done.emit(self) 

@@ -50,6 +50,7 @@ FlashlightManager="*res://globals/flashlight_manager.gd"
 CharacterPortrait="*res://globals/character_portrait.gd"
 NetworkStatus="*res://globals/network_status.tscn"
 GraphicsManager="*res://globals/graphics_manager.gd"
+Achievements="*res://globals/achievements.tscn"
 
 [dialogue_manager]
 

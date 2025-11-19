@@ -542,7 +542,8 @@ func _light_small_candle(index: int) -> void:
 		ObjectiveManager.complete_objective(scene_objectives[4]["ID"])
 		await get_tree().create_timer(0.8).timeout
 		DialogueManager.show_dialogue_balloon(A_4S_3, "all_candles_lit_up")
-
+		Achievements.unlock_achievement(4)
+		
 		var sfx := AudioStreamPlayer.new()
 		sfx.stream = load("res://sound/steel-chain-hard-clicking-89389.mp3")
 		add_child(sfx)

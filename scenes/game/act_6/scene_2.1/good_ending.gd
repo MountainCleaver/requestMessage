@@ -107,6 +107,7 @@ func show_the_end():
 	skip_button.visible = true
 	skip_button.modulate.a = 0 
 	tween.tween_property(skip_button, "modulate:a", 1.0, 1.5).set_delay(1.0)  
+	Achievements.unlock_achievement(3)
 	print("THE END!")
 
 func start_scrolling():

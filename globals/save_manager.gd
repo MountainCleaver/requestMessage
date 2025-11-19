@@ -227,7 +227,8 @@ func track_ending(user_id: int, current_scene_path: String) -> void:
 		var data := {
 			"user_id": user_id,
 			"ending_name": ending_name,
-			"achieved_at": Time.get_datetime_string_from_system()
+			"achieved_at": Time.get_datetime_string_from_system(),
+			"playtime_seconds": game_save.playtime_seconds
 		}
 
 		var json_data := JSON.stringify(data)
@@ -416,6 +417,60 @@ func get_total_karma() -> int:
 				total += 1
 	return total
 
+func can_unlock_achievement(act: String, scene: String) -> bool:
+	if not game_save:
+		return false
+
+	# If the scene was marked as a game over, do NOT allow achievement
+	if is_game_over(act, scene):
+		print("[SaveManager] Cannot unlock achievement; game over in this scene.")
+		return false
+
+	# If scene is finished normally, achievement can unlock
+	if is_scene_finished(act, scene):
+		return true
+
+	# Scene hasn't been finished yet: achievement can unlock
+	return true
+
+# Mark a game over in SaveManager so we can track it
+func mark_game_over(act: String, scene: String) -> void:
+	if not game_save:
+		game_save = SaveGameResource.new()
+		
+	var key = "game_over_%s_%s" % [act, scene]
+	game_save.choices[key] = true  # this is your flag
+	save_game()
+	print("[SaveManager] Game over recorded:", key)
+
+func is_game_over(act: String, scene: String) -> bool:
+	if not game_save:
+		return false
+	var key = "game_over_%s_%s" % [act, scene]
+	return game_save.choices.has(key) and game_save.choices[key] == true
+
+func reset_game_over(act: String = "", scene: String = "") -> void:
+	if not game_save:
+		game_save = SaveGameResource.new()
+	
+	if act == "" and scene == "":
+		# Reset all game over flags
+		var keys_to_remove := []
+		for key in game_save.choices.keys():
+			if key.begins_with("game_over_"):
+				keys_to_remove.append(key)
+		for key in keys_to_remove:
+			game_save.choices.erase(key)
+		print("[SaveManager] All game over flags cleared.")
+	else:
+		# Reset a specific scene
+		var key = "game_over_%s_%s" % [act, scene]
+		if game_save.choices.has(key):
+			game_save.choices.erase(key)
+			print("[SaveManager] Game over flag cleared for:", key)
+	
+	save_game()
+
 # ===================
 # ONLINE SAVE
 # ===================
@@ -514,6 +569,12 @@ func _on_online_save_fetched(result, response_code, headers, body, slot_num):
 		play_start_time = Time.get_unix_time_from_system()
 		save_game()
 		print("[SaveManager] Slot %d merged into active save." % slot_num)
+		
+	# ----- NEW: refresh achievement UI -----
+	if Engine.has_singleton("Achievements"):
+		var achievements_menu = Engine.get_singleton("Achievements")
+		if achievements_menu:
+			achievements_menu._refresh_achievements_from_save()
 
 	SignalBus.online_save_merged.emit()
 
@@ -539,6 +600,7 @@ func _push_online_save(latest_act: String, latest_scene: String) -> void:
 	request.request(url, ["Content-Type: application/json"], HTTPClient.METHOD_POST, json_body)
 
 func _merge_online_save(online_data: Dictionary) -> void:
+	# Merge finished scenes
 	for act in online_data.finished_scenes:
 		if act in game_save.finished_scenes:
 			for scene in online_data.finished_scenes[act]:
@@ -547,13 +609,22 @@ func _merge_online_save(online_data: Dictionary) -> void:
 		else:
 			game_save.finished_scenes[act] = online_data.finished_scenes[act]
 
+	# Merge choices
 	for act_scene in online_data.choices:
 		if act_scene not in game_save.choices:
 			game_save.choices[act_scene] = online_data.choices[act_scene]
 
+	# Merge karma and meds_taken
 	game_save.karma = max(game_save.karma, online_data.karma)
 	game_save.meds_taken = max(game_save.meds_taken, online_data.meds_taken)
 
+	# ===== NEW: Merge unlocked achievements =====
+	if online_data.has("unlocked_achievements"):
+		for ach_id in online_data.unlocked_achievements:
+			if ach_id not in game_save.unlocked_achievements:
+				game_save.unlocked_achievements.append(ach_id)
+
+	# Update current act & scene to latest in finished_scenes
 	var latest_act = ""
 	var latest_scene = ""
 	for act in game_save.finished_scenes.keys():
@@ -563,6 +634,7 @@ func _merge_online_save(online_data: Dictionary) -> void:
 	if latest_act != "" and latest_scene != "":
 		game_save.current_act = latest_act
 		game_save.current_scene = latest_scene
+
 
 func _set_current_scene_from_path(scene_path: String) -> void:
 	var file_name = scene_path.get_file().get_basename()  # e.g. act_4_title_scene or danilo_room
@@ -595,3 +667,43 @@ func _set_current_scene_from_path(scene_path: String) -> void:
 	save_game()
 	print("[SaveManager] Current scene updated to:", act_folder, "-", scene_name)
 	
+
+func unlock_achievement(achievement_id: int) -> void:
+	if not game_save:
+		game_save = SaveGameResource.new()
+
+	if not game_save.has("unlocked_achievements"):
+		game_save.unlocked_achievements = []
+
+	# Avoid duplicates
+	if achievement_id in game_save.unlocked_achievements:
+		print("[Achievements] Already unlocked:", achievement_id)
+		return
+
+	game_save.unlocked_achievements.append(achievement_id)
+	save_game()
+
+	print("[Achievements] Achievement unlocked:", achievement_id)
+
+	# Send to online API
+	if current_user_id != 0:
+		_push_achievement_online(achievement_id)
+
+func _push_achievement_online(achievement_id: int) -> void:
+	var url = "https://requestmessage-admin.onrender.com/api/track_achievements.php"
+	var request = HTTPRequest.new()
+	add_child(request)
+
+	var data = {
+		"user_id": current_user_id,
+		"unlocked_achievements": game_save.unlocked_achievements
+	}
+
+	var json_data = JSON.stringify(data)
+	request.request(
+		url,
+		["Content-Type: application/json"],
+		HTTPClient.METHOD_POST,
+		json_data
+	)
+	print("[Achievements] Sent achievements to server:", data)

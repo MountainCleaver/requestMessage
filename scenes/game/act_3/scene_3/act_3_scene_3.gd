@@ -503,9 +503,13 @@ func _start_mini_game(map_name: String = maps["house"]["name"] , spawn_point: St
 	
 	danilo_animated_sprite_2d.play("sq_sit_right")
 
-func _on_mini_game_done()->void:
+func _on_mini_game_done(mini_game_node: Node = null) -> void:
 	sfx_sqbr.stop()      # Stop SFX
 	bgm_home.play()      # Play BGM!
+
+	if mini_game_node and not mini_game_node.skipped:
+		Achievements.unlock_achievement(8)
+		
 	if first_mini_game:
 		mini_game.queue_free()
 		_tween_camera_to(Vector2.ZERO, 3.0)

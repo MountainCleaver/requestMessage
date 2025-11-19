@@ -149,6 +149,7 @@ func _on_overwrite_confirmed() -> void:
 		Hud.reset_phone_dont_show()
 		
 	SaveManager.game_save = slot_save
+	SaveManager.reset_game_over()
 	SaveManager.save_game()
 
 	if Session.user_ID != 0:
