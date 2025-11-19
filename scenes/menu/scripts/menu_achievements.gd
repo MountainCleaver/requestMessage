@@ -116,7 +116,7 @@ const ACHIEVEMENTS = [
 @onready var desc_label = $Panel/achievement_description
 @onready var badge_rect = $Panel/achievement_badge
 
-@onready var back_button: Button = $back_tips/Panel/Button
+@onready var back_button: Button = $back_tips/back
 
 var shader_material = preload("res://scenes/game/grayscale.tres")
 var index := 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cykh0p8r2kduc"]
+[gd_scene load_steps=12 format=3 uid="uid://cykh0p8r2kduc"]
 
 [ext_resource type="Script" uid="uid://ucehjejjclhf" path="res://scenes/menu/scripts/menu_main.gd" id="1_blywf"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_wyeju"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b8xfs62jmrihe" path="res://assets/HUD/EXIT_ICON_2.png" id="7_o44s4"]
 [ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="8_0iqcp"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="8_o44s4"]
+[ext_resource type="PackedScene" uid="uid://briurx4rtggto" path="res://globals/continue_confirmation.tscn" id="10_0iqcp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gomlb"]
 shader = ExtResource("8_0iqcp")
@@ -52,9 +53,9 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 751.0
-offset_top = 125.0
+offset_top = 114.0
 offset_right = -81.0
-offset_bottom = 256.0
+offset_bottom = 245.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(1, 0.192157, 0.192157, 1)
 theme_override_fonts/normal_font = ExtResource("3_blywf")
@@ -71,71 +72,72 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -1045.0
-offset_top = -77.0
-offset_right = -637.0
-offset_bottom = 274.0
+offset_left = -1082.0
+offset_top = -230.0
+offset_right = -475.0
+offset_bottom = 411.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 9
 alignment = 1
 
 [node name="continue_game" parent="options_holder" instance=ExtResource("4_d2s0i")]
-visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 55
 text = "CONTINUE"
 
 [node name="new_game" parent="options_holder" instance=ExtResource("4_d2s0i")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 55
 text = "NEW GAME"
 
 [node name="load_game" parent="options_holder" instance=ExtResource("4_d2s0i")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 55
 text = "LOAD GAME"
 
 [node name="achievements" parent="options_holder" instance=ExtResource("4_d2s0i")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 55
 text = "ACHIEVEMENTS"
 
 [node name="leaderboard" parent="options_holder" instance=ExtResource("4_d2s0i")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 55
 text = "LEADERBOARD"
 
 [node name="report_bug" parent="options_holder" instance=ExtResource("4_d2s0i")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 55
 text = "REPORT A BUG"
 
 [node name="credits" parent="options_holder" instance=ExtResource("4_d2s0i")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 55
 text = "CREDITS"
 
 [node name="options" parent="options_holder" instance=ExtResource("4_d2s0i")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 55
 text = "OPTIONS"
 
 [node name="feedback" parent="options_holder" instance=ExtResource("4_d2s0i")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 55
 text = "FEEDBACK"
 
 [node name="exit" parent="options_holder" instance=ExtResource("4_d2s0i")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 55
 text = "EXIT"
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -167,7 +169,7 @@ horizontal_alignment = 1
 [node name="ColorRect" type="ColorRect" parent="TextureRect"]
 material = SubResource("ShaderMaterial_gomlb")
 layout_mode = 0
-offset_left = 9.0
+offset_left = 6.0
 offset_top = 9.0
 offset_right = 392.0
 offset_bottom = 745.0
@@ -187,7 +189,7 @@ offset_bottom = -58.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("6_wgaug")
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 60
 text = "LOGOUT"
 icon = ExtResource("7_o44s4")
 flat = true
@@ -227,6 +229,13 @@ initial_position = 2
 size = Vector2i(251, 100)
 ok_button_text = "Yes"
 
+[node name="ContinueConfirmation" parent="." instance=ExtResource("10_0iqcp")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="ContinueConfirmation" index="0"]
+visible = false
+
 [connection signal="pressed" from="menu_background/patch_notes" to="." method="_on_patch_notes_pressed"]
 [connection signal="pressed" from="options_holder/continue_game" to="." method="_on_continue_game_pressed"]
 [connection signal="pressed" from="options_holder/new_game" to="." method="_on_new_game_pressed"]
@@ -241,3 +250,4 @@ ok_button_text = "Yes"
 [connection signal="pressed" from="logoutButton" to="." method="_on_logout_button_pressed"]
 
 [editable path="menu_background"]
+[editable path="ContinueConfirmation"]

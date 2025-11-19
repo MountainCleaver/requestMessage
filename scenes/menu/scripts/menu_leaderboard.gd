@@ -8,6 +8,7 @@ extends Control
 @onready var h_separator = $HSeparator
 @onready var hbox_completion = $HBoxContainer/completion_button/HBoxContainer
 @onready var hbox_achievements = $HBoxContainer/achievements_button/HBoxContainer
+@onready var back_button: Button = $back_tips/back
 
 @onready var http_completion := HTTPRequest.new()
 @onready var http_achievements := HTTPRequest.new()

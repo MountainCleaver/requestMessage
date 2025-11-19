@@ -55,10 +55,10 @@ color = Color(0.0924945, 0.0775084, 0.185383, 1)
 
 [node name="achievements" type="Label" parent="."]
 layout_mode = 0
-offset_left = 362.0
-offset_top = 37.0
-offset_right = 1065.0
-offset_bottom = 112.0
+offset_left = 796.0
+offset_top = 70.0
+offset_right = 1499.0
+offset_bottom = 145.0
 theme_override_fonts/font = ExtResource("3_7iic2")
 theme_override_font_sizes/font_size = 54
 text = "LEADERBOARD"
@@ -67,22 +67,17 @@ vertical_alignment = 1
 
 [node name="back_tips" parent="." instance=ExtResource("7_513ev")]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-offset_left = -359.0
-offset_top = -1000.0
-offset_right = -359.0
-offset_bottom = -1000.0
-grow_horizontal = 0
-grow_vertical = 0
+offset_left = -566.0
+offset_top = -1004.0
+offset_right = -566.0
+offset_bottom = -1004.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 88.0
-offset_top = 117.0
-offset_right = 1361.0
-offset_bottom = 189.0
+offset_left = 520.0
+offset_top = 162.0
+offset_right = 1793.0
+offset_bottom = 234.0
 
 [node name="completion_button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
@@ -399,10 +394,10 @@ vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 0
-offset_left = 93.0
-offset_top = 900.0
-offset_right = 576.0
-offset_bottom = 936.0
+offset_left = 512.0
+offset_top = 909.0
+offset_right = 995.0
+offset_bottom = 945.0
 theme_override_styles/separator = SubResource("StyleBoxLine_32d74")
 
 [node name="Label" type="Label" parent="HSeparator"]
@@ -540,7 +535,7 @@ vertical_alignment = 1
 [node name="ColorRect" parent="menu_loading_screen" index="0"]
 visible = false
 
-[connection signal="pressed" from="back_tips/Panel/Button" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="back_tips/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="HBoxContainer/completion_button" to="." method="_on_completion_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/achievements_button" to="." method="_on_achievements_button_pressed"]
 

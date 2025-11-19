@@ -42,18 +42,18 @@ color = Color(0.0924945, 0.0775084, 0.185383, 1)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
-offset_left = 87.0
+offset_left = 455.0
 offset_top = 52.0
-offset_right = 1396.0
+offset_right = 1855.0
 offset_bottom = 298.0
 metadata/_edit_group_ = true
 
 [node name="achievements" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 301.0
-offset_top = 71.0
-offset_right = 1004.0
-offset_bottom = 146.0
+offset_left = 343.0
+offset_top = 60.0
+offset_right = 1046.0
+offset_bottom = 135.0
 theme_override_fonts/font = ExtResource("5_cttsh")
 theme_override_font_sizes/font_size = 74
 text = "ACHIEVEMENTS"
@@ -126,9 +126,9 @@ mouse_filter = 2
 
 [node name="achievement_holder" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 92.0
+offset_left = 448.0
 offset_top = 342.0
-offset_right = 1392.0
+offset_right = 1917.0
 offset_bottom = 889.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_vgc4c")
 
@@ -136,7 +136,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_vgc4c")
 layout_mode = 0
 offset_left = 31.0
 offset_top = 12.0
-offset_right = 1299.0
+offset_right = 1436.0
 offset_bottom = 524.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="achievement_holder/MarginContainer"]
@@ -151,18 +151,17 @@ layout_mode = 2
 
 [node name="back_tips" parent="." instance=ExtResource("3_7pa5u")]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
 offset_left = -343.0
 offset_top = -107.0
 offset_right = -343.0
 offset_bottom = -107.0
-grow_horizontal = 0
-grow_vertical = 0
+
+[node name="back" parent="back_tips" index="1"]
+offset_left = 17.0
+offset_top = -56.0
+offset_right = 292.0
+offset_bottom = 59.0
 
 [node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
-
-[connection signal="pressed" from="back_tips/Panel/Button" to="." method="_on_back_pressed"]
 
 [editable path="back_tips"]
