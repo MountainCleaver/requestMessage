@@ -48,6 +48,7 @@ SaveManager="*res://globals/save_manager.gd"
 FlashlightManager="*res://globals/flashlight_manager.gd"
 CharacterPortrait="*res://globals/character_portrait.gd"
 NetworkStatus="*res://globals/network_status.tscn"
+Achievements="*res://globals/achievements.tscn"
 
 [dialogue_manager]
 

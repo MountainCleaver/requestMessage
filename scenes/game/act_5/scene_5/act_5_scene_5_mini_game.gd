@@ -14,6 +14,8 @@ var A_5S_5: Resource
 @onready var bgm_gameover: AudioStreamPlayer = $BGM_GAMEOVER
 @onready var bgm_chase: AudioStreamPlayer = $BGM_CHASE
 
+var was_game_over := false
+
 func _ready() -> void:
 	bgm_chase.play()
 	_load_dialogue()
@@ -32,6 +34,8 @@ func _load_dialogue() -> void:
 	A_5S_5 = load(path)
 	
 func _on_game_over_body_entered(body: Node2D) -> void:
+	was_game_over = true 
+	SaveManager.mark_game_over("act_5", "scene_5")
 	bgm_gameover.play()
 	bgm_chase.stop()
 	sfx_boi.stop()
@@ -59,10 +63,19 @@ func _start_chase() -> void:
 func _on_chase_done_area_body_entered(body: Node2D) -> void:
 	if body.name == "player_mateo":
 		game_over_area.monitoring = false
-		SignalBus.next_scene.emit(
-			"res://scenes/game/act_5/scene_5/act_5_scene_5_chapel.tscn"
-		)
-		print("Chase done")
+		
+	# Try to unlock the achievement if allowed
+	if SaveManager.can_unlock_achievement("act_5", "scene_5"):
+		Achievements.unlock_achievement(1)
+	else:
+		print("[SaveManager] Cannot unlock achievement; game over in this scene.")
+
+	# Scene transition should always happen, regardless of game over
+	SignalBus.next_scene.emit(
+		"res://scenes/game/act_5/scene_5/act_5_scene_5_chapel.tscn"
+	)
+	print("Chase done")
+
 		
 func on_internet_status_changed(has_internet: bool) -> void:
 	if has_internet:

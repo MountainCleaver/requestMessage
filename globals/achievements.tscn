@@ -1,0 +1,197 @@
+[gd_scene load_steps=9 format=3 uid="uid://bxkxq0valu46x"]
+
+[ext_resource type="Script" uid="uid://m2jkme4gwhqv" path="res://globals/achievements.gd" id="1_a1iyb"]
+[ext_resource type="Texture2D" uid="uid://detq35b8quivv" path="res://assets/achievements/achievement_1.png" id="2_t0yet"]
+[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="3_psn4p"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_13kpe"]
+
+[sub_resource type="Animation" id="Animation_v5pfq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/achievement_popup_holder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(475, 37)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/achievement_popup_holder:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/achievement_popup_holder:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(463, 115)]
+}
+
+[sub_resource type="Animation" id="Animation_uxckp"]
+resource_name = "popup_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/achievement_popup_holder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.10511207, 0.10511207),
+"update": 0,
+"values": [Vector2(475, -134), Vector2(475, 50)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/achievement_popup_holder:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_pq4x1"]
+resource_name = "popup_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/achievement_popup_holder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 0.2871745, 0.2871745),
+"update": 0,
+"values": [Vector2(475, 50), Vector2(475, 50), Vector2(475, -134)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/achievement_popup_holder:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_esk0b"]
+_data = {
+&"RESET": SubResource("Animation_v5pfq"),
+&"popup_in": SubResource("Animation_uxckp"),
+&"popup_out": SubResource("Animation_pq4x1")
+}
+
+[node name="Achievements" type="CanvasLayer"]
+script = ExtResource("1_a1iyb")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="achievement_popup_holder" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 18.512001
+anchor_top = 12.400001
+anchor_right = 18.512001
+anchor_bottom = 12.400001
+offset_left = -265.48004
+offset_top = -459.00003
+offset_right = 197.51996
+offset_bottom = -344.00003
+grow_horizontal = 2
+size_flags_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/achievement_popup_holder"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 396.0
+offset_bottom = 104.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/achievement_popup_holder/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="Control/achievement_popup_holder/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="achievement_badge" type="TextureRect" parent="Control/achievement_popup_holder/HBoxContainer/MarginContainer/Panel"]
+layout_mode = 0
+offset_left = -54.0
+offset_top = -12.0
+offset_right = 168.0
+offset_bottom = 85.0
+texture = ExtResource("2_t0yet")
+expand_mode = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/achievement_popup_holder/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="Control/achievement_popup_holder/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="achievement_title" type="Label" parent="Control/achievement_popup_holder/HBoxContainer/MarginContainer2/Panel"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = -10.0
+offset_right = 387.0
+offset_bottom = 29.0
+theme_override_fonts/font = ExtResource("3_psn4p")
+theme_override_font_sizes/font_size = 21
+text = "The One Who Stayed Behind"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="achievement_description" type="Label" parent="Control/achievement_popup_holder/HBoxContainer/MarginContainer2/Panel"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 26.0
+offset_right = 397.0
+offset_bottom = 83.0
+theme_override_fonts/font = ExtResource("4_13kpe")
+theme_override_font_sizes/font_size = 23
+text = "Complete Mang Gino’s chase without getting caught once."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="hud_animations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_esk0b")
+}

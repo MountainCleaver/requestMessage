@@ -58,7 +58,7 @@ do ObjectiveManager.add_objective(scene_objectives[3]["ID"], scene_objectives[3]
 
 ~ candle_ignited
 do ChatManager.send_chat("unknown_sender", "Unknown Number", "Iba-iba ang pagkakaayos ng mga kandila. Pumili ka ng unang kandila ayon sa gusto mo.")
-Unknown_sender: [wait=1.5]The candles are disordered. You may choose which one to start with…”
+Unknown_sender: [wait=1.5]The candles are disordered. You may choose which one to start with...
 => candle_ignited_1
 
 ~ candle_ignited_1

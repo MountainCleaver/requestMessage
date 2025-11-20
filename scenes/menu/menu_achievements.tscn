@@ -1,0 +1,168 @@
+[gd_scene load_steps=10 format=3 uid="uid://dws7ywkwb72er"]
+
+[ext_resource type="Script" uid="uid://l56udk4m1gir" path="res://scenes/menu/scripts/menu_achievements.gd" id="1_f3rbx"]
+[ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_behxm"]
+[ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="3_7pa5u"]
+[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="4_behxm"]
+[ext_resource type="Texture2D" uid="uid://detq35b8quivv" path="res://assets/achievements/achievement_1.png" id="4_f3rbx"]
+[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="5_cttsh"]
+[ext_resource type="Shader" uid="uid://buqaqk7pej7w3" path="res://scenes/game/act_3/scene_4/glitch_3.gdshader" id="7_e3r16"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_07kmj"]
+shader = ExtResource("7_e3r16")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgc4c"]
+
+[node name="menu_achievements" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f3rbx")
+
+[node name="menu_background" parent="." instance=ExtResource("2_behxm")]
+layout_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="menu_background"]
+modulate = Color(1, 1, 1, 0.835294)
+self_modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0924945, 0.0775084, 0.185383, 1)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+offset_left = 87.0
+offset_top = 52.0
+offset_right = 1396.0
+offset_bottom = 298.0
+metadata/_edit_group_ = true
+
+[node name="achievements" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 301.0
+offset_top = 71.0
+offset_right = 1004.0
+offset_bottom = 146.0
+theme_override_fonts/font = ExtResource("5_cttsh")
+theme_override_font_sizes/font_size = 74
+text = "ACHIEVEMENTS"
+horizontal_alignment = 1
+
+[node name="achievement_caption" type="Label" parent="Panel/achievements"]
+layout_mode = 0
+offset_left = -26.0
+offset_top = 80.0
+offset_right = 724.0
+offset_bottom = 109.0
+theme_override_colors/font_color = Color(0.4326237, 0.43262374, 0.4326237, 1)
+theme_override_fonts/font = ExtResource("5_cttsh")
+theme_override_font_sizes/font_size = 26
+text = "Select an achievement to view its description."
+horizontal_alignment = 1
+
+[node name="achievement_title" type="Label" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 512.0
+offset_top = 35.0
+offset_right = 1215.0
+offset_bottom = 107.0
+theme_override_fonts/font = ExtResource("4_behxm")
+theme_override_font_sizes/font_size = 46
+text = "DON'T LOOK BACK"
+horizontal_alignment = 1
+
+[node name="achievement_caption" type="Label" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 502.0
+offset_top = 130.0
+offset_right = 1252.0
+offset_bottom = 159.0
+theme_override_colors/font_color = Color(0.4326237, 0.43262374, 0.4326237, 1)
+theme_override_fonts/font = ExtResource("5_cttsh")
+theme_override_font_sizes/font_size = 26
+text = "He was always there."
+
+[node name="achievement_description" type="Label" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 503.0
+offset_top = 171.0
+offset_right = 1253.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("5_cttsh")
+theme_override_font_sizes/font_size = 26
+text = "Complete Mang Gino’s chase without getting caught once."
+
+[node name="achievement_badge" type="TextureRect" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = -27.0
+offset_top = -4.0
+offset_right = 565.0
+offset_bottom = 244.0
+texture = ExtResource("4_f3rbx")
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+visible = false
+material = SubResource("ShaderMaterial_07kmj")
+layout_mode = 0
+offset_left = -7.0
+offset_right = 1312.0
+offset_bottom = 248.0
+mouse_filter = 2
+
+[node name="achievement_holder" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 342.0
+offset_right = 1392.0
+offset_bottom = 889.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vgc4c")
+
+[node name="MarginContainer" type="MarginContainer" parent="achievement_holder"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 12.0
+offset_right = 1299.0
+offset_bottom = 524.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="achievement_holder/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="achievement_holder/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="achievement_holder/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="back_tips" parent="." instance=ExtResource("3_7pa5u")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -343.0
+offset_top = -107.0
+offset_right = -343.0
+offset_bottom = -107.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="pressed" from="back_tips/Panel/Button" to="." method="_on_back_pressed"]
+
+[editable path="back_tips"]

@@ -51,11 +51,16 @@ func _trigger_dizzy_state() -> void:
 	var dizzy_label = "dizzy_state_%d" % meds_taken
 	
 	await DialogueManager.show_dialogue_balloon(A_4S_2, dizzy_label)
+	
+	if meds_taken == 0:
+		Achievements.unlock_achievement(7)
+		
 	await get_tree().create_timer(3.0).timeout
 	
 	dizzy_overlay.visible = false
 	player_danilo.force_cannot_move = false 
 	player_danilo.can_move = true 
+
 
 
 func _load_dialogue() -> void:

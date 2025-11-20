@@ -133,8 +133,10 @@ func _ghost_appear(choice: String)->void: # after some dialogues, ghost appears,
 	
 	if choice == "restless":
 		DialogueManager.show_dialogue_balloon(A_5S_8, "resltess_ghost_appeared")
+		Achievements.unlock_achievement(14)
 	elif choice == "relief":
 		DialogueManager.show_dialogue_balloon(A_5S_8, "relief_mateo_appeared")
+		Achievements.unlock_achievement(13)
 
 func mateo_turn(choice: String)->void:
 	if choice == "relief":

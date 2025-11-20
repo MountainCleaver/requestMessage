@@ -38,9 +38,9 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 680.0
-offset_top = 309.0
+offset_top = 283.0
 offset_right = -152.0
-offset_bottom = 435.0
+offset_bottom = 409.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(1, 0.192157, 0.192157, 1)
 theme_override_fonts/normal_font = ExtResource("3_blywf")
@@ -80,6 +80,16 @@ text = "NEW GAME"
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
 text = "LOAD GAME"
+
+[node name="achievements" parent="options_holder" instance=ExtResource("4_d2s0i")]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+text = "ACHIEVEMENTS"
+
+[node name="leaderboard" parent="options_holder" instance=ExtResource("4_d2s0i")]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+text = "LEADERBOARD"
 
 [node name="report_bug" parent="options_holder" instance=ExtResource("4_d2s0i")]
 layout_mode = 2
@@ -198,6 +208,8 @@ ok_button_text = "Yes"
 [connection signal="pressed" from="options_holder/continue_game" to="." method="_on_continue_game_pressed"]
 [connection signal="pressed" from="options_holder/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="options_holder/load_game" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="options_holder/achievements" to="." method="_on_achievements_pressed"]
+[connection signal="pressed" from="options_holder/leaderboard" to="." method="_on_leaderboard_pressed"]
 [connection signal="pressed" from="options_holder/report_bug" to="." method="_on_report_bug_pressed"]
 [connection signal="pressed" from="options_holder/credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="options_holder/options" to="." method="_on_options_pressed"]
