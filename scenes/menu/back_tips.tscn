@@ -61,7 +61,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="back" type="Button" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
