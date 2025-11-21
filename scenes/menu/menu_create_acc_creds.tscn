@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://m7brk02md3qo"]
+[gd_scene load_steps=10 format=3 uid="uid://m7brk02md3qo"]
 
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_7plwg"]
 [ext_resource type="Texture2D" uid="uid://d37rg5an1q1b2" path="res://assets/main menu/menu_phone.png" id="3_rktm2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b6ufomjjkwkbw" path="res://scenes/menu/acc_create_successfully.tscn" id="6_o6ox5"]
 [ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="7_8q8wn"]
 [ext_resource type="PackedScene" uid="uid://c6dp8vnyir66p" path="res://scenes/menu/version_num_major_minor_patch_pattern.tscn" id="7_qifdf"]
+[ext_resource type="PackedScene" uid="uid://r1rdra53fypf" path="res://scenes/menu/verify_email.tscn" id="8_qifdf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qifdf"]
 shader = ExtResource("7_8q8wn")
@@ -15,7 +16,6 @@ shader_parameter/vignette_softness = 0.6
 shader_parameter/vignette_strength = 1.2
 shader_parameter/blur_strength = 0.5
 shader_parameter/scanline_speed = 1.5
-[ext_resource type="PackedScene" uid="uid://r1rdra53fypf" path="res://scenes/menu/verify_email.tscn" id="7_8q8wn"]
 
 [node name="menu_create_acc_creds" type="Control"]
 layout_mode = 3
@@ -50,5 +50,23 @@ stretch_mode = 4
 visible = false
 
 [node name="acc_create_successfully" parent="." instance=ExtResource("6_o6ox5")]
+visible = false
+layout_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_qifdf")
+layout_mode = 0
+offset_right = 2276.0
+offset_bottom = 1025.0
+mouse_filter = 2
+
+[node name="Version_Num_Major_Minor_Patch_pattern" parent="." instance=ExtResource("7_qifdf")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 228.0
+offset_bottom = 41.0
+
+[node name="verify_email" parent="." instance=ExtResource("8_qifdf")]
 visible = false
 layout_mode = 1

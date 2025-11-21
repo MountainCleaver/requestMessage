@@ -5,24 +5,29 @@ extends Control
 @onready var email_error: Label = $holder/email_error
 @onready var http: HTTPRequest = find_child("HTTP_request")
 @onready var menu_loading_screen: CanvasLayer = $"../menu_loading_screen"
-@onready var button: Button = $"../back_tips/Panel/Button"
+@onready var back: Button = $"../back_tips/back"  # Correct path based on actual node
 
 @onready var exit_confirmation_dialog: ConfirmationDialog = $"../ConfirmationDialog"
 var exit_is_showing : bool = false
 
 func _ready() -> void:
 	http.request_completed.connect(_on_http_request_request_completed)
-	btn_send.pressed.connect(_on_btn_send_pressed)
-	button.pressed.connect(_on_back_pressed)
+	if btn_send:
+		btn_send.pressed.connect(_on_btn_send_pressed)
+	else:
+		print("btn_send missing!")
+	if back:
+		back.pressed.connect(_on_back_pressed)
+	else:
+		print("back button missing!")
 	menu_loading_screen.hide()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
-		_exit_login();
+		_exit_login()
 
 func _exit_login() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn")
-
 
 func _on_btn_send_pressed() -> void:
 	var email = line_edit_email.text.strip_edges()
@@ -60,12 +65,15 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 	if json.get("success") == true:
 		var popup = preload("res://scenes/menu/acc_reset_pass_succesfully.tscn").instantiate()
 		add_child(popup)
-		
-		var ok_btn = popup.get_node("holder/btn_ok") 
-		ok_btn.pressed.connect(func():
-			line_edit_email.text = ""      
-			popup.queue_free()             
-		)
+
+		var ok_btn = popup.get_node("holder/btn_ok")
+		if ok_btn:
+			ok_btn.pressed.connect(func():
+				line_edit_email.text = ""
+				popup.queue_free()
+			)
+		else:
+			print("ok_btn missing in popup!")
 	else:
 		email_error.text = str(json.get("message", "Unknown error"))
 

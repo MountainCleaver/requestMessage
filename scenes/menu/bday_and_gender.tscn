@@ -1,10 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://kvi1gwn1mkx2"]
+[gd_scene load_steps=34 format=3 uid="uid://kvi1gwn1mkx2"]
 
 [ext_resource type="PackedScene" uid="uid://bi2pe6xi1mv47" path="res://scenes/menu/menu_auth_holder.tscn" id="1_6sufa"]
 [ext_resource type="Script" uid="uid://ddc3dvxy5cq0o" path="res://scenes/menu/scripts/bday_and_gender.gd" id="1_aj270"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_03f48"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_aj270"]
-[ext_resource type="Script" uid="uid://jwbe8042a3fo" path="res://option_1.gd" id="5_fix5w"]
+[ext_resource type="FontFile" uid="uid://cgwhhoo5x32qj" path="res://assets/fonts/Gaegu-Bold.ttf" id="5_fix5w"]
+[ext_resource type="FontFile" uid="uid://11yyx0j70dml" path="res://assets/fonts/Gaegu-Regular.ttf" id="5_owdxj"]
 [ext_resource type="Texture2D" uid="uid://2jb4cakjqg4b" path="res://assets/main menu/icons/icons8-male-30.png" id="6_fix5w"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="6_x4e0t"]
 [ext_resource type="Texture2D" uid="uid://betw1qibpgqjb" path="res://assets/main menu/icons/icons8-female-30.png" id="8_owdxj"]
@@ -16,34 +17,13 @@ content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
 bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.53333336, 0.54901963, 0.57254905, 1)
 corner_radius_top_left = 10
 corner_radius_bottom_left = 10
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqt58"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.00820203, 0.00820202, 0.00820202, 1)
-corner_radius_top_left = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fix5w"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.760591, 0.764619, 0.796131, 1)
-corner_radius_top_left = 15
-corner_radius_bottom_left = 15
 expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
@@ -62,17 +42,11 @@ expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbdg1"]
 bg_color = Color(0.937255, 0.937255, 0.937255, 1)
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twshb"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.760591, 0.764619, 0.796131, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.53333336, 0.54901963, 0.57254905, 1)
 expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
@@ -80,20 +54,12 @@ expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4e0t"]
 bg_color = Color(0.937255, 0.937255, 0.937255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.53333336, 0.54901963, 0.57254905, 1)
 corner_radius_top_right = 10
-corner_radius_bottom_right = 15
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogk07"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.760591, 0.764619, 0.796131, 1)
-corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 expand_margin_left = 5.0
 expand_margin_top = 5.0
@@ -411,61 +377,55 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.6431373, 0.6431373, 0.6431373, 1)
 theme_override_fonts/font = ExtResource("3_aj270")
 theme_override_font_sizes/font_size = 35
-text = "Birthday"
+text = "Birthday (input numbers only)"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/vbox_all/vbox_date"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 alignment = 1
 
-[node name="month" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
+[node name="month_line" type="LineEdit" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 0
-theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_aj270")
+tooltip_text = "Enter month"
+theme_override_colors/font_color = Color(0.1331965, 0.13319635, 0.13319644, 1)
+theme_override_colors/font_placeholder_color = Color(0.4935457, 0.49354547, 0.49354535, 0.84705883)
+theme_override_fonts/font = ExtResource("5_owdxj")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_t7sn6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_mqt58")
-theme_override_styles/hover = SubResource("StyleBoxFlat_fix5w")
 theme_override_styles/focus = SubResource("StyleBoxFlat_owdxj")
+placeholder_text = "MM"
 alignment = 1
-script = ExtResource("5_fix5w")
-metadata/_custom_type_script = "uid://jwbe8042a3fo"
 
-[node name="day" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
+[node name="day_line" type="LineEdit" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 0
-theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_aj270")
+tooltip_text = "Enter day"
+theme_override_colors/font_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+theme_override_colors/font_placeholder_color = Color(0.49411765, 0.49411765, 0.49411765, 0.84705883)
+theme_override_fonts/font = ExtResource("5_owdxj")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_sbdg1")
-theme_override_styles/hover = SubResource("StyleBoxFlat_twshb")
 theme_override_styles/focus = SubResource("StyleBoxFlat_owdxj")
+placeholder_text = "DD"
 alignment = 1
-script = ExtResource("5_fix5w")
-metadata/_custom_type_script = "uid://jwbe8042a3fo"
 
-[node name="year" type="OptionButton" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
+[node name="year_line" type="LineEdit" parent="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 0
-theme_override_colors/font_color = Color(0.092397, 0.0923971, 0.0923971, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_aj270")
+tooltip_text = "Enter year"
+theme_override_colors/font_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+theme_override_colors/font_placeholder_color = Color(0.49411765, 0.49411765, 0.49411765, 0.84705883)
+theme_override_fonts/font = ExtResource("5_owdxj")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_x4e0t")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ogk07")
 theme_override_styles/focus = SubResource("StyleBoxFlat_owdxj")
+placeholder_text = "YYYY"
 alignment = 1
-script = ExtResource("5_fix5w")
-metadata/_custom_type_script = "uid://jwbe8042a3fo"
 
-[node name="line_break" type="Label" parent="Panel/MarginContainer/vbox_all"]
+[node name="error_label" type="Label" parent="Panel/MarginContainer/vbox_all"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_fix5w")
 
 [node name="vbox_gender" type="VBoxContainer" parent="Panel/MarginContainer/vbox_all"]
 layout_mode = 2
@@ -619,9 +579,6 @@ text = "Login an Account"
 script = ExtResource("6_x4e0t")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
-[connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/month" to="." method="_on_month_item_selected"]
-[connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/day" to="." method="_on_day_item_selected"]
-[connection signal="item_selected" from="Panel/MarginContainer/vbox_all/vbox_date/HBoxContainer/year" to="." method="_on_year_item_selected"]
 [connection signal="pressed" from="Panel/MarginContainer/vbox_all/vbox_gender/genders_container/male" to="." method="_on_male_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/vbox_all/vbox_gender/genders_container/female" to="." method="_on_female_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/vbox_all/vbox_gender/genders_container/metal" to="." method="_on_metal_pressed"]

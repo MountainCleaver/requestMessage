@@ -85,5 +85,9 @@ stretch_mode = 4
 
 [node name="Version_Num_Major_Minor_Patch_pattern" parent="." instance=ExtResource("9_6pvv0")]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 228.0
+offset_bottom = 41.0
 
 [editable path="ExitConfirmation"]
