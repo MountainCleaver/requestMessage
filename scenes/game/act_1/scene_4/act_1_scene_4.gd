@@ -56,7 +56,7 @@ var lights: Array = []
 var show_navigation: bool = false
 var max_lights := 100
 var base_distance := 200.0
-var light_scene := preload("res://assets/tilesets/nav_light.tscn") 
+var light_scene := preload("res://assets/tilesets/nav_light.png") 
 
 func _ready() -> void:
 	_game_state_flow()
@@ -368,6 +368,7 @@ func _switch_to_danilo_room() -> void:
 func _on_bahay_body_entered(body: Node2D) -> void:
 	if body.name == "player_danilo":
 		in_bahay_area = true 
+		_clear_navigation_trail()
 		SignalBus.in_npc.emit("bahay")
 
 func _on_bahay_body_exited(body: Node2D) -> void:
@@ -394,29 +395,33 @@ func _update_navigation_trail() -> void:
 
 	var desired_num = clamp(int(distance / base_distance), 30, max_lights)
 
-	# Add lights
 	while lights.size() < desired_num:
-		var l = light_scene.instantiate()
+		var l = Sprite2D.new()
+		l.texture = light_scene
 		navigation_lights.add_child(l)
 		lights.append(l)
 
-	# Remove excess lights
 	while lights.size() > desired_num:
 		lights.pop_back().queue_free()
 
-	# Update positions
 	for i in range(lights.size()):
 		var t = float(i + 1) / (lights.size() + 1)
 		var pos = player_pos.lerp(target_pos, t)
 		var l = lights[i]
 		l.global_position = pos
 
-		if l is PointLight2D:
-			l.energy = lerp(2.0, 0.8, t)
-			l.energy += sin(Time.get_ticks_msec() / 300.0 + i) * 0.1
-		else:
-			l.modulate.a = lerp(1.0, 0.3, t)
-			l.scale = Vector2.ONE * lerp(1.0, 0.6, t)
+		var min_scale = 0.005
+		var max_scale = 0.005
+		l.scale = Vector2.ONE * lerp(max_scale, min_scale, t)
+
+		l.modulate.a = lerp(1.0, 0.3, t)
+
+func _clear_navigation_trail() -> void:
+	show_navigation = false
+	if navigation_lights and navigation_lights.is_inside_tree():
+		for l in navigation_lights.get_children():
+			l.queue_free()
+	lights.clear()
 
 # ===================
 # SCENE COMPLETE

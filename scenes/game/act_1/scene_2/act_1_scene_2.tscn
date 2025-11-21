@@ -16,7 +16,4 @@ layer = 101
 
 [node name="CanvasLayer" parent="." instance=ExtResource("3_lwxfu")]
 
-[node name="VirtualJoystick" parent="CanvasLayer" index="0"]
-pivot_offset = Vector2(101, 101)
-
 [editable path="CanvasLayer"]

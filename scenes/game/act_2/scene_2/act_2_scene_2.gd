@@ -30,7 +30,7 @@ var lights: Array = []
 var show_navigation: bool = false
 var max_lights := 100
 var base_distance := 200.0
-var light_scene := preload("res://assets/tilesets/nav_light.tscn") 
+var light_scene := preload("res://assets/tilesets/nav_light.png") 
 
 # ===================
 # STATES & FLAGS
@@ -320,17 +320,15 @@ func _on_chat_message_sent(chat_name: String) -> void:
 			door_area.monitoring = true
 
 func _update_navigation_trail() -> void:
-	if not player_danilo or not navigation_home or not navigation_lights:
-		return  
-
 	var player_pos = player_danilo.global_position
 	var target_pos = navigation_home.global_position
 	var distance = player_pos.distance_to(target_pos)
 
-	var desired_num = clamp(int(distance / base_distance), 20, max_lights)
+	var desired_num = clamp(int(distance / base_distance), 30, max_lights)
 
 	while lights.size() < desired_num:
-		var l = light_scene.instantiate()
+		var l = Sprite2D.new()
+		l.texture = light_scene
 		navigation_lights.add_child(l)
 		lights.append(l)
 
@@ -343,12 +341,11 @@ func _update_navigation_trail() -> void:
 		var l = lights[i]
 		l.global_position = pos
 
-		if l is PointLight2D:
-			l.energy = lerp(2.0, 0.8, t)
-			l.energy += sin(Time.get_ticks_msec() / 300.0 + i) * 0.1
-		else:
-			l.modulate.a = lerp(1.0, 0.3, t)
-			l.scale = Vector2.ONE * lerp(1.0, 0.6, t)
+		var min_scale = 0.005
+		var max_scale = 0.005
+		l.scale = Vector2.ONE * lerp(max_scale, min_scale, t)
+
+		l.modulate.a = lerp(1.0, 0.3, t)
 
 
 func _clear_navigation_trail() -> void:

@@ -9775,6 +9775,7 @@ autoplay = true
 bus = &"sfx"
 
 [node name="lights" type="Node2D" parent="."]
+visible = false
 
 [node name="PointLight2D" type="PointLight2D" parent="lights"]
 position = Vector2(-3, 76.5)
@@ -10017,6 +10018,7 @@ scale = Vector2(0.28124964, 0.28125003)
 texture = SubResource("GradientTexture2D_mbc7v")
 
 [node name="navigation_lights" type="Node2D" parent="."]
+top_level = true
 position = Vector2(53, -198)
 
 [node name="navigation_home" type="Marker2D" parent="navigation_lights"]
@@ -10025,6 +10027,8 @@ position = Vector2(2, -2)
 [node name="CanvasLayer" parent="." instance=ExtResource("11_mbc7v")]
 
 [node name="CanvasLayer2" parent="." instance=ExtResource("12_tt4ib")]
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
 
 [connection signal="body_entered" from="bahay" to="." method="_on_bahay_body_entered"]
 [connection signal="body_exited" from="bahay" to="." method="_on_bahay_body_exited"]
