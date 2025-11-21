@@ -1,7 +1,8 @@
 extends Control
 
-@onready var btn_accept: Button = $btn_accept
+
 @onready var back_button: Button = $back_tips/Panel/Button
+@onready var btn_accept: Button1 = $btn_accept
 
 func _ready():
 	btn_accept.pressed.connect(_on_accept_pressed)
