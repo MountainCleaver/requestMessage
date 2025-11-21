@@ -61,13 +61,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="back" type="Button" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 242.0
+offset_left = 258.0
 offset_top = 17.0
 offset_right = 517.0
 offset_bottom = 132.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cg24bagrgn8w5"]
+[gd_scene load_steps=21 format=3 uid="uid://cg24bagrgn8w5"]
 
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_65wt5"]
 [ext_resource type="Script" uid="uid://dv5lh0ou423ae" path="res://scenes/menu/scripts/settings_display.gd" id="1_pe472"]
@@ -6,10 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bvu6cd50qiv13" path="res://assets/main menu/icons/Sprite-0001-Sheet.png" id="4_kav76"]
 [ext_resource type="Script" uid="uid://bg8w3u57yrdhp" path="res://checkbox_1.gd" id="4_scydi"]
 [ext_resource type="Script" uid="uid://csrp0rch4ntee" path="res://h_slider_1.gd" id="6_r2h1n"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_mbspy"]
-font = ExtResource("1_65wt5")
-font_size = 36
 
 [sub_resource type="LabelSettings" id="LabelSettings_65wt5"]
 font_color = Color(1, 1, 1, 0)
@@ -90,15 +86,18 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 
 [node name="WINDOW_MODE" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/WINDOW_MODE"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_65wt5")
+theme_override_font_sizes/font_size = 65
 text = "WINDOW MODE"
-label_settings = SubResource("LabelSettings_mbspy")
 
 [node name="OPTIONS" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="john_cena" type="Label" parent="VBoxContainer/OPTIONS"]
@@ -113,7 +112,7 @@ layout_mode = 2
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_65wt5")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 50
 theme_override_icons/radio_checked = SubResource("AtlasTexture_mbspy")
 theme_override_icons/radio_unchecked = SubResource("AtlasTexture_65wt5")
 button_pressed = true
@@ -124,7 +123,7 @@ metadata/_custom_type_script = "uid://bg8w3u57yrdhp"
 
 [node name="Label" type="Label" parent="VBoxContainer/OPTIONS"]
 layout_mode = 2
-text = "drax"
+text = "drax                   "
 label_settings = SubResource("LabelSettings_pe472")
 
 [node name="WINDOWED" type="HBoxContainer" parent="VBoxContainer/OPTIONS"]
@@ -134,7 +133,7 @@ layout_mode = 2
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_65wt5")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 50
 theme_override_icons/radio_checked = SubResource("AtlasTexture_mbspy")
 theme_override_icons/radio_unchecked = SubResource("AtlasTexture_65wt5")
 button_group = SubResource("ButtonGroup_65wt5")
@@ -147,8 +146,9 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/BRIGHTNESS"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_65wt5")
+theme_override_font_sizes/font_size = 65
 text = "BRIGHTNESS"
-label_settings = SubResource("LabelSettings_mbspy")
 
 [node name="SLIDER" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

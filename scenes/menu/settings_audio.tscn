@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://1gfgjwlhjokl"]
+[gd_scene load_steps=16 format=3 uid="uid://1gfgjwlhjokl"]
 
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_mxcjd"]
 [ext_resource type="Script" uid="uid://be6wnnqrj4y7j" path="res://scenes/menu/scripts/settings_audio.gd" id="1_uwp3w"]
@@ -6,10 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://upkrugknwx7v" path="res://assets/main menu/icons/check_uncheck.png" id="3_mf2dd"]
 [ext_resource type="Script" uid="uid://csrp0rch4ntee" path="res://h_slider_1.gd" id="4_djnjm"]
 [ext_resource type="Script" uid="uid://bg8w3u57yrdhp" path="res://checkbox_1.gd" id="6_tw32y"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_mxcjd"]
-font = ExtResource("1_mxcjd")
-font_size = 36
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1d5sh"]
 atlas = ExtResource("2_1d5sh")
@@ -41,10 +37,6 @@ region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_44ghw"]
 texture = SubResource("AtlasTexture_uwp3w")
-
-[sub_resource type="LabelSettings" id="LabelSettings_1d5sh"]
-font = ExtResource("1_mxcjd")
-font_size = 36
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mf2dd"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -82,8 +74,9 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
+theme_override_fonts/font = ExtResource("1_mxcjd")
+theme_override_font_sizes/font_size = 65
 text = "MUSIC VOLUME"
-label_settings = SubResource("LabelSettings_mxcjd")
 
 [node name="music_slider" type="HSlider" parent="VBoxContainer/MUSIC"]
 custom_minimum_size = Vector2(250, 0)
@@ -108,8 +101,9 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
+theme_override_fonts/font = ExtResource("1_mxcjd")
+theme_override_font_sizes/font_size = 65
 text = "SFX VOLUME"
-label_settings = SubResource("LabelSettings_1d5sh")
 
 [node name="sfx_slider" type="HSlider" parent="VBoxContainer/SFX"]
 custom_minimum_size = Vector2(250, 0)
@@ -134,8 +128,9 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
+theme_override_fonts/font = ExtResource("1_mxcjd")
+theme_override_font_sizes/font_size = 65
 text = "MUTE ALL SOUNDS"
-label_settings = SubResource("LabelSettings_1d5sh")
 
 [node name="mute_check" type="CheckBox" parent="VBoxContainer/MUTE"]
 layout_mode = 2

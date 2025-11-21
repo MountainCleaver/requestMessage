@@ -2,13 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_ll10x"]
 [ext_resource type="Script" uid="uid://dk3hth67ipn1o" path="res://scenes/menu/scripts/menu_game_settings.gd" id="1_xmlxi"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_v76xj"]
 [ext_resource type="PackedScene" uid="uid://c7yw1h7fpco1e" path="res://scenes/menu/option_main_menu.tscn" id="3_keq5n"]
 [ext_resource type="Texture2D" uid="uid://bbkdr0csbjf5r" path="res://assets/main menu/image.png" id="3_runic"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_keq5n"]
-font = ExtResource("2_v76xj")
-font_size = 70
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="4_0wo8a"]
+[ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="6_0wo8a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_keq5n"]
 bg_color = Color(1, 1, 1, 0.52549)
@@ -32,6 +29,7 @@ script = ExtResource("1_xmlxi")
 layout_mode = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.3)
 self_modulate = Color(1, 1, 1, 0.3)
 layout_mode = 1
@@ -43,6 +41,7 @@ grow_vertical = 2
 texture = ExtResource("3_runic")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,66 +55,53 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.25
 anchor_bottom = 0.312
-offset_left = 128.0
-offset_right = 342.0
-offset_bottom = 7.51199
+offset_left = 983.0
+offset_top = -130.0
+offset_right = 1378.0
+offset_bottom = -72.48801
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_0wo8a")
+theme_override_font_sizes/font_size = 120
 text = "OPTIONS"
-label_settings = SubResource("LabelSettings_keq5n")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="options_label"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.676
 anchor_right = 1.0
 anchor_bottom = 1.239
-offset_left = 8.0
-offset_top = 59.004
-offset_right = 106.0
-offset_bottom = 233.031
+offset_left = 309.0
+offset_top = -297.224
+offset_right = -1630.0
+offset_bottom = -568.73596
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="option_audio" parent="options_label/VBoxContainer" instance=ExtResource("3_keq5n")]
+[node name="option_audio" parent="VBoxContainer" instance=ExtResource("3_keq5n")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 80
 theme_override_styles/hover = SubResource("StyleBoxFlat_keq5n")
 theme_override_styles/focus = SubResource("StyleBoxFlat_keq5n")
 text = " AUDIO"
 alignment = 0
 
-[node name="option_display" parent="options_label/VBoxContainer" instance=ExtResource("3_keq5n")]
+[node name="option_display" parent="VBoxContainer" instance=ExtResource("3_keq5n")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 80
 theme_override_styles/hover = SubResource("StyleBoxFlat_keq5n")
 theme_override_styles/focus = SubResource("StyleBoxFlat_keq5n")
 text = " DISPLAY"
 alignment = 0
 
-[node name="option_language" parent="options_label/VBoxContainer" instance=ExtResource("3_keq5n")]
+[node name="option_language" parent="VBoxContainer" instance=ExtResource("3_keq5n")]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 80
 theme_override_styles/hover = SubResource("StyleBoxFlat_keq5n")
 theme_override_styles/focus = SubResource("StyleBoxFlat_keq5n")
 text = " LANGUAGE"
-alignment = 0
-
-[node name="exit" parent="." instance=ExtResource("3_keq5n")]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.857
-anchor_right = 0.083
-anchor_bottom = 0.857
-offset_left = 128.0
-offset_top = -17.5681
-offset_right = 192.48
-offset_bottom = 18.4319
-theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_styles/hover = SubResource("StyleBoxFlat_keq5n")
-theme_override_styles/focus = SubResource("StyleBoxFlat_keq5n")
-text = " EXIT"
 alignment = 0
 
 [node name="setting_container" type="Panel" parent="."]
@@ -125,15 +111,19 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -928.0
-offset_top = -192.0
-offset_right = -160.0
-offset_bottom = 320.0
+offset_left = -1406.0
+offset_top = -140.0
+offset_right = -491.0
+offset_bottom = 372.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xmlxi")
 
-[connection signal="pressed" from="options_label/VBoxContainer/option_audio" to="." method="_on_option_audio_pressed"]
-[connection signal="pressed" from="options_label/VBoxContainer/option_display" to="." method="_on_option_display_pressed"]
-[connection signal="pressed" from="options_label/VBoxContainer/option_language" to="." method="_on_option_language_pressed"]
-[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
+[node name="back_tips" parent="." instance=ExtResource("6_0wo8a")]
+layout_mode = 1
+
+[connection signal="pressed" from="VBoxContainer/option_audio" to="." method="_on_option_audio_pressed"]
+[connection signal="pressed" from="VBoxContainer/option_display" to="." method="_on_option_display_pressed"]
+[connection signal="pressed" from="VBoxContainer/option_language" to="." method="_on_option_language_pressed"]
+
+[editable path="back_tips"]
