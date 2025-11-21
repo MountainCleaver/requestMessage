@@ -13,7 +13,7 @@ font_color = Color(0.329412, 0.329412, 0.329412, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_tas5x"]
 font = ExtResource("3_5e87u")
-font_size = 24
+font_size = 33
 font_color = Color(0.29954728, 0.2995475, 0.29954743, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wabu4"]
@@ -142,11 +142,12 @@ grow_vertical = 2
 
 [node name="holder" parent="." instance=ExtResource("1_elv1p")]
 top_level = true
+z_index = 1
 layout_mode = 0
-offset_left = 370.0
-offset_top = 300.0
-offset_right = 1003.0
-offset_bottom = 650.0
+offset_left = 625.0
+offset_top = 250.0
+offset_right = 1468.0
+offset_bottom = 724.0
 
 [node name="title" type="Label" parent="holder"]
 layout_mode = 1
@@ -173,11 +174,12 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -205.0
+offset_top = 19.285004
 offset_right = 205.0
-offset_bottom = 33.501007
+offset_bottom = 54.285004
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 21
+theme_override_font_sizes/font_size = 22
 text = "Please check your email including SPAM."
 label_settings = SubResource("LabelSettings_tas5x")
 
@@ -188,9 +190,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 211.0
-offset_top = 75.0
+offset_top = 103.0
 offset_right = -195.0
-offset_bottom = 121.0
+offset_bottom = 162.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -212,12 +214,12 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 91.0
-offset_top = -24.0
+offset_top = -39.0
 offset_right = -84.0
 offset_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
-tooltip_text = "Enter your username here."
+tooltip_text = "Enter your code here."
 theme = SubResource("Theme_5e87u")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.641934, 0.641934, 0.641934, 1)
@@ -239,17 +241,18 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 1.66666
-offset_bottom = 24.0
+offset_top = 8.0
+offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.7254902, 0.21960784, 0.2, 1)
 
 [node name="btn_close" type="Button" parent="holder"]
 layout_mode = 0
-offset_left = 583.0
+offset_left = 766.0
 offset_top = 1.0
-offset_right = 629.0
-offset_bottom = 45.0
+offset_right = 843.0
+offset_bottom = 50.0
 theme_override_colors/font_color = Color(0.08855977, 0.08855999, 0.088559784, 1)
 theme_override_font_sizes/font_size = 22
 text = "X"
@@ -258,7 +261,7 @@ flat = true
 [node name="holder2" parent="." instance=ExtResource("1_elv1p")]
 modulate = Color(0, 0, 0, 0.580392)
 layout_mode = 0
-offset_left = -313.0
-offset_top = -350.0
-offset_right = 1876.0
-offset_bottom = 1290.0
+offset_left = -2624.0
+offset_top = -23.0
+offset_right = 2319.0
+offset_bottom = 1045.0

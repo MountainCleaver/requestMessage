@@ -220,12 +220,17 @@ script = ExtResource("5_axhqq")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
 [node name="back_tips" parent="." instance=ExtResource("5_f1lln")]
-visible = false
 layout_mode = 1
 offset_left = 1598.0
 offset_top = 847.0
 offset_right = 1598.0
 offset_bottom = 847.0
+
+[node name="Label" parent="back_tips/Panel" index="0"]
+visible = true
+
+[node name="back" parent="back_tips" index="1"]
+visible = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_aqcel")

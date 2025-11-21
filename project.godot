@@ -69,7 +69,6 @@ window/image="uid://h36f1ipl8glj"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AndroidFilePicker/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/plugins/plugin.cfg")
 enabled=PackedStringArray("res://addons/DatePicker/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg")
 
 [gui]

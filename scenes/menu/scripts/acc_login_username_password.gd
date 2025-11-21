@@ -4,20 +4,35 @@ extends Control
 @onready var line_edit_password: LineEdit = $holder/line_edit_password
 @onready var login_error: Label = $holder/login_error
 @onready var btn_login: Button = $holder/btn_login
+@onready var login_link: Button = $holder/login_link
 @onready var signup_link: Button = $holder/signup_link
 @onready var forgot_pass: Button = $holder/forgot_pass
 @onready var http: HTTPRequest = find_child("HTTP_request")
 @onready var menu_loading_screen: CanvasLayer = $"../menu_loading_screen"
+@onready var exit_confirmation_dialog: ConfirmationDialog = $"../ConfirmationDialog"
 @onready var toggle_password_visibility: TextureButton1 = $holder/line_edit_password/toggle_visibility
+var exit_is_showing : bool = false
 
 
 func _ready() -> void:
+	print(signup_link)  # Will print "[Button:xxxx]" if found, "null" if not
+	signup_link.pressed.connect(_on_signup_link_pressed)
 	line_edit_password.secret = true
 	http.request_completed.connect(_on_HTTP_request_request_completed)
 	btn_login.pressed.connect(_on_btn_login_pressed)
 	menu_loading_screen.hide()
 	forgot_pass.pressed.connect(_on_forgot_pass_pressed)
 	toggle_password_visibility.connect("toggled", Callable(self, "_on_toggle_visibility_toggled"))
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action("escape"):
+		if not exit_is_showing:
+			exit_confirmation_dialog.show()
+			exit_is_showing = true
+		else:
+			exit_confirmation_dialog.hide()
+			exit_is_showing = false
 
 func _on_btn_login_pressed() -> void:
 	var user_input = line_edit_user.text.strip_edges()
@@ -38,7 +53,7 @@ func _on_btn_login_pressed() -> void:
 
 	menu_loading_screen.show()
 	btn_login.disabled = true
-	signup_link.disabled = true
+	login_link.disabled = true
 
 	var url = "https://requestmessage-admin.onrender.com/api/login.php"
 	var body = {"username": username, "email": email, "password": password}
@@ -53,7 +68,7 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 		login_error.text = "Server error: " + str(response_code)
 		menu_loading_screen.hide()
 		btn_login.disabled = false
-		signup_link.disabled = false
+		login_link.disabled = false
 		return
 
 	var json = JSON.parse_string(response_text)
@@ -61,7 +76,7 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 		login_error.text = "Invalid server response"
 		menu_loading_screen.hide()
 		btn_login.disabled = false
-		signup_link.disabled = false
+		login_link.disabled = false
 		return
 
 	if json.get("status") == "success":
@@ -75,7 +90,7 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 
 	menu_loading_screen.hide()
 	btn_login.disabled = false
-	signup_link.disabled = false
+	login_link.disabled = false
 
 func _on_toggle_visibility_toggled(toggled_on: bool) -> void:
 	line_edit_password.secret = not toggled_on
@@ -85,6 +100,12 @@ func _on_signup_link_pressed() -> void:
 
 func _on_forgot_pass_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_reset_password.tscn")
+
+func _on_confirmation_dialog_confirmed() -> void:
+	get_tree().quit()
+
+func _on_confirmation_dialog_canceled() -> void:
+	pass
 
 func on_internet_status_changed(has_internet: bool) -> void:
 	if has_internet:
