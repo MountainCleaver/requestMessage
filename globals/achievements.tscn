@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://m2jkme4gwhqv" path="res://globals/achievements.gd" id="1_a1iyb"]
 [ext_resource type="Texture2D" uid="uid://detq35b8quivv" path="res://assets/achievements/achievement_1.png" id="2_t0yet"]
-[ext_resource type="FontFile" uid="uid://b748w64a31xdc" path="res://assets/fonts/ContaPixelItalic.ttf" id="3_psn4p"]
-[ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="4_13kpe"]
+[ext_resource type="FontFile" uid="uid://t03x50025yl" path="res://assets/fonts/CossetteTexte-Bold.ttf" id="3_t0yet"]
+[ext_resource type="FontFile" uid="uid://bmnq86iuf43dc" path="res://assets/fonts/CossetteTexte-Regular.ttf" id="4_psn4p"]
 
 [sub_resource type="Animation" id="Animation_v5pfq"]
 length = 0.001
@@ -172,7 +172,7 @@ offset_left = 94.0
 offset_top = -10.0
 offset_right = 387.0
 offset_bottom = 29.0
-theme_override_fonts/font = ExtResource("3_psn4p")
+theme_override_fonts/font = ExtResource("3_t0yet")
 theme_override_font_sizes/font_size = 21
 text = "The One Who Stayed Behind"
 horizontal_alignment = 1
@@ -184,8 +184,8 @@ offset_left = 84.0
 offset_top = 26.0
 offset_right = 397.0
 offset_bottom = 83.0
-theme_override_fonts/font = ExtResource("4_13kpe")
-theme_override_font_sizes/font_size = 23
+theme_override_fonts/font = ExtResource("4_psn4p")
+theme_override_font_sizes/font_size = 17
 text = "Complete Mang Gino’s chase without getting caught once."
 horizontal_alignment = 1
 vertical_alignment = 1
