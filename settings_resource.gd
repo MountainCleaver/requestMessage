@@ -5,7 +5,7 @@ class_name SettingsResource
 #audio
 @export var music_volume: float = 80.0
 @export var sfx_volume: float = 80.0
-@export var mute_all_sounds: bool = true
+@export var mute_all_sounds: bool = false
 
 #display
 @export var window_mode: String = "windowed"
