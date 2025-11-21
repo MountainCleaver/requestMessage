@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cykh0p8r2kduc"]
+[gd_scene load_steps=14 format=3 uid="uid://cykh0p8r2kduc"]
 
 [ext_resource type="Script" uid="uid://ucehjejjclhf" path="res://scenes/menu/scripts/menu_main.gd" id="1_blywf"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_wyeju"]
@@ -10,6 +10,8 @@
 [ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="8_0iqcp"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="8_o44s4"]
 [ext_resource type="PackedScene" uid="uid://briurx4rtggto" path="res://globals/continue_confirmation.tscn" id="10_0iqcp"]
+[ext_resource type="PackedScene" uid="uid://bnks7n0omy0w4" path="res://globals/logout_confirmation.tscn" id="11_htk28"]
+[ext_resource type="PackedScene" uid="uid://cxb4qn63t1pld" path="res://globals/exit_confirmation.tscn" id="12_7adiy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gomlb"]
 shader = ExtResource("8_0iqcp")
@@ -236,6 +238,20 @@ layout_mode = 0
 [node name="Window" parent="ContinueConfirmation" index="0"]
 visible = false
 
+[node name="LogoutConfirmation" parent="." instance=ExtResource("11_htk28")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="LogoutConfirmation" index="0"]
+visible = false
+
+[node name="ExitConfirmation" parent="." instance=ExtResource("12_7adiy")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="ExitConfirmation" index="0"]
+visible = false
+
 [connection signal="pressed" from="menu_background/patch_notes" to="." method="_on_patch_notes_pressed"]
 [connection signal="pressed" from="options_holder/continue_game" to="." method="_on_continue_game_pressed"]
 [connection signal="pressed" from="options_holder/new_game" to="." method="_on_new_game_pressed"]
@@ -251,3 +267,5 @@ visible = false
 
 [editable path="menu_background"]
 [editable path="ContinueConfirmation"]
+[editable path="LogoutConfirmation"]
+[editable path="ExitConfirmation"]

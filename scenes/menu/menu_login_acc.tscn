@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://khwdatbhelgd"]
+[gd_scene load_steps=10 format=3 uid="uid://khwdatbhelgd"]
 
 [ext_resource type="Script" uid="uid://dvwv07p3fbxt3" path="res://scenes/menu/menu_login_acc.gd" id="1_61dk0"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_nx25a"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cth2r78w0vqn3" path="res://scenes/menu/acc_login_username_password.tscn" id="4_4f6le"]
 [ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="5_iatr4"]
 [ext_resource type="PackedScene" uid="uid://cxb4qn63t1pld" path="res://globals/exit_confirmation.tscn" id="6_5s8b4"]
-[ext_resource type="PackedScene" uid="uid://c6dp8vnyir66p" path="res://scenes/menu/version_num_major_minor_patch_pattern.tscn" id="9_6pvv0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6pvv0"]
 shader = ExtResource("3_tpmv3")
@@ -82,12 +81,5 @@ offset_bottom = 899.0
 texture = ExtResource("2_ulwyg")
 expand_mode = 1
 stretch_mode = 4
-
-[node name="Version_Num_Major_Minor_Patch_pattern" parent="." instance=ExtResource("9_6pvv0")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 228.0
-offset_bottom = 41.0
 
 [editable path="ExitConfirmation"]

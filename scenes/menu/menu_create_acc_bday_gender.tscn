@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://5ohqovupog1p"]
+[gd_scene load_steps=10 format=3 uid="uid://5ohqovupog1p"]
 
 [ext_resource type="Script" uid="uid://qcfk2jvckn2y" path="res://scenes/menu/menu_create_acc_bday_gender.gd" id="1_s3vkt"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_xvp0h"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://d37rg5an1q1b2" path="res://assets/main menu/menu_phone.png" id="4_s3vkt"]
 [ext_resource type="PackedScene" uid="uid://cxb4qn63t1pld" path="res://globals/exit_confirmation.tscn" id="7_kpjs7"]
 [ext_resource type="PackedScene" uid="uid://g6nvop71k0ew" path="res://globals/age_confirmation.tscn" id="8_kpjs7"]
-[ext_resource type="PackedScene" uid="uid://c6dp8vnyir66p" path="res://scenes/menu/version_num_major_minor_patch_pattern.tscn" id="9_nvos4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3vkt"]
 shader = ExtResource("2_7vvl2")
@@ -86,13 +85,6 @@ layout_mode = 0
 
 [node name="Window" parent="AgeConfirmation" index="0"]
 visible = false
-
-[node name="Version_Num_Major_Minor_Patch_pattern" parent="." instance=ExtResource("9_nvos4")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 228.0
-offset_bottom = 41.0
 
 [editable path="ExitConfirmation"]
 [editable path="AgeConfirmation"]

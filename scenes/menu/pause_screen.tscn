@@ -94,6 +94,10 @@ visible = false
 
 [node name="Version_Num_Major_Minor_Patch_pattern" parent="." instance=ExtResource("5_x8jkt")]
 layout_mode = 0
+offset_left = 81.0
+offset_top = 73.0
+offset_right = 309.0
+offset_bottom = 114.0
 
 [connection signal="pressed" from="VBoxContainer/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]

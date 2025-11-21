@@ -53,7 +53,7 @@ func _on_btn_login_pressed() -> void:
 
 	menu_loading_screen.show()
 	btn_login.disabled = true
-	login_link.disabled = true
+	signup_link.disabled = true
 
 	var url = "https://requestmessage-admin.onrender.com/api/login.php"
 	var body = {"username": username, "email": email, "password": password}
@@ -68,7 +68,7 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 		login_error.text = "Server error: " + str(response_code)
 		menu_loading_screen.hide()
 		btn_login.disabled = false
-		login_link.disabled = false
+		signup_link.disabled = false
 		return
 
 	var json = JSON.parse_string(response_text)
@@ -76,7 +76,7 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 		login_error.text = "Invalid server response"
 		menu_loading_screen.hide()
 		btn_login.disabled = false
-		login_link.disabled = false
+		signup_link.disabled = false
 		return
 
 	if json.get("status") == "success":
@@ -90,7 +90,7 @@ func _on_HTTP_request_request_completed(result, response_code, headers, body):
 
 	menu_loading_screen.hide()
 	btn_login.disabled = false
-	login_link.disabled = false
+	signup_link.disabled = false
 
 func _on_toggle_visibility_toggled(toggled_on: bool) -> void:
 	line_edit_password.secret = not toggled_on
