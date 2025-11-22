@@ -104,14 +104,18 @@ func _on_version_request_completed(_res, code, _headers, body):
 		return
 
 	var live_version: String = str(json["version"])
-
 	var local_version: String = version_label.text
 	local_version = local_version.replace("Version ", "").strip_edges()
 
 	# Compare
 	if _is_version_outdated(local_version, live_version):
 		is_outdated = true
-		_show_outdated_popup()
+
+		if not OS.has_feature("web"):
+			_show_outdated_popup()
+		else:
+			print("Web detected: skip outdated popup")
+
 
 
 func _is_version_outdated(local: String, live: String) -> bool:
