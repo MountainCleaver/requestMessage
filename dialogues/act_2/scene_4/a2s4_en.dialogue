@@ -26,9 +26,12 @@ Wendy: I can’t reach him... He's not answering.
 Wendy: ... ...
 => END
 
+~ call_mira
+Wendy: ... ...
+=> END
+
 ~ call_mira_convo
 do ObjectiveManager.complete_objective(2)
-Wendy: ... ...  
 Wendy: Hi, Tita.  
 Wendy: I just wanted to ask... is Danilo there?  
 Wendy: He’s not answering my calls or messages.  
