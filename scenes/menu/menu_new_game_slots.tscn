@@ -81,7 +81,7 @@ offset_top = 130.0
 offset_right = 1418.0
 offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 35
 text = "CREATED:"
 
 [node name="playtime" type="Label" parent="slot_1"]
@@ -92,7 +92,7 @@ offset_top = 171.0
 offset_right = 1445.0
 offset_bottom = 212.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 35
 text = "PLAYTIME:"
 
 [node name="TextureRect" type="TextureRect" parent="slot_1"]
@@ -111,7 +111,7 @@ offset_top = 130.0
 offset_right = 1439.0
 offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 35
 text = "CREATED:"
 autowrap_mode = 3
 
@@ -164,7 +164,7 @@ offset_top = 130.0
 offset_right = 1439.0
 offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 35
 text = "CREATED:"
 
 [node name="playtime" type="Label" parent="slot_2"]
@@ -175,7 +175,7 @@ offset_top = 171.0
 offset_right = 1438.0
 offset_bottom = 212.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 35
 text = "PLAYTIME:"
 
 [node name="TextureRect" type="TextureRect" parent="slot_2"]
@@ -194,7 +194,7 @@ offset_top = 130.0
 offset_right = 1441.0
 offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 35
 text = "CREATED:"
 autowrap_mode = 3
 
@@ -247,7 +247,7 @@ offset_top = 130.0
 offset_right = 1428.0
 offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 35
 text = "CREATED:"
 
 [node name="playtime" type="Label" parent="slot_3"]
@@ -258,7 +258,7 @@ offset_top = 171.0
 offset_right = 1432.0
 offset_bottom = 212.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 35
 text = "PLAYTIME:"
 
 [node name="TextureRect" type="TextureRect" parent="slot_3"]
@@ -277,7 +277,7 @@ offset_top = 130.0
 offset_right = 1444.0
 offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("3_tkyxw")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 35
 text = "CREATED:"
 autowrap_mode = 3
 
