@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://h36f1ipl8glj"]
+[gd_scene load_steps=12 format=3 uid="uid://h36f1ipl8glj"]
 
 [ext_resource type="Script" uid="uid://bjgba84tfg2i" path="res://scenes/menu/scripts/boot_warning.gd" id="1_lmbvh"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_bfe6o"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_bfe6o"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="5_wvjlt"]
 [ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="6_qiyby"]
+[ext_resource type="PackedScene" uid="uid://djebe20bidrr7" path="res://scenes/menu/outdated_version.tscn" id="7_dnn63"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmbvh"]
 bg_color = Color(0.294118, 0.309804, 0.380392, 0.541176)
@@ -226,4 +227,11 @@ offset_right = 1441.0
 offset_bottom = 1025.0
 mouse_filter = 2
 
+[node name="outdated_version" parent="." instance=ExtResource("7_dnn63")]
+visible = false
+
 [connection signal="pressed" from="proceed/Button" to="." method="_on_proceed_pressed"]
+[connection signal="pressed" from="outdated_version/UpdateNow" to="." method="_on_update_now_pressed"]
+
+[editable path="menu_background"]
+[editable path="outdated_version"]

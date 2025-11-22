@@ -6,6 +6,13 @@ extends Control
 @onready var proceed: Panel = $proceed
 @onready var button: Button = $proceed/Button
 
+# --- VERSION CHECK NODES ---
+@onready var version_label: Label = $menu_background/Version_Num_Major_Minor_Patch_pattern
+@onready var outdated_layer: CanvasLayer = $outdated_version
+@onready var outdated_loading: Label = $outdated_version/Label
+@onready var outdated_update_label: Label = $outdated_version/UpdateLabel
+@onready var outdated_update_now: Button = $outdated_version/UpdateNow
+
 var logged_in: bool = false
 var allow_input: bool = false
 var fade_time := 1.0
@@ -15,9 +22,17 @@ var base_position_splash: Vector2
 var motion_seed_splash: float
 var time_acc: float = 0.0
 
+var is_outdated: bool = false
+
+
 func _ready() -> void:
 	NetworkStatus.check_internet_connection()
-	# Initial visibility
+
+	outdated_layer.visible = false
+	outdated_loading.visible = false
+	outdated_update_label.visible = false
+	outdated_update_now.visible = false
+
 	splash_title.modulate.a = 0
 	title_game.modulate.a = 0
 	warning_holder.modulate.a = 0
@@ -29,15 +44,100 @@ func _ready() -> void:
 	var user_data: Dictionary = Session.get_user_info()
 	logged_in = not user_data.is_empty()
 	button.pressed.connect(_on_proceed_pressed)
+
 	_fade_in_splash()
+	_check_version()
+
 
 func _process(delta: float) -> void:
 	time_acc += delta
+
 	if splash_title.modulate.a > 0:
 		var angle = time_acc * 2.0 + motion_seed_splash
 		var radius_x = 4 + sin(time_acc * 1.0 + motion_seed_splash) * 4
 		var radius_y = 3 + cos(time_acc * 1.3 + motion_seed_splash * 1.5) * 3
 		splash_title.position = base_position_splash + Vector2(cos(angle) * radius_x, sin(angle) * radius_y)
+
+
+
+# ----------------------------------------------------------
+#   VERSION CHECKING SYSTEM
+# ----------------------------------------------------------
+
+func _check_version() -> void:
+	await get_tree().create_timer(0.5).timeout 
+
+	var http := HTTPRequest.new()
+	add_child(http)
+
+	http.request_completed.connect(_on_version_request_completed)
+
+	var url := "https://requestmessage-admin.onrender.com/api/get_live_patch.php"
+	http.request(url)
+
+
+func _on_version_request_completed(_res, code, _headers, body):
+	if code != 200:
+		print("Version check failed, skipping.")
+		return
+
+	var json = JSON.parse_string(body.get_string_from_utf8())
+	if json == null:
+		print("Invalid version JSON")
+		return
+
+	var live_version: String = str(json["version"])
+
+	var local_version: String = version_label.text
+	local_version = local_version.replace("Version ", "").strip_edges()
+
+	# Compare
+	if _is_version_outdated(local_version, live_version):
+		is_outdated = true
+		_show_outdated_popup()
+
+
+func _is_version_outdated(local: String, live: String) -> bool:
+	var a = local.split(".") 
+	var b = live.split(".") 
+
+	print("[Compare] Local Split:", a)
+	print("[Compare] Live Split:", b)
+
+	for i in 2:
+		if int(a[i]) < int(b[i]):
+			print("[Compare] -> local < live → OUTDATED")
+			return true
+		if int(a[i]) > int(b[i]):
+			print("[Compare] -> local > live → NEWER or SAME")
+			return false
+
+	print("[Compare] Versions identical in major.minor → not outdated")
+	return false
+
+
+
+
+# ----------------------------------------------------------
+#   OUTDATED VERSION UI
+# ----------------------------------------------------------
+
+func _show_outdated_popup() -> void:
+	outdated_layer.visible = true
+
+	outdated_loading.visible = true
+	outdated_update_label.visible = false
+	outdated_update_now.visible = false
+
+	await get_tree().create_timer(5.0).timeout
+
+	outdated_loading.visible = false
+	outdated_update_label.visible = true
+	outdated_update_now.visible = true
+
+func _on_update_now_pressed() -> void:
+	OS.shell_open("https://request-message.itch.io/request-message")
+
 
 func _fade_in_splash() -> void:
 	splash_title.modulate.a = 0
@@ -62,26 +162,30 @@ func _show_main_warning() -> void:
 
 	allow_input = true
 
-	
+
 func _input(event: InputEvent) -> void:
 	if not allow_input:
 		return
-		
+
 	if event.is_action_pressed("accept"):
 		_on_proceed_pressed()
 
-		
+
 func _on_proceed_pressed() -> void:
+	if is_outdated:
+		print("Game outdated. Block going to menu.")
+		return
+
 	_go_next_scene()
+
 
 func _go_next_scene() -> void:
 	if not logged_in:
 		SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn")
 	else:
 		SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
-		
+
+
 func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
+	if not has_internet:
 		print("No internet here, show warning or disable buttons.")
