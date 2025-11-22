@@ -49,6 +49,8 @@ var door_interacted = false
 var can_use_door = false
 var dialogue_triggered = false
 
+var narration_panel_showed : bool = false
+
 var can_interact_candle := false
 var candle_ignited := false
 var lit_candles := {} 
@@ -226,7 +228,7 @@ func _on_door_area_body_exited(body):
 func _on_altar_area_1_entered(body):
 	if body == player_danilo:
 		# Only allow sitting if all candles are lit
-		if lit_candles.size() >= total_candles:
+		if lit_candles.size() >= total_candles and narration_panel_showed:
 			can_sit_altar_1 = true
 			if tip_interact:
 				tip_interact.visible = true
@@ -240,7 +242,7 @@ func _on_altar_area_1_exited(body):
 func _on_altar_area_2_entered(body):
 	if body == player_danilo:
 		# Only allow sitting if all candles are lit
-		if lit_candles.size() >= total_candles:
+		if lit_candles.size() >= total_candles and narration_panel_showed:
 			can_sit_altar_2 = true
 			if tip_interact:
 				tip_interact.visible = true
@@ -396,6 +398,7 @@ func _light_candle(index: int) -> void:
 
 		TransitionFade.transition()
 		await SignalBus.on_transition_finished
+		narration_panel_showed = true
 		_switch_to_chapel_interior("after_arrange_pages")
 
 func _sit_at_marker_1():
