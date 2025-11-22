@@ -5,6 +5,7 @@ extends Control
 @onready var warning_holder: Panel = $warning_holder
 @onready var proceed: Panel = $proceed
 @onready var button: Button = $proceed/Button
+@onready var pck_loading_text: Label = $pck_loading_text
 
 # --- VERSION CHECK NODES ---
 @onready var version_label: Label = $menu_background/Version_Num_Major_Minor_Patch_pattern
@@ -24,6 +25,10 @@ var time_acc: float = 0.0
 
 var is_outdated: bool = false
 
+# for extra pck loading
+var pck_loaded : bool = false
+var pck_loading : bool = false
+var http_request: HTTPRequest
 
 func _ready() -> void:
 	NetworkStatus.check_internet_connection()
@@ -33,6 +38,9 @@ func _ready() -> void:
 	outdated_update_label.visible = false
 	outdated_update_now.visible = false
 
+	pck_loading_text.hide()
+
+	# Initial visibility
 	splash_title.modulate.a = 0
 	title_game.modulate.a = 0
 	warning_holder.modulate.a = 0
@@ -47,6 +55,15 @@ func _ready() -> void:
 
 	_fade_in_splash()
 	_check_version()
+
+	if OS.has_feature("web"):
+		print("Web platform detected")
+		await get_tree().process_frame
+		_load_pck_for_web()
+	else:
+		print("Desktop platform detected")
+		pck_loaded = true
+		_fade_in_splash()
 
 
 func _process(delta: float) -> void:
@@ -176,6 +193,9 @@ func _on_proceed_pressed() -> void:
 		print("Game outdated. Block going to menu.")
 		return
 
+	if OS.has_feature("web") and pck_loading:
+		print("You cannot yet, is still loading pck...")
+		return
 	_go_next_scene()
 
 
@@ -189,3 +209,67 @@ func _go_next_scene() -> void:
 func on_internet_status_changed(has_internet: bool) -> void:
 	if not has_internet:
 		print("No internet here, show warning or disable buttons.")
+
+
+func _load_pck_for_web () -> void:
+	pck_loading = true
+	pck_loading_text.show()
+	
+	http_request = HTTPRequest.new()
+	add_child(http_request)
+	await get_tree().process_frame
+	http_request.request_completed.connect(_on_pck_downloaded)
+	
+	http_request.accept_gzip = false
+	http_request.body_size_limit = -1
+	http_request.use_threads = false
+	http_request.timeout = 600.0
+	
+	var base_url = JavaScriptBridge.eval("window.location.href")
+	
+	if base_url.contains("index.html"):
+		base_url = base_url.replace("index.html", "")
+		
+	if not base_url.ends_with("/"):
+		base_url += "/"
+	
+	var pck_url = base_url + "other_audio.pck"
+	print("downloading extra pck from : " + pck_url)
+	
+	var error = http_request.request(pck_url)
+	if error != OK:
+		print("Failed to initiate pck request.")
+		print("error code: " + error)
+		pck_loading = false
+		pck_loading_text.hide()
+		_fade_in_splash()
+		return
+
+func _on_pck_downloaded (result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	pck_loading = false
+	
+	if result != HTTPRequest.RESULT_SUCCESS or response_code != 200 or body.size() == 0:
+		print("Failed to dowload PCK")
+		pck_loading_text.hide()
+		_fade_in_splash()
+		return
+	
+	var path = "user://other_audio.pck"
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	if file:
+		file.store_buffer(body)
+		file.close()
+		print("other_audio.pck is save to : " + path)
+	
+	var ok = ProjectSettings.load_resource_pack(path)
+	pck_loaded = ok
+	if ok:
+		print("PCK loading SUCCESSFUL")
+	else:
+		print("PCK loading FAILED")
+	
+	if http_request:
+		http_request.queue_free()
+	
+	pck_loading_text.hide()
+	_fade_in_splash()
