@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3fo53ca0h8g4"]
+[gd_scene load_steps=7 format=3 uid="uid://d3fo53ca0h8g4"]
 
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_gqusm"]
 [ext_resource type="Script" uid="uid://d1b1vdrp5txq7" path="res://scenes/menu/scripts/menu_load_scenes.gd" id="1_p41mx"]
 [ext_resource type="Texture2D" uid="uid://ceuemy1j0ahy" path="res://assets/scenes_thumbnails/act_1_scene_1.png" id="3_ye6df"]
 [ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="4_j4fd8"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_twq5s"]
+[ext_resource type="PackedScene" uid="uid://c422okc24xrxo" path="res://globals/overwrite_confirmation.tscn" id="6_8hesj"]
 
 [node name="finished_scenes" type="Control"]
 layout_mode = 3
@@ -64,19 +65,6 @@ vertical_icon_alignment = 0
 script = ExtResource("4_twq5s")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
-[node name="back_tips" parent="." instance=ExtResource("4_j4fd8")]
-layout_mode = 1
-offset_left = -560.0
-offset_top = -181.0
-offset_right = -560.0
-offset_bottom = -181.0
-
-[node name="Panel" parent="back_tips" index="0"]
-offset_left = -31.0
-offset_top = -30.0
-offset_right = 269.0
-offset_bottom = 45.0
-
 [node name="overwriteConfirmationDialog" type="ConfirmationDialog" parent="."]
 oversampling_override = 1.0
 title = "Confirm Overwrite"
@@ -87,6 +75,15 @@ dialog_text = "This slot already contains saved progress.
 Do you want to overwrite it?
 "
 
-[connection signal="pressed" from="back_tips/back" to="." method="_on_back_pressed"]
+[node name="OverwriteSaveConfirmation" parent="." instance=ExtResource("6_8hesj")]
+visible = false
+layout_mode = 0
 
+[node name="Window" parent="OverwriteSaveConfirmation" index="0"]
+visible = false
+
+[node name="back_tips" parent="." instance=ExtResource("4_j4fd8")]
+layout_mode = 1
+
+[editable path="OverwriteSaveConfirmation"]
 [editable path="back_tips"]

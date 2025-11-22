@@ -1,19 +1,20 @@
-[gd_scene load_steps=24 format=3 uid="uid://dkukr0i8tbvid"]
+[gd_scene load_steps=27 format=3 uid="uid://dkukr0i8tbvid"]
 
 [ext_resource type="Script" uid="uid://bmttfvo0b2va1" path="res://scenes/menu/scripts/menu_report_a_bug.gd" id="1_b0lpy"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="1_t4nnm"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="2_1bxss"]
 [ext_resource type="Texture2D" uid="uid://bbkdr0csbjf5r" path="res://assets/main menu/image.png" id="2_rtw4r"]
 [ext_resource type="PackedScene" uid="uid://c7yw1h7fpco1e" path="res://scenes/menu/option_main_menu.tscn" id="3_ocrco"]
+[ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="4_6fgn1"]
 [ext_resource type="Texture2D" uid="uid://7ywtrbri2gl1" path="res://assets/main menu/icons/upload_icon.png" id="4_rhmlq"]
 [ext_resource type="Script" uid="uid://jwbe8042a3fo" path="res://option_1.gd" id="5_l8bxb"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="6_l7g51"]
 [ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="7_5ab1i"]
 [ext_resource type="Script" uid="uid://dgwa5qxseppf6" path="res://text_edit_1.gd" id="8_u6n7d"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ocrco"]
-font = ExtResource("2_1bxss")
-font_size = 70
+[ext_resource type="PackedScene" uid="uid://pgkq6lleplkm" path="res://scenes/menu/back_tips.tscn" id="12_kthqb"]
+[ext_resource type="PackedScene" uid="uid://bs364tae4k70l" path="res://scenes/menu/empty_dialog.tscn" id="13_kthqb"]
+[ext_resource type="PackedScene" uid="uid://dvkueqw430n2s" path="res://scenes/menu/accept_dialog.tscn" id="14_ey87t"]
+[ext_resource type="PackedScene" uid="uid://byr67vtcfsjwm" path="res://globals/confirmation.tscn" id="15_yjula"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtw4r"]
 bg_color = Color(1, 1, 1, 1)
@@ -21,11 +22,6 @@ corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
-
-[sub_resource type="LabelSettings" id="LabelSettings_rtw4r"]
-font = ExtResource("2_1bxss")
-font_size = 32
-font_color = Color(0.0412611, 0.0405907, 0.389427, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7g51"]
 content_margin_left = 15.0
@@ -72,6 +68,18 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhmlq"]
+bg_color = Color(1, 1, 1, 0.52549)
+border_width_right = 80
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0lpy"]
+bg_color = Color(1, 1, 1, 0.52549)
+border_width_right = 80
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6n7d"]
 bg_color = Color(0, 0, 0, 0)
 border_width_left = 2
@@ -115,18 +123,6 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhmlq"]
-bg_color = Color(1, 1, 1, 0.52549)
-border_width_right = 80
-border_color = Color(0.8, 0.8, 0.8, 0)
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0lpy"]
-bg_color = Color(1, 1, 1, 0.52549)
-border_width_right = 80
-border_color = Color(0.8, 0.8, 0.8, 0)
-border_blend = true
-
 [node name="menu_report_a_bug" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -165,12 +161,13 @@ color = Color(0.129412, 0.152941, 0.239216, 0.439216)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 128.0
-offset_top = 128.0
-offset_right = 496.0
-offset_bottom = 199.0
+offset_left = 818.0
+offset_top = 91.0
+offset_right = 1362.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("4_6fgn1")
+theme_override_font_sizes/font_size = 100
 text = "REPORT A BUG"
-label_settings = SubResource("LabelSettings_ocrco")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -181,7 +178,7 @@ anchor_bottom = 0.5
 offset_left = 216.0
 offset_top = -264.0
 offset_right = -216.0
-offset_bottom = 384.0
+offset_bottom = 328.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rtw4r")
@@ -195,8 +192,10 @@ offset_top = 16.0
 offset_right = -56.0
 offset_bottom = 112.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0.043137256, 0.039215688, 0.3882353, 1)
+theme_override_fonts/font = ExtResource("2_1bxss")
+theme_override_font_sizes/font_size = 50
 text = "Please describe the issue you encountered."
-label_settings = SubResource("LabelSettings_rtw4r")
 vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
@@ -218,8 +217,10 @@ size_flags_vertical = 5
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer/BUG_TYPE"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.043137256, 0.039215688, 0.3882353, 1)
+theme_override_fonts/font = ExtResource("2_1bxss")
+theme_override_font_sizes/font_size = 45
 text = "Type of Bug"
-label_settings = SubResource("LabelSettings_rtw4r")
 
 [node name="BUG_TYPE" type="OptionButton" parent="Panel/HBoxContainer/BUG_TYPE"]
 layout_mode = 2
@@ -227,7 +228,7 @@ focus_mode = 0
 theme_override_colors/font_color = Color(0.129412, 0.152941, 0.239216, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_1bxss")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_l7g51")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4ykur")
 selected = 0
@@ -252,11 +253,17 @@ size_flags_vertical = 5
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer/SCREENSHOT"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.043137256, 0.039215688, 0.3882353, 1)
+theme_override_fonts/font = ExtResource("2_1bxss")
+theme_override_font_sizes/font_size = 45
 text = "Upload a Screenshot (Max. 5 MB)"
-label_settings = SubResource("LabelSettings_rtw4r")
 
-[node name="UPLOADER" type="Button" parent="Panel/HBoxContainer/SCREENSHOT"]
-layout_mode = 2
+[node name="UPLOADER" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 926.0
+offset_top = 147.728
+offset_right = 1787.0
+offset_bottom = 198.0
 focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_l8bxb")
 icon = ExtResource("4_rhmlq")
@@ -266,7 +273,7 @@ clip_text = true
 script = ExtResource("6_l7g51")
 metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
 
-[node name="FileDialog" type="FileDialog" parent="Panel/HBoxContainer/SCREENSHOT/UPLOADER"]
+[node name="FileDialog" type="FileDialog" parent="Panel/UPLOADER"]
 mode = 3
 title = "Open a File"
 initial_position = 2
@@ -280,10 +287,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 56.0
-offset_top = -33.0
-offset_right = -56.0
-offset_bottom = 213.0
+offset_left = 53.0
+offset_top = -79.0
+offset_right = -59.0
+offset_bottom = 154.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
@@ -291,7 +298,7 @@ theme_override_colors/caret_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.60933, 0.60933, 0.60933, 1)
 theme_override_fonts/font = ExtResource("2_1bxss")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_5ab1i")
 placeholder_text = "Tell us what happened . . ."
 wrap_mode = 1
@@ -314,35 +321,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 100
 
-[node name="CLEAR" type="Button" parent="Panel/BUTTONS"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-focus_mode = 0
-theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_colors/font_hover_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_fonts/font = ExtResource("2_1bxss")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_u6n7d")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ey87t")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kthqb")
-text = "CLEAR"
-script = ExtResource("6_l7g51")
-metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
-
-[node name="SUBMIT" type="Button" parent="Panel/BUTTONS"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
-theme_override_fonts/font = ExtResource("2_1bxss")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_6fgn1")
-text = "SUBMIT"
-script = ExtResource("6_l7g51")
-metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
-
 [node name="ss_preview" type="TextureRect" parent="Panel"]
 layout_mode = 0
 offset_left = 528.0
@@ -354,6 +332,7 @@ stretch_mode = 4
 
 [node name="exit" parent="." instance=ExtResource("3_ocrco")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 offset_left = 128.0
 offset_top = 408.0
@@ -365,6 +344,46 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_b0lpy")
 text = "  EXIT"
 alignment = 0
 
+[node name="CLEAR" type="Button" parent="."]
+layout_mode = 0
+offset_left = 332.0
+offset_top = 727.0
+offset_right = 1070.0
+offset_bottom = 815.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 0
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_fonts/font = ExtResource("2_1bxss")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_u6n7d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ey87t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kthqb")
+text = "CLEAR"
+script = ExtResource("6_l7g51")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
+
+[node name="SUBMIT" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1225.0
+offset_top = 721.0
+offset_right = 1942.0
+offset_bottom = 826.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_1bxss")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_6fgn1")
+text = "SUBMIT"
+script = ExtResource("6_l7g51")
+metadata/_custom_type_script = "uid://c0m7e2jwjhujm"
+
+[node name="menu_loading_screen" parent="." instance=ExtResource("7_5ab1i")]
+visible = false
+
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 oversampling_override = 1.0
 
@@ -375,8 +394,6 @@ initial_position = 2
 size = Vector2i(329, 100)
 dialog_text = "Your report was successfully submitted. "
 
-[node name="menu_loading_screen" parent="." instance=ExtResource("7_5ab1i")]
-
 [node name="EmptyDialog" type="AcceptDialog" parent="."]
 oversampling_override = 1.0
 title = "Missing Body"
@@ -384,8 +401,47 @@ initial_position = 2
 size = Vector2i(630, 100)
 dialog_text = "The report body cannot be empty. Please include details about the issue."
 
-[connection signal="pressed" from="Panel/HBoxContainer/SCREENSHOT/UPLOADER" to="." method="_on_uploader_pressed"]
-[connection signal="pressed" from="Panel/BUTTONS/CLEAR" to="." method="_on_clear_pressed"]
-[connection signal="pressed" from="Panel/BUTTONS/SUBMIT" to="." method="_on_submit_pressed"]
+[node name="back_tips" parent="." instance=ExtResource("12_kthqb")]
+layout_mode = 1
+
+[node name="empty_dialog" parent="." instance=ExtResource("13_kthqb")]
+visible = false
+layout_mode = 1
+
+[node name="accept_dialog" parent="." instance=ExtResource("14_ey87t")]
+visible = false
+layout_mode = 1
+
+[node name="Submit_confirmation" parent="." instance=ExtResource("15_yjula")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="Submit_confirmation" index="0"]
+visible = false
+
+[node name="Clear_confirmation" parent="." instance=ExtResource("15_yjula")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="Clear_confirmation" index="0"]
+visible = false
+
+[node name="Exit_confirmation" parent="." instance=ExtResource("15_yjula")]
+visible = false
+layout_mode = 0
+
+[node name="Window" parent="Exit_confirmation" index="0"]
+visible = false
+
+[connection signal="pressed" from="Panel/UPLOADER" to="." method="_on_uploader_pressed"]
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CLEAR" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="SUBMIT" to="." method="_on_submit_pressed"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
+
+[editable path="back_tips"]
+[editable path="empty_dialog"]
+[editable path="accept_dialog"]
+[editable path="Submit_confirmation"]
+[editable path="Clear_confirmation"]
+[editable path="Exit_confirmation"]

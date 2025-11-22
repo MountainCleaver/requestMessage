@@ -195,7 +195,6 @@ func _input(event: InputEvent) -> void:
 func _on_back_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
 
-
 # --- Example summaries dictionary ---
 var scene_summaries := {
 	"act_1_scene_1": "Rain falls as Danilo wakes, lost in thought, can he face what comes next?",

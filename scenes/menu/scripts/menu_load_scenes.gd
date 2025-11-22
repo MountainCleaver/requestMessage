@@ -1,16 +1,24 @@
 extends Control
 
 @onready var gridcontainer: GridContainer = $ScrollContainer/MarginContainer/gridcontainer
-@onready var back_button: Button = $back_tips/back
-@onready var overwrite_dialog: ConfirmationDialog = $overwriteConfirmationDialog
+#@onready var overwrite_dialog: ConfirmationDialog = $overwriteConfirmationDialog
+@onready var overwrite_confirmation: Control = $OverwriteSaveConfirmation
+@onready var window1: Window = $OverwriteSaveConfirmation/Window
+@onready var yes_button: Button = $OverwriteSaveConfirmation/Window/Yes
+@onready var cancel_button: Button = $OverwriteSaveConfirmation/Window/Cancel
+@onready var label: Label = $OverwriteSaveConfirmation/Window/Label
+@onready var back: Button1 = $back_tips/back
 
 var slot_save: SaveGameResource = null
 var pending_act: String = ""
 var pending_scene: String = ""
 
 func _ready() -> void:
-	back_button.pressed.connect(_on_back_pressed)
-	overwrite_dialog.connect("confirmed", _on_overwrite_confirmed)
+	#overwrite_dialog.connect("confirmed", _on_overwrite_confirmed)
+	yes_button.pressed.connect(_on_overwrite_confirmed)
+	cancel_button.pressed.connect(_on_cancel_button_pressed)
+	back.pressed.connect(_on_back_pressed)
+
 
 func set_slot_save(save_resource: SaveGameResource) -> void:
 	slot_save = save_resource
@@ -67,8 +75,6 @@ func _create_button(act: String, scene: String) -> void:
 
 	gridcontainer.add_child(button)
 
-
-
 func _on_scene_button_pressed(act: String, scene: String) -> void:
 	pending_act = act
 	pending_scene = scene
@@ -109,9 +115,12 @@ func _on_scene_button_pressed(act: String, scene: String) -> void:
 
 		warning_text += "Do you want to continue and overwrite progress?"
 
-		overwrite_dialog.dialog_text = warning_text
-		overwrite_dialog.min_size = Vector2(600, 300)
-		overwrite_dialog.popup_centered()
+		overwrite_confirmation.show()
+		window1.show()
+		
+		label.text = warning_text
+		#overwrite_dialog.min_size = Vector2(600, 300)
+		#overwrite_dialog.popup_centered()
 
 func _on_overwrite_confirmed() -> void:
 	if pending_act == "" or pending_scene == "":
@@ -185,17 +194,20 @@ func _load_scene(act: String, scene: String) -> void:
 
 	SignalBus.next_scene.emit(path)
 
-
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("escape"):
-		_on_back_pressed()
-
-func _on_back_pressed() -> void:
-	SignalBus.next_scene.emit("res://scenes/menu/menu_load_game_slots.tscn")
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("escape"):
+		#_on_back_pressed()
 
 func on_internet_status_changed(has_internet: bool) -> void:
 	if has_internet:
 		pass
 	else:
 		print("No internet here, show warning or disable buttons.")
+
+func _on_cancel_button_pressed() -> void:
+	overwrite_confirmation.hide()
+	window1.hide()
+
+
+func _on_back_pressed():
+	SignalBus.next_scene.emit("res://scenes/menu/menu_load_game_slots.tscn")

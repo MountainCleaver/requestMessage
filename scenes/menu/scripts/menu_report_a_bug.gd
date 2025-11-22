@@ -1,17 +1,43 @@
 extends Control
 
 @onready var exit: Button = %exit
-@onready var uploader: Button = $Panel/HBoxContainer/SCREENSHOT/UPLOADER
-@onready var file_dialog: FileDialog = $Panel/HBoxContainer/SCREENSHOT/UPLOADER/FileDialog
+@onready var uploader: Button1 = $Panel/UPLOADER
+@onready var file_dialog: FileDialog = $Panel/UPLOADER/FileDialog
 @onready var ss_preview: TextureRect = $Panel/ss_preview
 @onready var bug_type: OptionButton = $Panel/HBoxContainer/BUG_TYPE/BUG_TYPE
 @onready var text_edit: TextEdit = $Panel/TextEdit
-@onready var submit: Button = $Panel/BUTTONS/SUBMIT
-@onready var clear: Button = $Panel/BUTTONS/CLEAR
-@onready var confirmation_dialog: ConfirmationDialog = $ConfirmationDialog
+@onready var submit: Button1 = $SUBMIT
+@onready var clear: Button1 = $CLEAR
 @onready var menu_loading_screen: CanvasLayer = $menu_loading_screen
-@onready var accept_dialog: AcceptDialog = $AcceptDialog
-@onready var empty_dialog: AcceptDialog = $EmptyDialog
+#@onready var accept_dialog: AcceptDialog = $AcceptDialog
+#@onready var empty_dialog: AcceptDialog = $EmptyDialog
+#@onready var confirmation_dialog: ConfirmationDialog = $ConfirmationDialog
+@onready var back: Button1 = $back_tips/back
+
+@onready var empty_dialog1: Control = $empty_dialog
+@onready var ok_button: Button1 = $empty_dialog/holder/btn_ok
+
+@onready var accept_dialog1: Control = $accept_dialog
+@onready var ok_button2: Button1 = $accept_dialog/holder/btn_ok1
+@onready var label: Label = $accept_dialog/holder/subtitle
+
+@onready var submit_confirmation: Control = $Submit_confirmation
+@onready var window1: Window = $Submit_confirmation/Window
+@onready var yes_button: Button1 = $Submit_confirmation/Window/Yes
+@onready var cancel_button: Button1 = $Submit_confirmation/Window/Cancel
+@onready var label2: Label = $Submit_confirmation/Window/Label
+
+@onready var clear_confirmation: Control = $Clear_confirmation
+@onready var window2: Window = $Clear_confirmation/Window
+@onready var yes_button2: Button1 = $Clear_confirmation/Window/Yes
+@onready var cancel_button2: Button1 = $Clear_confirmation/Window/Cancel
+@onready var label3: Label = $Clear_confirmation/Window/Label
+
+@onready var exit_confirmation: Control = $Exit_confirmation
+@onready var window3: Window = $Exit_confirmation/Window
+@onready var yes_button3: Button1 = $Exit_confirmation/Window/Yes
+@onready var cancel_button3: Button1 = $Exit_confirmation/Window/Cancel
+@onready var label4: Label = $Exit_confirmation/Window/Label
 
 const BASIS_33 = preload("res://assets/fonts/basis33.ttf")
 const MAX_SCREENSHOT_SIZE_MB = 6
@@ -21,13 +47,24 @@ var pending_action: String = ""
 var file_picker = null 
 
 func _ready() -> void:
-	accept_dialog.hide()
+	accept_dialog1.hide()
 	menu_loading_screen.hide()
-	empty_dialog.hide()
+	empty_dialog1.hide()
+	
 	file_dialog.filters = ["*.png ; PNG Images", "*.jpg ; JPEG Images"]
 	file_dialog.file_selected.connect(Callable(self, "_on_file_selected"))
 	_style_popup(bug_type_popup)
-
+	
+	back.pressed.connect(_on_back_pressed)
+	ok_button.pressed.connect(_on_btn_ok_pressed)
+	ok_button2.pressed.connect(_on_btn_ok1_pressed)
+	cancel_button.pressed.connect(_on_cancel_pressed)
+	cancel_button2.pressed.connect(_on_cancel_pressed)
+	cancel_button3.pressed.connect(_on_cancel_pressed)
+	yes_button.pressed.connect(_submit_bug_report)
+	yes_button2.pressed.connect(_clear_report_fields)
+	yes_button3.pressed.connect(_on_yes_button3_pressed)
+	
 	print("Engine.get_singleton_list(): ", Engine.get_singleton_list())
 	if Engine.has_singleton("GodotFilePicker"):
 		file_picker = Engine.get_singleton("GodotFilePicker")
@@ -57,8 +94,8 @@ func _on_file_selected(path: String):
 		size = file.get_length()
 	print("File selected: %s, Size: %d bytes" % [path, size])
 	if size > MAX_SCREENSHOT_SIZE:
-		accept_dialog.dialog_text = "Selected image is too large (max %d MB).\nPlease select a smaller file." % MAX_SCREENSHOT_SIZE_MB
-		accept_dialog.popup_centered()
+		label.text = "Selected image is too large (max %d MB).\nPlease select a smaller file." % MAX_SCREENSHOT_SIZE_MB
+		#accept_dialog.popup_centered()
 		return
 	uploader.text = path
 	var image = Image.new()
@@ -75,8 +112,8 @@ func _on_file_picked(temp_path: String, mime_type: String) -> void:
 		size = file.get_length()
 	print("Picked file: %s, Size: %d bytes" % [temp_path, size])
 	if size > MAX_SCREENSHOT_SIZE:
-		accept_dialog.dialog_text = "Screenshot is too large (max %d MB).\nPlease select a smaller file." % MAX_SCREENSHOT_SIZE_MB
-		accept_dialog.popup_centered()
+		label.text = "Screenshot is too large (max %d MB).\nPlease select a smaller file." % MAX_SCREENSHOT_SIZE_MB
+		#accept_dialog.popup_centered()
 		return
 	uploader.text = temp_path
 	var image = Image.new()
@@ -110,22 +147,40 @@ func _show_confirm_dialog(action: String):
 	pending_action = action
 	if action == "submit":
 		if text_edit.text == "" or text_edit.text.is_empty():
-			empty_dialog.show()
+			empty_dialog1.show()
 			return
-		_dialog_config("submit", "Are you sure you want to submit this report?")
+		_show_submit_confirm_dialog("submit", "Are you sure you want to submit this report?")
 	elif action == "clear":
-		_dialog_config("clear", "Are you sure you want to clear this report?")
+		_show_clear_confirm_dialog("clear", "Are you sure you want to clear this report?")
 	elif action == "exit":
 		if text_edit.text != "":
-			_dialog_config("exit", "Exiting will discard the report.")
+			_show_exit_confirm_dialog("exit", "Exiting will discard the report.")
 		else:
 			SignalBus.exit_overlay.emit()
 			queue_free()
 
-func _dialog_config(action: String, dialog_text: String):
+func _show_submit_confirm_dialog(action: String, text: String):
 	pending_action = action
-	confirmation_dialog.dialog_text = dialog_text
-	confirmation_dialog.popup_centered()
+	submit_confirmation.show()
+	window1.show()
+	label2.text = text
+
+func _show_clear_confirm_dialog(action: String, text: String):
+	pending_action = action
+	clear_confirmation.show()
+	window2.show()
+	label3.text = text
+
+func _show_exit_confirm_dialog(action: String, text: String):
+	pending_action = action
+	exit_confirmation.show()
+	window3.show()
+	label4.text = text
+	
+#func _dialog_config(action: String, text: String):
+	 #pending_action = action
+	#label2.text = text
+	#confirmation_dialog.popup_centered()
 
 func _on_confirmation_dialog_confirmed() -> void:
 	_confirm_action()
@@ -142,6 +197,8 @@ func _confirm_action() -> void:
 			queue_free()
 
 func _clear_report_fields() -> void:
+	clear_confirmation.hide()
+	window2.hide()
 	text_edit.text = ""
 	bug_type.select(0)
 	ss_preview.texture = null
@@ -149,6 +206,8 @@ func _clear_report_fields() -> void:
 
 # BUG REPORT SUBMISSION
 func _submit_bug_report():
+	submit_confirmation.hide()
+	window1.hide()
 	var user_name = Session.username
 	if user_name == "":
 		user_name = "Anonymous"
@@ -215,10 +274,10 @@ func _on_request_completed(result: int, response_code: int, headers: Array, body
 
 func _report_feedback_success_or_not(res_code: int)->void:
 	if res_code != 200:
-		accept_dialog.dialog_text = "An error occured when trying to submit your report, please try again later."
+		label.text = "An error occured when trying to submit your report, please try again later."
 	else:
-		accept_dialog.dialog_text = "Your report was successfully submitted."
-	accept_dialog.show()
+		label.text = "Your report was successfully submitted."
+	accept_dialog1.show()
 	menu_loading_screen.hide()
 
 func on_internet_status_changed(has_internet: bool) -> void:
@@ -226,3 +285,24 @@ func on_internet_status_changed(has_internet: bool) -> void:
 		pass
 	else:
 		print("No internet here, show warning or disable buttons.")
+
+func _on_back_pressed():
+	_show_confirm_dialog("exit")
+	#SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
+
+func _on_yes_button3_pressed():
+	SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
+
+func _on_btn_ok_pressed():
+	empty_dialog1.hide()
+	
+func _on_btn_ok1_pressed():
+	accept_dialog1.hide()
+
+func _on_cancel_pressed():
+	submit_confirmation.hide()
+	window1.hide()
+	clear_confirmation.hide()
+	window2.hide()
+	exit_confirmation.hide()
+	window3.hide()
