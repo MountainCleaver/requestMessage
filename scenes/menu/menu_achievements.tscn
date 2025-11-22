@@ -149,19 +149,9 @@ size_flags_horizontal = 3
 [node name="HBoxContainer" type="HBoxContainer" parent="achievement_holder/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
+
 [node name="back_tips" parent="." instance=ExtResource("3_7pa5u")]
 layout_mode = 1
-offset_left = -343.0
-offset_top = -107.0
-offset_right = -343.0
-offset_bottom = -107.0
-
-[node name="back" parent="back_tips" index="1"]
-offset_left = 17.0
-offset_top = -56.0
-offset_right = 292.0
-offset_bottom = 59.0
-
-[node name="bgm_player" type="AudioStreamPlayer2D" parent="."]
 
 [editable path="back_tips"]

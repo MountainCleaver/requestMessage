@@ -90,7 +90,6 @@ func _input(event: InputEvent) -> void:
 func _on_back_pressed() -> void:
 	SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
 
-
 func _on_leaderboard_fetched(result, response_code, headers, body):
 	loading_label.visible = false 
 	h_separator.visible = true 

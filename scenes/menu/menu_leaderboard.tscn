@@ -65,13 +65,6 @@ text = "LEADERBOARD"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="back_tips" parent="." instance=ExtResource("7_513ev")]
-layout_mode = 1
-offset_left = -566.0
-offset_top = -1004.0
-offset_right = -566.0
-offset_bottom = -1004.0
-
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 520.0
@@ -535,9 +528,12 @@ vertical_alignment = 1
 [node name="ColorRect" parent="menu_loading_screen" index="0"]
 visible = false
 
-[connection signal="pressed" from="back_tips/back" to="." method="_on_back_pressed"]
+[node name="back_tips" parent="." instance=ExtResource("7_513ev")]
+layout_mode = 1
+
 [connection signal="pressed" from="HBoxContainer/completion_button" to="." method="_on_completion_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/achievements_button" to="." method="_on_achievements_button_pressed"]
+[connection signal="pressed" from="back_tips/back" to="." method="_on_back_pressed"]
 
-[editable path="back_tips"]
 [editable path="menu_loading_screen"]
+[editable path="back_tips"]
