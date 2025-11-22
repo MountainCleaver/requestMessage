@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6dp8vnyir66p"]
+[gd_scene load_steps=4 format=3 uid="uid://c6dp8vnyir66p"]
 
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="1_682dg"]
+[ext_resource type="Script" uid="uid://cbnwlm7gjlhk4" path="res://scenes/menu/scripts/version_num_major_minor_patch_pattern.gd" id="2_831kn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_syoi4"]
 font = ExtResource("1_682dg")
@@ -10,7 +11,7 @@ font_size = 24
 z_index = 1
 offset_right = 225.0
 offset_bottom = 51.0
-text = "Version 1.1.0"
 label_settings = SubResource("LabelSettings_syoi4")
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("2_831kn")
