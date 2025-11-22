@@ -126,6 +126,12 @@ energy = 0.4
 
 [node name="CanvasLayer2" parent="." instance=ExtResource("6_pbfas")]
 
+[node name="navigation_lights" type="Node2D" parent="."]
+position = Vector2(133, -118)
+
+[node name="navigation_home" type="Marker2D" parent="navigation_lights"]
+position = Vector2(2, -2)
+
 [connection signal="body_entered" from="danilo_hometown/y-sorted-objects/tricycle/tricycle_area" to="." method="_on_tricycle_area_body_entered"]
 [connection signal="body_exited" from="danilo_hometown/y-sorted-objects/tricycle/tricycle_area" to="." method="_on_tricycle_area_body_exited"]
 [connection signal="body_entered" from="danilo_hometown/y-sorted-objects/areas/karatula_area" to="." method="_on_karatula_area_body_entered"]

@@ -203,10 +203,10 @@ action = "map"
 
 [node name="Guide" type="Panel" parent="Map"]
 visible = false
-offset_left = -631.0
-offset_top = -302.67807
-offset_right = -303.0
-offset_bottom = -222.67807
+offset_left = -620.5
+offset_top = -254.1688
+offset_right = -292.5
+offset_bottom = -174.1688
 theme_override_styles/panel = SubResource("StyleBoxFlat_4rjjm")
 
 [node name="Label" type="Label" parent="Map/Guide"]
@@ -229,17 +229,17 @@ text = "A map… maybe it will help."
 horizontal_alignment = 1
 
 [node name="Flashlight" type="TouchScreenButton" parent="."]
-visible = false
 position = Vector2(1884, 773.00006)
 scale = Vector2(2, 1.968)
 texture_normal = ExtResource("7_pvubn")
 action = "flashlight"
 
 [node name="Guide" type="Panel" parent="Flashlight"]
+visible = false
 offset_left = -564.0
-offset_top = -288.61786
+offset_top = -326.21948
 offset_right = -236.0
-offset_bottom = -208.61786
+offset_bottom = -246.21948
 theme_override_styles/panel = SubResource("StyleBoxFlat_4rjjm")
 
 [node name="Label" type="Label" parent="Flashlight/Guide"]
@@ -249,10 +249,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -148.5
-offset_top = -91.3212
-offset_right = 221.5
-offset_bottom = -27.321198
+offset_left = -143.5
+offset_top = -6.463478
+offset_right = 226.5
+offset_bottom = 57.536522
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.40784314)

@@ -4,7 +4,6 @@ extends Control
 @onready var line_edit_password: LineEdit = $holder/line_edit_password
 @onready var login_error: Label = $holder/login_error
 @onready var btn_login: Button = $holder/btn_login
-@onready var login_link: Button = $holder/login_link
 @onready var signup_link: Button = $holder/signup_link
 @onready var forgot_pass: Button = $holder/forgot_pass
 @onready var http: HTTPRequest = find_child("HTTP_request")

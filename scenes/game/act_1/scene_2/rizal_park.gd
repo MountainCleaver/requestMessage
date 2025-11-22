@@ -39,7 +39,7 @@ var lights: Array = []
 var show_navigation := false
 var max_lights := 100
 var base_distance := 200.0
-var light_scene := preload("res://assets/tilesets/nav_light.tscn") 
+var light_scene := preload("res://assets/tilesets/nav_light.png") 
 
 # OBJECTIVES
 var scene_objectives = [
