@@ -563,12 +563,11 @@ position = Vector2(109, 93.5)
 shape = SubResource("RectangleShape2D_wp4ah")
 
 [node name="npc" type="Area2D" parent="bus_terminal/y-sorted2/npcs_collidable/StaticBody2D"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bus_terminal/y-sorted2/npcs_collidable/StaticBody2D/npc"]
 position = Vector2(109, 93)
 shape = SubResource("RectangleShape2D_dgv4f")
-debug_color = Color(0.67107624, 0.50277305, 0.22725758, 0.41960785)
+debug_color = Color(0.96862745, 0, 0.47058824, 1)
 
 [node name="jeep" parent="bus_terminal/y-sorted2" instance=ExtResource("9_wp4ah")]
 position = Vector2(429.00003, 38)

@@ -169,6 +169,7 @@ func _input(event: InputEvent) -> void:
 
 	# === 2️⃣ NPC INTERACTION ===
 	elif target == "ticket_npc":
+		SignalBus.out_npc.emit("")
 		if looked_bus["santa_claridad"] == false:
 			DialogueManager.show_dialogue_balloon(A_2S_3, "Npc")
 			return
@@ -180,6 +181,7 @@ func _input(event: InputEvent) -> void:
 		print("Interacting with NPC")
 		player_danilo.force_cannot_move = true
 		DialogueManager.show_dialogue_balloon(A_2S_3, "Buy_ticket")
+		npc_area.queue_free()
 		npc_talked = true
 		enable_bus_trigger()
 		enable_phone_trigger()
@@ -324,7 +326,6 @@ func _on_phone_trigger_body_entered(body: Node2D) -> void:
 	player_danilo.force_cannot_move = false
 	player_danilo.can_move = true
 	player_danilo.can_interact = true
-	enable_bus_interact()
 	
 func _on_chat_opened(chat_name: String) -> void:
 	if chat_name == "unknown_sender" and not unknown_sender_opened:

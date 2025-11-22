@@ -217,7 +217,7 @@ offset_right = -84.0
 offset_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
-tooltip_text = "Enter your username here."
+tooltip_text = "Enter your code here."
 theme = SubResource("Theme_5e87u")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.641934, 0.641934, 0.641934, 1)
@@ -243,6 +243,7 @@ offset_top = 1.66666
 offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.80238897, 0.11867022, 0.17352444, 1)
 
 [node name="btn_close" type="Button" parent="holder"]
 layout_mode = 0
@@ -258,7 +259,7 @@ flat = true
 [node name="holder2" parent="." instance=ExtResource("1_elv1p")]
 modulate = Color(0, 0, 0, 0.580392)
 layout_mode = 0
-offset_left = -313.0
-offset_top = -350.0
-offset_right = 1876.0
-offset_bottom = 1290.0
+offset_left = -282.0
+offset_top = -304.0
+offset_right = 1907.0
+offset_bottom = 1336.0
