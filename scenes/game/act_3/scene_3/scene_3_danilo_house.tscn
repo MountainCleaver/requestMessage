@@ -51,7 +51,6 @@ position = Vector2(0, 26)
 position = Vector2(-77, 2)
 
 [node name="sq_point" type="Marker2D" parent="danilo_hometown_house/y-sorted/spawn_points"]
-position = Vector2(-36, 2)
 
 [node name="out_bed_point" type="Marker2D" parent="danilo_hometown_house/y-sorted/spawn_points"]
 position = Vector2(-45, -18)

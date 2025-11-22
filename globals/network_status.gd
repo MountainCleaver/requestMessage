@@ -66,7 +66,9 @@ func check_internet_connection() -> void:
 
 	# Use Time.get_ticks_msec() for timestamp
 	ping_start_time_ms = Time.get_ticks_msec()
-	var err = http_request.request("https://www.google.com/generate_204")
+	
+	var err = http_request.request(_get_ping_url())
+	
 	if err != OK:
 		_on_connection_timeout()
 		checking = false
@@ -184,3 +186,19 @@ func _notify_current_scene() -> void:
 	var current_scene = get_tree().current_scene
 	if current_scene and current_scene.has_method("on_internet_status_changed"):
 		current_scene.call("on_internet_status_changed", has_internet)
+
+
+# pag yung google generate 204, panay reconnect. So sa approach na to, mag piping nalang ng text file (ping.txt) nasa same folder/zip lang ng index.html (and other files)
+func _get_ping_url () -> String:
+	if not OS.has_feature("web"):
+		return "https://www.google.com/generate_204" # if pc
+	
+	var base_url : String = JavaScriptBridge.eval("window.location.href")
+	
+	if base_url.contains("index.html"): # remove index.html if present
+		base_url = base_url.replace("index.html", "")
+	
+	if not base_url.ends_with("/"):
+		base_url += "/"
+	
+	return base_url + "ping.txt"

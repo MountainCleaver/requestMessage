@@ -149,7 +149,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_586vk"]
-size = Vector2(80, 24)
+size = Vector2(132, 38)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xjrp6"]
 shader = ExtResource("8_gy71r")
@@ -230,7 +230,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_586vk")
 
 [node name="BGM_CHASE" type="AudioStreamPlayer" parent="."]
