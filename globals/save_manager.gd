@@ -617,7 +617,8 @@ func _merge_online_save(online_data: Dictionary) -> void:
 	# Merge karma and meds_taken
 	game_save.karma = max(game_save.karma, online_data.karma)
 	game_save.meds_taken = max(game_save.meds_taken, online_data.meds_taken)
-
+	game_save.playtime_seconds = max(game_save.playtime_seconds, online_data.playtime_seconds)
+	
 	# ===== NEW: Merge unlocked achievements =====
 	if online_data.has("unlocked_achievements"):
 		for ach_id in online_data.unlocked_achievements:
