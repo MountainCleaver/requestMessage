@@ -9,9 +9,7 @@ extends Control
 @onready var metal: Button = $Panel/MarginContainer/vbox_all/vbox_gender/genders_container/metal
 
 @onready var btn_accept: Button = $Panel/MarginContainer/vbox_all/vbox_enter/HBoxContainer/btn_accept
-
 @onready var button: Button = $Button
-
 @onready var error_label: Label = $Panel/MarginContainer/vbox_all/error_label  
 
 const BASIS_33 = preload("res://assets/fonts/basis33.ttf")
@@ -55,6 +53,10 @@ func _on_year_text_changed(new_text: String) -> void:
 	var cleaned := regex.sub(new_text, "", true)
 	if cleaned != new_text:
 		year_line.text = cleaned
+	
+	# Enforce exactly 4 digits for the year
+	if cleaned.length() > 4:
+		year_line.text = ""
 
 func _is_leap_year(year: int) -> bool:
 	return year % 400 == 0 or (year % 4 == 0 and year % 100 != 0)

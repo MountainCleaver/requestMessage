@@ -4,15 +4,8 @@ extends Control
 @onready var back: Button1 = $back_tips/back
 
 func _ready():
-	# Safe signal connection for mobile
-	if btn_accept and btn_accept is Button1:
-		btn_accept.pressed.connect(_on_accept_pressed)
-	else:
-		print("btn_accept missing or not of type Button1!")
-	if back and back is Button1:
-		back.pressed.connect(_on_back_pressed)
-	else:
-		print("back missing or not of type Button1!")
+	btn_accept.pressed.connect(_on_accept_pressed)
+	back.pressed.connect(_on_back_pressed)
 
 func _on_accept_pressed():
 	SignalBus.next_scene.emit("res://scenes/menu/menu_create_acc_bday_gender.tscn")

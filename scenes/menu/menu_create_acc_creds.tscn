@@ -60,6 +60,7 @@ offset_bottom = 1025.0
 mouse_filter = 2
 
 [node name="verify_email" parent="." instance=ExtResource("8_qifdf")]
+visible = false
 layout_mode = 1
 
 [editable path="verify_email"]
