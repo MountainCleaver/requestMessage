@@ -705,26 +705,35 @@ func _karatula_interacted():
 		player_danilo.force_cannot_move = false
 
 func _ising_interacted() -> void:
-	if flashlight_dialogue_triggered:
-		return
-	flashlight_dialogue_triggered = true
-	can_talk_to_ising = false
-	if tip_interact:
-		tip_interact.visible = false
+	if not flashlight_dialogue_triggered:
+		flashlight_dialogue_triggered = true
+		can_talk_to_ising = false
+		if tip_interact:
+			tip_interact.visible = false
 
-	DialogueManager.show_dialogue_balloon(A_4S_1, "ising_give_flashlight")
-	await DialogueManager.dialogue_ended
-	Achievements.unlock_achievement(9)
-	ObjectiveManager.complete_objective(999)
-	
+		DialogueManager.show_dialogue_balloon(A_4S_1, "ising_give_flashlight")
+		await DialogueManager.dialogue_ended
+		Achievements.unlock_achievement(9)
+		ObjectiveManager.complete_objective(999)
+		
+		FlashlightManager.unlock_real_flashlight()
+		FlashlightManager.real_flashlight_enabled = true
+		
+		# Make the flashlight node in scene visible
+		var flashlight_node = $explorer_hud/Flashlight
+		if flashlight_node:
+			flashlight_node.visible = true
+	else:
+		can_talk_to_ising = false 
+		if tip_interact:
+			tip_interact.visible = false
 
-	FlashlightManager.unlock_real_flashlight()
-	FlashlightManager.real_flashlight_enabled = true
-	
-	# Make the flashlight node in scene visible
-	var flashlight_node = $explorer_hud/Flashlight
-	if flashlight_node:
-		flashlight_node.visible = true
+		await DialogueManager.show_dialogue_balloon(A_4S_1, "ising_interact_after_flashlight")
+		await DialogueManager.dialogue_ended
+
+		can_talk_to_ising = true
+		if tip_interact:
+			tip_interact.visible = true
 
 func _on_phone_flashlight_enabled() -> void:
 	if phone_flashlight_complained:

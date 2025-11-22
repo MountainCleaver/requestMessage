@@ -31,6 +31,11 @@ Danilo: ...
 Danilo: Salamat, La. Una na po ako.
 => END
 
+~ ising_interact_after_flashlight
+Lola Ising: Mag-iingat ka sa daan, iho.
+Danilo: Salamat, La. Una na po ako.
+=> END
+
 ~ complain_phone_flashlight
 Danilo: Medyo mahina 'tong gamit ko na flashlight sa phone ko.
 Danilo: Andilim pa naman sobra.

@@ -31,6 +31,11 @@ Danilo: ...
 Danilo: Thank you, La. I’ll go first.
 => END
 
+~ ising_interact_after_flashlight
+Lola Ising: Be careful on your way, iho.
+Danilo: Thank you, La. I’ll go first.
+=> END
+
 ~ complain_phone_flashlight
 Danilo: This phone flashlight is barely strong enough.
 Danilo: And it’s pitch dark outside.
