@@ -26,9 +26,12 @@ Wendy: Hindi ko siya matawagan... hindi siya sumasagot.
 Wendy: ... ...
 => END
 
+~ call_mira
+Wendy: ... ...
+=> END
+
 ~ call_mira_convo
 do ObjectiveManager.complete_objective(2)
-Wendy: ... ...
 Wendy: Hi tita. 
 Wendy: Gusto ko lang po itanong kung andiyan po ba sa inyo si Danilo?
 Wendy: Hindi po kasi siya sumasagot sa mga calls and messages ko.
