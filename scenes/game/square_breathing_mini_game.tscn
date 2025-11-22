@@ -5,9 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://cllwj6fgsc604" path="res://assets/character_sprites/Free Chicken Sprites.png" id="3_edyvy"]
 [ext_resource type="Texture2D" uid="uid://bobdq5721hbfn" path="res://assets/mini-game/skip.png" id="4_sssnd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_edyvy"]
-size = Vector2(60, 60)
-
 [sub_resource type="Animation" id="Animation_sssnd"]
 length = 0.001
 tracks/0/type = "value"
@@ -392,14 +389,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2fiaa"]
 size = Vector2(24, 12)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edyvy"]
+size = Vector2(60, 60)
+
 [node name="square_breathing_mini_game" type="Node2D"]
-top_level = true
 script = ExtResource("1_08aju")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_edyvy")
 
 [node name="base" type="Sprite2D" parent="."]
 scale = Vector2(1.1999998, 1.1999999)
@@ -436,9 +430,11 @@ offset_left = -36.0
 offset_top = -44.0
 offset_right = 37.0
 offset_bottom = -34.0
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 4
 bbcode_enabled = true
 text = "Square Breathing Mini Game!"
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -455,8 +451,12 @@ texture = ExtResource("4_sssnd")
 [node name="skip_area" type="Area2D" parent="skip_sprite"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="skip_sprite/skip_area"]
-position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_2fiaa")
 
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_edyvy")
+
 [connection signal="input_event" from="skip_sprite/skip_area" to="." method="_on_skip_area_input_event"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

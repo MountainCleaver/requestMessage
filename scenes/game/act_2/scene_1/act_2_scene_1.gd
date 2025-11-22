@@ -44,6 +44,7 @@ var call_end_disabled : bool = false
 var current_location: Node = null
 var buzz_timer: Timer
 var phone_instance: Control = null
+var call_rejected : bool = false
 
 # === SIGNALS ===
 signal unknown_sender_calling
@@ -338,6 +339,9 @@ func _on_answered_call_narration_panel() -> void:
 	scene_1_done()
 
 func _on_rejected_call() -> void:
+	if call_rejected:
+		return
+	call_rejected = true
 	DialogueManager.show_dialogue_balloon(A_2S_1, "reject_call")
 	await DialogueManager.dialogue_ended
 	_on_rejected_call_narration_panel()

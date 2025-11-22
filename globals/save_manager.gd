@@ -594,7 +594,7 @@ func _push_online_save(latest_act: String, latest_scene: String) -> void:
 		"latest_scene": latest_scene
 	}
 
-	print("[SaveManager] Sending online save for slot %d")
+	print("[SaveManager] Sending online save for slot %d" % current_slot)
 
 	var json_body = JSON.stringify(data)
 	request.request(url, ["Content-Type: application/json"], HTTPClient.METHOD_POST, json_body)
