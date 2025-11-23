@@ -315,8 +315,8 @@ func _input(event: InputEvent) -> void:
 				_clear_navigation_trail()
 				show_navigation = false
 				_clear_navigation_trail()
-				DialogueManager.show_dialogue_balloon(A_3S_3, "go_home")
 				await SignalBus.on_transition_finished
+				DialogueManager.show_dialogue_balloon(A_3S_3, "go_home")
 				Hud.clear_objectives()
 				ObjectiveManager.add_objective(scene_objectives[4]["ID"], scene_objectives[4]["text"])
 

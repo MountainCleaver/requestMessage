@@ -9,11 +9,15 @@ func _ready() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	SignalBus.in_npc.emit("door_inside")
+	if body.name == "player_danilo":
+		if SignalBus.bought_meds:
+			return
+		SignalBus.in_npc.emit("door_inside")
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	SignalBus.out_npc.emit("door_inside")
+	if body.name == "player_danilo":
+		SignalBus.out_npc.emit("")
 
 
 func _on_bed_area_body_entered(body: Node2D) -> void:
