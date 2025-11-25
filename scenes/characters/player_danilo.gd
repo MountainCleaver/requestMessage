@@ -30,6 +30,9 @@ var wind_source: Node2D = null
 @export var wind_check_length: float = 10.0
 @export var wind_block_mask: int = 1 << 0 
 
+# NEW: Track input priority for non-diagonal movement
+var input_priority: Array[String] = []
+
 func _ready() -> void:
 	DialogueManager.dialogue_started.connect(_on_dialogue_start)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_finish)
@@ -114,6 +117,24 @@ func _is_wind_blocked() -> bool:
 	return false
 
 func _unhandled_input(event: InputEvent) -> void:
+	# NEW: Track input priority for direction changes
+	if event.is_action_pressed("arrow_left"):
+		_add_to_priority("arrow_left")
+	elif event.is_action_pressed("arrow_right"):
+		_add_to_priority("arrow_right")
+	elif event.is_action_pressed("arrow_up"):
+		_add_to_priority("arrow_up")
+	elif event.is_action_pressed("arrow_down"):
+		_add_to_priority("arrow_down")
+	elif event.is_action_released("arrow_left"):
+		_remove_from_priority("arrow_left")
+	elif event.is_action_released("arrow_right"):
+		_remove_from_priority("arrow_right")
+	elif event.is_action_released("arrow_up"):
+		_remove_from_priority("arrow_up")
+	elif event.is_action_released("arrow_down"):
+		_remove_from_priority("arrow_down")
+	
 	if not can_player_move():
 		return
 
@@ -127,17 +148,31 @@ func _unhandled_input(event: InputEvent) -> void:
 		sfx_flashlight.play()
 		FlashlightManager.toggle_real_flashlight()
 
+# NEW: Helper functions for input priority
+func _add_to_priority(action: String) -> void:
+	# Remove if already exists (to update priority)
+	if action in input_priority:
+		input_priority.erase(action)
+	# Add to the end (most recent)
+	input_priority.append(action)
+
+func _remove_from_priority(action: String) -> void:
+	input_priority.erase(action)
 
 func _get_direction() -> Vector2:
 	var direction: Vector2 = Vector2.ZERO
-	if Input.is_action_pressed("arrow_left"):
-		direction.x = -1
-	elif Input.is_action_pressed("arrow_right"):
-		direction.x = 1
-	elif Input.is_action_pressed("arrow_up"):
-		direction.y = -1
-	elif Input.is_action_pressed("arrow_down"):
-		direction.y = 1
+	
+	# Use the most recently pressed direction that's still held
+	for i in range(input_priority.size() - 1, -1, -1):
+		var action = input_priority[i]
+		if Input.is_action_pressed(action):
+			match action:
+				"arrow_left": direction = Vector2.LEFT
+				"arrow_right": direction = Vector2.RIGHT
+				"arrow_up": direction = Vector2.UP
+				"arrow_down": direction = Vector2.DOWN
+			break
+	
 	return direction
 
 func _play_animation(direction: Vector2) -> void:
