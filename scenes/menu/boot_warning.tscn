@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://h36f1ipl8glj"]
+[gd_scene load_steps=17 format=3 uid="uid://h36f1ipl8glj"]
 
 [ext_resource type="Script" uid="uid://bjgba84tfg2i" path="res://scenes/menu/scripts/boot_warning.gd" id="1_lmbvh"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_bfe6o"]
@@ -77,6 +77,11 @@ _data = {
 &"RESET": SubResource("Animation_dnn63"),
 &"loading_pck": SubResource("Animation_qiyby")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_dnn63"]
+font = ExtResource("3_bfe6o")
+font_size = 22
+font_color = Color(1, 0.7411765, 0.72156864, 1)
 
 [node name="boot_warning" type="Control"]
 layout_mode = 3
@@ -290,6 +295,24 @@ libraries = {
 &"": SubResource("AnimationLibrary_dnn63")
 }
 autoplay = "loading_pck"
+
+[node name="loading_sub_text" type="Label" parent="pck_loading_text"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -114.0
+offset_top = -23.0
+offset_right = 114.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Please don't leave"
+label_settings = SubResource("LabelSettings_dnn63")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
 
 [node name="outdated_version" parent="." instance=ExtResource("7_dnn63")]
 visible = false
