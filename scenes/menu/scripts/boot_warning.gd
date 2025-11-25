@@ -6,6 +6,7 @@ extends Control
 @onready var proceed: Panel = $proceed
 @onready var button: Button = $proceed/Button
 @onready var pck_loading_text: Label = $pck_loading_text
+@onready var loading_sub_text: Label = $pck_loading_text/loading_sub_text
 
 # --- VERSION CHECK NODES ---
 @onready var version_label: Label = $menu_background/Version_Num_Major_Minor_Patch_pattern
@@ -53,8 +54,8 @@ func _ready() -> void:
 	logged_in = not user_data.is_empty()
 	button.pressed.connect(_on_proceed_pressed)
 
-	_fade_in_splash()
-	_check_version()
+	#_fade_in_splash()
+	#_check_version()
 
 	if OS.has_feature("web"):
 		print("Web platform detected")
@@ -64,6 +65,7 @@ func _ready() -> void:
 		print("Desktop platform detected")
 		pck_loaded = true
 		_fade_in_splash()
+		_check_version()
 
 
 func _process(delta: float) -> void:
@@ -245,8 +247,9 @@ func _load_pck_for_web () -> void:
 		print("Failed to initiate pck request.")
 		print("error code: " + error)
 		pck_loading = false
-		pck_loading_text.hide()
-		_fade_in_splash()
+		#pck_loading_text.hide()
+		#_fade_in_splash()
+		loading_sub_text.text = "Loading failed, please restart your browser."
 		return
 
 func _on_pck_downloaded (result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
@@ -254,8 +257,9 @@ func _on_pck_downloaded (result: int, response_code: int, headers: PackedStringA
 	
 	if result != HTTPRequest.RESULT_SUCCESS or response_code != 200 or body.size() == 0:
 		print("Failed to dowload PCK")
-		pck_loading_text.hide()
-		_fade_in_splash()
+		#pck_loading_text.hide()
+		#_fade_in_splash()
+		loading_sub_text.text = "Loading failed, please restart your browser."
 		return
 	
 	var path = "user://other_audio.pck"
@@ -269,11 +273,13 @@ func _on_pck_downloaded (result: int, response_code: int, headers: PackedStringA
 	pck_loaded = ok
 	if ok:
 		print("PCK loading SUCCESSFUL")
+		pck_loading_text.hide()
+		_fade_in_splash()
 	else:
 		print("PCK loading FAILED")
-	
+		loading_sub_text.text = "Loading failed, please restart your browser."
 	if http_request:
 		http_request.queue_free()
 	
-	pck_loading_text.hide()
-	_fade_in_splash()
+	
+	
