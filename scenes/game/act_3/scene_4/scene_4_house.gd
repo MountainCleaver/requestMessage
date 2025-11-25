@@ -81,6 +81,8 @@ func _tween_camera_to_center() -> void:
 
 func _on_door_area_body_entered(body: Node2D) -> void:
 	if body.name == "player_danilo":
+		if SignalBus.asked_neighbors_done:
+			return
 		SignalBus.in_npc.emit("door_inside")
 
 
