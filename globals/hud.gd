@@ -45,7 +45,13 @@ func done_objective(obj_ID: int, objective: String, check_color: Color = Color.D
 				if obj.get_meta("ID") == obj_ID:
 					var hex_color = "#" + check_color.to_html(false)
 					obj.bbcode_enabled = true
-					obj.text = "[color=%s][[b]✓[/b]] [/color]%s" % [hex_color, objective]
+					
+					if OS.has_feature("web"):
+						obj.text = "[color=%s][[b]√[/b]] [/color]%s" % [hex_color, objective]
+						print('web objective done')
+					else:
+						obj.text = "[color=%s][[b]✓[/b]] [/color]%s" % [hex_color, objective]
+						print('desktop objective done')
 
 					if panel.has_theme_stylebox_override("panel"):
 						var style: StyleBoxFlat = panel.get_theme_stylebox("panel").duplicate() as StyleBoxFlat
