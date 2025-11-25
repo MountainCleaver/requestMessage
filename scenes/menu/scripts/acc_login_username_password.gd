@@ -20,6 +20,9 @@ func _ready() -> void:
 	menu_loading_screen.hide()
 	forgot_pass.pressed.connect(_on_forgot_pass_pressed)
 	toggle_password_visibility.connect("toggled", Callable(self, "_on_toggle_visibility_toggled"))
+	
+	if OS.has_feature("web"):
+		line_edit_password.secret_character = "·"
 
 
 func _input(event: InputEvent) -> void:

@@ -13,7 +13,8 @@ extends Control
 @onready var menu_loading_screen: CanvasLayer = $"../menu_loading_screen"
 @onready var toggle_visibility: TextureButton = $holder/line_edit_password/toggle_visibility
 @onready var toggle_visibility_confirm: TextureButton = $holder/line_edit_password_confirm/toggle_visibility_confirm
-@onready var err_username: Label = $holder/err_username
+#@onready var err_username: Label = $holder/err_username
+@onready var err_username: Label = $holder/title/err_username
 
 var email_verified: bool = false
 var last_verified_email: String = ""
@@ -33,6 +34,11 @@ func _ready() -> void:
 	toggle_visibility.toggled.connect(_on_toggle_visibility_toggled)
 	toggle_visibility_confirm.toggled.connect(_on_toggle_visibility_confirm_toggled)
 	line_edit_email.text_changed.connect(_on_email_text_changed)
+
+	if OS.has_feature("web"):
+		line_edit_password.secret_character = "·"
+		line_edit_password_confirm.secret_character = "·"
+		verify.remove_theme_font_override("font")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action("escape"):
