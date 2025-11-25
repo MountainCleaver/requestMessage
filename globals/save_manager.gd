@@ -622,9 +622,10 @@ func _merge_online_save(online_data: Dictionary) -> void:
 	# ===== NEW: Merge unlocked achievements =====
 	if online_data.has("unlocked_achievements"):
 		for ach_id in online_data.unlocked_achievements:
-			if ach_id not in game_save.unlocked_achievements:
-				game_save.unlocked_achievements.append(ach_id)
-
+			var id_int = int(ach_id)  # convert float to int
+			if id_int not in game_save.unlocked_achievements:
+				game_save.unlocked_achievements.append(id_int)
+				
 	# Update current act & scene to latest in finished_scenes
 	var latest_act = ""
 	var latest_scene = ""
@@ -697,7 +698,7 @@ func _push_achievement_online(achievement_id: int) -> void:
 
 	var data = {
 		"user_id": current_user_id,
-		"unlocked_achievements": game_save.unlocked_achievements
+		"unlocked_achievements": game_save.unlocked_achievements.map(func(x): return int(x)) # ensure ints
 	}
 
 	var json_data = JSON.stringify(data)
@@ -708,3 +709,62 @@ func _push_achievement_online(achievement_id: int) -> void:
 		json_data
 	)
 	print("[Achievements] Sent achievements to server:", data)
+
+	# Immediately merge locally to ensure UI consistency
+	for ach in data["unlocked_achievements"]:
+		if ach not in game_save.unlocked_achievements:
+			game_save.unlocked_achievements.append(ach)
+
+	save_game()
+
+
+func fetch_online_achievements() -> void:
+	if current_user_id == 0:
+		print("[Achievements] No user logged in, cannot fetch online achievements.")
+		return
+
+	var url = "https://requestmessage-admin.onrender.com/api/get_achievements.php?user_id=%d" % current_user_id
+	var request = HTTPRequest.new()
+	add_child(request)
+	request.connect("request_completed", Callable(self, "_on_achievements_fetched"))
+	request.request(url)  # GET by default
+
+
+
+func _on_achievements_fetched(result, response_code, headers, body):
+	if response_code != 200:
+		print("[Achievements] Failed to fetch achievements, code:", response_code)
+		return
+
+	var body_text = body.get_string_from_utf8()
+	var parse_result = JSON.parse_string(body_text)  # returns Dictionary in Godot 4
+	if typeof(parse_result) != TYPE_DICTIONARY:
+		print("[Achievements] Failed to parse JSON, got:", typeof(parse_result))
+		return
+
+	if not parse_result.has("success") or not parse_result["success"]:
+		print("[Achievements] API returned failure:", parse_result)
+		return
+
+	var online_achievements = parse_result.get("result", {}).get("unlocked_achievements", [])
+	if online_achievements.size() == 0:
+		print("[Achievements] No achievements found online.")
+		return
+
+	# Merge online achievements into local save
+	if not game_save.unlocked_achievements:
+		game_save.unlocked_achievements = []
+
+	for ach_id in online_achievements:
+		var id_int = int(ach_id)  # convert float/string to int
+		if id_int not in game_save.unlocked_achievements:
+			game_save.unlocked_achievements.append(id_int)
+
+	save_game()
+	print("[Achievements] Online achievements merged:", online_achievements)
+
+	# Optional: Refresh achievements UI
+	if Engine.has_singleton("Achievements"):
+		var achievements_menu = Engine.get_singleton("Achievements")
+		if achievements_menu:
+			achievements_menu._refresh_achievements_from_save()

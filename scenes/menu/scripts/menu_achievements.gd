@@ -126,18 +126,23 @@ var index := 1
 # ------------------------------------------
 func _ready() -> void:
 	achievement_panel.visible = true
-	_generate_achievement_list()
 	back_button.pressed.connect(_on_back_pressed)
-	
-	_refresh_achievements_from_save()
+
+	# Connect signals
+	SignalBus.online_save_merged.connect(_refresh_achievements_from_save)
+	Achievements.connect("achievement_unlocked", Callable(self, "_on_achievement_unlocked"))
+
+	# Generate achievement buttons first (all locked by default)
+	_generate_achievement_list()
+
+	# Then fetch online achievements (async), which will trigger _refresh_achievements_from_save()
+	SaveManager.fetch_online_achievements()
+
+	# Debug: print local achievements
 	if SaveManager.game_save:
-		print("Unlocked achievements:", SaveManager.game_save.unlocked_achievements)
+		print("Local unlocked achievements (pre-fetch):", SaveManager.game_save.unlocked_achievements)
 	else:
 		print("No save loaded yet.")
-
-	SignalBus.online_save_merged.connect(_refresh_achievements_from_save)
-
-	Achievements.connect("achievement_unlocked", Callable(self, "_on_achievement_unlocked"))
 
 
 
@@ -209,27 +214,34 @@ func _generate_achievement_list():
 
 
 func _refresh_achievements_from_save():
+	if not SaveManager.game_save:
+		print("[Achievements] No game_save loaded yet, skipping refresh.")
+		return
+
 	var unlocked_ids: Array[int] = []
 
+	# Collect unlocked achievement IDs safely
 	for a in SaveManager.game_save.unlocked_achievements:
-		if typeof(a) == TYPE_STRING:
+		if typeof(a) in [TYPE_INT, TYPE_FLOAT, TYPE_STRING]:
 			unlocked_ids.append(int(a))
-		elif typeof(a) == TYPE_INT:
-			unlocked_ids.append(a)
+		else:
+			print("[Achievements] Warning: unknown type in unlocked_achievements:", typeof(a), a)
 
+	# Update achievement buttons
 	for hbox in list_container.get_children():
 		for btn in hbox.get_children():
 			var id = btn.get_meta("id")
+			if typeof(id) in [TYPE_STRING, TYPE_FLOAT]:
+				id = int(id)
+			if typeof(id) != TYPE_INT:
+				continue  # skip invalid types
 
-			if typeof(id) == TYPE_STRING:
-				id = id.to_int()
-			elif typeof(id) != TYPE_INT:
-				continue
+			# THIS LINE ensures the material reflects the latest unlocked achievements
+			btn.material = null if id in unlocked_ids else shader_material
 
-			if id in unlocked_ids:
-				btn.material = null
-			else:
-				btn.material = shader_material
+	print("[Achievements] Achievements refreshed, unlocked_ids:", unlocked_ids)
+
+
 
 				
 # ------------------------------------------
