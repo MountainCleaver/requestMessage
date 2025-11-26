@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_bfe6o"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_lmbvh"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_bfe6o"]
-[ext_resource type="FontFile" uid="uid://nrk50wsrjv46" path="res://assets/fonts/BIZUDGothic-Regular.ttf" id="4_ko7o7"]
+[ext_resource type="Texture2D" uid="uid://c1rniiq675dvj" path="res://assets/main menu/menu_warning.png" id="4_38u3f"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="5_wvjlt"]
 [ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="6_qiyby"]
 [ext_resource type="PackedScene" uid="uid://djebe20bidrr7" path="res://scenes/menu/outdated_version.tscn" id="7_dnn63"]
@@ -145,16 +145,10 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="warning_icon" type="Label" parent="warning_holder/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="warning_holder/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.133333, 0, 1)
-theme_override_fonts/font = ExtResource("4_ko7o7")
-theme_override_font_sizes/font_size = 40
-text = "
-⚠︎
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture = ExtResource("4_38u3f")
+stretch_mode = 3
 
 [node name="warning_title" type="Label" parent="warning_holder/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
