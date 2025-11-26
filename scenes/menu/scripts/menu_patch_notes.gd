@@ -45,9 +45,15 @@ func _on_patch_response(result, response_code, headers, body):
 	version_label.text = "Version " + str(data.version)
 	var date_only = str(data.release_date).split(" ")[0]
 	date_label.text = "Updated: " + date_only
-	notes_label.text = data.patch_notes
+
+	var raw_notes = str(data.patch_notes)
+	raw_notes = raw_notes.replace("【", "[b]【[/b]")
+	raw_notes = raw_notes.replace("】", "[b]】[/b]")
+	raw_notes = raw_notes.replace("•", "[b]•[/b]")
+	notes_label.parse_bbcode(raw_notes)
 
 	patch_holder.visible = true
+
 
 
 func _input(event: InputEvent) -> void:

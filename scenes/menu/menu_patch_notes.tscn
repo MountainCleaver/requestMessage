@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://domkty7g88d1p"]
+[gd_scene load_steps=11 format=3 uid="uid://domkty7g88d1p"]
 
 [ext_resource type="Script" uid="uid://bkhwwq7jo812n" path="res://scenes/menu/scripts/menu_patch_notes.gd" id="1_d8yal"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_82dpb"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_d6xu4"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_vwy2y"]
+[ext_resource type="FontFile" uid="uid://uphos1gyfjyg" path="res://assets/fonts/CossetteTexte-Regular.ttf" id="5_v2ryi"]
 [ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="5_vwy2y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2ryi"]
@@ -256,14 +257,16 @@ theme_override_font_sizes/font_size = 19
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="notes" type="Label" parent="patch_holder/MarginContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
+[node name="notes" type="RichTextLabel" parent="patch_holder/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_d6xu4")
-theme_override_font_sizes/font_size = 27
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("3_d6xu4")
+theme_override_fonts/bold_font = ExtResource("5_v2ryi")
+theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+fit_content = true
 vertical_alignment = 1
-autowrap_mode = 3
-justification_flags = 171
 
 [node name="empty3" type="Label" parent="patch_holder/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
