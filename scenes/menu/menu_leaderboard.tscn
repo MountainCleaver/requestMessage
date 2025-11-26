@@ -187,7 +187,7 @@ layout_mode = 0
 offset_left = 3.0
 offset_top = 12.0
 offset_right = 1270.0
-offset_bottom = 623.0
+offset_bottom = 613.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/completion_button/completion_holder/MarginContainer"]
 layout_mode = 2
@@ -344,7 +344,7 @@ layout_mode = 0
 offset_left = 3.0
 offset_top = 12.0
 offset_right = 1270.0
-offset_bottom = 623.0
+offset_bottom = 607.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/achievements_button/achievements_holder/MarginContainer"]
 layout_mode = 2

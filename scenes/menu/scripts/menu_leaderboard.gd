@@ -110,7 +110,7 @@ func _on_leaderboard_fetched(result, response_code, headers, body):
 		child.queue_free()
 
 	# Display only top 10
-	var max_display = 10
+	var max_display = 20
 	for i in range(min(max_display, leaderboard_data.size())):
 		var player = leaderboard_data[i]
 
@@ -198,7 +198,7 @@ func _on_achievements_leaderboard_fetched(result, response_code, headers, body):
 		child.queue_free()
 
 	# Display top 10
-	var max_display = 10
+	var max_display = 20
 	for i in range(min(max_display, leaderboard_data.size())):
 		var player = leaderboard_data[i]
 
@@ -250,8 +250,13 @@ func _on_achievements_leaderboard_fetched(result, response_code, headers, body):
 		date_label.vertical_alignment = 1
 		date_label.horizontal_alignment = 1
 		date_label.size_flags_stretch_ratio = 1.0
-		date_label.label_settings = label_settings.duplicate(true)
+
+		var small_label_settings = label_settings.duplicate(true)
+		small_label_settings.font_size = 24
+		date_label.label_settings = small_label_settings
+
 		row_hbox.add_child(date_label)
+
 
 		achievements_vbox.add_child(row_hbox)
 		achievements_leaderboard_data = leaderboard_data 
