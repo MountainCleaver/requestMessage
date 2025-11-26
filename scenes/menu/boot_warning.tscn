@@ -145,7 +145,7 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="warning_holder/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="warning_icon" type="TextureRect" parent="warning_holder/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("4_38u3f")
 stretch_mode = 3
