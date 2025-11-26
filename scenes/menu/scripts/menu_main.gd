@@ -82,7 +82,17 @@ func _start_continue_game() -> void:
 	SaveManager.load_game()
 	var act: String = SaveManager.game_save.current_act
 	var scene: String = SaveManager.game_save.current_scene
-	SignalBus.next_scene.emit("res://scenes/game/" + act + "/" + scene + "/" + act + "_" + scene + ".tscn")
+
+	var path: String
+	if act == "act_6" and scene == "scene_2.1":
+		path = "res://scenes/game/act_6/scene_2.1/finally_at_rest.tscn"
+	elif act == "act_6" and scene == "scene_2.2":
+		path = "res://scenes/game/act_6/scene_2.2/unending_guilt.tscn"
+	else:
+		path = "res://scenes/game/%s/%s/%s_%s.tscn" % [act, scene, act, scene]
+
+	SignalBus.next_scene.emit(path)
+
 
 func _on_new_game_pressed() -> void:
 	_option_overlayer("res://scenes/menu/menu_new_game_slots.tscn")
