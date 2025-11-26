@@ -1,6 +1,6 @@
 extends Control
 
-const PATCH_API_URL := "http://requestmessage-admin.onrender.com/api/get_live_patch.php"
+const PATCH_API_URL := "https://requestmessage-admin.onrender.com/api/get_live_patch.php"
 
 @onready var patch_holder = $patch_holder
 @onready var version_label = $patch_holder/MarginContainer/ScrollContainer/VBoxContainer/version
