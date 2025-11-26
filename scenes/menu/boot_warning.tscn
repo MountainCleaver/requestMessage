@@ -142,7 +142,7 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="warning_holder/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 0
 alignment = 1
 
 [node name="warning_icon" type="TextureRect" parent="warning_holder/MarginContainer/VBoxContainer/HBoxContainer"]
