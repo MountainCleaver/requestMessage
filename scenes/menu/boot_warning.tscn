@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://h36f1ipl8glj"]
+[gd_scene load_steps=18 format=3 uid="uid://h36f1ipl8glj"]
 
 [ext_resource type="Script" uid="uid://bjgba84tfg2i" path="res://scenes/menu/scripts/boot_warning.gd" id="1_lmbvh"]
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_bfe6o"]
 [ext_resource type="FontFile" uid="uid://yp73iwufn66u" path="res://assets/fonts/BatteryPark.ttf" id="2_lmbvh"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_bfe6o"]
-[ext_resource type="FontFile" uid="uid://uphos1gyfjyg" path="res://assets/fonts/CossetteTexte-Regular.ttf" id="4_ko7o7"]
+[ext_resource type="FontFile" uid="uid://nrk50wsrjv46" path="res://assets/fonts/BIZUDGothic-Regular.ttf" id="4_ko7o7"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="5_wvjlt"]
 [ext_resource type="Shader" uid="uid://cvu1dc57fv8bn" path="res://scenes/game/act_5/scene_2/flashback.gdshader" id="6_qiyby"]
 [ext_resource type="PackedScene" uid="uid://djebe20bidrr7" path="res://scenes/menu/outdated_version.tscn" id="7_dnn63"]
@@ -151,7 +151,7 @@ theme_override_colors/font_color = Color(1, 0.133333, 0, 1)
 theme_override_fonts/font = ExtResource("4_ko7o7")
 theme_override_font_sizes/font_size = 40
 text = "
-⚠️
+⚠︎
 "
 horizontal_alignment = 1
 vertical_alignment = 1

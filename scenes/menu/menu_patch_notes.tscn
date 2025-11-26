@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bcooimxjkpmd1" path="res://scenes/menu/background_menu.tscn" id="2_82dpb"]
 [ext_resource type="FontFile" uid="uid://clfvl1t3w67w1" path="res://assets/fonts/basis33.ttf" id="3_d6xu4"]
 [ext_resource type="Script" uid="uid://c0m7e2jwjhujm" path="res://button_1.gd" id="4_vwy2y"]
-[ext_resource type="FontFile" uid="uid://uphos1gyfjyg" path="res://assets/fonts/CossetteTexte-Regular.ttf" id="5_v2ryi"]
+[ext_resource type="FontFile" uid="uid://nrk50wsrjv46" path="res://assets/fonts/BIZUDGothic-Regular.ttf" id="5_v2ryi"]
 [ext_resource type="PackedScene" uid="uid://dcjqekq6wtjgs" path="res://scenes/menu/menu_loading_screen.tscn" id="5_vwy2y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2ryi"]

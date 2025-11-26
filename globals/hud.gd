@@ -4,7 +4,7 @@ signal phone_outro_finished
 @onready var v_box_container: VBoxContainer = $Control/objectives/MarginContainer/VBoxContainer
 @onready var objectives_panel: Panel = $Control/objectives
 const BASIS_33 = preload("res://assets/fonts/basis33.ttf")
-const COSSETTE = preload("res://assets/fonts/CossetteTexte-Regular.ttf")
+const BIZUDGOTHIC = preload("res://assets/fonts/BIZUDGothic-Regular.ttf")
 @onready var hud_animations: AnimationPlayer = $hud_animations
 
 @onready var photo_popup_holder: Panel = $Control/photo_popup_holder
@@ -88,7 +88,7 @@ func _create_objective_node(objective_ID: int, objective_string: String, color: 
 	objective_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	objective_label.add_theme_font_override("normal_font", BASIS_33)
 	objective_label.add_theme_font_size_override("normal_font_size", 24)
-	objective_label.add_theme_font_override("bold_font", COSSETTE)
+	objective_label.add_theme_font_override("bold_font", BIZUDGOTHIC)
 	objective_label.add_theme_font_size_override("bold_font_size", 24)
 	objective_label.add_theme_color_override("default_color", color)
 	objective_label.add_theme_color_override("font_strikethrough_color", Color.RED)
