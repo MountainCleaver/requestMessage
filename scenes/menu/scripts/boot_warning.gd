@@ -249,6 +249,8 @@ func _load_pck_for_web () -> void:
 		pck_loading = false
 		#pck_loading_text.hide()
 		#_fade_in_splash()
+		$pck_loading_text/AnimationPlayer.stop()
+		pck_loading_text.text = ""
 		loading_sub_text.text = "Loading failed, please restart your browser."
 		return
 
@@ -259,6 +261,8 @@ func _on_pck_downloaded (result: int, response_code: int, headers: PackedStringA
 		print("Failed to dowload PCK")
 		#pck_loading_text.hide()
 		#_fade_in_splash()
+		$pck_loading_text/AnimationPlayer.stop()
+		pck_loading_text.text = ""
 		loading_sub_text.text = "Loading failed, please restart your browser."
 		return
 	
@@ -277,6 +281,8 @@ func _on_pck_downloaded (result: int, response_code: int, headers: PackedStringA
 		_fade_in_splash()
 	else:
 		print("PCK loading FAILED")
+		$pck_loading_text/AnimationPlayer.stop()
+		pck_loading_text.text = ""
 		loading_sub_text.text = "Loading failed, please restart your browser."
 	if http_request:
 		http_request.queue_free()
