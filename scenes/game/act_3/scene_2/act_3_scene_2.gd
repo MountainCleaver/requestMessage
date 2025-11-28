@@ -67,10 +67,10 @@ func _ready() -> void:
 	window_closed.connect(_on_window_closed)
 	SignalBus.chat_message_sent.connect(reply_to_chat)
 	SignalBus.player_answered_call.connect(_on_answered_call)
+	SignalBus.player_rejected_call.connect(_on_rejected_call)
 	SignalBus.call_done.connect(_on_call_done)
 	SignalBus.app_chat_opened.connect(_on_app_chat_opened)
 	SignalBus.chat_opened.connect(_on_chat_opened)
-
 	SignalBus.unknown_sender_unlocked = true
 	SignalBus.unknown_sender_label_visible = false
 
@@ -189,7 +189,10 @@ func _on_wendy_calling() -> void:
 	lockscreen.add_child(phone_call_instance)
 
 	phone_call_instance.set_caller("Wendy")
-
+	
+func _on_rejected_call() -> void:
+	DialogueManager.show_dialogue_balloon(A_3S_2, "ignore_call")
+	
 func _on_answered_call() -> void:
 	DialogueManager.show_dialogue_balloon(A_3S_2, "call_with_wendy")
 
