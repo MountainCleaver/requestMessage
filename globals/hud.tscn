@@ -39,7 +39,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1468.15, 89)]
+"values": [Vector2(1568.15, 89)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -90,7 +90,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.112656, 0.112656),
 "update": 0,
-"values": [Vector2(1518.15, 10), Vector2(1150, 10)]
+"values": [Vector2(1618.15, 10), Vector2(1150, 10)]
 }
 
 [sub_resource type="Animation" id="Animation_esk0b"]
@@ -105,7 +105,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(10.9283, 10.9283),
 "update": 0,
-"values": [Vector2(1150, 10), Vector2(1479, 10)]
+"values": [Vector2(1150, 10), Vector2(1579, 10)]
 }
 
 [sub_resource type="Animation" id="Animation_vm2el"]
@@ -217,9 +217,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1428.15
+offset_left = 1528.15
 offset_top = 89.0
-offset_right = 1642.15
+offset_right = 1742.15
 offset_bottom = 389.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_n5lr3")
