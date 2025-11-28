@@ -36,6 +36,16 @@ var chat_open: bool = false
 
 #var asked_neighbors : bool = false
 
+# Navigation trail
+var navigation_lights: Node2D = null
+var navigation_home: Array = [] 
+var lights: Array = []
+var show_navigation: bool = false
+var base_distance := 200.0
+var max_lights := 100
+var light_scene := preload("res://assets/tilesets/nav_light.png")
+
+
 func asked_neighbors () -> bool :
 	return gino_knocked and theresa_asked and vanesa_asked and jonthan_knocked
 
@@ -86,7 +96,6 @@ func _ready() -> void:
 		"bed"
 	)
 	_intro_sequence()
-	
 	SignalBus.start_jonathan.connect(_on_start_jonathan)
 	SignalBus.last_words.connect(_on_last_words)
 
@@ -152,21 +161,25 @@ func _input(event: InputEvent) -> void:
 			#door_gino,area_vanessa, door_jonathan, door_theresa
 			
 			"door_gino":
+				_clear_navigation_trail("door_gino")
 				sfx_knock.play()
 				npc_interactions(gino_knocked, "gino_knock", "gino_knock_again")
 				
 			"door_theresa":
+				_clear_navigation_trail("door_theresa")
 				sfx_knock.play()
 				SignalBus.start_theresa.emit()
 				await get_tree().create_timer(0.5).timeout
 				npc_interactions(theresa_asked, "theresa", "theresa_again")
 			
 			"area_vanessa":
+				_clear_navigation_trail("area_vanessa")
 				SignalBus.start_vanesa.emit()
 				await get_tree().create_timer(0.5).timeout
 				npc_interactions(vanesa_asked, "vanesa", "vanesa_again")
 			
 			"door_jonathan":
+				_clear_navigation_trail("door_jonathan")
 				sfx_knock.play()
 				SignalBus.knocked_jonathan.emit()
 				npc_interactions(jonthan_knocked, "jonathan_knock", "jonathan_knock_again")
@@ -252,7 +265,95 @@ func _switch_location(scene: PackedScene, map_key: String, spawn_point: String) 
 
 	await get_tree().process_frame
 	can_interact = true
+	
+	# Get navigation lights node and its children
+	navigation_lights = current_location.get_node_or_null("navigation_lights")
+	navigation_home.clear()
 
+	if navigation_lights:
+		for child in navigation_lights.get_children():
+			if child is Node2D:
+				child.visible = false
+
+				# Assign area to match your interact names
+				match child.name:
+					"navigation_home":
+						child.set_meta("area", "door_theresa")
+					"navigation_home2":
+						child.set_meta("area", "door_gino")
+					"navigation_home3":
+						child.set_meta("area", "area_vanessa")
+					"navigation_home4":
+						child.set_meta("area", "door_jonathan")
+					_:
+						child.set_meta("area", child.name)
+
+				navigation_home.append({
+					"target": child,
+					"lights": []
+				})
+
+
+
+	if map_key == "hometown":
+		show_navigation = true
+
+
+func _process(delta: float) -> void:
+	if show_navigation:
+		_update_navigation_trail()
+
+func _update_navigation_trail():
+	var player_pos = player_danilo.global_position
+	
+	for trail_data in navigation_home:
+		var target = trail_data["target"]
+		var lights = trail_data["lights"]
+		var distance = player_pos.distance_to(target.global_position)
+		var desired_num = clamp(int(distance / base_distance), 20, max_lights)
+		
+		while lights.size() < desired_num:
+			if target.has_meta("cleared") and target.get_meta("cleared"):
+				break
+			var l = Sprite2D.new()
+			l.texture = light_scene
+			navigation_lights.add_child(l)
+			lights.append(l)
+		
+		while lights.size() > desired_num:
+			lights.pop_back().queue_free()
+		
+		for i in range(lights.size()):
+			var t = float(i + 1) / (lights.size() + 1)
+			var pos = player_pos.lerp(target.global_position, t)
+			var l = lights[i]
+			l.global_position = pos
+			l.scale = Vector2.ONE * 0.005
+			l.modulate.a = lerp(1.0, 0.3, t)
+
+
+func _clear_navigation_trail(area_name: String) -> void:
+	if not navigation_lights or not navigation_lights.is_inside_tree():
+		return
+
+	for trail_data in navigation_home:
+		var target = trail_data["target"]
+
+		if target.has_meta("area") and target.get_meta("area").to_lower() == area_name.to_lower():
+			# Free all light nodes immediately
+			for l in trail_data["lights"]:
+				if l.is_inside_tree():
+					l.queue_free()
+			trail_data["lights"].clear()
+
+			# Prevent recreation for this area by marking target as cleared
+			target.set_meta("cleared", true)
+
+
+
+
+
+	
 func _set_camera(map_key: String) -> void:
 	var cam_data = maps[map_key]["camera"]
 	camera_2d.zoom = cam_data.get("zoom", Vector2(3, 3))

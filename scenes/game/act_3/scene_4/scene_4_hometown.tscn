@@ -431,6 +431,21 @@ energy = 0.4
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
+[node name="navigation_lights" type="Node2D" parent="."]
+position = Vector2(-703, 236)
+
+[node name="navigation_home" type="Marker2D" parent="navigation_lights"]
+position = Vector2(664, 103)
+
+[node name="navigation_home2" type="Marker2D" parent="navigation_lights"]
+position = Vector2(874, -39)
+
+[node name="navigation_home3" type="Marker2D" parent="navigation_lights"]
+position = Vector2(629, -229)
+
+[node name="navigation_home4" type="Marker2D" parent="navigation_lights"]
+position = Vector2(950, -196)
+
 [connection signal="body_entered" from="danilo_hometown/y-sorted-objects/areas/gino" to="." method="_on_gino_body_entered"]
 [connection signal="body_exited" from="danilo_hometown/y-sorted-objects/areas/gino" to="." method="_on_gino_body_exited"]
 [connection signal="body_entered" from="danilo_hometown/y-sorted-objects/areas/vanessa" to="." method="_on_vanessa_body_entered"]
