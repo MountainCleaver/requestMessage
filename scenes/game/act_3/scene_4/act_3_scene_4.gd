@@ -292,23 +292,30 @@ func _switch_location(scene: PackedScene, map_key: String, spawn_point: String) 
 					"target": child,
 					"lights": []
 				})
-
-
-
+				
 	if map_key == "hometown":
 		show_navigation = true
-
+	else:
+		show_navigation = false
 
 func _process(delta: float) -> void:
 	if show_navigation:
 		_update_navigation_trail()
 
 func _update_navigation_trail():
+	if not navigation_lights or not navigation_lights.is_inside_tree():
+		return
+
 	var player_pos = player_danilo.global_position
-	
+
 	for trail_data in navigation_home:
 		var target = trail_data["target"]
+
+		if target == null or not target.is_inside_tree():
+			continue
+
 		var lights = trail_data["lights"]
+
 		var distance = player_pos.distance_to(target.global_position)
 		var desired_num = clamp(int(distance / base_distance), 20, max_lights)
 		
@@ -330,6 +337,7 @@ func _update_navigation_trail():
 			l.global_position = pos
 			l.scale = Vector2.ONE * 0.005
 			l.modulate.a = lerp(1.0, 0.3, t)
+
 
 
 func _clear_navigation_trail(area_name: String) -> void:
