@@ -90,7 +90,7 @@ func _on_gino_turn_body_entered(body: Node2D) -> void:
 	gino.direction = Vector2.ZERO
 	gino_animated_sprite_2d.play("idle_right")
 
-	DialogueManager.show_dialogue_balloon(A_5S_5, "mang_gino_being_a_bitch")
+	DialogueManager.show_dialogue_balloon(A_5S_5, "mang_gino_hitting")
 	gino_turn.queue_free()
 
 

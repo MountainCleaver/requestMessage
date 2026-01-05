@@ -4,7 +4,7 @@ Mateo_child_crying: huwag kang mahuli...
 Mang gino: [font_size=55.0][shake level=20 connected=0] MATEO! BUMALIK KA DITO!!![/shake]
 => END
 
-~ mang_gino_being_a_bitch
+~ mang_gino_hitting
 Mang gino: [font_size=55.0][shake level=20 connected=0]IKAW BATA KA! MAY PATAKBO-TAKBO KA PANG NALALAMAN?![/shake]
 do _hit_mateo("idle_right")
 Mateo_child_crying: [shake level=20 connected=0]Tama na po 'tay!! [/shake] [font_size=60.0][shake level=20 connected=0]tama na po! Ayoko na![/shake]
