@@ -187,12 +187,6 @@ func add_notification() -> void:
 
 func get_scene_type() -> String:
 	return "game"
-		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
 
 
 func _set_tutorial_text(text: String = "") -> void:

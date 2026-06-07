@@ -145,8 +145,4 @@ func _exit_tree() -> void:
 		if SignalBus.call_completed.is_connected(_on_call_completed):
 			SignalBus.call_completed.disconnect(_on_call_completed)
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 

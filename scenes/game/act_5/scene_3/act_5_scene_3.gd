@@ -51,8 +51,4 @@ func _to_danilo_house()->void:
 	ObjectiveManager.complete_objective(1)
 	SignalBus.next_scene.emit("res://scenes/game/act_5/scene_3/act_5_scene_3_bahay_ni_danilo.tscn")
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 

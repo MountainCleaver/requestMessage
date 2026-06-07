@@ -763,8 +763,4 @@ func _act_3_scene_3_done() -> void:
 	SignalBus.act_num_scene_num_done.emit("act_3", "scene_3", "res://scenes/game/act_3/scene_4/act_3_scene_4.tscn")
 	ObjectiveManager.empty_objectives()
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 

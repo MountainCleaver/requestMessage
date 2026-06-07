@@ -290,8 +290,4 @@ func _act_3_scene_2_done() -> void:
 	Hud.clear_objectives();
 	Hud.hide_objectives()
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 

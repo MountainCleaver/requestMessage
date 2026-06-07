@@ -143,8 +143,4 @@ func act_6_scene_2_done() -> void:
 
 	SignalBus.next_scene.emit("res://scenes/menu/menu_credits.tscn")
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 

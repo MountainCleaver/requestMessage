@@ -511,8 +511,4 @@ func read_notebook(sit_marker: Node2D) -> void:
 	player_danilo.animation_locked = false
 	player_danilo.can_move = true
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 

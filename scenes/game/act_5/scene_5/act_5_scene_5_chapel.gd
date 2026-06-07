@@ -149,8 +149,4 @@ func _mateo_run_again() -> void:
 
 	mateo.direction = Vector2.DOWN
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 

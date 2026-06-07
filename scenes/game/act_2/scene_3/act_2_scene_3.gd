@@ -355,8 +355,4 @@ func enable_bus_interact() -> void:
 	bus_interact.set_deferred("monitorable", true)
 	print("Bus interact is now active — player can board the bus.")
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 
