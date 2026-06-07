@@ -39,8 +39,4 @@ func _intro_anim() -> void:
 	await get_tree().create_timer(2).timeout
 	animated_sprite_2d_danilo.play("idle_bed")  # Danilo stays in bed, awake
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 

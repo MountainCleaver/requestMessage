@@ -32,8 +32,6 @@ var pck_loading : bool = false
 var http_request: HTTPRequest
 
 func _ready() -> void:
-	NetworkStatus.check_internet_connection()
-
 	outdated_layer.visible = false
 	outdated_loading.visible = false
 	outdated_update_label.visible = false
@@ -210,11 +208,6 @@ func _go_next_scene() -> void:
 		SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn")
 	else:
 		SignalBus.next_scene.emit("res://scenes/menu/menu_main.tscn")
-
-
-func on_internet_status_changed(has_internet: bool) -> void:
-	if not has_internet:
-		print("No internet here, show warning or disable buttons.")
 
 
 func _load_pck_for_web () -> void:

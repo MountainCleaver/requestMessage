@@ -294,9 +294,3 @@ func _clear_navigation_trail() -> void:
 		if l and l.is_inside_tree():
 			l.queue_free()
 	lights.clear()
-
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")

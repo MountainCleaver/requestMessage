@@ -121,8 +121,4 @@ func whitey_vanish_full() -> void:
 func _go_to_next_scene() -> void:
 	SignalBus.next_scene.emit("res://scenes/game/act_5/scene_8/act_5_scene_8_outro_scene.tscn")
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 

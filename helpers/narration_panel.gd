@@ -147,8 +147,3 @@ func hide_narration() -> void:
 		panel_instance.queue_free()
 	panel_instance = null
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")

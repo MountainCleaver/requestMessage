@@ -77,8 +77,4 @@ func _on_chase_done_area_body_entered(body: Node2D) -> void:
 	print("Chase done")
 
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 

@@ -853,8 +853,4 @@ func scene_3_done() -> void:
         "res://scenes/game/act_4/scene_4/dark_forest.tscn"
 	)
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 

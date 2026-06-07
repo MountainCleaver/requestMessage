@@ -70,12 +70,7 @@ func _paalam_kay_mama()->void:
 
 
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
-
+ 
 
 
 

@@ -16,8 +16,4 @@ func _on_back_pressed():
 	SignalBus.next_scene.emit("res://scenes/menu/menu_login_acc.tscn")
 	queue_free()
 
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 
