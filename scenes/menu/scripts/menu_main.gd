@@ -141,7 +141,7 @@ func _exit_overlay() -> void:
 		welcome_bg.visible = true
 
 func _on_feedback_pressed() -> void:
-	OS.shell_open("https://forms.gle/i6TE17FkpqA7mywk8")
+	OS.shell_open("https://forms.gle/GmRDQGi7xhpurg5b6")
 
 func _on_exit_confirmation_dialog_confirmed() -> void:
 	get_tree().quit()
