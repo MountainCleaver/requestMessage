@@ -233,8 +233,4 @@ func _on_transition_finished():
 	SaveManager.track_ending(Session.user_ID, get_tree().current_scene.scene_file_path)
 	get_tree().change_scene_to_file("res://scenes/game/act_6/scene_2.2/bad_ending.tscn")
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 

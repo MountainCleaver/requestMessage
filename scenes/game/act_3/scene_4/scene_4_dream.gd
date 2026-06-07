@@ -167,8 +167,4 @@ func _on_shazam_body_entered(body: Node2D) -> void:
 	SignalBus.next_scene.emit("res://scenes/game/act_3/scene_4/act_3_scene_4_part_2.tscn")
 	
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 

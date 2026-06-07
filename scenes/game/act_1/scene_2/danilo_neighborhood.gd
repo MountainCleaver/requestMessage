@@ -87,9 +87,3 @@ func _clear_navigation_trail() -> void:
 	
 func bogok (res : String) -> void:
 	print(res);
-		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")

@@ -109,8 +109,4 @@ func _exit_overlay() -> void:
 	continue_option.grab_focus()
 	overlayer.visible = false
 		
-func on_internet_status_changed(has_internet: bool) -> void:
-	if has_internet:
-		pass
-	else:
-		print("No internet here, show warning or disable buttons.")
+ 
