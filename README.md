@@ -100,3 +100,17 @@ We are 4th-year **BSIT college students** developing our first game using **Godo
 We would greatly appreciate your feedback and comments. Your input will be very helpful for improving the game and completing our capstone documentation. After playing, please consider leaving your thoughts and suggestions.
 
 Thank you for playing **Request Message**.
+
+---
+
+## CONTRIBUTORS
+
+This game was developed by the following members of our capstone team:
+
+| Name | GitHub |
+|------|--------|
+| Gerald Cancino | [@Zenayuki](https://github.com/Zenayuki) |
+| Julius Romero | [@MountainCleaver](https://github.com/MountainCleaver) |
+| Julia Buenafe | [@Soleiiil](https://github.com/Soleiiil) |
+| Roselyn Claveria | [@clavvypatty](https://github.com/clavvypatty) |
+| Joana Emperoso | [@wannaxxiii](https://github.com/wannaxxiii) |
